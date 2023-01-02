@@ -11,8 +11,11 @@
   ],
   "homepage": "https://github.com/Newton-School/grauity#readme",
   "author": "Newton School/Praduman Goyal",
-  "scripts": {
+  "engines": {
+    "node": ">=14.18.0",
+    "npm": ">=9.2.0"
   },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Newton-School/grauity.git"
@@ -20,5 +23,10 @@
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/Newton-School/grauity/issues"
+  },
+  "devDependencies": {
+    "fantasticon": "^2.0.0",
+    "rimraff": "^0.0.1-security",
+    "svgo": "^3.0.2"
   }
 }
