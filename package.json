@@ -15,7 +15,9 @@
     "node": ">=14.18.0",
     "npm": ">=9.2.0"
   },
-  "scripts": {},
+  "scripts": {
+    "build-icons:optimize": "rimraf ./iconland/optimised/*.svg & svgo -q -p 8 -f ./iconland/seeds -o ./iconland/optimised"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Newton-School/grauity.git"
@@ -26,7 +28,7 @@
   },
   "devDependencies": {
     "fantasticon": "^2.0.0",
-    "rimraff": "^0.0.1-security",
+    "rimraf": "^3.0.2",
     "svgo": "^3.0.2"
   }
 }
