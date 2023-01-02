@@ -1,0 +1,24 @@
+{
+  "name": "grauity",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "Newton School",
+    "Grauity",
+    "Design System",
+    "React",
+    "CSS"
+  ],
+  "homepage": "https://github.com/Newton-School/grauity#readme",
+  "author": "Newton School/Praduman Goyal",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Newton-School/grauity.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Newton-School/grauity/issues"
+  }
+}
