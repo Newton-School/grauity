@@ -34,6 +34,7 @@
     "lint:staged": "lint-staged",
     "prettify": "prettier --write"
   },
+  "pre-commit": "lint:staged",
   "lint-staged": {
     "*.js": [
       "npm run lint:eslint:fix",
@@ -44,12 +45,11 @@
       "git add --force"
     ]
   },
-  "pre-commit": "lint:staged",
   "devDependencies": {
-    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.6.0",
     "fantasticon": "^2.0.0",
-    "lint-staged": "^13.1.0",
+    "lint-staged": "^8.1.5",
     "pre-commit": "^1.2.2",
     "prettier": "2.8.1",
     "rimraf": "^3.0.2",
