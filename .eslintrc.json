@@ -1,5 +1,12 @@
 {
     "extends": ["airbnb", "prettier"],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
+    },
     "rules": {
         "indent": ["error", 4],
         "react/jsx-indent": ["error", 4],
@@ -12,6 +19,16 @@
             "error",
             {
                 "devDependencies": true
+            }
+        ],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
             }
         ]
     },

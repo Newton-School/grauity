@@ -46,6 +46,7 @@
     "pre-commit": "lint:staged",
     "lint-staged": {
         "*.js": "npm run lint:eslint:fix",
+        "*.ts": "npm run lint:eslint:fix",
         "*.json": "prettier --write"
     },
     "devDependencies": {
