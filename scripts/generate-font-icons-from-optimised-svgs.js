@@ -35,9 +35,9 @@ generateFonts({
     },
     getIconId: ({
         basename,
-        relativeDirPath,
+        // relativeDirPath,
         absoluteFilePath,
-        relativeFilePath,
+    // relativeFilePath,
     }) => {
         const splitBaseName = basename.split('|');
         if (splitBaseName.length <= 1) {
