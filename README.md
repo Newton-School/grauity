@@ -5,6 +5,10 @@
 Gravity was discovered and not invented. Likewise, the nature have already provided us with the most elegant UI
 components. Newton School is trying to discover them and ensemble them in the `gra.UI.ty`.
 
+## Alias
+
+GUI - G(UI) User Interface
+
 ## Versions
 
 - Node: v16.16.0

@@ -1,0 +1,40 @@
+$gui-icons-font: "gui-icons";
+
+@font-face {
+    font-family: $gui-icons-font;
+    src: url("fonts/gui-icons.eot?0a620d79dda29be595912d2699d89134#iefix") format("embedded-opentype"),
+url("fonts/gui-icons.woff?0a620d79dda29be595912d2699d89134") format("woff"),
+url("fonts/gui-icons.woff2?0a620d79dda29be595912d2699d89134") format("woff2"),
+url("fonts/gui-icons.ttf?0a620d79dda29be595912d2699d89134") format("truetype");
+}
+
+i[class^="gui-icon-"]:before, i[class*=" gui-icon-"]:before {
+    font-family: gui-icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$gui-icons-map: (
+    "school": "\f101",
+    "code": "\f102",
+    "today": "\f103",
+    "person": "\f104",
+);
+
+.gui-icon-school:before {
+    content: map-get($gui-icons-map, "school");
+}
+.gui-icon-code:before {
+    content: map-get($gui-icons-map, "code");
+}
+.gui-icon-today:before {
+    content: map-get($gui-icons-map, "today");
+}
+.gui-icon-person:before {
+    content: map-get($gui-icons-map, "person");
+}
