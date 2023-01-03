@@ -8,7 +8,6 @@ const UI_LIBRARY_CORE_DIRECTORY = `${UI_DIRECTORY}/core`;
 const UI_LIBRARY_CSS_DIRECTORY = `${UI_DIRECTORY}/css`;
 const UI_LIBRARY_FONTS_DIRECTORY = `${UI_DIRECTORY}/fonts`;
 const UI_LIBRARY_CORE_ICON_DIRECTORY = `${UI_LIBRARY_CORE_DIRECTORY}/icons`;
-const UI_LIBRARY_CSS_ICON_DIRECTORY = `${UI_LIBRARY_CSS_DIRECTORY}/icons`;
 const tagIconsObject = {};
 const iconTags = {};
 
@@ -22,12 +21,7 @@ generateFonts({
         FontAssetType.WOFF2,
         FontAssetType.TTF,
     ],
-    assetTypes: [
-        // OtherAssetType.CSS,
-        OtherAssetType.JSON,
-        OtherAssetType.TS,
-        OtherAssetType.SCSS,
-    ],
+    assetTypes: [OtherAssetType.JSON, OtherAssetType.TS, OtherAssetType.SCSS],
     tag: 'i',
     prefix: 'gui-icon',
     formatOptions: {
@@ -48,8 +42,7 @@ generateFonts({
         woff2: `${UI_LIBRARY_FONTS_DIRECTORY}/gui-icons.woff2`,
         ttf: `${UI_LIBRARY_FONTS_DIRECTORY}/gui-icons.ttf`,
         ts: `${UI_LIBRARY_CORE_ICON_DIRECTORY}/index.ts`,
-        css: `${UI_LIBRARY_CSS_ICON_DIRECTORY}/gui-icons.css`,
-        scss: `${UI_LIBRARY_CSS_ICON_DIRECTORY}/gui-icons.scss`,
+        scss: `${UI_LIBRARY_CSS_DIRECTORY}/gui-icons.scss`,
     },
     getIconId: ({
         basename,
@@ -92,15 +85,11 @@ generateFonts({
             /\.\/gui-icons\./g,
             'fonts/gui-icons.'
         );
-        fs.writeFile(
-            `${UI_LIBRARY_CSS_ICON_DIRECTORY}/gui-icons.scss`,
-            scssContent,
-            (err) => {
-                if (err) {
-                    throw err;
-                }
+        fs.writeFile(results.options.pathOptions.scss, scssContent, (err) => {
+            if (err) {
+                throw err;
             }
-        );
+        });
         console.log(results);
     })
     .catch((error) => {
