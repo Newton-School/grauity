@@ -31,14 +31,25 @@
     "lint:eslint": "eslint --ignore-path .gitignore",
     "lint:eslint:fix": "eslint --ignore-path .gitignore --fix",
     "lint:js": "npm run lint:eslint -- . ",
-    "lint:staged": "npm run lint",
+    "lint:staged": "lint-staged",
     "prettify": "prettier --write"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:eslint:fix",
+      "git add --force"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add --force"
+    ]
   },
   "pre-commit": "lint:staged",
   "devDependencies": {
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.6.0",
     "fantasticon": "^2.0.0",
+    "lint-staged": "^13.1.0",
     "pre-commit": "^1.2.2",
     "prettier": "2.8.1",
     "rimraf": "^3.0.2",
