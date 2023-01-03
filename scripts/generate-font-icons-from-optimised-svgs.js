@@ -1,4 +1,4 @@
-import {FontAssetType, generateFonts, OtherAssetType} from 'fantasticon';
+import { FontAssetType, generateFonts, OtherAssetType } from 'fantasticon';
 import * as fs from 'fs';
 
 const INPUT_DIRECTORY = './iconland/optimised';
@@ -21,7 +21,7 @@ generateFonts({
         FontAssetType.WOFF2,
         FontAssetType.TTF,
     ],
-    assetTypes: [OtherAssetType.JSON, OtherAssetType.SCSS],
+    assetTypes: [OtherAssetType.JSON, OtherAssetType.SCSS, OtherAssetType.TS],
     tag: 'i',
     prefix: 'gui-icon',
     formatOptions: {
@@ -29,11 +29,11 @@ generateFonts({
             indent: 2,
         },
         ts: {
+            types: ['enum', 'literalId', 'literalKey'],
             singleQuotes: true,
             enumName: 'GUI_ICONS',
             literalIdName: 'guiIconName',
             literalKeyName: 'guiIconKey',
-            constantName: 'GUI_ICON_CODEPOINTS',
         },
     },
     pathOptions: {
@@ -42,6 +42,7 @@ generateFonts({
         woff2: `${UI_LIBRARY_FONTS_DIRECTORY}/gui-icons.woff2`,
         ttf: `${UI_LIBRARY_FONTS_DIRECTORY}/gui-icons.ttf`,
         scss: `${UI_LIBRARY_CSS_DIRECTORY}/gui-icons.scss`,
+        ts: `${UI_LIBRARY_CORE_ICON_DIRECTORY}/iconTypes.ts`,
     },
     getIconId: ({
         basename,
@@ -53,8 +54,8 @@ generateFonts({
         if (splitBaseName.length <= 1) {
             throw new Error(
                 `No tag provided for the icon ${absoluteFilePath}.` +
-                ' The tags should be separated by a pipe character (|).' +
-                ' For example: \'tag1|tag2|tag3|...|tagN|icon-name.svg\''
+                    ' The tags should be separated by a pipe character (|).' +
+                    ' For example: \'tag1|tag2|tag3|...|tagN|icon-name.svg\''
             );
         }
         const tags = splitBaseName.slice(0, splitBaseName.length - 1);
