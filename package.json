@@ -20,7 +20,7 @@
     "url": "https://github.com/Newton-School/grauity/issues"
   },
   "engines": {
-    "node": ">=14.18.0",
+    "node": ">=16.16.0",
     "npm": ">=9.2.0"
   },
   "scripts": {
