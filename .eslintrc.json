@@ -1,5 +1,5 @@
 {
-    "extends": ["airbnb", "prettier", "plugin:@typescript-eslint/recommended"],
+    "extends": ["airbnb", "prettier"],
     "plugins": ["@typescript-eslint"],
     "settings": {
         "import/resolver": {
@@ -33,7 +33,9 @@
             }
         ],
         "no-shadow": "off",
-        "@typescript-eslint/no-shadow": ["error"]
+        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/no-unused-vars": "off",
+        "no-unused-vars": "off"
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {

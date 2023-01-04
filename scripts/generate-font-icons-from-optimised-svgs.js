@@ -1,5 +1,5 @@
-import { FontAssetType, generateFonts, OtherAssetType } from 'fantasticon';
-import * as fs from 'fs';
+const fs = require('fs');
+const { FontAssetType, generateFonts, OtherAssetType } = require('fantasticon');
 
 const INPUT_DIRECTORY = './iconland/optimised';
 const OUTPUT_DIRECTORY = './iconland/font-icons';

@@ -1,12 +1,9 @@
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+const path = require('path');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-export default {
-    entry: './ui/index.js',
+module.exports = {
+    entry: './ui/index.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'grauity.js',
@@ -18,9 +15,23 @@ export default {
         alias: {
             fonts: path.resolve(__dirname, 'ui/fonts'),
         },
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     },
     module: {
         rules: [
+            {
+                test: /\.(ts|js)x?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-typescript',
+                        ],
+                    },
+                },
+            },
             {
                 test: /\.(css|scss)$/,
                 use: [
