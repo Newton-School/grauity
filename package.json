@@ -34,7 +34,8 @@
         "../node_modules/@types"
     ],
     "scripts": {
-        "build-code": "webpack --config webpack.config.js",
+        "build": "npm run extract-typings && npm run webpack-build",
+        "webpack-build": "webpack --config webpack.config.js",
         "build-icons": "npm run build-icons:optimize && npm run build-icons:generate",
         "build-icons:optimize": "rimraf ./iconland/optimised/*.svg & svgo -q -p 8 -f ./iconland/seeds -o ./iconland/optimised",
         "build-icons:generate": "node ./scripts/generate-font-icons-from-optimised-svgs.js",
@@ -43,7 +44,8 @@
         "lint:eslint": "eslint --ignore-path .gitignore",
         "lint:eslint:fix": "eslint  --ignore-path .gitignore --fix",
         "lint:staged": "lint-staged",
-        "prettify": "prettier --write"
+        "prettify": "prettier --write",
+        "extract-typings": "tsc --project tsconfig.types.json"
     },
     "pre-commit": "lint:staged",
     "lint-staged": {
