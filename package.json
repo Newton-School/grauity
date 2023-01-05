@@ -11,7 +11,14 @@
         "CSS"
     ],
     "homepage": "https://github.com/Newton-School/grauity#readme",
-    "author": "Newton School/Praduman Goyal",
+    "author": "Newton School",
+    "contributors": [
+        {
+            "name": "Praduman Goyal",
+            "email": "goyal.praduman611@gmail.com",
+            "homepage": "https://github.com/pradumangoyal"
+        }
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Newton-School/grauity.git"
@@ -21,8 +28,8 @@
         "url": "https://github.com/Newton-School/grauity/issues"
     },
     "engines": {
-        "node": ">=18.12.1",
-        "npm": ">=9.2.0"
+        "node": "^16.14.0",
+        "npm": ">=9.1.2"
     },
     "main": "dist/grauity.js",
     "files": [
@@ -45,7 +52,9 @@
         "lint:eslint:fix": "eslint  --ignore-path .gitignore --fix",
         "lint:staged": "lint-staged",
         "prettify": "prettier --write",
-        "extract-typings": "tsc --project tsconfig.types.json"
+        "extract-typings": "tsc --project tsconfig.types.json",
+        "storybook": "start-storybook -p 6006",
+        "build-storybook": "build-storybook"
     },
     "pre-commit": "lint:staged",
     "lint-staged": {
@@ -60,31 +69,47 @@
         "*.json": "npm run prettify"
     },
     "devDependencies": {
+        "@babel/core": "^7.20.12",
         "@babel/preset-env": "^7.20.2",
         "@babel/preset-react": "^7.18.6",
         "@babel/preset-typescript": "^7.18.6",
+        "@storybook/addon-actions": "^6.5.15",
+        "@storybook/addon-essentials": "^6.5.15",
+        "@storybook/addon-interactions": "^6.5.15",
+        "@storybook/addon-links": "^6.5.15",
+        "@storybook/builder-webpack5": "^6.5.15",
+        "@storybook/manager-webpack5": "^6.5.15",
+        "@storybook/react": "^6.5.15",
+        "@storybook/testing-library": "^0.0.13",
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.26",
         "@types/react-dom": "^18.0.10",
         "@types/styled-components": "^5.1.26",
         "@typescript-eslint/eslint-plugin": "^5.48.0",
         "@typescript-eslint/parser": "^5.48.0",
-        "babel-eslint": "^10.1.0",
         "babel-loader": "^9.1.0",
         "css-loader": "^6.7.3",
         "eslint": "^7.32.0",
         "eslint-config-airbnb": "^18.2.1",
         "eslint-config-prettier": "^8.6.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-jsx-a11y": "^6.6.1",
+        "eslint-plugin-react": "^7.31.11",
         "fantasticon": "^2.0.0",
+        "html-webpack-plugin": "^5.5.0",
+        "http-server": "^14.1.1",
         "lint-staged": "^13.1.0",
         "mini-css-extract-plugin": "^2.7.2",
         "path": "^0.12.7",
         "pre-commit": "^1.2.2",
         "prettier": "2.8.1",
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0",
         "rimraf": "^3.0.2",
         "sass": "^1.57.1",
         "sass-loader": "^13.2.0",
         "scss": "^0.2.4",
+        "storybook": "^6.5.15",
         "style-loader": "^3.3.1",
         "svgo": "^3.0.2",
         "typescript": "^4.9.4",
@@ -99,5 +124,8 @@
     "peerDependencies": {
         "react": "^16.8.0 || ^17.0.0",
         "react-dom": "^16.8.0 || ^17.0.0"
+    },
+    "resolutions": {
+        "@storybook/react/webpack": "^5"
     }
 }
