@@ -2,10 +2,10 @@ $gui-icons-font: "gui-icons";
 
 @font-face {
     font-family: $gui-icons-font;
-    src: url("fonts/gui-icons.eot?0a620d79dda29be595912d2699d89134#iefix") format("embedded-opentype"),
-url("fonts/gui-icons.woff?0a620d79dda29be595912d2699d89134") format("woff"),
-url("fonts/gui-icons.woff2?0a620d79dda29be595912d2699d89134") format("woff2"),
-url("fonts/gui-icons.ttf?0a620d79dda29be595912d2699d89134") format("truetype");
+    src: url("fonts/gui-icons.eot?192bf507b968681bff3b97e42b7384a6#iefix") format("embedded-opentype"),
+url("fonts/gui-icons.woff?192bf507b968681bff3b97e42b7384a6") format("woff"),
+url("fonts/gui-icons.woff2?192bf507b968681bff3b97e42b7384a6") format("woff2"),
+url("fonts/gui-icons.ttf?192bf507b968681bff3b97e42b7384a6") format("truetype");
 }
 
 i[class^="gui-icon-"]:before, i[class*=" gui-icon-"]:before {
@@ -20,12 +20,16 @@ i[class^="gui-icon-"]:before, i[class*=" gui-icon-"]:before {
 }
 
 $gui-icons-map: (
-    "school": "\f101",
-    "code": "\f102",
-    "today": "\f103",
-    "person": "\f104",
+    "school-left": "\f101",
+    "school": "\f102",
+    "code": "\f103",
+    "today": "\f104",
+    "person": "\f105",
 );
 
+.gui-icon-school-left:before {
+    content: map-get($gui-icons-map, "school-left");
+}
 .gui-icon-school:before {
     content: map-get($gui-icons-map, "school");
 }
