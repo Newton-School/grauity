@@ -1,13 +1,18 @@
-export type guiIconName =
+export type grauityIconName =
     | 'school-left'
     | 'school'
     | 'code'
     | 'today'
     | 'person';
 
-export type guiIconKey = 'SchoolLeft' | 'School' | 'Code' | 'Today' | 'Person';
+export type grauityIconKey =
+    | 'SchoolLeft'
+    | 'School'
+    | 'Code'
+    | 'Today'
+    | 'Person';
 
-export enum GUI_ICONS {
+export enum GRAUITY_ICONS {
     SchoolLeft = 'school-left',
     School = 'school',
     Code = 'code',

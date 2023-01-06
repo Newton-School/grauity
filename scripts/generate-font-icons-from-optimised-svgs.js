@@ -12,7 +12,7 @@ const tagIconsMapping = {};
 const iconTagsMapping = {};
 
 generateFonts({
-    name: 'gui-icons',
+    name: 'grauity-icons',
     inputDir: INPUT_DIRECTORY,
     outputDir: OUTPUT_DIRECTORY,
     fontTypes: [
@@ -23,7 +23,7 @@ generateFonts({
     ],
     assetTypes: [OtherAssetType.JSON, OtherAssetType.SCSS, OtherAssetType.TS],
     tag: 'i',
-    prefix: 'gui-icon',
+    prefix: 'grauity-icon',
     formatOptions: {
         json: {
             indent: 2,
@@ -31,17 +31,17 @@ generateFonts({
         ts: {
             types: ['enum', 'literalId', 'literalKey'],
             singleQuotes: true,
-            enumName: 'GUI_ICONS',
-            literalIdName: 'guiIconName',
-            literalKeyName: 'guiIconKey',
+            enumName: 'GRAUITY_ICONS',
+            literalIdName: 'grauityIconName',
+            literalKeyName: 'grauityIconKey',
         },
     },
     pathOptions: {
-        eot: `${UI_LIBRARY_FONTS_DIRECTORY}/gui-icons.eot`,
-        woff: `${UI_LIBRARY_FONTS_DIRECTORY}/gui-icons.woff`,
-        woff2: `${UI_LIBRARY_FONTS_DIRECTORY}/gui-icons.woff2`,
-        ttf: `${UI_LIBRARY_FONTS_DIRECTORY}/gui-icons.ttf`,
-        scss: `${UI_LIBRARY_CSS_DIRECTORY}/gui-icons.scss`,
+        eot: `${UI_LIBRARY_FONTS_DIRECTORY}/grauity-icons.eot`,
+        woff: `${UI_LIBRARY_FONTS_DIRECTORY}/grauity-icons.woff`,
+        woff2: `${UI_LIBRARY_FONTS_DIRECTORY}/grauity-icons.woff2`,
+        ttf: `${UI_LIBRARY_FONTS_DIRECTORY}/grauity-icons.ttf`,
+        scss: `${UI_LIBRARY_CSS_DIRECTORY}/grauity-icons.scss`,
         ts: `${UI_LIBRARY_CORE_ICON_DIRECTORY}/iconTypes.ts`,
     },
     getIconId: ({
@@ -92,8 +92,8 @@ generateFonts({
         );
         let scssContent = results.assetsOut.scss;
         scssContent = scssContent.replace(
-            /\.\/gui-icons\./g,
-            'fonts/gui-icons.'
+            /\.\/grauity-icons\./g,
+            'fonts/grauity-icons.'
         );
         fs.writeFile(results.options.pathOptions.scss, scssContent, (err) => {
             if (err) {

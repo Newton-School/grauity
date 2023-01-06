@@ -1,22 +1,102 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { guiIconName, ICON_TAGS } from '../../core';
+
+import { getElement } from '../../helpers';
+import {
+    GRAUITY_COLOR,
+    GRAUITY_ICON_COLORS,
+    GRAUITY_ICON_SIZES,
+    GRAUITY_SIZE,
+    grauityIconColorName,
+    grauityIconName,
+    grauityIconSizeName,
+    ICON_TAGS,
+} from '../../core';
 
 export interface IconProps {
+    /**
+     * Icon can have the aria hidden attribute
+     * */
     ariaHidden?: string;
+
+    /**
+     * Icon can have the aria label attribute
+     * */
     ariaLabel?: string;
+
+    /**
+     * An element type to render as (string or function).
+     * */
     as?: React.ElementType;
+
+    /**
+     * Format the icon to appear bordered
+     * */
     bordered?: boolean;
+
+    /**
+     * Format the icon to appear circular
+     * */
     circular?: boolean;
+
+    /**
+     * Color of the icon
+     * */
+    color: grauityIconColorName;
+
+    /**
+     * Additional classes to be added to the component
+     * */
     className?: string;
+
+    /**
+     * Show that the icon is inactive
+     * */
     disabled?: boolean;
+
+    /**
+     * Fitted, without space to left or right of Icon
+     * */
     fitted?: boolean;
+
+    /**
+     * Icon can be flipped
+     * */
     flipped?: 'horizontally' | 'vertically';
+
+    /**
+     * Formatted to have its colors inverted for contrast
+     * */
     inverted?: boolean;
+
+    /**
+     * Icon can be formatted as a link
+     * */
     link?: boolean;
+
+    /**
+     * Icon can be used as a simple loader
+     * */
     loading?: boolean;
-    name: guiIconName;
+
+    /**
+     * Name of the icon
+     * */
+    name: grauityIconName;
+
+    /**
+     * Icon can be rotated
+     * */
     rotated?: 'clockwise' | 'counterclockwise';
+
+    /**
+     * Size of the icon
+     * */
+    size: grauityIconSizeName;
+
+    /**
+     * Additional styles to be used over the element
+     * */
     style?: React.CSSProperties;
 }
 
@@ -26,6 +106,7 @@ function Icon({
     as,
     bordered,
     circular,
+    color,
     className,
     disabled,
     fitted,
@@ -37,53 +118,28 @@ function Icon({
     rotated,
     style,
 }: IconProps) {
-    return <div />;
+    const Element = getElement({ as }, '');
+
+    return <Element />;
 }
 
 Icon.propTypes = {
-    /** Icon can have an aria label. */
     ariaHidden: PropTypes.string,
-
-    /** Icon can have an aria label. */
     ariaLabel: PropTypes.string,
-
-    /** An element type to render as (string or function). */
     as: PropTypes.elementType,
-
-    /** Formatted to appear bordered. */
     bordered: PropTypes.bool,
-
-    /** Icon can format to appear circular. */
     circular: PropTypes.bool,
-
-    /** Additional classes. */
+    color: PropTypes.oneOf(GRAUITY_ICON_COLORS),
     className: PropTypes.string,
-
-    /** Show that the icon is inactive. */
     disabled: PropTypes.bool,
-
-    /** Fitted, without space to left or right of Icon. */
     fitted: PropTypes.bool,
-
-    /** Icon can be flipped. */
     flipped: PropTypes.oneOf(['horizontally', 'vertically']),
-
-    /** Formatted to have its colors inverted for contrast. */
     inverted: PropTypes.bool,
-
-    /** Icon can be formatted as a link. */
     link: PropTypes.bool,
-
-    /** Icon can be used as a simple loader. */
     loading: PropTypes.bool,
-
-    /** Name of the icon */
     name: PropTypes.oneOf(Object.keys(ICON_TAGS)).isRequired,
-
-    /** Icon can rotate. */
     rotated: PropTypes.oneOf(['clockwise', 'counterclockwise']),
-
-    /** Additional styles */
+    size: PropTypes.oneOf(GRAUITY_ICON_SIZES),
     style: PropTypes.object,
 };
 
@@ -93,6 +149,7 @@ Icon.defaultProps = {
     as: 'i',
     bordered: false,
     circular: false,
+    color: GRAUITY_COLOR.GREY,
     className: undefined,
     disabled: false,
     fitted: false,
@@ -101,6 +158,7 @@ Icon.defaultProps = {
     link: false,
     loading: false,
     rotated: undefined,
+    size: GRAUITY_SIZE.SIXTEEN,
     style: undefined,
 };
 

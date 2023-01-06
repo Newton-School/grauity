@@ -1,18 +1,21 @@
-export type colorName =
-    | 'primary'
-    | 'secondary'
-    | 'tertiary'
+export type grauityColorName =
+    | 'white'
+    | 'black'
+    | 'grey'
+    | 'blue'
     | 'red'
+    | 'green'
     | 'orange'
     | 'yellow'
-    | 'olive'
-    | 'green'
-    | 'teal'
-    | 'blue'
-    | 'violet'
-    | 'purple'
-    | 'pink'
-    | 'brown'
-    | 'grey'
+    | 'purple';
+
+export type grauityIconColorName =
+    | 'white'
     | 'black'
-    | 'white';
+    | 'grey'
+    | 'blue'
+    | 'red'
+    | 'green'
+    | 'orange'
+    | 'yellow'
+    | 'purple';
