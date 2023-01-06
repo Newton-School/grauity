@@ -1,3 +1,12 @@
 @import "reset";
+@import "fonts";
 @import "gui-icons";
 @import "colors";
+
+* {
+    --multiplier: 1;
+}
+
+.grauity-init {
+    font-size: calc(var(--multiplier) * 16px);
+}

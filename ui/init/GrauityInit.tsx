@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 export interface GrauityInitProps {
     as: React.ElementType;
     multiplier?: number;
+    children?: React.ReactNode;
 }
 
-function GrauityInit({ as, multiplier }: GrauityInitProps) {
+function GrauityInit({ as, multiplier, children }: GrauityInitProps) {
     const StyledGrauityInit = styled(as).attrs({
         className: 'grauity-init',
     })`
@@ -15,7 +16,7 @@ function GrauityInit({ as, multiplier }: GrauityInitProps) {
         --multiplier: ${multiplier};
     `;
 
-    return <StyledGrauityInit />;
+    return <StyledGrauityInit>{children}</StyledGrauityInit>;
 }
 
 GrauityInit.propTypes = {
@@ -24,11 +25,15 @@ GrauityInit.propTypes = {
 
     /** A number to scale and set the ems for all the grauity components */
     multiplier: PropTypes.number,
+
+    /** React children */
+    children: PropTypes.node,
 };
 
 GrauityInit.defaultProps = {
     as: 'div',
     multiplier: 1,
+    children: null,
 };
 
 export default GrauityInit;

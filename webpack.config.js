@@ -14,6 +14,7 @@ module.exports = {
         modules: ['node_modules'],
         alias: {
             fonts: path.resolve(__dirname, 'ui/fonts'),
+            grauity: path.resolve(__dirname, 'ui'),
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     },

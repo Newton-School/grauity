@@ -16,6 +16,9 @@
         "jsx": "react",
         "moduleResolution": "node",
         "forceConsistentCasingInFileNames": true,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "paths": {
+            "grauity": ["./ui"]
+        }
     }
 }
