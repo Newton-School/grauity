@@ -12,6 +12,7 @@ import {
 import { Playground } from 'storybook-addon-code-editor';
 
 import * as grauity from '../../ui';
+import { GrauityInit } from '../../ui';
 
 export default function DocPageWithPlayground({
     exampleSourceCode,
@@ -25,17 +26,19 @@ export default function DocPageWithPlayground({
             <Description />
             <Primary />
             <ArgsTable story={PRIMARY_STORY} />
-            <Playground
-                code={exampleSourceCode}
-                availableImports={{
-                    grauity,
-                }}
-                height="560px"
-                onCreateEditor={(editor, monaco) => {
-                    editor.getModel().updateOptions({ tabSize: 2 });
-                    monaco.editor.setTheme('vs-dark');
-                }}
-            />
+            <GrauityInit>
+                <Playground
+                    code={exampleSourceCode}
+                    availableImports={{
+                        grauity,
+                    }}
+                    height="560px"
+                    onCreateEditor={(editor, monaco) => {
+                        editor.getModel().updateOptions({ tabSize: 2 });
+                        monaco.editor.setTheme('vs-dark');
+                    }}
+                />
+            </GrauityInit>
             <Stories />
         </>
     );

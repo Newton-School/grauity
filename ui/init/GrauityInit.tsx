@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import getElementTypeFromProps from '../helpers';
+import { getElementTypeFromProps } from '../helpers';
 
 export interface GrauityInitProps {
     /**

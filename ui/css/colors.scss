@@ -73,3 +73,59 @@ $purple-300: #9661FF;
 $purple-400: #713CDD;
 $purple-500: #5220B6;
 $purple-600: #41198F;
+
+.grauity-init {
+    --icon-color-white: #{$neutral-0};
+    --icon-color-black: #{
+        $neutral-900
+    };
+    --icon-color-grey: #{
+        $neutral-800
+    };
+    --icon-color-blue: #{
+        $blue-600
+    };
+    --icon-color-red: #{
+        $red-600
+    };
+    --icon-color-green: #{
+        $green-700
+    };
+    --icon-color-orange: #{
+        $orange-700
+    };
+    --icon-color-yellow: #{
+        $yellow-600
+    };
+    --icon-color-purple: #{
+        $purple-600
+    };
+
+    --disabled-icon-color-white: #{
+        $neutral-0
+    };
+    --disabled-icon-color-black: #{
+        $neutral-900
+    };
+    --disabled-icon-color-grey: #{
+        $neutral-700
+    };
+    --disabled-icon-color-blue: #{
+        $blue-400
+    };
+    --disabled-icon-color-red: #{
+        $red-300
+    };
+    --disabled-icon-color-green: #{
+        $green-400
+    };
+    --disabled-icon-color-orange: #{
+        $orange-400
+    };
+    --disabled-icon-color-yellow: #{
+        $yellow-400
+    };
+    --disabled-icon-color-purple: #{
+        $purple-400
+    };
+}

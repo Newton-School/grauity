@@ -1,12 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+import classnames from 'classnames';
 
-import getElementTypeFromProps from '../../helpers';
 import {
-    GRAUITY_COLOR,
+    getElementTypeFromProps,
+    useKeyOnly,
+    useValueAndKey,
+} from '../../helpers';
+import {
     GRAUITY_ICON_COLORS,
     GRAUITY_ICON_SIZES,
-    GRAUITY_SIZE,
     grauityIconColorName,
     grauityIconName,
     grauityIconSizeName,
@@ -116,11 +120,66 @@ function Icon({
     loading,
     name,
     rotated,
+    size,
     style,
+    ...props
 }: IconProps) {
     const Element = getElementTypeFromProps({ as });
 
-    return <Element />;
+    const getIconAriaOptions = () => {
+        const ariaOptions: {
+            'aria-hidden'?: string;
+            'aria-label'?: string;
+        } = {};
+
+        if (_.isNil(ariaLabel)) {
+            ariaOptions['aria-hidden'] = 'true';
+        } else {
+            ariaOptions['aria-label'] = ariaLabel;
+        }
+
+        if (!_.isNil(ariaHidden)) {
+            ariaOptions['aria-hidden'] = ariaHidden;
+        }
+
+        return ariaOptions;
+    };
+
+    const handleClick = (e?: any) => {
+        if (disabled) {
+            e.preventDefault();
+            return;
+        }
+
+        _.invoke(props, 'onClick', e, props);
+    };
+
+    const ariaOptions = getIconAriaOptions();
+
+    const classes = classnames(
+        'grauity-icon',
+        `grauity-icon-${name}`,
+        `size-${size}`,
+        useKeyOnly(color, color),
+        useKeyOnly(bordered, 'bordered'),
+        useKeyOnly(circular, 'circular'),
+        useKeyOnly(disabled, 'disabled'),
+        useKeyOnly(fitted, 'fitted'),
+        useKeyOnly(inverted, 'inverted'),
+        useKeyOnly(link, 'link'),
+        useKeyOnly(loading, 'loading'),
+        useValueAndKey(flipped, 'flipped'),
+        useValueAndKey(rotated, 'rotated')
+    );
+
+    return (
+        <Element
+            onClick={handleClick}
+            {...ariaOptions}
+            className={classes}
+            style={style}
+        />
+    );
 }
 
 Icon.propTypes = {
@@ -149,7 +208,7 @@ Icon.defaultProps = {
     as: 'i',
     bordered: false,
     circular: false,
-    color: GRAUITY_COLOR.GREY,
+    color: 'grey',
     className: undefined,
     disabled: false,
     fitted: false,
@@ -158,7 +217,7 @@ Icon.defaultProps = {
     link: false,
     loading: false,
     rotated: undefined,
-    size: GRAUITY_SIZE.SIXTEEN,
+    size: '16',
     style: undefined,
 };
 

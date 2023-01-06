@@ -1,0 +1,20 @@
+$icon-colors: white, black, grey, blue, red, green, orange, yellow, purple;
+$icon-sizes: 4, 8, 12, 16, 20, 24, 32, 40;
+
+.grauity-init {
+    @each $color in $icon-colors {
+        .grauity-icon.#{$color} {
+            color: var(--icon-color-#{$color});
+
+            &.disabled {
+                color: var(--disabled-icon-color-#{$color});
+            }
+        }
+    }
+
+    @each $size in $icon-sizes {
+        .grauity-icon.size-#{$size} {
+            font-size: calc(var(--multiplier) * #{$size / 16}em);
+        }
+    }
+}
