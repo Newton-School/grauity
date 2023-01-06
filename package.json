@@ -54,7 +54,7 @@
         "prettify": "prettier --write",
         "extract-typings": "tsc --project tsconfig.types.json",
         "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook"
+        "build-storybook": "build-storybook -o docs"
     },
     "pre-commit": "lint:staged",
     "lint-staged": {
