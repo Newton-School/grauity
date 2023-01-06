@@ -29,18 +29,7 @@ export default {
     },
 } as ComponentMeta<typeof Icon>;
 
-const Template: ComponentStory<typeof Icon> = (args) => (
-    <Icon {...args}>
-        <div className="font-size-24">Welcome to Grauity!</div>
-        <div className="font-example-container">
-            {[12, 16, 20].map((size) => (
-                <div key={size} className={`font-size-${size} font-example`}>
-                    This is what {size / 16}em will look like.
-                </div>
-            ))}
-        </div>
-    </Icon>
-);
+const Template: ComponentStory<typeof Icon> = (args) => <Icon {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
