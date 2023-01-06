@@ -2,7 +2,7 @@ import "./fonts.css";
 import { create } from "@storybook/theming";
 
 export default create({
-    base: "light",
+    base: "dark",
     brandTitle: "gra.UI.ty",
     brandUrl: "https://github.com/Newton-School/grauity",
     brandImage:

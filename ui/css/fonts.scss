@@ -6,4 +6,10 @@
 
 .grauity-init {
     font-family: 'Switzer', sans-serif;
+
+    @for $i from 1 through 10 {
+        .font-size-#{4 * $i} {
+            font-size: calc(var(--multiplier) * #{(4 * $i) / 16}em);
+        }
+    }
 }

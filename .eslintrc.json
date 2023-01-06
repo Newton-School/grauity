@@ -12,6 +12,7 @@
         "indent": ["error", 4],
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
+        "react/jsx-props-no-spreading": "off",
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
         "no-console": "off",

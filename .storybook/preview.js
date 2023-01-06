@@ -13,7 +13,7 @@ export const parameters = {
 
 export const decorators = [
     (Story) => (
-        <GrauityInit multiplier={1}>
+        <GrauityInit fontSize={"16px"} multiplier={1}>
             <Story />
         </GrauityInit>
     ),
