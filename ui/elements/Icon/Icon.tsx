@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import { getElement } from '../../helpers';
+import { getElementTypeFromProps } from '../../helpers';
 import {
     GRAUITY_COLOR,
     GRAUITY_ICON_COLORS,
@@ -118,7 +118,7 @@ function Icon({
     rotated,
     style,
 }: IconProps) {
-    const Element = getElement({ as }, '');
+    const Element = getElementTypeFromProps({ as });
 
     return <Element />;
 }

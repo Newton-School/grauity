@@ -1,1 +1,3 @@
-export { getElement, getStyledElementFunction } from './getElementFromProps';
+import getElementTypeFromProps from './getElementTypeFromProps';
+
+export default getElementTypeFromProps;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import { getStyledElementFunction } from '../helpers';
+import { getElementTypeFromProps } from '../helpers';
 
 export interface GrauityInitProps {
     /**
@@ -30,15 +30,19 @@ export interface GrauityInitProps {
  * But nonetheless all the grauity components should be the children of this component.
  * */
 function GrauityInit({ as, fontSize, multiplier, children }: GrauityInitProps) {
-    const ElementType = getStyledElementFunction({ as });
-    const StyledGrauityInit = ElementType.attrs({
-        className: 'grauity-init',
-    })`
-        font-size: ${fontSize};
-        --multiplier: ${multiplier};
-    `;
+    const ElementType = getElementTypeFromProps({ as });
 
-    return <StyledGrauityInit>{children}</StyledGrauityInit>;
+    return (
+        <ElementType
+            className="grauity-init"
+            style={{
+                fontSize,
+                '--multiplier': multiplier,
+            }}
+        >
+            {children}
+        </ElementType>
+    );
 }
 
 GrauityInit.propTypes = {
