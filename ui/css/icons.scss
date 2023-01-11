@@ -1,20 +1,77 @@
 $icon-colors: white, black, grey, blue, red, green, orange, yellow, purple;
-$icon-sizes: 4, 8, 12, 16, 20, 24, 32, 40;
+$icon-sizes: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40;
 
-.grauity-init {
+.grauity-init .grauity-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.1em;
+    width: 1em;
+    height: 1em;
+    backface-visibility: hidden;
+    speak: none;
+    text-decoration: inherit;
+    opacity: 1;
+    text-align: center;
+
     @each $color in $icon-colors {
-        .grauity-icon.#{$color} {
+        &.#{$color} {
             color: var(--icon-color-#{$color});
+
+            &.bordered {
+                -webkit-box-shadow: 0 0 0 0.1em var(--icon-color-#{$color}) inset;
+                box-shadow: 0 0 0 0.1em var(--icon-color-#{$color}) inset;
+            }
 
             &.disabled {
                 color: var(--disabled-icon-color-#{$color});
+
+                &.bordered {
+                    -webkit-box-shadow: 0 0 0 0.1em var(--disabled-icon-color-#{$color}) inset;
+                    box-shadow: 0 0 0 0.1em var(--disabled-icon-color-#{$color}) inset;
+                }
             }
         }
     }
 
     @each $size in $icon-sizes {
-        .grauity-icon.size-#{$size} {
+        &.size-#{$size} {
             font-size: calc(var(--multiplier) * #{$size / 16}em);
+        }
+    }
+
+    &.loading {
+        animation: icon-loading 2s linear infinite;
+        -webkit-animation: icon-loading 2s linear infinite;
+    }
+
+    &.fitted {
+        width: auto;
+        margin: 0 !important;
+    }
+
+    &.horizontally-flipped {
+        transform: scaleX(-1);
+    }
+
+    &.vertically-flipped {
+        transform: scaleY(-1);
+    }
+
+    &.clockwise-rotated {
+        transform: rotate(90deg);
+    }
+
+    &.counterclockwise-rotated {
+        transform: rotate(-90deg);
+    }
+
+    &.link {
+        cursor: pointer;
+        opacity: 0.8;
+        transition: opacity 0.1s ease-in-out;
+
+        &:hover {
+            opacity: 1;
         }
     }
 }

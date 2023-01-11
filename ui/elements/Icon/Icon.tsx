@@ -10,10 +10,14 @@ import {
 } from '../../helpers';
 import {
     GRAUITY_ICON_COLORS,
+    GRAUITY_ICON_FLIPPED_CHOICES,
+    GRAUITY_ICON_ROTATED_CHOICES,
     GRAUITY_ICON_SIZES,
+    grauityFlippedChoiceName,
     grauityIconColorName,
     grauityIconName,
     grauityIconSizeName,
+    grauityRotatedChoiceName,
     ICON_TAGS,
 } from '../../core';
 
@@ -66,12 +70,7 @@ export interface IconProps {
     /**
      * Icon can be flipped
      * */
-    flipped?: 'horizontally' | 'vertically';
-
-    /**
-     * Formatted to have its colors inverted for contrast
-     * */
-    inverted?: boolean;
+    flipped?: grauityFlippedChoiceName;
 
     /**
      * Icon can be formatted as a link
@@ -91,7 +90,7 @@ export interface IconProps {
     /**
      * Icon can be rotated
      * */
-    rotated?: 'clockwise' | 'counterclockwise';
+    rotated?: grauityRotatedChoiceName;
 
     /**
      * Size of the icon
@@ -115,7 +114,6 @@ function Icon({
     disabled,
     fitted,
     flipped,
-    inverted,
     link,
     loading,
     name,
@@ -165,11 +163,11 @@ function Icon({
         useKeyOnly(circular, 'circular'),
         useKeyOnly(disabled, 'disabled'),
         useKeyOnly(fitted, 'fitted'),
-        useKeyOnly(inverted, 'inverted'),
         useKeyOnly(link, 'link'),
         useKeyOnly(loading, 'loading'),
         useValueAndKey(flipped, 'flipped'),
-        useValueAndKey(rotated, 'rotated')
+        useValueAndKey(rotated, 'rotated'),
+        className
     );
 
     return (
@@ -192,12 +190,11 @@ Icon.propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     fitted: PropTypes.bool,
-    flipped: PropTypes.oneOf(['horizontally', 'vertically']),
-    inverted: PropTypes.bool,
+    flipped: PropTypes.oneOf(GRAUITY_ICON_FLIPPED_CHOICES),
     link: PropTypes.bool,
     loading: PropTypes.bool,
     name: PropTypes.oneOf(Object.keys(ICON_TAGS)).isRequired,
-    rotated: PropTypes.oneOf(['clockwise', 'counterclockwise']),
+    rotated: PropTypes.oneOf(GRAUITY_ICON_ROTATED_CHOICES),
     size: PropTypes.oneOf(GRAUITY_ICON_SIZES),
     style: PropTypes.object,
 };
@@ -213,7 +210,6 @@ Icon.defaultProps = {
     disabled: false,
     fitted: false,
     flipped: undefined,
-    inverted: false,
     link: false,
     loading: false,
     rotated: undefined,
