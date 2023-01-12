@@ -26,6 +26,7 @@ export default function DocPageWithPlayground({
             <Description />
             <Primary />
             <ArgsTable story={PRIMARY_STORY} />
+            <Stories />
             <GrauityInit>
                 <Playground
                     code={exampleSourceCode}
@@ -39,7 +40,6 @@ export default function DocPageWithPlayground({
                     }}
                 />
             </GrauityInit>
-            <Stories />
         </>
     );
 }

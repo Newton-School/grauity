@@ -17,17 +17,27 @@ $icon-sizes: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40;
         &.#{$color} {
             color: var(--icon-color-#{$color});
 
-            &.bordered {
+            &.bordered, &.circular {
                 -webkit-box-shadow: 0 0 0 0.1em var(--icon-color-#{$color}) inset;
                 box-shadow: 0 0 0 0.1em var(--icon-color-#{$color}) inset;
+
+                &.inverted {
+                    color: var(--icon-color-white);
+                    background-color: var(--icon-color-#{$color});
+                }
             }
 
             &.disabled {
                 color: var(--disabled-icon-color-#{$color});
 
-                &.bordered {
+                &.bordered, &.circular {
                     -webkit-box-shadow: 0 0 0 0.1em var(--disabled-icon-color-#{$color}) inset;
                     box-shadow: 0 0 0 0.1em var(--disabled-icon-color-#{$color}) inset;
+
+                    &.inverted {
+                        color: var(--disabled-icon-color-white);
+                        background-color: var(--disabled-icon-color-#{$color});
+                    }
                 }
             }
         }
@@ -73,5 +83,9 @@ $icon-sizes: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40;
         &:hover {
             opacity: 1;
         }
+    }
+
+    &.circular {
+        border-radius: 50%;
     }
 }

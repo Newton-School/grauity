@@ -73,6 +73,11 @@ export interface IconProps {
     flipped?: grauityFlippedChoiceName;
 
     /**
+     * The colors of the icon can be inverted in case of used with border
+     * * */
+    inverted?: boolean;
+
+    /**
      * Icon can be formatted as a link
      * */
     link?: boolean;
@@ -114,6 +119,7 @@ function Icon({
     disabled,
     fitted,
     flipped,
+    inverted,
     link,
     loading,
     name,
@@ -163,6 +169,7 @@ function Icon({
         useKeyOnly(circular, 'circular'),
         useKeyOnly(disabled, 'disabled'),
         useKeyOnly(fitted, 'fitted'),
+        useKeyOnly(inverted, 'inverted'),
         useKeyOnly(link, 'link'),
         useKeyOnly(loading, 'loading'),
         useValueAndKey(flipped, 'flipped'),
@@ -191,6 +198,7 @@ Icon.propTypes = {
     disabled: PropTypes.bool,
     fitted: PropTypes.bool,
     flipped: PropTypes.oneOf(GRAUITY_ICON_FLIPPED_CHOICES),
+    inverted: PropTypes.bool,
     link: PropTypes.bool,
     loading: PropTypes.bool,
     name: PropTypes.oneOf(Object.keys(ICON_TAGS)).isRequired,
@@ -210,6 +218,7 @@ Icon.defaultProps = {
     disabled: false,
     fitted: false,
     flipped: undefined,
+    inverted: false,
     link: false,
     loading: false,
     rotated: undefined,

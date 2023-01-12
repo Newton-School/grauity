@@ -8,6 +8,7 @@ module.exports = {
         "@storybook/addon-essentials",
         "@storybook/addon-interactions",
         "storybook-addon-code-editor",
+        "storybook-version",
     ],
     framework: "@storybook/react",
     core: {
