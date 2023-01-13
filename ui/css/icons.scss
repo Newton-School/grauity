@@ -1,4 +1,6 @@
-$icon-colors: white, black, grey, blue, red, green, orange, yellow, purple;
+@use "sass:math";
+
+$icon-colors: "white", "black", "grey", "blue", "red", "green", "orange", "yellow", "purple";
 $icon-sizes: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40;
 
 .grauity-init .grauity-icon {
@@ -45,7 +47,7 @@ $icon-sizes: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40;
 
     @each $size in $icon-sizes {
         &.size-#{$size} {
-            font-size: calc(var(--multiplier) * #{$size / 16}em);
+            font-size: calc(var(--multiplier) * #{math.div($size, 16)}em);
         }
     }
 
