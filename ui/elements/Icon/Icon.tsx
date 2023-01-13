@@ -50,7 +50,7 @@ export interface IconProps {
     /**
      * Color of the icon
      * */
-    color: grauityIconColorName;
+    color?: grauityIconColorName;
 
     /**
      * Additional classes to be added to the component
@@ -100,7 +100,7 @@ export interface IconProps {
     /**
      * Size of the icon
      * */
-    size: grauityIconSizeName;
+    size?: grauityIconSizeName;
 
     /**
      * Additional styles to be used over the element

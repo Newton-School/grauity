@@ -1,0 +1,28 @@
+import {IconItem, Meta} from '@storybook/addon-docs';
+import _ from 'lodash';
+
+import {Icon, TAG_ICONS} from 'grauity';
+
+
+<Meta title="Elements/Icon Gallery"/>
+
+# Iconography
+
+<div>
+    {_.orderBy(Object.keys(TAG_ICONS)).map((key) => {
+        return (
+            <div>
+                <h2>{_.startCase(key)}</h2>
+                {
+                    _.orderBy(TAG_ICONS[key]).map((icon) => {
+                        return (
+                            <IconItem name={icon} title={"Click to Copy"}>
+                                <Icon name={icon}/>
+                            </IconItem>
+                        )
+                    })
+                }
+            </div>
+        );
+    })}
+</div>
