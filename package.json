@@ -35,6 +35,14 @@
     "main": "dist/main.cjs",
     "module": "dist/module.mjs",
     "types": "dist/index.d.ts",
+    "targets": {
+        "main": {
+            "optimize": true
+        },
+        "module": {
+            "optimize": true
+        }
+    },
     "files": [
         "ui",
         "dist"
