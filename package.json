@@ -70,7 +70,7 @@
         "prettify": "prettier --write",
         "extract-typings": "tsc --project tsconfig.types.json",
         "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook -o docs"
+        "build-storybook": "build-storybook -o docs && echo 'grauity.newtonschool.co' > docs/CNAME"
     },
     "pre-commit": "lint:staged",
     "lint-staged": {
