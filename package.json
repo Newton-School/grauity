@@ -31,21 +31,28 @@
         "node": "^16.14.0",
         "npm": ">=9.1.2"
     },
-    "main": "dist/grauity.js",
+    "source": "ui/index.ts",
+    "main": "dist/main.cjs",
+    "module": "dist/module.mjs",
+    "types": "dist/index.d.ts",
     "files": [
         "ui",
         "dist"
     ],
-    "types": "node",
+    "staticFiles": [
+        {
+            "staticPath": "ui/fonts",
+            "staticOutPath": "fonts"
+        }
+    ],
     "typeRoots": [
         "../node_modules/@types"
     ],
     "scripts": {
-        "build": "npm run extract-typings && npm run webpack-build",
-        "webpack-build": "webpack --config webpack.config.js",
+        "parcel-build": "npm run extract-typings && parcel build",
         "build-icons": "npm run build-icons:optimize && npm run build-icons:generate",
         "build-icons:optimize": "rimraf ./iconland/optimised/*.svg & svgo -q -p 8 -f ./iconland/seeds -o ./iconland/optimised",
-        "build-icons:generate": "node ./scripts/generate-font-icons-from-optimised-svgs.js",
+        "build-icons:generate": "node scripts/generate-font-icons-from-optimised-svgs.cjs",
         "lint": "npm run lint:eslint -- .",
         "lint:fix": "npm run lint:eslint -- . --fix",
         "lint:eslint": "eslint --ignore-path .gitignore --ignore-path .eslintignore",
@@ -73,6 +80,10 @@
         "@babel/preset-env": "^7.20.2",
         "@babel/preset-react": "^7.18.6",
         "@babel/preset-typescript": "^7.18.6",
+        "@parcel/packager-ts": "^2.8.2",
+        "@parcel/transformer-sass": "^2.8.2",
+        "@parcel/transformer-typescript-tsc": "^2.8.2",
+        "@parcel/transformer-typescript-types": "^2.8.2",
         "@storybook/addon-actions": "^6.5.15",
         "@storybook/addon-docs": "^6.5.15",
         "@storybook/addon-essentials": "^6.5.15",
@@ -99,15 +110,15 @@
         "eslint-plugin-jsx-a11y": "^6.6.1",
         "eslint-plugin-react": "^7.31.11",
         "fantasticon": "^2.0.0",
-        "html-webpack-plugin": "^5.5.0",
         "http-server": "^14.1.1",
         "lint-staged": "^13.1.0",
         "mini-css-extract-plugin": "^2.7.2",
+        "parcel": "^2.8.2",
+        "parcel-plugin-static-files-copy": "^2.6.0",
+        "parcel-reporter-static-files-copy": "^1.5.0",
         "path": "^0.12.7",
         "pre-commit": "^1.2.2",
         "prettier": "2.8.1",
-        "react": "^16.8.0 || ^17.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0",
         "rimraf": "^3.0.2",
         "sass": "^1.57.1",
         "sass-loader": "^13.2.0",
@@ -117,18 +128,19 @@
         "style-loader": "^3.3.1",
         "svgo": "^3.0.2",
         "typescript": "^4.9.4",
-        "webpack": "^5.75.0",
-        "webpack-cli": "^5.0.1"
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0",
+        "styled-components": "^5.3.6"
     },
     "dependencies": {
         "classnames": "^2.3.2",
         "prop-types": "^15.8.1",
-        "styled-components": "^5.3.6"
+        "lodash": "^4.17.21"
     },
     "peerDependencies": {
-        "lodash": "^4.17.21",
         "react": "^16.8.0 || ^17.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0"
+        "react-dom": "^16.8.0 || ^17.0.0",
+        "styled-components": "^5.3.6"
     },
     "resolutions": {
         "@storybook/react/webpack": "^5"
