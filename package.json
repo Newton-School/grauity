@@ -57,7 +57,8 @@
         "../node_modules/@types"
     ],
     "scripts": {
-        "parcel-build": "npm run extract-typings && parcel build",
+        "build": "npm run build-icons && npm run build-lib",
+        "build-lib": "npm run extract-typings && parcel build",
         "build-icons": "npm run build-icons:optimize && npm run build-icons:generate",
         "build-icons:optimize": "rimraf ./iconland/optimised/*.svg & svgo -q -p 8 -f ./iconland/seeds -o ./iconland/optimised",
         "build-icons:generate": "node scripts/generate-font-icons-from-optimised-svgs.cjs",
