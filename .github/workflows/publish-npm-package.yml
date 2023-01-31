@@ -35,5 +35,4 @@ jobs:
             -   run: npm run build
             -   uses: JS-DevTools/npm-publish@v1
                 with:
-                    token: ${{secrets.GRAUITY_PUBLISHING_NPM_TOKEN}}
-                    greater-version-only: true
+                    token: ${{ secrets.GRAUITY_PUBLISHING_NPM_TOKEN }}
