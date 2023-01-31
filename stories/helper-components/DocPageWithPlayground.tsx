@@ -31,7 +31,7 @@ export default function DocPageWithPlayground({
                 <Playground
                     code={exampleSourceCode}
                     availableImports={{
-                        grauity,
+                        '@newtonschool/grauity': grauity,
                     }}
                     height="560px"
                     onCreateEditor={(editor, monaco) => {

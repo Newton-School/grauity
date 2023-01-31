@@ -33,7 +33,10 @@ module.exports = async ({ config, mode }) => {
         type: "asset/resource",
     });
     config.resolve.alias["fonts"] = path.resolve(__dirname, "../ui/fonts");
-    config.resolve.alias["grauity"] = path.resolve(__dirname, "../ui");
+    config.resolve.alias["@newtonschool/grauity"] = path.resolve(
+        __dirname,
+        "../ui"
+    );
     config.plugins.push(
         new MiniCssExtractPlugin({
             filename: "[name].css",

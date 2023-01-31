@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import { Icon } from "grauity";
+import {Icon} from '@newtonschool/grauity';
 
 function IconExample() {
-    return <Icon name="person" />;
+    return <Icon name="person"/>;
 }
 
 export default IconExample;
