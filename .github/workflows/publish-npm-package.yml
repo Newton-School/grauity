@@ -33,6 +33,7 @@ jobs:
                     registry-url: https://registry.npmjs.org/
             -   run: npm ci
             -   run: npm run build
-            -   run: npm publish
-                env:
-                    NODE_AUTH_TOKEN: ${{secrets.GRAUITY_PUBLISHING_NPM_TOKEN}}
+            -   uses: JS-DevTools/npm-publish@v1
+                with:
+                    token: ${{secrets.GRAUITY_PUBLISHING_NPM_TOKEN}}
+                    greater-version-only: true
