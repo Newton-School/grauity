@@ -32,7 +32,7 @@ export default {
 const Template: ComponentStory<typeof Icon> = (args) => <Icon {...args} />;
 
 const defaultArgs = {
-    name: 'person',
+    name: 'bell',
     color: 'orange',
     size: '32',
 };

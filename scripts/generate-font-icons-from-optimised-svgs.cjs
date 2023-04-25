@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { FontAssetType, generateFonts, OtherAssetType } = require('fantasticon');
+const {FontAssetType, generateFonts, OtherAssetType} = require('fantasticon');
 
 const INPUT_DIRECTORY = './iconland/optimised';
 const OUTPUT_DIRECTORY = './iconland/font-icons';
@@ -50,12 +50,12 @@ generateFonts({
         absoluteFilePath,
         // relativeFilePath,
     }) => {
-        const splitBaseName = basename.split('|');
+        const splitBaseName = basename.split('_');
         if (splitBaseName.length <= 1) {
             throw new Error(
                 `No tag provided for the icon ${absoluteFilePath}.` +
-                    ' The tags should be separated by a pipe character (|).' +
-                    ' For example: \'tag1|tag2|tag3|...|tagN|icon-name.svg\''
+                ' The tags should be separated by a pipe character (_).' +
+                ' For example: \'tag1_tag2_tag3_..._tagN_icon-name.svg\''
             );
         }
         const tags = splitBaseName.slice(0, splitBaseName.length - 1);
