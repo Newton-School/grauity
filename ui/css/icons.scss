@@ -7,7 +7,7 @@ $icon-sizes: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40;
     display: inline-block;
     vertical-align: middle;
     margin: 0 0.1em;
-    height: 1em;
+    line-height: 1em;
     backface-visibility: hidden;
     speak: none;
     text-decoration: inherit;
@@ -21,6 +21,8 @@ $icon-sizes: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40;
             &.bordered, &.circular {
                 -webkit-box-shadow: 0 0 0 0.1em var(--icon-color-#{$color}) inset;
                 box-shadow: 0 0 0 0.1em var(--icon-color-#{$color}) inset;
+                height: 1em;
+                width: 1em;
 
                 &.inverted {
                     color: var(--icon-color-white);
@@ -34,6 +36,8 @@ $icon-sizes: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40;
                 &.bordered, &.circular {
                     -webkit-box-shadow: 0 0 0 0.1em var(--disabled-icon-color-#{$color}) inset;
                     box-shadow: 0 0 0 0.1em var(--disabled-icon-color-#{$color}) inset;
+                    height: 1em;
+                    width: 1em;
 
                     &.inverted {
                         color: var(--disabled-icon-color-white);
