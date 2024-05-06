@@ -50,7 +50,7 @@ export interface IconProps {
     /**
      * Color of the icon
      * */
-    color?: grauityIconColorName;
+    color?: grauityIconColorName | any;
 
     /**
      * Additional classes to be added to the component
@@ -193,7 +193,7 @@ Icon.propTypes = {
     as: PropTypes.elementType,
     bordered: PropTypes.bool,
     circular: PropTypes.bool,
-    color: PropTypes.oneOf(GRAUITY_ICON_COLORS),
+    color: PropTypes.string,
     className: PropTypes.string,
     disabled: PropTypes.bool,
     fitted: PropTypes.bool,
