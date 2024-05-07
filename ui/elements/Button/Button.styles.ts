@@ -58,7 +58,6 @@ export const StyledButton = styled.button<any>`
                     color: #fff;
                     border: none;
                     outline: none;
-                    border: 1px solid var(--border, #30363d);
 
                     &:hover {
                         background: var(--bg-invert-primary-hover, #16191d);
