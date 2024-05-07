@@ -10,3 +10,4 @@ export { Icon } from './elements';
 
 export type { ButtonProps } from './elements';
 export { Button } from './elements';
+export { BUTTON_VARIANTS_ENUM } from './elements';
