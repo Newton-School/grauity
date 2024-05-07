@@ -4,7 +4,14 @@ import classnames from 'classnames';
 
 import { ButtonProps } from './types';
 import { StyledButton, StyledButtonText } from './Button.styles';
-import { BUTTON_ICON_POSITIONS, BUTTON_SIZES, BUTTON_VARIANTS } from './constants';
+import { 
+    BUTTON_ICON_POSITIONS, 
+    BUTTON_ICON_POSITIONS_ENUM, 
+    BUTTON_SIZES, 
+    BUTTON_SIZES_ENUM, 
+    BUTTON_VARIANTS, 
+    BUTTON_VARIANTS_ENUM 
+} from './constants';
 import { Icon } from '../Icon';
 import getButtonColorFromVariant from './utils';
 
@@ -18,7 +25,6 @@ import getButtonColorFromVariant from './utils';
 const Button = ({
     variant,
     size,
-    text,
     hasIcon,
     icon,
     iconPositon,
@@ -28,6 +34,7 @@ const Button = ({
     style,
     onClick,
     fullWidth,
+    children,
     ...props
 }: ButtonProps) => {
     const handleClick = (e?: any) => {
@@ -60,7 +67,7 @@ const Button = ({
                     size='24'
                 />
             )}         
-            <StyledButtonText>{text}</StyledButtonText>
+            <StyledButtonText>{children}</StyledButtonText>
         </StyledButton>
     );
 };
@@ -68,7 +75,6 @@ const Button = ({
 Button.propTypes = {
     variant: PropTypes.oneOf(BUTTON_VARIANTS),
     size: PropTypes.oneOf(BUTTON_SIZES),
-    text: PropTypes.string,
     hasIcon: PropTypes.bool,
     icon: PropTypes.string,
     iconPositon: PropTypes.oneOf(BUTTON_ICON_POSITIONS),
@@ -78,21 +84,22 @@ Button.propTypes = {
     style: PropTypes.object,
     onClick: PropTypes.func,
     fullWidth: PropTypes.bool,
+    children: PropTypes.node,
 };
 
 Button.defaultProps = {
-    variant: 'primary',
-    size: 'medium',
-    text: '',
+    variant: BUTTON_VARIANTS_ENUM.PRIMARY,
+    size: BUTTON_SIZES_ENUM.MEDIUM,
     hasIcon: false,
     icon: '',
-    iconPositon: 'left',
+    iconPositon: BUTTON_ICON_POSITIONS_ENUM.LEFT,
     className: '',
     disabled: false,
     loading: false,
     style: {},
     onClick: () => {},
     fullWidth: false,
+    children: null,
 };
 
 export default Button;

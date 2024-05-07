@@ -282,4 +282,7 @@ export const StyledButton = styled.button<any>`
 
 export const StyledButtonText = styled.span`
     padding: 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 `;

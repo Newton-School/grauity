@@ -9,5 +9,6 @@ export type { IconProps } from './elements';
 export { Icon } from './elements';
 
 export type { ButtonProps } from './elements';
-export { Button } from './elements';
-export { BUTTON_VARIANTS_ENUM } from './elements';
+export { NSButton } from './elements';
+export { BUTTON_VARIANTS_ENUM, BUTTON_SIZES_ENUM } from './elements';
+export { BUTTON_ICON_POSITIONS_ENUM } from './elements';

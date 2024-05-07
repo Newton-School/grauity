@@ -1,7 +1,7 @@
 # gra.UI.ty
 
 <p align="center">
-  <img src="logo-url-here.png" alt="gra.UI.ty Logo" width="120" height="120">
+  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/92ae68a3bf55431d8120e92041951482.png" alt="gra.UI.ty Logo" width="120" height="120">
 </p>
 
 <h3 align="center">Discover the elegance of gra.UI.ty</h3>
@@ -12,7 +12,7 @@
   Explore the components and start building beautiful, efficient, and user-friendly interfaces with ease.
   <br />
   <br />
-  <a href="https://your-documentation-link"><strong>Explore gra.UI.ty docs »</strong></a>
+  <a href="https://grauity.newtonschool.co"><strong>Explore gra.UI.ty docs »</strong></a>
 </p>
 
 ## About gra.UI.ty
@@ -22,6 +22,11 @@ Inspired by the natural laws that guide the cosmos, **gra.UI.ty** (pronounced "g
 ### Philosophy
 
 Like gravity itself, the principles of great design are universal, omnipresent, yet often unobserved. With gra.UI.ty, we aim to tap into these fundamental elements to craft UI components that not only look stunning but feel inherently right.
+
+### Component Naming Convention
+
+gra.UI.ty components should be prefixed by *NS*.
+For example, `NSButton`, `NSTable`, `NSInput`
 
 ### Alias
 
@@ -74,8 +79,35 @@ newton-web$: npm link ../gruity/node_modules/react ../gruity/node_modules/react-
 newton-web$: npm run dev
 ```
 
+After you have made changes in grauity, build it.
+
+```bash
+grauity$: npm run build
+```
+
+If changes are not showing up even after rebuilding, you may 
+have to delete `newton-web/node_modules/@newtonschool/grauity` 
+and install it again using
+
+```bash
+newton-web$: npm i ../grauity --legacy-peer-deps
+newton-web$: npm run dev
+```
+
 Then simply import components you want from `@newtonschool/grauity` in `newton-web` like so:
 
 ```js
-import { Button, BUTTON_VARIANTS_ENUM } from "@newtonschool/grauity";
+import { NSButton, BUTTON_VARIANTS_ENUM } from "@newtonschool/grauity";
+```
+
+And use it as you wish
+
+```js
+<NSButton
+    text="Predict My College"
+    variant={BUTTON_VARIANTS_ENUM.TERTIARY}
+    onClick={() => {
+        setShowFormErrors(true);
+    }}
+/>
 ```

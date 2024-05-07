@@ -38,11 +38,6 @@ export interface ButtonProps {
     size?: ButtonSizes;
 
     /**
-     * Text to be displayed in the button.
-     * */
-    text: string;
-
-    /**
      * Show that the button has an icon
      *
      * Default: `false`
@@ -102,4 +97,9 @@ export interface ButtonProps {
      * Default: `false`
      * */
     fullWidth?: boolean;
+
+    /**
+     * Children of the component
+     * */
+    children?: React.ReactNode;
 }
