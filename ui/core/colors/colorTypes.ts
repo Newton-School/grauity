@@ -1,3 +1,4 @@
+// TODO: @mihirsachdeva - Add colors from Foundation and use them here.
 export type grauityColorName =
     | 'white'
     | 'black'
