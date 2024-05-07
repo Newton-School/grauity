@@ -8,6 +8,13 @@ import { BUTTON_ICON_POSITIONS, BUTTON_SIZES, BUTTON_VARIANTS } from './constant
 import { Icon } from '../Icon';
 import getButtonColorFromVariant from './utils';
 
+/**
+ * `gra.UI.ty Button`: This button is cute as a button.
+ * @component
+ * @example
+ * <Button variant="primary" size="medium" text="Click me" onClick={() => console.log('Button clicked')} />
+ * @returns The Button component.
+ */
 const Button = ({
     variant,
     size,
@@ -19,7 +26,6 @@ const Button = ({
     disabled,
     loading,
     style,
-    to,
     onClick,
     fullWidth,
     ...props
@@ -70,7 +76,6 @@ Button.propTypes = {
     disabled: PropTypes.bool,
     loading: PropTypes.bool,
     style: PropTypes.object,
-    to: PropTypes.string,
     onClick: PropTypes.func,
     fullWidth: PropTypes.bool,
 };
@@ -86,7 +91,6 @@ Button.defaultProps = {
     disabled: false,
     loading: false,
     style: {},
-    to: '',
     onClick: () => {},
     fullWidth: false,
 };

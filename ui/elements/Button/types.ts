@@ -83,22 +83,6 @@ export interface ButtonProps {
     loading?: boolean;
 
     /**
-     * URL to navigate to
-     *
-     * If provided, the button will be rendered as an anchor tag
-     * */
-    to?: string;
-
-    /**
-     *  Target of the anchor tag (if `to` is provided)
-     *
-     * Available choices: `_blank`, `_self`, `_parent`, `_top`
-     *
-     * Default: `_self`
-     * */
-    target?: string;
-
-    /**
      * Function to be called on click
      *
      * If the button is disabled, the function will not be called
