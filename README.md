@@ -1,7 +1,9 @@
 # gra.UI.ty
 
 <p align="center">
+  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/cc6c8f01c5fa4ca481de8f9180eb937a.png" alt="gra.UI.ty Logo" width="120" height="120">
   <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/92ae68a3bf55431d8120e92041951482.png" alt="gra.UI.ty Logo" width="120" height="120">
+  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/c1dd6d6367b34e01a19c458e1656c3c1.png" alt="gra.UI.ty Logo" width="120" height="120">
 </p>
 
 <h3 align="center">Discover the elegance of gra.UI.ty</h3>
@@ -34,10 +36,11 @@ gra.UI.ty is also affectionately known as **grauity**, **graUIty** or simply as 
 
 ## Key Features
 
--   **Comprehensive Component Set:** From buttons and dialogs to complex data grids and sliders, gra.UI.ty has everything you need.
+-   **Comprehensive Component Set:** From buttons and dialogs to complex data grids and sliders, gra.UI.ty has everything you need. (Coming soon!)
+-   **Semantic and Mindful Components:** Our components are more than just divs. Each one is thoughtfully designed with semantic HTML for better accessibility and SEO. We aim to ensure that each component has a clear and meaningful structure.
 -   **Modular and Extensible:** Integrate seamlessly with your projects, adding only what you need without bloating your codebase.
--   **Theming and Customization:** Easily adapt the components to match your brand or project’s aesthetic.
--   **Accessibility First:** Built with accessibility in mind, ensuring that your applications are usable by everyone.
+-   **Theming and Customization:** Easily adapt the components to match your brand or project’s aesthetic. (Coming soon!)
+-   **Accessibility First:** Built with accessibility in mind, ensuring that your applications are usable by everyone. (We'll get there...)
 
 ## Setup gra.UI.ty to make it your own!
 
