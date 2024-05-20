@@ -10,7 +10,7 @@ export const StyledButton = styled.button<any>`
     align-items: center;
     justify-content: center;
     font-weight: 550;
-    font-family: "Switzer";
+    font-family: "Mona Sans";
     border: none;
     outline: none;
     cursor: pointer;

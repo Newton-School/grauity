@@ -34,7 +34,7 @@ const Button = ({
     style,
     onClick,
     fullWidth,
-    children,
+    children = '',
     ...props
 }: ButtonProps) => {
     const handleClick = (e?: any) => {
@@ -84,7 +84,7 @@ Button.propTypes = {
     style: PropTypes.object,
     onClick: PropTypes.func,
     fullWidth: PropTypes.bool,
-    children: PropTypes.node,
+    children: PropTypes.any,
 };
 
 Button.defaultProps = {

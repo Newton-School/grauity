@@ -1,22 +1,22 @@
 import React from 'react';
 
-import { Button, ButtonProps } from '../../../ui';
+import { ButtonProps, NSButton } from '../../../ui';
 
 export default {
-    title: 'Elements/Button',
-    component: Button,
+    title: 'Elements/NSButton',
+    component: NSButton,
 };
 
-const Template = (args: ButtonProps) => <Button {...args} />;
+const Template = (args: ButtonProps) => <NSButton {...args} />;
 
 const defaultArgs = {
-    text: 'Click Me!',
+    children: 'Click Me!',
     hasIcon: true,
     icon: 'sparkle',
     variant: 'primary',
     size: 'medium',
     onClick: () => {
-        console.log('Button clicked!');
+        console.log('NSButton clicked!');
     },
 };
 

@@ -101,5 +101,5 @@ export interface ButtonProps {
     /**
      * Children of the component
      * */
-    children?: React.ReactNode;
+    children?: any;
 }
