@@ -1,7 +1,10 @@
+import { grauityIconColorName } from '../../core';
 import { BUTTON_VARIANTS_ENUM } from './constants';
 import { ButtonVariants } from './types';
 
-export const getButtonColorFromVariant = (variant: ButtonVariants): string => {
+export const getButtonColorFromVariant = (
+    variant: ButtonVariants
+): grauityIconColorName => {
     switch (variant) {
     case BUTTON_VARIANTS_ENUM.PRIMARY:
     case BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED:

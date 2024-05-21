@@ -8,7 +8,13 @@ export type grauityColorName =
     | 'green'
     | 'orange'
     | 'yellow'
-    | 'purple';
+    | 'purple'
+    | '#0673F9'
+    | '#D22D3A'
+    | '#16191D'
+    | '#007A51'
+    | '#DE5A02'
+    | '#ffffff';
 
 export type grauityIconColorName =
     | 'white'
@@ -19,4 +25,10 @@ export type grauityIconColorName =
     | 'green'
     | 'orange'
     | 'yellow'
-    | 'purple';
+    | 'purple'
+    | '#0673F9'
+    | '#D22D3A'
+    | '#16191D'
+    | '#007A51'
+    | '#DE5A02'
+    | '#ffffff';

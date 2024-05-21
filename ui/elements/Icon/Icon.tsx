@@ -50,7 +50,7 @@ export interface IconProps {
     /**
      * Color of the icon
      * */
-    color?: grauityIconColorName | any;
+    color?: grauityIconColorName;
 
     /**
      * Additional classes to be added to the component
