@@ -1,9 +1,9 @@
 # gra.UI.ty
 
 <p align="center">
-  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/cc6c8f01c5fa4ca481de8f9180eb937a.png" alt="gra.UI.ty Logo" width="120" height="120">
-  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/92ae68a3bf55431d8120e92041951482.png" alt="gra.UI.ty Logo" width="120" height="120">
-  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/c1dd6d6367b34e01a19c458e1656c3c1.png" alt="gra.UI.ty Logo" width="120" height="120">
+  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/cc6c8f01c5fa4ca481de8f9180eb937a.png" alt="gra.UI.ty Logo 1" width="120" height="120">
+  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/92ae68a3bf55431d8120e92041951482.png" alt="gra.UI.ty Logo 2" width="120" height="120">
+  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/c1dd6d6367b34e01a19c458e1656c3c1.png" alt="gra.UI.ty Logo 3" width="120" height="120">
 </p>
 
 <h3 align="center">Discover the elegance of gra.UI.ty</h3>
@@ -113,4 +113,24 @@ And use it as you wish
         setShowFormErrors(true);
     }}
 />
+```
+
+## How to's
+
+### Add icons
+Adding new icons is easy. Design team to provide `.svg` files for new icons, and they are to be added to the [./iconland/seeds/](iconland/seeds) directory. Then follow these steps:
+
+#### 1. Generate icons
+```bash
+grauity$: npm run build-icons:generate
+```
+
+#### 2. Optimise icons (from [[iconland/seeds/]](iconland/seeds/) to [iconland/optimised/](iconland/optimised/) )
+```bash
+grauity$: npm run build-icons:optimize
+```
+
+#### 3. Build font icons from optimised icons
+```bash
+grauity$: npm run build-icons
 ```

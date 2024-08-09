@@ -1,0 +1,31 @@
+import _ from 'lodash';
+
+import { NSButton } from '../../../ui';
+import { BUTTON_VARIANTS_ENUM } from '../../../ui/elements/Button/constants';
+
+
+<Meta title="Elements/Button Gallery"/>
+
+# Button
+
+<div>
+    {Object.keys(BUTTON_VARIANTS_ENUM).map((key) => {
+        return (
+            <div>
+                <h2>{_.startCase(key)}</h2>
+                <NSButton
+                    key={key}
+                    variant={BUTTON_VARIANTS_ENUM[key]}
+                    hasIcon={true}
+                    icon='sparkle'
+                    size='medium'
+                    onClick={null}
+                >
+                    Click Me!
+                </NSButton>
+                <br />
+                <br />
+            </div>
+        );
+    })}
+</div>
