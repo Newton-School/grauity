@@ -25,8 +25,8 @@ import getButtonColorFromVariant from './utils';
 const Button = ({
     variant,
     size,
-    hasIcon,
     icon,
+    iconSize,
     iconPositon,
     className,
     disabled,
@@ -60,14 +60,14 @@ const Button = ({
             fullWidth={fullWidth}
             iconPositon={iconPositon}
         >
-            {hasIcon && icon && (
+            {icon && (
                 <Icon 
                     name={icon}
                     color={getButtonColorFromVariant(variant)}
-                    size='24'
+                    size={iconSize || '24'}
                 />
             )}         
-            <StyledButtonText>{children}</StyledButtonText>
+            {children && <StyledButtonText>{children}</StyledButtonText>}
         </StyledButton>
     );
 };
@@ -75,8 +75,8 @@ const Button = ({
 Button.propTypes = {
     variant: PropTypes.oneOf(BUTTON_VARIANTS),
     size: PropTypes.oneOf(BUTTON_SIZES),
-    hasIcon: PropTypes.bool,
-    icon: PropTypes.string,
+    icon: PropTypes.string || PropTypes.number,
+    iconSize: PropTypes.string,
     iconPositon: PropTypes.oneOf(BUTTON_ICON_POSITIONS),
     className: PropTypes.string,
     disabled: PropTypes.bool,
@@ -90,8 +90,8 @@ Button.propTypes = {
 Button.defaultProps = {
     variant: BUTTON_VARIANTS_ENUM.PRIMARY,
     size: BUTTON_SIZES_ENUM.MEDIUM,
-    hasIcon: false,
     icon: '',
+    iconSize: '24',
     iconPositon: BUTTON_ICON_POSITIONS_ENUM.LEFT,
     className: '',
     disabled: false,

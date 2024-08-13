@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { grauityIconName } from '../../core';
 
 export interface TableColumn {
@@ -42,7 +42,12 @@ export interface TableCell {
     /**
      * Cell display, can be a string or a React element
      * */
-    display: any;
+    display?: any;
+
+    /**
+     * Custom cell render function. If provided, display will be ignored
+     * */
+    render?: (args: TableCell) => ReactNode;
 
     /**
      * Row vertical alignment, default is top

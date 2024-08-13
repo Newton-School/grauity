@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledTable = styled.table`
     border-collapse: collapse;
@@ -23,18 +23,50 @@ export const StyledTableBody = styled.tbody`
     background-color: var(--bg-primary, #fff);
 `;
 
+export const StyledTableDataCell = styled.td<any>`
+    color: var(--text-primary, #16191d);
+    font-size: 12px;
+    font-weight: 450;
+    line-height: 120%;
+    letter-spacing: 0.4px;
+    padding: 10px;
+    border-right: 1px solid var(--border, #e1e5ea);
+
+    &:last-of-type {
+        border-right: none;
+    }
+
+    ${({ align }) => align && `text-align: ${align};`}
+
+    ${({ flexAlign }) =>
+        flexAlign &&
+        css`
+            display: flex;
+            flex-direction: row;
+            align-items: ${flexAlign};
+        `}
+`;
+
 export const StyledTableRow = styled.tr<any>`
     &:not(:last-child) {
         border-bottom: 1px solid #dddddd;
     }
 
-    &:last-of-type td:first-of-type {
+    &:last-of-type ${StyledTableDataCell}:first-of-type {
         border-bottom-left-radius: 8px;
     }
 
-    &:last-of-type td:last-of-type {
+    &:last-of-type ${StyledTableDataCell}:last-of-type {
         border-bottom-right-radius: 8px;
     }
+
+    ${({ striped }) =>
+        striped &&
+        css`
+            &:nth-child(even) {
+                background-color: var(--bg-secondary, #f6f7f9);
+            }
+        `}
 `;
 
 export const StyledTableHeadingCell = styled.th<any>`
@@ -44,7 +76,8 @@ export const StyledTableHeadingCell = styled.th<any>`
     line-height: 120%;
     letter-spacing: 0.4px;
     padding: 10px;
-    border: 1px solid var(--border, #e1e5ea);
+    border-right: 1px solid var(--border, #e1e5ea);
+    border-bottom: 1px solid var(--border, #e1e5ea);
 
     ${({ align }) => `text-align: ${align};`}
 
@@ -54,17 +87,6 @@ export const StyledTableHeadingCell = styled.th<any>`
 
     &:last-of-type {
         border-top-right-radius: 8px;
+        border-right: none;
     }
-`;
-
-export const StyledTableDataCell = styled.td<any>`
-    color: var(--text-primary, #16191d);
-    font-size: 12px;
-    font-weight: 450;
-    line-height: 120%;
-    letter-spacing: 0.4px;
-    padding: 10px;
-    border: 1px solid var(--border, #e1e5ea);
-
-    ${({ align }) => `text-align: ${align};`}
 `;

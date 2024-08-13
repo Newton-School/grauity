@@ -1,5 +1,5 @@
 import React from 'react';
-import { grauityIconName } from '../../core';
+import { grauityIconName, grauityIconSizeName } from '../../core';
 
 export type ButtonVariants =
     | 'primary'
@@ -38,16 +38,14 @@ export interface ButtonProps {
     size?: ButtonSizes;
 
     /**
-     * Show that the button has an icon
-     *
-     * Default: `false`
-     * */
-    hasIcon?: boolean;
-
-    /**
      * Icon to be displayed in the button.
      * */
     icon?: grauityIconName;
+
+    /**
+     * Size of the icon
+     * */
+    iconSize?: grauityIconSizeName;
 
     /**
      * Position of the icon

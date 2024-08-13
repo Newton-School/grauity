@@ -61,6 +61,39 @@ const simpleArgs: TableProps = {
                     },
                 ],
             },
+            {
+                key: 'row-1',
+                cells: [
+                    { key: 'name', display: 'John Doe', valign: 'top' },
+                    { key: 'age', display: 25 },
+                    {
+                        key: 'address',
+                        display: '123 Main St, Springfield, IL 62701',
+                    },
+                ],
+            },
+            {
+                key: 'row-2',
+                cells: [
+                    { key: 'name', display: 'Jane Doe', valign: 'center' },
+                    { key: 'age', display: 30 },
+                    {
+                        key: 'address',
+                        display: '456 Main St, Springfield, IL 62701',
+                    },
+                ],
+            },
+            {
+                key: 'row-3',
+                cells: [
+                    { key: 'name', display: 'James Doe', valign: 'bottom' },
+                    { key: 'age', display: 35 },
+                    {
+                        key: 'address',
+                        display: '789 Main St, Springfield, IL 62701',
+                    },
+                ],
+            },
         ],
     },
     condensed: false,

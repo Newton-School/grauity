@@ -13,10 +13,10 @@ const Table = ({config,...props}: TableProps) => (
     <StyledTable>
         <StyledTableHead capitalizeHeaders={props?.capitalizeHeaders || true}>
             {config?.columnRows?.map((columnRow, columnRowIndex) => (
-                <StyledTableRow key={columnRow?.key || `column-row-${columnRowIndex + 1}`}>
+                <StyledTableRow key={columnRow?.key || `table--column-row-${columnRowIndex + 1}`}>
                     {columnRow?.cells?.map((column, columnIndex) => (
                         <StyledTableHeadingCell
-                            key={column?.key || `table-column-${columnIndex + 1}`}
+                            key={column?.key || `table--column-${columnIndex + 1}`}
                             align={column?.align || 'center'}
                             width={column?.width || 'auto'}
                             colSpan={column?.colSpan || 1}
@@ -28,9 +28,10 @@ const Table = ({config,...props}: TableProps) => (
                 </StyledTableRow>
             ))}
         </StyledTableHead>
+
         <StyledTableBody>
             {config?.rows?.map((row, rowIndex) => (
-                <StyledTableRow key={row?.key || `table--row-${rowIndex + 1}`}>
+                <StyledTableRow key={row?.key || `table--row-${rowIndex + 1}`} striped={props?.striped}>
                     {row?.cells?.map((cell, cellIndex) => (
                         <StyledTableDataCell
                             key={cell?.key || `table--column-${cellIndex + 1}--row-${rowIndex + 1}`}
@@ -38,14 +39,13 @@ const Table = ({config,...props}: TableProps) => (
                             colSpan={cell?.colSpan || 1}
                             rowSpan={cell?.rowSpan || 1}
                         >
-                            {cell.display}
+                            {cell.render ? cell.render(cell) : cell.display}
                         </StyledTableDataCell>
                     ))}
                 </StyledTableRow>
             ))}
         </StyledTableBody>
     </StyledTable>
-
 );
 
 Table.propTypes = {
