@@ -49,17 +49,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -76,17 +73,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -103,17 +97,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -130,17 +121,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -157,17 +145,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -184,17 +169,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -211,17 +193,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -238,17 +217,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -265,17 +241,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -292,17 +265,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -319,17 +289,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -346,17 +313,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -373,17 +337,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -400,17 +361,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -427,17 +385,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -454,17 +409,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -481,17 +433,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -508,17 +457,14 @@ const defaultArgs: TableProps = {
                     {
                         key: 'branch',
                         display: 'Chemical Engineering',
-                        render: (cellData) => {
-                            console.log('oh jeez', { cellData });
-                            return (
-                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                    <NSButton size="small">
-                                        Click me!
-                                    </NSButton>
-                                    <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
-                                </div>
-                            );
-                        },
+                        render: (cellData) => (
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
+                                <NSButton size="small">
+                                    Click me!
+                                </NSButton>
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                            </div>
+                        ),
                     },
                     { key: 'or', display: '100' },
                     { key: 'cr', display: '500' },
@@ -526,7 +472,7 @@ const defaultArgs: TableProps = {
             },
         ],
     },
-    condensed: false,
+    condensed: true,
     striped: true,
     borderAround: true,
     borderWithin: true,

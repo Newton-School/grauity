@@ -15,3 +15,11 @@ export { BUTTON_ICON_POSITIONS_ENUM } from './elements';
 
 export type { TableProps } from './elements';
 export { NSTable } from './elements';
+export {
+    NSTableWrapper,
+    NSTableBody,
+    NSTableDataCell,
+    NSTableHead,
+    NSTableHeadingCell,
+    NSTableRow,
+} from './elements';

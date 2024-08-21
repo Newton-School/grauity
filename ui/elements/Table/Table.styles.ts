@@ -1,6 +1,15 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import styled, { css } from 'styled-components';
+import {
+    TableBodyComponentProps,
+    TableComponentProps,
+    TableDataCellComponentProps,
+    TableHeadComponentProps,
+    TableHeadingCellComponentProps,
+    TableRowComponentProps,
+} from './types';
 
-export const StyledTable = styled.table`
+export const StyledTable = styled.table<TableComponentProps>`
     border-collapse: collapse;
     font-size: 12px;
     width: 100%;
@@ -8,29 +17,58 @@ export const StyledTable = styled.table`
     overflow: hidden;
     outline: 0.5px solid var(--border, #e1e5ea);
     font-family: "Mona Sans";
+
+    ${({ borderAround }) => borderAround === false && 'outline: none;'}
+
+    ${({ borderWithin }) =>
+        borderWithin === false
+            ? css`
+                  ${StyledTableRow} {
+                      border-bottom: none;
+                  }
+                  ${StyledTableDataCell} {
+                      border-right: none;
+                  }
+                  ${StyledTableHeadingCell} {
+                      border-bottom: none;
+                  }
+              `
+            : css`
+                  ${StyledTableRow}:not(:last-child) {
+                      border-bottom: 1px solid #e1e5ea;
+                  }
+                  ${StyledTableDataCell} {
+                      border-right: 1px solid var(--border, #e1e5ea);
+                  }
+                  ${StyledTableHeadingCell} {
+                      border-right: 1px solid var(--border, #e1e5ea);
+                      border-bottom: 1px solid var(--border, #e1e5ea);
+                  }
+              `}
+    
+    ${({ striped }) =>
+        striped &&
+        css`
+            ${StyledTableRow}:nth-child(even) {
+                background-color: var(--bg-secondary, #f6f7f9);
+            }
+        `}
 `;
 
-export const StyledTableHead = styled.thead<any>`
+export const StyledTableHead = styled.thead<TableHeadComponentProps>`
     background: var(--bg-secondary, #f6f7f9);
-    border-radius: 8px 8px 0 0;
-    border-bottom: 1px solid #dddddd;
 
     ${({ capitalizeHeaders }) =>
-        capitalizeHeaders && 'text-transform: uppercase;'}
+        capitalizeHeaders !== false && 'text-transform: uppercase;'}
 `;
 
-export const StyledTableBody = styled.tbody`
-    background-color: var(--bg-primary, #fff);
-`;
-
-export const StyledTableDataCell = styled.td<any>`
+export const StyledTableDataCell = styled.td<TableDataCellComponentProps>`
     color: var(--text-primary, #16191d);
     font-size: 12px;
     font-weight: 450;
     line-height: 120%;
     letter-spacing: 0.4px;
     padding: 10px;
-    border-right: 1px solid var(--border, #e1e5ea);
 
     &:last-of-type {
         border-right: none;
@@ -47,10 +85,17 @@ export const StyledTableDataCell = styled.td<any>`
         `}
 `;
 
-export const StyledTableRow = styled.tr<any>`
-    &:not(:last-child) {
-        border-bottom: 1px solid #dddddd;
-    }
+export const StyledTableRow = styled.tr<TableRowComponentProps>`
+    ${({ condensed }) =>
+        !condensed &&
+        css`
+            ${StyledTableDataCell} {
+                padding: 18px;
+            }
+            ${StyledTableHeadingCell} {
+                padding: 18px;
+            }
+        `}
 
     &:last-of-type ${StyledTableDataCell}:first-of-type {
         border-bottom-left-radius: 8px;
@@ -59,25 +104,19 @@ export const StyledTableRow = styled.tr<any>`
     &:last-of-type ${StyledTableDataCell}:last-of-type {
         border-bottom-right-radius: 8px;
     }
-
-    ${({ striped }) =>
-        striped &&
-        css`
-            &:nth-child(even) {
-                background-color: var(--bg-secondary, #f6f7f9);
-            }
-        `}
 `;
 
-export const StyledTableHeadingCell = styled.th<any>`
+export const StyledTableBody = styled.tbody<TableBodyComponentProps>`
+    background-color: var(--bg-primary, #fff);
+`;
+
+export const StyledTableHeadingCell = styled.th<TableHeadingCellComponentProps>`
     color: var(--text-secondary, #5b6271);
     font-size: 12px;
     font-weight: 550;
     line-height: 120%;
     letter-spacing: 0.4px;
     padding: 10px;
-    border-right: 1px solid var(--border, #e1e5ea);
-    border-bottom: 1px solid var(--border, #e1e5ea);
 
     ${({ align }) => `text-align: ${align};`}
 

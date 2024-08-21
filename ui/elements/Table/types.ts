@@ -150,10 +150,10 @@ export interface TableProps {
     config: TableConfig;
 
     /**
-     * Determines if the table is condensed (Reduced padding, spacing).
+     * Determines if the table is condensed (Reduced padding).
      * Available choices: true, false
      *
-     * Default: `false`
+     * Default: `true`
      * */
     condensed?: boolean;
 
@@ -206,4 +206,51 @@ export interface TableProps {
      * Default: `true`
      * */
     capitalizeHeaders?: boolean;
+}
+
+// Interface for NSTableWrapper component props
+export interface TableComponentProps {
+    borderAround?: boolean;
+    borderWithin?: boolean;
+    striped?: boolean;
+    children: ReactNode;
+}
+
+// Interface for NSTableHead component props
+export interface TableHeadComponentProps {
+    capitalizeHeaders?: boolean;
+    children: ReactNode;
+}
+
+// Interface for NSTableBody component props
+export interface TableBodyComponentProps {
+    children: ReactNode;
+}
+
+// Interface for NSTableRow component props
+export interface TableRowComponentProps {
+    key?: string;
+    condensed?: boolean;
+    children: ReactNode;
+}
+
+// Interface for NSTableDataCell component props
+export interface TableDataCellComponentProps {
+    key?: string;
+    align?: string;
+    flexAlign?: string;
+    colSpan?: number;
+    rowSpan?: number;
+    children: ReactNode;
+}
+
+// Interface for NSTableHeadingCell component props
+export interface TableHeadingCellComponentProps {
+    key?: string;
+    align?: string;
+    width?: string;
+    flexAlign?: string;
+    colSpan?: number;
+    rowSpan?: number;
+    children: ReactNode;
 }

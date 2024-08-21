@@ -5,15 +5,13 @@ import { TableProps } from './types';
 
 /**
  * `gra.UI.ty Table`: Formal. Clean. Neat. On the rocks.
- * Shorthand example:
- * <Table config={{columnRows: [], rows: []}} />
  * @returns The Table component.
  */
 const Table = ({config,...props}: TableProps) => (
-    <StyledTable>
-        <StyledTableHead capitalizeHeaders={props?.capitalizeHeaders || true}>
+    <StyledTable borderAround={props.borderAround} borderWithin={props.borderWithin} striped={props?.striped}>
+        <StyledTableHead capitalizeHeaders={props?.capitalizeHeaders}>
             {config?.columnRows?.map((columnRow, columnRowIndex) => (
-                <StyledTableRow key={columnRow?.key || `table--column-row-${columnRowIndex + 1}`}>
+                <StyledTableRow key={columnRow?.key || `table--column-row-${columnRowIndex + 1}`} condensed={props.condensed}>
                     {columnRow?.cells?.map((column, columnIndex) => (
                         <StyledTableHeadingCell
                             key={column?.key || `table--column-${columnIndex + 1}`}
@@ -31,7 +29,7 @@ const Table = ({config,...props}: TableProps) => (
 
         <StyledTableBody>
             {config?.rows?.map((row, rowIndex) => (
-                <StyledTableRow key={row?.key || `table--row-${rowIndex + 1}`} striped={props?.striped}>
+                <StyledTableRow key={row?.key || `table--row-${rowIndex + 1}`} condensed={props.condensed}>
                     {row?.cells?.map((cell, cellIndex) => (
                         <StyledTableDataCell
                             key={cell?.key || `table--column-${cellIndex + 1}--row-${rowIndex + 1}`}
@@ -87,7 +85,7 @@ Table.defaultProps = {
         columns: [],
         rows: []
     },
-    condensed: false,
+    condensed: true,
     striped: false,
     borderAround: true,
     borderWithin: true,
@@ -96,5 +94,7 @@ Table.defaultProps = {
     style: {},
     capitalizeHeaders: false,
 };
+
+export { StyledTable, StyledTableBody, StyledTableDataCell, StyledTableHead, StyledTableHeadingCell, StyledTableRow };
 
 export default Table;

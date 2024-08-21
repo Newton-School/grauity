@@ -96,14 +96,14 @@ const simpleArgs: TableProps = {
             },
         ],
     },
-    condensed: false,
+    condensed: true,
     striped: true,
     borderAround: true,
     borderWithin: true,
     className: '',
     loading: false,
     style: {},
-    capitalizeHeaders: true,
+    capitalizeHeaders: false,
 };
 
 export default simpleArgs;
