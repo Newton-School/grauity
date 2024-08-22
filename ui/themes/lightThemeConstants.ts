@@ -22,7 +22,7 @@ const LIGHT_THEME_CONFIG: DefaultTheme = {
     bgWarning: 'var(--warning-0, #FFF1E5)',
     bgYellow: 'var(--yellow-0, #FFF3D6)',
     bgPurple: 'var(--purple-0, #F5E5FF)',
-    bgDisabled: 'var(--neutral-800, #23282F)',
+    bgDisabled: 'var(--neutral-200, #EDEFF3)',
 
     bgActionBrand: 'var(--brand-500, #0673f9)',
     bgActionSuccess: 'var(--success-500, #009965)',

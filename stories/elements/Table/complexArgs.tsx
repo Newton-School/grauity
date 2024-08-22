@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, NSButton, TableProps } from '../../../ui';
+import { BUTTON_VARIANTS_ENUM, Icon, NSButton, TableProps } from '../../../ui';
 
 const defaultArgs: TableProps = {
     config: {
@@ -51,10 +51,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -75,10 +75,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -99,10 +99,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -123,10 +123,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -147,10 +147,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -171,10 +171,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -195,10 +195,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -219,10 +219,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -243,10 +243,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -267,10 +267,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -291,10 +291,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -315,10 +315,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -339,10 +339,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -363,10 +363,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -387,10 +387,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -411,10 +411,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -435,10 +435,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -459,10 +459,10 @@ const defaultArgs: TableProps = {
                         display: 'Chemical Engineering',
                         render: (cellData) => (
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px'}}>
-                                <NSButton size="small">
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED}>
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
+                                <NSButton size="small" variant={BUTTON_VARIANTS_ENUM.DANGER_OUTLINED} icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },

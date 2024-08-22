@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 import { BUTTON_SIZES_ENUM, BUTTON_VARIANTS_ENUM } from './constants';
+import { ButtonComponentProps } from './types';
 
-export const StyledButton = styled.button<any>`
+export const StyledButton = styled.button<ButtonComponentProps>`
     padding: 4px 12px;
     font-size: 14px;
     border-radius: 8px;
@@ -31,7 +32,7 @@ export const StyledButton = styled.button<any>`
 
                     &:focus {
                         background: var(--bg-action-brand-hover, #2989ff);
-                        outline: var(--spacing-2px, 2px) solid
+                        outline: var(--spacing-3px, 3px) solid
                             var(--border-brand, #94c4ff);
                     }
                 `;
@@ -48,14 +49,14 @@ export const StyledButton = styled.button<any>`
 
                     &:focus {
                         background: var(--bg-brand, #e5f1ff);
-                        outline: var(--spacing-2px, 2px) solid
+                        outline: var(--spacing-3px, 3px) solid
                             var(--border-brand, #94c4ff);
                     }
                 `;
         case BUTTON_VARIANTS_ENUM.SECONDARY:
             return css`
                     background: var(--bg-invert-primary, #0b0c0e);
-                    color: #fff;
+                    color: var(--text-action2, #ffffff);
                     border: none;
                     outline: none;
 
@@ -65,7 +66,7 @@ export const StyledButton = styled.button<any>`
 
                     &:focus {
                         background: var(--bg-invert-primary-hover, #16191d);
-                        outline: var(--spacing-2px, 2px) solid
+                        outline: var(--spacing-3px, 3px) solid
                             var(--border-neutral, #e1e5ea);
                     }
                 `;
@@ -82,7 +83,7 @@ export const StyledButton = styled.button<any>`
 
                     &:focus {
                         background: var(--bg-secondary, #f6f7f9);
-                        outline: var(--spacing-2px, 2px) solid
+                        outline: var(--spacing-3px, 3px) solid
                             var(--border-neutral, #e1e5ea);
                     }
                 `;
@@ -90,7 +91,8 @@ export const StyledButton = styled.button<any>`
             return css`
                     background: var(--bg-primary, #fff);
                     color: var(--text-primary, #16191d);
-                    outline: 1px solid var(--border-neutral, #e1e5ea);
+                    outline: var(--spacing-1px, 1px) solid
+                        var(--border-neutral, #e1e5ea);
 
                     &:hover {
                         background: var(--bg-primary-hover, #f6f7f9);
@@ -98,7 +100,8 @@ export const StyledButton = styled.button<any>`
 
                     &:focus {
                         background: var(--bg-primary-hover, #f6f7f9);
-                        outline: 2px solid var(--border-neutral, #e1e5ea);
+                        outline: var(--spacing-3px, 3px) solid
+                            var(--border-neutral, #e1e5ea);
                     }
                 `;
         case BUTTON_VARIANTS_ENUM.TERTIARY_OUTLINED:
@@ -114,7 +117,8 @@ export const StyledButton = styled.button<any>`
 
                     &:focus {
                         background: var(--bg-primary-hover, #f6f7f9);
-                        outline: 2px solid var(--border-neutral, #e1e5ea);
+                        outline: var(--spacing-3px, 3px) solid
+                            var(--border-neutral, #e1e5ea);
                     }
                 `;
         case BUTTON_VARIANTS_ENUM.SUCCESS:
@@ -130,7 +134,7 @@ export const StyledButton = styled.button<any>`
 
                     &:focus {
                         background: var(--bg-action-success-hover, #13b97c);
-                        outline: var(--spacing-2px, 2px) solid
+                        outline: var(--spacing-3px, 3px) solid
                             var(--border-success, #acf7d3);
                     }
                 `;
@@ -147,7 +151,7 @@ export const StyledButton = styled.button<any>`
 
                     &:focus {
                         background: var(--bg-success, #d9fced);
-                        outline: var(--spacing-2px, 2px) solid
+                        outline: var(--spacing-3px, 3px) solid
                             var(--border-success, #acf7d3);
                     }
                 `;
@@ -164,7 +168,7 @@ export const StyledButton = styled.button<any>`
 
                     &:focus {
                         background: var(--bg-action-error-hover, #ee3f44);
-                        outline: var(--spacing-2px, 2px) solid
+                        outline: var(--spacing-3px, 3px) solid
                             var(--border-error, #fbbbbf);
                     }
                 `;
@@ -181,7 +185,7 @@ export const StyledButton = styled.button<any>`
 
                     &:focus {
                         background: var(--bg-error, #ffe5e7);
-                        outline: var(--spacing-2px, 2px) solid
+                        outline: var(--spacing-3px, 3px) solid
                             var(--border-error, #fbbbbf);
                     }
                 `;
@@ -198,7 +202,7 @@ export const StyledButton = styled.button<any>`
 
                     &:focus {
                         background: var(--bg-action-warning-hover, #fd9254);
-                        outline: var(--spacing-2px, 2px) solid
+                        outline: var(--spacing-3px, 3px) solid
                             var(--border-warning, #ffd2ba);
                     }
                 `;
@@ -215,7 +219,7 @@ export const StyledButton = styled.button<any>`
 
                     &:focus {
                         background: var(--bg-warning, #fff1e5);
-                        outline: var(--spacing-2px, 2px) solid
+                        outline: var(--spacing-3px, 3px) solid
                             var(--border-warning, #ffd2ba);
                     }
                 `;
@@ -303,7 +307,7 @@ export const StyledButton = styled.button<any>`
             flex-direction: row-reverse;
         `}
 
-    transition: background-color 0.2s ease-in, outline 0.2s ease-in;
+    transition: background-color 0.2s ease-in, outline 0.2s ease-in, border 0.2s ease-in, border-color 0.2s ease-in;
 `;
 
 export const StyledButtonText = styled.span`

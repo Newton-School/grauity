@@ -1,6 +1,6 @@
 import { addons } from "@storybook/addons";
-import nsTheme from "./nsTheme";
+import STORYBOOK_THEME from "./storybookTheme";
 
 addons.setConfig({
-    theme: nsTheme,
+    theme: STORYBOOK_THEME.DARK,
 });

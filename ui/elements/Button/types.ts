@@ -1,5 +1,22 @@
 import React from 'react';
 import { grauityIconName, grauityIconSizeName } from '../../core';
+import { BUTTON_SIZES_ENUM, BUTTON_VARIANTS_ENUM } from './constants';
+
+interface StyledButtonProps {
+    variant?: BUTTON_VARIANTS_ENUM;
+    size?: BUTTON_SIZES_ENUM;
+    icon?: string | number;
+    iconSize?: string;
+    iconPositon?: 'left' | 'right';
+    className?: string;
+    disabled?: boolean;
+    loading?: boolean;
+    style?: React.CSSProperties;
+    onClick?: (e?: any) => void;
+    fullWidth?: boolean;
+    isIconButton?: boolean;
+    children?: React.ReactNode;
+}
 
 export type ButtonVariants =
     | 'primary'
@@ -105,4 +122,20 @@ export interface ButtonProps {
      * Determines if the button is an icon button, it will be then fully rounded
      * */
     isIconButton?: boolean;
+}
+
+export interface ButtonComponentProps {
+    variant?: ButtonVariants;
+    size?: ButtonSizes;
+    icon?: string | number;
+    iconSize?: string;
+    iconPositon?: 'left' | 'right';
+    className?: string;
+    disabled?: boolean;
+    loading?: boolean;
+    style?: React.CSSProperties;
+    onClick?: (e?: any) => void;
+    fullWidth?: boolean;
+    isIconButton?: boolean;
+    children?: React.ReactNode;
 }

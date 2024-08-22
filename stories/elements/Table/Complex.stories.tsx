@@ -10,8 +10,20 @@ export default {
 
 const Template = (args: TableProps) => <NSTable {...args} />;
 
-export const Complex = Template.bind({});
+// Table in Light Theme
+export const ComplexLight = Template.bind({});
+ComplexLight.parameters = {
+    theme: 'light',
+};
+ComplexLight.args = {
+    ...complexArgs,
+};
 
-Complex.args = {
+// Table in Dark Theme
+export const ComplexDark = Template.bind({});
+ComplexDark.parameters = {
+    theme: 'dark',
+};
+ComplexDark.args = {
     ...complexArgs,
 };

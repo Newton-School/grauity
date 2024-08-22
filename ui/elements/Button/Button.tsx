@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -54,18 +54,26 @@ const Button = ({
             onClick={handleClick}
             className={classes}
             style={style}
-            disabled={disabled}
+            disabled={disabled || loading}
             variant={variant}
             size={size}
             fullWidth={fullWidth}
             iconPositon={iconPositon}
             isIconButton={isIconButton}
         >
-            {icon && (
+            {icon && !loading && (
                 <Icon 
                     name={icon}
                     color='inherit'
                     size={iconSize || '24'}
+                />
+            )}
+            {loading && (
+                <Icon 
+                    name='load'
+                    color='inherit'
+                    size={iconSize || '24'}
+                    loading={loading}
                 />
             )}         
             {children && <StyledButtonText>{children}</StyledButtonText>}

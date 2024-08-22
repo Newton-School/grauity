@@ -35,7 +35,7 @@ export const StyledTable = styled.table<TableComponentProps>`
               `
             : css`
                   ${StyledTableRow}:not(:last-child) {
-                      border-bottom: 1px solid #e1e5ea;
+                      border-bottom: 1px solid var(--border, #e1e5ea);
                   }
                   ${StyledTableDataCell} {
                       border-right: 1px solid var(--border, #e1e5ea);
@@ -49,17 +49,21 @@ export const StyledTable = styled.table<TableComponentProps>`
     ${({ striped }) =>
         striped &&
         css`
-            ${StyledTableRow}:nth-child(even) {
+            ${StyledTableBody} ${StyledTableRow}:nth-child(even) {
                 background-color: var(--bg-secondary, #f6f7f9);
             }
         `}
 `;
 
-export const StyledTableHead = styled.thead<TableHeadComponentProps>`
-    background: var(--bg-secondary, #f6f7f9);
+export const StyledTableHeadingCell = styled.th<TableHeadingCellComponentProps>`
+    color: var(--text-secondary, #5b6271);
+    font-size: 12px;
+    font-weight: 550;
+    line-height: 120%;
+    letter-spacing: 0.4px;
+    padding: 10px;
 
-    ${({ capitalizeHeaders }) =>
-        capitalizeHeaders !== false && 'text-transform: uppercase;'}
+    ${({ align }) => `text-align: ${align};`}
 `;
 
 export const StyledTableDataCell = styled.td<TableDataCellComponentProps>`
@@ -106,26 +110,25 @@ export const StyledTableRow = styled.tr<TableRowComponentProps>`
     }
 `;
 
-export const StyledTableBody = styled.tbody<TableBodyComponentProps>`
-    background-color: var(--bg-primary, #fff);
-`;
+export const StyledTableHead = styled.thead<TableHeadComponentProps>`
+    background: var(--bg-tertiary, #edeff3);
 
-export const StyledTableHeadingCell = styled.th<TableHeadingCellComponentProps>`
-    color: var(--text-secondary, #5b6271);
-    font-size: 12px;
-    font-weight: 550;
-    line-height: 120%;
-    letter-spacing: 0.4px;
-    padding: 10px;
+    ${({ capitalizeHeaders }) =>
+        capitalizeHeaders !== false && 'text-transform: uppercase;'}
 
-    ${({ align }) => `text-align: ${align};`}
+    ${StyledTableRow} ${StyledTableHeadingCell}:last-child {
+        border-right: none;
+    }
 
-    &:first-of-type {
+    ${StyledTableRow}:first-child ${StyledTableHeadingCell}:first-child {
         border-top-left-radius: 8px;
     }
 
-    &:last-of-type {
+    ${StyledTableRow}:first-child ${StyledTableHeadingCell}&:last-child {
         border-top-right-radius: 8px;
-        border-right: none;
     }
+`;
+
+export const StyledTableBody = styled.tbody<TableBodyComponentProps>`
+    background-color: var(--bg-primary, #fff);
 `;

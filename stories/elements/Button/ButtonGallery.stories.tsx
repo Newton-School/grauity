@@ -32,7 +32,10 @@ const Template = (args: ButtonProps) => (
                         <NSButton
                             variant={variant}
                             key={variant}
-                            icon='sparkle'
+                            icon={args?.icon}
+                            size={args?.size}
+                            disabled={args?.disabled}
+                            loading={args?.loading}
                             isIconButton
                         />
                     </NSTableDataCell>
@@ -43,17 +46,25 @@ const Template = (args: ButtonProps) => (
 );
 
 const defaultArgs = {
-    children: 'Click Me!',
-    icon: 'sparkle',
+    children: 'Click Me',
+    icon: 'exclamation-circle',
     variant: 'primary',
     size: 'medium',
-    onClick: () => {
-        console.log('NSButton clicked!');
-    },
+    onClick: () => {},
 };
 
 export const ButtonGallery = Template.bind({});
-
+ButtonGallery.parameters = {
+    theme: 'light',
+};
 ButtonGallery.args = {
+    ...defaultArgs,
+};
+
+export const ButtonGalleryDark = Template.bind({});
+ButtonGalleryDark.parameters = {
+    theme: 'dark',
+};
+ButtonGalleryDark.args = {
     ...defaultArgs,
 };

@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { ThemeWrapper, GrauityInit } from "../ui";
-import { ThemeContext } from "../ui/themes/ThemeContext";
+import ThemeBlock from "./themeBlock";
 
 export const parameters = {
     actions: { argTypesRegex: "^on[A-Z].*" },
@@ -10,16 +10,17 @@ export const parameters = {
             date: /Date$/,
         },
     },
+    layout: "fullscreen",
 };
 
 const withTheme = (Story, context) => {
-    const themeContext = useContext(ThemeContext);
-    const handleToggleTheme = themeContext?.handleToggleTheme;
     const currentTheme = context.parameters.theme || context.globals.theme;
     return (
-        <ThemeWrapper>
+        <ThemeWrapper defaultTheme={currentTheme}>
             <GrauityInit fontSize={"16px"} multiplier={1}>
-                <Story />
+                <ThemeBlock fill>
+                    <Story />
+                </ThemeBlock>
             </GrauityInit>
         </ThemeWrapper>
     );
