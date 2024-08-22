@@ -44,7 +44,6 @@ const Template = (args: ButtonProps) => (
 
 const defaultArgs = {
     children: 'Click Me!',
-    hasIcon: true,
     icon: 'sparkle',
     variant: 'primary',
     size: 'medium',

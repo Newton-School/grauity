@@ -11,7 +11,6 @@ const Template = (args: ButtonProps) => <NSButton {...args} />;
 
 const defaultArgs = {
     children: 'Click Me!',
-    hasIcon: true,
     icon: 'sparkle',
     variant: 'primary',
     size: 'medium',
