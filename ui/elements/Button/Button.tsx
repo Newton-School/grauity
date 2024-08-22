@@ -13,7 +13,6 @@ import {
     BUTTON_VARIANTS_ENUM 
 } from './constants';
 import { Icon } from '../Icon';
-import getButtonColorFromVariant from './utils';
 
 /**
  * `gra.UI.ty Button`: This button is cute as a button.
@@ -34,6 +33,7 @@ const Button = ({
     style,
     onClick,
     fullWidth,
+    isIconButton,
     children = '',
     ...props
 }: ButtonProps) => {
@@ -59,11 +59,12 @@ const Button = ({
             size={size}
             fullWidth={fullWidth}
             iconPositon={iconPositon}
+            isIconButton={isIconButton}
         >
             {icon && (
                 <Icon 
                     name={icon}
-                    color={getButtonColorFromVariant(variant)}
+                    color='inherit'
                     size={iconSize || '24'}
                 />
             )}         
@@ -84,6 +85,7 @@ Button.propTypes = {
     style: PropTypes.object,
     onClick: PropTypes.func,
     fullWidth: PropTypes.bool,
+    isIconButton: PropTypes.bool,
     children: PropTypes.any,
 };
 
@@ -99,6 +101,7 @@ Button.defaultProps = {
     style: {},
     onClick: () => {},
     fullWidth: false,
+    isIconButton: false,
     children: null,
 };
 

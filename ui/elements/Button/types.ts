@@ -100,4 +100,9 @@ export interface ButtonProps {
      * Children of the component
      * */
     children?: any;
+
+    /**
+     * Determines if the button is an icon button, it will be then fully rounded
+     * */
+    isIconButton?: boolean;
 }

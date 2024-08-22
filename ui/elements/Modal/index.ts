@@ -13,3 +13,5 @@ export {
     StyledModalWrapper as NSModalWrapper,
 } from './Modal';
 export type { ModalProps } from './types';
+
+export { default as NSConfirmationDialog } from './ConfirmationDialog';

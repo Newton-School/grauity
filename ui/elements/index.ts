@@ -36,3 +36,4 @@ export {
     NSModalWrapper,
 } from './Modal';
 export { NSModal } from './Modal';
+export { NSConfirmationDialog } from './Modal';

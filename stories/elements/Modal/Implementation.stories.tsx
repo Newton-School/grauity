@@ -18,23 +18,23 @@ export const Implementation = () => {
                 <NSModal
                     modalSteps={[
                         {
-                            banner: 'https://via.placeholder.com/150',
-                            title: 'Title',
+                            banner: {hasBanner: true, image: 'https://via.placeholder.com/200x100'},
+                            title: {text: 'Title'},
                             description: 'Description',
-                            body: 'Body',
+                            body: {hasBody: true, text: 'Body'},
                             nextButtonText: 'Go to Step 2',
                             showBackButton: false,
                         },
                         {
-                            banner: 'https://via.placeholder.com/150',
-                            title: 'Title',
+                            banner: {hasBanner: true, image: 'https://via.placeholder.com/200x100'},
+                            title: {text: 'Title'},
                             description: 'Description',
-                            body: 'Body',
-                            nextButtonText: 'Next',
+                            body: {hasBody: true, text: 'Body'},
+                            nextButtonText: 'Got it!',
                             showBackButton: true,
                         },
                     ]}
-                    shouldHideOnClickAway={false}
+                    shouldHideOnClickAway
                     onHide={() => setIsOpen(false)}
                     onFinalStep={() => console.log('onFinalStep')}
                     mobileBottomFullWidth={false}
@@ -44,8 +44,8 @@ export const Implementation = () => {
                     modalPadding="20px"
                     modalBodyMargin="20px"
                     width="500px"
-                    height="500px"
-                    minHeight="500px"
+                    height="auto"
+                    minHeight="auto"
                     showCloseButton
                 />)}
         </div>

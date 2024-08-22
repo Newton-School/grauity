@@ -1,5 +1,11 @@
 import './css/index.scss';
 
+export {
+    ThemeWrapper,
+    ThemeContext,
+    ThemeConsumer,
+} from './themes/ThemeContext';
+
 export { ICON_TAGS, TAG_ICONS } from './core';
 
 export type { GrauityInitProps } from './init';

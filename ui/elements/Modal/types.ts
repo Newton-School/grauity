@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
+interface ModalBanner {
+    hasBanner?: boolean;
+    isCustom?: boolean;
+    image?: string | null;
+    render?: (() => ReactNode) | null;
+}
+
+interface ModalTitle {
+    text: string;
+}
+
+interface ModalBody {
+    hasBody?: boolean;
+    isCustom?: boolean;
+    text?: string | null;
+    render?: () => ReactNode;
+    width?: string;
+}
+
+interface ModalStep {
+    banner?: ModalBanner;
+    title: ModalTitle;
+    description?: string | null;
+    body?: ModalBody;
+    nextButtonText?: string;
+    showBackButton?: boolean;
+}
 export interface ModalProps {
     /**
      * Modal steps
      * */
-    modalSteps: any[];
+    modalSteps: ModalStep[];
     /**
      * Determines if the modal should hide on click away
      * Available choices: true, false
@@ -92,22 +119,27 @@ export interface ModalContainerProps {
     mobileBottomFullWidth?: boolean;
     modalPadding?: string;
     onClick?: (e: Event) => void;
-    ref: React.RefObject<any>;
+    ref?: React.MutableRefObject<any>;
     children: React.ReactNode;
 }
 
 // Components interface for ModalTitle
 export interface ModalTitleProps {
-    showCloseButton: boolean;
-    marginTop: string;
+    showCloseButton?: boolean;
+    marginTop?: boolean;
     showSubBanner?: boolean;
     children: React.ReactNode;
 }
 
 // Components interface for ModalBody
 export interface ModalBodyProps {
-    modalBodyMargin: string;
-    width: string;
+    modalBodyMargin?: string;
+    width?: string;
+    children: React.ReactNode;
+}
+
+// Components interface for ModalBodyMain
+export interface ModalBodyMainProps {
     children: React.ReactNode;
 }
 
@@ -120,4 +152,16 @@ export interface ModalBannerImageProps {
 export interface ModalPaginationItemProps {
     key: string;
     active: boolean;
+    onClick: () => void;
+}
+
+export interface ConfirmationDialogProps {
+    cancelText?: string;
+    confirmText?: string;
+    onCancel: () => void;
+    onConfirm: () => void;
+    banner?: ModalBanner;
+    title?: ModalTitle;
+    description?: string;
+    body?: ModalBody;
 }

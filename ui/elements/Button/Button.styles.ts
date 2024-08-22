@@ -26,11 +26,11 @@ export const StyledButton = styled.button<any>`
                     outline: none;
 
                     &:hover {
-                        background: var(--bg-brand-action-hover, #2989ff);
+                        background: var(--bg-action-brand-hover, #2989ff);
                     }
 
                     &:focus {
-                        background: var(--bg-brand-action-hover, #2989ff);
+                        background: var(--bg-action-brand-hover, #2989ff);
                         outline: var(--spacing-2px, 2px) solid
                             var(--border-brand, #94c4ff);
                     }
@@ -54,7 +54,7 @@ export const StyledButton = styled.button<any>`
                 `;
         case BUTTON_VARIANTS_ENUM.SECONDARY:
             return css`
-                    background: #0b0c0e;
+                    background: var(--bg-invert-primary, #0b0c0e);
                     color: #fff;
                     border: none;
                     outline: none;
@@ -119,17 +119,17 @@ export const StyledButton = styled.button<any>`
                 `;
         case BUTTON_VARIANTS_ENUM.SUCCESS:
             return css`
-                    background: var(--bg-success-action, #009965);
+                    background: var(--bg-action-success, #009965);
                     color: #ffffff;
                     border: none;
                     outline: none;
 
                     &:hover {
-                        background: var(--bg-success-action-hover, #13b97c);
+                        background: var(--bg-action-success-hover, #13b97c);
                     }
 
                     &:focus {
-                        background: var(--bg-success-action-hover, #13b97c);
+                        background: var(--bg-action-success-hover, #13b97c);
                         outline: var(--spacing-2px, 2px) solid
                             var(--border-success, #acf7d3);
                     }
@@ -153,17 +153,17 @@ export const StyledButton = styled.button<any>`
                 `;
         case BUTTON_VARIANTS_ENUM.DANGER:
             return css`
-                    background: var(--bg-error-action, #d22d3a);
+                    background: var(--bg-action-error, #d22d3a);
                     color: #ffffff;
                     border: none;
                     outline: none;
 
                     &:hover {
-                        background: var(--bg-error-action-hover, #ee3f44);
+                        background: var(--bg-action-error-hover, #ee3f44);
                     }
 
                     &:focus {
-                        background: var(--bg-error-action-hover, #ee3f44);
+                        background: var(--bg-action-error-hover, #ee3f44);
                         outline: var(--spacing-2px, 2px) solid
                             var(--border-error, #fbbbbf);
                     }
@@ -187,17 +187,17 @@ export const StyledButton = styled.button<any>`
                 `;
         case BUTTON_VARIANTS_ENUM.WARNING:
             return css`
-                    background: var(--bg-warning-action, #f37216);
+                    background: var(--bg-action-warning, #f37216);
                     color: #ffffff;
                     border: none;
                     outline: none;
 
                     &:hover {
-                        background: var(--bg-warning-action-hover, #fd9254);
+                        background: var(--bg-action-warning-hover, #fd9254);
                     }
 
                     &:focus {
-                        background: var(--bg-warning-action-hover, #fd9254);
+                        background: var(--bg-action-warning-hover, #fd9254);
                         outline: var(--spacing-2px, 2px) solid
                             var(--border-warning, #ffd2ba);
                     }
@@ -224,32 +224,58 @@ export const StyledButton = styled.button<any>`
         }
     }}
 
-    ${({ size }) => {
+    ${({ size, isIconButton }) => {
         switch (size) {
         case BUTTON_SIZES_ENUM.SMALL:
             return css`
                     padding: 4px 8px;
                     height: 32px;
+                    ${isIconButton &&
+                    css`
+                        padding: 4px;
+                        width: 32px;
+                    `};
                 `;
         case BUTTON_SIZES_ENUM.MEDIUM:
             return css`
                     padding: 8px 12px;
                     height: 40px;
+                    ${isIconButton &&
+                    css`
+                        padding: 8px;
+                        width: 40px;
+                    `};
                 `;
         case BUTTON_SIZES_ENUM.LARGE:
             return css`
                     padding: 12px 16px;
                     height: 48px;
+                    ${isIconButton &&
+                    css`
+                        padding: 12px;
+                        width: 48px;
+                    `};
                 `;
         case BUTTON_SIZES_ENUM.EXTRA_LARGE:
             return css`
                     padding: 16px 20px;
                     height: 56px;
+                    ${isIconButton &&
+                    css`
+                        padding: 16px;
+                        width: 56px;
+                    `};
                 `;
         default:
             return css``;
         }
     }}
+
+    ${({ isIconButton }) =>
+        isIconButton &&
+        css`
+            border-radius: 50%;
+        `}
 
     ${({ fullWidth }) =>
         fullWidth &&

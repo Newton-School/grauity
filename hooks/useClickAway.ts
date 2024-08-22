@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { useEffect, useRef, RefObject } from 'react';
 
-const DEFAULT_EVENTS = ['mousedown', 'touchstart'];
+const DEFAULT_EVENTS = ['mousedown', 'touchstart', 'keydown'];
 
 /**
  * Hook that handles click events outside the passed ref element.
@@ -23,7 +23,12 @@ const useClickAway = (
     useEffect(() => {
         const handler = (event: Event) => {
             const { current: el } = ref;
-            if (el && !el.contains(event.target as Node)) {
+            if (
+                event.type === 'keydown' &&
+                (event as KeyboardEvent).key === 'Escape'
+            ) {
+                savedCallback.current(event);
+            } else if (el && !el.contains(event.target as Node)) {
                 savedCallback.current(event);
             }
         };

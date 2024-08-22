@@ -13,6 +13,7 @@ import {
     StyledModalPagination,
     StyledModalPaginationItem,
     StyledModalTitle,
+    StyledModalTitleText,
     StyledModalWrapper,
 } from './Modal.styles';
 import { ModalProps } from './types';
@@ -48,7 +49,6 @@ const Modal = ({
 
     useClickAway(modalRef, () => {
         if (shouldHideOnClickAway) {
-            console.log('oh jeez onClose');
             onHide();
         }
     });
@@ -89,9 +89,9 @@ const Modal = ({
                             marginTop={banner?.hasBanner}
                             showCloseButton={showCloseButton}
                         >
-                            {title?.text}
-                            {showCloseButton && (
-                                <Button onClick={onHide} variant={BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED}>
+                            <StyledModalTitleText>{title?.text}</StyledModalTitleText>
+                            {showCloseButton && !banner?.hasBanner && (
+                                <Button onClick={onHide} variant={BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED} isIconButton>
                                     <Icon name="close" size="24" />
                                 </Button>
                             )}
@@ -118,8 +118,9 @@ const Modal = ({
                     <StyledModalPagination>
                         {modalSteps.map((item, index) => (
                             <StyledModalPaginationItem
-                                key={item.title}
+                                key={item.title.text}
                                 active={index === currentStep}
+                                onClick={() => setCurrentStep(index)}
                             />
                         ))}
                     </StyledModalPagination>

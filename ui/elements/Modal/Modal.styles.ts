@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import {
     ModalBannerImageProps,
+    ModalBodyMainProps,
     ModalBodyProps,
     ModalContainerProps,
     ModalPaginationItemProps,
@@ -14,7 +15,7 @@ export const StyledModalWrapper = styled.div<ModalWrapperProps>`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: "#2b303bcc";
+    background-color: #2b303bcc;
     z-index: 1000;
     padding: 16px;
     display: flex;
@@ -81,7 +82,7 @@ export const StyledModalContainer = styled.div<ModalContainerProps>`
         `}
 `;
 
-export const StyledModalMain = styled.div`
+export const StyledModalMain = styled.div<ModalBodyMainProps>`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -100,10 +101,6 @@ export const StyledModalBannerImage = styled.img<ModalBannerImageProps>`
 `;
 
 export const StyledModalTitle = styled.div<ModalTitleProps>`
-    font-weight: 550;
-    font-size: 24px;
-    line-height: 32px;
-    text-align: center;
     color: var(--text-primary, #16191d);
 
     ${({ showCloseButton }) =>
@@ -113,7 +110,6 @@ export const StyledModalTitle = styled.div<ModalTitleProps>`
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            padding: 12px 0;
         `}
 
     ${({ marginTop, showSubBanner }) =>
@@ -127,6 +123,15 @@ export const StyledModalTitle = styled.div<ModalTitleProps>`
         css`
             margin-top: ${props.showSubBanner ? '60px' : '20px'};
         `};
+`;
+
+export const StyledModalTitleText = styled.div`
+    font-weight: 550;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+    color: var(--text-primary, #16191d);
+    margin: 0 auto;
 
     @media only screen and (max-width: 600px) {
         font-size: 16px;
@@ -178,11 +183,17 @@ export const StyledModalPagination = styled.div`
 `;
 
 export const StyledModalPaginationItem = styled.div<ModalPaginationItemProps>`
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background: ${(active) =>
-        active ? 'var(--text-secondary, #5b6271)' : 'var(--border, #e1e5ea)'};
+    background: var(--border, #e1e5ea);
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+
+    ${({ active }) =>
+        active
+            ? 'background: var(--text-secondary, #5b6271);'
+            : '&:hover {background: var(--text-disabled, #8C95A6);}'}
 `;
 
 export const StyledModalActionButtonContainer = styled.div`

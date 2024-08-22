@@ -54,7 +54,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -78,7 +78,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -102,7 +102,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -126,7 +126,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -150,7 +150,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -174,7 +174,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -198,7 +198,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -222,7 +222,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -246,7 +246,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -270,7 +270,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -294,7 +294,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -318,7 +318,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -342,7 +342,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -366,7 +366,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -390,7 +390,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -414,7 +414,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -438,7 +438,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
@@ -462,7 +462,7 @@ const defaultArgs: TableProps = {
                                 <NSButton size="small">
                                     Click me!
                                 </NSButton>
-                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" />
+                                <NSButton size="small" variant="danger" icon="archive" iconSize="20" isIconButton />
                             </div>
                         ),
                     },
