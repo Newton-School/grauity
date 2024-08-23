@@ -43,8 +43,15 @@ const Modal = ({
 }: ModalProps) => {
     const [currentStep, setCurrentStep] = useState(0);
 
-    const { banner, title, description, body, nextButtonText, showBackButton } =
-        modalSteps[currentStep] || {};
+    const {
+        banner,
+        title,
+        description,
+        body,
+        nextButtonText,
+        showBackButton,
+        buttonVariant,
+    } = modalSteps[currentStep] || {};
 
     const isLastStep = currentStep === modalSteps.length - 1;
     const isFirstStep = currentStep === 0;
@@ -165,7 +172,7 @@ const Modal = ({
 
                         {nextButtonText && (
                             <Button
-                                variant={BUTTON_VARIANTS_ENUM.SECONDARY}
+                                variant={buttonVariant || BUTTON_VARIANTS_ENUM.SECONDARY}
                                 fullWidth
                                 onClick={() => {
                                     if (isLastStep) {
@@ -235,6 +242,7 @@ export {
     StyledModalPagination,
     StyledModalPaginationItem,
     StyledModalTitle,
+    StyledModalTitleText,
     StyledModalWrapper,
 };
 

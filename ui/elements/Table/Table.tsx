@@ -1,39 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledTable, StyledTableBody, StyledTableDataCell, StyledTableHead, StyledTableHeadingCell, StyledTableRow } from './Table.styles';
+import {
+    StyledTable,
+    StyledTableBody,
+    StyledTableDataCell,
+    StyledTableHead,
+    StyledTableHeadingCell,
+    StyledTableRow,
+} from './Table.styles';
 import { TableProps } from './types';
 
 /**
  * `gra.UI.ty Table`: Formal. Clean. Neat. On the rocks.
  * @returns The Table component.
  */
-const Table = ({config,...props}: TableProps) => (
-    <StyledTable borderAround={props.borderAround} borderWithin={props.borderWithin} striped={props?.striped}>
+const Table = ({ rows, columns, ...props }: TableProps) => (
+    <StyledTable
+        borderAround={props.borderAround}
+        borderWithin={props.borderWithin}
+        striped={props?.striped}
+    >
         <StyledTableHead capitalizeHeaders={props?.capitalizeHeaders}>
-            {config?.columnRows?.map((columnRow, columnRowIndex) => (
-                <StyledTableRow key={columnRow?.key || `table--column-row-${columnRowIndex + 1}`} condensed={props.condensed}>
-                    {columnRow?.cells?.map((column, columnIndex) => (
-                        <StyledTableHeadingCell
-                            key={column?.key || `table--column-${columnIndex + 1}`}
-                            align={column?.align || 'center'}
-                            width={column?.width || 'auto'}
-                            colSpan={column?.colSpan || 1}
-                            rowSpan={column?.rowSpan || 1}
-                        >
-                            {column.display}
-                        </StyledTableHeadingCell>
-                    ))}
-                </StyledTableRow>
-            ))}
+            <StyledTableRow condensed={props.condensed}>
+                {columns?.map((column, columnIndex) => (
+                    <StyledTableHeadingCell
+                        key={column?.key || `table--column-${columnIndex + 1}`}
+                        align={column?.align || 'center'}
+                        width={column?.width || 'auto'}
+                        colSpan={column?.colSpan || 1}
+                        rowSpan={column?.rowSpan || 1}
+                    >
+                        {column.display}
+                    </StyledTableHeadingCell>
+                ))}
+            </StyledTableRow>
         </StyledTableHead>
 
         <StyledTableBody>
-            {config?.rows?.map((row, rowIndex) => (
-                <StyledTableRow key={row?.key || `table--row-${rowIndex + 1}`} condensed={props.condensed}>
-                    {row?.cells?.map((cell, cellIndex) => (
+            {rows?.map((row, rowIndex) => (
+                <StyledTableRow
+                    key={`table--row-${rowIndex + 1}`}
+                    condensed={props.condensed}
+                >
+                    {Object.entries(row)?.map(([rowColumnKey, cell], rowColumnIndex) => (
                         <StyledTableDataCell
-                            key={cell?.key || `table--column-${cellIndex + 1}--row-${rowIndex + 1}`}
-                            align={cell?.align || config?.columnRows[0]?.cells[cellIndex]?.align || 'center'}
+                            key={
+                                `table--column-${rowColumnKey}--row-${
+                                    rowIndex + 1
+                                }`
+                            }
+                            align={
+                                cell?.align ||
+                                columns[rowColumnIndex]?.align ||
+                                'center'
+                            }
                             colSpan={cell?.colSpan || 1}
                             rowSpan={cell?.rowSpan || 1}
                         >
@@ -47,29 +67,8 @@ const Table = ({config,...props}: TableProps) => (
 );
 
 Table.propTypes = {
-    config: PropTypes.shape({
-        columnRows: PropTypes.arrayOf(PropTypes.shape({
-            key: PropTypes.string,
-            cells: PropTypes.arrayOf(PropTypes.shape({
-                key: PropTypes.string,
-                display: PropTypes.any,
-                width: PropTypes.string,
-                align: PropTypes.oneOf(['left', 'right', 'center']),
-                rowSpan: PropTypes.number,
-                colSpan: PropTypes.number    
-            }))
-        })),
-        rows: PropTypes.arrayOf(PropTypes.shape({
-            key: PropTypes.string,
-            cells: PropTypes.arrayOf(PropTypes.shape({
-                key: PropTypes.string,
-                display: PropTypes.any,
-                valign: PropTypes.oneOf(['top', 'bottom', 'center']),
-                rowSpan: PropTypes.number,
-                colSpan: PropTypes.number
-            })),
-        })),
-    }),
+    rows: PropTypes.array,
+    columns: PropTypes.array,
     condensed: PropTypes.bool,
     striped: PropTypes.bool,
     borderAround: PropTypes.bool,
@@ -81,10 +80,8 @@ Table.propTypes = {
 };
 
 Table.defaultProps = {
-    config: {
-        columns: [],
-        rows: []
-    },
+    rows: [],
+    columns: [],
     condensed: true,
     striped: false,
     borderAround: true,
@@ -95,6 +92,13 @@ Table.defaultProps = {
     capitalizeHeaders: false,
 };
 
-export { StyledTable, StyledTableBody, StyledTableDataCell, StyledTableHead, StyledTableHeadingCell, StyledTableRow };
+export {
+    StyledTable,
+    StyledTableBody,
+    StyledTableDataCell,
+    StyledTableHead,
+    StyledTableHeadingCell,
+    StyledTableRow,
+};
 
 export default Table;

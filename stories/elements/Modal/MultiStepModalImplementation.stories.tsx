@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { ModalProps, NSModal, NSTable } from '../../../ui/elements';
 import Button from '../../../ui/elements/Button/Button';
+import simpleArgs from '../Table/simpleArgs';
 
 export default {
     title: 'Elements/NSModal',
@@ -94,80 +95,8 @@ const args = {
             body: {
                 render: () => (
                     <NSTable
-                        config={{
-                            columnRows: [
-                                {
-                                    key: 'column1',
-                                    cells: [
-                                        {
-                                            key: 'cell1',
-                                            display: 'Cell 1',
-                                        },
-                                        {
-                                            key: 'cell2',
-                                            display: 'Cell 2',
-                                        },
-                                        {
-                                            key: 'cell3',
-                                            display: 'Cell 3',
-                                        },
-                                    ],
-                                },
-                            ],
-                            rows: [
-                                {
-                                    key: 'row1',
-                                    cells: [
-                                        {
-                                            key: 'cell1',
-                                            display: 'Row 1 Cell 1',
-                                        },
-                                        {
-                                            key: 'cell2',
-                                            display: 'Row 1 Cell 2',
-                                        },
-                                        {
-                                            key: 'cell3',
-                                            display: 'Row 1 Cell 3',
-                                        },
-                                    ],
-                                },
-                                {
-                                    key: 'row2',
-                                    cells: [
-                                        {
-                                            key: 'cell1',
-                                            display: 'Row 2 Cell 1',
-                                        },
-                                        {
-                                            key: 'cell2',
-                                            display: 'Row 2 Cell 2',
-                                        },
-                                        {
-                                            key: 'cell3',
-                                            display: 'Row 2 Cell 3',
-                                        },
-                                    ],
-                                },
-                                {
-                                    key: 'row3',
-                                    cells: [
-                                        {
-                                            key: 'cell1',
-                                            display: 'Row 3 Cell 1',
-                                        },
-                                        {
-                                            key: 'cell2',
-                                            display: 'Row 3 Cell 2',
-                                        },
-                                        {
-                                            key: 'cell3',
-                                            display: 'Row 3 Cell 3',
-                                        },
-                                    ],
-                                },
-                            ],
-                        }}
+                        rows={simpleArgs.rows}
+                        columns={simpleArgs.columns}
                         condensed
                         striped
                         borderAround

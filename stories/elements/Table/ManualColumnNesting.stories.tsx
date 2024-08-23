@@ -11,9 +11,14 @@ const Template = (args: TableProps) => (
     <NSTableWrapper borderAround={args?.borderAround} borderWithin={args?.borderWithin} striped={args?.striped}>
         <NSTableHead capitalizeHeaders={args?.capitalizeHeaders}>
             <NSTableRow condensed={args?.condensed}>
-                <NSTableHeadingCell>
-                    Column 1
+                <NSTableHeadingCell rowSpan={2}>
+                    Column 1 (rowSpan=2)
                 </NSTableHeadingCell>
+                <NSTableHeadingCell colSpan={2}>
+                    Super Column (colSpan=2)
+                </NSTableHeadingCell>
+            </NSTableRow>
+            <NSTableRow condensed={args?.condensed}>
                 <NSTableHeadingCell>
                     Column 2
                 </NSTableHeadingCell>
@@ -69,21 +74,21 @@ const args = {
     className: '',
     loading: false,
     style: {},
-    capitalizeHeaders: true,
+    capitalizeHeaders: false,
 };
 
-export const ManualTable = Template.bind({});
-ManualTable.parameters = {
+export const ManualTableColumnNesting = Template.bind({});
+ManualTableColumnNesting.parameters = {
     theme: 'light',
 };
-ManualTable.args = {
+ManualTableColumnNesting.args = {
     ...args,
 };
 
-export const ManualTableDark = Template.bind({});
-ManualTableDark.parameters = {
+export const ManualTableColumnNestingDark = Template.bind({});
+ManualTableColumnNestingDark.parameters = {
     theme: 'dark',
 };
-ManualTableDark.args = {
+ManualTableColumnNestingDark.args = {
     ...args,
 };

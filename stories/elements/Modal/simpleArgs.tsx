@@ -1,5 +1,6 @@
 import React from 'react';
 import { ModalProps, NSTable } from '../../../ui/elements';
+import simpleTableArgs from '../Table/simpleArgs';
 
 const simpleArgs: ModalProps = {
     modalSteps: [
@@ -12,6 +13,7 @@ const simpleArgs: ModalProps = {
             body: null,
             nextButtonText: 'Go to Step 2',
             showBackButton: false,
+            buttonVariant: 'primary',
         },
         {
             banner: null,
@@ -22,14 +24,16 @@ const simpleArgs: ModalProps = {
             },
             nextButtonText: 'Go to Step 3',
             showBackButton: true,
+            buttonVariant: 'secondary',
         },
         {
             banner: null,
             title: { text: 'Multi-step Modal Step 3' },
             description: 'This step has neither banner nor body. It only has description text.',
             body: null,
-            nextButtonText: 'Go tp Step 4',
+            nextButtonText: 'Go to Step 4',
             showBackButton: true,
+            buttonVariant: 'success',
         },
         {
             banner: null,
@@ -40,6 +44,7 @@ const simpleArgs: ModalProps = {
             },
             nextButtonText: 'Go to Step 5',
             showBackButton: true,
+            buttonVariant: 'danger',
         },
         {
             banner: null,
@@ -48,80 +53,8 @@ const simpleArgs: ModalProps = {
             body: {
                 render: () => (
                     <NSTable
-                        config={{
-                            columnRows: [
-                                {
-                                    key: 'column1',
-                                    cells: [
-                                        {
-                                            key: 'cell1',
-                                            display: 'Cell 1',
-                                        },
-                                        {
-                                            key: 'cell2',
-                                            display: 'Cell 2',
-                                        },
-                                        {
-                                            key: 'cell3',
-                                            display: 'Cell 3',
-                                        },
-                                    ],
-                                },
-                            ],
-                            rows: [
-                                {
-                                    key: 'row1',
-                                    cells: [
-                                        {
-                                            key: 'cell1',
-                                            display: 'Row 1 Cell 1',
-                                        },
-                                        {
-                                            key: 'cell2',
-                                            display: 'Row 1 Cell 2',
-                                        },
-                                        {
-                                            key: 'cell3',
-                                            display: 'Row 1 Cell 3',
-                                        },
-                                    ],
-                                },
-                                {
-                                    key: 'row2',
-                                    cells: [
-                                        {
-                                            key: 'cell1',
-                                            display: 'Row 2 Cell 1',
-                                        },
-                                        {
-                                            key: 'cell2',
-                                            display: 'Row 2 Cell 2',
-                                        },
-                                        {
-                                            key: 'cell3',
-                                            display: 'Row 2 Cell 3',
-                                        },
-                                    ],
-                                },
-                                {
-                                    key: 'row3',
-                                    cells: [
-                                        {
-                                            key: 'cell1',
-                                            display: 'Row 3 Cell 1',
-                                        },
-                                        {
-                                            key: 'cell2',
-                                            display: 'Row 3 Cell 2',
-                                        },
-                                        {
-                                            key: 'cell3',
-                                            display: 'Row 3 Cell 3',
-                                        },
-                                    ],
-                                },
-                            ],
-                        }}
+                        rows={simpleTableArgs.rows}
+                        columns={simpleTableArgs.columns}
                         condensed
                         striped
                         borderAround
@@ -132,6 +65,7 @@ const simpleArgs: ModalProps = {
             },
             nextButtonText: 'Awesome, Finish!',
             showBackButton: true,
+            buttonVariant: 'warning',
         },
     ],
     shouldHideOnClickAway: false,

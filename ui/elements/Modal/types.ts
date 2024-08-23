@@ -24,6 +24,7 @@ interface ModalStep {
     body?: ModalBody | null;
     nextButtonText?: string;
     showBackButton?: boolean;
+    buttonVariant?: ButtonVariants | null;
 }
 export interface ModalProps {
     /**

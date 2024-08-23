@@ -43,6 +43,7 @@ export {
     NSModalPagination,
     NSModalPaginationItem,
     NSModalTitle,
+    NSModalTitleText,
     NSModalWrapper,
 } from './Modal';
 export { NSModal } from './Modal';

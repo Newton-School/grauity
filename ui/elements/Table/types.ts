@@ -35,14 +35,9 @@ export interface TableColumn {
 
 export interface TableCell {
     /**
-     * Cell key
-     * */
-    key: string;
-
-    /**
      * Cell display, can be a string or a React element
      * */
-    display?: any;
+    display?: ReactNode;
 
     /**
      * Custom cell render function. If provided, display will be ignored
@@ -109,14 +104,9 @@ export interface TableCellAction {
 
 export interface TableRow {
     /**
-     * Row key
-     * */
-    key: string;
-
-    /**
-     * Row cells
-     * */
-    cells: TableCell[];
+     * Table data, in JS Object format, with table column keys as keys of object
+     */
+    [columnKey: string]: TableCell;
 }
 
 export interface TableColumnRow {
@@ -131,23 +121,16 @@ export interface TableColumnRow {
     cells: TableColumn[];
 }
 
-export interface TableConfig {
-    /**
-     * Column rows configuration, use atleast one column row
-     * */
-    columnRows: TableColumnRow[];
-
-    /**
-     * Rows configuration
-     * */
-    rows: TableRow[];
-}
-
 export interface TableProps {
     /**
-     * Table configuration
+     * Table columns, see type `TableColumn`
      * */
-    config: TableConfig;
+    columns?: TableColumn[];
+
+    /**
+     * Table rows, see type `TableRow`
+     * */
+    rows?: TableRow[];
 
     /**
      * Determines if the table is condensed (Reduced padding).

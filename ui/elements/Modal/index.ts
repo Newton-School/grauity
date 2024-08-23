@@ -11,6 +11,7 @@ export {
     StyledModalPaginationItem as NSModalPaginationItem,
     StyledModalTitle as NSModalTitle,
     StyledModalWrapper as NSModalWrapper,
+    StyledModalTitleText as NSModalTitleText,
 } from './Modal';
 export type { ModalProps } from './types';
 
