@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
 import { NSButton, NSConfirmationDialog, BUTTON_VARIANTS_ENUM, Icon } from '../../../ui/elements';
+import { ConfirmationDialogProps } from '../../../ui/elements/Modal/types';
 
 export default {
     title: 'Elements/NSModal',
     component: NSConfirmationDialog,
 };
 
-export const ConfirmationDialog = () => {
+const Template = (args: ConfirmationDialogProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -17,15 +18,45 @@ export const ConfirmationDialog = () => {
             </NSButton>
             {isOpen && (
                 <NSConfirmationDialog
-                    title={{ text: 'Are you sure?' }}
-                    description="This action cannot be undone."
-                    onConfirm={() => {
-                        console.log('Confirmed!');
-                        setIsOpen(false);
-                    }}
-                    onCancel={() => {setIsOpen(false);}}
+                    title={args?.title}
+                    description={args?.description}
+                    onConfirm={() => { setIsOpen(false); args?.onConfirm(); }}
+                    onCancel={() => { setIsOpen(false); args?.onCancel(); }}
+                    confirmText={args?.confirmText}
+                    cancelText={args?.cancelText}
+                    confirmButtonVariant={args?.confirmButtonVariant}
+                    cancelButtonVariant={args?.cancelButtonVariant}
+                    shouldHideOnClickAway={args?.shouldHideOnClickAway}
                 />
             )}
         </div>
     );
+};
+
+const defaultArgs = {
+    title: { text: 'Are you sure?' },
+    description: 'You will need to sign in again to use the platform.',
+    onConfirm: () => {},
+    onCancel: () => {},
+    confirmText: 'Sign out',
+    cancelText: 'Stay Signed in',
+    confirmButtonVariant: BUTTON_VARIANTS_ENUM.SUCCESS,
+    cancelButtonVariant: BUTTON_VARIANTS_ENUM.DANGER,
+    shouldHideOnClickAway: false,
+};
+
+export const ConfirmationDialog = Template.bind({});
+ConfirmationDialog.parameters = {
+    theme: 'light',
+};
+ConfirmationDialog.args = {
+    ...defaultArgs,
+};
+
+export const ConfirmationDialogDark = Template.bind({});
+ConfirmationDialogDark.parameters = {
+    theme: 'dark',
+};
+ConfirmationDialogDark.args = {
+    ...defaultArgs,
 };

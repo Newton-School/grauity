@@ -83,13 +83,105 @@ const GlobalStyle = createGlobalStyle<CustomGlobalStyleInterface>`
         --purple-800: #331D72;
         --purple-900: #221056;
 
+        // Alpha Tokens
         --alpha-20: rgba(255, 255, 255, 0.20);
         --alpha-12: rgba(255, 255, 255, 0.12);
         --alpha-80: rgba(255, 255, 255, 0.80);
         --alpha-overlay: rgba(22, 25, 29, 0.80);
 
+        // Spacing Tokens
+        --spacing-0px: 0px;
+        --spacing-1px: 1px;
+        --spacing-2px: 2px;
+        --spacing-3px: 3px;
+        --spacing-4px: 4px;
+        --spacing-5px: 5px;
+        --spacing-6px: 6px;
+        --spacing-7px: 7px;
+        --spacing-8px: 8px;
+        --spacing-9px: 9px;
+        --spacing-10px: 10px;
+        --spacing-12px: 12px;
+        --spacing-14px: 14px;
+        --spacing-16px: 16px;
+        --spacing-18px: 18px;
+        --spacing-20px: 20px;
+        --spacing-24px: 24px;
+        --spacing-28px: 28px;
+        --spacing-32px: 32px;
+        --spacing-36px: 36px;
+        --spacing-40px: 40px;
+        --spacing-48px: 48px;
+        --spacing-56px: 56px;
+        --spacing-64px: 64px;
+        --spacing-72px: 72px;
+        --spacing-80px: 80px;
+        --spacing-128px: 128px;
+        --spacing-160px: 160px;
 
-        // Custom tokens to handle visibility based on state
+        // Corner Radius Tokens
+        --corner-radius-0px: 0px;
+        --corner-radius-2px: 2px;
+        --corner-radius-4px: 4px;
+        --corner-radius-8px: 8px;
+        --corner-radius-12px: 12px;
+        --corner-radius-16px: 16px;
+        --corner-radius-20px: 20px;
+        --corner-radius-24px: 24px;
+        --corner-radius-32px: 32px;
+        --corner-radius-40px: 40px;
+        --corner-radius-50percent: 50%;
+        --corner-radius-100percent: 100%;
+
+        // Typography Tokens
+        // Font Sizes
+        --font-size-2px: 2px;
+        --font-size-4px: 4px;
+        --font-size-6px: 6px;
+        --font-size-8px: 8px;
+        --font-size-10px: 10px;
+        --font-size-11px: 11px;
+        --font-size-12px: 12px;
+        --font-size-14px: 14px;
+        --font-size-16px: 16px;
+        --font-size-18px: 18px;
+        --font-size-20px: 20px;
+        --font-size-24px: 24px;
+        --font-size-28px: 28px;
+        --font-size-32px: 32px;
+        --font-size-36px: 36px;
+        --font-size-40px: 40px;
+        --font-size-48px: 48px;
+        --font-size-56px: 56px;
+        --font-size-64px: 64px;
+        --font-size-72px: 72px;
+        --font-size-80px: 80px;
+        --font-size-96px: 96px;
+
+        // Font Weights
+        --font-weight-100: 100;
+        --font-weight-200: 200;
+        --font-weight-300: 300;
+        --font-weight-400: 400;
+        --font-weight-450: 450;
+        --font-weight-500: 500;
+        --font-weight-550: 550;
+        --font-weight-600: 600;
+        --font-weight-650: 650;
+        --font-weight-700: 700;
+        --font-weight-800: 800;
+        --font-weight-900: 900;
+
+        --font-weight-medium: var(--font-weight-500);
+        --font-weight-semibold: var(--font-weight-600);
+        --font-weight-bold: var(--font-weight-700);
+
+        // Font Family
+        --font-family: "Mona Sans", sans-serif;
+        --font-family-code: "Fira Code", monospace;
+
+
+        // Custom tokens to handle colors based on theme
         // Text Colors
         --text-primary: ${(props) => props.theme.textPrimary};
         --text-secondary: ${(props) => props.theme.textSecondary};
@@ -155,9 +247,6 @@ const GlobalStyle = createGlobalStyle<CustomGlobalStyleInterface>`
         // Custom tokens to handle visibility based on state
         --light-visible: ${(props) => props.theme.lightVisible};
         --dark-visible: ${(props) => props.theme.darkVisible};
-
-        // Font Family
-        --font-family: ${(props) => props.theme.fontFamily};
     }
 `;
 

@@ -11,12 +11,12 @@ import {
 
 export const StyledTable = styled.table<TableComponentProps>`
     border-collapse: collapse;
-    font-size: 12px;
+    font-size: var(--font-size-12px, 12px);
     width: 100%;
-    border-radius: 10px;
+    border-radius: var(--corner-radius-10px, 10px);
     overflow: hidden;
     outline: 0.5px solid var(--border, #e1e5ea);
-    font-family: "Mona Sans";
+    font-family: var(--font-family, "Mona Sans");
 
     ${({ borderAround }) => borderAround === false && 'outline: none;'}
 
@@ -35,14 +35,18 @@ export const StyledTable = styled.table<TableComponentProps>`
               `
             : css`
                   ${StyledTableRow}:not(:last-child) {
-                      border-bottom: 1px solid var(--border, #e1e5ea);
+                      border-bottom: var(--spacing-1px, 1px) solid
+                          var(--border, #e1e5ea);
                   }
                   ${StyledTableDataCell} {
-                      border-right: 1px solid var(--border, #e1e5ea);
+                      border-right: var(--spacing-1px, 1px) solid
+                          var(--border, #e1e5ea);
                   }
                   ${StyledTableHeadingCell} {
-                      border-right: 1px solid var(--border, #e1e5ea);
-                      border-bottom: 1px solid var(--border, #e1e5ea);
+                      border-right: var(--spacing-1px, 1px) solid
+                          var(--border, #e1e5ea);
+                      border-bottom: var(--spacing-1px, 1px) solid
+                          var(--border, #e1e5ea);
                   }
               `}
     
@@ -57,22 +61,22 @@ export const StyledTable = styled.table<TableComponentProps>`
 
 export const StyledTableHeadingCell = styled.th<TableHeadingCellComponentProps>`
     color: var(--text-secondary, #5b6271);
-    font-size: 12px;
-    font-weight: 550;
+    font-size: var(--font-size-12px, 12px);
+    font-weight: var(--font-weight-550, 550);
     line-height: 120%;
     letter-spacing: 0.4px;
-    padding: 10px;
+    padding: var(--spacing-10px, 10px);
 
     ${({ align }) => `text-align: ${align};`}
 `;
 
 export const StyledTableDataCell = styled.td<TableDataCellComponentProps>`
     color: var(--text-primary, #16191d);
-    font-size: 12px;
-    font-weight: 450;
+    font-size: var(--font-size-12px, 12px);
+    font-weight: var(--font-weight-450, 450);
     line-height: 120%;
     letter-spacing: 0.4px;
-    padding: 10px;
+    padding: var(--spacing-10px, 10px);
 
     &:last-of-type {
         border-right: none;
@@ -102,16 +106,16 @@ export const StyledTableRow = styled.tr<TableRowComponentProps>`
         `}
 
     &:last-of-type ${StyledTableDataCell}:first-of-type {
-        border-bottom-left-radius: 8px;
+        border-bottom-left-radius: var(--corner-radius-8px, 8px);
     }
 
     &:last-of-type ${StyledTableDataCell}:last-of-type {
-        border-bottom-right-radius: 8px;
+        border-bottom-right-radius: var(--corner-radius-8px, 8px);
     }
 `;
 
 export const StyledTableHead = styled.thead<TableHeadComponentProps>`
-    background: var(--bg-tertiary, #edeff3);
+    background: var(--bg-secondary, #f6f7f9);
 
     ${({ capitalizeHeaders }) =>
         capitalizeHeaders !== false && 'text-transform: uppercase;'}
@@ -121,11 +125,11 @@ export const StyledTableHead = styled.thead<TableHeadComponentProps>`
     }
 
     ${StyledTableRow}:first-child ${StyledTableHeadingCell}:first-child {
-        border-top-left-radius: 8px;
+        border-top-left-radius: var(--corner-radius-8px, 8px);
     }
 
     ${StyledTableRow}:first-child ${StyledTableHeadingCell}&:last-child {
-        border-top-right-radius: 8px;
+        border-top-right-radius: var(--corner-radius-8px, 8px);
     }
 `;
 

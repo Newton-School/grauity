@@ -1,21 +1,23 @@
+/* eslint-disable import/prefer-default-export */
 import styled, { css } from 'styled-components';
 import { BUTTON_SIZES_ENUM, BUTTON_VARIANTS_ENUM } from './constants';
 import { ButtonComponentProps } from './types';
 
 export const StyledButton = styled.button<ButtonComponentProps>`
-    padding: 4px 12px;
-    font-size: 14px;
-    border-radius: 8px;
+    padding: var(--spacing-4px, 4px) var(--spacing-12px, 12px);
+    font-size: var(--font-size-14px, 14px);
+    border-radius: var(--corner-radius-8px, 8px);
     white-space: nowrap;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 550;
-    font-family: "Mona Sans";
+    font-weight: var(--font-weight-semibold, 600);
+    font-family: var(--font-family, "Mona Sans");
     border: none;
     outline: none;
     cursor: pointer;
     width: max-content;
+    gap: var(--spacing-8px, 8px);
 
     ${({ variant }) => {
         switch (variant) {
@@ -124,7 +126,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         case BUTTON_VARIANTS_ENUM.SUCCESS:
             return css`
                     background: var(--bg-action-success, #009965);
-                    color: #ffffff;
+                    color: var(--text-action, #ffffff);
                     border: none;
                     outline: none;
 
@@ -158,7 +160,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         case BUTTON_VARIANTS_ENUM.DANGER:
             return css`
                     background: var(--bg-action-error, #d22d3a);
-                    color: #ffffff;
+                    color: var(--text-action, #ffffff);
                     border: none;
                     outline: none;
 
@@ -192,7 +194,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         case BUTTON_VARIANTS_ENUM.WARNING:
             return css`
                     background: var(--bg-action-warning, #f37216);
-                    color: #ffffff;
+                    color: var(--text-action, #ffffff);
                     border: none;
                     outline: none;
 
@@ -232,42 +234,42 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         switch (size) {
         case BUTTON_SIZES_ENUM.SMALL:
             return css`
-                    padding: 4px 8px;
-                    height: 32px;
+                    padding: var(--spacing-4px, 4px) var(--spacing-8px, 8px);
+                    height: var(--spacing-32px, 32px);
                     ${isIconButton &&
                     css`
-                        padding: 4px;
-                        width: 32px;
+                        padding: var(--spacing-4px, 4px);
+                        width: var(--spacing-32px, 32px);
                     `};
                 `;
         case BUTTON_SIZES_ENUM.MEDIUM:
             return css`
-                    padding: 8px 12px;
-                    height: 40px;
+                    padding: var(--spacing-8px, 8px) var(--spacing-12px, 12px);
+                    height: var(--spacing-40px, 40px);
                     ${isIconButton &&
                     css`
-                        padding: 8px;
-                        width: 40px;
+                        padding: var(--spacing-8px, 8px);
+                        width: var(--spacing-40px, 40px);
                     `};
                 `;
         case BUTTON_SIZES_ENUM.LARGE:
             return css`
-                    padding: 12px 16px;
-                    height: 48px;
+                    padding: var(--spacing-12px, 12px) var(--spacing-16px, 16px);
+                    height: var(--spacing-48px, 48px);
                     ${isIconButton &&
                     css`
-                        padding: 12px;
-                        width: 48px;
+                        padding: var(--spacing-12px, 12px);
+                        width: var(--spacing-48px, 48px);
                     `};
                 `;
         case BUTTON_SIZES_ENUM.EXTRA_LARGE:
             return css`
-                    padding: 16px 20px;
-                    height: 56px;
+                    padding: var(--spacing-16px, 16px) var(--spacing-20px, 20px);
+                    height: var(--spacing-56px, 56px);
                     ${isIconButton &&
                     css`
-                        padding: 16px;
-                        width: 56px;
+                        padding: var(--spacing-16px, 16px);
+                        width: var(--spacing-56px, 56px);
                     `};
                 `;
         default:
@@ -278,7 +280,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     ${({ isIconButton }) =>
         isIconButton &&
         css`
-            border-radius: 50%;
+            border-radius: var(--corner-radius-50percent, 50%);
         `}
 
     ${({ fullWidth }) =>
@@ -294,11 +296,18 @@ export const StyledButton = styled.button<ButtonComponentProps>`
             color: var(--text-disabled, #5b6271);
             border: none;
             outline: none;
+            cursor: not-allowed;
 
             &:hover {
                 background: var(--bg-disabled, #23282f);
                 color: var(--text-disabled, #5b6271);
             }
+        `}
+
+    ${({ loading }) =>
+        loading &&
+        css`
+            cursor: progress;
         `}
 
     ${({ iconPositon }) =>
@@ -308,11 +317,4 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         `}
 
     transition: background-color 0.2s ease-in, outline 0.2s ease-in, border 0.2s ease-in, border-color 0.2s ease-in;
-`;
-
-export const StyledButtonText = styled.span`
-    padding: 0 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 `;

@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import { ButtonProps } from './types';
-import { StyledButton, StyledButtonText } from './Button.styles';
-import { 
-    BUTTON_ICON_POSITIONS, 
-    BUTTON_ICON_POSITIONS_ENUM, 
-    BUTTON_SIZES, 
-    BUTTON_SIZES_ENUM, 
-    BUTTON_VARIANTS, 
-    BUTTON_VARIANTS_ENUM 
+import { StyledButton } from './Button.styles';
+import {
+    BUTTON_ICON_POSITIONS,
+    BUTTON_ICON_POSITIONS_ENUM,
+    BUTTON_SIZES,
+    BUTTON_SIZES_ENUM,
+    BUTTON_VARIANTS,
+    BUTTON_VARIANTS_ENUM,
 } from './constants';
 import { Icon } from '../Icon';
+import Typography from '../Typography/Typography';
+import { TYPOGRAPHY_VARIANTS_ENUM } from '../Typography';
 
 /**
  * `gra.UI.ty Button`: This button is cute as a button.
@@ -45,15 +47,14 @@ const Button = ({
         onClick(e);
     };
 
-    const classes = classnames(
-        className
-    );
+    const classes = classnames(className);
 
     return (
         <StyledButton
             onClick={handleClick}
             className={classes}
             style={style}
+            loading={loading}
             disabled={disabled || loading}
             variant={variant}
             size={size}
@@ -62,21 +63,24 @@ const Button = ({
             isIconButton={isIconButton}
         >
             {icon && !loading && (
-                <Icon 
-                    name={icon}
-                    color='inherit'
-                    size={iconSize || '24'}
-                />
+                <Icon name={icon} color="inherit" size={iconSize || '24'} />
             )}
             {loading && (
-                <Icon 
-                    name='load'
-                    color='inherit'
+                <Icon
+                    name="load"
+                    color="inherit"
                     size={iconSize || '24'}
                     loading={loading}
                 />
-            )}         
-            {children && <StyledButtonText>{children}</StyledButtonText>}
+            )}
+            {children && (
+                <Typography
+                    variant={TYPOGRAPHY_VARIANTS_ENUM.ACTION_SEMIBOLD_PRIMARY}
+                    color="inherit"
+                >
+                    {children}
+                </Typography>
+            )}
         </StyledButton>
     );
 };

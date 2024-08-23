@@ -46,7 +46,6 @@ const STORYBOOK_DARK_THEME = create({
     // UI
     appBg: "#0b0c0e",
     appContentBg: "#23282f",
-    appPreviewBg: "red",
     appBorderColor: "#30363d",
     appBorderRadius: 8,
 
@@ -61,7 +60,6 @@ const STORYBOOK_DARK_THEME = create({
     // Toolbar default and active colors
     barTextColor: "#ffffff",
     barSelectedColor: "#0673f9",
-    barHoverColor: "orange",
     barBg: "#16191d",
 
     // Form colors

@@ -16,6 +16,7 @@ export type grauityIconSizeName =
     | '4'
     | '8'
     | '12'
+    | '14'
     | '16'
     | '20'
     | '24'

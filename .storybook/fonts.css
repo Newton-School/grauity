@@ -10,12 +10,13 @@
 
 .sidebar-container .sidebar-item:not([data-nodetype="component"]) {
     padding: 12px 16px;
+    padding-left: 64px;
     cursor: pointer;
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.2px;
-    color: rgb(87, 97, 117);
+    color: #8C95A6;
 }
 
 .sidebar-container .sidebar-item:not([data-nodetype="component"]):hover, .sidebar-container .sidebar-item:not([data-nodetype="component"]):focus {
@@ -28,6 +29,7 @@
     line-height: 20px;
     letter-spacing: 0.2px;
     padding: 12px 16px;
+    padding-left: 64px;
     cursor: pointer;
     background:#23282f;
     color: #0673f9;

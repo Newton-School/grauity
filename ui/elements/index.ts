@@ -1,6 +1,16 @@
 export type { IconProps } from './Icon';
 export { Icon } from './Icon';
 
+// NSTypography
+export type { TypographyProps } from './Typography';
+export {
+    TYPOGRAPHY_VARIANTS,
+    TYPOGRAPHY_VARIANTS_ENUM,
+    TYPOGRAPHY_AS_ENUM,
+    TYPOGRAPHY_AS_LIST,
+} from './Typography';
+export { NSTypography } from './Typography';
+
 // NSButton
 export type { ButtonProps } from './Button';
 export { BUTTON_VARIANTS_ENUM } from './Button';

@@ -58,8 +58,6 @@ const DARK_THEME_CONFIG: DefaultTheme = {
 
     lightVisible: 'none',
     darkVisible: 'block',
-
-    fontFamily: 'Mona Sans',
 };
 
 export default DARK_THEME_CONFIG;

@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 
 const ThemeBlock = styled.div(({ theme, left, fill }) => {
-    console.log("oh jeez", { theme, left, fill });
     return css`
         position: static;
         top: 0;

@@ -1,7 +1,53 @@
-import React from 'react';
-import { ModalProps, NSTable } from '../../../ui/elements';
+import React, { useState } from 'react';
 
-const simpleArgs: ModalProps = {
+import { ModalProps, NSModal, NSTable } from '../../../ui/elements';
+import Button from '../../../ui/elements/Button/Button';
+
+export default {
+    title: 'Elements/NSModal',
+    component: NSModal,
+};
+
+const Template = (args: ModalProps) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <div>
+            <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+            {isOpen && (
+                <NSModal
+                    modalSteps={args?.modalSteps}
+                    shouldHideOnClickAway={args?.shouldHideOnClickAway}
+                    onHide={() => {
+                        setIsOpen(false);
+                        if (args?.onHide) {
+                            args?.onHide();
+                        }
+                    }}
+                    onFinalStep={() => {
+                        setIsOpen(false);
+                        if (args?.onFinalStep) {
+                            args?.onFinalStep();
+                        }
+                    }}
+                    showModalStepsPagination={args?.showModalStepsPagination}
+                    mobileBottomFullWidth={args?.mobileBottomFullWidth}
+                    onStepChange={args?.onStepChange}
+                    showModalButtons={args?.showModalButtons}
+                    showHeader={args?.showHeader}
+                    modalPadding={args?.modalPadding}
+                    modalBodyMargin={args?.modalBodyMargin}
+                    width={args?.width}
+                    height={args?.height}
+                    minHeight={args?.minHeight}
+                    showCloseButton
+                />
+            )}
+        </div>
+    );
+};
+
+const args = {
     modalSteps: [
         {
             banner: {
@@ -134,7 +180,8 @@ const simpleArgs: ModalProps = {
             showBackButton: true,
         },
     ],
-    shouldHideOnClickAway: false,
+    showModalStepsPagination: true,
+    shouldHideOnClickAway: true,
     onHide: () => console.log('onHide'),
     onFinalStep: () => console.log('onFinalStep'),
     mobileBottomFullWidth: false,
@@ -149,4 +196,18 @@ const simpleArgs: ModalProps = {
     showCloseButton: true,
 };
 
-export default simpleArgs;
+export const MultiStepModalImplementation = Template.bind({});
+MultiStepModalImplementation.parameters = {
+    theme: 'light',
+};
+MultiStepModalImplementation.args = {
+    ...args,
+};
+
+export const MultiStepModalImplementationDark = Template.bind({});
+MultiStepModalImplementationDark.parameters = {
+    theme: 'dark',
+};
+MultiStepModalImplementationDark.args = {
+    ...args,
+};

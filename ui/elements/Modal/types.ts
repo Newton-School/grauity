@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
+import { ButtonVariants } from '../Button/types';
 
 interface ModalBanner {
-    hasBanner?: boolean;
-    isCustom?: boolean;
     image?: string | null;
     render?: (() => ReactNode) | null;
 }
@@ -12,18 +11,17 @@ interface ModalTitle {
 }
 
 interface ModalBody {
-    hasBody?: boolean;
-    isCustom?: boolean;
     text?: string | null;
-    render?: () => ReactNode;
+    image?: string | null;
+    render?: () => ReactNode | null;
     width?: string;
 }
 
 interface ModalStep {
-    banner?: ModalBanner;
+    banner?: ModalBanner | null;
     title: ModalTitle;
     description?: string | null;
-    body?: ModalBody;
+    body?: ModalBody | null;
     nextButtonText?: string;
     showBackButton?: boolean;
 }
@@ -32,6 +30,13 @@ export interface ModalProps {
      * Modal steps
      * */
     modalSteps: ModalStep[];
+    /**
+     * Determines if the modal should show pagination if there are multiple modal steps
+     * Available choices: true, false
+     *
+     * Default: `true`
+     * */
+    showModalStepsPagination?: boolean;
     /**
      * Determines if the modal should hide on click away
      * Available choices: true, false
@@ -95,6 +100,8 @@ export interface ModalProps {
     /**
      * Determines if the close button should be shown
      * Available choices: true, false
+     *
+     * NOTE: If Modal has a banner, the close button will be hidden by default
      *
      * Default: `false`
      * */
@@ -164,4 +171,7 @@ export interface ConfirmationDialogProps {
     title?: ModalTitle;
     description?: string;
     body?: ModalBody;
+    cancelButtonVariant?: ButtonVariants;
+    confirmButtonVariant?: ButtonVariants;
+    shouldHideOnClickAway?: boolean;
 }

@@ -17,12 +17,16 @@ import {
     StyledModalWrapper,
 } from './Modal.styles';
 import { ModalProps } from './types';
-import { Icon } from '../Icon';
 import Button from '../Button/Button';
 import { BUTTON_VARIANTS_ENUM } from '../Button/constants';
 
+/**
+ * `gra.UI.elements Modal`: A modal is a dialog box or popup, displayed over the current page.
+ * @component
+ */
 const Modal = ({
     modalSteps,
+    showModalStepsPagination,
     shouldHideOnClickAway,
     onHide,
     onFinalStep,
@@ -44,6 +48,9 @@ const Modal = ({
 
     const isLastStep = currentStep === modalSteps.length - 1;
     const isFirstStep = currentStep === 0;
+
+    const hasBanner = !!banner?.render || !!banner?.image;
+    const hasBody = !!body?.text || !!body?.image || !!body?.render;
 
     const modalRef = React.useRef(null);
 
@@ -75,25 +82,32 @@ const Modal = ({
                 modalPadding={modalPadding}
             >
                 <StyledModalMain>
-                    {banner?.hasBanner &&
-                        (!banner.isCustom ? (
+                    {hasBanner &&
+                        (banner.render ? (
+                            banner.render()
+                        ) : (
                             <StyledModalBannerImageWrapper>
                                 <StyledModalBannerImage src={banner.image} />
                             </StyledModalBannerImageWrapper>
-                        ) : (
-                            banner.render()
                         ))}
 
                     {showHeader && title?.text && (
                         <StyledModalTitle
-                            marginTop={banner?.hasBanner}
-                            showCloseButton={showCloseButton}
+                            marginTop={hasBanner}
+                            showCloseButton={showCloseButton && !hasBanner}
                         >
-                            <StyledModalTitleText>{title?.text}</StyledModalTitleText>
-                            {showCloseButton && !banner?.hasBanner && (
-                                <Button onClick={onHide} variant={BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED} isIconButton>
-                                    <Icon name="close" size="24" />
-                                </Button>
+                            <StyledModalTitleText>
+                                {title?.text}
+                            </StyledModalTitleText>
+                            {showCloseButton && !hasBanner && (
+                                <Button
+                                    onClick={onHide}
+                                    variant={
+                                        BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED
+                                    }
+                                    icon="close"
+                                    isIconButton
+                                />
                             )}
                         </StyledModalTitle>
                     )}
@@ -104,17 +118,23 @@ const Modal = ({
                         </StyledModalDescription>
                     )}
 
-                    {body?.hasBody && (
+                    {hasBody && (
                         <StyledModalBody
                             width={body.width || ''}
                             modalBodyMargin={modalBodyMargin}
                         >
-                            {!body.isCustom ? body.text : body.render()}
+                            {body.render && body.render()}
+                            {!body.render && body.image && (
+                                <StyledModalBannerImageWrapper>
+                                    <StyledModalBannerImage src={body.image} />
+                                </StyledModalBannerImageWrapper>
+                            )}
+                            {!body.render && !body.image && body.text}
                         </StyledModalBody>
                     )}
                 </StyledModalMain>
 
-                {modalSteps.length > 1 && (
+                {showModalStepsPagination && modalSteps.length > 1 && (
                     <StyledModalPagination>
                         {modalSteps.map((item, index) => (
                             <StyledModalPaginationItem
@@ -136,8 +156,9 @@ const Modal = ({
                                 onClick={() => {
                                     setCurrentStep(currentStep - 1);
                                 }}
+                                icon="arrow-right"
+                                iconPositon="left"
                             >
-                                <Icon name="arrow-right" size="24" />
                                 Back
                             </Button>
                         )}
@@ -154,11 +175,10 @@ const Modal = ({
                                         setCurrentStep(currentStep + 1);
                                     }
                                 }}
+                                icon={isLastStep ? null : 'arrow-left'}
+                                iconPositon="right"
                             >
                                 {nextButtonText}
-                                {!isLastStep && (
-                                    <Icon name="arrow-left" size="24" color="white" />
-                                )}
                             </Button>
                         )}
                     </StyledModalActionButtonContainer>
@@ -170,6 +190,7 @@ const Modal = ({
 
 Modal.propTypes = {
     modalSteps: PropTypes.array,
+    showModalStepsPagination: PropTypes.bool,
     shouldHideOnClickAway: PropTypes.bool,
     onHide: PropTypes.func,
     onFinalStep: PropTypes.func,
@@ -187,6 +208,7 @@ Modal.propTypes = {
 
 Modal.defaultProps = {
     modalSteps: [],
+    showModalStepsPagination: true,
     shouldHideOnClickAway: false,
     onHide: () => {},
     onFinalStep: () => {},

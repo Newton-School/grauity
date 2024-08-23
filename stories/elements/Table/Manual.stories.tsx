@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { NSTable, NSTableWrapper, NSTableBody, NSTableDataCell, NSTableHead, NSTableHeadingCell, NSTableRow } from '../../../ui';
+import { NSTable, NSTableWrapper, NSTableBody, NSTableDataCell, NSTableHead, NSTableHeadingCell, NSTableRow, TableProps } from '../../../ui';
 
 export default {
     title: 'Elements/NSTable',
     component: NSTable,
 };
 
-export const Manual = () => (
+const Template = (args: TableProps) => (
     <NSTableWrapper borderAround={false} borderWithin striped={false}>
         <NSTableHead capitalizeHeaders={false}>
             <NSTableRow condensed={false}>
@@ -59,5 +59,31 @@ export const Manual = () => (
             </NSTableRow>
         </NSTableBody>
     </NSTableWrapper>
-
 );
+
+const args = {
+    condensed: true,
+    striped: true,
+    borderAround: true,
+    borderWithin: true,
+    className: '',
+    loading: false,
+    style: {},
+    capitalizeHeaders: false,
+};
+
+export const ManualTable = Template.bind({});
+ManualTable.parameters = {
+    theme: 'light',
+};
+ManualTable.args = {
+    ...args,
+};
+
+export const ManualTableDark = Template.bind({});
+ManualTableDark.parameters = {
+    theme: 'dark',
+};
+ManualTableDark.args = {
+    ...args,
+};
