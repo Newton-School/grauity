@@ -39,14 +39,12 @@ const spacingTokens = [
 ];
 
 const rows: TableRow[] = spacingTokens.map((token) => ({
-    token: { 
-        render: () => (
-            <TokenBlock>
-                {token.token}
-            </TokenBlock>
-        ) 
+    token: {
+        render: () => <TokenBlock>{token.token}</TokenBlock>,
     },
-    value: { display: token.value },
+    value: {
+        render: () => <TokenBlock>{token.value}</TokenBlock>,
+    },
     visual: {
         render: () => (
             <div
@@ -71,13 +69,15 @@ const SpacingTokensStory = () => (
     <NSTable
         columns={[
             { key: 'token', display: 'Token', align: 'left' },
-            { key: 'value', display: 'Pixels', align: 'left'  },
+            { key: 'value', display: 'Pixels', align: 'left' },
             { key: 'visual', display: 'Visual Representation', align: 'left' },
         ]}
         rows={rows}
         capitalizeHeaders
         borderAround={false}
         highlightHeaders={false}
+        borderVertical={false}
+        condensed={false}
     />
 );
 

@@ -160,9 +160,25 @@ export interface TableProps {
      * Determines if the table has a border between rows.
      * Available choices: true, false
      *
+     * Has more precedence than `borderHorizontal` and `borderVertical`.
+     *
      * Default: `true`
      * */
     borderWithin?: boolean;
+
+    /**
+     * Determines if the table has a border between columns.
+     *
+     * Default: `true`
+     * */
+    borderHorizontal?: boolean;
+
+    /**
+     * Determines if the table has a border between rows.
+     *
+     * Default: `true`
+     * */
+    borderVertical?: boolean;
 
     /**
      * Additional classes to be added to the component.
@@ -202,6 +218,8 @@ export interface TableProps {
 export interface TableComponentProps {
     borderAround?: boolean;
     borderWithin?: boolean;
+    borderHorizontal?: boolean;
+    borderVertical?: boolean;
     striped?: boolean;
     children: ReactNode;
 }

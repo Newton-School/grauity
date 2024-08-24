@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { createContext, useCallback, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import DARK_THEME_OBJ from './darkThemeConstants';
@@ -65,6 +65,12 @@ const ThemeWrapper = ({
         }),
         [defaultTheme]
     );
+
+    useEffect(() => {
+        if ([THEME.LIGHT, THEME.DARK].includes(defaultTheme)) {
+            setTheme({ themeName: defaultTheme });
+        }
+    }, [defaultTheme]);
 
     return (
         <ThemeContext.Provider value={isThemeEnabled ? value : defaultValue}>

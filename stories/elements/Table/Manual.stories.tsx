@@ -66,6 +66,8 @@ const args = {
     striped: true,
     borderAround: true,
     borderWithin: true,
+    borderHorizontal: true,
+    borderVertical: true,
     className: '',
     loading: false,
     style: {},

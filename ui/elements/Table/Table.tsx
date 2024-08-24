@@ -18,6 +18,8 @@ const Table = ({ rows, columns, ...props }: TableProps) => (
     <StyledTable
         borderAround={props.borderAround}
         borderWithin={props.borderWithin}
+        borderHorizontal={props?.borderHorizontal}
+        borderVertical={props?.borderVertical}
         striped={props?.striped}
     >
         <StyledTableHead
@@ -76,6 +78,8 @@ Table.propTypes = {
     striped: PropTypes.bool,
     borderAround: PropTypes.bool,
     borderWithin: PropTypes.bool,
+    borderHorizontal: PropTypes.bool,
+    borderVertical: PropTypes.bool,
     className: PropTypes.string,
     loading: PropTypes.bool,
     style: PropTypes.object,
@@ -90,6 +94,8 @@ Table.defaultProps = {
     striped: false,
     borderAround: true,
     borderWithin: true,
+    borderHorizontal: true,
+    borderVertical: true,
     className: '',
     loading: false,
     style: {},

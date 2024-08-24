@@ -305,6 +305,8 @@ const ColorTokensStoryLightTheme = () => (
         rows={getRowsByTheme(THEMES.LIGHT)}
         capitalizeHeaders
         borderAround={false}
+        borderVertical={false}
+        condensed={false}
         highlightHeaders={false}
     />
 );
@@ -322,6 +324,8 @@ const DarkColorTokensStoryDarkTheme = () => (
         rows={getRowsByTheme(THEMES.DARK)}
         capitalizeHeaders
         borderAround={false}
+        borderVertical={false}
+        condensed={false}
         highlightHeaders={false}
     />
 );
