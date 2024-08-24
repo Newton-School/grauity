@@ -56,17 +56,7 @@ const defaultArgs = {
 };
 
 export const ButtonGallery = Template.bind({});
-ButtonGallery.parameters = {
-    theme: 'light',
-};
-ButtonGallery.args = {
-    ...defaultArgs,
-};
 
-export const ButtonGalleryDark = Template.bind({});
-ButtonGalleryDark.parameters = {
-    theme: 'dark',
-};
-ButtonGalleryDark.args = {
+ButtonGallery.args = {
     ...defaultArgs,
 };

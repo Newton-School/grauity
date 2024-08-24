@@ -11,17 +11,7 @@ export default {
 const Template = (args: ModalProps) => <NSModal {...args} />;
 
 export const MultiStepModal = Template.bind({});
-MultiStepModal.parameters = {
-    theme: 'light',
-};
-MultiStepModal.args = {
-    ...simpleArgs,
-};
 
-export const MultiStepModalDark = Template.bind({});
-MultiStepModalDark.parameters = {
-    theme: 'dark',
-};
-MultiStepModalDark.args = {
+MultiStepModal.args = {
     ...simpleArgs,
 };

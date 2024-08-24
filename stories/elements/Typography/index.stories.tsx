@@ -16,21 +16,9 @@ const defaultArgs = {
     color: 'var(--text-primary, #16191d)',
 };
 
-// Button in Light Theme
-export const DefaultLight = Template.bind({});
-DefaultLight.parameters = {
-    theme: 'light',
-};
-DefaultLight.args = {
+export const Default = Template.bind({});
+
+Default.args = {
     ...defaultArgs,
 };
 
-
-// Buttin in Dark Theme
-export const DefaultDark = Template.bind({});
-DefaultDark.parameters = {
-    theme: 'dark',
-};
-DefaultDark.args = {
-    ...defaultArgs,
-};

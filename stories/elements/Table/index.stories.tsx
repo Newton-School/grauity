@@ -11,17 +11,7 @@ export default {
 const Template = (args: TableProps) => <NSTable {...args} />;
 
 export const SimpleTable = Template.bind({});
-SimpleTable.parameters = {
-    theme: 'light',
-};
-SimpleTable.args = {
-    ...simpleArgs,
-};
 
-export const SimpleTableDark = Template.bind({});
-SimpleTableDark.parameters = {
-    theme: 'dark',
-};
-SimpleTableDark.args = {
+SimpleTable.args = {
     ...simpleArgs,
 };

@@ -77,17 +77,7 @@ const args = {
 };
 
 export const ManualTableColumnNesting = Template.bind({});
-ManualTableColumnNesting.parameters = {
-    theme: 'light',
-};
-ManualTableColumnNesting.args = {
-    ...args,
-};
 
-export const ManualTableColumnNestingDark = Template.bind({});
-ManualTableColumnNestingDark.parameters = {
-    theme: 'dark',
-};
-ManualTableColumnNestingDark.args = {
+ManualTableColumnNesting.args = {
     ...args,
 };

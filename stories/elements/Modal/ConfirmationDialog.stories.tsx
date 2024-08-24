@@ -46,17 +46,7 @@ const defaultArgs = {
 };
 
 export const ConfirmationDialog = Template.bind({});
-ConfirmationDialog.parameters = {
-    theme: 'light',
-};
-ConfirmationDialog.args = {
-    ...defaultArgs,
-};
 
-export const ConfirmationDialogDark = Template.bind({});
-ConfirmationDialogDark.parameters = {
-    theme: 'dark',
-};
-ConfirmationDialogDark.args = {
+ConfirmationDialog.args = {
     ...defaultArgs,
 };

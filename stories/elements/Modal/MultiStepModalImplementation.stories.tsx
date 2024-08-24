@@ -126,17 +126,7 @@ const args = {
 };
 
 export const MultiStepModalImplementation = Template.bind({});
-MultiStepModalImplementation.parameters = {
-    theme: 'light',
-};
-MultiStepModalImplementation.args = {
-    ...args,
-};
 
-export const MultiStepModalImplementationDark = Template.bind({});
-MultiStepModalImplementationDark.parameters = {
-    theme: 'dark',
-};
-MultiStepModalImplementationDark.args = {
+MultiStepModalImplementation.args = {
     ...args,
 };

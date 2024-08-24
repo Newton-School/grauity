@@ -75,17 +75,7 @@ const args = {
 };
 
 export const ManualTable = Template.bind({});
-ManualTable.parameters = {
-    theme: 'light',
-};
-ManualTable.args = {
-    ...args,
-};
 
-export const ManualTableDark = Template.bind({});
-ManualTableDark.parameters = {
-    theme: 'dark',
-};
-ManualTableDark.args = {
+ManualTable.args = {
     ...args,
 };

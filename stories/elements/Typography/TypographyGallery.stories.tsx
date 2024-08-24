@@ -95,17 +95,7 @@ const defaultArgs = {
 };
 
 export const TypographyGallery = Template.bind({});
-TypographyGallery.parameters = {
-    theme: 'light',
-};
-TypographyGallery.args = {
-    ...defaultArgs,
-};
 
-export const TypographyGalleryDark = Template.bind({});
-TypographyGalleryDark.parameters = {
-    theme: 'dark',
-};
-TypographyGalleryDark.args = {
+TypographyGallery.args = {
     ...defaultArgs,
 };

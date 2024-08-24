@@ -1,4 +1,6 @@
 import React from 'react';
+import { useGlobals } from '@storybook/addons';
+
 import { NSTable } from '../../../ui'; // Adjust the import path as necessary
 import { TableRow } from '../../../ui/elements/Table/types';
 import TokenBlock from '../../helper-components/TokenBlock';
@@ -259,24 +261,7 @@ const getRowsByTheme: (theme?: string) => TableRow[] = (theme = THEMES.LIGHT) =>
         value: {
             render: () => <TokenBlock>{token[theme]}</TokenBlock>,
         },
-        light: {
-            render: () => (
-                <div
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        width: '32px',
-                        height: '32px',
-                        backgroundColor: `var(${token.token})`,
-                        padding: '0 var(--spacing-4px)',
-                        fontWeight: 'var(--font-weight-medium, 500)',
-                        border: '1px solid var(--border, #e1e5ea)',
-                        borderRadius: 'var(--corner-radius-4px, 4px)',
-                    }}
-                />
-            ),
-        },
-        dark: {
+        color: {
             render: () => (
                 <div
                     style={{
@@ -295,43 +280,21 @@ const getRowsByTheme: (theme?: string) => TableRow[] = (theme = THEMES.LIGHT) =>
         },
     }));
 
-const ColorTokensStoryLightTheme = () => (
-    <NSTable
-        columns={[
-            { key: 'token', display: 'Token', align: 'left' },
-            { key: 'value', display: 'Value', align: 'left' },
-            { key: 'light', display: 'Light Theme', align: 'left' },
-        ]}
-        rows={getRowsByTheme(THEMES.LIGHT)}
-        capitalizeHeaders
-        borderAround={false}
-        borderVertical={false}
-        condensed={false}
-        highlightHeaders={false}
-    />
-);
-ColorTokensStoryLightTheme.parameters = {
-    theme: THEMES.LIGHT,
+export const ColorTokens = () => {
+    const [{ theme }] = useGlobals();
+    return (
+        <NSTable
+            columns={[
+                { key: 'token', display: 'Token', align: 'left' },
+                { key: 'value', display: 'Value', align: 'left' },
+                { key: 'color', display: 'Visual Representation', align: 'left' },
+            ]}
+            rows={getRowsByTheme(theme)}
+            capitalizeHeaders
+            borderAround={false}
+            borderVertical={false}
+            condensed={false}
+            highlightHeaders={false}
+        />
+    );
 };
-
-const DarkColorTokensStoryDarkTheme = () => (
-    <NSTable
-        columns={[
-            { key: 'token', display: 'Token', align: 'left' },
-            { key: 'value', display: 'Value', align: 'left' },
-            { key: 'dark', display: 'Dark Theme', align: 'left' },
-        ]}
-        rows={getRowsByTheme(THEMES.DARK)}
-        capitalizeHeaders
-        borderAround={false}
-        borderVertical={false}
-        condensed={false}
-        highlightHeaders={false}
-    />
-);
-DarkColorTokensStoryDarkTheme.parameters = {
-    theme: THEMES.DARK,
-};
-
-export const ColorsTokensLightTheme = ColorTokensStoryLightTheme;
-export const ColorsTokensDarkTheme = DarkColorTokensStoryDarkTheme;
