@@ -11,9 +11,11 @@ export default {
 const Template = (args: ButtonProps) => (
     <NSTableWrapper>
         <NSTableHead>
-            <NSTableHeadingCell align='left'>NSButton variant</NSTableHeadingCell>
-            <NSTableHeadingCell align='left'>NSButton</NSTableHeadingCell>
-            <NSTableHeadingCell align='left'>NSButton with Icon only</NSTableHeadingCell>
+            <NSTableRow condensed>
+                <NSTableHeadingCell align='left'>NSButton variant</NSTableHeadingCell>
+                <NSTableHeadingCell align='left'>NSButton</NSTableHeadingCell>
+                <NSTableHeadingCell align='left'>NSButton with Icon only</NSTableHeadingCell>
+            </NSTableRow>
         </NSTableHead>
         <NSTableBody>
             {BUTTON_VARIANTS.map(variant => (
