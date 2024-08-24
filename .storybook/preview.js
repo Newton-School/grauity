@@ -1,29 +1,56 @@
-import React from "react";
-import { ThemeWrapper, GrauityInit } from "../ui";
-import ThemeBlock from "./themeBlock";
+import withTheme from './decorators/withTheme';
 
-export const parameters = {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+// Storybook Parameters
+const parameters = {
+    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
         matchers: {
             color: /(background|color)$/i,
             date: /Date$/,
         },
     },
-    layout: "fullscreen",
+    layout: 'fullscreen',
 };
 
-const withTheme = (Story, context) => {
-    const currentTheme = context.parameters.theme || context.globals.theme;
-    return (
-        <ThemeWrapper defaultTheme={currentTheme}>
-            <GrauityInit fontSize={"16px"} multiplier={1}>
-                <ThemeBlock fill>
-                    <Story />
-                </ThemeBlock>
-            </GrauityInit>
-        </ThemeWrapper>
-    );
+// Storybook Decorators
+const decorators = [withTheme];
+
+// Storybook Global Types
+const globalTypes = {
+    theme: {
+        name: 'Component Theme',
+        description: 'Global theme for components & Storybook UI',
+        defaultValue: 'light',
+        icon: 'circlehollow',
+        toolbar: {
+            title: 'Component Theme',
+            items: [
+                { value: 'light', title: 'Light', icon: 'circlehollow' },
+                { value: 'dark', title: 'Dark', icon: 'circle' },
+            ],
+            showName: true,
+            dynamicTitle: true,
+        },
+    },
+    storybookTheme: {
+        name: 'Storybook Theme',
+        description: 'Theme for Storybook UI',
+        defaultValue: 'LIGHT',
+        icon: 'circlehollow',
+        toolbar: {
+            title: 'Component Theme',
+            items: [
+                {
+                    value: 'LIGHT',
+                    title: 'Storybook Light',
+                    icon: 'circlehollow',
+                },
+                { value: 'DARK', title: 'Storybook Dark', icon: 'circle' },
+            ],
+            showName: true,
+            dynamicTitle: true,
+        },
+    },
 };
 
-export const decorators = [withTheme];
+export { parameters, decorators, globalTypes };
