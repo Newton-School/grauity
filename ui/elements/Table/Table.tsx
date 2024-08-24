@@ -20,7 +20,10 @@ const Table = ({ rows, columns, ...props }: TableProps) => (
         borderWithin={props.borderWithin}
         striped={props?.striped}
     >
-        <StyledTableHead capitalizeHeaders={props?.capitalizeHeaders}>
+        <StyledTableHead
+            capitalizeHeaders={props?.capitalizeHeaders}
+            highlightHeaders={props?.highlightHeaders}
+        >
             <StyledTableRow condensed={props.condensed}>
                 {columns?.map((column, columnIndex) => (
                     <StyledTableHeadingCell
@@ -42,22 +45,22 @@ const Table = ({ rows, columns, ...props }: TableProps) => (
                     key={`table--row-${rowIndex + 1}`}
                     condensed={props.condensed}
                 >
-                    {Object.entries(row)?.map(([rowColumnKey, cell], rowColumnIndex) => (
+                    {columns?.map((column, columnIndex) => (
                         <StyledTableDataCell
-                            key={
-                                `table--column-${rowColumnKey}--row-${
-                                    rowIndex + 1
-                                }`
-                            }
+                            key={`table--column-${column.key}--row-${
+                                rowIndex + 1
+                            }`}
                             align={
-                                cell?.align ||
-                                columns[rowColumnIndex]?.align ||
+                                row[column.key]?.align ||
+                                column?.align ||
                                 'center'
                             }
-                            colSpan={cell?.colSpan || 1}
-                            rowSpan={cell?.rowSpan || 1}
+                            colSpan={row[column.key]?.colSpan || 1}
+                            rowSpan={row[column.key]?.rowSpan || 1}
                         >
-                            {cell.render ? cell.render(cell) : cell.display}
+                            {row[column.key]?.render
+                                ? row[column.key].render(row[column.key])
+                                : row[column.key]?.display}
                         </StyledTableDataCell>
                     ))}
                 </StyledTableRow>
@@ -77,6 +80,7 @@ Table.propTypes = {
     loading: PropTypes.bool,
     style: PropTypes.object,
     capitalizeHeaders: PropTypes.bool,
+    highlightHeaders: PropTypes.bool,
 };
 
 Table.defaultProps = {
@@ -90,6 +94,7 @@ Table.defaultProps = {
     loading: false,
     style: {},
     capitalizeHeaders: false,
+    highlightHeaders: true,
 };
 
 export {

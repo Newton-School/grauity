@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -20,7 +20,9 @@ import { TYPOGRAPHY_VARIANTS_ENUM } from '../Typography';
  * `gra.UI.ty Button`: This button is cute as a button.
  * @component
  * @example
- * <Button variant="primary" size="medium" text="Click me" onClick={() => console.log('Button clicked')} />
+ * <Button variant="primary" size="medium" onClick={() => null}>
+ *    Click me
+ * </Button>
  * @returns The Button component.
  */
 const Button = ({

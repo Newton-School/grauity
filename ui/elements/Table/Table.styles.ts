@@ -16,7 +16,7 @@ export const StyledTable = styled.table<TableComponentProps>`
     border-radius: var(--corner-radius-10px, 10px);
     overflow: hidden;
     outline: 0.5px solid var(--border, #e1e5ea);
-    font-family: var(--font-family, "Mona Sans");
+    font-family: var(--font-family, 'Mona Sans');
 
     ${({ borderAround }) => borderAround === false && 'outline: none;'}
 
@@ -116,6 +116,9 @@ export const StyledTableRow = styled.tr<TableRowComponentProps>`
 
 export const StyledTableHead = styled.thead<TableHeadComponentProps>`
     background: var(--bg-secondary, #f6f7f9);
+
+    ${({ highlightHeaders }) =>
+        highlightHeaders === false && 'background: var(--bg-primary, #ffffff);'}
 
     ${({ capitalizeHeaders }) =>
         capitalizeHeaders !== false && 'text-transform: uppercase;'}

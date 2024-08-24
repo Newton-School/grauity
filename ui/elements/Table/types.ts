@@ -189,6 +189,13 @@ export interface TableProps {
      * Default: `true`
      * */
     capitalizeHeaders?: boolean;
+
+    /**
+     * Determines if table headers should be highlighted
+     *
+     * Default: `true`
+     * */
+    highlightHeaders?: boolean;
 }
 
 // Interface for NSTableWrapper component props
@@ -202,6 +209,7 @@ export interface TableComponentProps {
 // Interface for NSTableHead component props
 export interface TableHeadComponentProps {
     capitalizeHeaders?: boolean;
+    highlightHeaders?: boolean;
     children: ReactNode;
 }
 
