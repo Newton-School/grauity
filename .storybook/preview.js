@@ -1,7 +1,7 @@
 import withTheme from './decorators/withTheme';
 
 // Storybook Parameters
-const parameters = {
+export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
         matchers: {
@@ -13,15 +13,14 @@ const parameters = {
 };
 
 // Storybook Decorators
-const decorators = [withTheme];
+export const decorators = [withTheme];
 
 // Storybook Global Types
-const globalTypes = {
+export const globalTypes = {
     theme: {
         name: 'Component Theme',
         description: 'Global theme for components & Storybook UI',
         defaultValue: 'light',
-        icon: 'circlehollow',
         toolbar: {
             title: 'Component Theme',
             items: [
@@ -36,7 +35,6 @@ const globalTypes = {
         name: 'Storybook Theme',
         description: 'Theme for Storybook UI',
         defaultValue: 'LIGHT',
-        icon: 'circlehollow',
         toolbar: {
             title: 'Component Theme',
             items: [
@@ -52,5 +50,3 @@ const globalTypes = {
         },
     },
 };
-
-export { parameters, decorators, globalTypes };
