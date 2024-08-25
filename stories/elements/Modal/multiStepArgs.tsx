@@ -74,6 +74,7 @@ const multiStepArgs: ModalProps = {
         },
     ],
     shouldHideOnClickAway: false,
+    blurBackground: false,
     onHide: () => console.log('onHide'),
     onFinalStep: () => console.log('onFinalStep'),
     mobileBottomFullWidth: false,

@@ -22,7 +22,13 @@ export const StyledModalWrapper = styled.div<ModalWrapperProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Mona Sans;
+    font-family: var(--font-family, 'Mona Sans');
+
+    ${({ blurBackground }) =>
+        blurBackground &&
+        css`
+            backdrop-filter: var(--backdrop-blur-8px);
+        `}
 `;
 
 export const StyledModalContainer = styled.div<ModalContainerProps>`

@@ -46,6 +46,14 @@ export interface ModalProps {
      * Default: `false`
      * */
     shouldHideOnClickAway?: boolean;
+
+    /**
+     * Determines if the modal should blur the background
+     * Available choices: true, false
+     *
+     * Default: `false`
+     * */
+    blurBackground?: boolean;
     /**
      * Callback function to be called when the modal is hidden
      * */
@@ -118,6 +126,7 @@ export interface StyleData {
 
 // Components interface for ModalWrapper
 export interface ModalWrapperProps {
+    blurBackground?: boolean;
     children: React.ReactNode;
 }
 
@@ -177,4 +186,5 @@ export interface ConfirmationDialogProps {
     cancelButtonVariant?: ButtonVariants;
     confirmButtonVariant?: ButtonVariants;
     shouldHideOnClickAway?: boolean;
+    blurBackground?: boolean;
 }

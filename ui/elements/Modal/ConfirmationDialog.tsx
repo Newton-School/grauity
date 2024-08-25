@@ -35,6 +35,7 @@ const ConfirmationDialog = ({
     cancelButtonVariant,
     confirmButtonVariant,
     shouldHideOnClickAway,
+    blurBackground,
 }: ConfirmationDialogProps) => {
     const hasBanner = !!banner?.render || !!banner?.image;
     const hasBody = !!body?.text || !!body?.image || !!body?.render;
@@ -50,7 +51,7 @@ const ConfirmationDialog = ({
     });
 
     return (
-        <StyledModalWrapper>
+        <StyledModalWrapper blurBackground={blurBackground}>
             <StyledModalContainer
                 onClick={(e: Event) => e.stopPropagation()}
                 width="auto"
@@ -137,6 +138,7 @@ ConfirmationDialog.propTypes = {
     cancelButtonVariant: PropTypes.string,
     confirmButtonVariant: PropTypes.string,
     shouldHideOnClickAway: PropTypes.bool,
+    blurBackground: PropTypes.bool,
 };
 
 ConfirmationDialog.defaultProps = {
@@ -153,6 +155,7 @@ ConfirmationDialog.defaultProps = {
     cancelButtonVariant: BUTTON_VARIANTS_ENUM.DANGER,
     confirmButtonVariant: BUTTON_VARIANTS_ENUM.SUCCESS,
     shouldHideOnClickAway: false,
+    blurBackground: false,
 };
 
 export default ConfirmationDialog;

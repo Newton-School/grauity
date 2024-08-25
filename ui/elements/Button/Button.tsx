@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import { Icon } from '../Icon';
 import { TYPOGRAPHY_VARIANTS_ENUM } from '../Typography';
@@ -16,81 +16,113 @@ import {
 } from './constants';
 import { ButtonProps } from './types';
 
+interface ExtendedButtonProps extends ButtonProps {
+    type?: 'button' | 'submit' | 'reset';
+    ariaLabel?: string;
+    tooltip?: string;
+    tabIndex?: number;
+    dataTestId?: string;
+    onMouseEnter?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    onMouseLeave?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
 /**
  * `gra.UI.ty Button`: This button is cute as a button.
  * @component
  * @example
- * <Button variant="primary" size="medium" onClick={() => null}>
+ * <NSButton variant="primary" size="medium" onClick={() => null}>
  *    Click me
- * </Button>
+ * </NSButton>
  * @returns The Button component.
  */
-const Button = ({
-    variant,
-    size,
-    icon,
-    iconSize,
-    iconPositon,
-    className,
-    disabled,
-    loading,
-    style,
-    onClick,
-    fullWidth,
-    isIconButton,
-    children = '',
-}: ButtonProps) => {
-    const handleClick = (e?: any) => {
-        if (disabled) {
-            e.preventDefault();
-            return;
-        }
-        onClick(e);
-    };
+const Button = forwardRef<HTMLButtonElement, ExtendedButtonProps>(
+    (
+        {
+            variant,
+            size,
+            icon,
+            iconSize,
+            iconPositon,
+            className,
+            disabled,
+            loading,
+            style,
+            onClick,
+            fullWidth,
+            isIconButton,
+            children = '',
+            type = 'button',
+            ariaLabel,
+            tooltip,
+            tabIndex,
+            dataTestId,
+            onMouseEnter,
+            onMouseLeave,
+        },
+        ref
+    ) => {
+        const handleClick = (e?: any) => {
+            if (disabled) {
+                e.preventDefault();
+                return;
+            }
+            onClick(e);
+        };
 
-    const classes = classnames(className);
+        const classes = classnames(className);
 
-    return (
-        <StyledButton
-            onClick={handleClick}
-            className={classes}
-            style={style}
-            loading={loading}
-            disabled={disabled || loading}
-            variant={variant}
-            size={size}
-            fullWidth={fullWidth}
-            iconPositon={iconPositon}
-            isIconButton={isIconButton}
-        >
-            {icon && !loading && (
-                <Icon name={icon} color="inherit" size={iconSize || '24'} />
-            )}
-            {loading && (
-                <Icon
-                    name="load"
-                    color="inherit"
-                    size={iconSize || '24'}
-                    loading={loading}
-                />
-            )}
-            {children && (
-                <Typography
-                    variant={TYPOGRAPHY_VARIANTS_ENUM.ACTION_SEMIBOLD_PRIMARY}
-                    color="inherit"
-                >
-                    {children}
-                </Typography>
-            )}
-        </StyledButton>
-    );
-};
+        return (
+            <StyledButton
+                ref={ref}
+                onClick={handleClick}
+                className={classes}
+                style={style}
+                loading={loading}
+                disabled={disabled || loading}
+                variant={variant}
+                size={size}
+                fullWidth={fullWidth}
+                iconPositon={iconPositon}
+                isIconButton={isIconButton}
+                type={type}
+                aria-label={ariaLabel}
+                title={tooltip}
+                tabIndex={tabIndex}
+                data-testid={dataTestId}
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+            >
+                {icon && !loading && (
+                    <Icon name={icon} color="inherit" size={iconSize || '24'} />
+                )}
+                {loading && (
+                    <Icon
+                        name="load"
+                        color="inherit"
+                        size={iconSize || '24'}
+                        loading={loading}
+                    />
+                )}
+                {children && (
+                    <Typography
+                        variant={
+                            TYPOGRAPHY_VARIANTS_ENUM.ACTION_SEMIBOLD_PRIMARY
+                        }
+                        color="inherit"
+                    >
+                        {children}
+                    </Typography>
+                )}
+            </StyledButton>
+        );
+    }
+);
 
 Button.propTypes = {
     variant: PropTypes.oneOf(BUTTON_VARIANTS),
     size: PropTypes.oneOf(BUTTON_SIZES),
-    icon: PropTypes.string || PropTypes.number,
-    iconSize: PropTypes.string,
+    icon: PropTypes.any,
+    iconSize: PropTypes.any,
     iconPositon: PropTypes.oneOf(BUTTON_ICON_POSITIONS),
     className: PropTypes.string,
     disabled: PropTypes.bool,
@@ -100,12 +132,19 @@ Button.propTypes = {
     fullWidth: PropTypes.bool,
     isIconButton: PropTypes.bool,
     children: PropTypes.any,
+    type: PropTypes.oneOf(['button', 'submit', 'reset']),
+    ariaLabel: PropTypes.string,
+    tooltip: PropTypes.string,
+    tabIndex: PropTypes.number,
+    dataTestId: PropTypes.string,
+    onMouseEnter: PropTypes.func,
+    onMouseLeave: PropTypes.func,
 };
 
 Button.defaultProps = {
     variant: BUTTON_VARIANTS_ENUM.PRIMARY,
     size: BUTTON_SIZES_ENUM.MEDIUM,
-    icon: '',
+    icon: null,
     iconSize: '24',
     iconPositon: BUTTON_ICON_POSITIONS_ENUM.LEFT,
     className: '',
@@ -116,6 +155,13 @@ Button.defaultProps = {
     fullWidth: false,
     isIconButton: false,
     children: null,
+    type: 'button',
+    ariaLabel: '',
+    tooltip: '',
+    tabIndex: 0,
+    dataTestId: '',
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
 };
 
 export default Button;

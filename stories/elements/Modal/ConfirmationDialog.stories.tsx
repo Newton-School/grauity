@@ -41,6 +41,7 @@ const Template = (args: ConfirmationDialogProps) => {
                     confirmButtonVariant={args?.confirmButtonVariant}
                     cancelButtonVariant={args?.cancelButtonVariant}
                     shouldHideOnClickAway={args?.shouldHideOnClickAway}
+                    blurBackground={args?.blurBackground}
                 />
             )}
         </div>

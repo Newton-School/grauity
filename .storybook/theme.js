@@ -16,7 +16,7 @@ const STORYBOOK_LIGHT_THEME = create({
     appBorderRadius: 8,
 
     // Typography
-    fontBase: '"Switzer", sans-serif',
+    fontBase: '"Mona Sans", sans-serif',
     fontCode: 'monospace',
 
     // Text colors
@@ -50,7 +50,7 @@ const STORYBOOK_DARK_THEME = create({
     appBorderRadius: 8,
 
     // Typography
-    fontBase: '"Switzer", sans-serif',
+    fontBase: '"Mona Sans", sans-serif',
     fontCode: 'monospace',
 
     // Text colors

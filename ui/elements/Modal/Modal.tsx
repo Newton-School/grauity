@@ -29,6 +29,7 @@ const Modal = ({
     modalSteps,
     showModalStepsPagination,
     shouldHideOnClickAway,
+    blurBackground,
     onHide,
     onFinalStep,
     mobileBottomFullWidth,
@@ -81,7 +82,7 @@ const Modal = ({
     }
 
     return (
-        <StyledModalWrapper>
+        <StyledModalWrapper blurBackground={blurBackground}>
             <StyledModalContainer
                 onClick={(e: Event) => e.stopPropagation()}
                 ref={modalRef}
@@ -209,6 +210,7 @@ Modal.propTypes = {
     modalSteps: PropTypes.array,
     showModalStepsPagination: PropTypes.bool,
     shouldHideOnClickAway: PropTypes.bool,
+    blurBackground: PropTypes.bool,
     onHide: PropTypes.func,
     onFinalStep: PropTypes.func,
     mobileBottomFullWidth: PropTypes.bool,
@@ -227,6 +229,7 @@ Modal.defaultProps = {
     modalSteps: [],
     showModalStepsPagination: true,
     shouldHideOnClickAway: false,
+    blurBackground: false,
     onHide: () => {},
     onFinalStep: () => {},
     mobileBottomFullWidth: false,

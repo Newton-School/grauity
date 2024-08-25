@@ -38,6 +38,7 @@ const args = {
     ],
     showModalStepsPagination: true,
     shouldHideOnClickAway: true,
+    blurBackground: false,
     onHide: () => console.log('onHide'),
     onFinalStep: () => console.log('onFinalStep'),
     mobileBottomFullWidth: false,

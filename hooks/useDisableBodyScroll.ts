@@ -12,11 +12,13 @@ import { useEffect } from 'react';
 const useDisableBodyScroll = () => {
     useEffect(() => {
         if (typeof window !== 'undefined' && document?.body) {
+            document.body.style.paddingRight = '15px';
             document.body.style.overflow = 'hidden';
         }
 
         return () => {
             if (typeof window !== 'undefined' && document?.body) {
+                document.body.style.paddingRight = 'unset';
                 document.body.style.overflow = 'auto';
             }
         };

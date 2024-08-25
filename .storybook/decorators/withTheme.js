@@ -3,12 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { ThemeWrapper } from '../../ui';
 
 /**
- * This decorator is used to wrap the Storybook stories with the ThemeWrapper
+ * This wrapper is needed because Storybook does not support
+ * using hooks in the decorators.
  */
-const withTheme = (Story, context) => {
-    // globals.theme can be 'light', 'dark', and refer to the component theme
-    const { globals } = context;
-
+const StatefulThemeWrapper = ({ globals, children }) => {
     const [currentComponentsTheme, setCurrentComponentsTheme] = useState(
         globals.theme
     );
@@ -21,8 +19,22 @@ const withTheme = (Story, context) => {
 
     return (
         <ThemeWrapper defaultTheme={currentComponentsTheme}>
-            <Story />
+            {children}
         </ThemeWrapper>
+    );
+};
+
+/**
+ * This decorator is used to wrap the Storybook stories with the ThemeWrapper
+ */
+const withTheme = (Story, context) => {
+    // globals.theme can be 'light', 'dark', and refer to the component theme
+    const { globals } = context;
+
+    return (
+        <StatefulThemeWrapper globals={globals}>
+            <Story />
+        </StatefulThemeWrapper>
     );
 };
 

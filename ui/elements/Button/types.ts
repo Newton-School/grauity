@@ -2,6 +2,8 @@ import React from 'react';
 
 import { grauityIconName, grauityIconSizeName } from '../../core';
 
+export type ButtonTypeAttribute = 'button' | 'submit' | 'reset';
+
 export interface ButtonComponentProps {
     variant?: ButtonVariants;
     size?: ButtonSizes;
@@ -16,6 +18,14 @@ export interface ButtonComponentProps {
     fullWidth?: boolean;
     isIconButton?: boolean;
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLButtonElement>;
+    type?: ButtonTypeAttribute;
+    ariaLabel?: string;
+    title?: string;
+    tabIndex?: number;
+    dataTestId?: string;
+    onMouseEnter?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    onMouseLeave?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export type ButtonVariants =
