@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { NSButton, TableProps } from '../../../ui';
 
 const simpleArgs: TableProps = {
@@ -14,8 +15,8 @@ const simpleArgs: TableProps = {
             align: 'center',
         },
         {
-            key: 'address',
-            display: 'Address (Custom rendering)',
+            key: 'action',
+            display: 'Action',
             align: 'left',
         },
     ],
@@ -23,36 +24,44 @@ const simpleArgs: TableProps = {
         {
             name: { display: 'John Doe' },
             age: { display: 25 },
-            address: {
+            action: {
                 render: () => (
-                    <NSButton size="small">Custom rendering</NSButton>
+                    <NSButton size="small" icon="code">
+                        Click me
+                    </NSButton>
                 ),
             },
         },
         {
             name: { display: 'John Doe' },
             age: { display: 25 },
-            address: {
+            action: {
                 render: () => (
-                    <NSButton size="small">Custom rendering</NSButton>
+                    <NSButton size="small" icon="code">
+                        Click me
+                    </NSButton>
                 ),
             },
         },
         {
             name: { display: 'John Doe' },
             age: { display: 25 },
-            address: {
+            action: {
                 render: () => (
-                    <NSButton size="small">Custom rendering</NSButton>
+                    <NSButton size="small" icon="code">
+                        Click me
+                    </NSButton>
                 ),
             },
         },
         {
             name: { display: 'John Doe' },
             age: { display: 25 },
-            address: {
+            action: {
                 render: () => (
-                    <NSButton size="small">Custom rendering</NSButton>
+                    <NSButton size="small" icon="code">
+                        Click me
+                    </NSButton>
                 ),
             },
         },

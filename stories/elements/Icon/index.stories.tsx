@@ -1,5 +1,5 @@
-import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import React from 'react';
 
 import { Icon } from '../../../ui';
 import DocPageWithPlayground from '../../helper-components/DocPageWithPlayground';

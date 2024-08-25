@@ -1,3 +1,4 @@
+export { default as NSConfirmationDialog } from './ConfirmationDialog';
 export { default as NSModal } from './Modal';
 export {
     StyledModalActionButtonContainer as NSModalActionButtonContainer,
@@ -10,9 +11,7 @@ export {
     StyledModalPagination as NSModalPagination,
     StyledModalPaginationItem as NSModalPaginationItem,
     StyledModalTitle as NSModalTitle,
-    StyledModalWrapper as NSModalWrapper,
     StyledModalTitleText as NSModalTitleText,
+    StyledModalWrapper as NSModalWrapper,
 } from './Modal';
 export type { ModalProps } from './types';
-
-export { default as NSConfirmationDialog } from './ConfirmationDialog';

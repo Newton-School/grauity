@@ -1,13 +1,13 @@
-import React from 'react';
 import { useGlobals } from '@storybook/addons';
+import React from 'react';
 
 import { NSTable } from '../../../ui'; // Adjust the import path as necessary
 import { TableRow } from '../../../ui/elements/Table/types';
-import TokenBlock from '../../helper-components/TokenBlock';
 import THEMES from '../../../ui/themes/constants';
+import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
-    title: 'Design System/Colors',
+    title: 'Atoms/Colors',
 };
 
 const colorTokens = [
@@ -256,7 +256,7 @@ const colorTokens = [
 const getRowsByTheme: (theme?: string) => TableRow[] = (theme = THEMES.LIGHT) =>
     colorTokens.map((token) => ({
         token: {
-            render: () => <TokenBlock>{token.token}</TokenBlock>,
+            render: () => <TokenBlock copy>{token.token}</TokenBlock>,
         },
         value: {
             render: () => <TokenBlock>{token[theme]}</TokenBlock>,
@@ -287,7 +287,11 @@ export const ColorTokens = () => {
             columns={[
                 { key: 'token', display: 'Token', align: 'left' },
                 { key: 'value', display: 'Value', align: 'left' },
-                { key: 'color', display: 'Visual Representation', align: 'left' },
+                {
+                    key: 'color',
+                    display: 'Visual Representation',
+                    align: 'left',
+                },
             ]}
             rows={getRowsByTheme(theme)}
             capitalizeHeaders

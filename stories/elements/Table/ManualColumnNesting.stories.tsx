@@ -2,12 +2,12 @@ import React from 'react';
 
 import {
     NSTable,
-    NSTableWrapper,
     NSTableBody,
     NSTableDataCell,
     NSTableHead,
     NSTableHeadingCell,
     NSTableRow,
+    NSTableWrapper,
     TableProps,
 } from '../../../ui';
 

@@ -1,5 +1,5 @@
-/* eslint-disable import/prefer-default-export */
 import styled, { css } from 'styled-components';
+
 import { BUTTON_SIZES_ENUM, BUTTON_VARIANTS_ENUM } from './constants';
 import { ButtonComponentProps } from './types';
 
@@ -12,7 +12,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     align-items: center;
     justify-content: center;
     font-weight: var(--font-weight-semibold, 600);
-    font-family: var(--font-family, "Mona Sans");
+    font-family: var(--font-family, 'Mona Sans');
     border: none;
     outline: none;
     cursor: pointer;
@@ -21,8 +21,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
 
     ${({ variant }) => {
         switch (variant) {
-        case BUTTON_VARIANTS_ENUM.PRIMARY:
-            return css`
+            case BUTTON_VARIANTS_ENUM.PRIMARY:
+                return css`
                     background: var(--bg-action-brand, #0673f9);
                     color: #fff;
                     border: none;
@@ -38,8 +38,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                             var(--border-brand, #94c4ff);
                     }
                 `;
-        case BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED:
-            return css`
+            case BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED:
+                return css`
                     background: transparent;
                     color: var(--text-brand, #0673f9);
                     border: none;
@@ -55,8 +55,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                             var(--border-brand, #94c4ff);
                     }
                 `;
-        case BUTTON_VARIANTS_ENUM.SECONDARY:
-            return css`
+            case BUTTON_VARIANTS_ENUM.SECONDARY:
+                return css`
                     background: var(--bg-invert-primary, #0b0c0e);
                     color: var(--text-action2, #ffffff);
                     border: none;
@@ -72,8 +72,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                             var(--border-neutral, #e1e5ea);
                     }
                 `;
-        case BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED:
-            return css`
+            case BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED:
+                return css`
                     background: transparent;
                     color: var(--text-primary, #16191d);
                     border: none;
@@ -89,8 +89,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                             var(--border-neutral, #e1e5ea);
                     }
                 `;
-        case BUTTON_VARIANTS_ENUM.TERTIARY:
-            return css`
+            case BUTTON_VARIANTS_ENUM.TERTIARY:
+                return css`
                     background: var(--bg-primary, #fff);
                     color: var(--text-primary, #16191d);
                     outline: var(--spacing-1px, 1px) solid
@@ -106,8 +106,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                             var(--border-neutral, #e1e5ea);
                     }
                 `;
-        case BUTTON_VARIANTS_ENUM.TERTIARY_OUTLINED:
-            return css`
+            case BUTTON_VARIANTS_ENUM.TERTIARY_OUTLINED:
+                return css`
                     background: transparent;
                     color: var(--text-primary, #16191d);
                     border: none;
@@ -123,8 +123,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                             var(--border-neutral, #e1e5ea);
                     }
                 `;
-        case BUTTON_VARIANTS_ENUM.SUCCESS:
-            return css`
+            case BUTTON_VARIANTS_ENUM.SUCCESS:
+                return css`
                     background: var(--bg-action-success, #009965);
                     color: var(--text-action, #ffffff);
                     border: none;
@@ -140,8 +140,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                             var(--border-success, #acf7d3);
                     }
                 `;
-        case BUTTON_VARIANTS_ENUM.SUCCESS_OUTLINED:
-            return css`
+            case BUTTON_VARIANTS_ENUM.SUCCESS_OUTLINED:
+                return css`
                     background: transparent;
                     color: var(--text-success, #007a51);
                     border: none;
@@ -157,8 +157,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                             var(--border-success, #acf7d3);
                     }
                 `;
-        case BUTTON_VARIANTS_ENUM.DANGER:
-            return css`
+            case BUTTON_VARIANTS_ENUM.DANGER:
+                return css`
                     background: var(--bg-action-error, #d22d3a);
                     color: var(--text-action, #ffffff);
                     border: none;
@@ -174,8 +174,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                             var(--border-error, #fbbbbf);
                     }
                 `;
-        case BUTTON_VARIANTS_ENUM.DANGER_OUTLINED:
-            return css`
+            case BUTTON_VARIANTS_ENUM.DANGER_OUTLINED:
+                return css`
                     background: transparent;
                     color: var(--text-error, #d22d3a);
                     border: none;
@@ -191,8 +191,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                             var(--border-error, #fbbbbf);
                     }
                 `;
-        case BUTTON_VARIANTS_ENUM.WARNING:
-            return css`
+            case BUTTON_VARIANTS_ENUM.WARNING:
+                return css`
                     background: var(--bg-action-warning, #f37216);
                     color: var(--text-action, #ffffff);
                     border: none;
@@ -208,8 +208,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                             var(--border-warning, #ffd2ba);
                     }
                 `;
-        case BUTTON_VARIANTS_ENUM.WARNING_OUTLINED:
-            return css`
+            case BUTTON_VARIANTS_ENUM.WARNING_OUTLINED:
+                return css`
                     background: transparent;
                     color: var(--text-warning, #de5a02);
                     border: none;
@@ -225,25 +225,26 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                             var(--border-warning, #ffd2ba);
                     }
                 `;
-        default:
-            return css``;
+            default:
+                return css``;
         }
     }}
 
     ${({ size, isIconButton }) => {
         switch (size) {
-        case BUTTON_SIZES_ENUM.SMALL:
-            return css`
+            case BUTTON_SIZES_ENUM.SMALL:
+                return css`
                     padding: var(--spacing-4px, 4px) var(--spacing-8px, 8px);
                     height: var(--spacing-32px, 32px);
+                    gap: var(--spacing-4px, 4px);
                     ${isIconButton &&
                     css`
                         padding: var(--spacing-4px, 4px);
                         width: var(--spacing-32px, 32px);
                     `};
                 `;
-        case BUTTON_SIZES_ENUM.MEDIUM:
-            return css`
+            case BUTTON_SIZES_ENUM.MEDIUM:
+                return css`
                     padding: var(--spacing-8px, 8px) var(--spacing-12px, 12px);
                     height: var(--spacing-40px, 40px);
                     ${isIconButton &&
@@ -252,8 +253,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                         width: var(--spacing-40px, 40px);
                     `};
                 `;
-        case BUTTON_SIZES_ENUM.LARGE:
-            return css`
+            case BUTTON_SIZES_ENUM.LARGE:
+                return css`
                     padding: var(--spacing-12px, 12px) var(--spacing-16px, 16px);
                     height: var(--spacing-48px, 48px);
                     ${isIconButton &&
@@ -262,8 +263,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                         width: var(--spacing-48px, 48px);
                     `};
                 `;
-        case BUTTON_SIZES_ENUM.EXTRA_LARGE:
-            return css`
+            case BUTTON_SIZES_ENUM.EXTRA_LARGE:
+                return css`
                     padding: var(--spacing-16px, 16px) var(--spacing-20px, 20px);
                     height: var(--spacing-56px, 56px);
                     ${isIconButton &&
@@ -272,8 +273,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                         width: var(--spacing-56px, 56px);
                     `};
                 `;
-        default:
-            return css``;
+            default:
+                return css``;
         }
     }}
 

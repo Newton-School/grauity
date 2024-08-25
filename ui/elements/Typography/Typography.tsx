@@ -1,12 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledTypography } from './Typography.styles';
-import { TypographyProps } from './types';
+import React from 'react';
+
 import {
     TYPOGRAPHY_AS_ENUM,
     TYPOGRAPHY_VARIANT_AS_MAPPING,
     TYPOGRAPHY_VARIANTS,
 } from './constants';
+import { TypographyProps } from './types';
+import { StyledTypography } from './Typography.styles';
 
 /**
  * `gra.UI.ty Typography`: A typography component that can be used to display text in different styles.
@@ -26,7 +27,6 @@ const Typography = ({
     textTransform,
     fontSize,
     children = '',
-    ...props
 }: TypographyProps) => {
     const asType =
         as === TYPOGRAPHY_AS_ENUM.AUTO

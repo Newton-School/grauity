@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TableProps, NSTable } from '../../../ui';
+import { NSTable, TableProps } from '../../../ui';
 import simpleArgs from './simpleArgs';
 
 export default {

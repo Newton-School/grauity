@@ -1,10 +1,11 @@
 import React from 'react';
+
 import { NSTable } from '../../../ui'; // Adjust the import path as necessary
 import { TableRow } from '../../../ui/elements/Table/types';
 import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
-    title: 'Design System/Colors',
+    title: 'Atoms/Colors',
 };
 
 const colorTokens = [
@@ -94,19 +95,11 @@ const colorTokens = [
 ];
 
 const rows: TableRow[] = colorTokens.map((token) => ({
-    token: { 
-        render: () => (
-            <TokenBlock>
-                {token.token}
-            </TokenBlock>
-        ) 
+    token: {
+        render: () => <TokenBlock copy>{token.token}</TokenBlock>,
     },
-    value: { 
-        render: () => (
-            <TokenBlock>
-                {token.value}
-            </TokenBlock>
-        ) 
+    value: {
+        render: () => <TokenBlock>{token.value}</TokenBlock>,
     },
     visual: {
         render: () => (
@@ -131,7 +124,7 @@ const ColorTokensStory = () => (
     <NSTable
         columns={[
             { key: 'token', display: 'Token', align: 'left' },
-            { key: 'value', display: 'Value', align: 'left'  },
+            { key: 'value', display: 'Value', align: 'left' },
             { key: 'visual', display: 'Visual Representation', align: 'left' },
         ]}
         rows={rows}

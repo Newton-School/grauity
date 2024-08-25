@@ -1,12 +1,18 @@
 import PropTypes from 'prop-types';
-import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+    createContext,
+    useCallback,
+    useEffect,
+    useMemo,
+    useState,
+} from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import DARK_THEME_OBJ from './darkThemeConstants';
-import LIGHT_THEME_OBJ from './lightThemeConstants';
 import THEME from './constants';
-import { ThemeType } from './types';
+import DARK_THEME_OBJ from './darkThemeConstants';
 import GlobalStyle from './GlobalStyle';
+import LIGHT_THEME_OBJ from './lightThemeConstants';
+import { ThemeType } from './types';
 
 const ThemeContext = createContext(null);
 

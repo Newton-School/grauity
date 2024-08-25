@@ -1,6 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 
+export const StyledHideOnPrintWrapper = styled.div`
+    @media print {
+        display: none;
+    }
+`;
+
 export const StyledTokenBlock = styled.div`
     display: flex;
     padding: var(--spacing-8px, 8px) var(--spacing-12px, 12px);

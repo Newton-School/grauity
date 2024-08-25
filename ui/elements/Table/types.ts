@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+
 import { grauityIconName } from '../../core';
 
 export interface TableColumn {

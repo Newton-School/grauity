@@ -1,15 +1,9 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import _ from 'lodash';
 import classnames from 'classnames';
+import _ from 'lodash';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {
-    getElementTypeFromProps,
-    useKeyOnly,
-    useValueAndKey,
-} from '../../helpers';
-import {
-    GRAUITY_ICON_COLORS,
     GRAUITY_ICON_FLIPPED_CHOICES,
     GRAUITY_ICON_ROTATED_CHOICES,
     GRAUITY_ICON_SIZES,
@@ -20,6 +14,11 @@ import {
     grauityRotatedChoiceName,
     ICON_TAGS,
 } from '../../core';
+import {
+    getElementTypeFromProps,
+    useKeyOnly,
+    useValueAndKey,
+} from '../../helpers';
 
 export interface IconProps {
     /**

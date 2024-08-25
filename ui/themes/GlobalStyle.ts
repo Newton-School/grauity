@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+
 import { CustomGlobalStyleInterface } from './types';
 
 const GlobalStyle = createGlobalStyle<CustomGlobalStyleInterface>`

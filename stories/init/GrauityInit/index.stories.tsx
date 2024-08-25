@@ -1,11 +1,11 @@
-import React from 'react';
+import './index.css';
+
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import React from 'react';
 
 import { GrauityInit } from '../../../ui';
 import DocPageWithPlayground from '../../helper-components/DocPageWithPlayground';
 import exampleSourceCode from './example.source?raw';
-
-import './index.css';
 
 export default {
     title: 'Init/GrauityInit',

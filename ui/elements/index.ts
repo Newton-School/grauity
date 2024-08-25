@@ -4,10 +4,10 @@ export { Icon } from './Icon';
 // NSTypography
 export type { TypographyProps } from './Typography';
 export {
-    TYPOGRAPHY_VARIANTS,
-    TYPOGRAPHY_VARIANTS_ENUM,
     TYPOGRAPHY_AS_ENUM,
     TYPOGRAPHY_AS_LIST,
+    TYPOGRAPHY_VARIANTS,
+    TYPOGRAPHY_VARIANTS_ENUM,
 } from './Typography';
 export { NSTypography } from './Typography';
 
@@ -21,12 +21,12 @@ export { NSButton } from './Button';
 // NSTable
 export type { TableProps } from './Table';
 export {
-    NSTableWrapper,
     NSTableBody,
     NSTableDataCell,
     NSTableHead,
     NSTableHeadingCell,
     NSTableRow,
+    NSTableWrapper,
 } from './Table';
 export { NSTable } from './Table';
 

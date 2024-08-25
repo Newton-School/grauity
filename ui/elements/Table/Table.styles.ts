@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import styled, { css } from 'styled-components';
+
 import {
     TableBodyComponentProps,
     TableComponentProps,

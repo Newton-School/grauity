@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import useClickAway from '../../../hooks/useClickAway';
 
+import useClickAway from '../../../hooks/useClickAway';
+import useDisableBodyScroll from '../../../hooks/useDisableBodyScroll';
+import Button from '../Button/Button';
+import { BUTTON_VARIANTS_ENUM } from '../Button/constants';
 import {
     StyledModalActionButtonContainer,
     StyledModalBannerImage,
@@ -17,8 +20,6 @@ import {
     StyledModalWrapper,
 } from './Modal.styles';
 import { ModalProps } from './types';
-import Button from '../Button/Button';
-import { BUTTON_VARIANTS_ENUM } from '../Button/constants';
 
 /**
  * `gra.UI.elements Modal`: A modal is a dialog box or popup, displayed over the current page.
@@ -60,6 +61,8 @@ const Modal = ({
     const hasBody = !!body?.text || !!body?.image || !!body?.render;
 
     const modalRef = React.useRef(null);
+
+    useDisableBodyScroll();
 
     useClickAway(modalRef, () => {
         if (shouldHideOnClickAway) {
@@ -128,7 +131,11 @@ const Modal = ({
                     {hasBody && (
                         <StyledModalBody
                             width={body.width || ''}
-                            modalBodyMargin={modalBodyMargin}
+                            modalBodyMargin={
+                                !modalBodyMargin && modalSteps.length <= 1
+                                    ? '20px 0 12px 0'
+                                    : modalBodyMargin
+                            }
                         >
                             {body.render && body.render()}
                             {!body.render && body.image && (
@@ -172,7 +179,10 @@ const Modal = ({
 
                         {nextButtonText && (
                             <Button
-                                variant={buttonVariant || BUTTON_VARIANTS_ENUM.SECONDARY}
+                                variant={
+                                    buttonVariant ||
+                                    BUTTON_VARIANTS_ENUM.SECONDARY
+                                }
                                 fullWidth
                                 onClick={() => {
                                     if (isLastStep) {
@@ -223,7 +233,7 @@ Modal.defaultProps = {
     onStepChange: () => {},
     showModalButtons: true,
     showHeader: true,
-    modalPadding: '32px',
+    modalPadding: '20px',
     modalBodyMargin: '12px 0 0 0',
     width: null,
     height: null,

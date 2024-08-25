@@ -1,7 +1,17 @@
 import React from 'react';
 
-import { ButtonProps, NSButton, NSTableBody, NSTableDataCell, NSTableHead, NSTableHeadingCell, NSTableRow, NSTableWrapper } from '../../../ui';
+import {
+    ButtonProps,
+    NSButton,
+    NSTableBody,
+    NSTableDataCell,
+    NSTableHead,
+    NSTableHeadingCell,
+    NSTableRow,
+    NSTableWrapper,
+} from '../../../ui';
 import { BUTTON_VARIANTS } from '../../../ui/elements/Button/constants';
+import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
     title: 'Elements/NSButton',
@@ -9,24 +19,26 @@ export default {
 };
 
 const Template = (args: ButtonProps) => (
-    <NSTableWrapper>
-        <NSTableHead>
-            <NSTableRow condensed>
-                <NSTableHeadingCell align='left'>NSButton variant</NSTableHeadingCell>
-                <NSTableHeadingCell align='left'>NSButton</NSTableHeadingCell>
-                <NSTableHeadingCell align='left'>NSButton with Icon only</NSTableHeadingCell>
+    <NSTableWrapper borderAround={false} borderVertical={false}>
+        <NSTableHead highlightHeaders={false}>
+            <NSTableRow>
+                <NSTableHeadingCell align="left">
+                    NSButton variant
+                </NSTableHeadingCell>
+                <NSTableHeadingCell align="left">NSButton</NSTableHeadingCell>
+                <NSTableHeadingCell align="left">
+                    NSButton with Icon only
+                </NSTableHeadingCell>
             </NSTableRow>
         </NSTableHead>
         <NSTableBody>
-            {BUTTON_VARIANTS.map(variant => (
-                <NSTableRow condensed>
-                    <NSTableDataCell>{variant}</NSTableDataCell>
+            {BUTTON_VARIANTS.map((variant) => (
+                <NSTableRow>
                     <NSTableDataCell>
-                        <NSButton
-                            {...args}
-                            variant={variant}
-                            key={variant}
-                        >
+                        <TokenBlock copy>{variant}</TokenBlock>
+                    </NSTableDataCell>
+                    <NSTableDataCell>
+                        <NSButton {...args} variant={variant} key={variant}>
                             {args?.children}
                         </NSButton>
                     </NSTableDataCell>

@@ -1,11 +1,28 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../Button/Button';
-import { ConfirmationDialogProps } from './types';
-import { BUTTON_VARIANTS_ENUM } from '../Button';
-import { StyledModalActionButtonContainer, StyledModalBannerImage, StyledModalBannerImageWrapper, StyledModalBody, StyledModalContainer, StyledModalDescription, StyledModalMain, StyledModalPagination, StyledModalPaginationItem, StyledModalTitle, StyledModalTitleText, StyledModalWrapper } from './Modal.styles';
-import useClickAway from '../../../hooks/useClickAway';
+import React from 'react';
 
+import useClickAway from '../../../hooks/useClickAway';
+import useDisableBodyScroll from '../../../hooks/useDisableBodyScroll';
+import { BUTTON_VARIANTS_ENUM } from '../Button';
+import Button from '../Button/Button';
+import {
+    StyledModalActionButtonContainer,
+    StyledModalBannerImage,
+    StyledModalBannerImageWrapper,
+    StyledModalBody,
+    StyledModalContainer,
+    StyledModalDescription,
+    StyledModalMain,
+    StyledModalTitle,
+    StyledModalTitleText,
+    StyledModalWrapper,
+} from './Modal.styles';
+import { ConfirmationDialogProps } from './types';
+
+/**
+ * `gra.UI.elements ConfirmationDialog`: A confirmation dialog is a dialog box that asks the user to confirm an action.
+ * @component
+ */
 const ConfirmationDialog = ({
     cancelText,
     confirmText,
@@ -21,8 +38,10 @@ const ConfirmationDialog = ({
 }: ConfirmationDialogProps) => {
     const hasBanner = !!banner?.render || !!banner?.image;
     const hasBody = !!body?.text || !!body?.image || !!body?.render;
-    
+
     const modalRef = React.useRef(null);
+
+    useDisableBodyScroll();
 
     useClickAway(modalRef, () => {
         if (shouldHideOnClickAway) {
@@ -30,26 +49,28 @@ const ConfirmationDialog = ({
         }
     });
 
-    return(
+    return (
         <StyledModalWrapper>
             <StyledModalContainer
                 onClick={(e: Event) => e.stopPropagation()}
-                width='auto'
-                height='auto'
+                width="auto"
+                height="auto"
                 ref={modalRef}
             >
                 <StyledModalMain>
                     {hasBanner &&
-                (banner.render ? (
-                    banner.render()
-                ) : (
-                    <StyledModalBannerImageWrapper>
-                        <StyledModalBannerImage src={banner.image} />
-                    </StyledModalBannerImageWrapper>
-                ))}
+                        (banner.render ? (
+                            banner.render()
+                        ) : (
+                            <StyledModalBannerImageWrapper>
+                                <StyledModalBannerImage src={banner.image} />
+                            </StyledModalBannerImageWrapper>
+                        ))}
 
                     <StyledModalTitle marginTop={hasBanner}>
-                        <StyledModalTitleText>{title?.text}</StyledModalTitleText>
+                        <StyledModalTitleText>
+                            {title?.text}
+                        </StyledModalTitleText>
                     </StyledModalTitle>
 
                     <StyledModalDescription>
@@ -57,9 +78,7 @@ const ConfirmationDialog = ({
                     </StyledModalDescription>
 
                     {hasBody && (
-                        <StyledModalBody
-                            width={body.width || ''}
-                        >
+                        <StyledModalBody width={body.width || ''}>
                             {body.render && body.render()}
                             {!body.render && body.image && (
                                 <StyledModalBannerImageWrapper>
@@ -73,14 +92,18 @@ const ConfirmationDialog = ({
 
                 <StyledModalActionButtonContainer>
                     <Button
-                        variant={cancelButtonVariant || BUTTON_VARIANTS_ENUM.DANGER}
+                        variant={
+                            cancelButtonVariant || BUTTON_VARIANTS_ENUM.DANGER
+                        }
                         fullWidth
                         onClick={onCancel}
                     >
                         {cancelText}
                     </Button>
                     <Button
-                        variant={confirmButtonVariant || BUTTON_VARIANTS_ENUM.SUCCESS}
+                        variant={
+                            confirmButtonVariant || BUTTON_VARIANTS_ENUM.SUCCESS
+                        }
                         fullWidth
                         onClick={onConfirm}
                     >
@@ -89,7 +112,8 @@ const ConfirmationDialog = ({
                 </StyledModalActionButtonContainer>
             </StyledModalContainer>
         </StyledModalWrapper>
-    );};
+    );
+};
 
 ConfirmationDialog.propTypes = {
     cancelText: PropTypes.string,

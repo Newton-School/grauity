@@ -14,6 +14,7 @@ import {
     TypographyProps,
 } from '../../../ui';
 import { TYPOGRAPHY_VARIANT_AS_MAPPING } from '../../../ui/elements/Typography/constants';
+import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
     title: 'Elements/NSTypography',
@@ -21,56 +22,24 @@ export default {
 };
 
 const Template = (args: TypographyProps) => (
-    <NSTableWrapper>
-        <NSTableHead>
-            <NSTableHeadingCell align="left" width="250px">
-                <NSTypography
-                    variant={
-                        TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_LABEL
-                    }
-                >
-                    Variant
-                </NSTypography>
+    <NSTableWrapper borderAround={false} borderVertical={false}>
+        <NSTableHead highlightHeaders={false}>
+            <NSTableHeadingCell align="left" width="400px">
+                Variant
             </NSTableHeadingCell>
-            <NSTableHeadingCell align="left">
-                <NSTypography
-                    variant={
-                        TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_LABEL
-                    }
-                >
-                    As
-                </NSTypography>
-            </NSTableHeadingCell>
-            <NSTableHeadingCell align="left">
-                <NSTypography
-                    variant={
-                        TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_LABEL
-                    }
-                >
-                    NSTypography
-                </NSTypography>
-            </NSTableHeadingCell>
+            <NSTableHeadingCell align="left">As</NSTableHeadingCell>
+            <NSTableHeadingCell align="left">NSTypography</NSTableHeadingCell>
         </NSTableHead>
         <NSTableBody>
             {TYPOGRAPHY_VARIANTS.map((variant) => (
-                <NSTableRow condensed>
+                <NSTableRow>
                     <NSTableDataCell>
-                        <NSTypography
-                            variant={
-                                TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_LABEL
-                            }
-                        >
-                            {variant}
-                        </NSTypography>
+                        <TokenBlock copy>{variant}</TokenBlock>
                     </NSTableDataCell>
                     <NSTableDataCell>
-                        <NSTypography
-                            variant={
-                                TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_LABEL
-                            }
-                        >
+                        <TokenBlock>
                             {TYPOGRAPHY_VARIANT_AS_MAPPING[variant]}
-                        </NSTypography>
+                        </TokenBlock>
                     </NSTableDataCell>
                     <NSTableDataCell>
                         <NSTypography

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TypographyProps, NSTypography } from '../../../ui';
+import { NSTypography, TypographyProps } from '../../../ui';
 
 export default {
     title: 'Elements/NSTypography',
@@ -21,4 +21,3 @@ export const Default = Template.bind({});
 Default.args = {
     ...defaultArgs,
 };
-

@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+
 import { ButtonVariants } from '../Button/types';
 
 interface ModalBanner {
@@ -100,6 +101,7 @@ export interface ModalProps {
     minHeight?: string;
     /**
      * Determines if the close button should be shown
+     *
      * Available choices: true, false
      *
      * NOTE: If Modal has a banner, the close button will be hidden by default

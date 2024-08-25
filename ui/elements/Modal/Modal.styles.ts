@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+
 import {
     ModalBannerImageProps,
     ModalBodyMainProps,
@@ -15,7 +16,7 @@ export const StyledModalWrapper = styled.div<ModalWrapperProps>`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #2b303bcc;
+    background-color: var(--alpha-overlay, rgba(22, 25, 29, 0.8));
     z-index: 1000;
     padding: var(--spacing-16px, 16px);
     display: flex;
@@ -32,7 +33,7 @@ export const StyledModalContainer = styled.div<ModalContainerProps>`
     border-radius: var(--corner-radius-12px, 12px);
     width: 500px;
     height: 525px;
-    padding: var(--spacing-32px, 32px);
+    padding: var(--spacing-20px, 20px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -87,7 +88,6 @@ export const StyledModalMain = styled.div<ModalBodyMainProps>`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding-bottom: var(--spacing-8px, 8px);
     flex: 1;
 
     @media only screen and (max-width: 600px) {
@@ -157,13 +157,13 @@ export const StyledModalDescription = styled.div`
 `;
 
 export const StyledModalBody = styled.div<ModalBodyProps>`
-    font-weight: 450;
+    font-weight: var(--font-weight-450, 450);
     font-size: var(--font-size-16px, 16px);
     line-height: var(--spacing-28px, 28px);
     text-align: center;
     letter-spacing: 0.2px;
     color: var(--text-secondary, #5b6271);
-    margin-top: ${({ modalBodyMargin }) => modalBodyMargin};
+    margin: ${({ modalBodyMargin }) => modalBodyMargin};
     white-space: pre-line;
     width: ${({ width }) => width || '100%'};
     flex: 1;

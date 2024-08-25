@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { useEffect, useRef, RefObject } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 
 const DEFAULT_EVENTS = ['mousedown', 'touchstart', 'keydown'];
 

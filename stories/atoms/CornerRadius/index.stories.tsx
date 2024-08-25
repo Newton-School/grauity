@@ -1,10 +1,11 @@
 import React from 'react';
+
 import { NSTable } from '../../../ui'; // Adjust the import path as necessary
 import { TableRow } from '../../../ui/elements/Table/types';
 import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
-    title: 'Design System/Corner Radius',
+    title: 'Atoms/Corner Radius',
 };
 
 const cornerRadiusTokens = [
@@ -24,16 +25,18 @@ const cornerRadiusTokens = [
 
 const rows: TableRow[] = cornerRadiusTokens.map((token) => ({
     token: {
-        render: () => <TokenBlock>{token.token}</TokenBlock>,
+        render: () => <TokenBlock copy>{token.token}</TokenBlock>,
     },
     value: {
         render: () => <TokenBlock>{token.value}</TokenBlock>,
     },
     visual: {
         render: () => (
-            <div style={{
-                position: 'relative',
-            }}>
+            <div
+                style={{
+                    position: 'relative',
+                }}
+            >
                 <div
                     style={{
                         display: 'flex',
@@ -85,7 +88,6 @@ const CornerRadiusTokensStory = () => (
         highlightHeaders={false}
         borderVertical={false}
         condensed={false}
-        
     />
 );
 
