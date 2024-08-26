@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'Switzer';
+    font-family: 'Mona Sans';
     font-weight: 100 900;
-    src: url('./Switzer-Variable.ttf') format("truetype-variations");
+    src: url('./fonts/Mona-Sans.woff2') format('woff2');
 }
 
 .sidebar-container * {
-    font-family: 'Switzer', sans-serif;
+    font-family: 'Mona Sans', sans-serif;
 }
 
 .sidebar-container .sidebar-item:not([data-nodetype="component"]) {

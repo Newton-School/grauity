@@ -69,7 +69,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                     &:focus {
                         background: var(--bg-invert-primary-hover, #16191d);
                         outline: var(--spacing-3px, 3px) solid
-                            var(--border-neutral, #e1e5ea);
+                            var(--border, #e1e5ea);
                     }
                 `;
             case BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED:
@@ -86,7 +86,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                     &:focus {
                         background: var(--bg-secondary, #f6f7f9);
                         outline: var(--spacing-3px, 3px) solid
-                            var(--border-neutral, #e1e5ea);
+                            var(--border, #e1e5ea);
                     }
                 `;
             case BUTTON_VARIANTS_ENUM.TERTIARY:
@@ -103,7 +103,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                     &:focus {
                         background: var(--bg-primary-hover, #f6f7f9);
                         outline: var(--spacing-3px, 3px) solid
-                            var(--border-neutral, #e1e5ea);
+                            var(--border, #e1e5ea);
                     }
                 `;
             case BUTTON_VARIANTS_ENUM.TERTIARY_OUTLINED:
@@ -120,7 +120,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                     &:focus {
                         background: var(--bg-primary-hover, #f6f7f9);
                         outline: var(--spacing-3px, 3px) solid
-                            var(--border-neutral, #e1e5ea);
+                            var(--border, #e1e5ea);
                     }
                 `;
             case BUTTON_VARIANTS_ENUM.SUCCESS:
