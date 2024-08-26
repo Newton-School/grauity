@@ -262,7 +262,7 @@ const GlobalStyle = createGlobalStyle<CustomGlobalStyleInterface>`
 
         // Font
         --font-family: ${(props) => props.theme.font.fontFamily};
-        --font-size: ${(props) => props.theme.font.fontFamilyCode};
+        --font-family-code: ${(props) => props.theme.font.fontFamilyCode};
 
         // Custom tokens to handle visibility based on state
         --light-visible: ${(props) => props.theme.visibility.lightVisible};
