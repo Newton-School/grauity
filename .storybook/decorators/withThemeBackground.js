@@ -9,11 +9,11 @@ const StyledThemeBackgroundContainer = styled.div(({ theme, left, fill }) => {
         border-right: ${left ? '1px solid #202020' : 'none'};
         right: ${left ? '50%' : 0};
         width: ${fill ? '100%' : '50%'};
-        height: max(100%, 700px);
+        min-height: 550px;
         bottom: 0;
         overflow: auto;
         padding: 1rem;
-        background: ${theme?.bgPrimary};
+        background: var(--bg-primary);
     `;
 });
 

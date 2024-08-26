@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import {
     BUTTON_VARIANTS_ENUM,
+    ConfirmationDialogProps,
     NSButton,
     NSConfirmationDialog,
-} from '../../../ui/elements';
-import { ConfirmationDialogProps } from '../../../ui/elements/Modal/types';
+} from '../../../ui';
 
 export default {
     title: 'Elements/NSModal',

@@ -27,14 +27,14 @@ export const parameters = {
 
 // Storybook Decorators
 export const decorators = [
-    // Theme background container
-    withThemeBackground,
     // Grauity init
     withGrauityInit,
     // Component theme
     withTheme,
     // Storybook theme
     withStorybookTheme,
+    // Theme background container
+    withThemeBackground,
 ];
 
 // Storybook Global Types

@@ -14,4 +14,4 @@ export {
     StyledModalTitleText as NSModalTitleText,
     StyledModalWrapper as NSModalWrapper,
 } from './Modal';
-export type { ModalProps } from './types';
+export type { ConfirmationDialogProps, ModalProps } from './types';

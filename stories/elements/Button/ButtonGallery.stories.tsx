@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+    BUTTON_VARIANTS,
     ButtonProps,
     NSButton,
     NSTableBody,
@@ -10,7 +11,6 @@ import {
     NSTableRow,
     NSTableWrapper,
 } from '../../../ui';
-import { BUTTON_VARIANTS } from '../../../ui/elements/Button/constants';
 import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {

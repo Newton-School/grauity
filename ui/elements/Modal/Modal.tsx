@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import useClickAway from '../../../hooks/useClickAway';
 import useDisableBodyScroll from '../../../hooks/useDisableBodyScroll';
-import Button from '../Button/Button';
-import { BUTTON_VARIANTS_ENUM } from '../Button/constants';
+import { BUTTON_VARIANTS_ENUM, NSButton } from '../Button';
 import {
     StyledModalActionButtonContainer,
     StyledModalBannerImage,
@@ -111,7 +110,7 @@ const Modal = ({
                                 {title?.text}
                             </StyledModalTitleText>
                             {showCloseButton && !hasBanner && (
-                                <Button
+                                <NSButton
                                     onClick={onHide}
                                     variant={
                                         BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED
@@ -164,7 +163,7 @@ const Modal = ({
                 {showModalButtons && (
                     <StyledModalActionButtonContainer>
                         {showBackButton && !isFirstStep && (
-                            <Button
+                            <NSButton
                                 variant={
                                     BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED
                                 }
@@ -175,11 +174,11 @@ const Modal = ({
                                 iconPositon="left"
                             >
                                 Back
-                            </Button>
+                            </NSButton>
                         )}
 
                         {nextButtonText && (
-                            <Button
+                            <NSButton
                                 variant={
                                     buttonVariant ||
                                     BUTTON_VARIANTS_ENUM.SECONDARY
@@ -197,7 +196,7 @@ const Modal = ({
                                 iconPositon="right"
                             >
                                 {nextButtonText}
-                            </Button>
+                            </NSButton>
                         )}
                     </StyledModalActionButtonContainer>
                 )}

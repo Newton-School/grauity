@@ -3,8 +3,7 @@ import React from 'react';
 
 import useClickAway from '../../../hooks/useClickAway';
 import useDisableBodyScroll from '../../../hooks/useDisableBodyScroll';
-import { BUTTON_VARIANTS_ENUM } from '../Button';
-import Button from '../Button/Button';
+import { BUTTON_VARIANTS_ENUM, NSButton } from '../Button';
 import {
     StyledModalActionButtonContainer,
     StyledModalBannerImage,
@@ -92,7 +91,7 @@ const ConfirmationDialog = ({
                 </StyledModalMain>
 
                 <StyledModalActionButtonContainer>
-                    <Button
+                    <NSButton
                         variant={
                             cancelButtonVariant || BUTTON_VARIANTS_ENUM.DANGER
                         }
@@ -100,8 +99,8 @@ const ConfirmationDialog = ({
                         onClick={onCancel}
                     >
                         {cancelText}
-                    </Button>
-                    <Button
+                    </NSButton>
+                    <NSButton
                         variant={
                             confirmButtonVariant || BUTTON_VARIANTS_ENUM.SUCCESS
                         }
@@ -109,7 +108,7 @@ const ConfirmationDialog = ({
                         onClick={onConfirm}
                     >
                         {confirmText}
-                    </Button>
+                    </NSButton>
                 </StyledModalActionButtonContainer>
             </StyledModalContainer>
         </StyledModalWrapper>
