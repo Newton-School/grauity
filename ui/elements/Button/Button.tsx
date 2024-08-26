@@ -50,18 +50,18 @@ const Button = forwardRef<HTMLButtonElement, ExtendedButtonProps>(
             onClick,
             fullWidth,
             isIconButton,
-            children = '',
-            type = 'button',
+            type,
             ariaLabel,
             tooltip,
             tabIndex,
             dataTestId,
             onMouseEnter,
             onMouseLeave,
+            children,
         },
         ref
     ) => {
-        const handleClick = (e?: any) => {
+        const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
             if (disabled) {
                 e.preventDefault();
                 return;
@@ -154,7 +154,7 @@ Button.defaultProps = {
     onClick: () => {},
     fullWidth: false,
     isIconButton: false,
-    children: null,
+    children: '',
     type: 'button',
     ariaLabel: '',
     tooltip: '',

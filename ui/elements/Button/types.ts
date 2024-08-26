@@ -126,7 +126,7 @@ export interface ButtonProps {
     /**
      * Children of the component
      * */
-    children?: any;
+    children?: React.ReactNode;
 
     /**
      * Determines if the button is an icon button, it will be then fully rounded
