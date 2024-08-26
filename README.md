@@ -106,13 +106,18 @@ import { NSButton, BUTTON_VARIANTS_ENUM } from "@newtonschool/grauity";
 And use it as you wish
 
 ```js
-<NSButton
-    text="Predict My College"
-    variant={BUTTON_VARIANTS_ENUM.TERTIARY}
-    onClick={() => {
-        setShowFormErrors(true);
-    }}
-/>
+import { NSButton } from '@newtonschool/grauity';
+
+export const MyComponent = () => (
+  <NSButton
+      variant='primary'
+      onClick={() => {
+          setShowFormErrors(true);
+      }}
+  >
+    Click me!
+  </NSButton>
+)
 ```
 
 ## How to's
