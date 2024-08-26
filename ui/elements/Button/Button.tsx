@@ -42,7 +42,7 @@ const Button = forwardRef<HTMLButtonElement, ExtendedButtonProps>(
             size,
             icon,
             iconSize,
-            iconPositon,
+            iconPosition,
             className,
             disabled,
             loading,
@@ -82,7 +82,7 @@ const Button = forwardRef<HTMLButtonElement, ExtendedButtonProps>(
                 variant={variant}
                 size={size}
                 fullWidth={fullWidth}
-                iconPositon={iconPositon}
+                iconPosition={iconPosition}
                 isIconButton={isIconButton}
                 type={type}
                 aria-label={ariaLabel}
@@ -123,7 +123,7 @@ Button.propTypes = {
     size: PropTypes.oneOf(BUTTON_SIZES),
     icon: PropTypes.any,
     iconSize: PropTypes.any,
-    iconPositon: PropTypes.oneOf(BUTTON_ICON_POSITIONS),
+    iconPosition: PropTypes.oneOf(BUTTON_ICON_POSITIONS),
     className: PropTypes.string,
     disabled: PropTypes.bool,
     loading: PropTypes.bool,
@@ -146,7 +146,7 @@ Button.defaultProps = {
     size: BUTTON_SIZES_ENUM.MEDIUM,
     icon: null,
     iconSize: '24',
-    iconPositon: BUTTON_ICON_POSITIONS_ENUM.LEFT,
+    iconPosition: BUTTON_ICON_POSITIONS_ENUM.LEFT,
     className: '',
     disabled: false,
     loading: false,

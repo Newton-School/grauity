@@ -9,7 +9,7 @@ export interface ButtonComponentProps {
     size?: ButtonSizes;
     icon?: string | number;
     iconSize?: string;
-    iconPositon?: 'left' | 'right';
+    iconPosition?: 'left' | 'right';
     className?: string;
     disabled?: boolean;
     loading?: boolean;
@@ -81,7 +81,7 @@ export interface ButtonProps {
      *
      * Default: `left`
      * */
-    iconPositon?: ButtonIconPositions;
+    iconPosition?: ButtonIconPositions;
 
     /**
      * Additional classes to be added to the component.

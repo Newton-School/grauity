@@ -14,7 +14,7 @@ const defaultArgs = {
     size: 'medium',
     icon: 'sparkle',
     iconSize: 'medium',
-    iconPositon: 'left',
+    iconPosition: 'left',
     className: 'my-class',
     disabled: false,
     loading: false,

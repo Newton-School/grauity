@@ -311,8 +311,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
             cursor: progress;
         `}
 
-    ${({ iconPositon }) =>
-        iconPositon === 'right' &&
+    ${({ iconPosition }) =>
+        iconPosition === 'right' &&
         css`
             flex-direction: row-reverse;
         `}

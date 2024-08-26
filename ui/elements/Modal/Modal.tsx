@@ -171,7 +171,7 @@ const Modal = ({
                                     setCurrentStep(currentStep - 1);
                                 }}
                                 icon="arrow-right"
-                                iconPositon="left"
+                                iconPosition="left"
                             >
                                 Back
                             </NSButton>
@@ -193,7 +193,7 @@ const Modal = ({
                                     }
                                 }}
                                 icon={isLastStep ? null : 'arrow-left'}
-                                iconPositon="right"
+                                iconPosition="right"
                             >
                                 {nextButtonText}
                             </NSButton>
