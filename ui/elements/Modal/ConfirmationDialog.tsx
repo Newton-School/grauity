@@ -23,6 +23,7 @@ const ConfirmationDialog = ({
     body,
     cancelButtonVariant,
     confirmButtonVariant,
+    showCloseButton,
     hideOnClickAway,
     blurBackground,
 }: ConfirmationDialogProps) => {
@@ -51,9 +52,35 @@ const ConfirmationDialog = ({
                 ref={modalRef}
             >
                 <NSModal.Main>
+                    {banner && showCloseButton && (
+                        <NSModal.Action justifyContent="end">
+                            <NSButton
+                                onClick={onCancel}
+                                variant="secondary-outlined"
+                                icon="close"
+                                ariaLabel="Close"
+                                isIconButton
+                            />
+                        </NSModal.Action>
+                    )}
+
                     {banner && <NSModal.Banner>{banner}</NSModal.Banner>}
 
-                    {title && <NSModal.Title>{title}</NSModal.Title>}
+                    {(title || showCloseButton) && (
+                        <NSModal.Title
+                            showCloseButton={showCloseButton && !banner}
+                        >
+                            {title}
+                            {showCloseButton && !banner && (
+                                <NSButton
+                                    onClick={onCancel}
+                                    variant="secondary-outlined"
+                                    icon="close"
+                                    isIconButton
+                                />
+                            )}
+                        </NSModal.Title>
+                    )}
 
                     {description && (
                         <NSModal.Description>{description}</NSModal.Description>
@@ -108,6 +135,7 @@ ConfirmationDialog.propTypes = {
     }),
     cancelButtonVariant: PropTypes.string,
     confirmButtonVariant: PropTypes.string,
+    showCloseButton: PropTypes.bool,
     hideOnClickAway: PropTypes.bool,
     blurBackground: PropTypes.bool,
 };
@@ -125,6 +153,7 @@ ConfirmationDialog.defaultProps = {
     onConfirm: () => {},
     cancelButtonVariant: BUTTON_VARIANTS_ENUM.DANGER,
     confirmButtonVariant: BUTTON_VARIANTS_ENUM.SUCCESS,
+    showCloseButton: false,
     hideOnClickAway: false,
     blurBackground: false,
 };

@@ -3,6 +3,8 @@ import './css/index.scss';
 export { ICON_TAGS, TAG_ICONS } from './core';
 export type { GrauityInitProps } from './init';
 export { GrauityInit } from './init';
+
+// Theme
 export {
     ThemeConsumer,
     ThemeContext,
@@ -10,37 +12,36 @@ export {
 } from './themes/ThemeContext';
 
 // Icon
-export type { IconProps } from './elements';
-export { Icon } from './elements';
+export { Icon, IconProps } from './elements/Icon';
 
 // NSButton
-export type { ButtonProps } from './elements/Button';
 export {
     BUTTON_ICON_POSITIONS_ENUM,
     BUTTON_SIZES_ENUM,
     BUTTON_VARIANTS,
     BUTTON_VARIANTS_ENUM,
-    default,
+    ButtonProps,
+    default as NSButton,
 } from './elements/Button';
 
 // NSTypography
-export type { TypographyProps } from './elements';
 export {
-    Typography as NSTypography,
+    default as NSTypography,
     TYPOGRAPHY_AS_ENUM,
     TYPOGRAPHY_AS_LIST,
     TYPOGRAPHY_VARIANTS,
     TYPOGRAPHY_VARIANTS_ENUM,
-} from './elements';
+    TypographyProps,
+} from './elements/Typography';
 
 // NSTable
-export type { TableProps } from './elements';
-export { Table as NSTable } from './elements';
+export { default as NSTable, TableProps } from './elements/Table';
 
 // NSModal
-export type { ConfirmationDialogProps, ModalProps } from './elements';
 export {
+    ConfirmationDialogProps,
+    ModalProps,
     ConfirmationDialog as NSConfirmationDialog,
-    Modal as NSModal,
+    default as NSModal,
     MultiStepModal as NSMultiStepModal,
-} from './elements';
+} from './elements/Modal';
