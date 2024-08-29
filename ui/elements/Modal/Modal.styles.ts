@@ -130,10 +130,17 @@ export const StyledModalTitle = styled.div<ModalTitleProps>`
         showCloseButton &&
         css`
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             width: 100%;
             padding-left: var(--spacing-40px, 40px);
+            padding-right: var(--spacing-40px, 40px);
+            position: relative;
+
+            button {
+                position: absolute;
+                right: 0;
+            }
         `}
 `;
 

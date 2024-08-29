@@ -23,8 +23,10 @@ const Template = (args: ConfirmationDialogProps) => {
             </NSButton>
             {isOpen && (
                 <NSConfirmationDialog
+                    banner={args?.banner}
                     title={args?.title}
                     description={args?.description}
+                    body={args?.body}
                     onConfirm={() => {
                         setIsOpen(false);
                         args?.onConfirm();
@@ -37,6 +39,7 @@ const Template = (args: ConfirmationDialogProps) => {
                     cancelText={args?.cancelText}
                     confirmButtonVariant={args?.confirmButtonVariant}
                     cancelButtonVariant={args?.cancelButtonVariant}
+                    showCloseButton={args?.showCloseButton}
                     hideOnClickAway={args?.hideOnClickAway}
                     blurBackground={args?.blurBackground}
                 />
@@ -45,16 +48,20 @@ const Template = (args: ConfirmationDialogProps) => {
     );
 };
 
-const defaultArgs = {
+const defaultArgs: ConfirmationDialogProps = {
+    banner: null,
     title: 'Are you sure?',
     description: 'You will need to sign in again to use the platform.',
+    body: null,
     onConfirm: () => {},
     onCancel: () => {},
     confirmText: 'Sign out',
     cancelText: 'Stay Signed in',
     confirmButtonVariant: BUTTON_VARIANTS_ENUM.SUCCESS,
     cancelButtonVariant: BUTTON_VARIANTS_ENUM.DANGER,
+    showCloseButton: false,
     hideOnClickAway: false,
+    blurBackground: false,
 };
 
 export const ConfirmationDialog = Template.bind({});

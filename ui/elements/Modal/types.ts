@@ -258,16 +258,77 @@ export interface ModalPaginationItemProps {
 }
 
 export interface ConfirmationDialogProps {
+    /**
+     * Text for the cancel button
+     * */
     cancelText?: string;
+
+    /**
+     * Text for the confirm button
+     * */
     confirmText?: string;
+
+    /**
+     * Callback function to be called when the cancel button is clicked
+     * */
     onCancel: () => void;
+
+    /**
+     * Callback function to be called when the confirm button is clicked
+     * */
     onConfirm: () => void;
+
+    /**
+     * Banner for the modal, can be a valid React node
+     * */
     banner?: ModalContentType;
+
+    /**
+     * Title for the modal, can be a valid React node
+     * */
     title?: ModalContentType;
+
+    /**
+     * Description for the modal, can be a string
+     * */
     description?: string;
+
+    /**
+     * Body for the modal, can be a valid React node
+     * */
     body?: ModalContentType;
+
+    /**
+     * Variant for the cancel button
+     * */
     cancelButtonVariant?: ButtonVariants;
+
+    /**
+     * Variant for the confirm button
+     * */
     confirmButtonVariant?: ButtonVariants;
+
+    /**
+     * Determines if the close button should be shown
+     * Available choices: `true`, `false`
+     *
+     * Default: `false`
+     * */
+    showCloseButton?: boolean;
+
+    /**
+     * Determines if the modal should hide on click away
+     * Available choices: `true`, `false`
+     *
+     * Default: `false`
+     * */
     hideOnClickAway?: boolean;
+
+    /**
+     * Determines if the modal should blur the background
+     * Available choices: `true`, `false`
+     *
+     * Default: `false`
+     * */
     blurBackground?: boolean;
 }
