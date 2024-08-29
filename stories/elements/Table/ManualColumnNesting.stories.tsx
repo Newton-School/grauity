@@ -1,15 +1,5 @@
 import React from 'react';
-
-import {
-    NSTable,
-    NSTableBody,
-    NSTableDataCell,
-    NSTableHead,
-    NSTableHeadingCell,
-    NSTableRow,
-    NSTableWrapper,
-    TableProps,
-} from '../../../ui';
+import NSTable, { TableProps } from 'ui/elements/Table';
 
 export default {
     title: 'Elements/NSTable',
@@ -17,49 +7,49 @@ export default {
 };
 
 const Template = (args: TableProps) => (
-    <NSTableWrapper
+    <NSTable.Table
         borderAround={args?.borderAround}
         borderWithin={args?.borderWithin}
         borderHorizontal={args?.borderHorizontal}
         borderVertical={args?.borderVertical}
         striped={args?.striped}
     >
-        <NSTableHead
+        <NSTable.TableHead
             capitalizeHeaders={args?.capitalizeHeaders}
             highlightHeaders={args?.highlightHeaders}
         >
-            <NSTableRow condensed={args?.condensed}>
-                <NSTableHeadingCell rowSpan={2}>
+            <NSTable.TableRow condensed={args?.condensed}>
+                <NSTable.TableHeadingCell rowSpan={2}>
                     Column 1 (rowSpan=2)
-                </NSTableHeadingCell>
-                <NSTableHeadingCell colSpan={2}>
+                </NSTable.TableHeadingCell>
+                <NSTable.TableHeadingCell colSpan={2}>
                     Super Column (colSpan=2)
-                </NSTableHeadingCell>
-            </NSTableRow>
-            <NSTableRow condensed={args?.condensed}>
-                <NSTableHeadingCell>Column 2</NSTableHeadingCell>
-                <NSTableHeadingCell>Column 3</NSTableHeadingCell>
-            </NSTableRow>
-        </NSTableHead>
+                </NSTable.TableHeadingCell>
+            </NSTable.TableRow>
+            <NSTable.TableRow condensed={args?.condensed}>
+                <NSTable.TableHeadingCell>Column 2</NSTable.TableHeadingCell>
+                <NSTable.TableHeadingCell>Column 3</NSTable.TableHeadingCell>
+            </NSTable.TableRow>
+        </NSTable.TableHead>
 
-        <NSTableBody>
-            <NSTableRow condensed={args?.condensed}>
-                <NSTableDataCell>Row 1, Cell 1</NSTableDataCell>
-                <NSTableDataCell>Row 1, Cell 2</NSTableDataCell>
-                <NSTableDataCell>Row 1, Cell 3</NSTableDataCell>
-            </NSTableRow>
-            <NSTableRow condensed={args?.condensed}>
-                <NSTableDataCell>Row 2, Cell 1</NSTableDataCell>
-                <NSTableDataCell>Row 2, Cell 2</NSTableDataCell>
-                <NSTableDataCell>Row 2, Cell 3</NSTableDataCell>
-            </NSTableRow>
-            <NSTableRow condensed={args?.condensed}>
-                <NSTableDataCell>Row 3, Cell 1</NSTableDataCell>
-                <NSTableDataCell>Row 3, Cell 2</NSTableDataCell>
-                <NSTableDataCell>Row 3, Cell 3</NSTableDataCell>
-            </NSTableRow>
-        </NSTableBody>
-    </NSTableWrapper>
+        <NSTable.TableBody>
+            <NSTable.TableRow condensed={args?.condensed}>
+                <NSTable.TableDataCell>Row 1, Cell 1</NSTable.TableDataCell>
+                <NSTable.TableDataCell>Row 1, Cell 2</NSTable.TableDataCell>
+                <NSTable.TableDataCell>Row 1, Cell 3</NSTable.TableDataCell>
+            </NSTable.TableRow>
+            <NSTable.TableRow condensed={args?.condensed}>
+                <NSTable.TableDataCell>Row 2, Cell 1</NSTable.TableDataCell>
+                <NSTable.TableDataCell>Row 2, Cell 2</NSTable.TableDataCell>
+                <NSTable.TableDataCell>Row 2, Cell 3</NSTable.TableDataCell>
+            </NSTable.TableRow>
+            <NSTable.TableRow condensed={args?.condensed}>
+                <NSTable.TableDataCell>Row 3, Cell 1</NSTable.TableDataCell>
+                <NSTable.TableDataCell>Row 3, Cell 2</NSTable.TableDataCell>
+                <NSTable.TableDataCell>Row 3, Cell 3</NSTable.TableDataCell>
+            </NSTable.TableRow>
+        </NSTable.TableBody>
+    </NSTable.Table>
 );
 
 const args = {
@@ -72,8 +62,8 @@ const args = {
     className: '',
     loading: false,
     style: {},
-    capitalizeHeaders: false,
-    highlightHeaders: false,
+    capitalizeHeaders: true,
+    highlightHeaders: true,
 };
 
 export const ManualTableColumnNesting = Template.bind({});

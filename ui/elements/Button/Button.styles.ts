@@ -236,41 +236,49 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                 return css`
                     padding: var(--spacing-4px, 4px) var(--spacing-8px, 8px);
                     height: var(--spacing-32px, 32px);
+                    min-height: var(--spacing-32px, 32px);
                     gap: var(--spacing-4px, 4px);
                     ${isIconButton &&
                     css`
                         padding: var(--spacing-4px, 4px);
                         width: var(--spacing-32px, 32px);
+                        min-width: var(--spacing-32px, 32px);
                     `};
                 `;
             case BUTTON_SIZES_ENUM.MEDIUM:
                 return css`
                     padding: var(--spacing-8px, 8px) var(--spacing-12px, 12px);
                     height: var(--spacing-40px, 40px);
+                    min-height: var(--spacing-40px, 40px);
                     ${isIconButton &&
                     css`
                         padding: var(--spacing-8px, 8px);
                         width: var(--spacing-40px, 40px);
+                        min-width: var(--spacing-40px, 40px);
                     `};
                 `;
             case BUTTON_SIZES_ENUM.LARGE:
                 return css`
                     padding: var(--spacing-12px, 12px) var(--spacing-16px, 16px);
                     height: var(--spacing-48px, 48px);
+                    min-height: var(--spacing-48px, 48px);
                     ${isIconButton &&
                     css`
                         padding: var(--spacing-12px, 12px);
                         width: var(--spacing-48px, 48px);
+                        min-width: var(--spacing-48px, 48px);
                     `};
                 `;
             case BUTTON_SIZES_ENUM.EXTRA_LARGE:
                 return css`
                     padding: var(--spacing-16px, 16px) var(--spacing-20px, 20px);
                     height: var(--spacing-56px, 56px);
+                    min-height: var(--spacing-56px, 56px);
                     ${isIconButton &&
                     css`
                         padding: var(--spacing-16px, 16px);
                         width: var(--spacing-56px, 56px);
+                        min-width: var(--spacing-56px, 56px);
                     `};
                 `;
             default:

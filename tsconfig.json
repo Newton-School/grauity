@@ -1,6 +1,5 @@
 {
-    // Change this to match your project
-    "include": ["ui/**/*"],
+    "include": ["ui/**/*", "stories/**/*"],
     "exclude": ["node_modules", "dist"],
     "compilerOptions": {
         "allowJs": true,
@@ -18,7 +17,8 @@
         "forceConsistentCasingInFileNames": true,
         "allowSyntheticDefaultImports": true,
         "paths": {
-            "grauity": ["./ui"]
+            "ui/*": ["./ui/*"],
+            "elements/*": ["./ui/elements/*"]
         }
     }
 }

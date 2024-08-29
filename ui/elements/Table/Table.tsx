@@ -48,7 +48,7 @@ const Table = ({ rows, columns, ...props }: TableProps) => (
                     key={`table--row-${rowIndex + 1}`}
                     condensed={props.condensed}
                 >
-                    {columns?.map((column, columnIndex) => (
+                    {columns?.map((column) => (
                         <StyledTableDataCell
                             key={`table--column-${column.key}--row-${
                                 rowIndex + 1
@@ -104,13 +104,11 @@ Table.defaultProps = {
     highlightHeaders: true,
 };
 
-export {
-    StyledTable,
-    StyledTableBody,
-    StyledTableDataCell,
-    StyledTableHead,
-    StyledTableHeadingCell,
-    StyledTableRow,
-};
+Table.Table = StyledTable;
+Table.TableBody = StyledTableBody;
+Table.TableDataCell = StyledTableDataCell;
+Table.TableHead = StyledTableHead;
+Table.TableHeadingCell = StyledTableHeadingCell;
+Table.TableRow = StyledTableRow;
 
 export default Table;

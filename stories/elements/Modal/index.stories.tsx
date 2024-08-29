@@ -1,8 +1,7 @@
 import React from 'react';
+import NSModal, { ModalProps } from 'ui/elements/Modal';
 
 import withInlineContainer from '../../../.storybook/decorators/withInlineContainer';
-import { ModalProps, NSModal } from '../../../ui/elements';
-import multiStepArgs from './multiStepArgs';
 import singleStepArgs from './singleStepArgs';
 
 export default {
@@ -17,10 +16,4 @@ export const Modal = Template.bind({});
 
 Modal.args = {
     ...singleStepArgs,
-};
-
-export const MultiStepModal = Template.bind({});
-
-MultiStepModal.args = {
-    ...multiStepArgs,
 };

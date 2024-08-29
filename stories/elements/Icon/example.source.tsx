@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icon } from '@newtonschool/grauity';
+import Icon from 'ui/elements/Icon';
 
 function IconExample() {
     return <Icon name="bell"/>;

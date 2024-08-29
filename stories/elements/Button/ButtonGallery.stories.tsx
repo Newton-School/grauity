@@ -1,16 +1,7 @@
 import React from 'react';
+import NSButton, { BUTTON_VARIANTS, ButtonProps } from 'ui/elements/Button';
+import NSTable from 'ui/elements/Table';
 
-import {
-    BUTTON_VARIANTS,
-    ButtonProps,
-    NSButton,
-    NSTableBody,
-    NSTableDataCell,
-    NSTableHead,
-    NSTableHeadingCell,
-    NSTableRow,
-    NSTableWrapper,
-} from '../../../ui';
 import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
@@ -19,30 +10,32 @@ export default {
 };
 
 const Template = (args: ButtonProps) => (
-    <NSTableWrapper borderAround={false} borderVertical={false}>
-        <NSTableHead highlightHeaders={false}>
-            <NSTableRow>
-                <NSTableHeadingCell align="left">
+    <NSTable.Table borderAround={false} borderVertical={false}>
+        <NSTable.TableHead highlightHeaders={false}>
+            <NSTable.TableRow>
+                <NSTable.TableHeadingCell align="left">
                     NSButton variant
-                </NSTableHeadingCell>
-                <NSTableHeadingCell align="left">NSButton</NSTableHeadingCell>
-                <NSTableHeadingCell align="left">
+                </NSTable.TableHeadingCell>
+                <NSTable.TableHeadingCell align="left">
+                    NSButton
+                </NSTable.TableHeadingCell>
+                <NSTable.TableHeadingCell align="left">
                     NSButton with Icon only
-                </NSTableHeadingCell>
-            </NSTableRow>
-        </NSTableHead>
-        <NSTableBody>
+                </NSTable.TableHeadingCell>
+            </NSTable.TableRow>
+        </NSTable.TableHead>
+        <NSTable.TableBody>
             {BUTTON_VARIANTS.map((variant) => (
-                <NSTableRow>
-                    <NSTableDataCell>
+                <NSTable.TableRow>
+                    <NSTable.TableDataCell>
                         <TokenBlock copy>{variant}</TokenBlock>
-                    </NSTableDataCell>
-                    <NSTableDataCell>
+                    </NSTable.TableDataCell>
+                    <NSTable.TableDataCell>
                         <NSButton {...args} variant={variant} key={variant}>
                             {args?.children}
                         </NSButton>
-                    </NSTableDataCell>
-                    <NSTableDataCell>
+                    </NSTable.TableDataCell>
+                    <NSTable.TableDataCell>
                         <NSButton
                             variant={variant}
                             key={variant}
@@ -52,11 +45,11 @@ const Template = (args: ButtonProps) => (
                             loading={args?.loading}
                             isIconButton
                         />
-                    </NSTableDataCell>
-                </NSTableRow>
+                    </NSTable.TableDataCell>
+                </NSTable.TableRow>
             ))}
-        </NSTableBody>
-    </NSTableWrapper>
+        </NSTable.TableBody>
+    </NSTable.Table>
 );
 
 const defaultArgs = {

@@ -1,51 +1,30 @@
 export type { IconProps } from './Icon';
 export { Icon } from './Icon';
 
-// NSTypography
+// Typography
 export type { TypographyProps } from './Typography';
 export {
+    Typography,
     TYPOGRAPHY_AS_ENUM,
     TYPOGRAPHY_AS_LIST,
     TYPOGRAPHY_VARIANTS,
     TYPOGRAPHY_VARIANTS_ENUM,
 } from './Typography';
-export { NSTypography } from './Typography';
 
-// NSButton
+// Button
 export type { ButtonProps } from './Button';
-export { BUTTON_VARIANTS_ENUM } from './Button';
-export { BUTTON_VARIANTS } from './Button';
-export { BUTTON_SIZES_ENUM } from './Button';
-export { BUTTON_ICON_POSITIONS_ENUM } from './Button';
-export { NSButton } from './Button';
+export {
+    Button,
+    BUTTON_ICON_POSITIONS_ENUM,
+    BUTTON_SIZES_ENUM,
+    BUTTON_VARIANTS,
+    BUTTON_VARIANTS_ENUM,
+} from './Button';
 
-// NSTable
+// Table
 export type { TableProps } from './Table';
-export {
-    NSTableBody,
-    NSTableDataCell,
-    NSTableHead,
-    NSTableHeadingCell,
-    NSTableRow,
-    NSTableWrapper,
-} from './Table';
-export { NSTable } from './Table';
+export { Table } from './Table';
 
-// NSModal
+// Modal
 export type { ConfirmationDialogProps, ModalProps } from './Modal';
-export {
-    NSModalActionButtonContainer,
-    NSModalBannerImage,
-    NSModalBannerImageWrapper,
-    NSModalBody,
-    NSModalContainer,
-    NSModalDescription,
-    NSModalMain,
-    NSModalPagination,
-    NSModalPaginationItem,
-    NSModalTitle,
-    NSModalTitleText,
-    NSModalWrapper,
-} from './Modal';
-export { NSModal } from './Modal';
-export { NSConfirmationDialog } from './Modal';
+export { ConfirmationDialog, Modal, MultiStepModal } from './Modal';

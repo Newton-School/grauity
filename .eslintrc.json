@@ -4,7 +4,11 @@
     "settings": {
         "import/resolver": {
             "node": {
-                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+                "extensions": [".js", ".jsx"]
+            },
+            "typescript": {
+                "alwaysTryTypes": true,
+                "paths": "./tsconfig.json"
             }
         }
     },
@@ -26,7 +30,7 @@
         "react/jsx-props-no-spreading": "off",
         "quotes": ["warn", "single"],
         "semi": ["error", "always"],
-        "no-console": "off",
+        "no-console": "error",
         "no-underscore-dangle": "off",
         "simple-import-sort/exports": "error",
         "simple-import-sort/imports": "error",

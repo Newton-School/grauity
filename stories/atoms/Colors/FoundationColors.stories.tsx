@@ -1,6 +1,6 @@
 import React from 'react';
+import NSTable from 'ui/elements/Table';
 
-import { NSTable } from '../../../ui'; // Adjust the import path as necessary
 import { constantGlobalStyle } from '../../../ui/themes/GlobalStyle';
 import { ColorRenderer } from '../../helper-components/ColorRenderer';
 import { extractTokensFromGlobalStyles } from '../../utils';

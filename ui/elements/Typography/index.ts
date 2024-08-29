@@ -4,5 +4,6 @@ export {
     TYPOGRAPHY_VARIANTS,
     TYPOGRAPHY_VARIANTS_ENUM,
 } from './constants';
+export { TYPOGRAPHY_VARIANT_AS_MAPPING } from './constants';
 export type { TypographyProps } from './types';
-export { default as NSTypography } from './Typography';
+export { default } from './Typography';

@@ -16,16 +16,6 @@ import {
 } from './constants';
 import { ButtonProps } from './types';
 
-interface ExtendedButtonProps extends ButtonProps {
-    type?: 'button' | 'submit' | 'reset';
-    ariaLabel?: string;
-    tooltip?: string;
-    tabIndex?: number;
-    dataTestId?: string;
-    onMouseEnter?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    onMouseLeave?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
-
 /**
  * `gra.UI.ty Button`: This button is cute as a button.
  * @component
@@ -35,7 +25,7 @@ interface ExtendedButtonProps extends ButtonProps {
  * </NSButton>
  * @returns The Button component.
  */
-const Button = forwardRef<HTMLButtonElement, ExtendedButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     (
         {
             variant,
@@ -58,6 +48,7 @@ const Button = forwardRef<HTMLButtonElement, ExtendedButtonProps>(
             onMouseEnter,
             onMouseLeave,
             children,
+            buttonProps,
         },
         ref
     ) => {
@@ -91,6 +82,7 @@ const Button = forwardRef<HTMLButtonElement, ExtendedButtonProps>(
                 data-testid={dataTestId}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
+                {...buttonProps}
             >
                 {icon && !loading && (
                     <Icon name={icon} color="inherit" size={iconSize || '24'} />

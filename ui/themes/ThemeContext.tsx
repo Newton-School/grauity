@@ -18,12 +18,14 @@ const ThemeContext = createContext(null);
 
 interface ThemeWrapperProps {
     children: React.ReactNode;
-    defaultTheme: ThemeType;
+    defaultTheme?: ThemeType;
+    usePreferredTheme?: boolean;
 }
 
 const ThemeWrapper = ({
     children,
     defaultTheme = THEME.LIGHT,
+    usePreferredTheme = false,
 }: ThemeWrapperProps) => {
     const [theme, setTheme] = useState({
         themeName: defaultTheme,
@@ -78,6 +80,32 @@ const ThemeWrapper = ({
         }
     }, [defaultTheme]);
 
+    // Check if the user has dark mode enabled system-wide
+    useEffect(() => {
+        let mq: MediaQueryList;
+        if (usePreferredTheme) {
+            mq = window.matchMedia('(prefers-color-scheme: dark)');
+            const prefersDarkColorScheme = mq.matches;
+            if (prefersDarkColorScheme) {
+                setTheme({ themeName: THEME.DARK });
+            }
+
+            mq.addEventListener('change', (evt) =>
+                setTheme({ themeName: evt.matches ? THEME.DARK : THEME.LIGHT })
+            );
+        }
+
+        return () => {
+            if (usePreferredTheme) {
+                mq.removeEventListener('change', (evt) =>
+                    setTheme({
+                        themeName: evt.matches ? THEME.DARK : THEME.LIGHT,
+                    })
+                );
+            }
+        };
+    }, []);
+
     return (
         <ThemeContext.Provider value={isThemeEnabled ? value : defaultValue}>
             <ThemeProvider
@@ -98,6 +126,13 @@ const ThemeWrapper = ({
 
 ThemeWrapper.propTypes = {
     children: PropTypes.node.isRequired,
+    defaultTheme: PropTypes.oneOf([THEME.LIGHT, THEME.DARK]),
+    usePreferredTheme: PropTypes.bool,
+};
+
+ThemeWrapper.defaultProps = {
+    defaultTheme: THEME.LIGHT,
+    usePreferredTheme: false,
 };
 
 const ThemeConsumer = ThemeContext.Consumer;

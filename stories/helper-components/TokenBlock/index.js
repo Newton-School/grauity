@@ -1,8 +1,7 @@
-/* eslint-disable no-undef */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import NSButton from 'ui/elements/Button';
 
-import { NSButton } from '../../../ui';
 import { StyledHideOnPrintWrapper, StyledTokenBlock } from './index.styles';
 
 const TokenBlock = ({ copy, children }) => {
@@ -19,9 +18,11 @@ const TokenBlock = ({ copy, children }) => {
                     }, 3000);
                 })
                 .catch((err) => {
+                    // eslint-disable-next-line no-console
                     console.error('Failed to copy token: ', err);
                 });
         } else {
+            // eslint-disable-next-line no-console
             console.error('Clipboard API not supported');
         }
     };

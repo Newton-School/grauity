@@ -1,4 +1,4 @@
-export { default as NSButton } from './Button';
+export { default } from './Button';
 export { BUTTON_VARIANTS_ENUM } from './constants';
 export { BUTTON_SIZES_ENUM } from './constants';
 export { BUTTON_VARIANTS } from './constants';

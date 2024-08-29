@@ -1,19 +1,13 @@
 import React from 'react';
-
-import {
-    NSTableBody,
-    NSTableDataCell,
-    NSTableHead,
-    NSTableHeadingCell,
-    NSTableRow,
-    NSTableWrapper,
-    NSTypography,
+import NSTable from 'ui/elements/Table';
+import NSTypography, {
     TYPOGRAPHY_AS_ENUM,
+    TYPOGRAPHY_VARIANT_AS_MAPPING,
     TYPOGRAPHY_VARIANTS,
     TYPOGRAPHY_VARIANTS_ENUM,
     TypographyProps,
-} from '../../../ui';
-import { TYPOGRAPHY_VARIANT_AS_MAPPING } from '../../../ui/elements/Typography/constants';
+} from 'ui/elements/Typography';
+
 import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
@@ -22,26 +16,28 @@ export default {
 };
 
 const Template = (args: TypographyProps) => (
-    <NSTableWrapper borderAround={false} borderVertical={false}>
-        <NSTableHead highlightHeaders={false}>
-            <NSTableHeadingCell align="left" width="400px">
+    <NSTable.Table borderAround={false} borderVertical={false}>
+        <NSTable.TableHead highlightHeaders={false}>
+            <NSTable.TableHeadingCell align="left" width="400px">
                 Variant
-            </NSTableHeadingCell>
-            <NSTableHeadingCell align="left">As</NSTableHeadingCell>
-            <NSTableHeadingCell align="left">NSTypography</NSTableHeadingCell>
-        </NSTableHead>
-        <NSTableBody>
+            </NSTable.TableHeadingCell>
+            <NSTable.TableHeadingCell align="left">As</NSTable.TableHeadingCell>
+            <NSTable.TableHeadingCell align="left">
+                NSTypography
+            </NSTable.TableHeadingCell>
+        </NSTable.TableHead>
+        <NSTable.TableBody>
             {TYPOGRAPHY_VARIANTS.map((variant) => (
-                <NSTableRow>
-                    <NSTableDataCell>
+                <NSTable.TableRow>
+                    <NSTable.TableDataCell>
                         <TokenBlock copy>{variant}</TokenBlock>
-                    </NSTableDataCell>
-                    <NSTableDataCell>
+                    </NSTable.TableDataCell>
+                    <NSTable.TableDataCell>
                         <TokenBlock>
                             {TYPOGRAPHY_VARIANT_AS_MAPPING[variant]}
                         </TokenBlock>
-                    </NSTableDataCell>
-                    <NSTableDataCell>
+                    </NSTable.TableDataCell>
+                    <NSTable.TableDataCell>
                         <NSTypography
                             variant={variant}
                             as={TYPOGRAPHY_AS_ENUM.AUTO}
@@ -49,11 +45,11 @@ const Template = (args: TypographyProps) => (
                         >
                             {args?.children}
                         </NSTypography>
-                    </NSTableDataCell>
-                </NSTableRow>
+                    </NSTable.TableDataCell>
+                </NSTable.TableRow>
             ))}
-        </NSTableBody>
-    </NSTableWrapper>
+        </NSTable.TableBody>
+    </NSTable.Table>
 );
 
 const defaultArgs = {

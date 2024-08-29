@@ -1,7 +1,7 @@
 import { useGlobals } from '@storybook/addons';
 import React from 'react';
+import NSTable from 'ui/elements/Table';
 
-import { NSTable } from '../../../ui'; // Adjust the import path as necessary
 import { ColorRenderer } from '../../helper-components/ColorRenderer';
 import { extractTokensFromTheme } from '../../utils';
 

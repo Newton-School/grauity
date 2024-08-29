@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-
-import {
-    BUTTON_VARIANTS_ENUM,
+import NSButton, { BUTTON_VARIANTS_ENUM } from 'ui/elements/Button';
+import NSConfirmationDialog, {
     ConfirmationDialogProps,
-    NSButton,
-    NSConfirmationDialog,
-} from '../../../ui';
+} from 'ui/elements/Modal/ConfirmationDialog';
 
 export default {
     title: 'Elements/NSModal',
@@ -40,7 +37,7 @@ const Template = (args: ConfirmationDialogProps) => {
                     cancelText={args?.cancelText}
                     confirmButtonVariant={args?.confirmButtonVariant}
                     cancelButtonVariant={args?.cancelButtonVariant}
-                    shouldHideOnClickAway={args?.shouldHideOnClickAway}
+                    hideOnClickAway={args?.hideOnClickAway}
                     blurBackground={args?.blurBackground}
                 />
             )}
@@ -49,7 +46,7 @@ const Template = (args: ConfirmationDialogProps) => {
 };
 
 const defaultArgs = {
-    title: { text: 'Are you sure?' },
+    title: 'Are you sure?',
     description: 'You will need to sign in again to use the platform.',
     onConfirm: () => {},
     onCancel: () => {},
@@ -57,7 +54,7 @@ const defaultArgs = {
     cancelText: 'Stay Signed in',
     confirmButtonVariant: BUTTON_VARIANTS_ENUM.SUCCESS,
     cancelButtonVariant: BUTTON_VARIANTS_ENUM.DANGER,
-    shouldHideOnClickAway: false,
+    hideOnClickAway: false,
 };
 
 export const ConfirmationDialog = Template.bind({});

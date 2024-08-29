@@ -1,6 +1,6 @@
+/* eslint-disable no-console */
 import React from 'react';
-
-import { ButtonProps, NSButton } from '../../../ui';
+import NSButton, { ButtonProps } from 'ui/elements/Button';
 
 export default {
     title: 'Elements/NSButton',

@@ -1,21 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { useKeyboardEvent } from '../../../hooks';
 import useClickAway from '../../../hooks/useClickAway';
 import useDisableBodyScroll from '../../../hooks/useDisableBodyScroll';
-import { BUTTON_VARIANTS_ENUM, NSButton } from '../Button';
-import {
-    StyledModalActionButtonContainer,
-    StyledModalBannerImage,
-    StyledModalBannerImageWrapper,
-    StyledModalBody,
-    StyledModalContainer,
-    StyledModalDescription,
-    StyledModalMain,
-    StyledModalTitle,
-    StyledModalTitleText,
-    StyledModalWrapper,
-} from './Modal.styles';
+import NSButton, { BUTTON_VARIANTS_ENUM } from '../Button';
+import NSModal from './Modal';
 import { ConfirmationDialogProps } from './types';
 
 /**
@@ -33,64 +23,46 @@ const ConfirmationDialog = ({
     body,
     cancelButtonVariant,
     confirmButtonVariant,
-    shouldHideOnClickAway,
+    hideOnClickAway,
     blurBackground,
 }: ConfirmationDialogProps) => {
-    const hasBanner = !!banner?.render || !!banner?.image;
-    const hasBody = !!body?.text || !!body?.image || !!body?.render;
-
     const modalRef = React.useRef(null);
 
     useDisableBodyScroll();
 
+    useKeyboardEvent(() => {
+        if (hideOnClickAway) {
+            onCancel();
+        }
+    }, ['Escape']);
+
     useClickAway(modalRef, () => {
-        if (shouldHideOnClickAway) {
+        if (hideOnClickAway) {
             onCancel();
         }
     });
 
     return (
-        <StyledModalWrapper blurBackground={blurBackground}>
-            <StyledModalContainer
+        <NSModal.Wrapper blurBackground={blurBackground}>
+            <NSModal.Modal
                 onClick={(e: Event) => e.stopPropagation()}
                 width="auto"
                 height="auto"
                 ref={modalRef}
             >
-                <StyledModalMain>
-                    {hasBanner &&
-                        (banner.render ? (
-                            banner.render()
-                        ) : (
-                            <StyledModalBannerImageWrapper>
-                                <StyledModalBannerImage src={banner.image} />
-                            </StyledModalBannerImageWrapper>
-                        ))}
+                <NSModal.Main>
+                    {banner && <NSModal.Banner>{banner}</NSModal.Banner>}
 
-                    <StyledModalTitle marginTop={hasBanner}>
-                        <StyledModalTitleText>
-                            {title?.text}
-                        </StyledModalTitleText>
-                    </StyledModalTitle>
+                    {title && <NSModal.Title>{title}</NSModal.Title>}
 
-                    <StyledModalDescription>
-                        {description}
-                    </StyledModalDescription>
-
-                    {hasBody && (
-                        <StyledModalBody width={body.width || ''}>
-                            {body.render && body.render()}
-                            {!body.render && body.image && (
-                                <StyledModalBannerImageWrapper>
-                                    <StyledModalBannerImage src={body.image} />
-                                </StyledModalBannerImageWrapper>
-                            )}
-                            {!body.render && !body.image && body.text}
-                        </StyledModalBody>
+                    {description && (
+                        <NSModal.Description>{description}</NSModal.Description>
                     )}
-                </StyledModalMain>
 
-                <StyledModalActionButtonContainer>
+                    {body && <NSModal.Body>{body}</NSModal.Body>}
+                </NSModal.Main>
+
+                <NSModal.Action>
                     <NSButton
                         variant={
                             cancelButtonVariant || BUTTON_VARIANTS_ENUM.DANGER
@@ -109,9 +81,9 @@ const ConfirmationDialog = ({
                     >
                         {confirmText}
                     </NSButton>
-                </StyledModalActionButtonContainer>
-            </StyledModalContainer>
-        </StyledModalWrapper>
+                </NSModal.Action>
+            </NSModal.Modal>
+        </NSModal.Wrapper>
     );
 };
 
@@ -136,7 +108,7 @@ ConfirmationDialog.propTypes = {
     }),
     cancelButtonVariant: PropTypes.string,
     confirmButtonVariant: PropTypes.string,
-    shouldHideOnClickAway: PropTypes.bool,
+    hideOnClickAway: PropTypes.bool,
     blurBackground: PropTypes.bool,
 };
 
@@ -153,8 +125,10 @@ ConfirmationDialog.defaultProps = {
     onConfirm: () => {},
     cancelButtonVariant: BUTTON_VARIANTS_ENUM.DANGER,
     confirmButtonVariant: BUTTON_VARIANTS_ENUM.SUCCESS,
-    shouldHideOnClickAway: false,
+    hideOnClickAway: false,
     blurBackground: false,
 };
+
+export { ConfirmationDialogProps };
 
 export default ConfirmationDialog;

@@ -1,6 +1,6 @@
 import React from 'react';
-
-import { NSButton, TableProps } from '../../../ui';
+import NSButton from 'ui/elements/Button';
+import { TableProps } from 'ui/elements/Table';
 
 const simpleArgs: TableProps = {
     columns: [

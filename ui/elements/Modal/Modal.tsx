@@ -1,88 +1,65 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import NSButton from 'ui/elements/Button';
 
-import useClickAway from '../../../hooks/useClickAway';
-import useDisableBodyScroll from '../../../hooks/useDisableBodyScroll';
-import { BUTTON_VARIANTS_ENUM, NSButton } from '../Button';
 import {
-    StyledModalActionButtonContainer,
-    StyledModalBannerImage,
-    StyledModalBannerImageWrapper,
+    useClickAway,
+    useDisableBodyScroll,
+    useKeyboardEvent,
+} from '../../../hooks';
+import {
+    StyledModal,
+    StyledModalAction,
+    StyledModalBanner,
     StyledModalBody,
-    StyledModalContainer,
     StyledModalDescription,
+    StyledModalDivider,
     StyledModalMain,
-    StyledModalPagination,
-    StyledModalPaginationItem,
     StyledModalTitle,
-    StyledModalTitleText,
     StyledModalWrapper,
 } from './Modal.styles';
 import { ModalProps } from './types';
 
 /**
- * `gra.UI.elements Modal`: A modal is a dialog box or popup, displayed over the current page.
+ * `Modal`: A modal displays content that temporarily blocks interactions with the main view of a site.
  * @component
  */
 const Modal = ({
-    modalSteps,
-    showModalStepsPagination,
-    shouldHideOnClickAway,
-    blurBackground,
-    onHide,
-    onFinalStep,
-    mobileBottomFullWidth,
-    onStepChange,
-    showModalButtons,
-    showHeader,
-    modalPadding,
-    modalBodyMargin,
+    banner,
+    title,
+    description,
+    body,
+    action,
     width,
     height,
     minHeight,
+    onHide,
+    mobileBottomFullWidth,
+    modalPadding,
+    modalBodyMargin,
     showCloseButton,
+    hideOnClickAway,
+    blurBackground,
 }: ModalProps) => {
-    const [currentStep, setCurrentStep] = useState(0);
-
-    const {
-        banner,
-        title,
-        description,
-        body,
-        nextButtonText,
-        showBackButton,
-        buttonVariant,
-    } = modalSteps[currentStep] || {};
-
-    const isLastStep = currentStep === modalSteps.length - 1;
-    const isFirstStep = currentStep === 0;
-
-    const hasBanner = !!banner?.render || !!banner?.image;
-    const hasBody = !!body?.text || !!body?.image || !!body?.render;
-
     const modalRef = React.useRef(null);
 
     useDisableBodyScroll();
 
+    useKeyboardEvent(() => {
+        if (hideOnClickAway) {
+            onHide();
+        }
+    }, ['Escape']);
+
     useClickAway(modalRef, () => {
-        if (shouldHideOnClickAway) {
+        if (hideOnClickAway) {
             onHide();
         }
     });
 
-    useEffect(() => {
-        if (onStepChange && typeof onStepChange === 'function') {
-            onStepChange();
-        }
-    }, [currentStep]);
-
-    if (modalSteps.length === 0) {
-        return null;
-    }
-
     return (
         <StyledModalWrapper blurBackground={blurBackground}>
-            <StyledModalContainer
+            <StyledModal
                 onClick={(e: Event) => e.stopPropagation()}
                 ref={modalRef}
                 width={width}
@@ -92,29 +69,30 @@ const Modal = ({
                 modalPadding={modalPadding}
             >
                 <StyledModalMain>
-                    {hasBanner &&
-                        (banner.render ? (
-                            banner.render()
-                        ) : (
-                            <StyledModalBannerImageWrapper>
-                                <StyledModalBannerImage src={banner.image} />
-                            </StyledModalBannerImageWrapper>
-                        ))}
+                    {/* We show close button differently if banner is present */}
+                    {banner && showCloseButton && (
+                        <StyledModalAction justifyContent="end">
+                            <NSButton
+                                onClick={onHide}
+                                variant="secondary-outlined"
+                                icon="close"
+                                ariaLabel="Close"
+                                isIconButton
+                            />
+                        </StyledModalAction>
+                    )}
 
-                    {showHeader && title?.text && (
+                    {banner && <StyledModalBanner>{banner}</StyledModalBanner>}
+
+                    {(title || showCloseButton) && (
                         <StyledModalTitle
-                            marginTop={hasBanner}
-                            showCloseButton={showCloseButton && !hasBanner}
+                            showCloseButton={showCloseButton && !banner}
                         >
-                            <StyledModalTitleText>
-                                {title?.text}
-                            </StyledModalTitleText>
-                            {showCloseButton && !hasBanner && (
+                            {title}
+                            {showCloseButton && !banner && (
                                 <NSButton
                                     onClick={onHide}
-                                    variant={
-                                        BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED
-                                    }
+                                    variant="secondary-outlined"
                                     icon="close"
                                     isIconButton
                                 />
@@ -128,94 +106,29 @@ const Modal = ({
                         </StyledModalDescription>
                     )}
 
-                    {hasBody && (
-                        <StyledModalBody
-                            width={body.width || ''}
-                            modalBodyMargin={
-                                !modalBodyMargin && modalSteps.length <= 1
-                                    ? '20px 0 12px 0'
-                                    : modalBodyMargin
-                            }
-                        >
-                            {body.render && body.render()}
-                            {!body.render && body.image && (
-                                <StyledModalBannerImageWrapper>
-                                    <StyledModalBannerImage src={body.image} />
-                                </StyledModalBannerImageWrapper>
-                            )}
-                            {!body.render && !body.image && body.text}
+                    {body && (
+                        <StyledModalBody modalBodyMargin={modalBodyMargin}>
+                            {body}
                         </StyledModalBody>
                     )}
                 </StyledModalMain>
 
-                {showModalStepsPagination && modalSteps.length > 1 && (
-                    <StyledModalPagination>
-                        {modalSteps.map((item, index) => (
-                            <StyledModalPaginationItem
-                                key={item.title.text}
-                                active={index === currentStep}
-                                onClick={() => setCurrentStep(index)}
-                            />
-                        ))}
-                    </StyledModalPagination>
-                )}
-
-                {showModalButtons && (
-                    <StyledModalActionButtonContainer>
-                        {showBackButton && !isFirstStep && (
-                            <NSButton
-                                variant={
-                                    BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED
-                                }
-                                onClick={() => {
-                                    setCurrentStep(currentStep - 1);
-                                }}
-                                icon="arrow-right"
-                                iconPosition="left"
-                            >
-                                Back
-                            </NSButton>
-                        )}
-
-                        {nextButtonText && (
-                            <NSButton
-                                variant={
-                                    buttonVariant ||
-                                    BUTTON_VARIANTS_ENUM.SECONDARY
-                                }
-                                fullWidth
-                                onClick={() => {
-                                    if (isLastStep) {
-                                        onFinalStep();
-                                        onHide();
-                                    } else {
-                                        setCurrentStep(currentStep + 1);
-                                    }
-                                }}
-                                icon={isLastStep ? null : 'arrow-left'}
-                                iconPosition="right"
-                            >
-                                {nextButtonText}
-                            </NSButton>
-                        )}
-                    </StyledModalActionButtonContainer>
-                )}
-            </StyledModalContainer>
+                {action && <StyledModalAction>{action}</StyledModalAction>}
+            </StyledModal>
         </StyledModalWrapper>
     );
 };
 
 Modal.propTypes = {
-    modalSteps: PropTypes.array,
-    showModalStepsPagination: PropTypes.bool,
-    shouldHideOnClickAway: PropTypes.bool,
+    banner: PropTypes.string || PropTypes.node,
+    title: PropTypes.string || PropTypes.node,
+    description: PropTypes.string,
+    body: PropTypes.string || PropTypes.node,
+    action: PropTypes.string || PropTypes.node,
+    hideOnClickAway: PropTypes.bool,
     blurBackground: PropTypes.bool,
     onHide: PropTypes.func,
-    onFinalStep: PropTypes.func,
     mobileBottomFullWidth: PropTypes.bool,
-    onStepChange: PropTypes.func,
-    showModalButtons: PropTypes.bool,
-    showHeader: PropTypes.bool,
     modalPadding: PropTypes.string,
     modalBodyMargin: PropTypes.string,
     width: PropTypes.string,
@@ -225,37 +138,31 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
-    modalSteps: [],
-    showModalStepsPagination: true,
-    shouldHideOnClickAway: false,
+    banner: null,
+    title: null,
+    description: null,
+    body: null,
+    action: null,
+    hideOnClickAway: false,
     blurBackground: false,
     onHide: () => {},
-    onFinalStep: () => {},
     mobileBottomFullWidth: false,
-    onStepChange: () => {},
-    showModalButtons: true,
-    showHeader: true,
     modalPadding: '20px',
-    modalBodyMargin: '12px 0 0 0',
+    modalBodyMargin: null,
     width: null,
     height: null,
     minHeight: null,
     showCloseButton: false,
 };
 
-export {
-    StyledModalActionButtonContainer,
-    StyledModalBannerImage,
-    StyledModalBannerImageWrapper,
-    StyledModalBody,
-    StyledModalContainer,
-    StyledModalDescription,
-    StyledModalMain,
-    StyledModalPagination,
-    StyledModalPaginationItem,
-    StyledModalTitle,
-    StyledModalTitleText,
-    StyledModalWrapper,
-};
+Modal.Wrapper = StyledModalWrapper;
+Modal.Modal = StyledModal;
+Modal.Main = StyledModalMain;
+Modal.Banner = StyledModalBanner;
+Modal.Title = StyledModalTitle;
+Modal.Description = StyledModalDescription;
+Modal.Body = StyledModalBody;
+Modal.Action = StyledModalAction;
+Modal.Divider = StyledModalDivider;
 
 export default Modal;

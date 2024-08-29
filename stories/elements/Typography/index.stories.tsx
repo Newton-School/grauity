@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { NSTypography, TypographyProps } from '../../../ui';
+import NSTypography, { TypographyProps } from 'ui/elements/Typography';
 
 export default {
     title: 'Elements/NSTypography',

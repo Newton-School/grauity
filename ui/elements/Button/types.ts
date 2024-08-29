@@ -4,7 +4,8 @@ import { grauityIconName, grauityIconSizeName } from '../../core';
 
 export type ButtonTypeAttribute = 'button' | 'submit' | 'reset';
 
-export interface ButtonComponentProps {
+export interface ButtonComponentProps
+    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: ButtonVariants;
     size?: ButtonSizes;
     icon?: string | number;
@@ -132,4 +133,46 @@ export interface ButtonProps {
      * Determines if the button is an icon button, it will be then fully rounded
      * */
     isIconButton?: boolean;
+
+    /**
+     * Type of the button
+     *
+     * Default: `button`
+     * */
+    type?: 'button' | 'submit' | 'reset';
+
+    /**
+     * Aria label for the button
+     * */
+    ariaLabel?: string;
+
+    /**
+     * Tooltip to be displayed on hover, uses the `title` attribute
+     * */
+    tooltip?: string;
+
+    /**
+     * Tab index of the button
+     * */
+    tabIndex?: number;
+
+    /**
+     * Data test id for testing purposes
+     * */
+    dataTestId?: string;
+
+    /**
+     * Function to be called on mouse enter
+     * */
+    onMouseEnter?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+
+    /**
+     * Function to be called on mouse leave
+     * */
+    onMouseLeave?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+
+    /**
+     * Additional props to be passed to the button element
+     * */
+    buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
 }
