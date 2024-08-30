@@ -28,6 +28,14 @@ interface CategoryToken {
     light: string;
 }
 
+interface ThemeConfig {
+    [key: string]: {
+        [subcategory: string]: {
+            [token: string]: string;
+        } | string;
+    };
+}
+
 /**
  * Dynamically creates token mappings for a given category and subcategories.
  * Uses the light and dark theme configurations to create the tokens.
@@ -47,41 +55,31 @@ const createCategoryTokens = ({
     category: string;
     subcategories: string[];
     config?: {
-        light: typeof LIGHT_THEME_CONFIG;
-        dark: typeof DARK_THEME_CONFIG;
+        light: ThemeConfig;
+        dark: ThemeConfig;
     };
 }): CategoryToken[] => {
-    const lightThemeCategoryTokens = config.light[category] as Record<
-        string,
-        Record<string, string>
-    >;
-    const darkThemeCategoryTokens = config.dark[category] as Record<
-        string,
-        Record<string, string>
-    >;
+    const lightThemeCategoryTokens = config.light[category];
+    const darkThemeCategoryTokens = config.dark[category];
 
     const tokens: CategoryToken[] = [];
 
-    const addTokens = (
-        tokenSubcategory: keyof typeof lightThemeCategoryTokens
-    ) => {
-        const lightThemeSubcategoryTokens = lightThemeCategoryTokens[
-            tokenSubcategory as keyof typeof lightThemeCategoryTokens
-        ] as Record<string, string>;
-        const darkThemeSubcategoryTokens = darkThemeCategoryTokens[
-            tokenSubcategory as keyof typeof lightThemeCategoryTokens
-        ] as Record<string, string>;
+    const addTokens = (tokenSubcategory: string) => {
+        const lightThemeSubcategoryTokens =
+            lightThemeCategoryTokens[tokenSubcategory];
+        const darkThemeSubcategoryTokens =
+            darkThemeCategoryTokens[tokenSubcategory];
+
+        if (typeof lightThemeSubcategoryTokens === 'string' || typeof darkThemeSubcategoryTokens === 'string') {
+            return;
+        }
 
         Object.keys(lightThemeSubcategoryTokens).forEach((tokenSubCategory) => {
             if (lightThemeSubcategoryTokens.hasOwnProperty(tokenSubCategory)) {
                 tokens.push({
                     token: `--${getKebabCase(tokenSubCategory)}`,
-                    dark: darkThemeSubcategoryTokens[
-                        tokenSubCategory as keyof typeof darkThemeSubcategoryTokens
-                    ],
-                    light: lightThemeSubcategoryTokens[
-                        tokenSubCategory as keyof typeof lightThemeSubcategoryTokens
-                    ],
+                    dark: darkThemeSubcategoryTokens[tokenSubCategory],
+                    light: lightThemeSubcategoryTokens[tokenSubCategory],
                 });
             }
         });
@@ -96,7 +94,7 @@ const createCategoryTokens = ({
     } else {
         // add all subcategory tokens from that category if no subcategories are specified
         Object.keys(lightThemeCategoryTokens).forEach((subCategory) => {
-            addTokens(subCategory as keyof typeof lightThemeCategoryTokens);
+            addTokens(subCategory);
         });
     }
 
@@ -135,7 +133,9 @@ export const extractTokensFromTheme = ({
             render: () => <TokenBlock copy>{token.token}</TokenBlock>,
         },
         value: {
-            render: () => <TokenBlock>{token[theme]} </TokenBlock>,
+            render: () => (
+                <TokenBlock>{token[theme as keyof CategoryToken]} </TokenBlock>
+            ),
         },
         [category]: {
             render: () => render(token),
