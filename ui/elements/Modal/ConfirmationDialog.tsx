@@ -31,11 +31,14 @@ const ConfirmationDialog = ({
 
     useDisableBodyScroll();
 
-    useKeyboardEvent(() => {
-        if (hideOnClickAway) {
-            onCancel();
-        }
-    }, ['Escape']);
+    useKeyboardEvent(
+        () => {
+            if (hideOnClickAway) {
+                onCancel();
+            }
+        },
+        ['Escape'],
+    );
 
     useClickAway(modalRef, () => {
         if (hideOnClickAway) {

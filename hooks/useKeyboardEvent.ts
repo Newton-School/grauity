@@ -1,66 +1,60 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const DEFAULT_EVENT_TYPES: string[] = ['keydown'];
+const DEFAULT_EVENT_TYPES: string[] = ['keydown', 'keyup'];
 
 /**
  * Hook that handles keyboard events.
- * You may configure to listen to multiple keys like `Escape`, `a`, etc. in combination or separately.,
+ * You may configure to listen to multiple keyCodes like `Escape`, `a` (`KeyA`), etc. in combination or separately.,
  * and choose to listen to `keydown` and/or `keyup` events.
  *
  * @param {Function} onKeyPress - The function to call when a key is pressed. Required.
- * @param {Array<string>} keys - The keys to listen to, e.g., `['Escape', 'a']`. Required.
+ * @param {Array<string>} keyCodes - The keyCodes to listen to, e.g., `['Escape', 'KeyA']`. Required. See `KeyboardEvent.code` for the list of possible keyCodes.
  * @param {Object} config - Optional configuration object. It can the following properties:
- * @param {Array<string>} config.eventTypes - The event types to listen to, e.g., `['keydown', 'keyup']`. Default is `['keydown']`.
- * @param {Boolean} config.detectCombination - Whether to detect key combinations. If set to `true`, it will only call the `onKeyPress` function when all the keys are pressed. Default is `false`.
+ * @param {Boolean} config.detectCombination - Whether to detect key combinations. If set to `true`, it will only call the `onKeyPress` function when all the keyCodes are pressed. Default is `false`.
  *
- * @returns {Set<string>} - The set of pressed keys.
+ * @returns {Set<string>} - The set of pressed keyCodes.
  */
 const useKeyboardEvent = (
     onKeyPress: (event: KeyboardEvent) => void,
-    keys: string[],
+    keyCodes: string[],
     config: {
-        eventTypes: string[];
-        detectCombination: boolean;
-    } = {
-        eventTypes: DEFAULT_EVENT_TYPES,
-        detectCombination: false,
-    }
+        detectCombination?: boolean;
+    } = {}
 ): Set<string> => {
-    const { eventTypes, detectCombination } = config;
+    const { detectCombination = false } = config;
     const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
+    const eventTypes = DEFAULT_EVENT_TYPES;
 
     const handler = useCallback(
         (event: KeyboardEvent) => {
-            if (eventTypes.includes(event.type)) {
-                setPressedKeys((prevKeys: Set<string>) => {
-                    const newKeys = new Set(prevKeys);
-                    if (event.type === 'keydown') {
-                        newKeys.add(event.key);
-                    } else if (event.type === 'keyup') {
-                        newKeys.delete(event.key);
-                    }
-                    return newKeys;
-                });
-            }
+            setPressedKeys((prevKeys: Set<string>) => {
+                const newKeys = new Set(prevKeys);
+                if (event.type === 'keydown') {
+                    newKeys.add(event.code);
+                } else if (event.type === 'keyup') {
+                    newKeys.delete(event.code);
+                }
+                return newKeys;
+            });
         },
         [eventTypes]
     );
 
     useEffect(() => {
         if (detectCombination) {
-            if (keys.every((key) => pressedKeys.has(key))) {
+            if (keyCodes.every((key) => pressedKeys.has(key))) {
                 onKeyPress(
-                    new KeyboardEvent('keydown', { key: keys.join('+') })
+                    new KeyboardEvent('keydown', { key: keyCodes.join('+') })
                 );
             }
         } else {
             pressedKeys.forEach((key) => {
-                if (keys.includes(key)) {
+                if (keyCodes.includes(key)) {
                     onKeyPress(new KeyboardEvent('keydown', { key }));
                 }
             });
         }
-    }, [pressedKeys, keys, onKeyPress, detectCombination]);
+    }, [pressedKeys, keyCodes, onKeyPress, detectCombination]);
 
     useEffect(() => {
         eventTypes.forEach((eventType) => {
