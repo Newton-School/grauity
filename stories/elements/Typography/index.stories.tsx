@@ -13,6 +13,7 @@ const defaultArgs = {
     variant: 'heading-semibold-h40',
     as: 'h1',
     color: 'var(--text-primary, #16191d)',
+    fontSize: 'var(--font-size-40px, 40px)',
 };
 
 export const Default = Template.bind({});

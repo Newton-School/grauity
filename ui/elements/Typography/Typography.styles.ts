@@ -269,7 +269,7 @@ export const StyledTypography = styled.p.attrs(
     ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
     ${({ textTransform }) =>
         textTransform && `text-transform: ${textTransform};`}
-    ${({ fontSize }) => fontSize && `letter-spacing: ${fontSize};`}
+    ${({ fontSize }) => fontSize && `font-size: ${fontSize};`}
     ${({ color }) => color && `color: ${color};`};
 `;
 
