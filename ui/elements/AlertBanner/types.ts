@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { grauityIconName } from '../../core';
+import { ButtonProps } from '../Button';
 
 export type AlertBannerType = 'default' | 'outlined' | 'filled';
 
@@ -29,6 +30,13 @@ export interface AlertBannerProps {
      * Default: `'primary'`
      * */
     variant?: AlertBannerVariant;
+
+    /**
+     * Alert banner padding
+     *
+     * Default: `'var(--spacing-8px, 8px)'`
+     * */
+    padding?: string;
 
     /**
      * Alert banner icon, used to override the default icons used in the alert banner
@@ -85,11 +93,30 @@ export interface AlertBannerProps {
      * Default: `'center'`
      * */
     justifyContent?: string;
+
+    /**
+     * Alert banner close button click handler
+     * */
+    onClose?: () => void;
+
+    /**
+     * Show close button
+     *
+     * Default: `false`
+     * */
+    showCloseButton?: boolean;
+
+    /**
+     * Alert banner action buttons
+     * */
+    actionButtons?: ButtonProps[];
 }
 
 export interface AlertBannerContainerProps {
     type: AlertBannerType;
     variant: AlertBannerVariant;
+    justifyContent: string;
+    padding: string;
     top: string;
     bottom: string;
     left: string;

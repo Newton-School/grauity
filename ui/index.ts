@@ -12,7 +12,7 @@ export {
 } from './themes/ThemeContext';
 
 // Icon
-export { Icon, IconProps } from './elements/Icon';
+export { Icon, type IconProps } from './elements/Icon';
 
 // NSButton
 export {
@@ -20,8 +20,9 @@ export {
     BUTTON_SIZES_ENUM,
     BUTTON_VARIANTS,
     BUTTON_VARIANTS_ENUM,
-    ButtonProps,
+    type ButtonProps,
     default as NSButton,
+    ButtonGroup as NSButtonGroup,
 } from './elements/Button';
 
 // NSTypography
@@ -31,16 +32,16 @@ export {
     TYPOGRAPHY_AS_LIST,
     TYPOGRAPHY_VARIANTS,
     TYPOGRAPHY_VARIANTS_ENUM,
-    TypographyProps,
+    type TypographyProps,
 } from './elements/Typography';
 
 // NSTable
-export { default as NSTable, TableProps } from './elements/Table';
+export { default as NSTable, type TableProps } from './elements/Table';
 
 // NSModal
 export {
-    ConfirmationDialogProps,
-    ModalProps,
+    type ConfirmationDialogProps,
+    type ModalProps,
     ConfirmationDialog as NSConfirmationDialog,
     default as NSModal,
     MultiStepModal as NSMultiStepModal,

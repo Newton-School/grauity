@@ -176,3 +176,7 @@ export interface ButtonProps {
      * */
     buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
 }
+
+export interface ButtonGroupProps {
+    children: React.ReactNode;
+}

@@ -10,7 +10,7 @@ export default {
 const Template = (args: AlertBannerProps) => <NSAlertBanner {...args} />;
 
 const defaultArgs: AlertBannerProps = {
-    type: 'default',
+    type: 'outlined',
     variant: 'primary',
     icon: 'bell',
     top: null,
@@ -18,6 +18,9 @@ const defaultArgs: AlertBannerProps = {
     left: null,
     right: null,
     position: 'static',
+    justifyContent: 'center',
+    onClose: null,
+    showCloseButton: false,
     children: (
         <NSTypography variant="paragraph-semibold-label" color="inherit">
             This is a default alert banner

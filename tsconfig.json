@@ -2,6 +2,7 @@
     "include": ["ui/**/*", "stories/**/*"],
     "exclude": ["node_modules", "dist"],
     "compilerOptions": {
+        "lib": ["es2017", "dom"],
         "allowJs": true,
         "declaration": true,
         "outDir": "./dist/",

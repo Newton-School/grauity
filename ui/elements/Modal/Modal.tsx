@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useImperativeHandle } from 'react';
-import NSButton from 'ui/elements/Button';
+import React, { forwardRef, useImperativeHandle,useRef } from 'react';
 
 import {
     useClickAway,
     useDisableBodyScroll,
     useKeyboardEvent,
 } from '../../../hooks';
+import NSButton from '../Button/Button';
 import {
     StyledModal,
     StyledModalAction,
@@ -41,7 +41,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(({
     hideOnClickAway,
     blurBackground,
 }, ref) => {
-    const modalRef = React.useRef<HTMLDivElement>(null);
+    const modalRef = useRef<HTMLDivElement>(null);
 
     useImperativeHandle(ref, () => modalRef.current);
 

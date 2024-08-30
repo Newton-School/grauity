@@ -32,7 +32,7 @@ const useKeyboardEvent = (
     const handler = useCallback(
         (event: KeyboardEvent) => {
             if (eventTypes.includes(event.type)) {
-                setPressedKeys((prevKeys) => {
+                setPressedKeys((prevKeys: Set<string>) => {
                     const newKeys = new Set(prevKeys);
                     if (event.type === 'keydown') {
                         newKeys.add(event.key);

@@ -1,4 +1,5 @@
 export { default } from './Button';
+export { default as ButtonGroup } from './ButtonGroup';
 export { BUTTON_VARIANTS_ENUM } from './constants';
 export { BUTTON_SIZES_ENUM } from './constants';
 export { BUTTON_VARIANTS } from './constants';

@@ -7,8 +7,6 @@ export const StyledAlertBannerContainer = styled.div<AlertBannerContainerProps>`
     gap: var(--spacing-12px, 12px);
     width: 100%;
     min-height: var(--spacing-40px, 40px);
-    padding: var(--spacing-8px, 8px);
-    justify-content: center;
     align-items: center;
     flex-shrink: 0;
 
@@ -17,6 +15,8 @@ export const StyledAlertBannerContainer = styled.div<AlertBannerContainerProps>`
     bottom: ${({ bottom }) => bottom};
     left: ${({ left }) => left};
     right: ${({ right }) => right};
+    padding: ${({ padding }) => padding};
+    justify-content: ${({ justifyContent }) => justifyContent};
 
     color: ${({ textColor }) => textColor};
     background-color: ${({ backgroundColor }) => backgroundColor};
@@ -32,13 +32,4 @@ export const StyledAlertBannerContent = styled.div<any>`
     font-weight: var(--font-weight-semibold, 600);
     line-height: 120%;
     letter-spacing: 0.5px;
-    width: 100%;
-    ${({ justifyContent }) =>
-        justifyContent && `justify-content: ${justifyContent};`}
-`;
-
-export const StyledAlertBannerButtonGroup = styled.div<any>`
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-8px, 8px);
 `;
