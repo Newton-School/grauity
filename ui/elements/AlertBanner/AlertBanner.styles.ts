@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 
-import { AlertBannerContainerProps, AlertBannerTextProps } from './types';
-
-export const StyledAlertBannerText = styled.span<AlertBannerTextProps>`
-    font-size: var(--Label, 14px);
-    font-weight: var(--font-weight-medium, 500);
-    line-height: 120%;
-    letter-spacing: 0.5px;
-`;
+import { AlertBannerContainerProps } from './types';
 
 export const StyledAlertBannerContainer = styled.div<AlertBannerContainerProps>`
     display: flex;
@@ -25,6 +18,27 @@ export const StyledAlertBannerContainer = styled.div<AlertBannerContainerProps>`
     left: ${({ left }) => left};
     right: ${({ right }) => right};
 
-    ${StyledAlertBannerText} {
-    }
+    color: ${({ textColor }) => textColor};
+    background-color: ${({ backgroundColor }) => backgroundColor};
+    border: 1px solid ${({ borderColor }) => borderColor};
+`;
+
+export const StyledAlertBannerContent = styled.div<any>`
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-8px, 8px);
+    color: ${({ color }) => color};
+    font-size: var(--font-size-14px, 14px);
+    font-weight: var(--font-weight-semibold, 600);
+    line-height: 120%;
+    letter-spacing: 0.5px;
+    width: 100%;
+    ${({ justifyContent }) =>
+        justifyContent && `justify-content: ${justifyContent};`}
+`;
+
+export const StyledAlertBannerButtonGroup = styled.div<any>`
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-8px, 8px);
 `;

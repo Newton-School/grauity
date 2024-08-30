@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import NSButton from 'ui/elements/Button';
 
 import {
@@ -24,7 +24,7 @@ import { ModalProps } from './types';
  * `Modal`: A modal displays content that temporarily blocks interactions with the main view of a site.
  * @component
  */
-const Modal = ({
+const Modal = forwardRef<HTMLDivElement, ModalProps>(({
     banner,
     title,
     description,
@@ -40,8 +40,10 @@ const Modal = ({
     showCloseButton,
     hideOnClickAway,
     blurBackground,
-}: ModalProps) => {
-    const modalRef = React.useRef(null);
+}, ref) => {
+    const modalRef = React.useRef<HTMLDivElement>(null);
+
+    useImperativeHandle(ref, () => modalRef.current);
 
     useDisableBodyScroll();
 
@@ -117,6 +119,16 @@ const Modal = ({
             </StyledModal>
         </StyledModalWrapper>
     );
+}) as React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<HTMLDivElement>> & {
+    Wrapper: typeof StyledModalWrapper;
+    Modal: typeof StyledModal;
+    Main: typeof StyledModalMain;
+    Banner: typeof StyledModalBanner;
+    Title: typeof StyledModalTitle;
+    Description: typeof StyledModalDescription;
+    Body: typeof StyledModalBody;
+    Action: typeof StyledModalAction;
+    Divider: typeof StyledModalDivider;
 };
 
 Modal.propTypes = {

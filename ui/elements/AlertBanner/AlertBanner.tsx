@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 
 import { Icon } from '../Icon';
 import {
+    StyledAlertBannerButtonGroup,
     StyledAlertBannerContainer,
-    StyledAlertBannerText,
+    StyledAlertBannerContent,
 } from './AlertBanner.styles';
 import {
     ALERT_BANNER_TYPES,
@@ -13,41 +14,63 @@ import {
     ALERT_BANNER_VARIANTS_ENUM,
 } from './constants';
 import { AlertBannerProps } from './types';
-import { getAlertIconName } from './utils';
+import { getAlertBannerColors, getAlertIconName } from './utils';
 
-const AlertBanner = ({
-    type,
-    variant,
-    icon,
-    top,
-    bottom,
-    left,
-    right,
-    position,
-    children,
-    alertRef,
-}: AlertBannerProps) => {
-    const iconName = getAlertIconName(icon, variant);
+const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
+    (
+        {
+            type,
+            variant,
+            icon,
+            top,
+            bottom,
+            left,
+            right,
+            position,
+            children,
+            justifyContent,
+        },
+        ref
+    ) => {
+        const bannerRef = React.useRef<HTMLDivElement>(null);
 
-    return (
-        <StyledAlertBannerContainer
-            type={type}
-            variant={variant}
-            top={top}
-            bottom={bottom}
-            left={left}
-            right={right}
-            position={position}
-            ref={alertRef}
-        >
-            {iconName && <Icon name={iconName} color="inherit" />}
+        useImperativeHandle(ref, () => bannerRef.current);
 
-            <StyledAlertBannerText>{children}</StyledAlertBannerText>
-        </StyledAlertBannerContainer>
-    );
+        const iconName = getAlertIconName(icon, variant);
+        const { iconColor, textColor, backgroundColor, borderColor } =
+            getAlertBannerColors(variant, type);
+
+        return (
+            <StyledAlertBannerContainer
+                type={type}
+                variant={variant}
+                top={top}
+                bottom={bottom}
+                left={left}
+                right={right}
+                position={position}
+                ref={bannerRef}
+                iconColor={iconColor}
+                textColor={textColor}
+                backgroundColor={backgroundColor}
+                borderColor={borderColor}
+            >
+                {iconName && <Icon name={iconName} color="inherit" />}
+
+                <StyledAlertBannerContent
+                    color={textColor}
+                    justifyContent={justifyContent}
+                >
+                    {children}
+                </StyledAlertBannerContent>
+            </StyledAlertBannerContainer>
+        );
+    }
+) as React.ForwardRefExoticComponent<
+    AlertBannerProps & React.RefAttributes<HTMLDivElement>
+> & {
+    ButtonGroup: typeof StyledAlertBannerButtonGroup;
 };
-
-export default AlertBanner;
 
 AlertBanner.defaultProps = {
     type: ALERT_BANNER_TYPES_ENUM.DEFAULT,
@@ -58,18 +81,23 @@ AlertBanner.defaultProps = {
     left: null,
     right: null,
     position: 'static',
-    alertRef: null,
+    children: null,
+    justifyContent: 'center',
 };
 
 AlertBanner.propTypes = {
     type: PropTypes.oneOf(ALERT_BANNER_TYPES),
     variant: PropTypes.oneOf(ALERT_BANNER_VARIANTS),
-    icon: PropTypes.string,
+    icon: PropTypes.any,
     top: PropTypes.string,
     bottom: PropTypes.string,
     left: PropTypes.string,
     right: PropTypes.string,
     position: PropTypes.string,
     children: PropTypes.node.isRequired,
-    alertRef: PropTypes.object,
+    justifyContent: PropTypes.string,
 };
+
+AlertBanner.ButtonGroup = StyledAlertBannerButtonGroup;
+
+export default AlertBanner;

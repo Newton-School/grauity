@@ -80,9 +80,11 @@ export interface AlertBannerProps {
     children: React.ReactNode;
 
     /**
-     * Alert banner ref
+     * Alert banner content justify content
+     *
+     * Default: `'center'`
      * */
-    alertRef?: React.Ref<HTMLDivElement>;
+    justifyContent?: string;
 }
 
 export interface AlertBannerContainerProps {
@@ -93,8 +95,10 @@ export interface AlertBannerContainerProps {
     left: string;
     right: string;
     position: string;
+    iconColor: string;
+    textColor: string;
+    backgroundColor: string;
+    borderColor: string;
     children: React.ReactNode;
     ref: React.Ref<HTMLDivElement>;
 }
-
-export interface AlertBannerTextProps {}
