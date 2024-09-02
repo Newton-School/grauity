@@ -5,7 +5,7 @@ import { Icon } from 'ui/elements/Icon';
 import { TAG_ICONS } from 'ui/core';
 
 
-<Meta title="Elements/Icon Gallery"/>
+<Meta title="Elements/Icon/Gallery"/>
 
 # Iconography
 
@@ -18,7 +18,9 @@ import { TAG_ICONS } from 'ui/core';
                     _.orderBy(TAG_ICONS[key]).map((icon) => {
                         return (
                             <IconItem name={icon} title={"Click to Copy"}>
-                                <Icon name={icon}/>
+                            <div style={{color: '#FFFFFF'}}>
+                                <Icon name={icon} color="inherit" />
+                                </div>
                             </IconItem>
                         )
                     })

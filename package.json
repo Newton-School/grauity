@@ -1,6 +1,6 @@
 {
     "name": "@newtonschool/grauity",
-    "version": "0.0.14",
+    "version": "0.1.01",
     "description": "",
     "keywords": [
         "Newton School",
@@ -63,7 +63,7 @@
         "../node_modules/@types"
     ],
     "scripts": {
-        "build": "rm -r .parcel-cache && npm run build-icons && npm run build-lib",
+        "build": "rm -rf .parcel-cache && npm run build-icons && npm run build-lib",
         "build-lib": "npm run extract-typings && parcel build",
         "build-icons": "npm run build-icons:optimize && npm run build-icons:generate",
         "build-icons:optimize": "rimraf ./iconland/optimised/*.svg & svgo -q -p 8 -f ./iconland/seeds -o ./iconland/optimised",
