@@ -1,48 +1,22 @@
-import React from 'react';
-import NSTable, {
-    TableProps,
-} from 'ui/elements/Table';
+/* eslint-disable import/no-duplicates */
+import NSTable, {TableProps} from 'ui/elements/Table';
+
+import { Template } from './Manual.source';
+import templateRawSourceCode from './Manual.source?raw';
 
 export default {
     title: 'Elements/NSTable',
     component: NSTable,
+    parameters: {
+        docs: {
+            source: {
+                code: templateRawSourceCode,
+            },
+        },
+    },
 };
 
-const Template = (args: TableProps) => (
-    <NSTable.Table
-        borderAround={args?.borderAround}
-        borderWithin={args?.borderWithin}
-        striped={args?.striped}
-    >
-        <NSTable.TableHead capitalizeHeaders={args?.capitalizeHeaders}>
-            <NSTable.TableRow condensed={args?.condensed}>
-                <NSTable.TableHeadingCell>Column 1</NSTable.TableHeadingCell>
-                <NSTable.TableHeadingCell>Column 2</NSTable.TableHeadingCell>
-                <NSTable.TableHeadingCell>Column 3</NSTable.TableHeadingCell>
-            </NSTable.TableRow>
-        </NSTable.TableHead>
-
-        <NSTable.TableBody>
-            <NSTable.TableRow condensed={args?.condensed}>
-                <NSTable.TableDataCell>Row 1, Cell 1</NSTable.TableDataCell>
-                <NSTable.TableDataCell>Row 1, Cell 2</NSTable.TableDataCell>
-                <NSTable.TableDataCell>Row 1, Cell 3</NSTable.TableDataCell>
-            </NSTable.TableRow>
-            <NSTable.TableRow condensed={args?.condensed}>
-                <NSTable.TableDataCell>Row 2, Cell 1</NSTable.TableDataCell>
-                <NSTable.TableDataCell>Row 2, Cell 2</NSTable.TableDataCell>
-                <NSTable.TableDataCell>Row 2, Cell 3</NSTable.TableDataCell>
-            </NSTable.TableRow>
-            <NSTable.TableRow condensed={args?.condensed}>
-                <NSTable.TableDataCell>Row 3, Cell 1</NSTable.TableDataCell>
-                <NSTable.TableDataCell>Row 3, Cell 2</NSTable.TableDataCell>
-                <NSTable.TableDataCell>Row 3, Cell 3</NSTable.TableDataCell>
-            </NSTable.TableRow>
-        </NSTable.TableBody>
-    </NSTable.Table>
-);
-
-const args = {
+const args: TableProps = {
     condensed: true,
     striped: true,
     borderAround: true,
