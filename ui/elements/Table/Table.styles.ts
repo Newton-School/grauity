@@ -73,7 +73,7 @@ export const StyledTable = styled.table<TableComponentProps>`
     width: 100%;
     border-radius: var(--corner-radius-10px, 10px);
     overflow: hidden;
-    outline: 0.5px solid var(--border, #e1e5ea);
+    outline: var(--spacing-1px, 1px) solid var(--border, #e1e5ea);
     font-family: var(--font-family, 'Mona Sans');
 
     ${StyledTableRow}:not(:last-child) {

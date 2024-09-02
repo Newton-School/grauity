@@ -63,7 +63,6 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
                 right={right}
                 position={position}
                 ref={ref}
-                iconColor={iconColor}
                 textColor={textColor}
                 backgroundColor={backgroundColor}
                 borderColor={borderColor}
@@ -72,7 +71,7 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
                 <StyledAlertBannerContent
                     color={textColor}
                 >
-                    {iconName && <Icon name={iconName} color="inherit" />}
+                    {iconName && <Icon name={iconName} color={iconColor ||  'inherit'} />}
                     {children}
                 </StyledAlertBannerContent>
 

@@ -136,7 +136,7 @@ export const ALERT_BANNER_COLOR_MAPPINGS = {
         },
         [ALERT_BANNER_VARIANTS_ENUM.DEFAULT]: {
             iconColor: 'var(--text-action, #FFF)',
-            textColor: 'var(--text-action, #FFF)',
+            textColor: 'var(--text-action2, #FFF)',
             backgroundColor: 'var(--text-primary, #16191D)',
             borderColor: 'transparent',
         },

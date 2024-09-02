@@ -122,7 +122,6 @@ export interface AlertBannerContainerProps {
     left: string;
     right: string;
     position: string;
-    iconColor: string;
     textColor: string;
     backgroundColor: string;
     borderColor: string;
