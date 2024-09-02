@@ -31,6 +31,8 @@ export const StyledTableDataCell = styled.td<TableDataCellComponentProps>`
             flex-direction: row;
             align-items: ${flexAlign};
         `}
+
+    ${({ vAlign }) => vAlign && `vertical-align: ${vAlign};`}
 `;
 
 export const StyledTableHeadingCell = styled.th<TableHeadingCellComponentProps>`

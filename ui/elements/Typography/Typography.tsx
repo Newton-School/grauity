@@ -10,13 +10,16 @@ import { TypographyProps } from './types';
 import { StyledTypography } from './Typography.styles';
 
 /**
- * `gra.UI.ty Typography`: A typography component that can be used to display text in different styles.
+ * A typography component can be used to display text in different styles.
  *
- * Use the `variant` prop to select the style of the text.
+ * Use the prop `variant` to select the style of the text.
  *
- * If you want to use a different HTML tag for the text, use the `as` prop.
- *
- * If `as` is set to `auto`, the component will automatically select the HTML tag based on the `variant` prop.
+ * By default, prop `as` is set to `'auto'`, and the component will automatically
+ * select the HTML tag based on the prop `variant`.
+
+ * If you want the text to be rendered as a different HTML tag, provide your desired 
+ * value to prop `as`, such as `'h1'`, `'h2'`, `'p'`, etc.
+ * 
  * @component
  */
 const Typography = ({
@@ -58,7 +61,7 @@ Typography.propTypes = {
 
 Typography.defaultProps = {
     variant: 'heading-semibold-h40',
-    as: 'h1',
+    as: 'auto',
     color: 'var(--text-primary, #16191d)',
     textAlign: null,
     textTransform: null,

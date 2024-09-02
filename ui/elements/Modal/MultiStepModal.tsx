@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 
 import useClickAway from '../../../hooks/useClickAway';
 import useDisableBodyScroll from '../../../hooks/useDisableBodyScroll';
-import NSButton from '../Button';
-import NSModal from './Modal';
+import Button from '../Button';
+import Modal from './Modal';
 import {
     StyledModalPaginatedActions,
     StyledModalPagination,
@@ -13,7 +13,7 @@ import {
 import { MultiStepModalProps } from './types';
 
 /**
- * `MultiStepModal`: A modal that displays content in multiple steps.
+ * A multi-step modal is a modal that has multiple steps.
  * @component
  */
 const MultiStepModal = ({
@@ -68,7 +68,7 @@ const MultiStepModal = ({
     }
 
     return (
-        <NSModal
+        <Modal
             banner={banner}
             title={title}
             description={description}
@@ -97,9 +97,9 @@ const MultiStepModal = ({
                         </StyledModalPagination>
                     )}
 
-                    <NSModal.Action>
+                    <Modal.Action>
                         {showBackButton && !isFirstStep && (
-                            <NSButton
+                            <Button
                                 variant="secondary-outlined"
                                 onClick={() => {
                                     setCurrentStep(currentStep - 1);
@@ -108,11 +108,11 @@ const MultiStepModal = ({
                                 iconPosition="left"
                             >
                                 Back
-                            </NSButton>
+                            </Button>
                         )}
 
                         {nextButtonText && (
-                            <NSButton
+                            <Button
                                 variant={buttonVariant || 'secondary'}
                                 fullWidth
                                 onClick={() => {
@@ -127,9 +127,9 @@ const MultiStepModal = ({
                                 iconPosition="right"
                             >
                                 {nextButtonText}
-                            </NSButton>
+                            </Button>
                         )}
-                    </NSModal.Action>
+                    </Modal.Action>
                 </StyledModalPaginatedActions>
             }
         />

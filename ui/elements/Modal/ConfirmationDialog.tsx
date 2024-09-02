@@ -4,12 +4,12 @@ import React from 'react';
 import { useKeyboardEvent } from '../../../hooks';
 import useClickAway from '../../../hooks/useClickAway';
 import useDisableBodyScroll from '../../../hooks/useDisableBodyScroll';
-import NSButton, { BUTTON_VARIANTS_ENUM } from '../Button';
-import NSModal from './Modal';
+import Button, { BUTTON_VARIANTS_ENUM } from '../Button';
+import Modal from './Modal';
 import { ConfirmationDialogProps } from './types';
 
 /**
- * `gra.UI.elements ConfirmationDialog`: A confirmation dialog is a dialog box that asks the user to confirm an action.
+ * A confirmation dialog is a dialog box that asks the user to confirm an action.
  * @component
  */
 const ConfirmationDialog = ({
@@ -47,53 +47,53 @@ const ConfirmationDialog = ({
     });
 
     return (
-        <NSModal.Wrapper blurBackground={blurBackground}>
-            <NSModal.Modal
+        <Modal.Wrapper blurBackground={blurBackground}>
+            <Modal.Modal
                 onClick={(e: Event) => e.stopPropagation()}
                 width="auto"
                 height="auto"
                 ref={modalRef}
             >
-                <NSModal.Main>
+                <Modal.Main>
                     {banner && showCloseButton && (
-                        <NSModal.Action justifyContent="end">
-                            <NSButton
+                        <Modal.Action justifyContent="end">
+                            <Button
                                 onClick={onCancel}
                                 variant="secondary-outlined"
                                 icon="close"
                                 ariaLabel="Close"
                                 isIconButton
                             />
-                        </NSModal.Action>
+                        </Modal.Action>
                     )}
 
-                    {banner && <NSModal.Banner>{banner}</NSModal.Banner>}
+                    {banner && <Modal.Banner>{banner}</Modal.Banner>}
 
                     {(title || showCloseButton) && (
-                        <NSModal.Title
+                        <Modal.Title
                             showCloseButton={showCloseButton && !banner}
                         >
                             {title}
                             {showCloseButton && !banner && (
-                                <NSButton
+                                <Button
                                     onClick={onCancel}
                                     variant="secondary-outlined"
                                     icon="close"
                                     isIconButton
                                 />
                             )}
-                        </NSModal.Title>
+                        </Modal.Title>
                     )}
 
                     {description && (
-                        <NSModal.Description>{description}</NSModal.Description>
+                        <Modal.Description>{description}</Modal.Description>
                     )}
 
-                    {body && <NSModal.Body>{body}</NSModal.Body>}
-                </NSModal.Main>
+                    {body && <Modal.Body>{body}</Modal.Body>}
+                </Modal.Main>
 
-                <NSModal.Action>
-                    <NSButton
+                <Modal.Action>
+                    <Button
                         variant={
                             cancelButtonVariant || BUTTON_VARIANTS_ENUM.DANGER
                         }
@@ -101,8 +101,8 @@ const ConfirmationDialog = ({
                         onClick={onCancel}
                     >
                         {cancelText}
-                    </NSButton>
-                    <NSButton
+                    </Button>
+                    <Button
                         variant={
                             confirmButtonVariant || BUTTON_VARIANTS_ENUM.SUCCESS
                         }
@@ -110,10 +110,10 @@ const ConfirmationDialog = ({
                         onClick={onConfirm}
                     >
                         {confirmText}
-                    </NSButton>
-                </NSModal.Action>
-            </NSModal.Modal>
-        </NSModal.Wrapper>
+                    </Button>
+                </Modal.Action>
+            </Modal.Modal>
+        </Modal.Wrapper>
     );
 };
 

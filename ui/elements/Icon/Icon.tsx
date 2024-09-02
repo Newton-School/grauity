@@ -18,6 +18,11 @@ import {
     IconProps,
 } from './types';
 
+
+/**
+ * An icon is a glyph used to represent something else.
+ * @component
+ */
 function Icon({
     ariaHidden,
     ariaLabel,

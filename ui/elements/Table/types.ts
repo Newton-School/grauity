@@ -34,7 +34,7 @@ export interface TableColumn {
     colSpan?: number;
 }
 
-export interface TableCell {
+export interface TableCellInterface {
     /**
      * Cell display, can be a string or a React element
      * */
@@ -43,12 +43,12 @@ export interface TableCell {
     /**
      * Custom cell render function. If provided, display will be ignored
      * */
-    render?: (args: TableCell) => ReactNode;
+    render?: (args: TableCellInterface) => ReactNode;
 
     /**
      * Row vertical alignment, default is top
      * */
-    valign?: 'top' | 'bottom' | 'center';
+    vAlign?: 'top' | 'bottom' | 'middle';
 
     /**
      * Row span, default is 1
@@ -107,7 +107,7 @@ export interface TableRow {
     /**
      * Table data, in JS Object format, with table column keys as keys of object
      */
-    [columnKey: string]: TableCell;
+    [columnKey: string]: TableCellInterface;
 }
 
 export interface TableColumnRow {
@@ -248,6 +248,7 @@ export interface TableRowComponentProps {
 export interface TableDataCellComponentProps {
     key?: string;
     align?: string;
+    vAlign?: string;
     flexAlign?: string;
     colSpan?: number;
     rowSpan?: number;

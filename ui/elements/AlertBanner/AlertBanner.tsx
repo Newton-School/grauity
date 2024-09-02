@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
-import NSButton from 'ui/elements/Button';
-import { NSButtonGroup } from 'ui/index';
+import Button from 'ui/elements/Button';
+import ButtonGroup from 'ui/elements/Button/ButtonGroup';
 
 import { Icon } from '../Icon';
 import {
@@ -17,6 +17,11 @@ import {
 import { AlertBannerProps } from './types';
 import { getAlertBannerColors, getAlertIconName } from './utils';
 
+/**
+ * An alert banner is a component that is used to typically display
+ * important messages to the user. It is normally shown at the top of the page.
+ * @component
+ */
 const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
     (
         {
@@ -72,12 +77,12 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
                 </StyledAlertBannerContent>
 
                 {hasButton && (
-                    <NSButtonGroup>
+                    <ButtonGroup>
                         {actionButtons.map((button) => (
-                            <NSButton {...button}>{button.children}</NSButton>
+                            <Button {...button}>{button.children}</Button>
                         ))}
                         {showCloseButton && (
-                            <NSButton
+                            <Button
                                 variant="tertiary-outlined"
                                 icon="close"
                                 onClick={onClose}
@@ -85,7 +90,7 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
                                 size="small"
                             />
                         )}
-                    </NSButtonGroup>
+                    </ButtonGroup>
                 )}
             </StyledAlertBannerContainer>
         );

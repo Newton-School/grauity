@@ -327,3 +327,13 @@ export const StyledButton = styled.button<ButtonComponentProps>`
 
     transition: background-color 0.2s ease-in, outline 0.2s ease-in, border 0.2s ease-in, border-color 0.2s ease-in;
 `;
+
+export const StyledButtonContent = styled.div`
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-8px, 8px);
+    font-size: var(--font-size-14px, 14px);
+    font-weight: var(--font-weight-semibold, 600);
+    line-height: 160%;
+    letter-spacing: 0.4px;
+`;

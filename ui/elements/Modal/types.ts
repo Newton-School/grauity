@@ -5,12 +5,42 @@ import { ButtonVariants } from '../Button/types';
 type ModalContentType = React.ReactNode;
 
 interface ModalStep {
+    /**
+     * Banner for the modal, can be a valid React node
+     * */
     banner?: ModalContentType;
+
+    /**
+     * Title for the modal, can be a valid React node
+     * */
     title: ModalContentType;
+
+    /**
+     * Description for the modal, can be a string
+     * */
     description?: string | null;
+
+    /**
+     * Body for the modal, can be a valid React node
+     * */
     body?: ModalContentType;
+
+    /**
+     * Text for the next button
+     * */
     nextButtonText?: string;
+
+    /**
+     * Determines if the back button should be shown
+     * Available choices: `true`, `false`
+     *
+     * Default: `false`
+     * */
     showBackButton?: boolean;
+
+    /**
+     * Variant for the button
+     * */
     buttonVariant?: ButtonVariants | null;
 }
 

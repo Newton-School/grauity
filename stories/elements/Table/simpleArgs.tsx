@@ -22,7 +22,7 @@ const simpleArgs: TableProps = {
     ],
     rows: [
         {
-            name: { display: 'John Doe' },
+            name: { display: 'John Doe', vAlign: 'top' },
             age: { display: 25 },
             action: {
                 render: () => (

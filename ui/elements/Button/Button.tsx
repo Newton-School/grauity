@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
 import { Icon } from '../Icon';
-import { TYPOGRAPHY_VARIANTS_ENUM } from '../Typography';
-import Typography from '../Typography/Typography';
-import { StyledButton } from './Button.styles';
+import { StyledButton, StyledButtonContent } from './Button.styles';
 import {
     BUTTON_ICON_POSITIONS,
     BUTTON_ICON_POSITIONS_ENUM,
@@ -17,13 +15,15 @@ import {
 import { ButtonProps } from './types';
 
 /**
- * `gra.UI.ty Button`: This button is cute as a button.
+ * A button is a component that is used to trigger an action.
+ * It can contain text, an icon, or both.
+ *
  * @component
+ *
  * @example
  * <NSButton variant="primary" size="medium" onClick={() => null}>
  *    Click me
  * </NSButton>
- * @returns The Button component.
  */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     (
@@ -96,14 +96,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                     />
                 )}
                 {children && (
-                    <Typography
-                        variant={
-                            TYPOGRAPHY_VARIANTS_ENUM.ACTION_SEMIBOLD_PRIMARY
-                        }
-                        color="inherit"
-                    >
+                    <StyledButtonContent>
                         {children}
-                    </Typography>
+                    </StyledButtonContent>
                 )}
             </StyledButton>
         );

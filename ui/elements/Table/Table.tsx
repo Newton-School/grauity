@@ -12,8 +12,10 @@ import {
 import { TableProps } from './types';
 
 /**
- * `gra.UI.ty Table`: Formal. Clean. Neat. On the rocks.
- * @returns The Table component.
+ * A table is a component that is used to display data in a tabular format.
+ * It is composed of rows and columns.
+ *
+ * @component
  */
 const Table = ({ rows, columns, ...props }: TableProps) => (
     <StyledTable
@@ -60,6 +62,7 @@ const Table = ({ rows, columns, ...props }: TableProps) => (
                             }
                             colSpan={row[column.key]?.colSpan || 1}
                             rowSpan={row[column.key]?.rowSpan || 1}
+                            vAlign={row[column.key]?.vAlign || 'middle'}
                         >
                             {row[column.key]?.render
                                 ? row[column.key].render(row[column.key])
