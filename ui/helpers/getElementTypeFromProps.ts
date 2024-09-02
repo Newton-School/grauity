@@ -16,12 +16,16 @@ function getElementTypeFromProps(props: {
     // ----------------------------------------
     // user defined "as" element type
 
-    if (props.as) return styled(props.as)``;
+    if (props.as) {
+        return styled(props.as)``;
+    }
 
     // ----------------------------------------
     // infer anchor links
 
-    if (props.href) return styled('a')``;
+    if (props.href) {
+        return styled('a')``;
+    }
 
     // ----------------------------------------
     // use defaultProp or 'div'

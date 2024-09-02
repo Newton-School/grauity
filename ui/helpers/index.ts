@@ -1,13 +1,13 @@
-import getElementTypeFromProps from './getElementTypeFromProps';
 import {
     useKeyOnly,
     useKeyOrValueAndKey,
     useValueAndKey,
 } from './classNameBuilders';
+import getElementTypeFromProps from './getElementTypeFromProps';
 
 export {
-    useKeyOnly,
-    useValueAndKey,
-    useKeyOrValueAndKey,
     getElementTypeFromProps,
+    useKeyOnly,
+    useKeyOrValueAndKey,
+    useValueAndKey,
 };

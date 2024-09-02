@@ -1,5 +1,5 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = async ({ config, mode }) => {
     // `mode` has a value of 'DEVELOPMENT' or 'PRODUCTION'
@@ -12,35 +12,35 @@ module.exports = async ({ config, mode }) => {
         use: [
             MiniCssExtractPlugin.loader,
             {
-                loader: "css-loader",
+                loader: 'css-loader',
                 options: {
                     importLoaders: 2,
                     sourceMap: true,
                 },
             },
             {
-                loader: "sass-loader",
+                loader: 'sass-loader',
                 options: {
                     sourceMap: true,
                 },
             },
         ],
-        include: path.resolve(__dirname, "../ui"),
+        include: path.resolve(__dirname, '../ui'),
         sideEffects: true,
     });
     config.module.rules.push({
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        type: "asset/resource",
+        type: 'asset/resource',
     });
-    config.resolve.alias["fonts"] = path.resolve(__dirname, "../ui/fonts");
-    config.resolve.alias["@newtonschool/grauity"] = path.resolve(
-        __dirname,
-        "../ui"
-    );
+    config.resolve.alias = {
+        fonts: path.resolve(__dirname, '../ui/fonts'),
+        elements: path.resolve(__dirname, '../ui/elements'),
+        ui: path.resolve(__dirname, '../ui'),
+    };
     config.plugins.push(
         new MiniCssExtractPlugin({
-            filename: "[name].css",
-            chunkFilename: "[id].css",
+            filename: '[name].css',
+            chunkFilename: '[id].css',
         })
     );
 

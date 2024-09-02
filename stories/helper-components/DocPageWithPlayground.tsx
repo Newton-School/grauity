@@ -1,5 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import {
     ArgsTable,
     Description,
@@ -9,6 +7,8 @@ import {
     Subtitle,
     Title,
 } from '@storybook/addon-docs';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Playground } from 'storybook-addon-code-editor';
 
 import * as grauity from '../../ui';
@@ -35,7 +35,7 @@ export default function DocPageWithPlayground({
                     }}
                     height="560px"
                     onCreateEditor={(editor, monaco) => {
-                        editor.getModel().updateOptions({ tabSize: 2 });
+                        editor?.getModel()?.updateOptions({ tabSize: 2 });
                         monaco.editor.setTheme('vs-dark');
                     }}
                 />

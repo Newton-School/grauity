@@ -1,22 +1,40 @@
 {
     "extends": ["airbnb", "prettier"],
-    "plugins": ["@typescript-eslint"],
+    "plugins": ["@typescript-eslint", "simple-import-sort"],
     "settings": {
         "import/resolver": {
             "node": {
-                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+                "extensions": [".js", ".jsx"]
+            },
+            "typescript": {
+                "alwaysTryTypes": true,
+                "paths": "./tsconfig.json"
             }
         }
     },
+    "env": {
+        "browser": true,
+        "es6": true
+    },
     "rules": {
-        "indent": ["error", 4],
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "curly": ["error", "all"],
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
         "react/jsx-props-no-spreading": "off",
-        "quotes": ["error", "single"],
+        "quotes": ["warn", "single"],
         "semi": ["error", "always"],
-        "no-console": "off",
+        "no-console": "error",
         "no-underscore-dangle": "off",
+        "simple-import-sort/exports": "error",
+        "simple-import-sort/imports": "error",
+        "import/prefer-default-export": "off",
         "import/no-extraneous-dependencies": [
             "error",
             {
@@ -41,11 +59,17 @@
         ],
         "react/forbid-prop-types": "off",
         "no-shadow": "off",
-        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/no-shadow": "error",
         "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "varsIgnorePattern": "^(React|styles[0-9]*)$"
+            }
+        ],
         "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": ["error"]
+        "@typescript-eslint/no-use-before-define": "error",
+        "no-prototype-builtins": "off"
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {

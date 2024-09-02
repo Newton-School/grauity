@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {GrauityInit} from '@newtonschool/grauity';
+import GrauityInit from 'ui/init/GrauityInit';
 
 function GrauityInitExample() {
     return (
