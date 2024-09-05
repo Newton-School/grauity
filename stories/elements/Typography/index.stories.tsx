@@ -16,8 +16,8 @@ const defaultArgs = {
     fontSize: 'var(--font-size-40px, 40px)',
 };
 
-export const Default = Template.bind({});
+export const Component = Template.bind({});
 
-Default.args = {
+Component.args = {
     ...defaultArgs,
 };

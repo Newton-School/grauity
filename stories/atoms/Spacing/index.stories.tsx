@@ -6,6 +6,7 @@ import { extractTokensFromGlobalStyles } from '../../utils';
 
 export default {
     title: 'Atoms/Spacing',
+    tags: ['!autodocs'],
 };
 
 export const SpacingTokens = () => {

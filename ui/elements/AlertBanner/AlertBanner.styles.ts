@@ -28,6 +28,7 @@ export const StyledAlertBannerContent = styled.div<any>`
     align-items: center;
     gap: var(--spacing-8px, 8px);
     color: ${({ color }) => color};
+    font-family: var(--font-family, 'Mona Sans');
     font-size: var(--font-size-14px, 14px);
     font-weight: var(--font-weight-semibold, 600);
     line-height: 120%;

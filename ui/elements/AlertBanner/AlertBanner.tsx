@@ -10,12 +10,14 @@ import {
 } from './AlertBanner.styles';
 import {
     ALERT_BANNER_TYPES,
-    ALERT_BANNER_TYPES_ENUM,
     ALERT_BANNER_VARIANTS,
-    ALERT_BANNER_VARIANTS_ENUM,
 } from './constants';
 import { AlertBannerProps } from './types';
-import { getAlertBannerColors, getAlertIconName } from './utils';
+import {
+    getAlertBannerColors,
+    getAlertIconName,
+    getButtonVariantFromAlertBannerTypeVariant,
+} from './utils';
 
 /**
  * An alert banner is a component that is used to typically display
@@ -23,8 +25,8 @@ import { getAlertBannerColors, getAlertIconName } from './utils';
  * @component
  */
 const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
-    (
-        {
+    (props, ref) => {
+        const {
             type,
             variant,
             icon,
@@ -39,9 +41,7 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
             onClose,
             showCloseButton,
             actionButtons,
-        },
-        ref
-    ) => {
+        } = props;
         const iconName = getAlertIconName(icon, variant);
         const { iconColor, textColor, backgroundColor, borderColor } =
             getAlertBannerColors(variant, type);
@@ -68,10 +68,14 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
                 borderColor={borderColor}
                 justifyContent={justifyContent}
             >
-                <StyledAlertBannerContent
-                    color={textColor}
-                >
-                    {iconName && <Icon name={iconName} color={iconColor ||  'inherit'} />}
+                <StyledAlertBannerContent color={textColor}>
+                    {iconName && (
+                        <Icon
+                            name={iconName}
+                            color={iconColor || 'inherit'}
+                            size="20"
+                        />
+                    )}
                     {children}
                 </StyledAlertBannerContent>
 
@@ -82,7 +86,10 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
                         ))}
                         {showCloseButton && (
                             <Button
-                                variant="tertiary-outlined"
+                                variant={getButtonVariantFromAlertBannerTypeVariant(
+                                    variant,
+                                    type
+                                )}
                                 icon="close"
                                 onClick={onClose}
                                 isIconButton
@@ -97,8 +104,8 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
 );
 
 AlertBanner.defaultProps = {
-    type: ALERT_BANNER_TYPES_ENUM.DEFAULT,
-    variant: ALERT_BANNER_VARIANTS_ENUM.PRIMARY,
+    type: 'default',
+    variant: 'primary',
     icon: null,
     padding: 'var(--spacing-8px, 8px)',
     top: null,

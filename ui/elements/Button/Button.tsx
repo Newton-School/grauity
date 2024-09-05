@@ -6,11 +6,8 @@ import { Icon } from '../Icon';
 import { StyledButton, StyledButtonContent } from './Button.styles';
 import {
     BUTTON_ICON_POSITIONS,
-    BUTTON_ICON_POSITIONS_ENUM,
     BUTTON_SIZES,
-    BUTTON_SIZES_ENUM,
     BUTTON_VARIANTS,
-    BUTTON_VARIANTS_ENUM,
 } from './constants';
 import { ButtonProps } from './types';
 
@@ -26,8 +23,8 @@ import { ButtonProps } from './types';
  * </NSButton>
  */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    (
-        {
+    (props, ref) => {
+        const {
             variant,
             size,
             icon,
@@ -49,9 +46,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             onMouseLeave,
             children,
             buttonProps,
-        },
-        ref
-    ) => {
+        } = props;
         const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
             if (disabled) {
                 e.preventDefault();
@@ -96,9 +91,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                     />
                 )}
                 {children && (
-                    <StyledButtonContent>
-                        {children}
-                    </StyledButtonContent>
+                    <StyledButtonContent>{children}</StyledButtonContent>
                 )}
             </StyledButton>
         );
@@ -129,11 +122,11 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-    variant: BUTTON_VARIANTS_ENUM.PRIMARY,
-    size: BUTTON_SIZES_ENUM.MEDIUM,
+    variant: 'primary',
+    size: 'medium',
     icon: null,
     iconSize: '24',
-    iconPosition: BUTTON_ICON_POSITIONS_ENUM.LEFT,
+    iconPosition: 'left',
     className: '',
     disabled: false,
     loading: false,

@@ -13,6 +13,7 @@ import TokenBlock from '../../helper-components/TokenBlock';
 export default {
     title: 'Elements/NSTypography',
     component: NSTypography,
+    tags: ['!autodocs'],
 };
 
 const Template = (args: TypographyProps) => (
@@ -59,8 +60,8 @@ const defaultArgs = {
     as: TYPOGRAPHY_AS_ENUM.AUTO,
 };
 
-export const TypographyGallery = Template.bind({});
+export const Gallery = Template.bind({});
 
-TypographyGallery.args = {
+Gallery.args = {
     ...defaultArgs,
 };

@@ -8,7 +8,7 @@ import withInlineContainer from '../../../.storybook/decorators/withInlineContai
 import multiStepArgs from './multiStepArgs';
 
 export default {
-    title: 'Elements/NSModal',
+    title: 'Elements/NSModal/MultiStepModal',
     component: NSMultiStepModal,
     decorators: [withEnableBodyScroll, withInlineContainer],
 };

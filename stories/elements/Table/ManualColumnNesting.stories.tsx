@@ -5,7 +5,7 @@ import { Template } from './ManualColumnNesting.source';
 import templateRawSourceCode from './ManualColumnNesting.source?raw';
 
 export default {
-    title: 'Elements/NSTable',
+    title: 'Elements/NSTable/ManualTableColumnNesting',
     component: NSTable,
     parameters: {
         docs: {

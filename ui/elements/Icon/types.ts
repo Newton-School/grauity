@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     grauityFlippedChoiceName,
-    grauityIconColorName,
     grauityIconName,
     grauityIconSizeName,
     grauityRotatedChoiceName,
@@ -36,7 +35,7 @@ interface IconProps {
     /**
      * Color of the icon
      * */
-    color?: grauityIconColorName;
+    color?: string;
 
     /**
      * Additional classes to be added to the component

@@ -1,4 +1,4 @@
-import { addons } from '@storybook/addons';
+import { addons } from '@storybook/manager-api';
 import STORYBOOK_THEME from './theme';
 
 // Function to set the theme based on user preference

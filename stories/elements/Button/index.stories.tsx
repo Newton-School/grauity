@@ -9,11 +9,11 @@ export default {
 
 const Template = (args: ButtonProps) => <NSButton {...args} />;
 
-const defaultArgs = {
+const defaultArgs: ButtonProps = {
     variant: 'primary',
     size: 'medium',
     icon: 'sparkle',
-    iconSize: 'medium',
+    iconSize: '24',
     iconPosition: 'left',
     className: 'my-class',
     disabled: false,
@@ -38,8 +38,8 @@ const defaultArgs = {
     },
 };
 
-export const Default = Template.bind({});
+export const Component = Template.bind({});
 
-Default.args = {
+Component.args = {
     ...defaultArgs,
 };

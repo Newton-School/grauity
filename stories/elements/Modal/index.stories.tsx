@@ -5,16 +5,30 @@ import withEnableBodyScroll from '../../../.storybook/decorators/withEnableBodyS
 import withInlineContainer from '../../../.storybook/decorators/withInlineContainer';
 import singleStepArgs from './singleStepArgs';
 
+
 export default {
     title: 'Elements/NSModal',
     component: NSModal,
     decorators: [withEnableBodyScroll, withInlineContainer],
+    argTypes: {
+        body: {
+            options: [
+                'Example body with NSTable',
+                'Simple example body with text only',
+            ],
+            mapping: {
+                'Example body with NSTable': singleStepArgs.body,
+                'Simple example body with text only':
+                    'Modal body with simple text',
+            },
+        },
+    },
 };
 
 const Template = (args: ModalProps) => <NSModal {...args} />;
 
-export const Modal = Template.bind({});
+export const Component = Template.bind({});
 
-Modal.args = {
+Component.args = {
     ...singleStepArgs,
 };

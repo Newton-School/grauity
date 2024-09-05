@@ -5,7 +5,7 @@ import { Template } from './Manual.source';
 import templateRawSourceCode from './Manual.source?raw';
 
 export default {
-    title: 'Elements/NSTable',
+    title: 'Elements/NSTable/ManualTable',
     component: NSTable,
     parameters: {
         docs: {

@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
 
-import { TableRow } from '../../ui/elements/Table/types';
 import THEMES from '../../ui/themes/constants';
 import DARK_THEME_CONFIG from '../../ui/themes/darkThemeConstants';
 import LIGHT_THEME_CONFIG from '../../ui/themes/lightThemeConstants';
@@ -30,9 +29,11 @@ interface CategoryToken {
 
 interface ThemeConfig {
     [key: string]: {
-        [subcategory: string]: {
-            [token: string]: string;
-        } | string;
+        [subcategory: string]:
+            | {
+                  [token: string]: string;
+              }
+            | string;
     };
 }
 
@@ -70,7 +71,10 @@ const createCategoryTokens = ({
         const darkThemeSubcategoryTokens =
             darkThemeCategoryTokens[tokenSubcategory];
 
-        if (typeof lightThemeSubcategoryTokens === 'string' || typeof darkThemeSubcategoryTokens === 'string') {
+        if (
+            typeof lightThemeSubcategoryTokens === 'string' ||
+            typeof darkThemeSubcategoryTokens === 'string'
+        ) {
             return;
         }
 
@@ -102,9 +106,12 @@ const createCategoryTokens = ({
 };
 
 /**
- * Creates a table row for each token in a category and subcategory.
+ * Extracts theme tokens in a category (like 'colors') and
+ * subcategory (like 'text' or 'background') from the theme object.
  *
- * For a given category, returned token rows will have the following keys:
+ *
+ * For a given category, token objects returned by this function will
+ * have the following keys:
  * - token: The token name
  * - value: The value of the token
  * - [category]: For visual representation of the token
@@ -125,7 +132,7 @@ export const extractTokensFromTheme = ({
     subcategories?: string[];
     theme?: string;
     render: (token: CategoryToken) => React.ReactNode;
-}): TableRow[] => {
+}) => {
     const colorTokens = createCategoryTokens({ category, subcategories });
 
     return colorTokens.map((token) => ({
@@ -146,7 +153,7 @@ export const extractTokensFromTheme = ({
 /**
  * Extracts tokens from global styles
  *
- * Returned token rows will have the following keys
+ * Returned token objects will have the following keys
  * - token: The token name
  * - value: The value of the token
  * - [type]: For visual representation of the token

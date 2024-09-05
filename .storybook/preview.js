@@ -9,7 +9,7 @@ import STORYBOOK_THEME from './theme';
 
 // Storybook Parameters
 export const parameters = {
-    actions: { argTypesRegex: '^on[A-Z].*' },
+    // actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
         matchers: {
             color: /(background|color)$/i,
@@ -21,14 +21,14 @@ export const parameters = {
         source: {
             excludeDecorators: true,
         },
-        theme: STORYBOOK_THEME.DARK,
+        theme: STORYBOOK_THEME.LIGHT,
     },
 };
 
 // Storybook Decorators
 export const decorators = [
-    // Grauity init
-    withGrauityInit,
+    // // Grauity init
+    // withGrauityInit,
     // Component theme
     withTheme,
     // Storybook theme
@@ -74,3 +74,4 @@ export const globalTypes = {
         },
     },
 };
+export const tags = ['autodocs', 'autodocs'];

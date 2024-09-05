@@ -1,15 +1,21 @@
 import PropTypes from 'prop-types';
-import React, { ReactNode , useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import NSButton from 'ui/elements/Button';
+import { Icon } from 'ui/index';
 
-import { StyledHideOnPrintWrapper, StyledTokenBlock } from './index.styles';
+import {
+    StyledHideOnPrintWrapper,
+    StyledTokenBlock,
+    StyledTokenBlockCopiedContainer,
+} from './index.styles';
 
 interface TokenBlockProps {
     copy?: boolean;
+    showCopiedOverlay?: boolean;
     children: ReactNode;
 }
 
-const TokenBlock = ({ copy, children }: TokenBlockProps) => {
+const TokenBlock = ({ copy, children, showCopiedOverlay }: TokenBlockProps) => {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
@@ -47,17 +53,25 @@ const TokenBlock = ({ copy, children }: TokenBlockProps) => {
                     </NSButton>
                 </StyledHideOnPrintWrapper>
             )}
+            {showCopiedOverlay && (
+                <StyledTokenBlockCopiedContainer copied={copied}>
+                    <Icon name="check" />
+                    Copied!
+                </StyledTokenBlockCopiedContainer>
+            )}
         </StyledTokenBlock>
     );
 };
 
 TokenBlock.propTypes = {
     copy: PropTypes.bool,
+    showCopiedOverlay: PropTypes.bool,
     children: PropTypes.node.isRequired,
 };
 
 TokenBlock.defaultProps = {
     copy: false,
+    showCopiedOverlay: false,
 };
 
 export default TokenBlock;

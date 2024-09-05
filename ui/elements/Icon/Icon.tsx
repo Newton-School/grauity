@@ -10,10 +10,10 @@ import {
     ICON_TAGS,
 } from '../../core';
 import {
-    getElementTypeFromProps,
     useKeyOnly,
     useValueAndKey,
 } from '../../helpers';
+import { StyledIcon } from './Icon.styles';
 import {
     IconProps,
 } from './types';
@@ -43,8 +43,6 @@ function Icon({
     style,
     ...props
 }: IconProps) {
-    const Element = getElementTypeFromProps({ as });
-
     const getIconAriaOptions = () => {
         const ariaOptions: {
             'aria-hidden'?: string;
@@ -78,7 +76,6 @@ function Icon({
     const classes = classnames(
         'grauity-icon',
         `grauity-icon-${name}`,
-        `size-${size}`,
         useKeyOnly(color, color),
         useKeyOnly(bordered, 'bordered'),
         useKeyOnly(circular, 'circular'),
@@ -93,8 +90,12 @@ function Icon({
     );
 
     return (
-        <Element
+        <StyledIcon
+            as={as}
+            name={name}
+            size={size}
             onClick={handleClick}
+            color={color}
             {...ariaOptions}
             className={classes}
             style={style}
@@ -137,7 +138,7 @@ Icon.defaultProps = {
     link: false,
     loading: false,
     rotated: undefined,
-    size: '16',
+    size: '24',
     style: undefined,
 };
 

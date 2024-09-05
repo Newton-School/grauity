@@ -6,6 +6,7 @@ import { extractTokensFromGlobalStyles } from '../../utils';
 
 export default {
     title: 'Atoms/Corner Radius',
+    tags: ['!autodocs'],
 };
 
 export const CornerRadiusTokens = () => {

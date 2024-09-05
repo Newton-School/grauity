@@ -1,15 +1,14 @@
+/* eslint-disable import/no-duplicates */
 import { BUTTON_VARIANTS_ENUM } from 'ui/elements/Button';
 import NSConfirmationDialog, {
     ConfirmationDialogProps,
 } from 'ui/elements/Modal/ConfirmationDialog';
 
-// eslint-disable-next-line import/no-duplicates
 import { Template } from './ConfirmationDialog.source';
-// eslint-disable-next-line import/no-duplicates
 import templateRawSourceCode from './ConfirmationDialog.source?raw';
 
 export default {
-    title: 'Elements/NSModal',
+    title: 'Elements/NSModal/NSConfirmationDialog',
     component: NSConfirmationDialog,
     parameters: {
         docs: {
