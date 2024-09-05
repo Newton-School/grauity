@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export const ColorRenderer = ({ color }) => (
+interface ColorRendererProps {
+    color: string;
+}
+
+export const ColorRenderer = ({ color }: ColorRendererProps) => (
     <div
         style={{
             display: 'flex',

@@ -1,16 +1,21 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { ReactNode , useState } from 'react';
 import NSButton from 'ui/elements/Button';
 
 import { StyledHideOnPrintWrapper, StyledTokenBlock } from './index.styles';
 
-const TokenBlock = ({ copy, children }) => {
+interface TokenBlockProps {
+    copy?: boolean;
+    children: ReactNode;
+}
+
+const TokenBlock = ({ copy, children }: TokenBlockProps) => {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
         if (typeof navigator !== 'undefined' && navigator.clipboard) {
             navigator.clipboard
-                .writeText(children)
+                .writeText(children as string)
                 .then(() => {
                     setCopied(true);
                     setTimeout(() => {
