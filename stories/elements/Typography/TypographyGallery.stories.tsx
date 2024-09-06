@@ -1,6 +1,6 @@
 import React from 'react';
 import NSTable from 'ui/elements/Table';
-import NSTypography, {
+import Typography, {
     TYPOGRAPHY_AS_ENUM,
     TYPOGRAPHY_VARIANT_AS_MAPPING,
     TYPOGRAPHY_VARIANTS,
@@ -11,8 +11,8 @@ import NSTypography, {
 import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
-    title: 'Elements/NSTypography',
-    component: NSTypography,
+    title: 'Elements/Typography',
+    component: Typography,
     tags: ['!autodocs'],
 };
 
@@ -24,7 +24,7 @@ const Template = (args: TypographyProps) => (
             </NSTable.TableHeadingCell>
             <NSTable.TableHeadingCell align="left">As</NSTable.TableHeadingCell>
             <NSTable.TableHeadingCell align="left">
-                NSTypography
+                Typography
             </NSTable.TableHeadingCell>
         </NSTable.TableHead>
         <NSTable.TableBody>
@@ -39,13 +39,13 @@ const Template = (args: TypographyProps) => (
                         </TokenBlock>
                     </NSTable.TableDataCell>
                     <NSTable.TableDataCell>
-                        <NSTypography
+                        <Typography
                             variant={variant}
                             as={TYPOGRAPHY_AS_ENUM.AUTO}
                             color={args?.color}
                         >
                             {args?.children}
-                        </NSTypography>
+                        </Typography>
                     </NSTable.TableDataCell>
                 </NSTable.TableRow>
             ))}

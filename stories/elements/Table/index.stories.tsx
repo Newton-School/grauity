@@ -1,17 +1,17 @@
 import React from 'react';
-import NSTable, { TableProps } from 'ui/elements/Table';
+import Table, { TableProps } from 'ui/elements/Table';
 
 import simpleArgs from './simpleArgs';
 
 export default {
-    title: 'Elements/NSTable',
-    component: NSTable,
+    title: 'Elements/Table',
+    component: Table,
 };
 
-const Template = (args: TableProps) => <NSTable {...args} />;
+const Template = (args: TableProps) => <Table {...args} />;
 
-export const SimpleTable = Template.bind({});
+export const Component = Template.bind({});
 
-SimpleTable.args = {
+Component.args = {
     ...simpleArgs,
 };

@@ -9,7 +9,7 @@ import NSTable from 'ui/elements/Table';
 import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
-    title: 'Elements/NSIconButton',
+    title: 'Elements/IconButton',
     component: IconButton,
     tags: ['!autodocs'],
 };

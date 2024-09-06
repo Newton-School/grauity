@@ -1,5 +1,5 @@
 import React from 'react';
-import NSModal, { ModalProps } from 'ui/elements/Modal';
+import Modal, { ModalProps } from 'ui/elements/Modal';
 
 import withEnableBodyScroll from '../../../.storybook/decorators/withEnableBodyScroll';
 import withInlineContainer from '../../../.storybook/decorators/withInlineContainer';
@@ -7,8 +7,8 @@ import singleStepArgs from './singleStepArgs';
 
 
 export default {
-    title: 'Elements/NSModal',
-    component: NSModal,
+    title: 'Elements/Modal',
+    component: Modal,
     decorators: [withEnableBodyScroll, withInlineContainer],
     argTypes: {
         body: {
@@ -25,7 +25,7 @@ export default {
     },
 };
 
-const Template = (args: ModalProps) => <NSModal {...args} />;
+const Template = (args: ModalProps) => <Modal {...args} />;
 
 export const Component = Template.bind({});
 

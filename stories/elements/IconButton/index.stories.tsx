@@ -3,7 +3,7 @@ import React from 'react';
 import { IconButton, IconButtonProps } from 'ui/elements/Button';
 
 export default {
-    title: 'Elements/NSIconButton',
+    title: 'Elements/IconButton',
     component: IconButton,
 };
 

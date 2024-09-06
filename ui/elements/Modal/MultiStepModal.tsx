@@ -14,7 +14,6 @@ import { MultiStepModalProps } from './types';
 
 /**
  * A multi-step modal is a modal that has multiple steps.
- * @component
  */
 const MultiStepModal = ({
     modalSteps,

@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
-import Button, { IconButton } from 'ui/elements/Button';
-import ButtonGroup from 'ui/elements/Button/ButtonGroup';
 
+import Button from '../Button';
+import ButtonGroup from '../Button/ButtonGroup';
+import IconButton from '../Button/IconButton';
 import { Icon } from '../Icon';
 import {
     StyledAlertBannerContainer,
@@ -19,7 +20,6 @@ import {
 /**
  * An alert banner is a component that is used to typically display
  * important messages to the user. It is normally shown at the top of the page.
- * @component
  */
 const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
     (props, ref) => {

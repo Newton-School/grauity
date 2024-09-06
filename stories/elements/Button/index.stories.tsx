@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 import React from 'react';
-import NSButton, { ButtonProps } from 'ui/elements/Button';
+import Button, { ButtonProps } from 'ui/elements/Button';
 
 export default {
-    title: 'Elements/NSButton',
-    component: NSButton,
+    title: 'Elements/Button',
+    component: Button,
 };
 
-const Template = (args: ButtonProps) => <NSButton {...args} />;
+const Template = (args: ButtonProps) => <Button {...args} />;
 
 const defaultArgs: ButtonProps = {
     variant: 'primary',
@@ -20,7 +20,7 @@ const defaultArgs: ButtonProps = {
     loading: false,
     style: { color: '' },
     onClick: () => {
-        console.log('NSButton clicked!');
+        console.log('Button clicked!');
     },
     fullWidth: false,
     children: 'Click Me!',

@@ -1,15 +1,16 @@
 /* eslint-disable import/no-duplicates */
 import { BUTTON_VARIANTS_ENUM } from 'ui/elements/Button';
-import NSConfirmationDialog, {
+import {
+    ConfirmationDialog,
     ConfirmationDialogProps,
-} from 'ui/elements/Modal/ConfirmationDialog';
+} from 'ui/elements/Modal';
 
 import { Template } from './ConfirmationDialog.source';
 import templateRawSourceCode from './ConfirmationDialog.source?raw';
 
 export default {
-    title: 'Elements/NSModal/NSConfirmationDialog',
-    component: NSConfirmationDialog,
+    title: 'Elements/Modal/ConfirmationDialog',
+    component: ConfirmationDialog,
     parameters: {
         docs: {
             source: {
@@ -35,8 +36,8 @@ const defaultArgs: ConfirmationDialogProps = {
     blurBackground: false,
 };
 
-export const ConfirmationDialog = Template.bind({});
+export const Component = Template.bind({});
 
-ConfirmationDialog.args = {
+Component.args = {
     ...defaultArgs,
 };

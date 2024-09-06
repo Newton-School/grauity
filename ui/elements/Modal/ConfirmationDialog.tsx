@@ -10,7 +10,6 @@ import { ConfirmationDialogProps } from './types';
 
 /**
  * A confirmation dialog is a dialog box that asks the user to confirm an action.
- * @component
  */
 const ConfirmationDialog = ({
     cancelText,

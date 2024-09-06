@@ -14,8 +14,6 @@ import { TableProps } from './types';
 /**
  * A table is a component that is used to display data in a tabular format.
  * It is composed of rows and columns.
- *
- * @component
  */
 const Table = ({ rows, columns, ...props }: TableProps) => (
     <StyledTable

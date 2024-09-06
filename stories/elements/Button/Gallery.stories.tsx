@@ -1,12 +1,12 @@
 import React from 'react';
-import NSButton, { BUTTON_VARIANTS, ButtonProps } from 'ui/elements/Button';
+import Button, { BUTTON_VARIANTS, ButtonProps } from 'ui/elements/Button';
 import NSTable from 'ui/elements/Table';
 
 import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
-    title: 'Elements/NSButton',
-    component: NSButton,
+    title: 'Elements/Button',
+    component: Button,
     tags: ['!autodocs'],
 };
 
@@ -15,10 +15,10 @@ const Template = (args: ButtonProps) => (
         <NSTable.TableHead highlightHeaders={false}>
             <NSTable.TableRow>
                 <NSTable.TableHeadingCell align="left">
-                    NSButton variant
+                    Button variant
                 </NSTable.TableHeadingCell>
                 <NSTable.TableHeadingCell align="left">
-                    NSButton
+                    Button
                 </NSTable.TableHeadingCell>
             </NSTable.TableRow>
         </NSTable.TableHead>
@@ -29,9 +29,9 @@ const Template = (args: ButtonProps) => (
                         <TokenBlock copy>{variant}</TokenBlock>
                     </NSTable.TableDataCell>
                     <NSTable.TableDataCell>
-                        <NSButton {...args} variant={variant} key={variant}>
+                        <Button {...args} variant={variant} key={variant}>
                             {args?.children}
-                        </NSButton>
+                        </Button>
                     </NSTable.TableDataCell>
                 </NSTable.TableRow>
             ))}

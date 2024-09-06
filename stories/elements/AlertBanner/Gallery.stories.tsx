@@ -1,5 +1,5 @@
 import React from 'react';
-import NSAlertBanner, {
+import AlertBanner, {
     ALERT_BANNER_TYPES_ENUM,
     ALERT_BANNER_VARIANTS_ENUM,
     AlertBannerProps,
@@ -10,8 +10,8 @@ import NSTypography from 'ui/elements/Typography';
 import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
-    title: 'Elements/NSAlertBanner',
-    component: NSAlertBanner,
+    title: 'Elements/AlertBanner',
+    component: AlertBanner,
     tags: ['!autodocs'],
     argTypes: {
         children: {
@@ -46,7 +46,7 @@ const Template = (args: AlertBannerProps) => (
                     Variant
                 </NSTable.TableHeadingCell>
                 <NSTable.TableHeadingCell align="left">
-                    NSAlertBanner
+                    AlertBanner
                 </NSTable.TableHeadingCell>
             </NSTable.TableRow>
         </NSTable.TableHead>
@@ -66,7 +66,7 @@ const Template = (args: AlertBannerProps) => (
                                         </TokenBlock>
                                     </NSTable.TableDataCell>
                                     <NSTable.TableDataCell>
-                                        <NSAlertBanner
+                                        <AlertBanner
                                             {...args}
                                             type={alertBannerType}
                                             variant={alertBannerVariant}
