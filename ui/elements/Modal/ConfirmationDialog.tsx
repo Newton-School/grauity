@@ -4,13 +4,12 @@ import React from 'react';
 import { useKeyboardEvent } from '../../../hooks';
 import useClickAway from '../../../hooks/useClickAway';
 import useDisableBodyScroll from '../../../hooks/useDisableBodyScroll';
-import Button, { BUTTON_VARIANTS_ENUM } from '../Button';
+import Button, { BUTTON_VARIANTS_ENUM, IconButton } from '../Button';
 import Modal from './Modal';
 import { ConfirmationDialogProps } from './types';
 
 /**
  * A confirmation dialog is a dialog box that asks the user to confirm an action.
- * @component
  */
 const ConfirmationDialog = ({
     cancelText,
@@ -31,14 +30,11 @@ const ConfirmationDialog = ({
 
     useDisableBodyScroll();
 
-    useKeyboardEvent(
-        () => {
-            if (hideOnClickAway) {
-                onCancel();
-            }
-        },
-        ['Escape'],
-    );
+    useKeyboardEvent(() => {
+        if (hideOnClickAway) {
+            onCancel();
+        }
+    }, ['Escape']);
 
     useClickAway(modalRef, () => {
         if (hideOnClickAway) {
@@ -57,12 +53,11 @@ const ConfirmationDialog = ({
                 <Modal.Main>
                     {banner && showCloseButton && (
                         <Modal.Action justifyContent="end">
-                            <Button
+                            <IconButton
                                 onClick={onCancel}
                                 variant="secondary-outlined"
                                 icon="close"
                                 ariaLabel="Close"
-                                isIconButton
                             />
                         </Modal.Action>
                     )}
@@ -75,11 +70,10 @@ const ConfirmationDialog = ({
                         >
                             {title}
                             {showCloseButton && !banner && (
-                                <Button
+                                <IconButton
                                     onClick={onCancel}
                                     variant="secondary-outlined"
                                     icon="close"
-                                    isIconButton
                                 />
                             )}
                         </Modal.Title>

@@ -1,31 +1,29 @@
 /* eslint-disable no-console */
 import React from 'react';
-import Button, { ButtonProps } from 'ui/elements/Button';
+import { IconButton, IconButtonProps } from 'ui/elements/Button';
 
 export default {
-    title: 'Elements/Button',
-    component: Button,
+    title: 'Elements/IconButton',
+    component: IconButton,
 };
 
-const Template = (args: ButtonProps) => <Button {...args} />;
+const Template = (args: IconButtonProps) => <IconButton {...args} />;
 
-const defaultArgs: ButtonProps = {
+const defaultArgs: IconButtonProps = {
     variant: 'primary',
     size: 'medium',
     icon: 'sparkle',
     iconSize: '24',
-    iconPosition: 'left',
     className: 'my-class',
     disabled: false,
     loading: false,
     style: { color: '' },
     onClick: () => {
-        console.log('Button clicked!');
+        console.log('IconButton clicked!');
     },
     fullWidth: false,
-    children: 'Click Me!',
     type: 'button',
-    ariaLabel: 'button',
+    ariaLabel: 'sparkle',
     tooltip: 'button',
     tabIndex: 0,
     dataTestId: 'button',

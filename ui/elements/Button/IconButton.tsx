@@ -3,26 +3,20 @@ import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
 import { Icon } from '../Icon';
-import { StyledButton, StyledButtonContent } from './Button.styles';
-import {
-    BUTTON_ICON_POSITIONS,
-    BUTTON_SIZES,
-    BUTTON_VARIANTS,
-} from './constants';
-import { ButtonProps } from './types';
+import { StyledButton } from './Button.styles';
+import { BUTTON_SIZES, BUTTON_VARIANTS } from './constants';
+import { IconButtonProps } from './types';
 
 /**
- * A Button is a component that is used to trigger an action.
- * It can contain text and an icon, or only text.
+ * An IconButton is a button that contains an icon.
  */
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     (props, ref) => {
         const {
             variant,
             size,
             icon,
             iconSize,
-            iconPosition,
             className,
             disabled,
             loading,
@@ -36,7 +30,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             dataTestId,
             onMouseEnter,
             onMouseLeave,
-            children,
             buttonProps,
         } = props;
         const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -60,14 +53,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 variant={variant}
                 size={size}
                 fullWidth={fullWidth}
-                iconPosition={iconPosition}
                 type={type}
-                aria-label={ariaLabel}
+                aria-label={ariaLabel || icon}
                 title={tooltip}
                 tabIndex={tabIndex}
                 data-testid={dataTestId}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
+                isIconButton
                 {...buttonProps}
             >
                 {icon && !loading && (
@@ -81,27 +74,21 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                         loading={loading}
                     />
                 )}
-                {children && (
-                    <StyledButtonContent>{children}</StyledButtonContent>
-                )}
             </StyledButton>
         );
     }
 );
 
-Button.propTypes = {
+IconButton.propTypes = {
     variant: PropTypes.oneOf(BUTTON_VARIANTS),
     size: PropTypes.oneOf(BUTTON_SIZES),
     icon: PropTypes.any,
     iconSize: PropTypes.any,
-    iconPosition: PropTypes.oneOf(BUTTON_ICON_POSITIONS),
     className: PropTypes.string,
     disabled: PropTypes.bool,
     loading: PropTypes.bool,
     style: PropTypes.object,
     onClick: PropTypes.func,
-    fullWidth: PropTypes.bool,
-    children: PropTypes.any,
     type: PropTypes.oneOf(['button', 'submit', 'reset']),
     ariaLabel: PropTypes.string,
     tooltip: PropTypes.string,
@@ -111,19 +98,16 @@ Button.propTypes = {
     onMouseLeave: PropTypes.func,
 };
 
-Button.defaultProps = {
+IconButton.defaultProps = {
     variant: 'primary',
     size: 'medium',
     icon: null,
     iconSize: '24',
-    iconPosition: 'left',
     className: '',
     disabled: false,
     loading: false,
     style: {},
     onClick: () => {},
-    fullWidth: false,
-    children: '',
     type: 'button',
     ariaLabel: '',
     tooltip: '',
@@ -133,4 +117,4 @@ Button.defaultProps = {
     onMouseLeave: () => {},
 };
 
-export default Button;
+export default IconButton;

@@ -19,8 +19,6 @@ import { StyledTypography } from './Typography.styles';
 
  * If you want the text to be rendered as a different HTML tag, provide your desired 
  * value to prop `as`, such as `'h1'`, `'h2'`, `'p'`, etc.
- * 
- * @component
  */
 const Typography = ({
     variant,

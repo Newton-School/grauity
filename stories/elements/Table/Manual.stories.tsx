@@ -1,12 +1,13 @@
 /* eslint-disable import/no-duplicates */
-import NSTable, {TableProps} from 'ui/elements/Table';
+import Table, {TableProps} from 'ui/elements/Table';
 
 import { Template } from './Manual.source';
 import templateRawSourceCode from './Manual.source?raw';
 
 export default {
-    title: 'Elements/NSTable/ManualTable',
-    component: NSTable,
+    title: 'Elements/Table/ManuallyCreatedTable',
+    description: 'Table component manually created',
+    component: Table,
     parameters: {
         docs: {
             source: {
@@ -29,8 +30,8 @@ const args: TableProps = {
     capitalizeHeaders: true,
 };
 
-export const ManualTable = Template.bind({});
+export const Component = Template.bind({});
 
-ManualTable.args = {
+Component.args = {
     ...args,
 };

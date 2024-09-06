@@ -1,10 +1,10 @@
 import React from 'react';
-import NSAlertBanner, { AlertBannerProps } from 'ui/elements/AlertBanner';
+import AlertBanner, { AlertBannerProps } from 'ui/elements/AlertBanner';
 import NSTypography from 'ui/elements/Typography';
 
 export default {
-    title: 'Elements/NSAlertBanner',
-    component: NSAlertBanner,
+    title: 'Elements/AlertBanner',
+    component: AlertBanner,
     argTypes: {
         children: {
             options: [
@@ -27,7 +27,7 @@ export default {
     },
 };
 
-const Template = (args: AlertBannerProps) => <NSAlertBanner {...args} />;
+const Template = (args: AlertBannerProps) => <AlertBanner {...args} />;
 
 const defaultArgs: AlertBannerProps = {
     type: 'outlined',

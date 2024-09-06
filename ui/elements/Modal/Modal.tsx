@@ -6,7 +6,7 @@ import {
     useDisableBodyScroll,
     useKeyboardEvent,
 } from '../../../hooks';
-import Button from '../Button/Button';
+import { IconButton } from '../Button';
 import {
     StyledModal,
     StyledModalAction,
@@ -24,7 +24,6 @@ import { ModalProps } from './types';
  * A modal is used to display content that temporarily blocks
  * interactions with the main view of a site or to get user attention
  * on a specific action or information.
- * @component
  */
 const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     const {
@@ -77,12 +76,11 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                     {/* We show close button differently if banner is present */}
                     {banner && showCloseButton && (
                         <StyledModalAction justifyContent="end">
-                            <Button
+                            <IconButton
                                 onClick={onHide}
                                 variant="secondary-outlined"
                                 icon="close"
                                 ariaLabel="Close"
-                                isIconButton
                             />
                         </StyledModalAction>
                     )}
@@ -95,11 +93,10 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                         >
                             {title}
                             {showCloseButton && !banner && (
-                                <Button
+                                <IconButton
                                     onClick={onHide}
                                     variant="secondary-outlined"
                                     icon="close"
-                                    isIconButton
                                 />
                             )}
                         </StyledModalTitle>

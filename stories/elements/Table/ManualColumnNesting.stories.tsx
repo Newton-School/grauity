@@ -1,12 +1,12 @@
 /* eslint-disable import/no-duplicates */
-import NSTable, { TableProps } from 'ui/elements/Table';
+import Table, { TableProps } from 'ui/elements/Table';
 
 import { Template } from './ManualColumnNesting.source';
 import templateRawSourceCode from './ManualColumnNesting.source?raw';
 
 export default {
-    title: 'Elements/NSTable/ManualTableColumnNesting',
-    component: NSTable,
+    title: 'Elements/Table/ManualTableColumnNesting',
+    component: Table,
     parameters: {
         docs: {
             source: {
