@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import { IconButton } from 'ui/elements/Button';
 
 import {
     useClickAway,
     useDisableBodyScroll,
     useKeyboardEvent,
 } from '../../../hooks';
-import Button from '../Button/Button';
 import {
     StyledModal,
     StyledModalAction,
@@ -77,12 +77,11 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                     {/* We show close button differently if banner is present */}
                     {banner && showCloseButton && (
                         <StyledModalAction justifyContent="end">
-                            <Button
+                            <IconButton
                                 onClick={onHide}
                                 variant="secondary-outlined"
                                 icon="close"
                                 ariaLabel="Close"
-                                isIconButton
                             />
                         </StyledModalAction>
                     )}
@@ -95,11 +94,10 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                         >
                             {title}
                             {showCloseButton && !banner && (
-                                <Button
+                                <IconButton
                                     onClick={onHide}
                                     variant="secondary-outlined"
                                     icon="close"
-                                    isIconButton
                                 />
                             )}
                         </StyledModalTitle>

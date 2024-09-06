@@ -1,31 +1,29 @@
 /* eslint-disable no-console */
 import React from 'react';
-import NSButton, { ButtonProps } from 'ui/elements/Button';
+import { IconButton, IconButtonProps } from 'ui/elements/Button';
 
 export default {
-    title: 'Elements/NSButton',
-    component: NSButton,
+    title: 'Elements/NSIconButton',
+    component: IconButton,
 };
 
-const Template = (args: ButtonProps) => <NSButton {...args} />;
+const Template = (args: IconButtonProps) => <IconButton {...args} />;
 
-const defaultArgs: ButtonProps = {
+const defaultArgs: IconButtonProps = {
     variant: 'primary',
     size: 'medium',
     icon: 'sparkle',
     iconSize: '24',
-    iconPosition: 'left',
     className: 'my-class',
     disabled: false,
     loading: false,
     style: { color: '' },
     onClick: () => {
-        console.log('NSButton clicked!');
+        console.log('IconButton clicked!');
     },
     fullWidth: false,
-    children: 'Click Me!',
     type: 'button',
-    ariaLabel: 'button',
+    ariaLabel: 'sparkle',
     tooltip: 'button',
     tabIndex: 0,
     dataTestId: 'button',

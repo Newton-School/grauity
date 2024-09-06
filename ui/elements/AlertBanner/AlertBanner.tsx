@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
-import Button from 'ui/elements/Button';
+import Button, { IconButton } from 'ui/elements/Button';
 import ButtonGroup from 'ui/elements/Button/ButtonGroup';
 
 import { Icon } from '../Icon';
@@ -8,10 +8,7 @@ import {
     StyledAlertBannerContainer,
     StyledAlertBannerContent,
 } from './AlertBanner.styles';
-import {
-    ALERT_BANNER_TYPES,
-    ALERT_BANNER_VARIANTS,
-} from './constants';
+import { ALERT_BANNER_TYPES, ALERT_BANNER_VARIANTS } from './constants';
 import { AlertBannerProps } from './types';
 import {
     getAlertBannerColors,
@@ -85,14 +82,13 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
                             <Button {...button}>{button.children}</Button>
                         ))}
                         {showCloseButton && (
-                            <Button
+                            <IconButton
                                 variant={getButtonVariantFromAlertBannerTypeVariant(
                                     variant,
                                     type
                                 )}
                                 icon="close"
                                 onClick={onClose}
-                                isIconButton
                                 size="small"
                             />
                         )}
