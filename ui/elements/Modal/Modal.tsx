@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, useId, useImperativeHandle, useRef } from 'react';
 
 import {
     useClickAway,
@@ -61,6 +61,8 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         }
     });
 
+    const id = useId();
+
     return (
         <StyledModalWrapper blurBackground={blurBackground}>
             <StyledModal
@@ -71,10 +73,13 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                 minHeight={minHeight}
                 mobileBottomFullWidth={mobileBottomFullWidth}
                 modalPadding={modalPadding}
+                aria-labelledby={`modal-title-${id}`}
+                aria-describedby={`modal-description-${id}`}
+                aria-modal="true"
+                role="dialog"
             >
                 <StyledModalMain>
-                    {/* We show close button differently if banner is present */}
-                    {banner && showCloseButton && (
+                    {showCloseButton && (
                         <StyledModalAction justifyContent="end">
                             <IconButton
                                 onClick={onHide}
@@ -87,23 +92,14 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 
                     {banner && <StyledModalBanner>{banner}</StyledModalBanner>}
 
-                    {(title || showCloseButton) && (
-                        <StyledModalTitle
-                            showCloseButton={showCloseButton && !banner}
-                        >
+                    {title && (
+                        <StyledModalTitle id={`modal-title-${id}`}>
                             {title}
-                            {showCloseButton && !banner && (
-                                <IconButton
-                                    onClick={onHide}
-                                    variant="secondary-outlined"
-                                    icon="close"
-                                />
-                            )}
                         </StyledModalTitle>
                     )}
 
                     {description && (
-                        <StyledModalDescription>
+                        <StyledModalDescription id={`modal-description-${id}`}>
                             {description}
                         </StyledModalDescription>
                     )}

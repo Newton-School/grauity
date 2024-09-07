@@ -1,23 +1,14 @@
 /* eslint-disable import/no-duplicates */
-import { BUTTON_VARIANTS_ENUM } from 'ui/elements/Button';
-import {
-    ConfirmationDialog,
-    ConfirmationDialogProps,
-} from 'ui/elements/Modal';
+import React from 'react';
+import { ConfirmationDialog, ConfirmationDialogProps } from 'ui/elements/Modal';
 
-import { Template } from './ConfirmationDialog.source';
-import templateRawSourceCode from './ConfirmationDialog.source?raw';
+import withEnableBodyScroll from '../../../.storybook/decorators/withEnableBodyScroll';
+import withInlineContainer from '../../../.storybook/decorators/withInlineContainer';
 
 export default {
     title: 'Elements/Modal/ConfirmationDialog',
     component: ConfirmationDialog,
-    parameters: {
-        docs: {
-            source: {
-                code: templateRawSourceCode,
-            },
-        },
-    },
+    decorators: [withEnableBodyScroll, withInlineContainer],
 };
 
 const defaultArgs: ConfirmationDialogProps = {
@@ -29,12 +20,16 @@ const defaultArgs: ConfirmationDialogProps = {
     onCancel: () => {},
     confirmText: 'Sign out',
     cancelText: 'Stay Signed in',
-    confirmButtonVariant: BUTTON_VARIANTS_ENUM.SUCCESS,
-    cancelButtonVariant: BUTTON_VARIANTS_ENUM.DANGER,
+    confirmButtonVariant: 'success',
+    cancelButtonVariant: 'danger',
     showCloseButton: false,
     hideOnClickAway: false,
     blurBackground: false,
 };
+
+const Template = (args: ConfirmationDialogProps) => (
+    <ConfirmationDialog {...args} />
+);
 
 export const Component = Template.bind({});
 

@@ -261,11 +261,18 @@ export interface ModalContainerProps {
     onClick?: (e: Event) => void;
     ref?: React.MutableRefObject<any>;
     children: React.ReactNode;
+    role: string;
 }
 
 // Components interface for ModalTitle
 export interface ModalTitleProps {
-    showCloseButton?: boolean;
+    id: string;
+    children: React.ReactNode;
+}
+
+// Components interface for ModalDescription
+export interface ModalDescriptionProps {
+    id: string;
     children: React.ReactNode;
 }
 
@@ -361,4 +368,12 @@ export interface ConfirmationDialogProps {
      * Default: `false`
      * */
     blurBackground?: boolean;
+
+    /**
+     * Determines if the modal should be at bottom with full width on mobile
+     * Available choices: `true`, `false`
+     *
+     * Default: `false`
+     * */
+    mobileBottomFullWidth?: boolean;
 }

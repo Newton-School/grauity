@@ -5,7 +5,7 @@ import {
     BUTTON_VARIANT_STYLES_MAPPING,
     ICON_BUTTON_SIZE_STYLES_MAPPING,
 } from './constants';
-import { ButtonComponentProps } from './types';
+import { ButtonComponentProps, ButtonContentProps } from './types';
 
 export const StyledButton = styled.button<ButtonComponentProps>`
     padding: var(--spacing-4px, 4px) var(--spacing-12px, 12px);
@@ -77,7 +77,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     transition: background-color 0.2s ease-in, outline 0.2s ease-in, border 0.2s ease-in, border-color 0.2s ease-in;
 `;
 
-export const StyledButtonContent = styled.div`
+export const StyledButtonContent = styled.div<ButtonContentProps>`
     display: flex;
     align-items: center;
     gap: var(--spacing-8px, 8px);

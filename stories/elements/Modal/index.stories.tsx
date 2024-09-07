@@ -9,7 +9,7 @@ import singleStepArgs from './singleStepArgs';
 export default {
     title: 'Elements/Modal',
     component: Modal,
-    decorators: [withEnableBodyScroll, withInlineContainer],
+    decorators:  [withEnableBodyScroll, withInlineContainer],
     argTypes: {
         body: {
             options: [

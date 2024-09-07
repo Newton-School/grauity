@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId } from 'react';
 
 import { Icon } from '../Icon';
 import { StyledButton, StyledButtonContent } from './Button.styles';
@@ -14,6 +14,8 @@ import { ButtonProps } from './types';
 /**
  * A Button is a component that is used to trigger an action.
  * It can contain text and an icon, or only text.
+ * 
+ * To create an icon button, checkout the IconButton component.
  */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     (props, ref) => {
@@ -30,7 +32,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             onClick,
             fullWidth,
             type,
-            ariaLabel,
             tooltip,
             tabIndex,
             dataTestId,
@@ -49,6 +50,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
         const classes = classnames(className);
 
+        const id = useId();
+
         return (
             <StyledButton
                 ref={ref}
@@ -62,13 +65,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 fullWidth={fullWidth}
                 iconPosition={iconPosition}
                 type={type}
-                aria-label={ariaLabel}
                 title={tooltip}
                 tabIndex={tabIndex}
                 data-testid={dataTestId}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 {...buttonProps}
+                aria-labelledby={`button-content-${id}`}
             >
                 {icon && !loading && (
                     <Icon name={icon} color="inherit" size={iconSize || '24'} />
@@ -82,7 +85,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                     />
                 )}
                 {children && (
-                    <StyledButtonContent>{children}</StyledButtonContent>
+                    <StyledButtonContent id={`button-content-${id}`}>{children}</StyledButtonContent>
                 )}
             </StyledButton>
         );
@@ -103,7 +106,6 @@ Button.propTypes = {
     fullWidth: PropTypes.bool,
     children: PropTypes.any,
     type: PropTypes.oneOf(['button', 'submit', 'reset']),
-    ariaLabel: PropTypes.string,
     tooltip: PropTypes.string,
     tabIndex: PropTypes.number,
     dataTestId: PropTypes.string,
@@ -125,7 +127,6 @@ Button.defaultProps = {
     fullWidth: false,
     children: '',
     type: 'button',
-    ariaLabel: '',
     tooltip: '',
     tabIndex: 0,
     dataTestId: '',

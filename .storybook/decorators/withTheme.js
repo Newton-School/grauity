@@ -32,9 +32,9 @@ const withTheme = (Story, context) => {
     const { globals } = context;
 
     return (
-        <StatefulThemeWrapper globals={globals}>
+        <ThemeWrapper defaultTheme={globals.theme}>
             <Story />
-        </StatefulThemeWrapper>
+        </ThemeWrapper>
     );
 };
 
