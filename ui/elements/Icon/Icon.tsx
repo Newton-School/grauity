@@ -9,15 +9,9 @@ import {
     GRAUITY_ICON_SIZES,
     ICON_TAGS,
 } from '../../core';
-import {
-    useKeyOnly,
-    useValueAndKey,
-} from '../../helpers';
+import { useKeyOnly, useValueAndKey } from '../../helpers';
 import { StyledIcon } from './Icon.styles';
-import {
-    IconProps,
-} from './types';
-
+import { IconProps } from './types';
 
 /**
  * An icon is a glyph used to represent something else.
