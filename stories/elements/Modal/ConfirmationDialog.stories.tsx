@@ -6,7 +6,7 @@ import withEnableBodyScroll from '../../../.storybook/decorators/withEnableBodyS
 import withInlineContainer from '../../../.storybook/decorators/withInlineContainer';
 
 export default {
-    title: 'Elements/Modal/ConfirmationDialog',
+    title: 'Elements/ConfirmationDialog',
     component: ConfirmationDialog,
     decorators: [withEnableBodyScroll, withInlineContainer],
 };

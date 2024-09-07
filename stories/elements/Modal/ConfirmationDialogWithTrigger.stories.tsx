@@ -8,13 +8,8 @@ import {
 } from 'ui/elements/Modal';
 
 export default {
-    title: 'Elements/Modal/ConfirmationDialog/ConfirmationDialogWithTrigger',
+    title: 'Elements/ConfirmationDialog/TemplateWithTrigger',
     component: ConfirmationDialog,
-    parameters:{
-        controls:{
-            exclude:/.*/g
-        }
-    }
 };
 
 const defaultArgs: ConfirmationDialogProps = {
