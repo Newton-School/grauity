@@ -75,7 +75,7 @@ const defaultArgs: AlertBannerProps = {
     ],
     children: (
         <Typography variant="paragraph-semibold-label" color="inherit">
-            This is a default alert banner
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </Typography>
     ),
 };
