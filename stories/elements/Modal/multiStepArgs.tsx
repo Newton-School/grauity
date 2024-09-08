@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
-import NSTable from 'ui/elements/Table';
-import NSTypography from 'ui/elements/Typography';
+import Table from 'ui/elements/Table';
+import Typography from 'ui/elements/Typography';
 
 import { MultiStepModalProps } from '../../../ui/elements/Modal/types';
 import simpleTableArgs from '../Table/simpleArgs';
@@ -23,9 +23,9 @@ const multiStepArgs: MultiStepModalProps = {
         {
             banner: null,
             title: (
-                <NSTypography variant="heading-semibold-h24">
+                <Typography variant="heading-semibold-h24">
                     Multi-step Modal Step 2 (with custom title)
-                </NSTypography>
+                </Typography>
             ),
             description:
                 'This step does not have a banner, and has body as an image. Neat innit?',
@@ -63,7 +63,7 @@ const multiStepArgs: MultiStepModalProps = {
             description:
                 'This is the final step. It has a custom body render function.',
             body: (
-                <NSTable
+                <Table
                     rows={simpleTableArgs.rows}
                     columns={simpleTableArgs.columns}
                     condensed

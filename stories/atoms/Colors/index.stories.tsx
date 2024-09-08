@@ -1,5 +1,5 @@
 import React from 'react';
-import NSTable from 'ui/elements/Table';
+import Table from 'ui/elements/Table';
 
 import { ColorRenderer } from '../../helper-components/ColorRenderer';
 import { extractTokensFromTheme } from '../../utils';
@@ -19,7 +19,7 @@ export const Text = {
             render: (token) => <ColorRenderer color={`var(${token.token})`} />,
         });
         return (
-            <NSTable
+            <Table
                 columns={[
                     { key: 'token', display: 'Token', align: 'left' },
                     { key: 'value', display: 'Value', align: 'left' },
@@ -50,7 +50,7 @@ export const Background = {
             render: (token) => <ColorRenderer color={`var(${token.token})`} />,
         });
         return (
-            <NSTable
+            <Table
                 columns={[
                     { key: 'token', display: 'Token', align: 'left' },
                     { key: 'value', display: 'Value', align: 'left' },
@@ -81,7 +81,7 @@ export const Border = {
             render: (token) => <ColorRenderer color={`var(${token.token})`} />,
         });
         return (
-            <NSTable
+            <Table
                 columns={[
                     { key: 'token', display: 'Token', align: 'left' },
                     { key: 'value', display: 'Value', align: 'left' },
@@ -112,7 +112,7 @@ export const Alpha = {
             render: (token) => <ColorRenderer color={`var(${token.token})`} />,
         });
         return (
-            <NSTable
+            <Table
                 columns={[
                     { key: 'token', display: 'Token', align: 'left' },
                     { key: 'value', display: 'Value', align: 'left' },

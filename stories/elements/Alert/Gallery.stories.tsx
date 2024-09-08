@@ -1,20 +1,20 @@
 import React from 'react';
-import AlertBanner, {
-    ALERT_BANNER_TYPES_ENUM,
-    ALERT_BANNER_VARIANTS_ENUM,
-    AlertBannerProps,
-} from 'ui/elements/AlertBanner';
+import Alert, {
+    ALERT_TYPES_ENUM,
+    ALERT_VARIANTS_ENUM,
+    AlertProps,
+} from 'ui/elements/Alert';
 import Table from 'ui/elements/Table';
 import Typography from 'ui/elements/Typography';
 
 import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
-    title: 'Elements/AlertBanner',
-    component: AlertBanner,
+    title: 'Elements/Alert',
+    component: Alert,
     tags: ['!autodocs'],
     argTypes: {
-        children: {
+        title: {
             options: [
                 'Simple example using Typography',
                 'Simple example with text only',
@@ -25,7 +25,7 @@ export default {
                         variant="paragraph-semibold-label"
                         color="inherit"
                     >
-                        An Alert Banner using Typography
+                        An Alert using Typography
                     </Typography>
                 ),
                 'Simple example with text only':
@@ -38,12 +38,12 @@ export default {
                 'With action buttons': [
                     {
                         children: 'Button',
-                        variant: 'tertiary',
+                        variant: 'secondary',
                         size: 'small',
                     },
                     {
                         children: 'Button',
-                        variant: 'secondary',
+                        variant: 'tertiary',
                         size: 'small',
                     },
                 ],
@@ -53,7 +53,7 @@ export default {
     },
 };
 
-const Template = (args: AlertBannerProps) => (
+const Template = (args: AlertProps) => (
     <Table.Table borderAround={false} borderVertical={false}>
         <Table.TableHead highlightHeaders={false}>
             <Table.TableRow>
@@ -64,38 +64,38 @@ const Template = (args: AlertBannerProps) => (
                     Variant
                 </Table.TableHeadingCell>
                 <Table.TableHeadingCell align="left">
-                    AlertBanner
+                    Alert
                 </Table.TableHeadingCell>
             </Table.TableRow>
         </Table.TableHead>
         <Table.TableBody>
-            {Object.entries(ALERT_BANNER_TYPES_ENUM).map(
-                ([, alertBannerType]) => (
-                    <>
-                        {Object.entries(ALERT_BANNER_VARIANTS_ENUM).map(
-                            ([, alertBannerVariant]) => (
-                                <Table.TableRow>
-                                    <Table.TableDataCell>
-                                        <TokenBlock copy>{alertBannerType}</TokenBlock>
-                                    </Table.TableDataCell>
-                                    <Table.TableDataCell>
-                                        <TokenBlock copy>
-                                            {alertBannerVariant}
-                                        </TokenBlock>
-                                    </Table.TableDataCell>
-                                    <Table.TableDataCell>
-                                        <AlertBanner
-                                            {...args}
-                                            type={alertBannerType}
-                                            variant={alertBannerVariant}
-                                        />
-                                    </Table.TableDataCell>
-                                </Table.TableRow>
-                            )
-                        )}
-                    </>
-                )
-            )}
+            {Object.entries(ALERT_TYPES_ENUM).map(([, alertBannerType]) => (
+                <>
+                    {Object.entries(ALERT_VARIANTS_ENUM).map(
+                        ([, alertBannerVariant]) => (
+                            <Table.TableRow>
+                                <Table.TableDataCell>
+                                    <TokenBlock copy>
+                                        {alertBannerType}
+                                    </TokenBlock>
+                                </Table.TableDataCell>
+                                <Table.TableDataCell>
+                                    <TokenBlock copy>
+                                        {alertBannerVariant}
+                                    </TokenBlock>
+                                </Table.TableDataCell>
+                                <Table.TableDataCell>
+                                    <Alert
+                                        {...args}
+                                        type={alertBannerType}
+                                        variant={alertBannerVariant}
+                                    />
+                                </Table.TableDataCell>
+                            </Table.TableRow>
+                        )
+                    )}
+                </>
+            ))}
         </Table.TableBody>
     </Table.Table>
 );
@@ -109,25 +109,26 @@ Gallery.args = {
     left: null,
     right: null,
     position: 'static',
-    justifyContent: 'space-between',
     onClose: null,
     showCloseButton: true,
     actionButtons: [
         {
             children: 'Button',
-            variant: 'tertiary',
+            variant: 'secondary',
             size: 'small',
         },
         {
             children: 'Button',
-            variant: 'secondary',
+            variant: 'tertiary',
             size: 'small',
         },
     ],
-    children: (
+    inlineButtons: false,
+    title: (
         <Typography variant="paragraph-semibold-label" color="inherit">
             This is an alert banner with buttons
         </Typography>
     ),
-
+    description:
+        'We all step into this design world full of passion and enthusiasm.But over time, something changes without us even noticing.',
 };

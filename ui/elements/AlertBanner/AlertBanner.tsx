@@ -64,6 +64,7 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
                 backgroundColor={backgroundColor}
                 borderColor={borderColor}
                 justifyContent={justifyContent}
+                role="alert"
             >
                 <StyledAlertBannerContent color={textColor}>
                     {iconName && (
@@ -78,7 +79,7 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
 
                 {hasButton && (
                     <ButtonGroup>
-                        {actionButtons.map((button) => (
+                        {actionButtons?.map((button) => (
                             <Button {...button}>{button.children}</Button>
                         ))}
                         {showCloseButton && (
@@ -125,9 +126,9 @@ AlertBanner.propTypes = {
     bottom: PropTypes.string,
     left: PropTypes.string,
     right: PropTypes.string,
-    position: PropTypes.string,
+    position: PropTypes.oneOf(['static', 'fixed', 'absolute', 'relative']),
     children: PropTypes.node,
-    justifyContent: PropTypes.string,
+    justifyContent: PropTypes.oneOf(['center', 'space-between', 'space-around']),
     onClose: PropTypes.func,
     showCloseButton: PropTypes.bool,
     actionButtons: PropTypes.array,

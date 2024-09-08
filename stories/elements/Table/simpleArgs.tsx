@@ -1,5 +1,5 @@
 import React from 'react';
-import NSButton from 'ui/elements/Button';
+import Button from 'ui/elements/Button';
 import { TableProps } from 'ui/elements/Table';
 
 const simpleArgs: TableProps = {
@@ -26,9 +26,9 @@ const simpleArgs: TableProps = {
             age: { display: 25 },
             action: {
                 render: () => (
-                    <NSButton size="small" icon="code">
+                    <Button size="small" icon="code">
                         Click me
-                    </NSButton>
+                    </Button>
                 ),
             },
         },
@@ -37,9 +37,9 @@ const simpleArgs: TableProps = {
             age: { display: 25 },
             action: {
                 render: () => (
-                    <NSButton size="small" icon="code">
+                    <Button size="small" icon="code">
                         Click me
-                    </NSButton>
+                    </Button>
                 ),
             },
         },
@@ -48,9 +48,9 @@ const simpleArgs: TableProps = {
             age: { display: 25 },
             action: {
                 render: () => (
-                    <NSButton size="small" icon="code">
+                    <Button size="small" icon="code">
                         Click me
-                    </NSButton>
+                    </Button>
                 ),
             },
         },
@@ -59,9 +59,9 @@ const simpleArgs: TableProps = {
             age: { display: 25 },
             action: {
                 render: () => (
-                    <NSButton size="small" icon="code">
+                    <Button size="small" icon="code">
                         Click me
-                    </NSButton>
+                    </Button>
                 ),
             },
         },

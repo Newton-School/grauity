@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NSButton } from '../../ui';
+import Button from '../../ui/elements/Button';
 
 /**
  * This decorator is used to wrap stories with a container that toggles visibility
@@ -15,7 +15,7 @@ const withVisibilityToggle = (Story, context) => {
 
     return (
         <div>
-            <NSButton onClick={() => setIsOpen(true)}>Open</NSButton>
+            <Button onClick={() => setIsOpen(true)}>Open</Button>
             {isOpen && <Story showCloseButton={false} />}
         </div>
     );

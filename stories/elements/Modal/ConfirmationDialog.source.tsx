@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import NSButton, { BUTTON_VARIANTS_ENUM } from 'ui/elements/Button';
+import Button, { BUTTON_VARIANTS_ENUM } from 'ui/elements/Button';
 import {
-    ConfirmationDialog as NSConfirmationDialog,
+    ConfirmationDialog,
     ConfirmationDialogProps,
 } from 'ui/elements/Modal';
 
@@ -10,15 +10,15 @@ export const Template = (args: ConfirmationDialogProps) => {
 
     return (
         <div>
-            <NSButton
+            <Button
                 onClick={() => setIsOpen(true)}
                 variant={BUTTON_VARIANTS_ENUM.DANGER}
                 icon="signout"
             >
                 Sign out
-            </NSButton>
+            </Button>
             {isOpen && (
-                <NSConfirmationDialog
+                <ConfirmationDialog
                     banner={args?.banner}
                     title={args?.title}
                     description={args?.description}

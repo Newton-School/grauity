@@ -1,12 +1,12 @@
 import React from 'react';
-import AlertBanner, { AlertBannerProps } from 'ui/elements/AlertBanner';
+import Alert, { AlertProps } from 'ui/elements/Alert';
 import Typography from 'ui/elements/Typography';
 
 export default {
-    title: 'Elements/AlertBanner',
-    component: AlertBanner,
+    title: 'Elements/Alert',
+    component: Alert,
     argTypes: {
-        children: {
+        title: {
             options: [
                 'Simple example using Typography',
                 'Simple example with text only',
@@ -17,29 +17,27 @@ export default {
                         variant="paragraph-semibold-label"
                         color="inherit"
                     >
-                        An Alert Banner using Typography
+                        An Alert title using Typography
                     </Typography>
                 ),
                 'Simple example with text only':
-                    'An Alert Banner using simple text',
+                    'Alert title using simple text',
             },
         },
         actionButtons: {
             options: ['With action buttons', 'Without action buttons'],
             mapping: {
                 'With action buttons': [
-                    [
-                        {
-                            children: 'Button',
-                            variant: 'tertiary',
-                            size: 'small',
-                        },
-                        {
-                            children: 'Button',
-                            variant: 'secondary',
-                            size: 'small',
-                        },
-                    ],
+                    {
+                        children: 'Button',
+                        variant: 'tertiary-outlined',
+                        size: 'small',
+                    },
+                    {
+                        children: 'Button',
+                        variant: 'tertiary',
+                        size: 'small',
+                    },
                 ],
                 'Without action buttons': null,
             },
@@ -47,20 +45,19 @@ export default {
     },
 };
 
-const Template = (args: AlertBannerProps) => <AlertBanner {...args} />;
+const Template = (args: AlertProps) => <Alert {...args} />;
 
-const defaultArgs: AlertBannerProps = {
-    type: 'outlined',
+const defaultArgs: AlertProps = {
+    type: 'filled',
     variant: 'primary',
-    icon: 'bell',
+    icon: 'auto',
     top: null,
     bottom: null,
     left: null,
     right: null,
     position: 'static',
-    justifyContent: 'center',
     onClose: null,
-    showCloseButton: false,
+    showCloseButton: true,
     actionButtons: [
         {
             children: 'Button',
@@ -73,11 +70,17 @@ const defaultArgs: AlertBannerProps = {
             size: 'small',
         },
     ],
-    children: (
+    inlineButtons: false,
+    title: (
         <Typography variant="paragraph-semibold-label" color="inherit">
             This is a default alert banner
         </Typography>
     ),
+    description: `
+        We all step into this design world full of passion and
+        enthusiasm.But over time, something changes without us even
+        noticing.
+    `,
 };
 
 export const Component = Template.bind({});

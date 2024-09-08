@@ -1,5 +1,5 @@
 import React from 'react';
-import NSTable from 'ui/elements/Table';
+import Table from 'ui/elements/Table';
 
 import { constantGlobalStyle } from '../../../ui/themes/GlobalStyle';
 import { ColorRenderer } from '../../helper-components/ColorRenderer';
@@ -20,7 +20,7 @@ export const FoundationColors = () => {
         render: (token) => <ColorRenderer color={token} />,
     });
     return (
-        <NSTable
+        <Table
             columns={[
                 { key: 'token', display: 'Token', align: 'left' },
                 { key: 'value', display: 'Value', align: 'left' },
