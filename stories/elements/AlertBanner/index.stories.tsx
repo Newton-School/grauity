@@ -1,13 +1,53 @@
 import React from 'react';
-import NSAlertBanner, { AlertBannerProps } from 'ui/elements/AlertBanner';
-import NSTypography from 'ui/elements/Typography';
+import AlertBanner, { AlertBannerProps } from 'ui/elements/AlertBanner';
+import Typography from 'ui/elements/Typography';
 
 export default {
-    title: 'Elements/NSAlertBanner',
-    component: NSAlertBanner,
+    title: 'Elements/AlertBanner',
+    component: AlertBanner,
+    argTypes: {
+        children: {
+            options: [
+                'Simple example using Typography',
+                'Simple example with text only',
+            ],
+            mapping: {
+                'Simple example using Typography': (
+                    <Typography
+                        variant="paragraph-semibold-label"
+                        color="inherit"
+                    >
+                        An Alert Banner using Typography
+                    </Typography>
+                ),
+                'Simple example with text only':
+                    'An Alert Banner using simple text',
+            },
+        },
+        actionButtons: {
+            options: ['With action buttons', 'Without action buttons'],
+            mapping: {
+                'With action buttons': [
+                    [
+                        {
+                            children: 'Button',
+                            variant: 'tertiary',
+                            size: 'small',
+                        },
+                        {
+                            children: 'Button',
+                            variant: 'secondary',
+                            size: 'small',
+                        },
+                    ],
+                ],
+                'Without action buttons': null,
+            },
+        },
+    },
 };
 
-const Template = (args: AlertBannerProps) => <NSAlertBanner {...args} />;
+const Template = (args: AlertBannerProps) => <AlertBanner {...args} />;
 
 const defaultArgs: AlertBannerProps = {
     type: 'outlined',
@@ -21,15 +61,27 @@ const defaultArgs: AlertBannerProps = {
     justifyContent: 'center',
     onClose: null,
     showCloseButton: false,
+    actionButtons: [
+        {
+            children: 'Button',
+            variant: 'secondary',
+            size: 'small',
+        },
+        {
+            children: 'Button',
+            variant: 'tertiary',
+            size: 'small',
+        },
+    ],
     children: (
-        <NSTypography variant="paragraph-semibold-label" color="inherit">
-            This is a default alert banner
-        </NSTypography>
+        <Typography variant="paragraph-semibold-label" color="inherit">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </Typography>
     ),
 };
 
-export const Default = Template.bind({});
+export const Component = Template.bind({});
 
-Default.args = {
+Component.args = {
     ...defaultArgs,
 };

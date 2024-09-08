@@ -1,4 +1,5 @@
 import { grauityIconName } from '../../core';
+import { BUTTON_VARIANTS_ENUM } from '../Button';
 
 export enum ALERT_BANNER_TYPES_ENUM {
     DEFAULT = 'default', // Colorless background, colored icon & text
@@ -113,32 +114,66 @@ export const ALERT_BANNER_COLOR_MAPPINGS = {
         [ALERT_BANNER_VARIANTS_ENUM.PRIMARY]: {
             iconColor: 'var(--text-action, #FFF)',
             textColor: 'var(--text-action, #FFF)',
-            backgroundColor: 'var(--text-brand, #0673F9)',
+            backgroundColor: 'var(--bg-action-brand, #0673F9)',
             borderColor: 'transparent',
         },
         [ALERT_BANNER_VARIANTS_ENUM.SUCCESS]: {
             iconColor: 'var(--text-action, #FFF)',
             textColor: 'var(--text-action, #FFF)',
-            backgroundColor: 'var(--text-success, #007A51)',
+            backgroundColor: 'var(--bg-action-success, #007A51)',
             borderColor: 'transparent',
         },
         [ALERT_BANNER_VARIANTS_ENUM.WARNING]: {
             iconColor: 'var(--text-action, #FFF)',
             textColor: 'var(--text-action, #FFF)',
-            backgroundColor: 'var(--text-warning, #DE5A02)',
+            backgroundColor: 'var(--bg-action-warning, #DE5A02)',
             borderColor: 'transparent',
         },
         [ALERT_BANNER_VARIANTS_ENUM.ERROR]: {
             iconColor: 'var(--text-action, #FFF)',
             textColor: 'var(--text-action, #FFF)',
-            backgroundColor: 'var(--text-error, #D22D3A)',
+            backgroundColor: 'var(--bg-action-error, #D22D3A)',
             borderColor: 'transparent',
         },
         [ALERT_BANNER_VARIANTS_ENUM.DEFAULT]: {
-            iconColor: 'var(--text-action, #FFF)',
+            iconColor: 'var(--text-action2, #FFF)',
             textColor: 'var(--text-action2, #FFF)',
-            backgroundColor: 'var(--text-primary, #16191D)',
+            backgroundColor: 'var(--bg-invert-primary, #16191D)',
             borderColor: 'transparent',
         },
+    },
+};
+
+export const ALERT_BANNER_TYPE_AND_VARIANT_TO_BUTTON_VARIANT_MAPPING = {
+    [ALERT_BANNER_TYPES_ENUM.DEFAULT]: {
+        [ALERT_BANNER_VARIANTS_ENUM.PRIMARY]:
+            BUTTON_VARIANTS_ENUM.TERTIARY_OUTLINED,
+        [ALERT_BANNER_VARIANTS_ENUM.SUCCESS]:
+            BUTTON_VARIANTS_ENUM.TERTIARY_OUTLINED,
+        [ALERT_BANNER_VARIANTS_ENUM.WARNING]:
+            BUTTON_VARIANTS_ENUM.TERTIARY_OUTLINED,
+        [ALERT_BANNER_VARIANTS_ENUM.ERROR]:
+            BUTTON_VARIANTS_ENUM.TERTIARY_OUTLINED,
+        [ALERT_BANNER_VARIANTS_ENUM.DEFAULT]:
+            BUTTON_VARIANTS_ENUM.TERTIARY_OUTLINED,
+    },
+    [ALERT_BANNER_TYPES_ENUM.OUTLINED]: {
+        [ALERT_BANNER_VARIANTS_ENUM.PRIMARY]:
+            BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED,
+        [ALERT_BANNER_VARIANTS_ENUM.SUCCESS]:
+            BUTTON_VARIANTS_ENUM.SUCCESS_OUTLINED,
+        [ALERT_BANNER_VARIANTS_ENUM.WARNING]:
+            BUTTON_VARIANTS_ENUM.WARNING_OUTLINED,
+        [ALERT_BANNER_VARIANTS_ENUM.ERROR]:
+            BUTTON_VARIANTS_ENUM.DANGER_OUTLINED,
+        [ALERT_BANNER_VARIANTS_ENUM.DEFAULT]:
+            BUTTON_VARIANTS_ENUM.TERTIARY_OUTLINED,
+    },
+    [ALERT_BANNER_TYPES_ENUM.FILLED]: {
+        [ALERT_BANNER_VARIANTS_ENUM.PRIMARY]: BUTTON_VARIANTS_ENUM.PRIMARY,
+        [ALERT_BANNER_VARIANTS_ENUM.SUCCESS]: BUTTON_VARIANTS_ENUM.SUCCESS,
+        [ALERT_BANNER_VARIANTS_ENUM.WARNING]: BUTTON_VARIANTS_ENUM.WARNING,
+        [ALERT_BANNER_VARIANTS_ENUM.ERROR]: BUTTON_VARIANTS_ENUM.DANGER,
+        [ALERT_BANNER_VARIANTS_ENUM.DEFAULT]: BUTTON_VARIANTS_ENUM.SECONDARY,
     },
 };

@@ -1,12 +1,12 @@
-# gra.UI.ty
+<h1 align="center">gra.UI.ty</h1>
 
 <p align="center">
-  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/cc6c8f01c5fa4ca481de8f9180eb937a.png" alt="gra.UI.ty Logo 1" width="120" height="120">
-  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/92ae68a3bf55431d8120e92041951482.png" alt="gra.UI.ty Logo 2" width="120" height="120">
-  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/c1dd6d6367b34e01a19c458e1656c3c1.png" alt="gra.UI.ty Logo 3" width="120" height="120">
+  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/cc6c8f01c5fa4ca481de8f9180eb937a.png" alt="gra.UI.ty Logo 1" width="120" height="120" />
+  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/92ae68a3bf55431d8120e92041951482.png" alt="gra.UI.ty Logo 2" width="120" height="120" />
+  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/c1dd6d6367b34e01a19c458e1656c3c1.png" alt="gra.UI.ty Logo 3" width="120" height="120" />
 </p>
 
-<h3 align="center">Discover the elegance of gra.UI.ty</h3>
+<h3 align="center">Discovering the most elegant UI components for your next project</h3>
 
 <p align="center">
   A meticulously crafted UI component library, bringing the simplicity and elegance of nature to your digital interfaces.

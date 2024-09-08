@@ -1,5 +1,5 @@
-export type { grauityColorName, grauityIconColorName } from './colors';
-export { GRAUITY_COLOR, GRAUITY_ICON_COLORS } from './colors';
+// export type { grauityColorName, grauityIconColorName } from './colors';
+// export { GRAUITY_COLOR, GRAUITY_ICON_COLORS } from './colors';
 export type { grauityIconKey, grauityIconName } from './icons';
 export { GRAUITY_ICONS, ICON_TAGS, TAG_ICONS } from './icons';
 export type {

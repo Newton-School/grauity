@@ -1,12 +1,12 @@
 import React from 'react';
-import NSTypography, { TypographyProps } from 'ui/elements/Typography';
+import Typography, { TypographyProps } from 'ui/elements/Typography';
 
 export default {
-    title: 'Elements/NSTypography',
-    component: NSTypography,
+    title: 'Elements/Typography',
+    component: Typography,
 };
 
-const Template = (args: TypographyProps) => <NSTypography {...args} />;
+const Template = (args: TypographyProps) => <Typography {...args} />;
 
 const defaultArgs = {
     children: 'The quick brown fox jumps over the lazy dog!',
@@ -16,8 +16,8 @@ const defaultArgs = {
     fontSize: 'var(--font-size-40px, 40px)',
 };
 
-export const Default = Template.bind({});
+export const Component = Template.bind({});
 
-Default.args = {
+Component.args = {
     ...defaultArgs,
 };

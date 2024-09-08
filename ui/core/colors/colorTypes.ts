@@ -1,3 +1,3 @@
-export type grauityColorName = string;
+// export type grauityColorName = string;
 
-export type grauityIconColorName = string;
+// export type grauityIconColorName = string;

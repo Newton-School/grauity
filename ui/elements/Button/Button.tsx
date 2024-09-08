@@ -1,33 +1,25 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId } from 'react';
 
 import { Icon } from '../Icon';
 import { StyledButton, StyledButtonContent } from './Button.styles';
 import {
     BUTTON_ICON_POSITIONS,
-    BUTTON_ICON_POSITIONS_ENUM,
     BUTTON_SIZES,
-    BUTTON_SIZES_ENUM,
     BUTTON_VARIANTS,
-    BUTTON_VARIANTS_ENUM,
 } from './constants';
 import { ButtonProps } from './types';
 
 /**
- * A button is a component that is used to trigger an action.
- * It can contain text, an icon, or both.
- *
- * @component
- *
- * @example
- * <NSButton variant="primary" size="medium" onClick={() => null}>
- *    Click me
- * </NSButton>
+ * A Button is a component that is used to trigger an action.
+ * It can contain text and an icon, or only text.
+ * 
+ * To create an icon button, checkout the IconButton component.
  */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    (
-        {
+    (props, ref) => {
+        const {
             variant,
             size,
             icon,
@@ -39,9 +31,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             style,
             onClick,
             fullWidth,
-            isIconButton,
             type,
-            ariaLabel,
             tooltip,
             tabIndex,
             dataTestId,
@@ -49,9 +39,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             onMouseLeave,
             children,
             buttonProps,
-        },
-        ref
-    ) => {
+        } = props;
         const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
             if (disabled) {
                 e.preventDefault();
@@ -61,6 +49,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         };
 
         const classes = classnames(className);
+
+        const id = useId();
 
         return (
             <StyledButton
@@ -74,15 +64,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 size={size}
                 fullWidth={fullWidth}
                 iconPosition={iconPosition}
-                isIconButton={isIconButton}
                 type={type}
-                aria-label={ariaLabel}
                 title={tooltip}
                 tabIndex={tabIndex}
                 data-testid={dataTestId}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 {...buttonProps}
+                aria-labelledby={`button-content-${id}`}
             >
                 {icon && !loading && (
                     <Icon name={icon} color="inherit" size={iconSize || '24'} />
@@ -96,9 +85,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                     />
                 )}
                 {children && (
-                    <StyledButtonContent>
-                        {children}
-                    </StyledButtonContent>
+                    <StyledButtonContent id={`button-content-${id}`}>{children}</StyledButtonContent>
                 )}
             </StyledButton>
         );
@@ -117,10 +104,8 @@ Button.propTypes = {
     style: PropTypes.object,
     onClick: PropTypes.func,
     fullWidth: PropTypes.bool,
-    isIconButton: PropTypes.bool,
     children: PropTypes.any,
     type: PropTypes.oneOf(['button', 'submit', 'reset']),
-    ariaLabel: PropTypes.string,
     tooltip: PropTypes.string,
     tabIndex: PropTypes.number,
     dataTestId: PropTypes.string,
@@ -129,21 +114,19 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-    variant: BUTTON_VARIANTS_ENUM.PRIMARY,
-    size: BUTTON_SIZES_ENUM.MEDIUM,
+    variant: 'primary',
+    size: 'medium',
     icon: null,
     iconSize: '24',
-    iconPosition: BUTTON_ICON_POSITIONS_ENUM.LEFT,
+    iconPosition: 'left',
     className: '',
     disabled: false,
     loading: false,
     style: {},
     onClick: () => {},
     fullWidth: false,
-    isIconButton: false,
     children: '',
     type: 'button',
-    ariaLabel: '',
     tooltip: '',
     tabIndex: 0,
     dataTestId: '',

@@ -1,6 +1,6 @@
 import React from 'react';
-import NSTable from 'ui/elements/Table';
-import NSTypography, {
+import Table from 'ui/elements/Table';
+import Typography, {
     TYPOGRAPHY_AS_ENUM,
     TYPOGRAPHY_VARIANT_AS_MAPPING,
     TYPOGRAPHY_VARIANTS,
@@ -11,45 +11,46 @@ import NSTypography, {
 import TokenBlock from '../../helper-components/TokenBlock';
 
 export default {
-    title: 'Elements/NSTypography',
-    component: NSTypography,
+    title: 'Elements/Typography',
+    component: Typography,
+    tags: ['!autodocs'],
 };
 
 const Template = (args: TypographyProps) => (
-    <NSTable.Table borderAround={false} borderVertical={false}>
-        <NSTable.TableHead highlightHeaders={false}>
-            <NSTable.TableHeadingCell align="left" width="400px">
+    <Table.Table borderAround={false} borderVertical={false}>
+        <Table.TableHead highlightHeaders={false}>
+            <Table.TableHeadingCell align="left" width="400px">
                 Variant
-            </NSTable.TableHeadingCell>
-            <NSTable.TableHeadingCell align="left">As</NSTable.TableHeadingCell>
-            <NSTable.TableHeadingCell align="left">
-                NSTypography
-            </NSTable.TableHeadingCell>
-        </NSTable.TableHead>
-        <NSTable.TableBody>
+            </Table.TableHeadingCell>
+            <Table.TableHeadingCell align="left">As</Table.TableHeadingCell>
+            <Table.TableHeadingCell align="left">
+                Typography
+            </Table.TableHeadingCell>
+        </Table.TableHead>
+        <Table.TableBody>
             {TYPOGRAPHY_VARIANTS.map((variant) => (
-                <NSTable.TableRow>
-                    <NSTable.TableDataCell>
+                <Table.TableRow>
+                    <Table.TableDataCell>
                         <TokenBlock copy>{variant}</TokenBlock>
-                    </NSTable.TableDataCell>
-                    <NSTable.TableDataCell>
+                    </Table.TableDataCell>
+                    <Table.TableDataCell>
                         <TokenBlock>
                             {TYPOGRAPHY_VARIANT_AS_MAPPING[variant]}
                         </TokenBlock>
-                    </NSTable.TableDataCell>
-                    <NSTable.TableDataCell>
-                        <NSTypography
+                    </Table.TableDataCell>
+                    <Table.TableDataCell>
+                        <Typography
                             variant={variant}
                             as={TYPOGRAPHY_AS_ENUM.AUTO}
                             color={args?.color}
                         >
                             {args?.children}
-                        </NSTypography>
-                    </NSTable.TableDataCell>
-                </NSTable.TableRow>
+                        </Typography>
+                    </Table.TableDataCell>
+                </Table.TableRow>
             ))}
-        </NSTable.TableBody>
-    </NSTable.Table>
+        </Table.TableBody>
+    </Table.Table>
 );
 
 const defaultArgs = {
@@ -59,8 +60,8 @@ const defaultArgs = {
     as: TYPOGRAPHY_AS_ENUM.AUTO,
 };
 
-export const TypographyGallery = Template.bind({});
+export const Gallery = Template.bind({});
 
-TypographyGallery.args = {
+Gallery.args = {
     ...defaultArgs,
 };

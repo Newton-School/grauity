@@ -1,30 +1,29 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
-import Button from 'ui/elements/Button';
-import ButtonGroup from 'ui/elements/Button/ButtonGroup';
 
+import Button from '../Button';
+import ButtonGroup from '../Button/ButtonGroup';
+import IconButton from '../Button/IconButton';
 import { Icon } from '../Icon';
 import {
     StyledAlertBannerContainer,
     StyledAlertBannerContent,
 } from './AlertBanner.styles';
-import {
-    ALERT_BANNER_TYPES,
-    ALERT_BANNER_TYPES_ENUM,
-    ALERT_BANNER_VARIANTS,
-    ALERT_BANNER_VARIANTS_ENUM,
-} from './constants';
+import { ALERT_BANNER_TYPES, ALERT_BANNER_VARIANTS } from './constants';
 import { AlertBannerProps } from './types';
-import { getAlertBannerColors, getAlertIconName } from './utils';
+import {
+    getAlertBannerColors,
+    getAlertIconName,
+    getButtonVariantFromAlertBannerTypeVariant,
+} from './utils';
 
 /**
  * An alert banner is a component that is used to typically display
  * important messages to the user. It is normally shown at the top of the page.
- * @component
  */
 const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
-    (
-        {
+    (props, ref) => {
+        const {
             type,
             variant,
             icon,
@@ -39,9 +38,7 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
             onClose,
             showCloseButton,
             actionButtons,
-        },
-        ref
-    ) => {
+        } = props;
         const iconName = getAlertIconName(icon, variant);
         const { iconColor, textColor, backgroundColor, borderColor } =
             getAlertBannerColors(variant, type);
@@ -67,25 +64,32 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
                 backgroundColor={backgroundColor}
                 borderColor={borderColor}
                 justifyContent={justifyContent}
+                role="alert"
             >
-                <StyledAlertBannerContent
-                    color={textColor}
-                >
-                    {iconName && <Icon name={iconName} color={iconColor ||  'inherit'} />}
+                <StyledAlertBannerContent color={textColor}>
+                    {iconName && (
+                        <Icon
+                            name={iconName}
+                            color={iconColor || 'inherit'}
+                            size="20"
+                        />
+                    )}
                     {children}
                 </StyledAlertBannerContent>
 
                 {hasButton && (
                     <ButtonGroup>
-                        {actionButtons.map((button) => (
+                        {actionButtons?.map((button) => (
                             <Button {...button}>{button.children}</Button>
                         ))}
                         {showCloseButton && (
-                            <Button
-                                variant="tertiary-outlined"
+                            <IconButton
+                                variant={getButtonVariantFromAlertBannerTypeVariant(
+                                    variant,
+                                    type
+                                )}
                                 icon="close"
                                 onClick={onClose}
-                                isIconButton
                                 size="small"
                             />
                         )}
@@ -97,8 +101,8 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
 );
 
 AlertBanner.defaultProps = {
-    type: ALERT_BANNER_TYPES_ENUM.DEFAULT,
-    variant: ALERT_BANNER_VARIANTS_ENUM.PRIMARY,
+    type: 'default',
+    variant: 'primary',
     icon: null,
     padding: 'var(--spacing-8px, 8px)',
     top: null,
@@ -122,9 +126,9 @@ AlertBanner.propTypes = {
     bottom: PropTypes.string,
     left: PropTypes.string,
     right: PropTypes.string,
-    position: PropTypes.string,
+    position: PropTypes.oneOf(['static', 'fixed', 'absolute', 'relative']),
     children: PropTypes.node,
-    justifyContent: PropTypes.string,
+    justifyContent: PropTypes.oneOf(['center', 'space-between', 'space-around']),
     onClose: PropTypes.func,
     showCloseButton: PropTypes.bool,
     actionButtons: PropTypes.array,

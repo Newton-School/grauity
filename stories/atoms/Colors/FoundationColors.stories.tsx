@@ -1,5 +1,5 @@
 import React from 'react';
-import NSTable from 'ui/elements/Table';
+import Table from 'ui/elements/Table';
 
 import { constantGlobalStyle } from '../../../ui/themes/GlobalStyle';
 import { ColorRenderer } from '../../helper-components/ColorRenderer';
@@ -7,9 +7,10 @@ import { extractTokensFromGlobalStyles } from '../../utils';
 
 export default {
     title: 'Atoms/Colors',
+    tags: ['!autodocs'],
 };
 
-const FoundationColorsStory = () => {
+export const FoundationColors = () => {
     const colorTokenRegExp =
         /--(neutral|brand|error|success|warning|yellow|purple|alpha)-\d+: (#[0-9A-Fa-f]{6}|rgba?\([^)]+\));/g;
     const rows = extractTokensFromGlobalStyles({
@@ -19,7 +20,7 @@ const FoundationColorsStory = () => {
         render: (token) => <ColorRenderer color={token} />,
     });
     return (
-        <NSTable
+        <Table
             columns={[
                 { key: 'token', display: 'Token', align: 'left' },
                 { key: 'value', display: 'Value', align: 'left' },
@@ -38,5 +39,3 @@ const FoundationColorsStory = () => {
         />
     );
 };
-
-export const FoundationColors = FoundationColorsStory;

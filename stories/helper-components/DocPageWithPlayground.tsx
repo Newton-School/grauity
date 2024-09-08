@@ -1,8 +1,8 @@
 import {
-    ArgsTable,
     Description,
     Primary,
-    PRIMARY_STORY,
+    // PRIMARY_STORY,
+    // PureArgsTable,
     Stories,
     Subtitle,
     Title,
@@ -12,7 +12,6 @@ import React from 'react';
 import { Playground } from 'storybook-addon-code-editor';
 
 import * as grauity from '../../ui';
-import { GrauityInit } from '../../ui';
 
 export default function DocPageWithPlayground({
     exampleSourceCode,
@@ -25,21 +24,19 @@ export default function DocPageWithPlayground({
             <Subtitle />
             <Description />
             <Primary />
-            <ArgsTable story={PRIMARY_STORY} />
+            {/* <PureArgsTable /> */}
             <Stories />
-            <GrauityInit>
-                <Playground
-                    code={exampleSourceCode}
-                    availableImports={{
-                        '@newtonschool/grauity': grauity,
-                    }}
-                    height="560px"
-                    onCreateEditor={(editor, monaco) => {
-                        editor?.getModel()?.updateOptions({ tabSize: 2 });
-                        monaco.editor.setTheme('vs-dark');
-                    }}
-                />
-            </GrauityInit>
+            <Playground
+                code={exampleSourceCode}
+                availableImports={{
+                    '@newtonschool/grauity': grauity,
+                }}
+                height="560px"
+                modifyEditor={(monaco, editor) => {
+                    editor?.getModel()?.updateOptions({ tabSize: 2 });
+                    monaco.editor.setTheme('vs-dark');
+                }}
+            />
         </>
     );
 }

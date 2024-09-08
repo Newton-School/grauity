@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, useId, useImperativeHandle, useRef } from 'react';
 
 import {
     useClickAway,
     useDisableBodyScroll,
     useKeyboardEvent,
 } from '../../../hooks';
-import Button from '../Button/Button';
+import { IconButton } from '../Button';
 import {
     StyledModal,
     StyledModalAction,
@@ -24,7 +24,6 @@ import { ModalProps } from './types';
  * A modal is used to display content that temporarily blocks
  * interactions with the main view of a site or to get user attention
  * on a specific action or information.
- * @component
  */
 const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     const {
@@ -62,6 +61,8 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         }
     });
 
+    const id = useId();
+
     return (
         <StyledModalWrapper blurBackground={blurBackground}>
             <StyledModal
@@ -72,41 +73,33 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                 minHeight={minHeight}
                 mobileBottomFullWidth={mobileBottomFullWidth}
                 modalPadding={modalPadding}
+                aria-labelledby={`modal-title-${id}`}
+                aria-describedby={`modal-description-${id}`}
+                aria-modal="true"
+                role="dialog"
             >
                 <StyledModalMain>
-                    {/* We show close button differently if banner is present */}
-                    {banner && showCloseButton && (
+                    {showCloseButton && (
                         <StyledModalAction justifyContent="end">
-                            <Button
+                            <IconButton
                                 onClick={onHide}
                                 variant="secondary-outlined"
                                 icon="close"
                                 ariaLabel="Close"
-                                isIconButton
                             />
                         </StyledModalAction>
                     )}
 
                     {banner && <StyledModalBanner>{banner}</StyledModalBanner>}
 
-                    {(title || showCloseButton) && (
-                        <StyledModalTitle
-                            showCloseButton={showCloseButton && !banner}
-                        >
+                    {title && (
+                        <StyledModalTitle id={`modal-title-${id}`}>
                             {title}
-                            {showCloseButton && !banner && (
-                                <Button
-                                    onClick={onHide}
-                                    variant="secondary-outlined"
-                                    icon="close"
-                                    isIconButton
-                                />
-                            )}
                         </StyledModalTitle>
                     )}
 
                     {description && (
-                        <StyledModalDescription>
+                        <StyledModalDescription id={`modal-description-${id}`}>
                             {description}
                         </StyledModalDescription>
                     )}

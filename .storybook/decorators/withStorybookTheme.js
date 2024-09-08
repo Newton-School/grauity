@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useGlobals } from '@storybook/addons';
 
 /**
  * This decorator is used to change the Storybook UI theme.

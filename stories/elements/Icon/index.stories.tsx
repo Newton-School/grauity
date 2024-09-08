@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import { Icon } from 'ui/elements/Icon';
 
-import DocPageWithPlayground from '../../helper-components/DocPageWithPlayground';
-import exampleSourceCode from './example.source?raw';
+// import DocPageWithPlayground from '../../helper-components/DocPageWithPlayground';
+// import exampleSourceCode from './example.source?raw';
 
 export default {
     title: 'Elements/Icon',
@@ -20,20 +20,20 @@ export default {
             },
         },
     },
-    parameters: {
-        docs: {
-            page: () => (
-                <DocPageWithPlayground exampleSourceCode={exampleSourceCode} />
-            ),
-        },
-    },
-} as ComponentMeta<typeof Icon>;
+    // parameters: {
+    //     docs: {
+    //         page: () => (
+    //             <DocPageWithPlayground exampleSourceCode={exampleSourceCode} />
+    //         ),
+    //     },
+    // },
+} as Meta<typeof Icon>;
 
-const Template: ComponentStory<typeof Icon> = (args) => <Icon {...args} />;
+const Template: StoryFn<typeof Icon> = (args) => <Icon {...args} />;
 
 const defaultArgs = {
-    name: 'bell',
-    color: 'orange',
+    name: 'sparkle',
+    color: 'var(--text-primary)',
     size: '32',
 };
 

@@ -1,0 +1,172 @@
+import { Meta } from '@storybook/addon-docs';
+import Code from './assets/code-brackets.svg';
+import Direction from './assets/direction.svg';
+import GitHub from './assets/github-logo.svg';
+
+<Meta title="Introduction" />
+
+<style>
+    {`
+    .link-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        row-gap: 10px;
+    }
+
+    @media (min-width: 620px) {
+        .link-list {
+            row-gap: 20px;
+            column-gap: 20px;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media all and (-ms-high-contrast:none) {
+        .link-list {
+            display: -ms-grid;
+            -ms-grid-columns: 1fr 1fr;
+            -ms-grid-rows: 1fr 1fr;
+        }
+    }
+
+    .link-item {
+        display: block;
+        padding: 20px 30px 20px 15px;
+        border: 1px solid #00000010;
+        border-radius: 5px;
+        transition: background 150ms ease-out, border 150ms ease-out, transform 150ms ease-out;
+        color: #333333;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .link-item:hover {
+        border-color: #1EA7FD50;
+        transform: translate3d(0, -3px, 0);
+        box-shadow: rgba(0, 0, 0, 0.08) 0 3px 10px 0;
+    }
+
+    .link-item:active {
+        border-color: #1EA7FD;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .link-item strong {
+        font-weight: 700;
+        display: block;
+        margin-bottom: 2px;
+    }
+
+    .link-item img {
+        height: 40px;
+        width: 40px;
+        margin-right: 15px;
+        flex: none;
+    }
+
+    .link-item span {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .link-item span p {
+        margin: 0;
+    }
+`}
+</style>
+
+<h1 align="center">gra.UI.ty</h1>
+
+<p align="center">
+    <img
+        src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/cc6c8f01c5fa4ca481de8f9180eb937a.png"
+        alt="gra.UI.ty Logo 1"
+        width="120"
+        height="120"
+    />
+    <img
+        src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/92ae68a3bf55431d8120e92041951482.png"
+        alt="gra.UI.ty Logo 2"
+        width="120"
+        height="120"
+    />
+    <img
+        src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/c1dd6d6367b34e01a19c458e1656c3c1.png"
+        alt="gra.UI.ty Logo 3"
+        width="120"
+        height="120"
+    />
+</p>
+
+<h3 align="center">
+    Discovering the most elegant UI components for your next project
+</h3>
+
+<p align="center">
+    A meticulously crafted UI component library, bringing the simplicity and
+    elegance of nature to your digital interfaces.
+
+    Explore the components and start building beautiful, efficient, and
+    user-friendly interfaces with ease.
+
+    <br />
+
+    <a href="https://github.com/Newton-School/grauity" target="_blank"  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+        <img src={GitHub} alt="GitHub Logo" height="20px" /> <strong>GitHub/NewtonSchool/grauity »</strong>
+    </a>
+
+</p>
+
+## About gra.UI.ty
+
+Inspired by the natural laws that guide the cosmos, **gra.UI.ty** (pronounced "gravity") is a React-based UI component library designed to harmonize simplicity and functionality. Our mission is to provide developers and designers with the tools to create intuitive and aesthetically pleasing user interfaces.
+
+### Philosophy
+
+Like gravity itself, the principles of great design are universal, omnipresent, yet often unobserved. With gra.UI.ty, we aim to tap into these fundamental elements to craft UI components that not only look stunning but feel inherently right.
+
+### Component Naming Convention
+
+gra.UI.ty components should be prefixed by _NS_.
+For example, `NSButton`, `NSTable`, `NSInput`
+
+### Alias
+
+gra.UI.ty is also affectionately known as **grauity**, **graUIty** or simply as **gravity**
+
+<br />
+
+## Key Features
+
+-   **Comprehensive Component Set:** From buttons and dialogs to complex data grids and sliders, gra.UI.ty has everything you need. (Coming soon!)
+-   **Semantic and Mindful Components:** Our components are more than just divs. Each one is thoughtfully designed with semantic HTML for better accessibility and SEO. We aim to ensure that each component has a clear and meaningful structure.
+-   **Modular and Extensible:** Integrate seamlessly with your projects, adding only what you need without bloating your codebase.
+-   **Theming and Customization:** Easily adapt the components to match your brand or project’s aesthetic. (Coming soon!)
+-   **Accessibility First:** Built with accessibility in mind, ensuring that your applications are usable by everyone. (We'll get there...)
+
+
+<br />
+
+## Explore More
+
+<div className="link-list">
+    <a
+        className="link-item"
+        href="https://www.notion.so/b2ce28d7a50d4f9faafc81daceb41708?v=940a4041d30343e79cf62d6185565790"
+        target="_blank"
+    >
+        <img src={Direction} alt="direction" />
+        <span>
+            <strong>In-depth decisions discussions</strong>
+            Extract of What, Why and How?
+        </span>
+    </a>
+    <a className="link-item" href="https://github.com/grauity" target="_blank">
+        <img src={Code} alt="code" />
+        <span>
+            <strong>GitHub project</strong>
+            View the source and add issues
+        </span>
+    </a>
+</div>

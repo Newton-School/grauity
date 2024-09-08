@@ -5,6 +5,7 @@ import {
     ModalBodyMainProps,
     ModalBodyProps,
     ModalContainerProps,
+    ModalDescriptionProps,
     ModalPaginationItemProps,
     ModalTitleProps,
     ModalWrapperProps,
@@ -38,6 +39,7 @@ export const StyledModal = styled.div<ModalContainerProps>`
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.25);
     border-radius: var(--corner-radius-12px, 12px);
     width: 500px;
+    min-width: 400px;
     height: 525px;
     padding: var(--spacing-20px, 20px);
     display: flex;
@@ -108,7 +110,7 @@ export const StyledModalDivider = styled.div`
     background: var(--border, #e1e5ea);
 `;
 
-export const StyledModalTitle = styled.div<ModalTitleProps>`
+export const StyledModalTitle = styled.h2<ModalTitleProps>`
     color: var(--text-primary, #16191d);
     font-weight: var(--font-weight-semibold, 600);
     font-size: var(--font-size-24px, 24px);
@@ -125,26 +127,9 @@ export const StyledModalTitle = styled.div<ModalTitleProps>`
         font-size: var(--font-size-16px, 16px);
         line-height: var(--spacing-24px, 24px);
     }
-
-    ${({ showCloseButton }) =>
-        showCloseButton &&
-        css`
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            padding-left: var(--spacing-40px, 40px);
-            padding-right: var(--spacing-40px, 40px);
-            position: relative;
-
-            button {
-                position: absolute;
-                right: 0;
-            }
-        `}
 `;
 
-export const StyledModalDescription = styled.div`
+export const StyledModalDescription = styled.div<ModalDescriptionProps>`
     font-weight: var(--font-weight-450, 450);
     font-size: var(--font-size-16px, 16px);
     line-height: var(--spacing-28px, 28px);

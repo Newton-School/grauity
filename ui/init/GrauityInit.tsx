@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-
-import { getElementTypeFromProps } from '../helpers';
+import styled from 'styled-components';
 
 export interface GrauityInitProps {
     /**
@@ -12,7 +11,7 @@ export interface GrauityInitProps {
     /**
      * The font size to be applied on this element and so will act as standard for the `ems` of all grauity components.
      * */
-    fontSize: string;
+    fontSize?: string;
 
     /**
      * The multiplier is multiplied will all the `ems` of the grauity components.
@@ -20,22 +19,42 @@ export interface GrauityInitProps {
     multiplier?: number;
 
     /**
+     * Additional classes to be added to the component
+     * */
+    className?: string;
+
+    /**
      * The children to be rendered inside this component.
      * */
     children?: React.ReactNode;
+
+    /**
+     * Additional styles to be added to the component
+     * */
+    style?: object;
 }
 
 /**
  * This component is used to initialize the Grauity library. Ideally, it should be the root component of your application.
  * But nonetheless all the grauity components should be the children of this component.
  * */
-function GrauityInit({ as, fontSize, multiplier, children }: GrauityInitProps) {
-    const ElementType = getElementTypeFromProps({ as });
+function GrauityInit({
+    as,
+    fontSize,
+    multiplier,
+    className,
+    style,
+    children,
+}: GrauityInitProps) {
+    const ElementType = styled.div.attrs(() => ({
+        as: as || 'div',
+    }))<GrauityInitProps>``;
 
     return (
         <ElementType
-            className="grauity-init"
+            className={className}
             style={{
+                ...style,
                 fontSize,
                 '--multiplier': multiplier,
             }}
@@ -49,6 +68,8 @@ GrauityInit.propTypes = {
     as: PropTypes.elementType,
     fontSize: PropTypes.string,
     multiplier: PropTypes.number,
+    className: PropTypes.string,
+    style: PropTypes.object,
     children: PropTypes.node,
 };
 
@@ -56,6 +77,8 @@ GrauityInit.defaultProps = {
     as: 'div',
     fontSize: '16px',
     multiplier: 1,
+    className: 'grauity-init',
+    style: {},
     children: null,
 };
 

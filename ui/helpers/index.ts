@@ -3,11 +3,5 @@ import {
     useKeyOrValueAndKey,
     useValueAndKey,
 } from './classNameBuilders';
-import getElementTypeFromProps from './getElementTypeFromProps';
 
-export {
-    getElementTypeFromProps,
-    useKeyOnly,
-    useKeyOrValueAndKey,
-    useValueAndKey,
-};
+export { useKeyOnly, useKeyOrValueAndKey, useValueAndKey };

@@ -1,11 +1,12 @@
 import React from 'react';
-import NSTable from 'ui/elements/Table';
+import Table from 'ui/elements/Table';
 
 import { constantGlobalStyle } from '../../../ui/themes/GlobalStyle';
 import { extractTokensFromGlobalStyles } from '../../utils';
 
 export default {
     title: 'Atoms/Spacing',
+    tags: ['!autodocs'],
 };
 
 export const SpacingTokens = () => {
@@ -33,7 +34,7 @@ export const SpacingTokens = () => {
     });
 
     return (
-        <NSTable
+        <Table
             columns={[
                 { key: 'token', display: 'Token', align: 'left' },
                 { key: 'value', display: 'Pixels', align: 'left' },

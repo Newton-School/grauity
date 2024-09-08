@@ -1,34 +1,33 @@
 /* eslint-disable no-console */
 import React from 'react';
-import NSButton, { ButtonProps } from 'ui/elements/Button';
+import Button, { ButtonProps } from 'ui/elements/Button';
 
 export default {
-    title: 'Elements/NSButton',
-    component: NSButton,
+    title: 'Elements/Button',
+    component: Button,
 };
 
-const Template = (args: ButtonProps) => <NSButton {...args} />;
+const Template = (args: ButtonProps) => <Button {...args} />;
 
-const defaultArgs = {
+const defaultArgs: ButtonProps = {
     variant: 'primary',
     size: 'medium',
     icon: 'sparkle',
-    iconSize: 'medium',
+    iconSize: '24',
     iconPosition: 'left',
     className: 'my-class',
     disabled: false,
     loading: false,
     style: { color: '' },
     onClick: () => {
-        console.log('NSButton clicked!');
+        console.log('Button clicked!');
     },
     fullWidth: false,
-    isIconButton: false,
     children: 'Click Me!',
     type: 'button',
     ariaLabel: 'button',
     tooltip: 'button',
-    tabIndex: 1,
+    tabIndex: 0,
     dataTestId: 'button',
     onMouseEnter: () => {
         console.log('Mouse entered button');
@@ -38,8 +37,8 @@ const defaultArgs = {
     },
 };
 
-export const Default = Template.bind({});
+export const Component = Template.bind({});
 
-Default.args = {
+Component.args = {
     ...defaultArgs,
 };

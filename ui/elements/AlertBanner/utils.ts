@@ -1,5 +1,7 @@
+import { AlertProps, AlertType, AlertVariant } from '../Alert/types';
 import {
     ALERT_BANNER_COLOR_MAPPINGS,
+    ALERT_BANNER_TYPE_AND_VARIANT_TO_BUTTON_VARIANT_MAPPING,
     DEFAULT_ALERT_VARIANT_ICON_MAPPING,
 } from './constants';
 import { AlertBannerProps, AlertBannerType, AlertBannerVariant } from './types';
@@ -14,8 +16,8 @@ import { AlertBannerProps, AlertBannerType, AlertBannerVariant } from './types';
  * @returns Alert banner icon name
  */
 export const getAlertIconName = (
-    icon: AlertBannerProps['icon'],
-    variant: AlertBannerVariant
+    icon: AlertBannerProps['icon'] | AlertProps['icon'],
+    variant: AlertBannerVariant | AlertVariant
 ) => {
     if (icon !== 'auto') {
         return icon;
@@ -32,6 +34,19 @@ export const getAlertIconName = (
  * @returns Alert banner colors
  */
 export const getAlertBannerColors = (
-    variant: AlertBannerVariant,
-    type: AlertBannerType
+    variant: AlertBannerVariant | AlertVariant,
+    type: AlertBannerType | AlertType
 ) => ALERT_BANNER_COLOR_MAPPINGS[type][variant];
+
+/**
+ * Get button variant based on alert banner variant and type.
+ * Useful for showing correct variant for close button.
+ *
+ * @param variant - Alert banner variant
+ * @param type - Alert banner type
+ * @returns Button variant
+ */
+export const getButtonVariantFromAlertBannerTypeVariant = (
+    variant: AlertBannerVariant | AlertVariant,
+    type: AlertBannerType | AlertType
+) => ALERT_BANNER_TYPE_AND_VARIANT_TO_BUTTON_VARIANT_MAPPING[type][variant];

@@ -1,23 +1,14 @@
-import { BUTTON_VARIANTS_ENUM } from 'ui/elements/Button';
-import NSConfirmationDialog, {
-    ConfirmationDialogProps,
-} from 'ui/elements/Modal/ConfirmationDialog';
+/* eslint-disable import/no-duplicates */
+import React from 'react';
+import { ConfirmationDialog, ConfirmationDialogProps } from 'ui/elements/Modal';
 
-// eslint-disable-next-line import/no-duplicates
-import { Template } from './ConfirmationDialog.source';
-// eslint-disable-next-line import/no-duplicates
-import templateRawSourceCode from './ConfirmationDialog.source?raw';
+import withEnableBodyScroll from '../../../.storybook/decorators/withEnableBodyScroll';
+import withInlineContainer from '../../../.storybook/decorators/withInlineContainer';
 
 export default {
-    title: 'Elements/NSModal',
-    component: NSConfirmationDialog,
-    parameters: {
-        docs: {
-            source: {
-                code: templateRawSourceCode,
-            },
-        },
-    },
+    title: 'Elements/ConfirmationDialog',
+    component: ConfirmationDialog,
+    decorators: [withEnableBodyScroll, withInlineContainer],
 };
 
 const defaultArgs: ConfirmationDialogProps = {
@@ -29,15 +20,19 @@ const defaultArgs: ConfirmationDialogProps = {
     onCancel: () => {},
     confirmText: 'Sign out',
     cancelText: 'Stay Signed in',
-    confirmButtonVariant: BUTTON_VARIANTS_ENUM.SUCCESS,
-    cancelButtonVariant: BUTTON_VARIANTS_ENUM.DANGER,
+    confirmButtonVariant: 'success',
+    cancelButtonVariant: 'danger',
     showCloseButton: false,
     hideOnClickAway: false,
     blurBackground: false,
 };
 
-export const ConfirmationDialog = Template.bind({});
+const Template = (args: ConfirmationDialogProps) => (
+    <ConfirmationDialog {...args} />
+);
 
-ConfirmationDialog.args = {
+export const Component = Template.bind({});
+
+Component.args = {
     ...defaultArgs,
 };
