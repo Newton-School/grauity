@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { ReactNode, useState } from 'react';
-import NSButton from 'ui/elements/Button';
+import Button from 'ui/elements/Button';
 import { Icon } from 'ui/index';
 
 import {
@@ -43,14 +43,14 @@ const TokenBlock = ({ copy, children, showCopiedOverlay }: TokenBlockProps) => {
             {children}
             {copy && (
                 <StyledHideOnPrintWrapper>
-                    <NSButton
+                    <Button
                         onClick={handleCopy}
                         size="small"
                         variant="tertiary"
                         icon={copied ? 'check' : 'code'}
                     >
                         {copied ? 'copied!' : 'copy'}
-                    </NSButton>
+                    </Button>
                 </StyledHideOnPrintWrapper>
             )}
             {showCopiedOverlay && (

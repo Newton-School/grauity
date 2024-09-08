@@ -20,7 +20,6 @@ export const StyledAlertBannerContainer = styled.div<AlertBannerContainerProps>`
 
     color: ${({ textColor }) => textColor};
     background-color: ${({ backgroundColor }) => backgroundColor};
-    border: 1px solid ${({ borderColor }) => borderColor};
 `;
 
 export const StyledAlertBannerContent = styled.div<any>`

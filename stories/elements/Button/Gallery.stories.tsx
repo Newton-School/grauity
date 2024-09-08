@@ -1,6 +1,6 @@
 import React from 'react';
 import Button, { BUTTON_VARIANTS, ButtonProps } from 'ui/elements/Button';
-import NSTable from 'ui/elements/Table';
+import Table from 'ui/elements/Table';
 
 import TokenBlock from '../../helper-components/TokenBlock';
 
@@ -11,32 +11,32 @@ export default {
 };
 
 const Template = (args: ButtonProps) => (
-    <NSTable.Table borderAround={false} borderVertical={false}>
-        <NSTable.TableHead highlightHeaders={false}>
-            <NSTable.TableRow>
-                <NSTable.TableHeadingCell align="left">
+    <Table.Table borderAround={false} borderVertical={false}>
+        <Table.TableHead highlightHeaders={false}>
+            <Table.TableRow>
+                <Table.TableHeadingCell align="left">
                     Button variant
-                </NSTable.TableHeadingCell>
-                <NSTable.TableHeadingCell align="left">
+                </Table.TableHeadingCell>
+                <Table.TableHeadingCell align="left">
                     Button
-                </NSTable.TableHeadingCell>
-            </NSTable.TableRow>
-        </NSTable.TableHead>
-        <NSTable.TableBody>
+                </Table.TableHeadingCell>
+            </Table.TableRow>
+        </Table.TableHead>
+        <Table.TableBody>
             {BUTTON_VARIANTS.map((variant) => (
-                <NSTable.TableRow>
-                    <NSTable.TableDataCell>
+                <Table.TableRow>
+                    <Table.TableDataCell>
                         <TokenBlock copy>{variant}</TokenBlock>
-                    </NSTable.TableDataCell>
-                    <NSTable.TableDataCell>
+                    </Table.TableDataCell>
+                    <Table.TableDataCell>
                         <Button {...args} variant={variant} key={variant}>
                             {args?.children}
                         </Button>
-                    </NSTable.TableDataCell>
-                </NSTable.TableRow>
+                    </Table.TableDataCell>
+                </Table.TableRow>
             ))}
-        </NSTable.TableBody>
-    </NSTable.Table>
+        </Table.TableBody>
+    </Table.Table>
 );
 
 const defaultArgs = {

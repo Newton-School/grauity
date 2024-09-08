@@ -80,7 +80,7 @@ export interface AlertBannerProps {
      *
      * Default: `'static'`
      * */
-    position?: string;
+    position?: 'static' | 'fixed' | 'absolute' | 'relative';
 
     /**
      * Alert banner content
@@ -92,7 +92,7 @@ export interface AlertBannerProps {
      *
      * Default: `'center'`
      * */
-    justifyContent?: string;
+    justifyContent?: 'center' | 'space-between' | 'space-around';
 
     /**
      * Alert banner close button click handler
@@ -107,7 +107,9 @@ export interface AlertBannerProps {
     showCloseButton?: boolean;
 
     /**
-     * Alert banner action buttons
+     * Alert banner action buttons.
+     *
+     * Type: ButtonProps[]
      * */
     actionButtons?: ButtonProps[];
 }
@@ -127,4 +129,5 @@ export interface AlertBannerContainerProps {
     borderColor: string;
     children: React.ReactNode;
     ref: React.Ref<HTMLDivElement>;
+    role: string;
 }

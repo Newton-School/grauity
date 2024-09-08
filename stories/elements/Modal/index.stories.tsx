@@ -13,11 +13,11 @@ export default {
     argTypes: {
         body: {
             options: [
-                'Example body with NSTable',
+                'Example body with Table',
                 'Simple example body with text only',
             ],
             mapping: {
-                'Example body with NSTable': singleStepArgs.body,
+                'Example body with Table': singleStepArgs.body,
                 'Simple example body with text only':
                     'Modal body with simple text',
             },

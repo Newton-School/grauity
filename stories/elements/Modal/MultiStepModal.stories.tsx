@@ -1,5 +1,5 @@
 import React from 'react';
-import NSMultiStepModal, {
+import MultiStepModal, {
     MultiStepModalProps,
 } from 'ui/elements/Modal/MultiStepModal';
 
@@ -9,11 +9,11 @@ import multiStepArgs from './multiStepArgs';
 
 export default {
     title: 'Elements/MultiStepModal',
-    component: NSMultiStepModal,
-    decorators:  [withEnableBodyScroll, withInlineContainer],
+    component: MultiStepModal,
+    decorators: [withEnableBodyScroll, withInlineContainer],
 };
 
-const Template = (args: MultiStepModalProps) => <NSMultiStepModal {...args} />;
+const Template = (args: MultiStepModalProps) => <MultiStepModal {...args} />;
 
 export const Component = Template.bind({});
 
