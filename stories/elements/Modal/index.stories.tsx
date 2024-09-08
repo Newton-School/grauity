@@ -1,8 +1,8 @@
 import React from 'react';
 import Modal, { ModalProps } from 'ui/elements/Modal';
 
-import withEnableBodyScroll from '../../../.storybook/decorators/withEnableBodyScroll';
-import withInlineContainer from '../../../.storybook/decorators/withInlineContainer';
+import withEnableBodyScroll from '../../decorators/withEnableBodyScroll';
+import withInlineContainer from '../../decorators/withInlineContainer';
 import singleStepArgs from './singleStepArgs';
 
 

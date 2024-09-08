@@ -1,8 +1,10 @@
 /* eslint-disable import/no-duplicates */
-import Table, {TableProps} from 'ui/elements/Table';
+import Table, { TableProps } from 'ui/elements/Table';
 
 import { Template } from './Manual.source';
-import templateRawSourceCode from './Manual.source?raw';
+
+// eslint-disable-next-line import/no-unresolved, import/extensions, import/no-webpack-loader-syntax
+const sourceCode = require('!!raw-loader!./Manual.source.tsx').default;
 
 export default {
     title: 'Elements/Table/ManuallyCreatedTable',
@@ -11,7 +13,7 @@ export default {
     parameters: {
         docs: {
             source: {
-                code: templateRawSourceCode,
+                code: sourceCode,
             },
         },
     },

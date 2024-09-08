@@ -2,8 +2,6 @@ import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import { Icon } from 'ui/elements/Icon';
 
-// import DocPageWithPlayground from '../../helper-components/DocPageWithPlayground';
-// import exampleSourceCode from './example.source?raw';
 
 export default {
     title: 'Elements/Icon',
@@ -20,13 +18,6 @@ export default {
             },
         },
     },
-    // parameters: {
-    //     docs: {
-    //         page: () => (
-    //             <DocPageWithPlayground exampleSourceCode={exampleSourceCode} />
-    //         ),
-    //     },
-    // },
 } as Meta<typeof Icon>;
 
 const Template: StoryFn<typeof Icon> = (args) => <Icon {...args} />;

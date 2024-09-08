@@ -1,5 +1,5 @@
+import { StoryFn } from '@storybook/react';
 import React from 'react';
-import { StoryContext, StoryFn } from '@storybook/react';
 
 /**
  * This decorator is used to wrap stories with a container which forces the
@@ -12,7 +12,7 @@ import { StoryContext, StoryFn } from '@storybook/react';
  * It makes the use of `transform: translateZ(0)` to create a new stacking context
  * and prevent the component from being clipped by its parent container.
  */
-const withInlineContainer = (Story, context) => (
+const withInlineContainer = (Story: StoryFn) => (
     <div
         style={{
             transform: 'translateZ(0)',

@@ -3,8 +3,8 @@ import MultiStepModal, {
     MultiStepModalProps,
 } from 'ui/elements/Modal/MultiStepModal';
 
-import withEnableBodyScroll from '../../../.storybook/decorators/withEnableBodyScroll';
-import withInlineContainer from '../../../.storybook/decorators/withInlineContainer';
+import withEnableBodyScroll from '../../decorators/withEnableBodyScroll';
+import withInlineContainer from '../../decorators/withInlineContainer';
 import multiStepArgs from './multiStepArgs';
 
 export default {

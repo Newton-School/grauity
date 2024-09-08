@@ -2,7 +2,9 @@
 import Table, { TableProps } from 'ui/elements/Table';
 
 import { Template } from './ManualColumnNesting.source';
-import templateRawSourceCode from './ManualColumnNesting.source?raw';
+
+// eslint-disable-next-line import/no-unresolved, import/extensions, import/no-webpack-loader-syntax
+const sourceCode = require('!!raw-loader!./ManualColumnNesting.source.tsx').default;
 
 export default {
     title: 'Elements/Table/ManualTableColumnNesting',
@@ -10,7 +12,7 @@ export default {
     parameters: {
         docs: {
             source: {
-                code: templateRawSourceCode,
+                code: sourceCode,
             },
         },
     },
