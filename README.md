@@ -15,6 +15,9 @@
   <br />
   <br />
   <a href="https://grauity.newtonschool.co"><strong>Explore gra.UI.ty docs »</strong></a>
+  <br />
+  <br />
+  <img src="https://github.com/Newton-School/grauity/actions/workflows/run-tests.yml/badge.svg" alt="Test status badge" />
 </p>
 
 ## About gra.UI.ty
