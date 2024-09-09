@@ -29,14 +29,20 @@ export default {
             mapping: {
                 'With action buttons': [
                     {
-                        children: 'Button',
-                        variant: 'tertiary-outlined',
-                        size: 'small',
-                    },
-                    {
-                        children: 'Button',
+                        children: 'Button 1',
                         variant: 'tertiary',
                         size: 'small',
+                        onClick: () => {
+                            alert('Button 1 clicked');
+                        },
+                    },
+                    {
+                        children: 'Button 2',
+                        variant: 'secondary',
+                        size: 'small',
+                        onClick: () => {
+                            alert('Button 2 clicked');
+                        },
                     },
                 ],
                 'Without action buttons': null,
@@ -76,11 +82,13 @@ const defaultArgs: AlertProps = {
             This is a default alert banner
         </Typography>
     ),
-    description: `
-        We all step into this design world full of passion and
-        enthusiasm.But over time, something changes without us even
-        noticing.
-    `,
+    description: (
+        <Typography variant="paragraph-medium-body3" color="inherit">
+            We all step into this design world full of passion and
+            enthusiasm.But over time, something changes without us even
+            noticing.
+        </Typography>
+    ),
 };
 
 export const Component = Template.bind({});

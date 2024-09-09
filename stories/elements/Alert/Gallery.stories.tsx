@@ -113,14 +113,20 @@ Gallery.args = {
     showCloseButton: true,
     actionButtons: [
         {
-            children: 'Button',
-            variant: 'secondary',
-            size: 'small',
-        },
-        {
-            children: 'Button',
+            children: 'Button 1',
             variant: 'tertiary',
             size: 'small',
+            onClick: () => {
+                alert('Button 1 clicked');
+            },
+        },
+        {
+            children: 'Button 2',
+            variant: 'secondary',
+            size: 'small',
+            onClick: () => {
+                alert('Button 2 clicked');
+            },
         },
     ],
     inlineButtons: false,

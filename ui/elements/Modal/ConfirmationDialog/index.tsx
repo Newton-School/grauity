@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { useId } from 'react';
 
-import { useKeyboardEvent } from '../../../hooks';
-import useClickAway from '../../../hooks/useClickAway';
-import useDisableBodyScroll from '../../../hooks/useDisableBodyScroll';
-import Button, { BUTTON_VARIANTS_ENUM, IconButton } from '../Button';
-import Modal from './Modal';
-import { ConfirmationDialogProps } from './types';
+import { useKeyboardEvent } from '../../../../hooks';
+import useClickAway from '../../../../hooks/useClickAway';
+import useDisableBodyScroll from '../../../../hooks/useDisableBodyScroll';
+import Button, { BUTTON_VARIANTS_ENUM, IconButton } from '../../Button';
+import Modal from '../Modal';
+import { ConfirmationDialogProps } from '../types';
 
 /**
  * A confirmation dialog is a dialog box that asks the user to confirm an action.

@@ -64,7 +64,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     const id = useId();
 
     return (
-        <StyledModalWrapper blurBackground={blurBackground}>
+        <StyledModalWrapper blurBackground={blurBackground} data-testid="testid-modalwrapper">
             <StyledModal
                 onClick={(e: Event) => e.stopPropagation()}
                 ref={modalRef}
@@ -77,6 +77,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                 aria-describedby={`modal-description-${id}`}
                 aria-modal="true"
                 role="dialog"
+                data-testid="testid-modal"
             >
                 <StyledModalMain>
                     {showCloseButton && (

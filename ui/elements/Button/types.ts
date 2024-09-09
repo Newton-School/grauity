@@ -127,11 +127,6 @@ export interface ButtonProps {
     tabIndex?: number;
 
     /**
-     * Data test id for testing purposes
-     * */
-    dataTestId?: string;
-
-    /**
      * Function to be called on mouse enter
      * */
     onMouseEnter?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -238,11 +233,6 @@ export interface IconButtonProps {
     tabIndex?: number;
 
     /**
-     * Data test id for testing purposes
-     * */
-    dataTestId?: string;
-
-    /**
      * Function to be called on mouse enter
      * */
     onMouseEnter?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -267,7 +257,7 @@ export interface ButtonComponentProps
     iconPosition?: 'left' | 'right';
     className?: string;
     disabled?: boolean;
-    loading?: boolean;
+    isLoading?: boolean;
     style?: React.CSSProperties;
     onClick?: (e?: any) => void;
     fullWidth?: boolean;
@@ -278,7 +268,6 @@ export interface ButtonComponentProps
     ariaLabel?: string;
     title?: string;
     tabIndex?: number;
-    dataTestId?: string;
     onMouseEnter?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     onMouseLeave?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }

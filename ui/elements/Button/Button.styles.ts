@@ -62,8 +62,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
             }
         `}
 
-    ${({ loading }) =>
-        loading &&
+    ${({ isLoading }) =>
+        isLoading &&
         css`
             cursor: progress;
         `}

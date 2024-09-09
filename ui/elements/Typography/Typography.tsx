@@ -58,7 +58,7 @@ Typography.propTypes = {
 };
 
 Typography.defaultProps = {
-    variant: 'heading-semibold-h40',
+    variant: 'paragraph-medium-body1',
     as: 'auto',
     color: 'var(--text-primary, #16191d)',
     textAlign: null,

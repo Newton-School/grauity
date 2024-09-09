@@ -27,7 +27,6 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
             ariaLabel,
             tooltip,
             tabIndex,
-            dataTestId,
             onMouseEnter,
             onMouseLeave,
             buttonProps,
@@ -48,20 +47,21 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
                 onClick={handleClick}
                 className={classes}
                 style={style}
-                loading={loading}
+                isLoading={loading}
                 disabled={disabled || loading}
                 variant={variant}
                 size={size}
                 fullWidth={fullWidth}
                 type={type}
+                role="button"
                 aria-label={ariaLabel || icon}
                 title={tooltip}
                 tabIndex={tabIndex}
-                data-testid={dataTestId}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 isIconButton
                 {...buttonProps}
+                data-testid="testid-iconbutton"
             >
                 {icon && !loading && (
                     <Icon name={icon} color="inherit" size={iconSize || '24'} />
@@ -93,7 +93,6 @@ IconButton.propTypes = {
     ariaLabel: PropTypes.string,
     tooltip: PropTypes.string,
     tabIndex: PropTypes.number,
-    dataTestId: PropTypes.string,
     onMouseEnter: PropTypes.func,
     onMouseLeave: PropTypes.func,
 };
@@ -112,7 +111,6 @@ IconButton.defaultProps = {
     ariaLabel: '',
     tooltip: '',
     tabIndex: 0,
-    dataTestId: '',
     onMouseEnter: () => {},
     onMouseLeave: () => {},
 };

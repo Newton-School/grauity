@@ -22,6 +22,9 @@ const Table = ({ rows, columns, ...props }: TableProps) => (
         borderHorizontal={props?.borderHorizontal}
         borderVertical={props?.borderVertical}
         striped={props?.striped}
+        className={props?.className}
+        style={props?.style}
+        role="table"
     >
         <StyledTableHead
             capitalizeHeaders={props?.capitalizeHeaders}

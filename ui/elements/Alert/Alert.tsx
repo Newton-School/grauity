@@ -92,7 +92,9 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
                 {hasButton && (
                     <ButtonGroup>
                         {actionButtons?.map((button) => (
-                            <Button {...button}>{button.children}</Button>
+                            <Button {...button} key={button.variant}>
+                                {button.children}
+                            </Button>
                         ))}
                     </ButtonGroup>
                 )}

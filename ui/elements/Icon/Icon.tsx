@@ -92,6 +92,7 @@ function Icon({
             {...ariaOptions}
             className={classes}
             style={style}
+            data-testid="testid-icon"
         />
     );
 }

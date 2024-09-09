@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import useClickAway from '../../../hooks/useClickAway';
-import useDisableBodyScroll from '../../../hooks/useDisableBodyScroll';
-import Button from '../Button';
-import Modal from './Modal';
+import useClickAway from '../../../../hooks/useClickAway';
+import useDisableBodyScroll from '../../../../hooks/useDisableBodyScroll';
+import Button from '../../Button';
+import Modal from '../Modal';
 import {
     StyledModalPaginatedActions,
     StyledModalPagination,
     StyledModalPaginationItem,
-} from './Modal.styles';
-import { MultiStepModalProps } from './types';
+} from '../Modal.styles';
+import { MultiStepModalProps } from '../types';
 
 /**
  * A multi-step modal is a modal that has multiple steps.
@@ -32,6 +32,8 @@ const MultiStepModal = ({
     showCloseButton,
 }: MultiStepModalProps) => {
     const [currentStep, setCurrentStep] = useState(0);
+    const hasMounted = useRef(false);
+    const modalRef = useRef(null);
 
     const {
         banner,
@@ -46,8 +48,6 @@ const MultiStepModal = ({
     const isLastStep = currentStep === modalSteps.length - 1;
     const isFirstStep = currentStep === 0;
 
-    const modalRef = React.useRef(null);
-
     useDisableBodyScroll();
 
     useClickAway(modalRef, () => {
@@ -57,8 +57,14 @@ const MultiStepModal = ({
     });
 
     useEffect(() => {
-        if (onStepChange && typeof onStepChange === 'function') {
+        if (
+            hasMounted.current &&
+            onStepChange &&
+            typeof onStepChange === 'function'
+        ) {
             onStepChange();
+        } else {
+            hasMounted.current = true;
         }
     }, [currentStep]);
 

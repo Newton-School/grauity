@@ -28,7 +28,6 @@ const defaultArgs: ButtonProps = {
     ariaLabel: 'button',
     tooltip: 'button',
     tabIndex: 0,
-    dataTestId: 'button',
     onMouseEnter: () => {
         console.log('Mouse entered button');
     },

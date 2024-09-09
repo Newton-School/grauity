@@ -1,0 +1,22 @@
+# This workflow will run tests when a pull request or a commit is made to the master branch
+
+name: Run Tests
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v3
+                with:
+                    submodules: recursive
+            -   uses: actions/setup-node@v3
+                with:
+                    node-version: 20
+            -   run: npm ci
+            -   run: npm run test
