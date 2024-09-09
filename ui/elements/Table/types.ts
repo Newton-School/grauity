@@ -223,6 +223,9 @@ export interface TableComponentProps {
     borderVertical?: boolean;
     striped?: boolean;
     children: ReactNode;
+    role?: string;
+    className?: string;
+    style?: React.CSSProperties;
 }
 
 // Interface for NSTableHead component props

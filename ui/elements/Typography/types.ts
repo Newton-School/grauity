@@ -77,7 +77,7 @@ export interface TypographyProps {
      *
      * Available choices:
      *
-     * Default: `body`
+     * Default: `paragraph-medium-body1`
      * */
     variant?: TypographyVariantType;
 

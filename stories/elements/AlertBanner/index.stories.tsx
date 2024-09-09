@@ -30,14 +30,20 @@ export default {
                 'With action buttons': [
                     [
                         {
-                            children: 'Button',
+                            children: 'Button 1',
                             variant: 'tertiary',
                             size: 'small',
+                            onClick: () => {
+                                alert('Button 1 clicked');
+                            },
                         },
                         {
-                            children: 'Button',
+                            children: 'Button 2',
                             variant: 'secondary',
                             size: 'small',
+                            onClick: () => {
+                                alert('Button 2 clicked');
+                            },
                         },
                     ],
                 ],
@@ -63,19 +69,25 @@ const defaultArgs: AlertBannerProps = {
     showCloseButton: false,
     actionButtons: [
         {
-            children: 'Button',
-            variant: 'secondary',
-            size: 'small',
-        },
-        {
-            children: 'Button',
+            children: 'Button 1',
             variant: 'tertiary',
             size: 'small',
+            onClick: () => {
+                alert('Button 1 clicked');
+            },
+        },
+        {
+            children: 'Button 2',
+            variant: 'secondary',
+            size: 'small',
+            onClick: () => {
+                alert('Button 2 clicked');
+            },
         },
     ],
     children: (
         <Typography variant="paragraph-semibold-label" color="inherit">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit...
         </Typography>
     ),
 };

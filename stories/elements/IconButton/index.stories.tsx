@@ -26,7 +26,6 @@ const defaultArgs: IconButtonProps = {
     ariaLabel: 'sparkle',
     tooltip: 'button',
     tabIndex: 0,
-    dataTestId: 'button',
     onMouseEnter: () => {
         console.log('Mouse entered button');
     },

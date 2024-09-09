@@ -100,14 +100,20 @@ export default {
             mapping: {
                 'With action buttons': [
                     {
-                        children: 'Button',
+                        children: 'Button 1',
                         variant: 'tertiary',
                         size: 'small',
+                        onClick: () => {
+                            alert('Button 1 clicked');
+                        },
                     },
                     {
-                        children: 'Button',
+                        children: 'Button 2',
                         variant: 'secondary',
                         size: 'small',
+                        onClick: () => {
+                            alert('Button 2 clicked');
+                        },
                     },
                 ],
                 'Without action buttons': null,
@@ -139,14 +145,20 @@ Gallery.args = {
     showCloseButton: true,
     actionButtons: [
         {
-            children: 'Button',
+            children: 'Button 1',
             variant: 'tertiary',
             size: 'small',
+            onClick: () => {
+                alert('Button 1 clicked');
+            },
         },
         {
-            children: 'Button',
+            children: 'Button 2',
             variant: 'secondary',
             size: 'small',
+            onClick: () => {
+                alert('Button 2 clicked');
+            },
         },
     ],
     children: (

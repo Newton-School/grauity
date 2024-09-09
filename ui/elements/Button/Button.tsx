@@ -34,7 +34,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             type,
             tooltip,
             tabIndex,
-            dataTestId,
             onMouseEnter,
             onMouseLeave,
             children,
@@ -58,7 +57,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 onClick={handleClick}
                 className={classes}
                 style={style}
-                loading={loading}
+                isLoading={loading}
                 disabled={disabled || loading}
                 variant={variant}
                 size={size}
@@ -67,7 +66,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 type={type}
                 title={tooltip}
                 tabIndex={tabIndex}
-                data-testid={dataTestId}
+                data-testid="testid-button"
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 {...buttonProps}
@@ -108,7 +107,6 @@ Button.propTypes = {
     type: PropTypes.oneOf(['button', 'submit', 'reset']),
     tooltip: PropTypes.string,
     tabIndex: PropTypes.number,
-    dataTestId: PropTypes.string,
     onMouseEnter: PropTypes.func,
     onMouseLeave: PropTypes.func,
 };
@@ -129,7 +127,6 @@ Button.defaultProps = {
     type: 'button',
     tooltip: '',
     tabIndex: 0,
-    dataTestId: '',
     onMouseEnter: () => {},
     onMouseLeave: () => {},
 };

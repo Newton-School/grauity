@@ -80,7 +80,7 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
                 {hasButton && (
                     <ButtonGroup>
                         {actionButtons?.map((button) => (
-                            <Button {...button}>{button.children}</Button>
+                            <Button {...button} key={button.variant}>{button.children}</Button>
                         ))}
                         {showCloseButton && (
                             <IconButton
