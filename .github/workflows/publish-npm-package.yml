@@ -5,34 +5,19 @@ name: Publish NPM Package
 
 on:
     release:
-        types: [ created ]
+        types: [created]
 
 jobs:
-    build:
+    publish:
         runs-on: ubuntu-latest
         steps:
-            -   uses: actions/checkout@v3
-                with:
-                    submodules: recursive
-            -   uses: actions/setup-node@v3
-                with:
-                    node-version: 20
-            -   run: npm ci
-            -   run: npm run build
-
-    publish-npm:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            -   uses: actions/checkout@v3
-                with:
-                    submodules: recursive
-            -   uses: actions/setup-node@v3
-                with:
-                    node-version: 20
-                    registry-url: https://registry.npmjs.org/
-            -   run: npm ci
-            -   run: npm run build
-            -   run: npm publish --access public
-                env:
-                    NODE_AUTH_TOKEN: ${{ secrets.GRAUITY_PUBLISHING_NPM_TOKEN }}
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 12
+            - run: npm install
+            - run: npm run build
+            - uses: JS-DevTools/npm-publish@v1
+              with:
+                  token: ${{ secrets.GRAUITY_PUBLISHING_NPM_TOKEN }}
+                  greater-version-only: true
