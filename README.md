@@ -55,6 +55,13 @@ To develop components gra.UI.ty locally, follow these steps:
 # Install all packages via NPM in grauity
 grauity$: npm install
 
+# Initialize submodules for iconland
+grauity$: git submodule init
+grauity$: git submodule update --recursive
+
+# Build icons when running for first time
+grauity$: npm run build-icons
+
 # To run storybook, run this command in grauity
 grauity$: npm run storybook
 # Then head to localhost:6006
