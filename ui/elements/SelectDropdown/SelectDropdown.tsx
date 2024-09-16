@@ -9,6 +9,7 @@ import {
     StyledSelectDropdownButton,
     StyledSelectDropdownContainer,
     StyledSelectDropdownItem,
+    StyledSelectDropdownList,
     StyledSelectDropdownWrapper,
 } from './SelectDropdown.styles';
 import { DropdownOption, SelectDropdownProps } from './types';
@@ -64,23 +65,25 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
                                 />
                             </StyledDropdownSearchContainer>
                         )}
-                        {options.size === 0 && (
-                            <StyledSelectDropdownItem $disabled>
-                                {noOptionsText}
-                            </StyledSelectDropdownItem>
-                        )}
-                        {Array.from(options).map((option) => (
-                            <StyledSelectDropdownItem
-                                key={option.id}
-                                onClick={() => {
-                                    setIsOpened(false);
-                                    onChange(option);
-                                }}
-                                role="option"
-                            >
-                                {option.label}
-                            </StyledSelectDropdownItem>
-                        ))}
+                        <StyledSelectDropdownList>
+                            {options.size === 0 && (
+                                <StyledSelectDropdownItem $disabled>
+                                    {noOptionsText}
+                                </StyledSelectDropdownItem>
+                            )}
+                            {Array.from(options).map((option) => (
+                                <StyledSelectDropdownItem
+                                    key={option.id}
+                                    onClick={() => {
+                                        setIsOpened(false);
+                                        onChange(option);
+                                    }}
+                                    role="option"
+                                >
+                                    {option.label}
+                                </StyledSelectDropdownItem>
+                            ))}
+                        </StyledSelectDropdownList>
                     </StyledSelectDropdownContainer>
                 )}
             </StyledSelectDropdownWrapper>

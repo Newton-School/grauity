@@ -27,7 +27,7 @@ export const StyledSelectDropdownContainer = styled.div<StyledDivProps>`
     min-width: 100%;
     max-width: 300px;
     max-height: 300px;
-    overflow-x: hidden;
+    overflow: hidden;
     padding: var(--spacing-8px, 8px);
     font-family: var(--font-family, 'Mono Sans');
     display: flex;
@@ -39,6 +39,11 @@ export const StyledSelectDropdownContainer = styled.div<StyledDivProps>`
     background: var(--bg-primary, #fff);
     box-shadow: var(--spacing-2px, 2px) var(--spacing-4px, 4px)
         var(--spacing-8px, 8px) var(--spacing-0px, 0px) rgba(0, 0, 0, 0.06);
+`;
+
+export const StyledSelectDropdownList = styled.div`
+    width: 100%;
+    overflow: auto;
 `;
 
 export const StyledSelectDropdownItem = styled.div<StyledSelectDropdownItemProps>`
