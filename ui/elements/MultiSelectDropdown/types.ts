@@ -14,8 +14,9 @@ export interface MultiSelectDropdownProps {
 
     /**
      * Set of options available for selection.
+     * @default new Set([])
      */
-    options: Set<DropdownOption>;
+    options?: Set<DropdownOption>;
 
     /**
      * Flag to enable or disable the search functionality.

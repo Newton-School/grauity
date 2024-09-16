@@ -21,7 +21,7 @@ const MultiSelectDropdown = forwardRef<
 >((props, ref) => {
     const {
         noOptionSelctedText = 'Select',
-        options,
+        options = new Set([]),
         shouldEnableSearch = true,
         onSearchInputChange = () => {},
         searchPlaceholder = 'Search',
@@ -98,8 +98,11 @@ const MultiSelectDropdown = forwardRef<
     }, [defaultAllSelected]);
 
     return (
-        <StyledDropdownWrapper ref={ref}>
-            <StyledDropdownHeader onClick={() => setIsOpened(!isOpened)}>
+        <StyledDropdownWrapper ref={ref} role="combobox">
+            <StyledDropdownHeader
+                role="button"
+                onClick={() => setIsOpened(!isOpened)}
+            >
                 <StyledDropdownHeaderTitle>
                     {getHeaderTitle()}
                 </StyledDropdownHeaderTitle>
@@ -111,6 +114,7 @@ const MultiSelectDropdown = forwardRef<
                         <StyledDropdownSearchContainer>
                             <Icon name="search" />
                             <StyledDropdownSearchInput
+                                role="searchbox"
                                 placeholder={searchPlaceholder}
                                 value={searchInput}
                                 onChange={(e) => {
