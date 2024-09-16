@@ -76,6 +76,7 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
                                     setIsOpened(false);
                                     onChange(option);
                                 }}
+                                role="option"
                             >
                                 {option.label}
                             </StyledSelectDropdownItem>
