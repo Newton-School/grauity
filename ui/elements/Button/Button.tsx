@@ -14,82 +14,82 @@ import { ButtonProps } from './types';
 /**
  * A Button is a component that is used to trigger an action.
  * It can contain text and an icon, or only text.
- * 
+ *
  * To create an icon button, checkout the IconButton component.
  */
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    (props, ref) => {
-        const {
-            variant,
-            size,
-            icon,
-            iconSize,
-            iconPosition,
-            className,
-            disabled,
-            loading,
-            style,
-            onClick,
-            fullWidth,
-            type,
-            tooltip,
-            tabIndex,
-            onMouseEnter,
-            onMouseLeave,
-            children,
-            buttonProps,
-        } = props;
-        const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-            if (disabled) {
-                e.preventDefault();
-                return;
-            }
-            onClick(e);
-        };
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+    const {
+        variant,
+        size,
+        icon,
+        iconSize,
+        iconPosition,
+        className,
+        disabled,
+        loading,
+        style,
+        onClick,
+        fullWidth,
+        type,
+        tooltip,
+        tabIndex,
+        onMouseEnter,
+        onMouseLeave,
+        children,
+        buttonProps,
+    } = props;
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (disabled) {
+            e.preventDefault();
+            return;
+        }
+        onClick(e);
+    };
 
-        const classes = classnames(className);
+    const classes = classnames(className);
 
-        const id = useId();
+    const id = useId();
 
-        return (
-            <StyledButton
-                ref={ref}
-                onClick={handleClick}
-                className={classes}
-                style={style}
-                isLoading={loading}
-                disabled={disabled || loading}
-                variant={variant}
-                size={size}
-                fullWidth={fullWidth}
-                iconPosition={iconPosition}
-                type={type}
-                title={tooltip}
-                tabIndex={tabIndex}
-                data-testid="testid-button"
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-                {...buttonProps}
-                aria-labelledby={`button-content-${id}`}
-            >
-                {icon && !loading && (
-                    <Icon name={icon} color="inherit" size={iconSize || '24'} />
-                )}
-                {loading && (
-                    <Icon
-                        name="load"
-                        color="inherit"
-                        size={iconSize || '24'}
-                        loading={loading}
-                    />
-                )}
-                {children && (
-                    <StyledButtonContent id={`button-content-${id}`}>{children}</StyledButtonContent>
-                )}
-            </StyledButton>
-        );
-    }
-);
+    return (
+        <StyledButton
+            ref={ref}
+            onClick={handleClick}
+            className={classes}
+            style={style}
+            isLoading={loading}
+            disabled={disabled || loading}
+            variant={variant}
+            size={size}
+            fullWidth={fullWidth}
+            iconPosition={iconPosition}
+            type={type}
+            title={tooltip}
+            tabIndex={tabIndex}
+            data-testid="testid-button"
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            {...buttonProps}
+            aria-labelledby={`button-content-${id}`}
+        >
+            {icon && !loading && (
+                <Icon name={icon} color="inherit" size={iconSize || '24'} />
+            )}
+            {loading && (
+                <Icon
+                    name="load"
+                    color="inherit"
+                    size={iconSize || '24'}
+                    loading={loading}
+                />
+            )}
+            {children && (
+                <StyledButtonContent id={`button-content-${id}`}>
+                    {children}
+                </StyledButtonContent>
+            )}
+        </StyledButton>
+    );
+});
 
 Button.propTypes = {
     variant: PropTypes.oneOf(BUTTON_VARIANTS),
