@@ -6,14 +6,57 @@ export interface DropdownOption {
 }
 
 export interface MultiSelectDropdownProps {
+    /**
+     * Text to display when no option is selected.
+     * @default Select
+     */
     noOptionSelctedText?: string;
+
+    /**
+     * Set of options available for selection.
+     */
     options: Set<DropdownOption>;
+
+    /**
+     * Flag to enable or disable the search functionality.
+     * @default true
+     */
     shouldEnableSearch?: boolean;
+
+    /**
+     * Callback function triggered when the search input value changes.
+     * @param value - The current value of the search input.
+     */
     onSearchInputChange?: (value: string) => void;
+
+    /**
+     * Placeholder text for the search input field.
+     * @default Search
+     */
     searchPlaceholder?: string;
+
+    /**
+     * Flag to enable or disable the "Select All" functionality.
+     * @default true
+     */
     shouldEnableAllSelected?: boolean;
+
+    /**
+     * Flag to set all options as selected by default.
+     * @default false
+     */
     defaultAllSelected?: boolean;
+
+    /**
+     * Text to display for the "Select All" option.
+     * @default All
+     */
     allOptionText?: string;
+
+    /**
+     * Callback function triggered when the selected options change.
+     * @param options - The current set of selected options.
+     */
     onOptionsChange?: (options: Set<DropdownOption>) => void;
 }
 

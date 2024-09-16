@@ -21,7 +21,7 @@ const Template = (args: MultiSelectDropdownProps) => (
 );
 
 const defaultArgs: MultiSelectDropdownProps = {
-    noOptionSelctedText: 'Subjects',
+    noOptionSelctedText: 'Select',
     options: new Set([
         { id: '1', label: 'Option 1' },
         { id: '2', label: 'Option 2' },
@@ -35,10 +35,10 @@ const defaultArgs: MultiSelectDropdownProps = {
     ]),
     shouldEnableSearch: true,
     onSearchInputChange: () => {},
-    searchPlaceholder: 'Search Subjects',
+    searchPlaceholder: 'Search',
     shouldEnableAllSelected: true,
     defaultAllSelected: false,
-    allOptionText: 'All Subjects',
+    allOptionText: 'All',
     onOptionsChange: () => {},
 };
 
