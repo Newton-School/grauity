@@ -1,8 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Button from '../Button';
 import {
     StyledDropdownHeaderProps,
+    StyledDropdownItemTextProps,
     StyledDropdownListItemProps,
     StyledDropdownSearchInputProps,
     StyledDropdownWrapperProps,
@@ -85,10 +86,16 @@ export const StyledDropdownItemCheckbox = styled.div`
     justify-content: center;
 `;
 
-export const StyledDropdownItemText = styled.div`
+export const StyledDropdownItemText = styled.div<StyledDropdownItemTextProps>`
     color: var(--text-primary, #16191d);
     font-size: var(--spacing-14px, 14px);
     font-weight: 500;
+
+    ${({ $selected }) =>
+        $selected &&
+        css`
+            color: var(--text-brand, #0673f9);
+        `}
 `;
 
 export const StyledDropdownSearchContainer = styled.div`

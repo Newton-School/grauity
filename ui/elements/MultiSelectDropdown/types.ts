@@ -80,3 +80,8 @@ export interface StyledDropdownListItemProps
 
 export interface StyledDropdownSearchInputProps
     extends React.InputHTMLAttributes<HTMLInputElement> {}
+
+export interface StyledDropdownItemTextProps
+    extends React.HTMLAttributes<HTMLDivElement> {
+    $selected?: boolean;
+}

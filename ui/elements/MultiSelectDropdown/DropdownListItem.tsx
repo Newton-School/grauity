@@ -24,7 +24,9 @@ const DropdownListItem = ({
                 }
             />
         </StyledDropdownItemCheckbox>
-        <StyledDropdownItemText>{displayText}</StyledDropdownItemText>
+        <StyledDropdownItemText $selected={isSelected}>
+            {displayText}
+        </StyledDropdownItemText>
     </StyledDropdownListItem>
 );
 
