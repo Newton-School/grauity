@@ -22,7 +22,8 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
             shouldEnableSearch = true,
             searchPlaceholder = 'Search',
             onSearchInputChange = () => {},
-            onOptionSelected = () => {},
+            onChange = () => {},
+            noOptionsText = '-- No options available --',
         } = props;
 
         const [isOpened, setIsOpened] = useState(false);
@@ -40,7 +41,7 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
         useClickAway(dropdownRef, () => setIsOpened(false));
 
         return (
-            <StyledSelectDropdownWrapper ref={ref}>
+            <StyledSelectDropdownWrapper ref={ref} role="combobox">
                 <StyledSelectDropdownButton onClick={() => setIsOpened(true)}>
                     {iconName && (
                         <Icon name={iconName} color="var(--text-action)" />
@@ -63,12 +64,17 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
                                 />
                             </StyledDropdownSearchContainer>
                         )}
+                        {options.size === 0 && (
+                            <StyledSelectDropdownItem $disabled>
+                                {noOptionsText}
+                            </StyledSelectDropdownItem>
+                        )}
                         {Array.from(options).map((option) => (
                             <StyledSelectDropdownItem
                                 key={option.id}
                                 onClick={() => {
                                     setIsOpened(false);
-                                    onOptionSelected(option);
+                                    onChange(option);
                                 }}
                             >
                                 {option.label}

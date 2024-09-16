@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Button from '../Button';
 import {
@@ -58,6 +58,16 @@ export const StyledSelectDropdownItem = styled.div<StyledSelectDropdownItemProps
     &:hover {
         background: var(--bg-secondary, #f6f7f9);
     }
+
+    ${({ $disabled }) =>
+        $disabled &&
+        css`
+            color: var(--text-disabled, #8c95a6);
+            cursor: default;
+            &:hover {
+                background: var(--bg-primary, #fff);
+            }
+        `}
 `;
 
 export const StyledDropdownSearchContainer = styled.div`

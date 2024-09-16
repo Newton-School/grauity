@@ -46,7 +46,13 @@ export interface SelectDropdownProps {
      * Callback function triggered when the option is selected.
      * @param option - The selected option.
      */
-    onOptionSelected?: (option: DropdownOption) => void;
+    onChange?: (option: DropdownOption) => void;
+
+    /**
+     * Text to display when no option is available.
+     * @default -- No options available --
+     */
+    noOptionsText?: string;
 }
 
 export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -59,7 +65,9 @@ export interface StyledSelectDropdownWrapperProps
 }
 
 export interface StyledSelectDropdownItemProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    $disabled?: boolean;
+}
 
 export interface StyledDropdownSearchInputProps
     extends React.InputHTMLAttributes<HTMLInputElement> {}

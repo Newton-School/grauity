@@ -35,7 +35,8 @@ const defaultArgs: SelectDropdownProps = {
     shouldEnableSearch: true,
     onSearchInputChange: () => {},
     searchPlaceholder: 'Search',
-    onOptionSelected: () => {},
+    onChange: () => {},
+    noOptionsText: '-- No options available --',
 };
 
 export const Component = Template.bind({});
