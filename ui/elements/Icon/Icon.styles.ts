@@ -10,8 +10,9 @@ const iconLoading = keyframes`
 export const StyledIcon = styled.i.attrs((props: IconProps) => ({
     as: props.as || 'i',
 }))<IconProps>`
-    display: inline-block;
-    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0;
     line-height: 1em;
     backface-visibility: hidden;
