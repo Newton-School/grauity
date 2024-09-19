@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { ThemeWrapper } from '../../ui';
+import { NSThemeWrapper } from '../../ui';
 
 /**
  * This wrapper is needed because Storybook does not support
@@ -18,23 +18,23 @@ const StatefulThemeWrapper = ({ globals, children }) => {
     }, [globals.theme]);
 
     return (
-        <ThemeWrapper defaultTheme={currentComponentsTheme}>
+        <NSThemeWrapper defaultTheme={currentComponentsTheme}>
             {children}
-        </ThemeWrapper>
+        </NSThemeWrapper>
     );
 };
 
 /**
- * This decorator is used to wrap the Storybook stories with the ThemeWrapper
+ * This decorator is used to wrap the Storybook stories with the NSThemeWrapper
  */
 const withTheme = (Story, context) => {
     // globals.theme can be 'light', 'dark', and refer to the component theme
     const { globals } = context;
 
     return (
-        <ThemeWrapper defaultTheme={globals.theme}>
+        <NSThemeWrapper defaultTheme={globals.theme}>
             <Story />
-        </ThemeWrapper>
+        </NSThemeWrapper>
     );
 };
 
