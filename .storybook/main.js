@@ -25,4 +25,14 @@ export default {
     typescript: {
         reactDocgen: 'react-docgen-typescript',
     },
+    async babel(config) {
+        return {
+            presets: [
+                '@babel/preset-env',
+                '@babel/preset-react',
+                '@babel/preset-flow',
+                '@babel/preset-typescript',
+            ],
+        };
+    },
 };
