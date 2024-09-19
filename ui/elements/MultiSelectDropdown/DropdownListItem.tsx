@@ -16,7 +16,7 @@ const DropdownListItem = ({
     <StyledDropdownListItem onClick={onClickFn}>
         <StyledDropdownItemCheckbox>
             <Icon
-                name={isSelected ? 'check-square-fill' : 'square'}
+                name={isSelected ? 'check-square-filled' : 'square'}
                 color={
                     isSelected
                         ? 'var(--text-brand, #0673F9)'
