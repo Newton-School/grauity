@@ -49,15 +49,15 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     ${({ disabled }) =>
         disabled &&
         css`
-            background: var(--bg-disabled, #23282f);
-            color: var(--text-disabled, #5b6271);
+            background: var(--bg-disabled, #edeff3);
+            color: var(--text-disabled, #8c95a6);
             border: none;
             outline: none;
             cursor: not-allowed;
 
             &:hover {
-                background: var(--bg-disabled, #23282f);
-                color: var(--text-disabled, #5b6271);
+                background: var(--bg-disabled, #edeff3);
+                color: var(--text-disabled, #8c95a6);
             }
         `}
 
