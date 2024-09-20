@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
 import Button from '../Button';
@@ -9,7 +8,6 @@ import {
     StyledAlertBannerContainer,
     StyledAlertBannerContent,
 } from './AlertBanner.styles';
-import { ALERT_BANNER_TYPES, ALERT_BANNER_VARIANTS } from './constants';
 import { AlertBannerProps } from './types';
 import {
     getAlertBannerColors,
@@ -22,28 +20,30 @@ import {
  * important messages to the user. It is normally shown at the top of the page.
  */
 const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
-    (props, ref) => {
-        const {
-            type,
-            variant,
-            icon,
-            padding,
-            top,
-            bottom,
-            left,
-            right,
-            position,
-            children,
-            justifyContent,
+    (
+        {
+            type = 'default',
+            variant = 'primary',
+            icon = null,
+            padding = 'var(--spacing-8px, 8px)',
+            top = null,
+            bottom = null,
+            left = null,
+            right = null,
+            position = 'static',
+            children = null,
+            justifyContent = 'center',
             onClose,
-            showCloseButton,
-            actionButtons,
-        } = props;
+            showCloseButton = false,
+            actionButtons = [],
+        },
+        ref
+    ) => {
         const iconName = getAlertIconName(icon, variant);
         const { iconColor, textColor, backgroundColor, borderColor } =
             getAlertBannerColors(variant, type);
 
-        const hasButton = !!actionButtons?.length || showCloseButton;
+        const hasButton = !!actionButtons.length || showCloseButton;
 
         return (
             <StyledAlertBannerContainer
@@ -79,8 +79,10 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
 
                 {hasButton && (
                     <ButtonGroup>
-                        {actionButtons?.map((button) => (
-                            <Button {...button} key={button.variant}>{button.children}</Button>
+                        {actionButtons.map((button) => (
+                            <Button {...button} key={button.variant}>
+                                {button.children}
+                            </Button>
                         ))}
                         {showCloseButton && (
                             <IconButton
@@ -99,39 +101,5 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
         );
     }
 );
-
-AlertBanner.defaultProps = {
-    type: 'default',
-    variant: 'primary',
-    icon: null,
-    padding: 'var(--spacing-8px, 8px)',
-    top: null,
-    bottom: null,
-    left: null,
-    right: null,
-    position: 'static',
-    children: null,
-    justifyContent: 'center',
-    onClose: undefined,
-    showCloseButton: false,
-    actionButtons: [],
-};
-
-AlertBanner.propTypes = {
-    type: PropTypes.oneOf(ALERT_BANNER_TYPES),
-    variant: PropTypes.oneOf(ALERT_BANNER_VARIANTS),
-    padding: PropTypes.string,
-    icon: PropTypes.any,
-    top: PropTypes.string,
-    bottom: PropTypes.string,
-    left: PropTypes.string,
-    right: PropTypes.string,
-    position: PropTypes.oneOf(['static', 'fixed', 'absolute', 'relative']),
-    children: PropTypes.node,
-    justifyContent: PropTypes.oneOf(['center', 'space-between', 'space-around']),
-    onClose: PropTypes.func,
-    showCloseButton: PropTypes.bool,
-    actionButtons: PropTypes.array,
-};
 
 export default AlertBanner;

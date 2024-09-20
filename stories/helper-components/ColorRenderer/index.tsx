@@ -1,11 +1,12 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 interface ColorRendererProps {
-    color: string;
+    color?: string;
 }
 
-export const ColorRenderer = ({ color }: ColorRendererProps) => (
+export const ColorRenderer = ({
+    color = 'var(--color-primary, #0073e6)',
+}: ColorRendererProps) => (
     <div
         style={{
             display: 'flex',
@@ -20,11 +21,3 @@ export const ColorRenderer = ({ color }: ColorRendererProps) => (
         }}
     />
 );
-
-ColorRenderer.defaultProps = {
-    color: 'var(--color-primary, #0073e6)',
-};
-
-ColorRenderer.propTypes = {
-    color: PropTypes.string,
-};

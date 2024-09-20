@@ -90,7 +90,7 @@ export interface TypographyProps {
      * Determines the type of the element rendered
      * Available choices:
      *
-     * Default: `p`
+     * Default: `auto` (automatically selects the HTML tag based on the variant)
      * */
     as?: TypographyAsType;
 

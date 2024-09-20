@@ -1,10 +1,8 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
     TYPOGRAPHY_AS_ENUM,
     TYPOGRAPHY_VARIANT_AS_MAPPING,
-    TYPOGRAPHY_VARIANTS,
 } from './constants';
 import { TypographyProps } from './types';
 import { StyledTypography } from './Typography.styles';
@@ -21,12 +19,12 @@ import { StyledTypography } from './Typography.styles';
  * value to prop `as`, such as `'h1'`, `'h2'`, `'p'`, etc.
  */
 const Typography = ({
-    variant,
-    as,
-    color,
-    textAlign,
-    textTransform,
-    fontSize,
+    variant = 'paragraph-medium-body1',
+    as = 'auto',
+    color = 'var(--text-primary, #16191d)',
+    textAlign = null,
+    textTransform = null,
+    fontSize = null,
     children = '',
 }: TypographyProps) => {
     const asType =
@@ -45,26 +43,6 @@ const Typography = ({
             {children}
         </StyledTypography>
     );
-};
-
-Typography.propTypes = {
-    variant: PropTypes.oneOf(TYPOGRAPHY_VARIANTS),
-    as: PropTypes.string,
-    color: PropTypes.string,
-    textAlign: PropTypes.string,
-    textTransform: PropTypes.string,
-    fontSize: PropTypes.string,
-    children: PropTypes.any,
-};
-
-Typography.defaultProps = {
-    variant: 'paragraph-medium-body1',
-    as: 'auto',
-    color: 'var(--text-primary, #16191d)',
-    textAlign: null,
-    textTransform: null,
-    fontSize: null,
-    children: 'Enter the text here',
 };
 
 export default Typography;

@@ -38,7 +38,7 @@ export interface AlertProps {
      *
      * Default: `null`
      * */
-    icon?: grauityIconName | 'auto';
+    icon?: grauityIconName | 'auto' | null;
 
     /**
      * Alert title
