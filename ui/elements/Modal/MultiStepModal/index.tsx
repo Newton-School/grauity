@@ -108,7 +108,7 @@ const MultiStepModal = ({
                                 onClick={() => {
                                     setCurrentStep(currentStep - 1);
                                 }}
-                                icon="arrow-right"
+                                icon="arrow-left"
                                 iconPosition="left"
                             >
                                 Back
@@ -127,7 +127,7 @@ const MultiStepModal = ({
                                         setCurrentStep(currentStep + 1);
                                     }
                                 }}
-                                icon={isLastStep ? null : 'arrow-left'}
+                                icon={isLastStep ? null : 'arrow-right'}
                                 iconPosition="right"
                             >
                                 {nextButtonText}

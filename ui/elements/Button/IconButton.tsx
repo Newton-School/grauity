@@ -3,6 +3,7 @@ import React, { forwardRef } from 'react';
 
 import { Icon } from '../Icon';
 import { StyledButton } from './Button.styles';
+import { ICON_BUTTON_SIZE_TO_ICON_SIZE_MAPPING } from './constants';
 import { IconButtonProps } from './types';
 
 /**
@@ -41,6 +42,9 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
 
         const classes = classnames(className);
 
+        const computedIconSize =
+            iconSize || ICON_BUTTON_SIZE_TO_ICON_SIZE_MAPPING[size];
+
         return (
             <StyledButton
                 ref={ref}
@@ -62,15 +66,16 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
                 isIconButton
                 {...buttonProps}
                 data-testid="testid-iconbutton"
+                animateOnPress
             >
                 {icon && !loading && (
-                    <Icon name={icon} color="inherit" size={iconSize || '24'} />
+                    <Icon name={icon} color="inherit" size={computedIconSize} />
                 )}
                 {loading && (
                     <Icon
                         name="load"
                         color="inherit"
-                        size={iconSize || '24'}
+                        size={computedIconSize}
                         loading={loading}
                     />
                 )}

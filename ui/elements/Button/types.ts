@@ -265,6 +265,7 @@ export interface ButtonComponentProps
     children?: React.ReactNode;
     ref?: React.Ref<HTMLButtonElement>;
     type?: ButtonTypeAttribute;
+    animateOnPress?: boolean;
     ariaLabel?: string;
     title?: string;
     tabIndex?: number;

@@ -65,6 +65,7 @@ const ConfirmationDialog = ({
                                 variant="secondary-outlined"
                                 icon="close"
                                 ariaLabel="Close"
+                                buttonProps={{ autoFocus: true }}
                             />
                         </Modal.Action>
                     )}
@@ -93,6 +94,7 @@ const ConfirmationDialog = ({
                         }
                         fullWidth
                         onClick={onCancel}
+                        buttonProps={!showCloseButton && { autoFocus: true }}
                     >
                         {cancelText}
                     </Button>

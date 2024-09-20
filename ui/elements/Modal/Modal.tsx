@@ -62,7 +62,10 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(({
     const id = useId();
 
     return (
-        <StyledModalWrapper blurBackground={blurBackground} data-testid="testid-modalwrapper">
+        <StyledModalWrapper
+            blurBackground={blurBackground}
+            data-testid="testid-modalwrapper"
+        >
             <StyledModal
                 onClick={(e: Event) => e.stopPropagation()}
                 ref={modalRef}
@@ -82,9 +85,11 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(({
                         <StyledModalAction justifyContent="end">
                             <IconButton
                                 onClick={onHide}
+                                size="small"
                                 variant="secondary-outlined"
                                 icon="close"
                                 ariaLabel="Close"
+                                buttonProps={{ autoFocus: true }}
                             />
                         </StyledModalAction>
                     )}

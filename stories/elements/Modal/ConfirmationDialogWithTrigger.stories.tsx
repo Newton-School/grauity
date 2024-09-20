@@ -10,6 +10,7 @@ import {
 export default {
     title: 'Elements/ConfirmationDialog/TemplateWithTrigger',
     component: ConfirmationDialog,
+    tags: ['!autodocs'],
 };
 
 const defaultArgs: ConfirmationDialogProps = {
