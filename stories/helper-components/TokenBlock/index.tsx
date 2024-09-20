@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import Button from 'ui/elements/Button';
-import { Icon } from 'ui/index';
+import { NSIcon } from 'ui/index';
 
 import {
     StyledHideOnPrintWrapper,
@@ -58,7 +58,7 @@ const TokenBlock = ({
             )}
             {showCopiedOverlay && (
                 <StyledTokenBlockCopiedContainer copied={copied}>
-                    <Icon name="check" />
+                    <NSIcon name="check" />
                     Copied!
                 </StyledTokenBlockCopiedContainer>
             )}
