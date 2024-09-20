@@ -10,6 +10,7 @@ export const StyledCalendarWrapper = styled.div<StyledDivProps>`
     width: 100%;
     height: 100%;
     font-family: var(--font-family, 'Mono Sans');
+    overflow: hidden;
 
     display: grid;
     grid-template-rows: auto 1fr;
@@ -109,7 +110,6 @@ export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
 
 export const StyledCalendarTimeline = styled.div<StyledDivProps>`
     width: 100%;
-    height: 600px;
     overflow: auto;
     background: var(--bg-primary, #fff);
 `;
