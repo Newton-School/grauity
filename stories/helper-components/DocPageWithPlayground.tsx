@@ -7,17 +7,18 @@ import {
     Subtitle,
     Title,
 } from '@storybook/addon-docs';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Playground } from 'storybook-addon-code-editor';
 
 import * as grauity from '../../ui';
 
-export default function DocPageWithPlayground({
-    exampleSourceCode,
-}: {
+interface DocPageWithPlaygroundProps {
     exampleSourceCode: string;
-}) {
+}
+
+export default function DocPageWithPlayground({
+    exampleSourceCode = '',
+}: DocPageWithPlaygroundProps) {
     return (
         <>
             <Title />
@@ -40,7 +41,3 @@ export default function DocPageWithPlayground({
         </>
     );
 }
-
-DocPageWithPlayground.propTypes = {
-    exampleSourceCode: PropTypes.string.isRequired,
-};

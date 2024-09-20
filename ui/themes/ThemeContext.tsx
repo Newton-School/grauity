@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, {
     createContext,
     useCallback,
@@ -122,17 +121,6 @@ const ThemeWrapper = ({
             </ThemeProvider>
         </ThemeContext.Provider>
     );
-};
-
-ThemeWrapper.propTypes = {
-    children: PropTypes.node.isRequired,
-    defaultTheme: PropTypes.oneOf([THEME.LIGHT, THEME.DARK]),
-    usePreferredColorScheme: PropTypes.bool,
-};
-
-ThemeWrapper.defaultProps = {
-    defaultTheme: THEME.LIGHT,
-    usePreferredColorScheme: false,
 };
 
 const ThemeConsumer = ThemeContext.Consumer;
