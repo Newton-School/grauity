@@ -4,11 +4,11 @@ import Button, { IconButton } from '../Button';
 import { WeeklyCalendarProps } from './types';
 import {
     checkIsToday,
-    getMonthLabel,
+    getDateFullLabel,
+    getMonthDetails,
     getTimeListIn12HourFormat,
     getWeekByOffset,
     getWeekDayLabel,
-    getYearLabel,
 } from './utils';
 import {
     StyledCalendarBlock,
@@ -41,21 +41,31 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
         }, [weekOffset]);
 
         return (
-            <StyledCalendarWrapper ref={ref}>
+            <StyledCalendarWrapper
+                ref={ref}
+                tabIndex={0}
+                aria-label={`Weekly Calendar for the week starting from ${getDateFullLabel(
+                    currentWeek[0]
+                )}`}
+            >
                 {shouldShowWeekControls && (
                     <StyledCalendarMonthButton>
                         <IconButton
                             icon="chevron-left"
                             onClick={() => setWeekOffset(weekOffset - 1)}
-                        />
-                        <span>
-                            {`${getMonthLabel(currentWeek[0])} ${getYearLabel(
-                                currentWeek[0]
+                            ariaLabel={`Go to week starting from ${getDateFullLabel(
+                                currentWeek[0],
+                                -7
                             )}`}
-                        </span>
+                        />
+                        <div>{getMonthDetails(currentWeek[0])}</div>
                         <IconButton
                             icon="chevron-right"
                             onClick={() => setWeekOffset(weekOffset + 1)}
+                            ariaLabel={`Go to week starting from ${getDateFullLabel(
+                                currentWeek[0],
+                                7
+                            )}`}
                         />
                         <Button onClick={() => setWeekOffset(0)}>Today</Button>
                     </StyledCalendarMonthButton>

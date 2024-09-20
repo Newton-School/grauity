@@ -1,3 +1,5 @@
+export const cloneDate = (date: Date): Date => new Date(date.getTime());
+
 export const getCurrentWeek = (): Date[] => {
     const current = new Date();
     const week: Date[] = [];
@@ -16,6 +18,17 @@ export const getMonthLabel = (day: Date): string =>
     day.toLocaleDateString('en-US', { month: 'short' });
 
 export const getYearLabel = (day: Date): string => day.getFullYear().toString();
+
+export const getMonthDetails = (day: Date): string =>
+    `${getMonthLabel(day)} ${getYearLabel(day)}`;
+
+export const getDateFullLabel = (day: Date, offset: number = 0): string => {
+    const newDate = cloneDate(day);
+    newDate.setDate(newDate.getDate() + offset);
+    return `${getWeekDayLabel(newDate)}, ${newDate.getDate()} ${getMonthDetails(
+        newDate
+    )}`;
+};
 
 export const checkIsToday = (day: Date): boolean => {
     const today = new Date();
