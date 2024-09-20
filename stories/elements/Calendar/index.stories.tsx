@@ -21,7 +21,12 @@ export default {
 
 const Template = (args: WeeklyCalendarProps) => <WeeklyCalendar {...args} />;
 
-const defaultArgs: WeeklyCalendarProps = {};
+const defaultArgs: WeeklyCalendarProps = {
+    events: [],
+    shouldShowWeekControls: true,
+    weekOffset: 0,
+    onWeekChange: () => {},
+};
 
 export const Component = Template.bind({});
 
