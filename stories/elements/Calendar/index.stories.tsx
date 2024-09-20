@@ -10,7 +10,7 @@ export default {
             <div
                 style={{
                     border: '1px solid var(--border-neutral',
-                    height: '600px',
+                    height: '800px',
                 }}
             >
                 <Story />

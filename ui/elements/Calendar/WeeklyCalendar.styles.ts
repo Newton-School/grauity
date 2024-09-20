@@ -6,6 +6,15 @@ import {
     StyledDivProps,
 } from './types';
 
+export const StyledCalendarMonthButton = styled.div<StyledDivProps>`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-16px, 16px) var(--spacing-0px, 0px);
+    gap: var(--spacing-16px, 16px);
+`;
+
 export const StyledCalendarWrapper = styled.div<StyledDivProps>`
     width: 100%;
     height: 100%;

@@ -12,6 +12,11 @@ export const getCurrentWeek = (): Date[] => {
 export const getWeekDayLabel = (day: Date): string =>
     day.toLocaleDateString('en-US', { weekday: 'short' });
 
+export const getMonthLabel = (day: Date): string =>
+    day.toLocaleDateString('en-US', { month: 'short' });
+
+export const getYearLabel = (day: Date): string => day.getFullYear().toString();
+
 export const checkIsToday = (day: Date): boolean => {
     const today = new Date();
     return (
