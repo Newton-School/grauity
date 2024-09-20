@@ -19,6 +19,7 @@ export const StyledCalendarWrapper = styled.div<StyledDivProps>`
     width: 100%;
     height: 100%;
     font-family: var(--font-family, 'Mono Sans');
+    color: var(--text-primary, #16191d);
     overflow: hidden;
 
     display: grid;
@@ -33,7 +34,7 @@ export const StyledCalendarRow = styled.div<StyledDivProps>`
     display: grid;
     grid-template-columns: var(--calendar-sidebar-width) repeat(7, 1fr);
     background: var(--bg-primary, #fff);
-    box-shadow: 0px 0px 24px 0px var(--neutral-500);
+    box-shadow: 0px 0px 24px 0px var(--neutral-500, #b2b9c7);
 `;
 
 export const StyledCalendarEmptyBlock = styled.div<StyledDivProps>`
