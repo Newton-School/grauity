@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { ReactNode, useState } from 'react';
 import Button from 'ui/elements/Button';
 import { Icon } from 'ui/index';
@@ -12,10 +11,14 @@ import {
 interface TokenBlockProps {
     copy?: boolean;
     showCopiedOverlay?: boolean;
-    children: ReactNode;
+    children?: ReactNode;
 }
 
-const TokenBlock = ({ copy, children, showCopiedOverlay }: TokenBlockProps) => {
+const TokenBlock = ({
+    copy = false,
+    children,
+    showCopiedOverlay = false,
+}: TokenBlockProps) => {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
@@ -61,17 +64,6 @@ const TokenBlock = ({ copy, children, showCopiedOverlay }: TokenBlockProps) => {
             )}
         </StyledTokenBlock>
     );
-};
-
-TokenBlock.propTypes = {
-    copy: PropTypes.bool,
-    showCopiedOverlay: PropTypes.bool,
-    children: PropTypes.node.isRequired,
-};
-
-TokenBlock.defaultProps = {
-    copy: false,
-    showCopiedOverlay: false,
 };
 
 export default TokenBlock;

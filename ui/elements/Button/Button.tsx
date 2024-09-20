@@ -1,14 +1,8 @@
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React, { forwardRef, useId } from 'react';
 
 import { Icon } from '../Icon';
 import { StyledButton, StyledButtonContent } from './Button.styles';
-import {
-    BUTTON_ICON_POSITIONS,
-    BUTTON_SIZES,
-    BUTTON_VARIANTS,
-} from './constants';
 import { ButtonProps } from './types';
 
 /**
@@ -17,27 +11,26 @@ import { ButtonProps } from './types';
  *
  * To create an icon button, checkout the IconButton component.
  */
-const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-    const {
-        variant,
-        size,
-        icon,
-        iconSize,
-        iconPosition,
-        className,
-        disabled,
-        loading,
-        style,
-        onClick,
-        fullWidth,
-        type,
-        tooltip,
-        tabIndex,
-        onMouseEnter,
-        onMouseLeave,
-        children,
-        buttonProps,
-    } = props;
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
+    variant = 'primary',
+    size = 'medium',
+    icon = null,
+    iconSize = '24',
+    iconPosition = 'left',
+    className = '',
+    disabled = false,
+    loading = false,
+    style = {},
+    onClick = () => {},
+    fullWidth = false,
+    type = 'button',
+    tooltip = '',
+    tabIndex = 0,
+    onMouseEnter = () => {},
+    onMouseLeave = () => {},
+    children = '',
+    buttonProps,
+}, ref) => {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (disabled) {
             e.preventDefault();
@@ -90,45 +83,5 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         </StyledButton>
     );
 });
-
-Button.propTypes = {
-    variant: PropTypes.oneOf(BUTTON_VARIANTS),
-    size: PropTypes.oneOf(BUTTON_SIZES),
-    icon: PropTypes.any,
-    iconSize: PropTypes.any,
-    iconPosition: PropTypes.oneOf(BUTTON_ICON_POSITIONS),
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    loading: PropTypes.bool,
-    style: PropTypes.object,
-    onClick: PropTypes.func,
-    fullWidth: PropTypes.bool,
-    children: PropTypes.any,
-    type: PropTypes.oneOf(['button', 'submit', 'reset']),
-    tooltip: PropTypes.string,
-    tabIndex: PropTypes.number,
-    onMouseEnter: PropTypes.func,
-    onMouseLeave: PropTypes.func,
-};
-
-Button.defaultProps = {
-    variant: 'primary',
-    size: 'medium',
-    icon: null,
-    iconSize: '24',
-    iconPosition: 'left',
-    className: '',
-    disabled: false,
-    loading: false,
-    style: {},
-    onClick: () => {},
-    fullWidth: false,
-    children: '',
-    type: 'button',
-    tooltip: '',
-    tabIndex: 0,
-    onMouseEnter: () => {},
-    onMouseLeave: () => {},
-};
 
 export default Button;

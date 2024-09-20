@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { forwardRef, useId } from 'react';
 
 import {
@@ -17,36 +16,34 @@ import {
     StyledAlertDescription,
     StyledAlertTitle,
 } from './Alert.styles';
-import { ALERT_TYPES, ALERT_VARIANTS } from './constants';
 import { AlertProps } from './types';
 
 /**
  * An alert component is used to display important messages to the user.
  */
-const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
-    const {
-        type,
-        variant,
-        icon,
-        title,
-        description,
-        top,
-        bottom,
-        left,
-        right,
-        position,
-        onClose,
-        showCloseButton,
-        actionButtons,
-        maxWidth,
-        inlineButtons,
-    } = props;
+const Alert = forwardRef<HTMLDivElement, AlertProps>(({
+    type = 'default',
+    variant = 'primary',
+    icon = null,
+    title = 'This is an alert',
+    description = 'This is a description',
+    top = null,
+    bottom = null,
+    left = null,
+    right = null,
+    position = 'static',
+    onClose,
+    showCloseButton = false,
+    actionButtons = [],
+    inlineButtons = false,
+    maxWidth = '440px',
+}, ref) => {
     const id = useId();
     const iconName = getAlertIconName(icon, variant);
     const { iconColor, textColor, backgroundColor, borderColor } =
         getAlertBannerColors(variant, type);
 
-    const hasButton = !!actionButtons?.length || showCloseButton;
+    const hasButton = !!actionButtons.length || showCloseButton;
 
     return (
         <StyledAlertContainer
@@ -91,7 +88,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
                 </StyledAlertContent>
                 {hasButton && (
                     <ButtonGroup>
-                        {actionButtons?.map((button) => (
+                        {actionButtons.map((button) => (
                             <Button {...button} key={button.variant}>
                                 {button.children}
                             </Button>
@@ -113,41 +110,5 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
         </StyledAlertContainer>
     );
 });
-
-Alert.defaultProps = {
-    type: 'default',
-    variant: 'primary',
-    icon: null,
-    title: 'This is an alert',
-    description: 'This is a description',
-    top: null,
-    bottom: null,
-    left: null,
-    right: null,
-    position: 'static',
-    onClose: undefined,
-    showCloseButton: false,
-    actionButtons: [],
-    inlineButtons: false,
-    maxWidth: '440px',
-};
-
-Alert.propTypes = {
-    type: PropTypes.oneOf(ALERT_TYPES),
-    variant: PropTypes.oneOf(ALERT_VARIANTS),
-    icon: PropTypes.any,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    top: PropTypes.string,
-    bottom: PropTypes.string,
-    left: PropTypes.string,
-    right: PropTypes.string,
-    position: PropTypes.oneOf(['static', 'fixed', 'absolute', 'relative']),
-    onClose: PropTypes.func,
-    showCloseButton: PropTypes.bool,
-    actionButtons: PropTypes.array,
-    inlineButtons: PropTypes.bool,
-    maxWidth: PropTypes.string,
-};
 
 export default Alert;

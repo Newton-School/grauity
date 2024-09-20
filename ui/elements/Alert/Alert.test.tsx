@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
 import { ButtonProps } from '../Button';
 import Alert from './Alert';
