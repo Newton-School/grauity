@@ -84,7 +84,10 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
                         </StyledCalendarBlock>
                     ))}
                 </StyledCalendarHeader>
-                <StyledCalendarTimeline>
+                <StyledCalendarTimeline
+                    tabIndex={0}
+                    aria-label="Timeline for the entire week. Scroll to see more events"
+                >
                     {timeList.map((time) => (
                         <StyledCalendarTimelineRow key={time}>
                             <StyledCalendarTimelineBlock text={time} />
