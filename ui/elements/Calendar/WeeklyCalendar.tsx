@@ -1,12 +1,15 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 
 import Button, { IconButton } from '../Button';
-import { WeeklyCalendarProps } from './types';
+import { CalendarEventRecord, WeeklyCalendarProps } from './types';
 import {
     checkIsToday,
     getCurrentTimeStickPosition,
     getDateFullLabel,
+    getEventBlockHeight,
+    getEventBlockStartPosition,
     getMonthDetails,
+    getStartTimestampOfHourBlock,
     getTimeListIn12HourFormat,
     getWeekByOffset,
     getWeekDayLabel,
@@ -22,17 +25,21 @@ import {
     StyledCalendarTimelineBlock,
     StyledCalendarTimelineRow,
     StyledCalendarWrapper,
+    StyledEventWrapper,
 } from './WeeklyCalendar.styles';
 
 const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
     (props, ref) => {
         const {
+            events = [],
             shouldShowWeekControls = true,
             weekOffset: initialWeekOffset = 0,
             onWeekChange = () => {},
         } = props;
 
         const [weekOffset, setWeekOffset] = useState(initialWeekOffset);
+        const [calendarEvents, setCalendarEvents] =
+            useState<CalendarEventRecord>({});
 
         const containerRef = useRef<HTMLDivElement>(null);
 
@@ -47,6 +54,26 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
         useEffect(() => {
             onWeekChange(weekOffset);
         }, [weekOffset]);
+
+        useEffect(() => {
+            if (events) {
+                const newCalendarEvents: CalendarEventRecord = {};
+                events.forEach((event) => {
+                    const eventDate = new Date(
+                        event.start.getFullYear(),
+                        event.start.getMonth(),
+                        event.start.getDate(),
+                        event.start.getHours()
+                    );
+                    const eventTimestamp = eventDate.getTime();
+                    if (!newCalendarEvents[eventTimestamp]) {
+                        newCalendarEvents[eventTimestamp] = [];
+                    }
+                    newCalendarEvents[eventTimestamp].push(event);
+                });
+                setCalendarEvents(newCalendarEvents);
+            }
+        }, [events]);
 
         useEffect(() => {
             if (containerRef.current) {
@@ -122,8 +149,8 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
                     tabIndex={0}
                     aria-label="Timeline for the entire week. Scroll to see more events"
                 >
-                    {timeList.map((time, i) => (
-                        <StyledCalendarTimelineRow>
+                    {timeList.map((time, hourIndex) => (
+                        <StyledCalendarTimelineRow key={time}>
                             <StyledCalendarTimelineBlock $text={time} />
                             {currentWeek.map((day) => (
                                 <StyledCalendarBlock
@@ -132,14 +159,38 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
                                     $currentTimeStick={
                                         checkIsToday(day) &&
                                         Math.floor(currentTimeStickPosition) ===
-                                            i
+                                            hourIndex
                                             ? currentTimeStickPosition -
                                               Math.floor(
                                                   currentTimeStickPosition
                                               )
                                             : undefined
                                     }
-                                />
+                                >
+                                    {(
+                                        calendarEvents[
+                                            getStartTimestampOfHourBlock(
+                                                day,
+                                                hourIndex
+                                            )
+                                        ] || []
+                                    ).map((event, eventIndex) => (
+                                        <StyledEventWrapper
+                                            // eslint-disable-next-line react/no-array-index-key
+                                            key={`${eventIndex}_${event.start.toString()}`}
+                                            $startPosition={
+                                                getEventBlockStartPosition(
+                                                    event
+                                                ) * 100
+                                            }
+                                            $height={
+                                                getEventBlockHeight(event) * 100
+                                            }
+                                        >
+                                            Event
+                                        </StyledEventWrapper>
+                                    ))}
+                                </StyledCalendarBlock>
                             ))}
                         </StyledCalendarTimelineRow>
                     ))}

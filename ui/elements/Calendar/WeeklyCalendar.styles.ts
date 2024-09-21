@@ -4,6 +4,7 @@ import {
     StyledCalendarBlockProps,
     StyledCalendarTimelineBlockProps,
     StyledDivProps,
+    StyledEventWrapperProps,
 } from './types';
 
 export const StyledCalendarMonthButton = styled.div<StyledDivProps>`
@@ -183,4 +184,15 @@ export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
                 background: var(--bg-error-action, #d22d3a);
             }
         `}
+`;
+
+export const StyledEventWrapper = styled.div<StyledEventWrapperProps>`
+    border: 2px solid red;
+    z-index: 1;
+    position: absolute;
+    top: ${({ $startPosition }) => `${$startPosition}%`};
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    height: ${({ $height }) => `${$height}%`};
 `;

@@ -7,6 +7,8 @@ export interface CalendarEvent {
     render?: (event: CalendarEvent) => React.ReactNode;
 }
 
+export type CalendarEventRecord = Record<number, CalendarEvent[]>;
+
 export interface WeeklyCalendarProps {
     events?: CalendarEvent[];
     shouldShowWeekControls?: boolean;
@@ -26,4 +28,9 @@ export interface StyledCalendarBlockProps extends StyledDivProps {
 export interface StyledCalendarTimelineBlockProps extends StyledDivProps {
     $text?: string;
     $headerBlock?: boolean;
+}
+
+export interface StyledEventWrapperProps extends StyledDivProps {
+    $startPosition: number;
+    $height: number;
 }

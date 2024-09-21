@@ -21,7 +21,24 @@ export default {
 const Template = (args: WeeklyCalendarProps) => <WeeklyCalendar {...args} />;
 
 const defaultArgs: WeeklyCalendarProps = {
-    events: [],
+    events: [
+        {
+            start: new Date('2024-09-01T10:00:00'),
+            end: new Date('2024-09-01T12:00:00'),
+        },
+        {
+            start: new Date('2024-09-21T14:15:00'),
+            end: new Date('2024-09-21T15:30:00'),
+        },
+        {
+            start: new Date('2024-09-21T14:45:00'),
+            end: new Date('2024-09-21T15:45:00'),
+        },
+        {
+            start: new Date('2024-09-19T10:00:00'),
+            end: new Date('2024-09-19T10:30:00'),
+        },
+    ],
     shouldShowWeekControls: true,
     weekOffset: 0,
     onWeekChange: () => {},

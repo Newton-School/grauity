@@ -1,3 +1,5 @@
+import { CalendarEvent } from './types';
+
 export const cloneDate = (date: Date): Date => new Date(date.getTime());
 
 export const getCurrentWeek = (): Date[] => {
@@ -66,4 +68,30 @@ export const getCurrentTimeStickPosition = (): number => {
     const hour = current.getHours();
     const minute = current.getMinutes();
     return hour + minute / 60;
+};
+
+export const getStartTimestampOfHourBlock = (
+    date: Date,
+    hour: number
+): number => {
+    const newDate = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        hour
+    );
+    return newDate.getTime();
+};
+
+export const getEventBlockStartPosition = (event: CalendarEvent): number => {
+    const hour = event.start.getHours();
+    const minute = event.start.getMinutes();
+    const startIndex = hour + minute / 60;
+    return startIndex - Math.floor(startIndex);
+};
+
+export const getEventBlockHeight = (event: CalendarEvent): number => {
+    const start = event.start.getTime();
+    const end = event.end.getTime();
+    return (end - start) / (60 * 60 * 1000);
 };
