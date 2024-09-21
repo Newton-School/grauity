@@ -174,7 +174,7 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
                                                 hourIndex
                                             )
                                         ] || []
-                                    ).map((event, eventIndex) => (
+                                    ).map((event, eventIndex, eventArray) => (
                                         <StyledEventWrapper
                                             // eslint-disable-next-line react/no-array-index-key
                                             key={`${eventIndex}_${event.start.toString()}`}
@@ -186,6 +186,8 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
                                             $height={
                                                 getEventBlockHeight(event) * 100
                                             }
+                                            $totalEvents={eventArray.length}
+                                            $eventIndex={eventIndex}
                                         >
                                             Event
                                         </StyledEventWrapper>

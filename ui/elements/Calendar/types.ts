@@ -33,4 +33,6 @@ export interface StyledCalendarTimelineBlockProps extends StyledDivProps {
 export interface StyledEventWrapperProps extends StyledDivProps {
     $startPosition: number;
     $height: number;
+    $totalEvents: number;
+    $eventIndex: number;
 }
