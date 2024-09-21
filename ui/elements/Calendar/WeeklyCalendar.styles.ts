@@ -145,6 +145,12 @@ export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
     border-bottom: 1px solid var(--border-neutral, #e1e5ea);
     position: relative;
 
+    ${({ $active }) =>
+        $active &&
+        css`
+            background: var(--bg-brand, #e5f1ff);
+        `}
+
     ${({ $currentTimeStick }) =>
         typeof $currentTimeStick === 'number' &&
         css`

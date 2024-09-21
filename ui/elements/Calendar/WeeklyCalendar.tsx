@@ -102,6 +102,7 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
                             {currentWeek.map((day) => (
                                 <StyledCalendarBlock
                                     key={`${day} ${time}`}
+                                    $active={checkIsToday(day)}
                                     $currentTimeStick={
                                         checkIsToday(day) &&
                                         Math.floor(currentTimeStickPosition) ===
