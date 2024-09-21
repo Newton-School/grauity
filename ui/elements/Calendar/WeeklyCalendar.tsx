@@ -12,20 +12,20 @@ import {
 } from './utils';
 import {
     StyledCalendarBlock,
-    StyledCalendarEmptyBlock,
+    StyledCalendarDateLabel,
     StyledCalendarHeader,
+    StyledCalendarHeaderBlock,
+    StyledCalendarHeaderRow,
     StyledCalendarMonthButton,
     StyledCalendarTimeline,
     StyledCalendarTimelineBlock,
     StyledCalendarTimelineRow,
-    StyledCalendarWeekDate,
     StyledCalendarWrapper,
 } from './WeeklyCalendar.styles';
 
 const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
     (props, ref) => {
         const {
-            events = [],
             shouldShowWeekControls = true,
             weekOffset: initialWeekOffset = 0,
             onWeekChange = () => {},
@@ -48,48 +48,54 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
                     currentWeek[0]
                 )}`}
             >
-                {shouldShowWeekControls && (
-                    <StyledCalendarMonthButton>
-                        <IconButton
-                            icon="chevron-left"
-                            onClick={() => setWeekOffset(weekOffset - 1)}
-                            ariaLabel={`Go to week starting from ${getDateFullLabel(
-                                currentWeek[0],
-                                -7
-                            )}`}
-                        />
-                        <div>{getMonthDetails(currentWeek[0])}</div>
-                        <IconButton
-                            icon="chevron-right"
-                            onClick={() => setWeekOffset(weekOffset + 1)}
-                            ariaLabel={`Go to week starting from ${getDateFullLabel(
-                                currentWeek[0],
-                                7
-                            )}`}
-                        />
-                        <Button onClick={() => setWeekOffset(0)}>Today</Button>
-                    </StyledCalendarMonthButton>
-                )}
                 <StyledCalendarHeader>
-                    <StyledCalendarEmptyBlock />
-                    {currentWeek.map((day) => (
-                        <StyledCalendarBlock
-                            key={day.toLocaleDateString()}
-                            $active={checkIsToday(day)}
-                        >
-                            <span>{getWeekDayLabel(day)}</span>
-                            <StyledCalendarWeekDate $active={checkIsToday(day)}>
-                                {day.getDate()}
-                            </StyledCalendarWeekDate>
-                        </StyledCalendarBlock>
-                    ))}
+                    {shouldShowWeekControls && (
+                        <StyledCalendarMonthButton>
+                            <IconButton
+                                icon="chevron-left"
+                                onClick={() => setWeekOffset(weekOffset - 1)}
+                                ariaLabel={`Go to week starting from ${getDateFullLabel(
+                                    currentWeek[0],
+                                    -7
+                                )}`}
+                            />
+                            <div>{getMonthDetails(currentWeek[0])}</div>
+                            <IconButton
+                                icon="chevron-right"
+                                onClick={() => setWeekOffset(weekOffset + 1)}
+                                ariaLabel={`Go to week starting from ${getDateFullLabel(
+                                    currentWeek[0],
+                                    7
+                                )}`}
+                            />
+                            <Button onClick={() => setWeekOffset(0)}>
+                                Today
+                            </Button>
+                        </StyledCalendarMonthButton>
+                    )}
+                    <StyledCalendarHeaderRow>
+                        <StyledCalendarTimelineBlock />
+                        {currentWeek.map((day) => (
+                            <StyledCalendarHeaderBlock
+                                key={day.toLocaleDateString()}
+                                $active={checkIsToday(day)}
+                            >
+                                <span>{getWeekDayLabel(day)}</span>
+                                <StyledCalendarDateLabel
+                                    $active={checkIsToday(day)}
+                                >
+                                    {day.getDate()}
+                                </StyledCalendarDateLabel>
+                            </StyledCalendarHeaderBlock>
+                        ))}
+                    </StyledCalendarHeaderRow>
                 </StyledCalendarHeader>
                 <StyledCalendarTimeline
                     tabIndex={0}
                     aria-label="Timeline for the entire week. Scroll to see more events"
                 >
                     {timeList.map((time) => (
-                        <StyledCalendarTimelineRow key={time}>
+                        <StyledCalendarTimelineRow>
                             <StyledCalendarTimelineBlock text={time} />
                             {currentWeek.map((day) => (
                                 <StyledCalendarBlock key={`${day} ${time}`}>

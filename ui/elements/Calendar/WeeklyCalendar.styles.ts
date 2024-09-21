@@ -20,7 +20,7 @@ export const StyledCalendarWrapper = styled.div<StyledDivProps>`
     height: 100%;
     font-family: var(--font-family, 'Mono Sans');
     color: var(--text-primary, #16191d);
-    overflow: hidden;
+    overflow: auto;
 
     display: grid;
     grid-template-rows: auto 1fr;
@@ -29,26 +29,35 @@ export const StyledCalendarWrapper = styled.div<StyledDivProps>`
     --calendar-block-height: 52px;
 `;
 
+export const StyledCalendarHeader = styled.div<StyledDivProps>`
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: var(--bg-primary, #fff);
+`;
+
 export const StyledCalendarRow = styled.div<StyledDivProps>`
     width: 100%;
+    min-width: 800px;
+    background: var(--bg-primary, #fff);
     display: grid;
     grid-template-columns: var(--calendar-sidebar-width) repeat(7, 1fr);
-    background: var(--bg-primary, #fff);
-    box-shadow: 0px 0px 24px 0px var(--neutral-500, #b2b9c7);
 `;
 
-export const StyledCalendarEmptyBlock = styled.div<StyledDivProps>`
-    padding: var(--spacing-12px, 12px);
+export const StyledCalendarHeaderRow = styled(
+    StyledCalendarRow
+)<StyledDivProps>`
+    height: fit-content;
+`;
+
+export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBlockProps>`
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--bg-primary, #fff);
+    width: var(--calendar-sidebar-width);
     border-right: 1px solid var(--border-neutral, #e1e5ea);
-    border-bottom: 1px solid var(--border-neutral, #e1e5ea);
-    background: var(--bg-primary, #fff);
-`;
-
-export const StyledCalendarTimelineBlock = styled(
-    StyledCalendarEmptyBlock
-)<StyledCalendarTimelineBlockProps>`
-    border-bottom: none;
-    position: relative;
+    height: 100%;
 
     ${({ text }) =>
         text &&
@@ -57,9 +66,7 @@ export const StyledCalendarTimelineBlock = styled(
                 content: '${text}';
                 position: absolute;
                 top: -7px;
-                height: 7px;
-                z-index: 1;
-                align-self: stretch;
+                z-index: 2;
                 color: var(--text-disabled, #8c95a6);
                 text-align: center;
                 font-size: 11px;
@@ -71,11 +78,36 @@ export const StyledCalendarTimelineBlock = styled(
         `}
 `;
 
-export const StyledCalendarHeader = styled(StyledCalendarRow)<StyledDivProps>`
-    z-index: 1;
+export const StyledCalendarHeaderBlock = styled.div<StyledCalendarBlockProps>`
+    height: 100%;
+    display: flex;
+    padding: var(--spacing-12px, 12px);
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    flex: 1 0 0;
+    border-right: 1px solid var(--border-neutral, #e1e5ea);
+    border-bottom: 1px solid var(--border-neutral, #e1e5ea);
+    background: var(--bg-primary, #fff);
+    color: var(--text-secondary, #5b6271);
+
+    ${({ $active }) =>
+        $active &&
+        css`
+            color: var(--text-brand, #0673f9);
+        `}
 `;
 
-export const StyledCalendarWeekDate = styled.div<StyledCalendarBlockProps>`
+export const StyledCalendarWeekLabel = styled.div<StyledDivProps>`
+    color: var(--text-brand, #0673f9);
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+`;
+
+export const StyledCalendarDateLabel = styled.div<StyledCalendarBlockProps>`
     display: flex;
     padding: var(--spacing-4px, 4px);
     flex-direction: column;
@@ -92,41 +124,22 @@ export const StyledCalendarWeekDate = styled.div<StyledCalendarBlockProps>`
         `}
 `;
 
-export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
-    padding: var(--spacing-12px, 12px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1 0 0;
-    align-self: stretch;
-    border: 1px solid var(--border-neutral, #e1e5ea);
-    border-top: none;
-    border-left: none;
-    background: var(--bg-primary, #fff);
-
-    color: var(--text-secondary, #5b6271);
-    text-align: center;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 600;
-
-    ${({ $active }) =>
-        $active &&
-        css`
-            color: var(--text-brand, #0673f9);
-        `}
-`;
-
 export const StyledCalendarTimeline = styled.div<StyledDivProps>`
     width: 100%;
-    overflow: auto;
-    background: var(--bg-primary, #fff);
 `;
 
 export const StyledCalendarTimelineRow = styled(
     StyledCalendarRow
 )<StyledDivProps>`
-    width: 100%;
     height: var(--calendar-block-height);
+`;
+
+export const StyledCalendarBlock = styled.div<StyledDivProps>`
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border-right: 1px solid var(--border-neutral, #e1e5ea);
+    border-bottom: 1px solid var(--border-neutral, #e1e5ea);
 `;
