@@ -41,6 +41,10 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
         const currentTimeStickPosition = getCurrentTimeStickPosition();
 
         useEffect(() => {
+            setWeekOffset(initialWeekOffset);
+        }, [initialWeekOffset]);
+
+        useEffect(() => {
             onWeekChange(weekOffset);
         }, [weekOffset]);
 
