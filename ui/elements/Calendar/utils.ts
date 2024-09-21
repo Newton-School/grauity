@@ -60,3 +60,10 @@ export const getTimeListIn12HourFormat = (): string[] => {
     }
     return timeList;
 };
+
+export const getCurrentTimeStickPosition = (): number => {
+    const current = new Date();
+    const hour = current.getHours();
+    const minute = current.getMinutes();
+    return hour + minute / 60;
+};

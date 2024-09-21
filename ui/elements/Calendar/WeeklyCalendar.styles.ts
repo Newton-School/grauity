@@ -68,6 +68,7 @@ export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBloc
                 top: -7px;
                 z-index: 2;
                 color: var(--text-disabled, #8c95a6);
+                width: 100%;
                 text-align: center;
                 font-size: 11px;
                 font-style: normal;
@@ -134,7 +135,7 @@ export const StyledCalendarTimelineRow = styled(
     height: var(--calendar-block-height);
 `;
 
-export const StyledCalendarBlock = styled.div<StyledDivProps>`
+export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
     height: 100%;
     display: flex;
     justify-content: center;
@@ -142,4 +143,31 @@ export const StyledCalendarBlock = styled.div<StyledDivProps>`
     align-self: stretch;
     border-right: 1px solid var(--border-neutral, #e1e5ea);
     border-bottom: 1px solid var(--border-neutral, #e1e5ea);
+    position: relative;
+
+    ${({ $currentTimeStick }) =>
+        typeof $currentTimeStick === 'number' &&
+        css`
+            &::before {
+                position: absolute;
+                top: calc(100% * ${$currentTimeStick});
+                content: '';
+                z-index: 1;
+                width: 100%;
+                height: var(--spacing-2px, 2px);
+                border-radius: 4px;
+                background: var(--bg-error-action, #d22d3a);
+            }
+            &::after {
+                position: absolute;
+                top: calc(100% * ${$currentTimeStick} - 4px);
+                left: -5px;
+                content: '';
+                z-index: 2;
+                width: 10px;
+                height: var(--spacing-10px, 10px);
+                border-radius: 40px;
+                background: var(--bg-error-action, #d22d3a);
+            }
+        `}
 `;

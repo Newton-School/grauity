@@ -20,6 +20,7 @@ export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export interface StyledCalendarBlockProps extends StyledDivProps {
     $active?: boolean;
+    $currentTimeStick?: number;
 }
 
 export interface StyledCalendarTimelineBlockProps extends StyledDivProps {

@@ -9,7 +9,6 @@ export default {
         (Story: StoryFn) => (
             <div
                 style={{
-                    border: '1px solid var(--border-neutral',
                     height: '800px',
                 }}
             >

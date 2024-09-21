@@ -4,6 +4,7 @@ import Button, { IconButton } from '../Button';
 import { WeeklyCalendarProps } from './types';
 import {
     checkIsToday,
+    getCurrentTimeStickPosition,
     getDateFullLabel,
     getMonthDetails,
     getTimeListIn12HourFormat,
@@ -35,6 +36,7 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
 
         const currentWeek = getWeekByOffset(weekOffset);
         const timeList = getTimeListIn12HourFormat();
+        const currentTimeStickPosition = getCurrentTimeStickPosition();
 
         useEffect(() => {
             onWeekChange(weekOffset);
@@ -94,15 +96,23 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
                     tabIndex={0}
                     aria-label="Timeline for the entire week. Scroll to see more events"
                 >
-                    {timeList.map((time) => (
+                    {timeList.map((time, i) => (
                         <StyledCalendarTimelineRow>
                             <StyledCalendarTimelineBlock text={time} />
                             {currentWeek.map((day) => (
-                                <StyledCalendarBlock key={`${day} ${time}`}>
-                                    <span>
-                                        {day.toLocaleDateString()}, {time}
-                                    </span>
-                                </StyledCalendarBlock>
+                                <StyledCalendarBlock
+                                    key={`${day} ${time}`}
+                                    $currentTimeStick={
+                                        checkIsToday(day) &&
+                                        Math.floor(currentTimeStickPosition) ===
+                                            i
+                                            ? currentTimeStickPosition -
+                                              Math.floor(
+                                                  currentTimeStickPosition
+                                              )
+                                            : undefined
+                                    }
+                                />
                             ))}
                         </StyledCalendarTimelineRow>
                     ))}
