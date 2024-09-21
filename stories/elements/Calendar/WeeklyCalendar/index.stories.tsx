@@ -31,8 +31,12 @@ const defaultArgs: WeeklyCalendarProps = {
             end: new Date('2024-09-21T15:30:00'),
         },
         {
-            start: new Date('2024-09-21T14:45:00'),
+            start: new Date('2024-09-21T15:00:00'),
             end: new Date('2024-09-21T15:45:00'),
+        },
+        {
+            start: new Date('2024-09-21T15:00:00'),
+            end: new Date('2024-09-21T16:00:00'),
         },
         {
             start: new Date('2024-09-19T10:00:00'),
