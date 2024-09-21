@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import * as React from 'react';
 import styled from 'styled-components';
 
@@ -6,7 +5,7 @@ export interface GrauityInitProps {
     /**
      * An element type to render as (string or function).
      * */
-    as: React.ElementType;
+    as?: React.ElementType;
 
     /**
      * The font size to be applied on this element and so will act as standard for the `ems` of all grauity components.
@@ -31,7 +30,7 @@ export interface GrauityInitProps {
     /**
      * Additional styles to be added to the component
      * */
-    style?: object;
+    style?: React.CSSProperties;
 }
 
 /**
@@ -39,14 +38,14 @@ export interface GrauityInitProps {
  * But nonetheless all the grauity components should be the children of this component.
  * */
 function GrauityInit({
-    as,
-    fontSize,
-    multiplier,
-    className,
-    style,
-    children,
+    as = 'div',
+    fontSize = '16px',
+    multiplier = 1,
+    className = 'grauity-init',
+    style = {},
+    children = null,
 }: GrauityInitProps) {
-    const ElementType = styled.div.attrs(() => ({
+    const ElementType: React.ElementType = styled.div.attrs(() => ({
         as: as || 'div',
     }))<GrauityInitProps>``;
 
@@ -63,23 +62,5 @@ function GrauityInit({
         </ElementType>
     );
 }
-
-GrauityInit.propTypes = {
-    as: PropTypes.elementType,
-    fontSize: PropTypes.string,
-    multiplier: PropTypes.number,
-    className: PropTypes.string,
-    style: PropTypes.object,
-    children: PropTypes.node,
-};
-
-GrauityInit.defaultProps = {
-    as: 'div',
-    fontSize: '16px',
-    multiplier: 1,
-    className: 'grauity-init',
-    style: {},
-    children: null,
-};
 
 export default GrauityInit;

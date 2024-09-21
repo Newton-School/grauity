@@ -2,7 +2,7 @@
     "include": ["ui/**/*", "stories/**/*"],
     "exclude": ["node_modules", "dist"],
     "compilerOptions": {
-        "lib": ["es2017", "dom"],
+        "lib": ["dom", "esnext"],
         "allowJs": true,
         "declaration": true,
         "outDir": "./dist/",
@@ -11,12 +11,13 @@
         "noEmit": false,
         "noEmitOnError": true,
         "noImplicitAny": true,
-        "module": "es6",
+        "module": "esnext",
         "target": "es5",
         "jsx": "react",
         "moduleResolution": "node",
         "forceConsistentCasingInFileNames": true,
         "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
         "paths": {
             "ui/*": ["./ui/*"],
             "elements/*": ["./ui/elements/*"]

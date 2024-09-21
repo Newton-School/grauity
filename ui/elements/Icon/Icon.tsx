@@ -1,14 +1,7 @@
 import classnames from 'classnames';
 import _ from 'lodash';
-import PropTypes from 'prop-types';
 import * as React from 'react';
 
-import {
-    GRAUITY_ICON_FLIPPED_CHOICES,
-    GRAUITY_ICON_ROTATED_CHOICES,
-    GRAUITY_ICON_SIZES,
-    ICON_TAGS,
-} from '../../core';
 import { useKeyOnly, useValueAndKey } from '../../helpers';
 import { StyledIcon } from './Icon.styles';
 import { IconProps } from './types';
@@ -17,22 +10,22 @@ import { IconProps } from './types';
  * An icon is a glyph used to represent something else.
  */
 function Icon({
-    ariaHidden,
+    ariaHidden = 'true',
     ariaLabel,
-    as,
-    bordered,
-    circular,
-    color,
+    as = 'i',
+    bordered = false,
+    circular = false,
+    color = 'grey',
     className,
-    disabled,
-    fitted,
+    disabled = false,
+    fitted = false,
     flipped,
-    inverted,
-    link,
-    loading,
+    inverted = false,
+    link = false,
+    loading = false,
     name,
     rotated,
-    size,
+    size = '24',
     style,
     ...props
 }: IconProps) {
@@ -96,44 +89,5 @@ function Icon({
         />
     );
 }
-
-Icon.propTypes = {
-    ariaHidden: PropTypes.string,
-    ariaLabel: PropTypes.string,
-    as: PropTypes.elementType,
-    bordered: PropTypes.bool,
-    circular: PropTypes.bool,
-    color: PropTypes.string,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    fitted: PropTypes.bool,
-    flipped: PropTypes.oneOf(GRAUITY_ICON_FLIPPED_CHOICES),
-    inverted: PropTypes.bool,
-    link: PropTypes.bool,
-    loading: PropTypes.bool,
-    name: PropTypes.oneOf(Object.keys(ICON_TAGS)).isRequired,
-    rotated: PropTypes.oneOf(GRAUITY_ICON_ROTATED_CHOICES),
-    size: PropTypes.oneOf(GRAUITY_ICON_SIZES),
-    style: PropTypes.object,
-};
-
-Icon.defaultProps = {
-    ariaHidden: 'true',
-    ariaLabel: undefined,
-    as: 'i',
-    bordered: false,
-    circular: false,
-    color: 'grey',
-    className: undefined,
-    disabled: false,
-    fitted: false,
-    flipped: undefined,
-    inverted: false,
-    link: false,
-    loading: false,
-    rotated: undefined,
-    size: '24',
-    style: undefined,
-};
 
 export default Icon;

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 
 import useClickAway from '../../../../hooks/useClickAway';
@@ -16,20 +15,20 @@ import { MultiStepModalProps } from '../types';
  * A multi-step modal is a modal that has multiple steps.
  */
 const MultiStepModal = ({
-    modalSteps,
-    showModalStepsPagination,
-    hideOnClickAway,
-    blurBackground,
-    onHide,
-    onFinalStep,
-    mobileBottomFullWidth,
-    onStepChange,
-    modalPadding,
-    modalBodyMargin,
-    width,
-    height,
-    minHeight,
-    showCloseButton,
+    modalSteps = [],
+    showModalStepsPagination = true,
+    hideOnClickAway = false,
+    blurBackground = false,
+    onHide = () => {},
+    onFinalStep = () => {},
+    mobileBottomFullWidth = false,
+    onStepChange = () => {},
+    modalPadding = '20px',
+    modalBodyMargin = '12px 0 0 0',
+    width = null,
+    height = null,
+    minHeight = null,
+    showCloseButton = false,
 }: MultiStepModalProps) => {
     const [currentStep, setCurrentStep] = useState(0);
     const hasMounted = useRef(false);
@@ -109,7 +108,7 @@ const MultiStepModal = ({
                                 onClick={() => {
                                     setCurrentStep(currentStep - 1);
                                 }}
-                                icon="arrow-right"
+                                icon="arrow-left"
                                 iconPosition="left"
                             >
                                 Back
@@ -128,7 +127,7 @@ const MultiStepModal = ({
                                         setCurrentStep(currentStep + 1);
                                     }
                                 }}
-                                icon={isLastStep ? null : 'arrow-left'}
+                                icon={isLastStep ? null : 'arrow-right'}
                                 iconPosition="right"
                             >
                                 {nextButtonText}
@@ -139,40 +138,6 @@ const MultiStepModal = ({
             }
         />
     );
-};
-
-MultiStepModal.propTypes = {
-    modalSteps: PropTypes.array,
-    showModalStepsPagination: PropTypes.bool,
-    hideOnClickAway: PropTypes.bool,
-    blurBackground: PropTypes.bool,
-    onHide: PropTypes.func,
-    onFinalStep: PropTypes.func,
-    mobileBottomFullWidth: PropTypes.bool,
-    onStepChange: PropTypes.func,
-    modalPadding: PropTypes.string,
-    modalBodyMargin: PropTypes.string,
-    width: PropTypes.string,
-    height: PropTypes.string,
-    minHeight: PropTypes.string,
-    showCloseButton: PropTypes.bool,
-};
-
-MultiStepModal.defaultProps = {
-    modalSteps: [],
-    showModalStepsPagination: true,
-    hideOnClickAway: false,
-    blurBackground: false,
-    onHide: () => {},
-    onFinalStep: () => {},
-    mobileBottomFullWidth: false,
-    onStepChange: () => {},
-    modalPadding: '20px',
-    modalBodyMargin: '12px 0 0 0',
-    width: null,
-    height: null,
-    minHeight: null,
-    showCloseButton: false,
 };
 
 MultiStepModal.PaginatedActions = StyledModalPaginatedActions;

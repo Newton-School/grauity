@@ -1,36 +1,37 @@
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
 import { Icon } from '../Icon';
 import { StyledButton } from './Button.styles';
-import { BUTTON_SIZES, BUTTON_VARIANTS } from './constants';
+import { ICON_BUTTON_SIZE_TO_ICON_SIZE_MAPPING } from './constants';
 import { IconButtonProps } from './types';
 
 /**
  * An IconButton is a button that contains an icon.
  */
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-    (props, ref) => {
-        const {
-            variant,
-            size,
-            icon,
-            iconSize,
-            className,
-            disabled,
-            loading,
-            style,
-            onClick,
+    (
+        {
+            variant = 'primary',
+            size = 'medium',
+            icon = null,
+            iconSize = '24',
+            className = '',
+            disabled = false,
+            loading = false,
+            style = {},
+            onClick = () => {},
             fullWidth,
-            type,
-            ariaLabel,
-            tooltip,
-            tabIndex,
-            onMouseEnter,
-            onMouseLeave,
+            type = 'button',
+            ariaLabel = '',
+            tooltip = '',
+            tabIndex = 0,
+            onMouseEnter = () => {},
+            onMouseLeave = () => {},
             buttonProps,
-        } = props;
+        },
+        ref
+    ) => {
         const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
             if (disabled) {
                 e.preventDefault();
@@ -40,6 +41,9 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         };
 
         const classes = classnames(className);
+
+        const computedIconSize =
+            iconSize || ICON_BUTTON_SIZE_TO_ICON_SIZE_MAPPING[size];
 
         return (
             <StyledButton
@@ -62,15 +66,16 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
                 isIconButton
                 {...buttonProps}
                 data-testid="testid-iconbutton"
+                animateOnPress
             >
                 {icon && !loading && (
-                    <Icon name={icon} color="inherit" size={iconSize || '24'} />
+                    <Icon name={icon} color="inherit" size={computedIconSize} />
                 )}
                 {loading && (
                     <Icon
                         name="load"
                         color="inherit"
-                        size={iconSize || '24'}
+                        size={computedIconSize}
                         loading={loading}
                     />
                 )}
@@ -78,41 +83,5 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         );
     }
 );
-
-IconButton.propTypes = {
-    variant: PropTypes.oneOf(BUTTON_VARIANTS),
-    size: PropTypes.oneOf(BUTTON_SIZES),
-    icon: PropTypes.any,
-    iconSize: PropTypes.any,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    loading: PropTypes.bool,
-    style: PropTypes.object,
-    onClick: PropTypes.func,
-    type: PropTypes.oneOf(['button', 'submit', 'reset']),
-    ariaLabel: PropTypes.string,
-    tooltip: PropTypes.string,
-    tabIndex: PropTypes.number,
-    onMouseEnter: PropTypes.func,
-    onMouseLeave: PropTypes.func,
-};
-
-IconButton.defaultProps = {
-    variant: 'primary',
-    size: 'medium',
-    icon: null,
-    iconSize: '24',
-    className: '',
-    disabled: false,
-    loading: false,
-    style: {},
-    onClick: () => {},
-    type: 'button',
-    ariaLabel: '',
-    tooltip: '',
-    tabIndex: 0,
-    onMouseEnter: () => {},
-    onMouseLeave: () => {},
-};
 
 export default IconButton;

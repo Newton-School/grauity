@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
@@ -15,22 +14,35 @@ import { TableProps } from './types';
  * A table is a component that is used to display data in a tabular format.
  * It is composed of rows and columns.
  */
-const Table = ({ rows, columns, ...props }: TableProps) => (
+const Table = ({
+    rows = [],
+    columns = [],
+    condensed = true,
+    striped = false,
+    borderAround = true,
+    borderWithin = true,
+    borderHorizontal = true,
+    borderVertical = true,
+    className = '',
+    style = {},
+    capitalizeHeaders = false,
+    highlightHeaders = true,
+}: TableProps) => (
     <StyledTable
-        borderAround={props.borderAround}
-        borderWithin={props.borderWithin}
-        borderHorizontal={props?.borderHorizontal}
-        borderVertical={props?.borderVertical}
-        striped={props?.striped}
-        className={props?.className}
-        style={props?.style}
+        borderAround={borderAround}
+        borderWithin={borderWithin}
+        borderHorizontal={borderHorizontal}
+        borderVertical={borderVertical}
+        striped={striped}
+        className={className}
+        style={style}
         role="table"
     >
         <StyledTableHead
-            capitalizeHeaders={props?.capitalizeHeaders}
-            highlightHeaders={props?.highlightHeaders}
+            capitalizeHeaders={capitalizeHeaders}
+            highlightHeaders={highlightHeaders}
         >
-            <StyledTableRow condensed={props.condensed}>
+            <StyledTableRow condensed={condensed}>
                 {columns?.map((column, columnIndex) => (
                     <StyledTableHeadingCell
                         key={column?.key || `table--column-${columnIndex + 1}`}
@@ -49,7 +61,7 @@ const Table = ({ rows, columns, ...props }: TableProps) => (
             {rows?.map((row, rowIndex) => (
                 <StyledTableRow
                     key={`table--row-${rowIndex + 1}`}
-                    condensed={props.condensed}
+                    condensed={condensed}
                 >
                     {columns?.map((column) => (
                         <StyledTableDataCell
@@ -75,38 +87,6 @@ const Table = ({ rows, columns, ...props }: TableProps) => (
         </StyledTableBody>
     </StyledTable>
 );
-
-Table.propTypes = {
-    rows: PropTypes.array,
-    columns: PropTypes.array,
-    condensed: PropTypes.bool,
-    striped: PropTypes.bool,
-    borderAround: PropTypes.bool,
-    borderWithin: PropTypes.bool,
-    borderHorizontal: PropTypes.bool,
-    borderVertical: PropTypes.bool,
-    className: PropTypes.string,
-    loading: PropTypes.bool,
-    style: PropTypes.object,
-    capitalizeHeaders: PropTypes.bool,
-    highlightHeaders: PropTypes.bool,
-};
-
-Table.defaultProps = {
-    rows: [],
-    columns: [],
-    condensed: true,
-    striped: false,
-    borderAround: true,
-    borderWithin: true,
-    borderHorizontal: true,
-    borderVertical: true,
-    className: '',
-    loading: false,
-    style: {},
-    capitalizeHeaders: false,
-    highlightHeaders: true,
-};
 
 Table.Table = StyledTable;
 Table.TableBody = StyledTableBody;

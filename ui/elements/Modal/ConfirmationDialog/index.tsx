@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useId } from 'react';
 
 import { useKeyboardEvent } from '../../../../hooks';
@@ -12,20 +11,20 @@ import { ConfirmationDialogProps } from '../types';
  * A confirmation dialog is a dialog box that asks the user to confirm an action.
  */
 const ConfirmationDialog = ({
-    cancelText,
-    confirmText,
-    onCancel,
-    onConfirm,
-    banner,
-    title,
-    description,
-    body,
-    cancelButtonVariant,
-    confirmButtonVariant,
-    showCloseButton,
-    hideOnClickAway,
-    blurBackground,
-    mobileBottomFullWidth,
+    cancelText = 'Cancel',
+    confirmText = 'Confirm',
+    onCancel = () => {},
+    onConfirm = () => {},
+    banner = null,
+    title = 'Are you sure?',
+    description = 'Please confirm your action.',
+    body = null,
+    cancelButtonVariant = 'danger',
+    confirmButtonVariant = 'success',
+    showCloseButton = false,
+    hideOnClickAway = false,
+    blurBackground = false,
+    mobileBottomFullWidth = false,
 }: ConfirmationDialogProps) => {
     const modalRef = React.useRef(null);
 
@@ -66,6 +65,7 @@ const ConfirmationDialog = ({
                                 variant="secondary-outlined"
                                 icon="close"
                                 ariaLabel="Close"
+                                buttonProps={{ autoFocus: true }}
                             />
                         </Modal.Action>
                     )}
@@ -94,6 +94,7 @@ const ConfirmationDialog = ({
                         }
                         fullWidth
                         onClick={onCancel}
+                        buttonProps={!showCloseButton && { autoFocus: true }}
                     >
                         {cancelText}
                     </Button>
@@ -110,40 +111,6 @@ const ConfirmationDialog = ({
             </Modal.Modal>
         </Modal.Wrapper>
     );
-};
-
-ConfirmationDialog.propTypes = {
-    cancelText: PropTypes.string,
-    confirmText: PropTypes.string,
-    onCancel: PropTypes.func,
-    onConfirm: PropTypes.func,
-    banner: PropTypes.string || PropTypes.node,
-    title: PropTypes.string || PropTypes.node,
-    description: PropTypes.string,
-    body: PropTypes.string || PropTypes.node,
-    cancelButtonVariant: PropTypes.string,
-    confirmButtonVariant: PropTypes.string,
-    showCloseButton: PropTypes.bool,
-    hideOnClickAway: PropTypes.bool,
-    blurBackground: PropTypes.bool,
-    mobileBottomFullWidth: PropTypes.bool,
-};
-
-ConfirmationDialog.defaultProps = {
-    cancelText: 'Cancel',
-    confirmText: 'Confirm',
-    banner: null,
-    title: 'Are you sure?',
-    description: 'Please confirm your action.',
-    body: null,
-    onCancel: () => {},
-    onConfirm: () => {},
-    cancelButtonVariant: 'danger',
-    confirmButtonVariant: 'success',
-    showCloseButton: false,
-    hideOnClickAway: false,
-    blurBackground: false,
-    mobileBottomFullWidth: false,
 };
 
 export { ConfirmationDialogProps };

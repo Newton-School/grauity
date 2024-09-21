@@ -8,7 +8,6 @@ import {
 import { ButtonComponentProps, ButtonContentProps } from './types';
 
 export const StyledButton = styled.button<ButtonComponentProps>`
-    padding: var(--spacing-4px, 4px) var(--spacing-12px, 12px);
     font-size: var(--font-size-14px, 14px);
     border-radius: var(--corner-radius-8px, 8px);
     white-space: nowrap;
@@ -50,15 +49,15 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     ${({ disabled }) =>
         disabled &&
         css`
-            background: var(--bg-disabled, #23282f);
-            color: var(--text-disabled, #5b6271);
+            background: var(--bg-disabled, #edeff3);
+            color: var(--text-disabled, #8c95a6);
             border: none;
             outline: none;
             cursor: not-allowed;
 
             &:hover {
-                background: var(--bg-disabled, #23282f);
-                color: var(--text-disabled, #5b6271);
+                background: var(--bg-disabled, #edeff3);
+                color: var(--text-disabled, #8c95a6);
             }
         `}
 
@@ -74,7 +73,16 @@ export const StyledButton = styled.button<ButtonComponentProps>`
             flex-direction: row-reverse;
         `}
 
-    transition: background-color 0.2s ease-in, outline 0.2s ease-in, border 0.2s ease-in, border-color 0.2s ease-in;
+    ${({ animateOnPress }) =>
+        animateOnPress &&
+        css`
+            &:active {
+                transform: scale(0.95);
+            }
+        `}
+    
+
+    transition: all 0.2s ease-in-out;
 `;
 
 export const StyledButtonContent = styled.div<ButtonContentProps>`
