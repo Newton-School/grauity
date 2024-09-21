@@ -32,7 +32,7 @@ export const StyledCalendarWrapper = styled.div<StyledDivProps>`
 export const StyledCalendarHeader = styled.div<StyledDivProps>`
     position: sticky;
     top: 0;
-    z-index: 3;
+    z-index: 4;
     background: var(--bg-primary, #fff);
 `;
 
@@ -53,7 +53,7 @@ export const StyledCalendarHeaderRow = styled(
 export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBlockProps>`
     position: sticky;
     left: 0;
-    z-index: 1;
+    z-index: 2;
     background: var(--bg-primary, #fff);
     width: var(--calendar-sidebar-width);
     border-right: 1px solid var(--border-neutral, #e1e5ea);
@@ -66,7 +66,7 @@ export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBloc
                 content: '${text}';
                 position: absolute;
                 top: -7px;
-                z-index: 2;
+                z-index: 3;
                 color: var(--text-disabled, #8c95a6);
                 width: 100%;
                 text-align: center;
@@ -169,7 +169,7 @@ export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
                 top: calc(100% * ${$currentTimeStick} - 4px);
                 left: -5px;
                 content: '';
-                z-index: 2;
+                z-index: 1;
                 width: 10px;
                 height: var(--spacing-10px, 10px);
                 border-radius: 40px;
