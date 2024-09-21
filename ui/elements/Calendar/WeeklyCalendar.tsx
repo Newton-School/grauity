@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 
 import Button, { IconButton } from '../Button';
 import { WeeklyCalendarProps } from './types';
@@ -34,6 +34,8 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
 
         const [weekOffset, setWeekOffset] = useState(initialWeekOffset);
 
+        const containerRef = useRef<HTMLDivElement>(null);
+
         const currentWeek = getWeekByOffset(weekOffset);
         const timeList = getTimeListIn12HourFormat();
         const currentTimeStickPosition = getCurrentTimeStickPosition();
@@ -42,9 +44,29 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
             onWeekChange(weekOffset);
         }, [weekOffset]);
 
+        useEffect(() => {
+            if (containerRef.current) {
+                containerRef.current.scrollTo({
+                    top: 52 * 8.5,
+                    left: 0,
+                    behavior: 'instant',
+                });
+            }
+        }, [containerRef.current]);
+
         return (
             <StyledCalendarWrapper
-                ref={ref}
+                ref={(node) => {
+                    containerRef.current = node;
+                    if (ref) {
+                        if (typeof ref === 'function') {
+                            ref(node);
+                        } else {
+                            // eslint-disable-next-line no-param-reassign
+                            ref.current = node;
+                        }
+                    }
+                }}
                 tabIndex={0}
                 aria-label={`Weekly Calendar for the week starting from ${getDateFullLabel(
                     currentWeek[0]
