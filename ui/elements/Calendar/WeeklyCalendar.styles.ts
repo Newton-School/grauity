@@ -27,6 +27,7 @@ export const StyledCalendarWrapper = styled.div<StyledDivProps>`
 
     --calendar-sidebar-width: 80px;
     --calendar-block-height: 52px;
+    --calendar-block-border: 1px solid var(--border-neutral, #e1e5ea);
 `;
 
 export const StyledCalendarHeader = styled.div<StyledDivProps>`
@@ -56,14 +57,20 @@ export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBloc
     z-index: 2;
     background: var(--bg-primary, #fff);
     width: var(--calendar-sidebar-width);
-    border-right: 1px solid var(--border-neutral, #e1e5ea);
+    border-right: var(--calendar-block-border);
     height: 100%;
 
-    ${({ text }) =>
-        text &&
+    ${({ $headerBlock }) =>
+        $headerBlock &&
+        css`
+            border-bottom: var(--calendar-block-border);
+        `}
+
+    ${({ $text }) =>
+        $text &&
         css`
             &::before {
-                content: '${text}';
+                content: '${$text}';
                 position: absolute;
                 top: -7px;
                 z-index: 3;
@@ -88,8 +95,8 @@ export const StyledCalendarHeaderBlock = styled.div<StyledCalendarBlockProps>`
     align-items: center;
     align-self: stretch;
     flex: 1 0 0;
-    border-right: 1px solid var(--border-neutral, #e1e5ea);
-    border-bottom: 1px solid var(--border-neutral, #e1e5ea);
+    border-right: var(--calendar-block-border);
+    border-bottom: var(--calendar-block-border);
     background: var(--bg-primary, #fff);
     color: var(--text-secondary, #5b6271);
 
@@ -141,8 +148,8 @@ export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
     justify-content: center;
     align-items: center;
     align-self: stretch;
-    border-right: 1px solid var(--border-neutral, #e1e5ea);
-    border-bottom: 1px solid var(--border-neutral, #e1e5ea);
+    border-right: var(--calendar-block-border);
+    border-bottom: var(--calendar-block-border);
     position: relative;
 
     ${({ $active }) =>

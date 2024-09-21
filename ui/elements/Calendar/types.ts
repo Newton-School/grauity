@@ -24,5 +24,6 @@ export interface StyledCalendarBlockProps extends StyledDivProps {
 }
 
 export interface StyledCalendarTimelineBlockProps extends StyledDivProps {
-    text?: string;
+    $text?: string;
+    $headerBlock?: boolean;
 }

@@ -102,7 +102,7 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
                         </StyledCalendarMonthButton>
                     )}
                     <StyledCalendarHeaderRow>
-                        <StyledCalendarTimelineBlock />
+                        <StyledCalendarTimelineBlock $headerBlock />
                         {currentWeek.map((day) => (
                             <StyledCalendarHeaderBlock
                                 key={day.toLocaleDateString()}
@@ -124,7 +124,7 @@ const WeeklyCalendar = forwardRef<HTMLDivElement, WeeklyCalendarProps>(
                 >
                     {timeList.map((time, i) => (
                         <StyledCalendarTimelineRow>
-                            <StyledCalendarTimelineBlock text={time} />
+                            <StyledCalendarTimelineBlock $text={time} />
                             {currentWeek.map((day) => (
                                 <StyledCalendarBlock
                                     key={`${day} ${time}`}
