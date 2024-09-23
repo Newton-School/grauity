@@ -187,7 +187,6 @@ export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
 `;
 
 export const StyledEventWrapper = styled.div<StyledEventWrapperProps>`
-    border: 2px solid red;
     z-index: 1;
     position: absolute;
     top: ${({ $startPosition }) => `${$startPosition}%`};
