@@ -47,6 +47,7 @@ const Template = (args: WeeklyCalendarProps) => {
 
 const defaultArgs: WeeklyCalendarProps = {
     events: [],
+    eventRenderer: () => <div>Event</div>,
     shouldShowWeekControls: false,
     weekOffset: 0,
     onWeekChange: () => {},
