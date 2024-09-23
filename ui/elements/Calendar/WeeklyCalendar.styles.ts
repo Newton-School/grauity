@@ -20,7 +20,7 @@ export const StyledCalendarMonthButton = styled.div<StyledDivProps>`
 export const StyledCalendarWrapper = styled.div<StyledDivProps>`
     width: 100%;
     height: 100%;
-    font-family: var(--font-family, 'Mono Sans');
+    font-family: var(--font-family, 'Mona Sans');
     color: var(--text-primary, #16191d);
     overflow: auto;
 
