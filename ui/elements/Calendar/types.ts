@@ -12,10 +12,33 @@ export interface CalendarEvent<T = {}> {
 export type CalendarEventRecord<T> = Record<number, CalendarEvent<T>[]>;
 
 export interface WeeklyCalendarProps<T = {}> {
+    /**
+     * An optional array of calendar events.
+     * @default []
+     */
     events?: CalendarEvent<T>[];
+
+    /**
+     * A function to render each event.
+     */
     eventRenderer?: EventRendererFn<T>;
+
+    /**
+     * A boolean indicating whether to show week controls.
+     * @default true
+     */
     shouldShowWeekControls?: boolean;
+
+    /**
+     * The offset for the week relative to current week, where 0 represents the current week.
+     * @default 0
+     */
     weekOffset?: number;
+
+    /**
+     * A callback function that is called when the week changes.
+     * @param weekOffset - The new week offset.
+     */
     onWeekChange?: (weekOffset: number) => void;
 }
 
