@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import Button, { IconButton } from '../Button';
+import { CALENDAR_BLOCK_HEIGHT } from './constants';
 import EventRenderer from './EventRenderer';
 import { CalendarEventRecord, WeeklyCalendarProps } from './types';
 import {
@@ -80,7 +81,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
     useEffect(() => {
         if (containerRef.current && containerRef.current.scrollTo) {
             containerRef.current.scrollTo({
-                top: 52 * 8.5,
+                top: CALENDAR_BLOCK_HEIGHT * 8.5,
                 left: 0,
                 behavior: 'auto',
             });

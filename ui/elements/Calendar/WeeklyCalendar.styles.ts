@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { CALENDAR_BLOCK_HEIGHT, CALENDAR_SIDEBAR_WIDTH } from './constants';
 import {
     StyledCalendarBlockProps,
     StyledCalendarTimelineBlockProps,
@@ -26,8 +27,8 @@ export const StyledCalendarWrapper = styled.div<StyledDivProps>`
     display: grid;
     grid-template-rows: auto 1fr;
 
-    --calendar-sidebar-width: 80px;
-    --calendar-block-height: 52px;
+    --calendar-sidebar-width: ${CALENDAR_SIDEBAR_WIDTH}px;
+    --calendar-block-height: ${CALENDAR_BLOCK_HEIGHT}px;
     --calendar-block-border: 1px solid var(--border-neutral, #e1e5ea);
 `;
 
