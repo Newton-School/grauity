@@ -82,7 +82,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
             containerRef.current.scrollTo({
                 top: 52 * 8.5,
                 left: 0,
-                behavior: 'instant',
+                behavior: 'auto',
             });
         }
     }, [containerRef.current]);
