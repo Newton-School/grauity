@@ -78,7 +78,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
     }, [events]);
 
     useEffect(() => {
-        if (containerRef.current) {
+        if (containerRef.current && containerRef.current.scrollTo) {
             containerRef.current.scrollTo({
                 top: 52 * 8.5,
                 left: 0,
