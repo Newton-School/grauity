@@ -61,6 +61,12 @@ export interface PopOverProps {
      * Callback function triggered when the PopOver is closed.
      */
     onClose?: () => void;
+
+    /**
+     * Flag to disable the background scroll when the PopOver is open.
+     * @default false
+     */
+    disableBackgroundScroll?: boolean;
 }
 
 export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -57,6 +57,7 @@ const defaultArgs: PopOverProps = {
     minimumOffset: { top: 0, left: 10, right: 0, bottom: 0 },
     shouldCloseOnOutsideClick: true,
     onClose: () => {},
+    disableBackgroundScroll: true,
 };
 
 export const Component = Template.bind({});

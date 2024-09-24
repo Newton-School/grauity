@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
-import { useClickAway } from '../../../hooks';
+import { useClickAway, useDisableBodyScroll } from '../../../hooks';
 import { GAP_BETWEEN_TRIGGER_AND_POPOVER } from './constants';
 import { StyledPopOverContainer } from './PopOver.styles';
 import { PopOverDirection, PopOverOffset, PopOverProps } from './types';
@@ -17,6 +17,7 @@ export default function PopOver(props: PopOverProps) {
         minimumOffset = { top: 0, left: 0, right: 0, bottom: 0 },
         shouldCloseOnOutsideClick = true,
         onClose = () => {},
+        disableBackgroundScroll = false,
     } = props;
 
     const [adjustedOffset, setAdjustedOffset] = useState<PopOverOffset | null>(
@@ -217,6 +218,8 @@ export default function PopOver(props: PopOverProps) {
             onClose();
         }
     });
+
+    useDisableBodyScroll(disableBackgroundScroll);
 
     if (!isOpen) {
         return null;
