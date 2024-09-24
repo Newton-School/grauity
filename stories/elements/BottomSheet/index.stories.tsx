@@ -5,6 +5,29 @@ import Button, { IconButton } from 'ui/elements/Button';
 export default {
     title: 'Elements/BottomSheet',
     component: BottomSheet,
+    parameters: {
+        docs: {
+            source: {
+                // Dynamically generate code showing props
+                code: `
+<div>
+    <Button onClick={() => setIsOpen(true)}>Open BottomSheet</Button>
+    <BottomSheet
+        isOpen={false}
+        onClose={() => {}}
+        fullScreen={false}
+        closeOnBackdropClick={true}
+        height={'50%'}
+        showDragHandle={true}
+        closeOnPullDown={true}
+    >
+        Bottom Sheet Content Here!!!
+    </BottomSheet>
+</div>
+            `,
+            },
+        },
+    },
 };
 
 const Template = (args: BottomSheetProps) => {
@@ -18,7 +41,7 @@ const Template = (args: BottomSheetProps) => {
                 isOpen={isOpen}
                 onClose={() => setIsOpen(false)}
             >
-                <div style={{ padding: '0 12px' }}>
+                <div style={{ padding: '2px 12px' }}>
                     <div
                         style={{
                             display: 'flex',
