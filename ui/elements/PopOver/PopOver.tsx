@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
+import { useClickAway } from '../../../hooks';
 import { GAP_BETWEEN_TRIGGER_AND_POPOVER } from './constants';
 import { StyledPopOverContainer } from './PopOver.styles';
 import { PopOverDirection, PopOverOffset, PopOverProps } from './types';
@@ -14,6 +15,8 @@ export default function PopOver(props: PopOverProps) {
         autoAdjust = true,
         parentRef,
         minimumOffset = { top: 0, left: 0, right: 0, bottom: 0 },
+        shouldCloseOnOutsideClick = true,
+        onClose = () => {},
     } = props;
 
     const [adjustedOffset, setAdjustedOffset] = useState<PopOverOffset | null>(
@@ -199,6 +202,16 @@ export default function PopOver(props: PopOverProps) {
         }
         return () => {};
     }, [isOpen, autoAdjust, adjustedOffset, direction]);
+
+    useClickAway(popOverRef, (event) => {
+        if (
+            shouldCloseOnOutsideClick &&
+            (!triggerRef.current ||
+                !triggerRef.current.contains(event.target as Node))
+        ) {
+            onClose();
+        }
+    });
 
     if (!isOpen) {
         return null;

@@ -17,6 +17,8 @@ export interface PopOverProps {
     autoAdjust?: boolean;
     parentRef?: React.RefObject<HTMLDivElement>;
     minimumOffset?: PopOverOffset;
+    shouldCloseOnOutsideClick?: boolean;
+    onClose?: () => void;
 }
 
 export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {

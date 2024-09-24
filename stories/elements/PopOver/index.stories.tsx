@@ -34,6 +34,7 @@ const Template = (args: PopOverProps) => {
                     triggerRef as any as React.MutableRefObject<HTMLDivElement>
                 }
                 parentRef={parentRef}
+                onClose={() => setIsOpen(false)}
             >
                 <div style={{ width: '400px', height: '200px' }}>
                     <p>This is some popover content.</p>
@@ -51,6 +52,7 @@ const defaultArgs: PopOverProps = {
     parentRef: null,
     triggerRef: null,
     minimumOffset: { top: 0, left: 0, right: 0, bottom: 350 },
+    shouldCloseOnOutsideClick: false,
 };
 
 export const Component = Template.bind({});
