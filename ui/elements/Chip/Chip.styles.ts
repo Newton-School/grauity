@@ -19,7 +19,7 @@ export const StyledChipDiv = styled.div<StyledChip>`
     font-style: normal;
     font-weight: 650;
     line-height: 120%;
-    letter-spacing: 1px;
+    letter-spacing: 0.4px;
 
     ${({ variant }) =>
         variant &&
