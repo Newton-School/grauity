@@ -17,7 +17,6 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             onClose = () => {},
             fullScreen = false,
             closeOnBackdropClick = true,
-            hideCloseButton = false,
             height = '50%',
         } = props;
 

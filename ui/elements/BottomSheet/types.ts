@@ -6,7 +6,6 @@ export interface BottomSheetProps {
     onClose?: () => void;
     fullScreen?: boolean;
     closeOnBackdropClick?: boolean;
-    hideCloseButton?: boolean;
     height?: string;
 }
 

@@ -35,9 +35,8 @@ const Template = (args: BottomSheetProps) => {
 const defaultArgs: BottomSheetProps = {
     isOpen: false,
     onClose: () => {},
-    fullScreen: false,
+    fullScreen: true,
     closeOnBackdropClick: true,
-    hideCloseButton: false,
     height: '50%',
 };
 
