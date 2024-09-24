@@ -19,55 +19,13 @@ const Template = (args: BottomSheetProps) => {
                 onClose={() => setIsOpen(false)}
             >
                 <div style={{ padding: '12px' }}>
-                    BottomSheet Content Here...
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
+                    <div>These are my tasks for next week:</div>
+                    <ul>
+                        {Array.from({ length: 30 }).map((_, index) => (
+                            // eslint-disable-next-line react/no-array-index-key
+                            <li key={index}>Task {index + 1}</li>
+                        ))}
+                    </ul>
                 </div>
             </BottomSheet>
         </div>
