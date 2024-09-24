@@ -208,8 +208,11 @@ export default function PopOver(props: PopOverProps) {
     useClickAway(popOverRef, (event) => {
         if (
             shouldCloseOnOutsideClick &&
-            (!triggerRef.current ||
-                !triggerRef.current.contains(event.target as Node))
+            !(
+                triggerRef &&
+                triggerRef.current &&
+                triggerRef.current.contains(event.target as Node)
+            )
         ) {
             onClose();
         }
