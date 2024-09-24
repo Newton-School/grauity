@@ -55,7 +55,7 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
         }
 
         return ReactDOM.createPortal(
-            <StyledBottomSheetWrapper ref={ref}>
+            <StyledBottomSheetWrapper ref={ref} $isOpen={isOpen}>
                 <StyledBottomSheet
                     ref={bottomSheetRef}
                     $isOpen={isOpen}

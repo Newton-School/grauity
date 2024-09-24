@@ -14,6 +14,10 @@ export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
     ref?: React.Ref<HTMLDivElement>;
 }
 
+export interface StyledBottomSheetWrapperProps extends StyledDivProps {
+    $isOpen?: boolean;
+}
+
 export interface StyledBottomSheetProps extends StyledDivProps {
     $isOpen?: boolean;
     $height: string;

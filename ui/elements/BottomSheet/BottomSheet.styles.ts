@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
 import { ANIMATION_DURATION } from './constants';
-import { StyledBottomSheetProps, StyledDivProps } from './types';
+import { StyledBottomSheetProps, StyledBottomSheetWrapperProps } from './types';
 
-export const StyledBottomSheetWrapper = styled.div<StyledDivProps>`
+export const StyledBottomSheetWrapper = styled.div<StyledBottomSheetWrapperProps>`
     position: fixed;
     top: 0;
     left: 0;
@@ -15,6 +15,27 @@ export const StyledBottomSheetWrapper = styled.div<StyledDivProps>`
     display: flex;
     align-items: end;
     overflow: hidden;
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    animation: ${({ $isOpen }) => ($isOpen ? 'fadeIn' : 'fadeOut')}
+        ${ANIMATION_DURATION}ms ease forwards;
 `;
 
 export const StyledBottomSheet = styled.div<StyledBottomSheetProps>`
