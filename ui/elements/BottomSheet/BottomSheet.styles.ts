@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { ANIMATION_DURATION, DRAG_HANDLE_HEIGHT } from './constants';
 import {
+    StyledBottomSheetContentProps,
     StyledBottomSheetProps,
     StyledBottomSheetWrapperProps,
     StyledDivProps,
@@ -100,9 +101,15 @@ export const StyledDragHandle = styled.div<StyledDivProps>`
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
-export const StyledBottomSheetContent = styled.div<StyledDivProps>`
+export const StyledBottomSheetContent = styled.div<StyledBottomSheetContentProps>`
     width: 100%;
     height: calc(100% - ${DRAG_HANDLE_HEIGHT}px);
     oveflow-x: hidden;
     overflow-y: auto;
+
+    ${({ $height }) =>
+        $height &&
+        css`
+            height: ${$height};
+        `};
 `;

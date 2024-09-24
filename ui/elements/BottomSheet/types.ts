@@ -7,6 +7,8 @@ export interface BottomSheetProps {
     fullScreen?: boolean;
     closeOnBackdropClick?: boolean;
     height?: string;
+    showDragHandle?: boolean;
+    closeOnPullDown?: boolean;
 }
 
 export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -22,4 +24,8 @@ export interface StyledBottomSheetProps extends StyledDivProps {
     $height: string;
     $fullScreen?: boolean;
     $translateY?: number;
+}
+
+export interface StyledBottomSheetContentProps extends StyledDivProps {
+    $height?: string;
 }

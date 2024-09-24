@@ -51,6 +51,8 @@ const defaultArgs: BottomSheetProps = {
     fullScreen: false,
     closeOnBackdropClick: true,
     height: '50%',
+    showDragHandle: true,
+    closeOnPullDown: true,
 };
 
 export const Component = Template.bind({});

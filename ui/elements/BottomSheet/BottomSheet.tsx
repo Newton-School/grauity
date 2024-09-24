@@ -21,6 +21,8 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             fullScreen = false,
             closeOnBackdropClick = true,
             height = '50%',
+            showDragHandle = true,
+            closeOnPullDown = true,
         } = props;
 
         const [isClosing, setIsClosing] = useState(false);
@@ -42,10 +44,16 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
         };
 
         const handleTouchStart = (e: React.TouchEvent) => {
+            if (!closeOnPullDown) {
+                return;
+            }
             setStartY(e.touches[0].clientY);
         };
 
         const handleTouchMove = (e: React.TouchEvent) => {
+            if (!closeOnPullDown) {
+                return;
+            }
             const translate = e.touches[0].clientY - startY;
             window.requestAnimationFrame(() => {
                 setTranslateY(translate >= 0 ? translate : 0);
@@ -53,6 +61,9 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
         };
 
         const handleTouchEnd = () => {
+            if (!closeOnPullDown) {
+                return;
+            }
             if (startY !== null) {
                 if (translateY > SWIPE_THRESHOLD) {
                     onClose();
@@ -92,14 +103,18 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
                     $fullScreen={fullScreen}
                     $translateY={translateY}
                 >
-                    <StyledDragHandleContainer
-                        onTouchStart={handleTouchStart}
-                        onTouchMove={handleTouchMove}
-                        onTouchEnd={handleTouchEnd}
+                    {(showDragHandle || closeOnPullDown) && (
+                        <StyledDragHandleContainer
+                            onTouchStart={handleTouchStart}
+                            onTouchMove={handleTouchMove}
+                            onTouchEnd={handleTouchEnd}
+                        >
+                            <StyledDragHandle />
+                        </StyledDragHandleContainer>
+                    )}
+                    <StyledBottomSheetContent
+                        $height={!(showDragHandle || closeOnPullDown) && '100%'}
                     >
-                        <StyledDragHandle />
-                    </StyledDragHandleContainer>
-                    <StyledBottomSheetContent>
                         {children}
                     </StyledBottomSheetContent>
                 </StyledBottomSheet>
