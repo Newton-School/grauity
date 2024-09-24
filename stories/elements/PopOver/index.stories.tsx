@@ -19,8 +19,8 @@ const Template = (args: PopOverProps) => {
                 height: '700px',
                 border: '2px solid green',
                 display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'start',
+                justifyContent: 'center',
+                alignItems: 'center',
             }}
             ref={parentRef}
         >
@@ -47,12 +47,12 @@ const Template = (args: PopOverProps) => {
 
 const defaultArgs: PopOverProps = {
     isOpen: false,
-    direction: 'bottom',
+    direction: 'top',
     autoAdjust: true,
     parentRef: null,
     triggerRef: null,
-    minimumOffset: { top: 0, left: 0, right: 0, bottom: 350 },
-    shouldCloseOnOutsideClick: false,
+    minimumOffset: { top: 80, bottom: 80 },
+    shouldCloseOnOutsideClick: true,
 };
 
 export const Component = Template.bind({});

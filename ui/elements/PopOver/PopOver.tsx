@@ -100,15 +100,17 @@ export default function PopOver(props: PopOverProps) {
         const triggerRect = triggerRef.current?.getBoundingClientRect();
 
         const parentTop =
-            Math.max(parentRect.top, documentRect.top) + minimumOffset.top;
+            Math.max(parentRect.top, documentRect.top) +
+            (minimumOffset.top || 0);
         const parentLeft =
-            Math.max(parentRect.left, documentRect.left) + minimumOffset.left;
+            Math.max(parentRect.left, documentRect.left) +
+            (minimumOffset.left || 0);
         const parentRight =
             Math.min(parentRect.right, documentRect.right) -
-            minimumOffset.right;
+            (minimumOffset.right || 0);
         const parentBottom =
             Math.min(parentRect.bottom, documentRect.bottom) -
-            minimumOffset.bottom;
+            (minimumOffset.bottom || 0);
 
         let top = adjustedOffset?.top;
         let left = adjustedOffset?.left;
