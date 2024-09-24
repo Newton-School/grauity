@@ -3,10 +3,11 @@ import styled, { css } from 'styled-components';
 import { StyledPopOverContainerProps } from './types';
 
 export const StyledPopOverContainer = styled.div<StyledPopOverContainerProps>`
-    position: absolute;
-    z-index: 1;
-    border: 2px solid red;
     font-family: var(--font-family, 'Mona Sans');
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
 
     ${({ $offset }) =>
         typeof $offset?.top === 'number' &&

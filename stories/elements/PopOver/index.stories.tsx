@@ -1,4 +1,3 @@
-import { StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 import Button from 'ui/elements/Button';
 import PopOver, { PopOverProps } from 'ui/elements/PopOver';
@@ -6,13 +5,6 @@ import PopOver, { PopOverProps } from 'ui/elements/PopOver';
 export default {
     title: 'Elements/PopOver',
     component: PopOver,
-    // decorators: [
-    //     (Story: StoryFn) => (
-    //         <div style={{ width: '100%', height: '400px' }}>
-    //             <Story />
-    //         </div>
-    //     ),
-    // ],
 };
 
 const Template = (args: PopOverProps) => {
@@ -53,8 +45,11 @@ const Template = (args: PopOverProps) => {
 };
 
 const defaultArgs: PopOverProps = {
+    isOpen: false,
     direction: 'bottom',
     autoAdjust: true,
+    parentRef: null,
+    triggerRef: null,
     minimumOffset: { top: 0, left: 0, right: 0, bottom: 350 },
 };
 
