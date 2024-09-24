@@ -66,7 +66,3 @@ export interface StyledChip extends React.HTMLAttributes<HTMLDivElement> {
     borderColor?: string | null;
     ref?: React.Ref<HTMLDivElement>;
 }
-
-export interface ChipFontSize {
-    fontSize: string;
-}
