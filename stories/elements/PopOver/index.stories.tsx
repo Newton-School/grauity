@@ -26,8 +26,8 @@ const Template = (args: PopOverProps) => {
                 height: '700px',
                 border: '2px solid green',
                 display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                justifyContent: 'start',
+                alignItems: 'start',
             }}
             ref={parentRef}
         >
@@ -49,7 +49,7 @@ const Template = (args: PopOverProps) => {
 };
 
 const defaultArgs: PopOverProps = {
-    direction: 'right',
+    direction: 'bottom',
     autoAdjust: true,
     // minimumOffset: { top: 80, left: 40, right: 40, bottom: 40 },
 };
