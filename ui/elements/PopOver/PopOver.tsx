@@ -175,6 +175,11 @@ export default function PopOver(props: PopOverProps) {
     };
 
     useEffect(() => {
+        setAdjustedOffset(null);
+        setOffsetSetOnce(false);
+    }, [isOpen]);
+
+    useEffect(() => {
         if (isOpen && triggerRef && triggerRef.current) {
             const offset = calculateOffset(direction);
             setAdjustedOffset(offset);
