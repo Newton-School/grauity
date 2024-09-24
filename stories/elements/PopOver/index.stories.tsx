@@ -27,9 +27,7 @@ const Template = (args: PopOverProps) => {
             <PopOver
                 {...args}
                 isOpen={isOpen}
-                triggerRef={
-                    triggerRef as any as React.MutableRefObject<HTMLDivElement>
-                }
+                triggerRef={triggerRef}
                 onClose={() => setIsOpen(false)}
             >
                 <div

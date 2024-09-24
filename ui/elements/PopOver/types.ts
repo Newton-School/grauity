@@ -20,7 +20,7 @@ export interface PopOverProps {
      * Ref to the trigger element. Required to calculate the position of the PopOver.
      * @default null
      */
-    triggerRef?: React.RefObject<HTMLDivElement>;
+    triggerRef?: React.RefObject<any>;
 
     /**
      * Direction in which the PopOver should open.
@@ -43,7 +43,7 @@ export interface PopOverProps {
      * Ref to the parent element. Required to calculate the position of the PopOver.
      * @default document.body
      */
-    parentRef?: React.RefObject<HTMLDivElement>;
+    parentRef?: React.RefObject<any>;
 
     /**
      * Minimum margin offset to be maintained from the parent container.

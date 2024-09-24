@@ -20,7 +20,7 @@ const TestPopOverComponent = (props: PopOverProps) => {
             <PopOver
                 isOpen={isOpen}
                 parentRef={parentRef}
-                triggerRef={triggerRef as any}
+                triggerRef={triggerRef}
                 onClose={() => setIsOpen(false)}
                 {...props}
             >
