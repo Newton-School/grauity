@@ -17,6 +17,7 @@ export default {
 
 const Template = (args: PopOverProps) => {
     const parentRef = React.useRef<HTMLDivElement>(null);
+    const triggerRef = React.useRef<HTMLButtonElement>(null);
 
     return (
         <div
@@ -25,12 +26,19 @@ const Template = (args: PopOverProps) => {
                 height: '700px',
                 border: '2px solid green',
                 display: 'flex',
-                justifyContent: 'end',
-                alignItems: 'start',
+                justifyContent: 'center',
+                alignItems: 'center',
             }}
             ref={parentRef}
         >
-            <PopOver {...args} parentRef={parentRef}>
+            <Button ref={triggerRef}>Trigger</Button>
+            <PopOver
+                {...args}
+                triggerRef={
+                    triggerRef as any as React.MutableRefObject<HTMLDivElement>
+                }
+                parentRef={parentRef}
+            >
                 <div style={{ width: '400px', height: '200px' }}>
                     <p>This is some popover content.</p>
                     <p>This component is for demonstration purpose only.</p>
@@ -42,7 +50,6 @@ const Template = (args: PopOverProps) => {
 
 const defaultArgs: PopOverProps = {
     direction: 'right',
-    trigger: <Button>Trigger</Button>,
     autoAdjust: true,
     // minimumOffset: { top: 80, left: 40, right: 40, bottom: 40 },
 };

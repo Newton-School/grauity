@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
 
 import { GAP_BETWEEN_TRIGGER_AND_POPOVER } from './constants';
-import { StyledPopOverContainer, StyledPopOverWrapper } from './PopOver.styles';
+import { StyledPopOverContainer } from './PopOver.styles';
 import { PopOverDirection, PopOverOffset, PopOverProps } from './types';
 
 export default function PopOver(props: PopOverProps) {
     const {
         direction = 'bottom',
-        trigger,
+        triggerRef,
         children,
         autoAdjust = true,
         parentRef,
@@ -20,41 +21,70 @@ export default function PopOver(props: PopOverProps) {
     const [offsetSetOnce, setOffsetSetOnce] = useState(false);
 
     const popOverRef = useRef<HTMLDivElement>(null);
-    const triggerRef = useRef<HTMLDivElement>(null);
 
     const calculateOffset = (
         popOverDirection: PopOverDirection
     ): PopOverOffset => {
-        const triggerRect = triggerRef.current?.getBoundingClientRect();
-        const popOverRect = popOverRef.current?.getBoundingClientRect();
+        const triggerRect = triggerRef.current.getBoundingClientRect();
+        const popOverRect = popOverRef.current.getBoundingClientRect();
 
         if (popOverDirection === 'top') {
             return {
-                top: -popOverRect.height - GAP_BETWEEN_TRIGGER_AND_POPOVER,
-                left: triggerRect.width / 2 - popOverRect.width / 2,
+                top:
+                    triggerRect.top -
+                    popOverRect.height -
+                    GAP_BETWEEN_TRIGGER_AND_POPOVER,
+                left:
+                    triggerRect.left +
+                    triggerRect.width / 2 -
+                    popOverRect.width / 2,
             };
         }
         if (popOverDirection === 'right') {
             return {
-                top: triggerRect.height / 2 - popOverRect.height / 2,
-                left: triggerRect.width + GAP_BETWEEN_TRIGGER_AND_POPOVER,
+                top:
+                    triggerRect.top +
+                    triggerRect.height / 2 -
+                    popOverRect.height / 2,
+                left:
+                    triggerRect.left +
+                    triggerRect.width +
+                    GAP_BETWEEN_TRIGGER_AND_POPOVER,
             };
         }
         if (popOverDirection === 'bottom') {
             return {
-                top: triggerRect.height + GAP_BETWEEN_TRIGGER_AND_POPOVER,
-                left: triggerRect.width / 2 - popOverRect.width / 2,
+                top:
+                    triggerRect.top +
+                    triggerRect.height +
+                    GAP_BETWEEN_TRIGGER_AND_POPOVER,
+                left:
+                    triggerRect.left +
+                    triggerRect.width / 2 -
+                    popOverRect.width / 2,
             };
         }
         if (popOverDirection === 'left') {
             return {
-                top: triggerRect.height / 2 - popOverRect.height / 2,
-                left: -popOverRect.width - GAP_BETWEEN_TRIGGER_AND_POPOVER,
+                top:
+                    triggerRect.top +
+                    triggerRect.height / 2 -
+                    popOverRect.height / 2,
+                left:
+                    triggerRect.left -
+                    popOverRect.width -
+                    GAP_BETWEEN_TRIGGER_AND_POPOVER,
             };
         }
         return {
-            top: triggerRect.height + GAP_BETWEEN_TRIGGER_AND_POPOVER,
-            left: triggerRect.width / 2 - popOverRect.width / 2,
+            top:
+                triggerRect.top +
+                triggerRect.height +
+                GAP_BETWEEN_TRIGGER_AND_POPOVER,
+            left:
+                triggerRect.left +
+                triggerRect.width / 2 -
+                popOverRect.width / 2,
         };
     };
 
@@ -179,40 +209,30 @@ export default function PopOver(props: PopOverProps) {
     };
 
     useEffect(() => {
-        const offset = calculateOffset(direction);
-        setAdjustedOffset(offset);
+        if (triggerRef && triggerRef.current) {
+            const offset = calculateOffset(direction);
+            setAdjustedOffset(offset);
+        }
     }, [direction]);
 
-    useEffect(() => {
-        if (autoAdjust && adjustedOffset && !offsetSetOnce) {
-            handlePositionAdjust(direction);
-            window.addEventListener('resize', () =>
-                handlePositionAdjust(direction)
-            );
-            return () =>
-                window.removeEventListener('resize', () =>
-                    handlePositionAdjust(direction)
-                );
-        }
-        return () => {};
-    }, [autoAdjust, adjustedOffset, direction]);
+    // useEffect(() => {
+    //     if (autoAdjust && adjustedOffset && !offsetSetOnce) {
+    //         handlePositionAdjust(direction);
+    //         window.addEventListener('resize', () =>
+    //             handlePositionAdjust(direction)
+    //         );
+    //         return () =>
+    //             window.removeEventListener('resize', () =>
+    //                 handlePositionAdjust(direction)
+    //             );
+    //     }
+    //     return () => {};
+    // }, [autoAdjust, adjustedOffset, direction]);
 
-    return (
-        <>
-            <StyledPopOverWrapper>
-                <div
-                    style={{ width: 'fit-content', height: 'fit-content' }}
-                    ref={triggerRef}
-                >
-                    {trigger}
-                </div>
-                <StyledPopOverContainer
-                    ref={popOverRef}
-                    $offset={adjustedOffset}
-                >
-                    {children}
-                </StyledPopOverContainer>
-            </StyledPopOverWrapper>
-        </>
+    return ReactDOM.createPortal(
+        <StyledPopOverContainer ref={popOverRef} $offset={adjustedOffset}>
+            {children}
+        </StyledPopOverContainer>,
+        document.body
     );
 }
