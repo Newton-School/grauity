@@ -1,20 +1,12 @@
 import React from 'react';
 
-export type PopOverDirection =
-    | 'topLeft'
-    | 'top'
-    | 'topRight'
-    | 'right'
-    | 'bottomRight'
-    | 'bottom'
-    | 'bottomLeft'
-    | 'left';
+export type PopOverDirection = 'top' | 'right' | 'bottom' | 'left';
 
 export type PopOverOffset = {
     top?: number;
     left?: number;
-    right?: number;
     bottom?: number;
+    right?: number;
 };
 
 export interface PopOverProps {
@@ -31,6 +23,5 @@ export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export interface StyledPopOverContainerProps extends StyledDivProps {
-    $direction?: PopOverDirection;
     $offset?: PopOverOffset;
 }
