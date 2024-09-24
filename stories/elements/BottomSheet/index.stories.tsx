@@ -11,7 +11,7 @@ const Template = (args: BottomSheetProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div style={{ height: '150vh' }}>
+        <div>
             <Button onClick={() => setIsOpen(true)}>Open BottomSheet</Button>
             <BottomSheet
                 {...args}

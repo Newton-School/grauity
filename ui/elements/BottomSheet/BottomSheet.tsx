@@ -39,7 +39,7 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             }
         });
 
-        useDisableBodyScroll();
+        useDisableBodyScroll(shouldRender);
 
         useEffect(() => {
             if (isOpen) {
