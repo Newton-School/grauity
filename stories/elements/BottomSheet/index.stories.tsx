@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BottomSheet, { BottomSheetProps } from 'ui/elements/BottomSheet';
-import Button from 'ui/elements/Button';
+import Button, { IconButton } from 'ui/elements/Button';
 
 export default {
     title: 'Elements/BottomSheet',
@@ -19,7 +19,20 @@ const Template = (args: BottomSheetProps) => {
                 onClose={() => setIsOpen(false)}
             >
                 <div style={{ padding: '12px' }}>
-                    <div>These are my tasks for next week:</div>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <span>These are my tasks for next week:</span>
+                        <IconButton
+                            icon="close"
+                            variant="secondary-outlined"
+                            onClick={() => setIsOpen(false)}
+                        />
+                    </div>
                     <ul>
                         {Array.from({ length: 30 }).map((_, index) => (
                             // eslint-disable-next-line react/no-array-index-key
@@ -35,7 +48,7 @@ const Template = (args: BottomSheetProps) => {
 const defaultArgs: BottomSheetProps = {
     isOpen: false,
     onClose: () => {},
-    fullScreen: true,
+    fullScreen: false,
     closeOnBackdropClick: true,
     height: '50%',
 };
