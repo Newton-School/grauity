@@ -15,6 +15,7 @@ export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export interface StyledBottomSheetProps extends StyledDivProps {
+    $isOpen?: boolean;
     $height: string;
     $fullScreen?: boolean;
 }

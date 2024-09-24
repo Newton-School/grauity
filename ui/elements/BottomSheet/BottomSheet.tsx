@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { useClickAway, useDisableBodyScroll } from '../../../hooks';
@@ -6,6 +6,7 @@ import {
     StyledBottomSheet,
     StyledBottomSheetWrapper,
 } from './BottomSheet.styles';
+import { ANIMATION_DURATION } from './constants';
 import { BottomSheetProps } from './types';
 
 const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
@@ -20,7 +21,18 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             height = '50%',
         } = props;
 
+        const [isClosing, setIsClosing] = useState(false);
+        const [shouldRender, setShouldRender] = useState(isOpen);
         const bottomSheetRef = useRef<HTMLDivElement>(null);
+
+        const triggerClose = () => {
+            setIsClosing(true);
+            setTimeout(() => {
+                setIsClosing(false);
+                setShouldRender(false);
+                onClose();
+            }, ANIMATION_DURATION);
+        };
 
         useClickAway(bottomSheetRef, () => {
             if (closeOnBackdropClick) {
@@ -30,7 +42,15 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
 
         useDisableBodyScroll();
 
-        if (!isOpen) {
+        useEffect(() => {
+            if (isOpen) {
+                setShouldRender(true);
+            } else if (!isClosing) {
+                triggerClose();
+            }
+        }, [isOpen]);
+
+        if (!shouldRender) {
             return null;
         }
 
@@ -38,6 +58,7 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             <StyledBottomSheetWrapper ref={ref}>
                 <StyledBottomSheet
                     ref={bottomSheetRef}
+                    $isOpen={isOpen}
                     $height={height}
                     $fullScreen={fullScreen}
                 >

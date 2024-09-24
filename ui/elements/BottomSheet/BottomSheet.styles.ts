@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { ANIMATION_DURATION } from './constants';
 import { StyledBottomSheetProps, StyledDivProps } from './types';
 
 export const StyledBottomSheetWrapper = styled.div<StyledDivProps>`
@@ -25,10 +26,35 @@ export const StyledBottomSheet = styled.div<StyledBottomSheetProps>`
     overflow-x: hidden;
     overflow-y: auto;
 
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(0);
+        }
+        to {
+            transform: translateY(-100%);
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            transform: translateY(-100%);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    animation: ${({ $isOpen }) => ($isOpen ? 'slideIn' : 'slideOut')}
+        ${ANIMATION_DURATION}ms ease forwards;
+
     ${({ $fullScreen }) =>
         $fullScreen &&
         css`
             height: 100%;
             border-radius: 0;
-        `}
+        `};
 `;
