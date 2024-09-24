@@ -7,6 +7,7 @@ import { PopOverDirection, PopOverOffset, PopOverProps } from './types';
 
 export default function PopOver(props: PopOverProps) {
     const {
+        isOpen = false,
         direction = 'bottom',
         triggerRef,
         children,
@@ -179,21 +180,21 @@ export default function PopOver(props: PopOverProps) {
         }
 
         setAdjustedOffset({
-            top,
-            left,
+            top: Math.max(parentTop, top),
+            left: Math.max(parentLeft, left),
         });
         setOffsetSetOnce(true);
     };
 
     useEffect(() => {
-        if (triggerRef && triggerRef.current) {
+        if (isOpen && triggerRef && triggerRef.current) {
             const offset = calculateOffset(direction);
             setAdjustedOffset(offset);
         }
-    }, [direction]);
+    }, [isOpen, direction]);
 
     useEffect(() => {
-        if (autoAdjust && adjustedOffset && !offsetSetOnce) {
+        if (isOpen && autoAdjust && adjustedOffset && !offsetSetOnce) {
             handlePositionAdjust(direction);
             window.addEventListener('resize', () =>
                 handlePositionAdjust(direction)
@@ -204,7 +205,11 @@ export default function PopOver(props: PopOverProps) {
                 );
         }
         return () => {};
-    }, [autoAdjust, adjustedOffset, direction]);
+    }, [isOpen, autoAdjust, adjustedOffset, direction]);
+
+    if (!isOpen) {
+        return null;
+    }
 
     return ReactDOM.createPortal(
         <StyledPopOverContainer ref={popOverRef} $offset={adjustedOffset}>

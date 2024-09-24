@@ -10,6 +10,7 @@ export type PopOverOffset = {
 };
 
 export interface PopOverProps {
+    isOpen?: boolean;
     triggerRef?: React.RefObject<HTMLDivElement>;
     direction?: PopOverDirection;
     children?: React.ReactNode;
