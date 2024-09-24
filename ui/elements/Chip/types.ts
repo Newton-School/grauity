@@ -23,31 +23,37 @@ export type ChipSizes = 'small' | 'medium' | 'large' | 'extra-large';
 export interface ChipProps {
     /**
      * Variant of the chip.
+     * @default 'brand'
      */
     variant?: ChipVariants;
 
     /**
      * Size of the chip.
+     * @default 'medium'
      */
     size?: ChipSizes;
 
     /**
      * Flag to determine if the chip should have a border.
+     * @default false
      */
     hasBorder?: boolean;
 
     /**
      * Text color of the chip.
+     * @default null
      */
     textColor?: string;
 
     /**
      * Background color of the chip.
+     * @default null
      */
     backgroundColor?: string;
 
     /**
      * Border color of the chip.
+     * @default null
      */
     borderColor?: string;
 
