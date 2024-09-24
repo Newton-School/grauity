@@ -17,6 +17,7 @@ export const StyledBottomSheetWrapper = styled.div<StyledBottomSheetWrapperProps
     width: 100vw;
     height: 100vh;
     background: var(--alpha-overlay, rgba(22, 25, 29, 0.8));
+    color: var(--text-primary, #16191d);
     display: flex;
     align-items: end;
     overflow: hidden;
@@ -96,9 +97,9 @@ export const StyledDragHandleContainer = styled.div<StyledDivProps>`
 export const StyledDragHandle = styled.div<StyledDivProps>`
     width: 50px;
     height: 5px;
-    background: linear-gradient(145deg, #9e9b9b, #585555);
+    background: var(--bg-invert-tertiary, #23282f);
+    opacity: 0.7;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 export const StyledBottomSheetContent = styled.div<StyledBottomSheetContentProps>`
