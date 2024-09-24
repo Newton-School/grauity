@@ -18,7 +18,7 @@ const Template = (args: BottomSheetProps) => {
                 isOpen={isOpen}
                 onClose={() => setIsOpen(false)}
             >
-                <div style={{ padding: '12px' }}>
+                <div style={{ padding: '0 12px' }}>
                     <div
                         style={{
                             display: 'flex',

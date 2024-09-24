@@ -21,4 +21,5 @@ export interface StyledBottomSheetProps extends StyledDivProps {
     $isOpen?: boolean;
     $height: string;
     $fullScreen?: boolean;
+    $translateY?: number;
 }

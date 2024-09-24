@@ -4,9 +4,12 @@ import ReactDOM from 'react-dom';
 import { useClickAway, useDisableBodyScroll } from '../../../hooks';
 import {
     StyledBottomSheet,
+    StyledBottomSheetContent,
     StyledBottomSheetWrapper,
+    StyledDragHandle,
+    StyledDragHandleContainer,
 } from './BottomSheet.styles';
-import { ANIMATION_DURATION } from './constants';
+import { ANIMATION_DURATION, SWIPE_THRESHOLD } from './constants';
 import { BottomSheetProps } from './types';
 
 const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
@@ -22,6 +25,9 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
 
         const [isClosing, setIsClosing] = useState(false);
         const [shouldRender, setShouldRender] = useState(isOpen);
+        const [startY, setStartY] = useState<number | null>(null);
+        const [translateY, setTranslateY] = useState(0);
+
         const bottomSheetRef = useRef<HTMLDivElement>(null);
 
         const triggerClose = () => {
@@ -29,8 +35,32 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             setTimeout(() => {
                 setIsClosing(false);
                 setShouldRender(false);
+                setStartY(null);
+                setTranslateY(0);
                 onClose();
             }, ANIMATION_DURATION);
+        };
+
+        const handleTouchStart = (e: React.TouchEvent) => {
+            setStartY(e.touches[0].clientY);
+        };
+
+        const handleTouchMove = (e: React.TouchEvent) => {
+            const translate = e.touches[0].clientY - startY;
+            window.requestAnimationFrame(() => {
+                setTranslateY(translate >= 0 ? translate : 0);
+            });
+        };
+
+        const handleTouchEnd = () => {
+            if (startY !== null) {
+                if (translateY > SWIPE_THRESHOLD) {
+                    onClose();
+                } else {
+                    setTranslateY(0);
+                }
+            }
+            setStartY(null);
         };
 
         useClickAway(bottomSheetRef, () => {
@@ -60,8 +90,18 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
                     $isOpen={isOpen}
                     $height={height}
                     $fullScreen={fullScreen}
+                    $translateY={translateY}
                 >
-                    {children}
+                    <StyledDragHandleContainer
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                    >
+                        <StyledDragHandle />
+                    </StyledDragHandleContainer>
+                    <StyledBottomSheetContent>
+                        {children}
+                    </StyledBottomSheetContent>
                 </StyledBottomSheet>
             </StyledBottomSheetWrapper>,
             document.body

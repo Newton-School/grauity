@@ -1,7 +1,11 @@
 import styled, { css } from 'styled-components';
 
-import { ANIMATION_DURATION } from './constants';
-import { StyledBottomSheetProps, StyledBottomSheetWrapperProps } from './types';
+import { ANIMATION_DURATION, DRAG_HANDLE_HEIGHT } from './constants';
+import {
+    StyledBottomSheetProps,
+    StyledBottomSheetWrapperProps,
+    StyledDivProps,
+} from './types';
 
 export const StyledBottomSheetWrapper = styled.div<StyledBottomSheetWrapperProps>`
     position: fixed;
@@ -44,11 +48,10 @@ export const StyledBottomSheet = styled.div<StyledBottomSheetProps>`
     background: var(--bg-primary, #fff);
     border-top-left-radius: var(--spacing-8px, 8px);
     border-top-right-radius: var(--spacing-8px, 8px);
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
 
     position: absolute;
-    top: 100%;
+    top: calc(100% + ${({ $translateY }) => $translateY}px);
     left: 0;
 
     @keyframes slideIn {
@@ -78,4 +81,28 @@ export const StyledBottomSheet = styled.div<StyledBottomSheetProps>`
             height: 100%;
             border-radius: 0;
         `};
+`;
+
+export const StyledDragHandleContainer = styled.div<StyledDivProps>`
+    width: 100%;
+    height: ${DRAG_HANDLE_HEIGHT}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+`;
+
+export const StyledDragHandle = styled.div<StyledDivProps>`
+    width: 50px;
+    height: 5px;
+    background: linear-gradient(145deg, #9e9b9b, #585555);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+`;
+
+export const StyledBottomSheetContent = styled.div<StyledDivProps>`
+    width: 100%;
+    height: calc(100% - ${DRAG_HANDLE_HEIGHT}px);
+    oveflow-x: hidden;
+    overflow-y: auto;
 `;
