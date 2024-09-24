@@ -219,7 +219,7 @@ export default function PopOver(props: PopOverProps) {
         }
     });
 
-    useDisableBodyScroll(disableBackgroundScroll);
+    useDisableBodyScroll(isOpen && disableBackgroundScroll);
 
     if (!isOpen) {
         return null;
