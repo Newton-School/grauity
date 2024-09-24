@@ -5,7 +5,16 @@ export interface BottomSheetProps {
     isOpen?: boolean;
     onClose?: () => void;
     fullScreen?: boolean;
-    hideBackdrop?: boolean;
+    closeOnBackdropClick?: boolean;
     hideCloseButton?: boolean;
-    botttomOffset?: number;
+    height?: string;
+}
+
+export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
+    ref?: React.Ref<HTMLDivElement>;
+}
+
+export interface StyledBottomSheetProps extends StyledDivProps {
+    $height: string;
+    $fullScreen?: boolean;
 }
