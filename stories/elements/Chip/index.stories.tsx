@@ -5,7 +5,6 @@ import { ChipProps } from 'ui/elements/Chip/types';
 export default {
     title: 'Elements/Chip',
     component: Chip,
-    decorators: [],
 };
 
 const Template = (args: ChipProps) => <Chip {...args}>Chip : 01</Chip>;
