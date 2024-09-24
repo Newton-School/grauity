@@ -22,7 +22,7 @@ export default function PopOver(props: PopOverProps) {
     const [adjustedOffset, setAdjustedOffset] = useState<PopOverOffset | null>(
         null
     );
-    const [offsetSetOnce, setOffsetSetOnce] = useState(false);
+    const [firstOffsetSet, setFirstOffsetSet] = useState(false);
 
     const popOverRef = useRef<HTMLDivElement>(null);
 
@@ -176,23 +176,23 @@ export default function PopOver(props: PopOverProps) {
             top: Math.max(parentTop, top),
             left: Math.max(parentLeft, left),
         });
-        setOffsetSetOnce(true);
     };
 
     useEffect(() => {
         setAdjustedOffset(null);
-        setOffsetSetOnce(false);
+        setFirstOffsetSet(false);
     }, [isOpen]);
 
     useEffect(() => {
-        if (isOpen && triggerRef && triggerRef.current) {
+        if (isOpen && triggerRef && triggerRef.current && !firstOffsetSet) {
             const offset = calculateOffset(direction);
             setAdjustedOffset(offset);
+            setFirstOffsetSet(true);
         }
-    }, [isOpen, direction]);
+    }, [isOpen, direction, firstOffsetSet]);
 
     useEffect(() => {
-        if (isOpen && autoAdjust && adjustedOffset && !offsetSetOnce) {
+        if (isOpen && autoAdjust && firstOffsetSet) {
             handlePositionAdjust(direction);
             window.addEventListener('resize', () =>
                 handlePositionAdjust(direction)
@@ -203,7 +203,7 @@ export default function PopOver(props: PopOverProps) {
                 );
         }
         return () => {};
-    }, [isOpen, autoAdjust, adjustedOffset, direction]);
+    }, [isOpen, autoAdjust, direction, firstOffsetSet]);
 
     useClickAway(popOverRef, (event) => {
         if (

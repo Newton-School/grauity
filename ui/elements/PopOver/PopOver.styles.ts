@@ -8,6 +8,7 @@ export const StyledPopOverContainer = styled.div<StyledPopOverContainerProps>`
     position: absolute;
     top: 0;
     left: 0;
+    border: 2px solid red;
 
     ${({ $offset }) =>
         typeof $offset?.top === 'number' &&
