@@ -24,8 +24,14 @@ const Template = (args: CalendarEventProps) => <CalendarEvent {...args} />;
 const defaultArgs: CalendarEventProps = {
     title: 'Event Title',
     chipContent: '123',
-    start: new Date(),
-    end: new Date(),
+    start: new Date(2024, 9, 25, 10, 0),
+    end: new Date(2024, 9, 25, 12, 0),
+    minDurationToDisplayTime: 1 * 60 * 60 * 1000,
+    textColor: null,
+    backgroundColor: null,
+    borderColor: null,
+    chipTextColor: null,
+    chipBackgroundColor: null,
 };
 
 export const Component = Template.bind({});

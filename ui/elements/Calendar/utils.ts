@@ -57,7 +57,9 @@ export const get12HourFormatFromDate = (date: Date): string => {
     const hour = date.getHours() % 12 || 12;
     const minute = date.getMinutes();
     const period = date.getHours() < 12 ? 'AM' : 'PM';
-    return `${hour}:${minute} ${period}`;
+    return `${hour.toString().padStart(2, '0')}:${minute
+        .toString()
+        .padStart(2, '0')} ${period}`;
 };
 
 export const getTimeListIn12HourFormat = (): string[] => {
@@ -69,6 +71,9 @@ export const getTimeListIn12HourFormat = (): string[] => {
     }
     return timeList;
 };
+
+export const getDurationInMilliseconds = (start: Date, end: Date): number =>
+    end.getTime() - start.getTime();
 
 export const getCurrentTimeStickPosition = (): number => {
     const current = new Date();

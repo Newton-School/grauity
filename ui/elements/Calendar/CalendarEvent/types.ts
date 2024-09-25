@@ -2,9 +2,10 @@ import React from 'react';
 
 export interface CalendarEventProps {
     title: string;
-    chipContent?: string | number;
+    chipContent?: string;
     start: Date;
     end: Date;
+    minDurationToDisplayTime?: number;
     textColor?: string;
     backgroundColor?: string;
     borderColor?: string;
