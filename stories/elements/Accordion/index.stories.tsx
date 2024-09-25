@@ -15,16 +15,36 @@ export default {
 };
 
 const Template = (args: AccordionProps) => (
-    <Accordion {...args}>
-        <div>
-            <div>Accordion Content</div>
-            <div>Accordion Content</div>
-            <div>Accordion Content</div>
-            <div>Accordion Content</div>
-            <div>Accordion Content</div>
-            <div>Accordion Content</div>
-        </div>
-    </Accordion>
+    <>
+        <Accordion {...args} title="Accordion 1">
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px',
+                }}
+            >
+                <div>Accordion Content</div>
+                <div>Accordion Content</div>
+                <div>Accordion Content</div>
+                <div>Accordion Content</div>
+            </div>
+        </Accordion>
+        <Accordion {...args} title="Accordion 2">
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px',
+                }}
+            >
+                <div>Accordion Content</div>
+                <div>Accordion Content</div>
+                <div>Accordion Content</div>
+                <div>Accordion Content</div>
+            </div>
+        </Accordion>
+    </>
 );
 
 const defaultArgs: AccordionProps = {

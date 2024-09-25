@@ -33,7 +33,6 @@ export interface StyledAccordionWrappeer extends StyledDivProps {
 
 export interface StyledAccordionHeaderProps
     extends React.HTMLAttributes<HTMLDivElement> {
-    expanded: boolean;
     onClick: () => void;
 }
 

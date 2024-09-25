@@ -23,10 +23,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
 
         return (
             <StyledAccordionWrapper ref={ref} expanded={isExpanded}>
-                <StyledAccordionHeader
-                    onClick={handleToggle}
-                    expanded={isExpanded}
-                >
+                <StyledAccordionHeader onClick={handleToggle}>
                     {title}
                     <StyledIcon
                         src={isExpanded ? UP_ARROW_ICON : DOWN_ARROW_ICON}
