@@ -9,7 +9,7 @@ on:
         branches: [master]
 
 jobs:
-    test:
+    build-storybook:
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v3
