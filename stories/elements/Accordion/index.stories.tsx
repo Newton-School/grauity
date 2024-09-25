@@ -5,6 +5,13 @@ import { AccordionProps } from 'ui/elements/Accordion/types';
 export default {
     title: 'Elements/Accordion',
     component: Accordion,
+    decorators: [
+        (Story: React.FC) => (
+            <div style={{ width: '500px' }}>
+                <Story />
+            </div>
+        ),
+    ],
 };
 
 const Template = (args: AccordionProps) => (
