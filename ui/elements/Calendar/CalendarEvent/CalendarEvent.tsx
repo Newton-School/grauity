@@ -10,17 +10,38 @@ import { CalendarEventProps } from './types';
 
 const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
     (props, ref) => {
-        const { title, chipContent, start, end } = props;
+        const {
+            title,
+            chipContent,
+            start,
+            end,
+            textColor,
+            backgroundColor,
+            borderColor,
+            chipTextColor,
+            chipBackgroundColor,
+        } = props;
 
         return (
-            <StyledCalendarEventWrapper ref={ref}>
+            <StyledCalendarEventWrapper
+                ref={ref}
+                $textColor={textColor}
+                $backgroundColor={backgroundColor}
+                $borderColor={borderColor}
+                tabIndex={0}
+            >
                 <StyledCalendarEventTitleRow>
                     <span>{title}</span>
                     {chipContent && (
                         <Chip
                             size="medium"
-                            backgroundColor="var(--color-brand-600, #005ED1);"
-                            textColor="var(--text-action2, #fff);"
+                            backgroundColor={
+                                chipBackgroundColor ||
+                                'var(--color-brand-600, #005ED1);'
+                            }
+                            textColor={
+                                chipTextColor || 'var(--text-action2, #fff);'
+                            }
                         >
                             {chipContent}
                         </Chip>
