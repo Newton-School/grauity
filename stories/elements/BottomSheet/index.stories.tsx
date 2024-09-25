@@ -8,13 +8,12 @@ export default {
     parameters: {
         docs: {
             source: {
-                // Dynamically generate code showing props
                 code: `
 <div>
     <Button onClick={() => setIsOpen(true)}>Open BottomSheet</Button>
     <BottomSheet
-        isOpen={false}
-        onClose={() => {}}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
         fullScreen={false}
         closeOnBackdropClick={true}
         height={'50%'}
