@@ -171,7 +171,7 @@ export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
                 width: 100%;
                 height: var(--spacing-2px, 2px);
                 border-radius: 4px;
-                background: var(--bg-error-action, #d22d3a);
+                background: var(--bg-action-error, #d22d3a);
             }
             &::after {
                 position: absolute;
@@ -182,7 +182,7 @@ export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
                 width: 10px;
                 height: var(--spacing-10px, 10px);
                 border-radius: 40px;
-                background: var(--bg-error-action, #d22d3a);
+                background: var(--bg-action-error, #d22d3a);
             }
         `}
 `;
