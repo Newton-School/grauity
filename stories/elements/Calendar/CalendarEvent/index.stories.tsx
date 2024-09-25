@@ -5,22 +5,28 @@ import { CalendarEvent, CalendarEventProps } from 'ui/elements/Calendar';
 export default {
     title: 'Elements/Calendar/CalendarEvent',
     component: CalendarEvent,
-    // decorators: [
-    //     (Story: StoryFn) => (
-    //         <div
-    //             style={{
-    //                 height: '800px',
-    //             }}
-    //         >
-    //             <Story />
-    //         </div>
-    //     ),
-    // ],
+    decorators: [
+        (Story: StoryFn) => (
+            <div
+                style={{
+                    width: '200px',
+                    height: '130px',
+                }}
+            >
+                <Story />
+            </div>
+        ),
+    ],
 };
 
 const Template = (args: CalendarEventProps) => <CalendarEvent {...args} />;
 
-const defaultArgs: CalendarEventProps = {};
+const defaultArgs: CalendarEventProps = {
+    title: 'Event Title',
+    chipContent: '123',
+    start: new Date(),
+    end: new Date(),
+};
 
 export const Component = Template.bind({});
 

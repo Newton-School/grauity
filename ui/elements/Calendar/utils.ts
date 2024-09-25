@@ -53,6 +53,13 @@ export const getWeekByOffset = (offset: number = 0): Date[] => {
     return week;
 };
 
+export const get12HourFormatFromDate = (date: Date): string => {
+    const hour = date.getHours() % 12 || 12;
+    const minute = date.getMinutes();
+    const period = date.getHours() < 12 ? 'AM' : 'PM';
+    return `${hour}:${minute} ${period}`;
+};
+
 export const getTimeListIn12HourFormat = (): string[] => {
     const timeList: string[] = [];
     for (let i = 0; i < 24; i += 1) {
