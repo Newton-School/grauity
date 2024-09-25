@@ -232,11 +232,13 @@ export interface TableComponentProps {
 export interface TableHeadComponentProps {
     capitalizeHeaders?: boolean;
     highlightHeaders?: boolean;
+    className?: string;
     children: ReactNode;
 }
 
 // Interface for NSTableBody component props
 export interface TableBodyComponentProps {
+    className?: string;
     children: ReactNode;
 }
 
@@ -244,6 +246,7 @@ export interface TableBodyComponentProps {
 export interface TableRowComponentProps {
     key?: string;
     condensed?: boolean;
+    className?: string;
     children: ReactNode;
 }
 
@@ -255,6 +258,7 @@ export interface TableDataCellComponentProps {
     flexAlign?: string;
     colSpan?: number;
     rowSpan?: number;
+    className?: string;
     children: ReactNode;
 }
 
@@ -266,5 +270,6 @@ export interface TableHeadingCellComponentProps {
     flexAlign?: string;
     colSpan?: number;
     rowSpan?: number;
+    className?: string;
     children: ReactNode;
 }
