@@ -11,13 +11,12 @@ import THEME from './constants';
 import DARK_THEME_OBJ from './darkThemeConstants';
 import GlobalStyle from './GlobalStyle';
 import LIGHT_THEME_OBJ from './lightThemeConstants';
-import { ThemeType } from './types';
 
 const ThemeContext = createContext(null);
 
 interface ThemeWrapperProps {
     children: React.ReactNode;
-    defaultTheme?: ThemeType;
+    defaultTheme?: any;
     usePreferredColorScheme?: boolean;
 }
 
@@ -33,7 +32,7 @@ const ThemeWrapper = ({
     const [isThemeEnabled, setIsThemeEnabled] = useState(true);
 
     const handleToggleTheme = useCallback(
-        (themeName: ThemeType) => {
+        (themeName: any) => {
             setTheme((oldTheme) =>
                 themeName === THEME.LIGHT
                     ? { ...oldTheme, themeName: THEME.LIGHT }
@@ -110,8 +109,14 @@ const ThemeWrapper = ({
             <ThemeProvider
                 theme={
                     isThemeEnabled
-                        ? { ...value.theme.themeColors }
-                        : { ...defaultValue.theme.themeColors }
+                        ? {
+                            current: { ...value.theme.themeColors },
+                            inverted:
+                                value.theme.themeName === THEME.LIGHT
+                                    ? { ...DARK_THEME_OBJ }
+                                    : { ...LIGHT_THEME_OBJ },
+                        }
+                        : { current: { ...defaultValue.theme.themeColors } }
                 }
             >
                 <>
