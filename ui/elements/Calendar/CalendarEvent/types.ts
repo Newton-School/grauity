@@ -5,6 +5,8 @@ export interface CalendarEventProps {
     chipContent?: string;
     start: Date;
     end: Date;
+    onClick?: () => void;
+    focused?: boolean;
     minDurationToDisplayTime?: number;
     textColor?: string;
     backgroundColor?: string;
@@ -21,4 +23,5 @@ export interface StyledCalendarEventWrapperProps extends StyledDivProps {
     $textColor?: string;
     $backgroundColor?: string;
     $borderColor?: string;
+    $focused?: boolean;
 }

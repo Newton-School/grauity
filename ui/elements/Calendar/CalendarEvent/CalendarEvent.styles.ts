@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { StyledCalendarEventWrapperProps, StyledDivProps } from './types';
 
@@ -26,6 +26,15 @@ export const StyledCalendarEventWrapper = styled.div<StyledCalendarEventWrapperP
     cursor: pointer;
 
     transition: box-shadow 0.4s ease;
+
+    ${({ $focused }) =>
+        $focused &&
+        css`
+            outline: none;
+            z-index: 1;
+            border-width: 2px;
+            box-shadow: 0px 4px 32px var(--spacing-0px, 0px) rgba(0, 0, 0, 0.32);
+        `}
 
     &:focus {
         outline: none;

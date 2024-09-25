@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { forwardRef } from 'react';
 import Chip from 'ui/elements/Chip';
 
@@ -15,6 +16,8 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
             chipContent,
             start,
             end,
+            onClick = () => {},
+            focused = false,
             minDurationToDisplayTime = 1 * 60 * 60 * 1000,
             textColor,
             backgroundColor,
@@ -29,7 +32,9 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
                 $textColor={textColor}
                 $backgroundColor={backgroundColor}
                 $borderColor={borderColor}
+                $focused={focused}
                 tabIndex={0}
+                onClick={onClick}
             >
                 <StyledCalendarEventTitleRow>
                     <span>{title}</span>

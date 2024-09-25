@@ -26,6 +26,8 @@ const defaultArgs: CalendarEventProps = {
     chipContent: '123',
     start: new Date(2024, 9, 25, 10, 0),
     end: new Date(2024, 9, 25, 12, 0),
+    onClick: () => {},
+    focused: false,
     minDurationToDisplayTime: 1 * 60 * 60 * 1000,
     textColor: null,
     backgroundColor: null,
