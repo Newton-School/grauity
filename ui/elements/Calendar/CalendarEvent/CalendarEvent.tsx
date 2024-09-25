@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import React, { forwardRef } from 'react';
-import Chip from 'ui/elements/Chip';
 
+import Chip from '../../Chip';
 import { get12HourFormatFromDate, getDurationInMilliseconds } from '../utils';
 import {
     StyledCalendarEventTitleRow,
@@ -29,6 +29,7 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
         return (
             <StyledCalendarEventWrapper
                 ref={ref}
+                role="button"
                 $textColor={textColor}
                 $backgroundColor={backgroundColor}
                 $borderColor={borderColor}
