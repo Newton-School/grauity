@@ -35,13 +35,6 @@ export const StyledCalendarEventWrapper = styled.div<StyledCalendarEventWrapperP
             border-width: 2px;
             box-shadow: 0px 4px 32px var(--spacing-0px, 0px) rgba(0, 0, 0, 0.32);
         `}
-
-    &:focus {
-        outline: none;
-        z-index: 1;
-        border-width: 2px;
-        box-shadow: 0px 4px 32px var(--spacing-0px, 0px) rgba(0, 0, 0, 0.32);
-    }
 `;
 
 export const StyledCalendarEventTitleRow = styled.div<StyledDivProps>`

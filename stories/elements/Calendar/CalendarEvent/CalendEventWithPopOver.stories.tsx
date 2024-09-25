@@ -38,7 +38,7 @@ const Template = (args: CalendarEventProps) => {
         <>
             <CalendarEvent
                 {...args}
-                onClick={() => setIsOpen(true)}
+                onClick={() => setIsOpen(!isOpen)}
                 focused={isOpen}
                 ref={triggerRef}
             />

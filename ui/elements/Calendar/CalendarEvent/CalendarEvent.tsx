@@ -35,6 +35,10 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
                 $focused={focused}
                 tabIndex={0}
                 onClick={onClick}
+                onKeyDown={(e) => e.key === 'Enter' && onClick()}
+                aria-label={`Event - ${title} - ${get12HourFormatFromDate(
+                    start
+                )} to ${get12HourFormatFromDate(end)}`}
             >
                 <StyledCalendarEventTitleRow>
                     <span>{title}</span>
