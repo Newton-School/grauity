@@ -23,6 +23,7 @@ export const StyledCalendarEventWrapper = styled.div<StyledCalendarEventWrapperP
     font-weight: 600;
     line-height: 160%;
     letter-spacing: 0.1px;
+    cursor: pointer;
 
     transition: box-shadow 0.4s ease;
 
