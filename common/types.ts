@@ -4,10 +4,10 @@ import React from 'react';
  * Interface representing the properties for a styled div component.
  *
  * @extends React.HTMLAttributes<HTMLDivElement>
- * @property {React.RefObject<HTMLDivElement>} [ref] - Optional ref object for the div element.
+ * @property {React.Ref<HTMLDivElement>} [ref] - Optional ref for the div element.
  */
 export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
-    ref?: React.RefObject<HTMLDivElement>;
+    ref?: React.Ref<HTMLDivElement>;
 }
 
 /**
@@ -19,4 +19,26 @@ export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
 export interface StyledSelectProps
     extends React.SelectHTMLAttributes<HTMLSelectElement> {
     ref?: React.Ref<HTMLSelectElement>;
+}
+
+/**
+ * Interface representing the properties for a styled input component.
+ *
+ * @extends React.InputHTMLAttributes<HTMLInputElement>
+ * @property {React.Ref<HTMLInputElement>} [ref] - Optional ref to the input element.
+ */
+export interface StyledInputProps
+    extends React.InputHTMLAttributes<HTMLInputElement> {
+    ref?: React.Ref<HTMLInputElement>;
+}
+
+/**
+ * Interface representing the properties for a styled button component.
+ *
+ * @extends React.ButtonHTMLAttributes<HTMLButtonElement>
+ * @property {React.Ref<HTMLButtonElement>} [ref] - Optional ref to the button element.
+ */
+export interface StyledButtonProps
+    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    ref?: React.Ref<HTMLButtonElement>;
 }
