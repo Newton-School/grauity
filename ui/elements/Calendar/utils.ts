@@ -115,9 +115,9 @@ export const getEventBlockHeight = (event: CalendarEvent): number => {
     return (end - start) / (60 * 60 * 1000);
 };
 
-export function getOverlapInformationForDay<T>(
+export async function getOverlapInformationForDay<T>(
     events: CalendarEvent<T>[]
-): CalendarEventExtended<T>[] {
+): Promise<CalendarEventExtended<T>[]> {
     events.sort((a, b) => a.start.getTime() - b.start.getTime());
 
     const eventsWithOverlap: CalendarEventExtended<T>[] = events.map(
