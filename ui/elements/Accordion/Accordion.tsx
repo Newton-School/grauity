@@ -25,19 +25,11 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
             <StyledAccordionWrapper ref={ref} expanded={isExpanded}>
                 <StyledAccordionHeader onClick={handleToggle}>
                     {title}
-                    {isExpanded ? (
-                        <Icon
-                            color="var(--text-primary)"
-                            name="chevron-up"
-                            size="16"
-                        />
-                    ) : (
-                        <Icon
-                            color="var(--text-primary)"
-                            name="chevron-down"
-                            size="16"
-                        />
-                    )}
+                    <Icon
+                        color="var(--text-primary)"
+                        name={isExpanded ? 'chevron-up' : 'chevron-down'}
+                        size="16"
+                    />
                 </StyledAccordionHeader>
                 <StyledAccordionContent expanded={isExpanded}>
                     <StyledLine />
