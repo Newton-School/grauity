@@ -225,6 +225,8 @@ export type grauityIconName =
     | 'close'
     | 'compass-filled'
     | 'compass'
+    | 'database-filled'
+    | 'database'
     | 'diamond-filled'
     | 'diamond'
     | 'double-check-filled'
@@ -621,6 +623,8 @@ export type grauityIconKey =
     | 'Close'
     | 'CompassFilled'
     | 'Compass'
+    | 'DatabaseFilled'
+    | 'Database'
     | 'DiamondFilled'
     | 'Diamond'
     | 'DoubleCheckFilled'
@@ -1017,6 +1021,8 @@ export enum GRAUITY_ICONS {
     Close = 'close',
     CompassFilled = 'compass-filled',
     Compass = 'compass',
+    DatabaseFilled = 'database-filled',
+    Database = 'database',
     DiamondFilled = 'diamond-filled',
     Diamond = 'diamond',
     DoubleCheckFilled = 'double-check-filled',

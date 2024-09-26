@@ -10,7 +10,7 @@ import {
 } from './types';
 
 export const StyledDropdownWrapper = styled.div<StyledDropdownWrapperProps>`
-    font-family: Mono Sans, sans-serif;
+    font-family: var(--font-family, 'Mona Sans');
     height: 100%;
     width: 100%;
     position: relative;

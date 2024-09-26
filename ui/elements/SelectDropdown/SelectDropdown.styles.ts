@@ -29,7 +29,7 @@ export const StyledSelectDropdownContainer = styled.div<StyledDivProps>`
     max-height: 300px;
     overflow: hidden;
     padding: var(--spacing-8px, 8px);
-    font-family: var(--font-family, 'Mono Sans');
+    font-family: var(--font-family, 'Mona Sans');
     display: flex;
     flex-direction: column;
     align-items: flex-start;
