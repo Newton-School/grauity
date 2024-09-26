@@ -3,6 +3,7 @@ import React from 'react';
 export type EventRendererFn<T> = (event: CalendarEvent<T>) => React.ReactNode;
 
 export interface CalendarEvent<T = {}> {
+    title?: string;
     start: Date;
     end: Date;
     allDay?: boolean;
@@ -10,6 +11,20 @@ export interface CalendarEvent<T = {}> {
 }
 
 export type CalendarEventRecord<T> = Record<number, CalendarEvent<T>[]>;
+
+export type CalendarEventExtended<T> = CalendarEvent<T> & {
+    overlap: number;
+    index: number;
+    forcedEventData?: {
+        start: Date;
+        end: Date;
+    };
+};
+
+export type CalendarEventRecordExtended<T> = Record<
+    number,
+    CalendarEventExtended<T>[]
+>;
 
 export interface WeeklyCalendarProps<T = {}> {
     /**
@@ -64,6 +79,6 @@ export interface StyledCalendarTimelineBlockProps extends StyledDivProps {
 export interface StyledEventWrapperProps extends StyledDivProps {
     $startPosition: number;
     $height: number;
-    $totalEvents: number;
-    $eventIndex: number;
+    $widthFactor: number;
+    $indexFactor: number;
 }

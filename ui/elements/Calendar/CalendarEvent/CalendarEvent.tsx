@@ -2,8 +2,14 @@
 import React, { forwardRef } from 'react';
 
 import Chip from '../../Chip';
-import { get12HourFormatFromDate, getDurationInMilliseconds } from '../utils';
 import {
+    get12HourFormatFromDate,
+    getDateStringInDDMMMYYYHHmmFormat,
+    getDurationInMilliseconds,
+} from '../utils';
+import {
+    StyledCalendarEventText,
+    StyledCalendarEventTimeRange,
     StyledCalendarEventTitleRow,
     StyledCalendarEventWrapper,
 } from './CalendarEvent.styles';
@@ -34,19 +40,29 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
                 $backgroundColor={backgroundColor}
                 $borderColor={borderColor}
                 $focused={focused}
+                $smallEvent={
+                    getDurationInMilliseconds(start, end) <=
+                    0.5 * 60 * 60 * 1000
+                }
+                $extraSmallEvent={
+                    getDurationInMilliseconds(start, end) <=
+                    0.25 * 60 * 60 * 1000
+                }
                 tabIndex={0}
                 onClick={onClick}
                 onKeyDown={(e) => e.key === 'Enter' && onClick()}
-                aria-label={`Event - ${title} - ${get12HourFormatFromDate(
+                aria-label={`Event - ${title} - ${getDateStringInDDMMMYYYHHmmFormat(
                     start
-                )} to ${get12HourFormatFromDate(end)}`}
+                )} to ${getDateStringInDDMMMYYYHHmmFormat(end)}`}
             >
                 <StyledCalendarEventTitleRow>
-                    <span>{title}</span>
+                    <StyledCalendarEventText>
+                        <span>{title}</span>
+                    </StyledCalendarEventText>
                     {typeof chipContent === 'string' &&
                         chipContent.length > 0 && (
                             <Chip
-                                size="medium"
+                                size="small"
                                 backgroundColor={
                                     chipBackgroundColor ||
                                     'var(--color-brand-600, #005ED1);'
@@ -62,10 +78,12 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
                 </StyledCalendarEventTitleRow>
                 {getDurationInMilliseconds(start, end) >=
                     minDurationToDisplayTime && (
-                    <span>
-                        {get12HourFormatFromDate(start)} -{' '}
-                        {get12HourFormatFromDate(end)}
-                    </span>
+                    <StyledCalendarEventTimeRange>
+                        <span>
+                            {get12HourFormatFromDate(start)} -{' '}
+                            {get12HourFormatFromDate(end)}
+                        </span>
+                    </StyledCalendarEventTimeRange>
                 )}
             </StyledCalendarEventWrapper>
         );

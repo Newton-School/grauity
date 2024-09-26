@@ -1,5 +1,6 @@
 import React from 'react';
 
+import CalendarEvent from './CalendarEvent/CalendarEvent';
 import { EventRendererProps } from './types';
 
 const EventRenderer = ({
@@ -14,7 +15,13 @@ const EventRenderer = ({
         return <>{eventRenderer(event)}</>;
     }
 
-    return <div>Event</div>;
+    return (
+        <CalendarEvent
+            title={event.title || 'Event'}
+            start={event.start}
+            end={event.end}
+        />
+    );
 };
 
 export default EventRenderer;

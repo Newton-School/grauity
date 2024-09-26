@@ -1,4 +1,4 @@
-import { CalendarEvent } from './types';
+import { CalendarEvent, CalendarEventExtended } from './types';
 
 export const cloneDate = (date: Date): Date => new Date(date.getTime());
 
@@ -62,6 +62,13 @@ export const get12HourFormatFromDate = (date: Date): string => {
         .padStart(2, '0')} ${period}`;
 };
 
+export const getDateStringInDDMMMYYYHHmmFormat = (date: Date): string => {
+    const day = date.getDate();
+    const month = getMonthLabel(date);
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}, ${get12HourFormatFromDate(date)}`;
+};
+
 export const getTimeListIn12HourFormat = (): string[] => {
     const timeList: string[] = [];
     for (let i = 0; i < 24; i += 1) {
@@ -107,3 +114,49 @@ export const getEventBlockHeight = (event: CalendarEvent): number => {
     const end = event.end.getTime();
     return (end - start) / (60 * 60 * 1000);
 };
+
+export async function getOverlapInformationForDay<T>(
+    events: CalendarEvent<T>[]
+): Promise<CalendarEventExtended<T>[]> {
+    events.sort((a, b) => a.start.getTime() - b.start.getTime());
+
+    const eventsWithOverlap: CalendarEventExtended<T>[] = events.map(
+        (event) => ({
+            ...event,
+            overlap: 1,
+            index: 0,
+        })
+    );
+    const eventsInQueue: Record<number, boolean> = {};
+
+    let counter = 0;
+    let minIndex = 0;
+
+    eventsWithOverlap.forEach((event, index) => {
+        // Check for ended events
+        Object.keys(eventsInQueue).forEach((key) => {
+            const keyInt = parseInt(key, 10);
+            const eventInQueue = eventsWithOverlap[keyInt];
+            if (event.start.getTime() >= eventInQueue.end.getTime()) {
+                delete eventsInQueue[keyInt];
+                counter -= 1;
+                minIndex = Math.min(minIndex, eventInQueue.index);
+            }
+        });
+
+        eventsInQueue[index] = true;
+        counter += 1;
+
+        eventsWithOverlap[index].overlap = counter;
+        eventsWithOverlap[index].index = minIndex;
+        minIndex += 1;
+
+        Object.keys(eventsInQueue).forEach((key) => {
+            const keyInt = parseInt(key, 10);
+            const eventInQueue = eventsWithOverlap[keyInt];
+            eventInQueue.overlap = Math.max(eventInQueue.overlap, counter);
+        });
+    });
+
+    return eventsWithOverlap;
+}

@@ -91,7 +91,6 @@ export const StyledDragHandleContainer = styled.div<StyledDivProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
 `;
 
 export const StyledDragHandle = styled.div<StyledDivProps>`
