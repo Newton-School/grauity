@@ -12,6 +12,16 @@ export interface CalendarEvent<T = {}> {
 
 export type CalendarEventRecord<T> = Record<number, CalendarEvent<T>[]>;
 
+export type CalendarEventWithOverlap<T> = CalendarEvent<T> & {
+    overlap: number;
+    index: number;
+};
+
+export type CalendarEventRecordWithOverlap<T> = Record<
+    number,
+    CalendarEventWithOverlap<T>[]
+>;
+
 export interface WeeklyCalendarProps<T = {}> {
     /**
      * An optional array of calendar events.
@@ -65,6 +75,6 @@ export interface StyledCalendarTimelineBlockProps extends StyledDivProps {
 export interface StyledEventWrapperProps extends StyledDivProps {
     $startPosition: number;
     $height: number;
-    $totalEvents: number;
-    $eventIndex: number;
+    $widthFactor: number;
+    $indexFactor: number;
 }

@@ -191,8 +191,9 @@ export const StyledEventWrapper = styled.div<StyledEventWrapperProps>`
     z-index: 1;
     position: absolute;
     top: ${({ $startPosition }) => `${$startPosition}%`};
-    left: ${({ $eventIndex }) => `${$eventIndex * 50}%`};
-    width: ${({ $totalEvents }) => `${100 / $totalEvents}%`};
+    left: ${({ $indexFactor, $widthFactor }) =>
+        `${$indexFactor * 100 * $widthFactor}%`};
+    width: ${({ $widthFactor }) => `${100 * $widthFactor}%`};
     overflow: hidden;
     height: ${({ $height }) => `${$height}%`};
 `;

@@ -3,7 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import Button, { IconButton } from '../Button';
 import { CALENDAR_BLOCK_HEIGHT } from './constants';
 import EventRenderer from './EventRenderer';
-import { CalendarEventRecord, WeeklyCalendarProps } from './types';
+import {
+    CalendarEventRecord,
+    CalendarEventRecordWithOverlap,
+    WeeklyCalendarProps,
+} from './types';
 import {
     checkIsToday,
     getCurrentTimeStickPosition,
@@ -11,6 +15,7 @@ import {
     getEventBlockHeight,
     getEventBlockStartPosition,
     getMonthDetails,
+    getOverlapInformationForDay,
     getStartTimestampOfHourBlock,
     getTimeListIn12HourFormat,
     getWeekByOffset,
@@ -41,8 +46,12 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
 
     const [weekOffset, setWeekOffset] = useState(initialWeekOffset);
     const [calendarEvents, setCalendarEvents] = useState<
-        CalendarEventRecord<T>
+        CalendarEventRecordWithOverlap<T>
     >({});
+    const [eventsGroupedByDay, setEventsGroupedByDay] =
+        useState<CalendarEventRecord<T> | null>(null);
+    const [overlappedEventsData, setOverlappedEventsData] =
+        useState<CalendarEventRecordWithOverlap<T> | null>(null);
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -60,23 +69,59 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
 
     useEffect(() => {
         if (events) {
-            const newCalendarEvents: CalendarEventRecord<T> = {};
+            const newEventsGroupedByDay: CalendarEventRecord<T> = {};
             events.forEach((event) => {
                 const eventDate = new Date(
                     event.start.getFullYear(),
                     event.start.getMonth(),
-                    event.start.getDate(),
-                    event.start.getHours()
+                    event.start.getDate()
                 );
-                const eventTimestamp = eventDate.getTime();
-                if (!newCalendarEvents[eventTimestamp]) {
-                    newCalendarEvents[eventTimestamp] = [];
+                const eventDay = eventDate.getDate();
+                if (!newEventsGroupedByDay[eventDay]) {
+                    newEventsGroupedByDay[eventDay] = [];
                 }
-                newCalendarEvents[eventTimestamp].push(event);
+                newEventsGroupedByDay[eventDay].push(event);
+            });
+            setEventsGroupedByDay(newEventsGroupedByDay);
+        }
+    }, [events]);
+
+    useEffect(() => {
+        if (eventsGroupedByDay) {
+            const newOverlappedEventsData: CalendarEventRecordWithOverlap<T> =
+                {};
+            Object.keys(eventsGroupedByDay).forEach((day) => {
+                const dayKey = parseInt(day, 10);
+                const eventsArr = eventsGroupedByDay[dayKey];
+                newOverlappedEventsData[dayKey] =
+                    getOverlapInformationForDay(eventsArr);
+            });
+            setOverlappedEventsData(newOverlappedEventsData);
+        }
+    }, [eventsGroupedByDay]);
+
+    useEffect(() => {
+        if (overlappedEventsData) {
+            const newCalendarEvents: CalendarEventRecordWithOverlap<T> = {};
+            Object.keys(overlappedEventsData).forEach((day) => {
+                const dayKey = parseInt(day, 10);
+                (overlappedEventsData[dayKey] || []).forEach((event) => {
+                    const eventDate = new Date(
+                        event.start.getFullYear(),
+                        event.start.getMonth(),
+                        event.start.getDate(),
+                        event.start.getHours()
+                    );
+                    const eventTimestamp = eventDate.getTime();
+                    if (!newCalendarEvents[eventTimestamp]) {
+                        newCalendarEvents[eventTimestamp] = [];
+                    }
+                    newCalendarEvents[eventTimestamp].push(event);
+                });
             });
             setCalendarEvents(newCalendarEvents);
         }
-    }, [events]);
+    }, [overlappedEventsData]);
 
     useEffect(() => {
         if (containerRef.current && containerRef.current.scrollTo) {
@@ -163,7 +208,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                                             hourIndex
                                         )
                                     ] || []
-                                ).map((event, eventIndex, eventArray) => (
+                                ).map((event, eventIndex) => (
                                     <StyledEventWrapper
                                         // eslint-disable-next-line react/no-array-index-key
                                         key={`${eventIndex}_${event.start.toString()}`}
@@ -174,8 +219,10 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                                         $height={
                                             getEventBlockHeight(event) * 100
                                         }
-                                        $totalEvents={eventArray.length}
-                                        $eventIndex={eventIndex}
+                                        $widthFactor={
+                                            3 / (2 * event.overlap + 1)
+                                        }
+                                        $indexFactor={(2 * event.index) / 3}
                                     >
                                         <EventRenderer
                                             event={event}
