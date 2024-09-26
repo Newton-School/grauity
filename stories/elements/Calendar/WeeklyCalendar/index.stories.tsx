@@ -85,7 +85,7 @@ const defaultArgs: WeeklyCalendarProps = {
                 16,
                 0
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 1, 19, 0),
+            end: new Date(currentYear, currentMonth, weekStartDate + 3, 8, 0),
         },
         {
             title: 'Event 5',

@@ -3,11 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Button, { IconButton } from '../Button';
 import { CALENDAR_BLOCK_HEIGHT } from './constants';
 import EventRenderer from './EventRenderer';
-import {
-    CalendarEventRecord,
-    CalendarEventRecordWithOverlap,
-    WeeklyCalendarProps,
-} from './types';
+import { CalendarEventRecordExtended, WeeklyCalendarProps } from './types';
 import {
     checkIsToday,
     getCurrentTimeStickPosition,
@@ -46,12 +42,12 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
 
     const [weekOffset, setWeekOffset] = useState(initialWeekOffset);
     const [calendarEvents, setCalendarEvents] = useState<
-        CalendarEventRecordWithOverlap<T>
+        CalendarEventRecordExtended<T>
     >({});
     const [eventsGroupedByDay, setEventsGroupedByDay] =
-        useState<CalendarEventRecord<T> | null>(null);
+        useState<CalendarEventRecordExtended<T> | null>(null);
     const [overlappedEventsData, setOverlappedEventsData] =
-        useState<CalendarEventRecordWithOverlap<T> | null>(null);
+        useState<CalendarEventRecordExtended<T> | null>(null);
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -69,18 +65,39 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
 
     useEffect(() => {
         if (events) {
-            const newEventsGroupedByDay: CalendarEventRecord<T> = {};
+            const newEventsGroupedByDay: CalendarEventRecordExtended<T> = {};
             events.forEach((event) => {
-                const eventDate = new Date(
+                const eventStartDate = new Date(
                     event.start.getFullYear(),
                     event.start.getMonth(),
                     event.start.getDate()
                 );
-                const eventDay = eventDate.getDate();
+                const eventEndDate = new Date(
+                    event.end.getFullYear(),
+                    event.end.getMonth(),
+                    event.end.getDate()
+                );
+                const eventEndForcedDate = new Date(
+                    event.start.getFullYear(),
+                    event.start.getMonth(),
+                    event.start.getDate(),
+                    23,
+                    59,
+                    59
+                );
+                const eventDay = eventStartDate.getDate();
                 if (!newEventsGroupedByDay[eventDay]) {
                     newEventsGroupedByDay[eventDay] = [];
                 }
-                newEventsGroupedByDay[eventDay].push(event);
+                newEventsGroupedByDay[eventDay].push({
+                    ...event,
+                    overlap: 1,
+                    index: 0,
+                    forcedEventData:
+                        eventEndDate > eventStartDate
+                            ? { start: event.start, end: eventEndForcedDate }
+                            : undefined,
+                });
             });
             setEventsGroupedByDay(newEventsGroupedByDay);
         }
@@ -88,8 +105,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
 
     useEffect(() => {
         if (eventsGroupedByDay) {
-            const newOverlappedEventsData: CalendarEventRecordWithOverlap<T> =
-                {};
+            const newOverlappedEventsData: CalendarEventRecordExtended<T> = {};
             Object.keys(eventsGroupedByDay).forEach((day) => {
                 const dayKey = parseInt(day, 10);
                 const eventsArr = eventsGroupedByDay[dayKey];
@@ -102,7 +118,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
 
     useEffect(() => {
         if (overlappedEventsData) {
-            const newCalendarEvents: CalendarEventRecordWithOverlap<T> = {};
+            const newCalendarEvents: CalendarEventRecordExtended<T> = {};
             Object.keys(overlappedEventsData).forEach((day) => {
                 const dayKey = parseInt(day, 10);
                 (overlappedEventsData[dayKey] || []).forEach((event) => {
@@ -208,28 +224,35 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                                             hourIndex
                                         )
                                     ] || []
-                                ).map((event, eventIndex) => (
-                                    <StyledEventWrapper
-                                        // eslint-disable-next-line react/no-array-index-key
-                                        key={`${eventIndex}_${event.start.toString()}`}
-                                        $startPosition={
-                                            getEventBlockStartPosition(event) *
-                                            100
-                                        }
-                                        $height={
-                                            getEventBlockHeight(event) * 100
-                                        }
-                                        $widthFactor={
-                                            3 / (2 * event.overlap + 1)
-                                        }
-                                        $indexFactor={(2 * event.index) / 3}
-                                    >
-                                        <EventRenderer
-                                            event={event}
-                                            eventRenderer={eventRenderer}
-                                        />
-                                    </StyledEventWrapper>
-                                ))}
+                                ).map((event, eventIndex) => {
+                                    const forcedEventData =
+                                        event.forcedEventData || event;
+                                    return (
+                                        <StyledEventWrapper
+                                            // eslint-disable-next-line react/no-array-index-key
+                                            key={`${eventIndex}_${forcedEventData.start.toString()}`}
+                                            $startPosition={
+                                                getEventBlockStartPosition(
+                                                    event
+                                                ) * 100
+                                            }
+                                            $height={
+                                                getEventBlockHeight(
+                                                    forcedEventData
+                                                ) * 100
+                                            }
+                                            $widthFactor={
+                                                3 / (2 * event.overlap + 1)
+                                            }
+                                            $indexFactor={(2 * event.index) / 3}
+                                        >
+                                            <EventRenderer
+                                                event={event}
+                                                eventRenderer={eventRenderer}
+                                            />
+                                        </StyledEventWrapper>
+                                    );
+                                })}
                             </StyledCalendarBlock>
                         ))}
                     </StyledCalendarTimelineRow>

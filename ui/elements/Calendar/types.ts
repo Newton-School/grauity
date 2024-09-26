@@ -12,14 +12,18 @@ export interface CalendarEvent<T = {}> {
 
 export type CalendarEventRecord<T> = Record<number, CalendarEvent<T>[]>;
 
-export type CalendarEventWithOverlap<T> = CalendarEvent<T> & {
+export type CalendarEventExtended<T> = CalendarEvent<T> & {
     overlap: number;
     index: number;
+    forcedEventData?: {
+        start: Date;
+        end: Date;
+    };
 };
 
-export type CalendarEventRecordWithOverlap<T> = Record<
+export type CalendarEventRecordExtended<T> = Record<
     number,
-    CalendarEventWithOverlap<T>[]
+    CalendarEventExtended<T>[]
 >;
 
 export interface WeeklyCalendarProps<T = {}> {

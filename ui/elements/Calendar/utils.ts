@@ -1,4 +1,4 @@
-import { CalendarEvent, CalendarEventWithOverlap } from './types';
+import { CalendarEvent, CalendarEventExtended } from './types';
 
 export const cloneDate = (date: Date): Date => new Date(date.getTime());
 
@@ -117,10 +117,10 @@ export const getEventBlockHeight = (event: CalendarEvent): number => {
 
 export function getOverlapInformationForDay<T>(
     events: CalendarEvent<T>[]
-): CalendarEventWithOverlap<T>[] {
+): CalendarEventExtended<T>[] {
     events.sort((a, b) => a.start.getTime() - b.start.getTime());
 
-    const eventsWithOverlap: CalendarEventWithOverlap<T>[] = events.map(
+    const eventsWithOverlap: CalendarEventExtended<T>[] = events.map(
         (event) => ({
             ...event,
             overlap: 1,
