@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { StyledDivProps } from '../../../common/types';
+
 export interface BottomSheetProps {
     /**
      * The content to be displayed inside the BottomSheet.
@@ -47,10 +49,6 @@ export interface BottomSheetProps {
      * @default true
      */
     closeOnPullDown?: boolean;
-}
-
-export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
-    ref?: React.Ref<HTMLDivElement>;
 }
 
 export interface StyledBottomSheetWrapperProps extends StyledDivProps {

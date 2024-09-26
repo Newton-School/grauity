@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { StyledSelectProps } from '../../../common/types';
+
 export interface DropdownOption {
     id: string;
     label: string;
@@ -67,10 +69,7 @@ export interface DropdownListItemProps {
     isSelected?: boolean;
 }
 
-export interface StyledDropdownWrapperProps
-    extends React.SelectHTMLAttributes<HTMLSelectElement> {
-    ref?: React.Ref<HTMLSelectElement>;
-}
+export interface StyledDropdownWrapperProps extends StyledSelectProps {}
 
 export interface StyledDropdownHeaderProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement> {}

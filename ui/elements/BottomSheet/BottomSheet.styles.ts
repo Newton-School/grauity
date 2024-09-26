@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
+import { StyledDivProps } from '../../../common/types';
 import { ANIMATION_DURATION, DRAG_HANDLE_HEIGHT } from './constants';
 import {
     StyledBottomSheetContentProps,
     StyledBottomSheetProps,
     StyledBottomSheetWrapperProps,
-    StyledDivProps,
 } from './types';
 
 export const StyledBottomSheetWrapper = styled.div<StyledBottomSheetWrapperProps>`

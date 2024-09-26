@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
+import { StyledDivProps } from '../../../common/types';
 import Button from '../Button';
 import {
-    StyledDivProps,
     StyledDropdownSearchInputProps,
     StyledSelectDropdownItemProps,
     StyledSelectDropdownWrapperProps,
