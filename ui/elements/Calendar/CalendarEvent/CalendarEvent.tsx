@@ -2,7 +2,11 @@
 import React, { forwardRef } from 'react';
 
 import Chip from '../../Chip';
-import { get12HourFormatFromDate, getDurationInMilliseconds } from '../utils';
+import {
+    get12HourFormatFromDate,
+    getDateStringInDDMMMYYYHHmmFormat,
+    getDurationInMilliseconds,
+} from '../utils';
 import {
     StyledCalendarEventTitleRow,
     StyledCalendarEventWrapper,
@@ -46,9 +50,9 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
                 tabIndex={0}
                 onClick={onClick}
                 onKeyDown={(e) => e.key === 'Enter' && onClick()}
-                aria-label={`Event - ${title} - ${get12HourFormatFromDate(
+                aria-label={`Event - ${title} - ${getDateStringInDDMMMYYYHHmmFormat(
                     start
-                )} to ${get12HourFormatFromDate(end)}`}
+                )} to ${getDateStringInDDMMMYYYHHmmFormat(end)}`}
             >
                 <StyledCalendarEventTitleRow>
                     <span>{title}</span>
@@ -69,7 +73,6 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
                             </Chip>
                         )}
                 </StyledCalendarEventTitleRow>
-
                 {getDurationInMilliseconds(start, end) >=
                     minDurationToDisplayTime && (
                     <StyledCalendarTimeRange>

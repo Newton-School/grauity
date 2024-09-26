@@ -62,6 +62,13 @@ export const get12HourFormatFromDate = (date: Date): string => {
         .padStart(2, '0')} ${period}`;
 };
 
+export const getDateStringInDDMMMYYYHHmmFormat = (date: Date): string => {
+    const day = date.getDate();
+    const month = getMonthLabel(date);
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}, ${get12HourFormatFromDate(date)}`;
+};
+
 export const getTimeListIn12HourFormat = (): string[] => {
     const timeList: string[] = [];
     for (let i = 0; i < 24; i += 1) {
