@@ -114,11 +114,11 @@ const defaultArgs: WeeklyCalendarProps = {
             start: new Date(
                 currentYear,
                 currentMonth,
-                weekStartDate + 3,
+                weekStartDate + 2,
                 14,
                 45
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 3, 18, 30),
+            end: new Date(currentYear, currentMonth, weekStartDate + 2, 18, 30),
         },
         {
             title: 'Event 8',

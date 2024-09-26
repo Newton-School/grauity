@@ -21,7 +21,6 @@ export const StyledCalendarEventWrapper = styled.div<StyledCalendarEventWrapperP
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
-    line-height: 160%;
     letter-spacing: 0.1px;
     cursor: pointer;
 
@@ -58,9 +57,14 @@ export const StyledCalendarEventTitleRow = styled.div<StyledDivProps>`
     align-items: center;
 `;
 
-export const StyledCalendarTimeRange = styled.div<StyledDivProps>`
+export const StyledCalendarEventText = styled.div<StyledDivProps>`
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+`;
+
+export const StyledCalendarEventTimeRange = styled(StyledCalendarEventText)`
+    font-size: 10px;
+    font-weight: 500;
 `;

@@ -8,9 +8,10 @@ import {
     getDurationInMilliseconds,
 } from '../utils';
 import {
+    StyledCalendarEventText,
+    StyledCalendarEventTimeRange,
     StyledCalendarEventTitleRow,
     StyledCalendarEventWrapper,
-    StyledCalendarTimeRange,
 } from './CalendarEvent.styles';
 import { CalendarEventProps } from './types';
 
@@ -55,11 +56,13 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
                 )} to ${getDateStringInDDMMMYYYHHmmFormat(end)}`}
             >
                 <StyledCalendarEventTitleRow>
-                    <span>{title}</span>
+                    <StyledCalendarEventText>
+                        <span>{title}</span>
+                    </StyledCalendarEventText>
                     {typeof chipContent === 'string' &&
                         chipContent.length > 0 && (
                             <Chip
-                                size="medium"
+                                size="small"
                                 backgroundColor={
                                     chipBackgroundColor ||
                                     'var(--color-brand-600, #005ED1);'
@@ -75,12 +78,12 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
                 </StyledCalendarEventTitleRow>
                 {getDurationInMilliseconds(start, end) >=
                     minDurationToDisplayTime && (
-                    <StyledCalendarTimeRange>
+                    <StyledCalendarEventTimeRange>
                         <span>
                             {get12HourFormatFromDate(start)} -{' '}
                             {get12HourFormatFromDate(end)}
                         </span>
-                    </StyledCalendarTimeRange>
+                    </StyledCalendarEventTimeRange>
                 )}
             </StyledCalendarEventWrapper>
         );
