@@ -30,7 +30,7 @@ export type grauityIconName =
     | 'bookmark-filled'
     | 'bookmark'
     | 'file-alt-filled'
-    | 'file-alt'
+    | 'File-alt'
     | 'file-filled'
     | 'file'
     | 'folder-filled'
@@ -225,6 +225,8 @@ export type grauityIconName =
     | 'close'
     | 'compass-filled'
     | 'compass'
+    | 'database-filled'
+    | 'database'
     | 'diamond-filled'
     | 'diamond'
     | 'double-check-filled'
@@ -261,7 +263,7 @@ export type grauityIconName =
     | 'hold'
     | 'home-filled'
     | 'home'
-    | 'hourglass-filled'
+    | 'Hourglass-filled'
     | 'hourglass'
     | 'kebab-horizontal-filled'
     | 'kebab-horizontal'
@@ -621,6 +623,8 @@ export type grauityIconKey =
     | 'Close'
     | 'CompassFilled'
     | 'Compass'
+    | 'DatabaseFilled'
+    | 'Database'
     | 'DiamondFilled'
     | 'Diamond'
     | 'DoubleCheckFilled'
@@ -822,7 +826,7 @@ export enum GRAUITY_ICONS {
     BookmarkFilled = 'bookmark-filled',
     Bookmark = 'bookmark',
     FileAltFilled = 'file-alt-filled',
-    FileAlt = 'file-alt',
+    FileAlt = 'File-alt',
     FileFilled = 'file-filled',
     File = 'file',
     FolderFilled = 'folder-filled',
@@ -1017,6 +1021,8 @@ export enum GRAUITY_ICONS {
     Close = 'close',
     CompassFilled = 'compass-filled',
     Compass = 'compass',
+    DatabaseFilled = 'database-filled',
+    Database = 'database',
     DiamondFilled = 'diamond-filled',
     Diamond = 'diamond',
     DoubleCheckFilled = 'double-check-filled',
@@ -1053,7 +1059,7 @@ export enum GRAUITY_ICONS {
     Hold = 'hold',
     HomeFilled = 'home-filled',
     Home = 'home',
-    HourglassFilled = 'hourglass-filled',
+    HourglassFilled = 'Hourglass-filled',
     Hourglass = 'hourglass',
     KebabHorizontalFilled = 'kebab-horizontal-filled',
     KebabHorizontal = 'kebab-horizontal',
