@@ -14,7 +14,7 @@ export const StyledCalendarEventWrapper = styled.div<StyledCalendarEventWrapperP
     align-self: stretch;
     border-radius: 4px;
     border: 1px solid
-        ${(props) => props.$borderColor || 'var(--border, #e1e5ea)'};
+        ${(props) => props.$borderColor || 'var(--bg-primary, #fff)'};
     color: ${(props) => props.$textColor || 'var(--text-action2, #fff)'};
     background: ${(props) =>
         props.$backgroundColor || 'var(--bg-action-brand, #0673f9)'};
@@ -39,7 +39,7 @@ export const StyledCalendarEventWrapper = styled.div<StyledCalendarEventWrapperP
     ${({ $smallEvent }) =>
         $smallEvent &&
         css`
-            padding: 2px;
+            padding: 2px 4px;
         `}
 
     ${({ $extraSmallEvent }) =>
