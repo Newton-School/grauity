@@ -35,6 +35,14 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
                 $backgroundColor={backgroundColor}
                 $borderColor={borderColor}
                 $focused={focused}
+                $smallEvent={
+                    getDurationInMilliseconds(start, end) <=
+                    0.5 * 60 * 60 * 1000
+                }
+                $extraSmallEvent={
+                    getDurationInMilliseconds(start, end) <=
+                    0.25 * 60 * 60 * 1000
+                }
                 tabIndex={0}
                 onClick={onClick}
                 onKeyDown={(e) => e.key === 'Enter' && onClick()}
@@ -61,15 +69,16 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
                             </Chip>
                         )}
                 </StyledCalendarEventTitleRow>
-                <StyledCalendarTimeRange>
-                    {getDurationInMilliseconds(start, end) >=
-                        minDurationToDisplayTime && (
+
+                {getDurationInMilliseconds(start, end) >=
+                    minDurationToDisplayTime && (
+                    <StyledCalendarTimeRange>
                         <span>
                             {get12HourFormatFromDate(start)} -{' '}
                             {get12HourFormatFromDate(end)}
                         </span>
-                    )}
-                </StyledCalendarTimeRange>
+                    </StyledCalendarTimeRange>
+                )}
             </StyledCalendarEventWrapper>
         );
     }

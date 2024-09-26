@@ -35,6 +35,19 @@ export const StyledCalendarEventWrapper = styled.div<StyledCalendarEventWrapperP
             border-width: 2px;
             box-shadow: 0px 4px 32px var(--spacing-0px, 0px) rgba(0, 0, 0, 0.32);
         `}
+
+    ${({ $smallEvent }) =>
+        $smallEvent &&
+        css`
+            padding: 2px;
+        `}
+
+    ${({ $extraSmallEvent }) =>
+        $extraSmallEvent &&
+        css`
+            padding: 0 4px;
+            font-size: 7px;
+        `}
 `;
 
 export const StyledCalendarEventTitleRow = styled.div<StyledDivProps>`

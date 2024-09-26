@@ -77,4 +77,6 @@ export interface StyledCalendarEventWrapperProps extends StyledDivProps {
     $backgroundColor?: string;
     $borderColor?: string;
     $focused?: boolean;
+    $smallEvent?: boolean;
+    $extraSmallEvent?: boolean;
 }

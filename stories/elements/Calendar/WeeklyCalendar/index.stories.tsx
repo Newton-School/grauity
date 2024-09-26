@@ -47,6 +47,11 @@ const defaultArgs: WeeklyCalendarProps = {
             start: new Date(2024, 8, 25, 12, 0),
             end: new Date(2024, 8, 25, 13, 0),
         },
+        {
+            title: 'Event 5',
+            start: new Date(2024, 8, 24, 12, 0),
+            end: new Date(2024, 8, 24, 12, 15),
+        },
     ],
     eventRenderer: null,
     shouldShowWeekControls: true,
