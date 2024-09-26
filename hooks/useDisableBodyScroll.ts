@@ -26,7 +26,7 @@ const useDisableBodyScroll = (disableBodyScroll: boolean = true) => {
                 }
             }
         };
-    }, []);
+    }, [disableBodyScroll]);
 };
 
 export default useDisableBodyScroll;
