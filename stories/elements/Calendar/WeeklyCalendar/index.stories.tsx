@@ -61,7 +61,7 @@ const defaultArgs: WeeklyCalendarProps = {
                 currentMonth,
                 weekStartDate + 1,
                 12,
-                45
+                35
             ),
             end: new Date(currentYear, currentMonth, weekStartDate + 1, 14, 0),
         },
@@ -92,33 +92,33 @@ const defaultArgs: WeeklyCalendarProps = {
             start: new Date(
                 currentYear,
                 currentMonth,
-                weekStartDate + 2,
-                11,
+                weekStartDate + 3,
+                14,
                 0
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 2, 12, 0),
+            end: new Date(currentYear, currentMonth, weekStartDate + 3, 14, 45),
         },
         {
             title: 'Event 6',
             start: new Date(
                 currentYear,
                 currentMonth,
-                weekStartDate + 2,
+                weekStartDate + 3,
                 12,
                 0
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 2, 14, 0),
+            end: new Date(currentYear, currentMonth, weekStartDate + 3, 14, 0),
         },
         {
             title: 'Event 7',
             start: new Date(
                 currentYear,
                 currentMonth,
-                weekStartDate + 2,
+                weekStartDate + 3,
                 14,
-                0
+                45
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 2, 15, 0),
+            end: new Date(currentYear, currentMonth, weekStartDate + 3, 18, 30),
         },
         {
             title: 'Event 8',
@@ -136,11 +136,11 @@ const defaultArgs: WeeklyCalendarProps = {
             start: new Date(
                 currentYear,
                 currentMonth,
-                weekStartDate + 2,
-                17,
+                weekStartDate + 1,
+                13,
                 0
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 2, 18, 0),
+            end: new Date(currentYear, currentMonth, weekStartDate + 1, 14, 0),
         },
         {
             title: 'Event 10',
