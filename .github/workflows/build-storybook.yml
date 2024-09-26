@@ -23,15 +23,20 @@ jobs:
           git config --global user.name 'Github Bot'
           git config --global user.email 'github-bot@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git checkout -B storybook
+          git checkout -B gh-pages
       - name: Install dependencies
         run: npm ci
       - name: Create build
         run: npm run build
       - name: Build storybook docs
         run: npm run build-storybook
-      - name: Commit
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --exit-code docs || echo "changes"
+      - name: Commit and push changes
+        if: steps.changes.outputs.changes != ''
         run: |
           git add docs -f
           git commit -m "[BOT] Build Storybook"
-          git push -u origin storybook --force
+          git push -u origin gh-pages --force
