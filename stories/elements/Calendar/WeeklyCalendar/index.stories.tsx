@@ -16,6 +16,21 @@ export default {
             </div>
         ),
     ],
+    parameters: {
+        docs: {
+            source: {
+                code: `
+<WeeklyCalendar
+  eventRenderer={null}
+  events={[]}
+  onWeekChange={() => {}}
+  shouldShowWeekControls
+  weekOffset={0}
+/>
+                `,
+            },
+        },
+    },
 };
 
 const Template = (args: WeeklyCalendarProps) => <WeeklyCalendar {...args} />;
@@ -33,66 +48,55 @@ const defaultArgs: WeeklyCalendarProps = {
             start: new Date(
                 currentYear,
                 currentMonth,
-                weekStartDate + 4,
-                10,
+                weekStartDate + 1,
+                11,
                 0
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 4, 12, 0),
+            end: new Date(currentYear, currentMonth, weekStartDate + 1, 13, 0),
         },
         {
             title: 'Event 2',
             start: new Date(
                 currentYear,
                 currentMonth,
-                weekStartDate + 4,
-                10,
+                weekStartDate + 1,
+                12,
                 45
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 4, 11, 45),
+            end: new Date(currentYear, currentMonth, weekStartDate + 1, 14, 0),
         },
         {
             title: 'Event 3',
             start: new Date(
                 currentYear,
                 currentMonth,
-                weekStartDate + 5,
-                12,
+                weekStartDate + 1,
+                14,
                 0
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 5, 12, 30),
+            end: new Date(currentYear, currentMonth, weekStartDate + 1, 15, 0),
         },
         {
             title: 'Event 4',
             start: new Date(
                 currentYear,
                 currentMonth,
-                weekStartDate + 5,
-                12,
-                30
+                weekStartDate + 1,
+                16,
+                0
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 5, 13, 0),
-        },
-        {
-            title: 'Event 8',
-            start: new Date(
-                currentYear,
-                currentMonth,
-                weekStartDate + 5,
-                12,
-                30
-            ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 5, 13, 0),
+            end: new Date(currentYear, currentMonth, weekStartDate + 1, 19, 0),
         },
         {
             title: 'Event 5',
             start: new Date(
                 currentYear,
                 currentMonth,
-                weekStartDate + 3,
-                12,
+                weekStartDate + 2,
+                11,
                 0
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 3, 13, 0),
+            end: new Date(currentYear, currentMonth, weekStartDate + 2, 12, 0),
         },
         {
             title: 'Event 6',
@@ -103,18 +107,117 @@ const defaultArgs: WeeklyCalendarProps = {
                 12,
                 0
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 2, 12, 15),
+            end: new Date(currentYear, currentMonth, weekStartDate + 2, 14, 0),
         },
         {
             title: 'Event 7',
             start: new Date(
                 currentYear,
                 currentMonth,
-                weekStartDate + 5,
+                weekStartDate + 2,
+                14,
+                0
+            ),
+            end: new Date(currentYear, currentMonth, weekStartDate + 2, 15, 0),
+        },
+        {
+            title: 'Event 8',
+            start: new Date(
+                currentYear,
+                currentMonth,
+                weekStartDate + 2,
                 15,
                 0
             ),
-            end: new Date(currentYear, currentMonth, weekStartDate + 5, 17, 30),
+            end: new Date(currentYear, currentMonth, weekStartDate + 2, 17, 0),
+        },
+        {
+            title: 'Event 9',
+            start: new Date(
+                currentYear,
+                currentMonth,
+                weekStartDate + 2,
+                17,
+                0
+            ),
+            end: new Date(currentYear, currentMonth, weekStartDate + 2, 18, 0),
+        },
+        {
+            title: 'Event 10',
+            start: new Date(
+                currentYear,
+                currentMonth,
+                weekStartDate + 3,
+                11,
+                0
+            ),
+            end: new Date(currentYear, currentMonth, weekStartDate + 3, 12, 0),
+        },
+        {
+            title: 'Event 11',
+            start: new Date(
+                currentYear,
+                currentMonth,
+                weekStartDate + 3,
+                12,
+                0
+            ),
+            end: new Date(currentYear, currentMonth, weekStartDate + 3, 13, 0),
+        },
+        {
+            title: 'Event 12',
+            start: new Date(
+                currentYear,
+                currentMonth,
+                weekStartDate + 3,
+                13,
+                0
+            ),
+            end: new Date(currentYear, currentMonth, weekStartDate + 3, 15, 0),
+        },
+        {
+            title: 'Event 13',
+            start: new Date(
+                currentYear,
+                currentMonth,
+                weekStartDate + 3,
+                15,
+                0
+            ),
+            end: new Date(currentYear, currentMonth, weekStartDate + 3, 17, 0),
+        },
+        {
+            title: 'Event 14',
+            start: new Date(
+                currentYear,
+                currentMonth,
+                weekStartDate + 3,
+                15,
+                30
+            ),
+            end: new Date(currentYear, currentMonth, weekStartDate + 3, 17, 30),
+        },
+        {
+            title: 'Event 15',
+            start: new Date(
+                currentYear,
+                currentMonth,
+                weekStartDate + 3,
+                16,
+                0
+            ),
+            end: new Date(currentYear, currentMonth, weekStartDate + 3, 18, 0),
+        },
+        {
+            title: 'Event 16',
+            start: new Date(
+                currentYear,
+                currentMonth,
+                weekStartDate + 3,
+                18,
+                0
+            ),
+            end: new Date(currentYear, currentMonth, weekStartDate + 3, 18, 30),
         },
     ],
     eventRenderer: null,
