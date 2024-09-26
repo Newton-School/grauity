@@ -203,7 +203,9 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
             >
                 {timeList.map((time, hourIndex) => (
                     <StyledCalendarTimelineRow key={time}>
-                        <StyledCalendarTimelineBlock $text={time} />
+                        <StyledCalendarTimelineBlock
+                            $text={time !== '12 AM' ? time : null}
+                        />
                         {currentWeek.map((day) => (
                             <StyledCalendarBlock
                                 key={`${day} ${time}`}
