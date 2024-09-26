@@ -31,17 +31,10 @@ export interface StyledAccordionWrappeer extends StyledDivProps {
     expanded?: boolean;
 }
 
-export interface StyledAccordionHeaderProps
-    extends React.HTMLAttributes<HTMLDivElement> {
+export interface StyledAccordionHeaderProps extends StyledDivProps {
     onClick: () => void;
 }
 
-export interface StyledAccordionContentProps
-    extends React.HTMLAttributes<HTMLDivElement> {
+export interface StyledAccordionContentProps extends StyledDivProps {
     expanded: boolean;
-}
-
-export interface StyledIconProps
-    extends React.HTMLAttributes<HTMLImageElement> {
-    src: string;
 }

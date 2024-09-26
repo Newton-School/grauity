@@ -1,12 +1,12 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 
+import { Icon } from '../Icon';
 import {
     StyledAccordionContent,
     StyledAccordionHeader,
     StyledAccordionWrapper,
-    StyledIcon,
+    StyledLine,
 } from './Accordion.styles';
-import { DOWN_ARROW_ICON, UP_ARROW_ICON } from './contants';
 import { AccordionProps } from './types';
 
 export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
@@ -25,11 +25,22 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
             <StyledAccordionWrapper ref={ref} expanded={isExpanded}>
                 <StyledAccordionHeader onClick={handleToggle}>
                     {title}
-                    <StyledIcon
-                        src={isExpanded ? UP_ARROW_ICON : DOWN_ARROW_ICON}
-                    />
+                    {isExpanded ? (
+                        <Icon
+                            color="var(--text-primary)"
+                            name="chevron-up"
+                            size="16"
+                        />
+                    ) : (
+                        <Icon
+                            color="var(--text-primary)"
+                            name="chevron-down"
+                            size="16"
+                        />
+                    )}
                 </StyledAccordionHeader>
                 <StyledAccordionContent expanded={isExpanded}>
+                    <StyledLine />
                     {children}
                 </StyledAccordionContent>
             </StyledAccordionWrapper>
