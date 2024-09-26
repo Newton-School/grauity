@@ -44,3 +44,10 @@ export const StyledCalendarEventTitleRow = styled.div<StyledDivProps>`
     justify-content: space-between;
     align-items: center;
 `;
+
+export const StyledCalendarTimeRange = styled.div<StyledDivProps>`
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+`;

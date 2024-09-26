@@ -6,6 +6,7 @@ import { get12HourFormatFromDate, getDurationInMilliseconds } from '../utils';
 import {
     StyledCalendarEventTitleRow,
     StyledCalendarEventWrapper,
+    StyledCalendarTimeRange,
 } from './CalendarEvent.styles';
 import { CalendarEventProps } from './types';
 
@@ -60,13 +61,15 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
                             </Chip>
                         )}
                 </StyledCalendarEventTitleRow>
-                {getDurationInMilliseconds(start, end) >=
-                    minDurationToDisplayTime && (
-                    <span>
-                        {get12HourFormatFromDate(start)} -{' '}
-                        {get12HourFormatFromDate(end)}
-                    </span>
-                )}
+                <StyledCalendarTimeRange>
+                    {getDurationInMilliseconds(start, end) >=
+                        minDurationToDisplayTime && (
+                        <span>
+                            {get12HourFormatFromDate(start)} -{' '}
+                            {get12HourFormatFromDate(end)}
+                        </span>
+                    )}
+                </StyledCalendarTimeRange>
             </StyledCalendarEventWrapper>
         );
     }

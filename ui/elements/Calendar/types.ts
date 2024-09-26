@@ -3,6 +3,7 @@ import React from 'react';
 export type EventRendererFn<T> = (event: CalendarEvent<T>) => React.ReactNode;
 
 export interface CalendarEvent<T = {}> {
+    title?: string;
     start: Date;
     end: Date;
     allDay?: boolean;
