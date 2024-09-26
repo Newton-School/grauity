@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { StyledDivProps } from '../../../common/types';
+
 export type PopOverDirection = 'top' | 'right' | 'bottom' | 'left';
 
 export type PopOverOffset = {
@@ -67,10 +69,6 @@ export interface PopOverProps {
      * @default false
      */
     disableBackgroundScroll?: boolean;
-}
-
-export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
-    ref?: React.Ref<HTMLDivElement>;
 }
 
 export interface StyledPopOverContainerProps extends StyledDivProps {

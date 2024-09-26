@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { StyledDivProps } from '../../../common/types';
+
 export interface AccordionProps {
     /**
      * Title of the accordion.
@@ -23,10 +25,6 @@ export interface AccordionProps {
      */
     children?: React.ReactNode;
 }
-export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
-    ref?: React.Ref<HTMLDivElement>;
-}
-
 export interface StyledAccordionWrappeer extends StyledDivProps {
     expanded?: boolean;
 }

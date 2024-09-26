@@ -1,5 +1,10 @@
-import React from 'react';
 import { grauityIconName } from 'ui/core';
+
+import {
+    StyledButtonProps,
+    StyledInputProps,
+    StyledSelectProps,
+} from '../../../common/types';
 
 export interface DropdownOption {
     id: number | string;
@@ -55,19 +60,10 @@ export interface SelectDropdownProps {
     noOptionsText?: string;
 }
 
-export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
-    ref?: React.Ref<HTMLDivElement>;
-}
+export interface StyledSelectDropdownWrapperProps extends StyledSelectProps {}
 
-export interface StyledSelectDropdownWrapperProps
-    extends React.SelectHTMLAttributes<HTMLSelectElement> {
-    ref?: React.Ref<HTMLSelectElement>;
-}
-
-export interface StyledSelectDropdownItemProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface StyledSelectDropdownItemProps extends StyledButtonProps {
     $disabled?: boolean;
 }
 
-export interface StyledDropdownSearchInputProps
-    extends React.InputHTMLAttributes<HTMLInputElement> {}
+export interface StyledDropdownSearchInputProps extends StyledInputProps {}

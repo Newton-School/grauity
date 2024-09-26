@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { StyledDivProps } from '../../../common/types';
+
 export type ChipVariants =
     | 'brand'
     | 'success'
@@ -63,7 +65,7 @@ export interface ChipProps {
     children?: React.ReactNode;
 }
 
-export interface StyledChip extends React.HTMLAttributes<HTMLDivElement> {
+export interface StyledChip extends StyledDivProps {
     variant?: ChipVariants;
     size?: ChipSizes;
     hasBorder?: boolean;
