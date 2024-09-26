@@ -30,13 +30,8 @@ jobs:
         run: npm run build
       - name: Build storybook docs
         run: npm run build-storybook
-      - name: Check for changes
-        id: changes
-        run: |
-          git diff --exit-code docs || echo "changes"
       - name: Commit and push changes
-        if: steps.changes.outputs.changes != ''
         run: |
           git add docs -f
-          git commit -m "[BOT] Build Storybook"
+          git commit --allow-empty -m "[BOT] Build Storybook"
           git push -u origin gh-pages --force
