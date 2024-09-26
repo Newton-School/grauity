@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Button, { IconButton } from '../Button';
 import { CALENDAR_BLOCK_HEIGHT } from './constants';
@@ -63,7 +63,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         onWeekChange(weekOffset);
     }, [weekOffset]);
 
-    useMemo(() => {
+    useEffect(() => {
         if (events) {
             const newEventsGroupedByDay: CalendarEventRecordExtended<T> = {};
             events.forEach((event) => {
@@ -103,7 +103,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         }
     }, [events]);
 
-    useMemo(async () => {
+    const changeOverlapperdEventsData = async () => {
         if (eventsGroupedByDay) {
             const newOverlappedEventsData: CalendarEventRecordExtended<T> = {};
             await Promise.all(
@@ -116,9 +116,13 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
             );
             setOverlappedEventsData(newOverlappedEventsData);
         }
+    };
+
+    useEffect(() => {
+        changeOverlapperdEventsData();
     }, [eventsGroupedByDay]);
 
-    useMemo(() => {
+    useEffect(() => {
         if (overlappedEventsData) {
             const newCalendarEvents: CalendarEventRecordExtended<T> = {};
             Object.keys(overlappedEventsData).forEach((day) => {
