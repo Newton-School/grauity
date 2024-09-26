@@ -9,7 +9,7 @@ on:
         branches: [master]
 
 jobs:
-  report:
+  build-storybook:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,8 +20,8 @@ jobs:
           node-version: 20
       - name: Setup git
         run: |
-          git config --global user.name 'Saksham Bindal'
-          git config --global user.email 'cybersaksham@users.noreply.github.com'
+          git config --global user.name 'Github Bot'
+          git config --global user.email 'github-bot@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
           git checkout -B storybook
       - name: Install dependencies
@@ -33,5 +33,5 @@ jobs:
       - name: Commit
         run: |
           git add docs -f
-          git commit -m "Build Storybook"
+          git commit -m "[BOT] Build Storybook"
           git push -u origin storybook --force
