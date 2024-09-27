@@ -165,9 +165,9 @@ export const constantGlobalStyle = `
     --font-weight-800: 800;
     --font-weight-900: 900;
 
-    --font-weight-medium: var(--font-weight-500);
-    --font-weight-semibold: var(--font-weight-600);
-    --font-weight-bold: var(--font-weight-700);
+    --font-weight-medium: var(--font-weight-450);
+    --font-weight-semibold: var(--font-weight-550);
+    --font-weight-bold: var(--font-weight-650);
 
     --backdrop-blur-0: blur(0px);
     --backdrop-blur-4px: blur(4px);
