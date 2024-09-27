@@ -24,10 +24,10 @@ jobs:
           git checkout -B gh-pages
       - name: Install dependencies
         run: npm ci
-      - name: Create build
-        run: npm run build
       - name: Build storybook docs
-        run: npm run build-storybook
+        run: |
+          npm run build-icons
+          npm run build-storybook
       - name: Commit and push changes
         run: |
           git add docs -f
