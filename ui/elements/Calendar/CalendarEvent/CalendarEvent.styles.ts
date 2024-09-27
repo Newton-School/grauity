@@ -17,10 +17,10 @@ export const StyledCalendarEventWrapper = styled.div<StyledCalendarEventWrapperP
         ${(props) => props.$borderColor || 'var(--bg-primary, #fff)'};
     color: ${(props) => props.$textColor || 'var(--text-action2, #fff)'};
     background: ${(props) =>
-        props.$backgroundColor || 'var(--bg-action-brand, #0673f9)'};
+        props.$backgroundColor || 'var(--text-brand, #0673F9);'};
     font-size: 12px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold, 550);
     letter-spacing: 0.1px;
     cursor: pointer;
 
@@ -62,9 +62,14 @@ export const StyledCalendarEventText = styled.div<StyledDivProps>`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    line-height: 160%;
 `;
 
-export const StyledCalendarEventTimeRange = styled(StyledCalendarEventText)`
+export const StyledCalendarEventTimeRange = styled.div`
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 10px;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium, 450);
 `;
