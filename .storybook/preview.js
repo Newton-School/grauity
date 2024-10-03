@@ -4,6 +4,7 @@ import {
     withThemeBackground,
     withGrauityInit,
 } from './decorators';
+import '../ui/css/index.scss';
 
 import STORYBOOK_THEME from './theme';
 
