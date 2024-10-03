@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { StyledDivProps } from '../../../common/types';
 import Button from '../Button';
 import {
     StyledDropdownHeaderProps,
@@ -14,12 +15,14 @@ export const StyledDropdownWrapper = styled.div<StyledDropdownWrapperProps>`
     height: 100%;
     width: 100%;
     position: relative;
+    max-width: 200px;
 `;
 
 export const StyledDropdownHeader = styled.div<StyledDropdownHeaderProps>`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
     height: 100%;
     width: 100%;
     padding: var(--spacing-12px, 12px);
@@ -42,7 +45,8 @@ export const StyledDropdownHeaderTitle = styled.div`
     overflow: hidden;
 `;
 
-export const StyledDropdownContainer = styled.div`
+export const StyledDropdownContainer = styled.div<StyledDivProps>`
+    box-sizing: border-box;
     position: absolute;
     top: calc(100% + var(--spacing-4px, 4px));
     width: 100%;
@@ -99,6 +103,7 @@ export const StyledDropdownItemText = styled.div<StyledDropdownItemTextProps>`
 `;
 
 export const StyledDropdownSearchContainer = styled.div`
+    box-sizing: border-box;
     width: 100%;
     height: var(--spacing-36px, 36px);
     padding: var(--spacing-12px, 12px);
@@ -112,6 +117,8 @@ export const StyledDropdownSearchContainer = styled.div`
 `;
 
 export const StyledDropdownSearchInput = styled.input<StyledDropdownSearchInputProps>`
+    box-sizing: border-box;
+    width: 100%;
     outline: none;
     border: none;
     background: var(--bg-primary, #ffffff);

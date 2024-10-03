@@ -1,6 +1,13 @@
 import { debounce } from 'lodash';
-import React, { forwardRef, useCallback, useEffect, useState } from 'react';
+import React, {
+    forwardRef,
+    useCallback,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 
+import { useClickAway } from '../../../hooks';
 import { Icon } from '../Icon';
 import DropdownListItem from './DropdownListItem';
 import {
@@ -38,6 +45,8 @@ const MultiSelectDropdown = forwardRef<
     const [selectedOptionsIds, setSelectedOptionsIds] = useState<
         Record<string, boolean>
     >({});
+
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     const clickOnOption = (option: DropdownOption) => {
         const newSelectedOptionsIds = {
@@ -97,6 +106,8 @@ const MultiSelectDropdown = forwardRef<
         setAllOptionsSelected(defaultAllSelected);
     }, [defaultAllSelected]);
 
+    useClickAway(dropdownRef, () => setIsOpened(false));
+
     return (
         <StyledDropdownWrapper ref={ref} role="combobox">
             <StyledDropdownHeader
@@ -109,7 +120,7 @@ const MultiSelectDropdown = forwardRef<
                 <Icon name={isOpened ? 'chevron-up' : 'chevron-down'} />
             </StyledDropdownHeader>
             {isOpened && (
-                <StyledDropdownContainer>
+                <StyledDropdownContainer ref={dropdownRef}>
                     {shouldEnableSearch && (
                         <StyledDropdownSearchContainer>
                             <Icon name="search" />
