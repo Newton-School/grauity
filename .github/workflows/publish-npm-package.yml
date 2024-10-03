@@ -18,6 +18,8 @@ jobs:
                 with:
                     node-version: 20
             -   run: npm ci
+            -   run: git submodule init
+            -   run: git submodule update
             -   run: npm run build
             -   uses: JS-DevTools/npm-publish@v1
                 with:
