@@ -4,6 +4,7 @@ import { StyledCalendarEventWrapperProps, StyledDivProps } from './types';
 
 export const StyledCalendarEventWrapper = styled.div<StyledCalendarEventWrapperProps>`
     font-family: var(--font-family, 'Mona Sans');
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
     padding: 4px;

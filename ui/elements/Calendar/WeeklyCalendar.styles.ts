@@ -145,6 +145,7 @@ export const StyledCalendarTimelineRow = styled(
 `;
 
 export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
+    box-sizing: border-box;
     height: 100%;
     display: flex;
     justify-content: center;
