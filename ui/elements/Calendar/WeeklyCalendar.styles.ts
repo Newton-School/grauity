@@ -40,6 +40,7 @@ export const StyledCalendarHeader = styled.div<StyledDivProps>`
 `;
 
 export const StyledCalendarRow = styled.div<StyledDivProps>`
+    box-sizing: border-box;
     width: 100%;
     min-width: 800px;
     background: var(--bg-primary, #fff);
@@ -58,6 +59,7 @@ export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBloc
     left: 0;
     z-index: 2;
     background: var(--bg-primary, #fff);
+    box-sizing: border-box;
     width: var(--calendar-sidebar-width);
     border-right: var(--calendar-block-border);
     height: 100%;
@@ -89,6 +91,7 @@ export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBloc
 `;
 
 export const StyledCalendarHeaderBlock = styled.div<StyledCalendarBlockProps>`
+    box-sizing: border-box;
     height: 100%;
     display: flex;
     padding: var(--spacing-12px, 12px);
