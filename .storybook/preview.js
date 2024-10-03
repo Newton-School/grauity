@@ -48,8 +48,8 @@ export const globalTypes = {
         toolbar: {
             title: 'Component Theme',
             items: [
-                { value: 'light', title: 'Light', icon: 'circlehollow' },
-                { value: 'dark', title: 'Dark', icon: 'circle' },
+                { value: 'light', title: 'Light', icon: 'sun' },
+                { value: 'dark', title: 'Dark', icon: 'moon' },
             ],
             showName: true,
             dynamicTitle: true,
