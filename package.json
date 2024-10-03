@@ -1,6 +1,6 @@
 {
     "name": "@newtonschool/grauity",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Design System for Newton School",
     "keywords": [
         "Newton School",
@@ -66,6 +66,10 @@
         {
             "staticPath": "ui/fonts",
             "staticOutPath": "fonts"
+        },
+        {
+            "staticPath": "ui/css",
+            "staticOutPath": "css"
         }
     ],
     "typeRoots": [
