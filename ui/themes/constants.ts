@@ -1,6 +1,4 @@
-import { ThemeType } from './types';
-
-const THEMES: { [x: string]: ThemeType } = {
+const THEMES: { [x: string]: string } = {
     LIGHT: 'light',
     DARK: 'dark',
 };
