@@ -4,6 +4,10 @@ export { GrauityInit } from './init';
 
 // NSGlobalStyles
 export {
+    GlobalStyle as GrauityGlobalStyle,
+    GrauityThemeProvider,
+    DARK_THEME_CONFIG as NS_DARK_THEME_CONFIG,
+    LIGHT_THEME_CONFIG as NS_LIGHT_THEME_CONFIG,
     GlobalStyle as NSGlobalStyle,
     ThemeConsumer as NSThemeConsumer,
     ThemeContext as NSThemeContext,
