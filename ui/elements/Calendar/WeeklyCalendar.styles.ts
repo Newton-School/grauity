@@ -127,6 +127,8 @@ export const StyledCalendarDateLabel = styled.div<StyledCalendarBlockProps>`
     justify-content: center;
     align-items: center;
     gap: 10px;
+    width: 20px;
+    height: 20px;
     border-radius: 32px;
     background: var(--bg-primary, #fff);
 
