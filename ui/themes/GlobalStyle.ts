@@ -1,7 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-import { CustomGlobalStyleInterface } from './types';
-
 export const constantGlobalStyle = `
     --neutral-0:   #FFFFFF;
     --neutral-100: #F6F7F9;
@@ -179,94 +177,216 @@ export const constantGlobalStyle = `
     --backdrop-blur: var(--backdrop-blur-8px);
 `;
 
-const GlobalStyle = createGlobalStyle<CustomGlobalStyleInterface>`
+const GlobalStyle = createGlobalStyle<any>`
     :root {
         ${constantGlobalStyle}
+    }
 
+    .grauity-theme-light {
         // Custom tokens to handle colors based on theme
         // Text Colors
-        --text-primary: ${(props) => props.theme.colors.text.textPrimary};
-        --text-secondary: ${(props) => props.theme.colors.text.textSecondary};
-        --text-disabled: ${(props) => props.theme.colors.text.textDisabled};
-        --text-action: ${(props) => props.theme.colors.text.textAction};
-        --text-action2: ${(props) => props.theme.colors.text.textAction2};
-        --text-brand: ${(props) => props.theme.colors.text.textBrand};
-        --text-success: ${(props) => props.theme.colors.text.textSuccess};
-        --text-error: ${(props) => props.theme.colors.text.textError};
-        --text-warning: ${(props) => props.theme.colors.text.textWarning};
-        --text-yellow: ${(props) => props.theme.colors.text.textYellow};
-        --text-purple: ${(props) => props.theme.colors.text.textPurple};
+        --text-primary: ${(props) => props.theme.light.colors.text.textPrimary};
+        --text-secondary: ${(props) =>
+        props.theme.light.colors.text.textSecondary};
+        --text-disabled: ${(props) =>
+        props.theme.light.colors.text.textDisabled};
+        --text-action: ${(props) => props.theme.light.colors.text.textAction};
+        --text-action2: ${(props) => props.theme.light.colors.text.textAction2};
+        --text-brand: ${(props) => props.theme.light.colors.text.textBrand};
+        --text-success: ${(props) => props.theme.light.colors.text.textSuccess};
+        --text-error: ${(props) => props.theme.light.colors.text.textError};
+        --text-warning: ${(props) => props.theme.light.colors.text.textWarning};
+        --text-yellow: ${(props) => props.theme.light.colors.text.textYellow};
+        --text-purple: ${(props) => props.theme.light.colors.text.textPurple};
 
         // Background Colors
-        --bg-primary: ${(props) => props.theme.colors.background.bgPrimary};
-        --bg-secondary: ${(props) => props.theme.colors.background.bgSecondary};
-        --bg-tertiary: ${(props) => props.theme.colors.background.bgTertiary};
-        --bg-brand: ${(props) => props.theme.colors.background.bgBrand};
-        --bg-success: ${(props) => props.theme.colors.background.bgSuccess};
-        --bg-error: ${(props) => props.theme.colors.background.bgError};
-        --bg-warning: ${(props) => props.theme.colors.background.bgWarning};
-        --bg-yellow: ${(props) => props.theme.colors.background.bgYellow};
-        --bg-purple: ${(props) => props.theme.colors.background.bgPurple};
-        --bg-disabled: ${(props) => props.theme.colors.background.bgDisabled};
+        --bg-primary: ${(props) =>
+        props.theme.light.colors.background.bgPrimary};
+        --bg-secondary: ${(props) =>
+        props.theme.light.colors.background.bgSecondary};
+        --bg-tertiary: ${(props) =>
+        props.theme.light.colors.background.bgTertiary};
+        --bg-brand: ${(props) => props.theme.light.colors.background.bgBrand};
+        --bg-success: ${(props) =>
+        props.theme.light.colors.background.bgSuccess};
+        --bg-error: ${(props) => props.theme.light.colors.background.bgError};
+        --bg-warning: ${(props) =>
+        props.theme.light.colors.background.bgWarning};
+        --bg-yellow: ${(props) => props.theme.light.colors.background.bgYellow};
+        --bg-purple: ${(props) => props.theme.light.colors.background.bgPurple};
+        --bg-disabled: ${(props) =>
+        props.theme.light.colors.background.bgDisabled};
 
         --bg-action-brand: ${(props) =>
-        props.theme.colors.background.bgActionBrand};
+        props.theme.light.colors.background.bgActionBrand};
         --bg-action-success: ${(props) =>
-        props.theme.colors.background.bgActionSuccess};
+        props.theme.light.colors.background.bgActionSuccess};
         --bg-action-error: ${(props) =>
-        props.theme.colors.background.bgActionError};
+        props.theme.light.colors.background.bgActionError};
         --bg-action-warning: ${(props) =>
-        props.theme.colors.background.bgActionWarning};
+        props.theme.light.colors.background.bgActionWarning};
         --bg-action-yellow: ${(props) =>
-        props.theme.colors.background.bgActionYellow};
+        props.theme.light.colors.background.bgActionYellow};
         --bg-action-purple: ${(props) =>
-        props.theme.colors.background.bgActionPurple};
+        props.theme.light.colors.background.bgActionPurple};
 
         --bg-invert-primary: ${(props) =>
-        props.theme.colors.background.bgInvertPrimary};
+        props.theme.light.colors.background.bgInvertPrimary};
         --bg-invert-secondary: ${(props) =>
-        props.theme.colors.background.bgInvertSecondary};
+        props.theme.light.colors.background.bgInvertSecondary};
         --bg-invert-tertiary: ${(props) =>
-        props.theme.colors.background.bgInvertTertiary};
+        props.theme.light.colors.background.bgInvertTertiary};
 
         --bg-primary-hover: ${(props) =>
-        props.theme.colors.background.bgPrimaryHover};
+        props.theme.light.colors.background.bgPrimaryHover};
         --bg-invert-primary-hover: ${(props) =>
-        props.theme.colors.background.bgInvertPrimaryHover};
+        props.theme.light.colors.background.bgInvertPrimaryHover};
         --bg-action-brand-hover: ${(props) =>
-        props.theme.colors.background.bgActionBrandHover};
+        props.theme.light.colors.background.bgActionBrandHover};
         --bg-action-success-hover: ${(props) =>
-        props.theme.colors.background.bgActionSuccessHover};
+        props.theme.light.colors.background.bgActionSuccessHover};
         --bg-action-error-hover: ${(props) =>
-        props.theme.colors.background.bgActionErrorHover};
+        props.theme.light.colors.background.bgActionErrorHover};
         --bg-action-warning-hover: ${(props) =>
-        props.theme.colors.background.bgActionWarningHover};
+        props.theme.light.colors.background.bgActionWarningHover};
         --bg-action-yellow-hover: ${(props) =>
-        props.theme.colors.background.bgActionYellowHover};
+        props.theme.light.colors.background.bgActionYellowHover};
 
         // Alpha Colors
-        --alpha-hover: ${(props) => props.theme.colors.alpha.alphaHover};
-        --alpha-pressed: ${(props) => props.theme.colors.alpha.alphaPressed};
+        --alpha-hover: ${(props) => props.theme.light.colors.alpha.alphaHover};
+        --alpha-pressed: ${(props) =>
+        props.theme.light.colors.alpha.alphaPressed};
         /* --alpha-overlay: ${(props) =>
-        props.theme.colors.alpha.alphaOverlay}; */
+        props.theme.light.colors.alpha.alphaOverlay}; */
 
         // Border Colors
-        --border: ${(props) => props.theme.colors.border.border};
-        --border-brand: ${(props) => props.theme.colors.border.borderBrand};
-        --border-success: ${(props) => props.theme.colors.border.borderSuccess};
-        --border-error: ${(props) => props.theme.colors.border.borderError};
-        --border-warning: ${(props) => props.theme.colors.border.borderWarning};
-        --border-yellow: ${(props) => props.theme.colors.border.borderYellow};
-        --border-purple: ${(props) => props.theme.colors.border.borderPurple};
-        --border-neutral: ${(props) => props.theme.colors.border.borderNeutral};
+        --border: ${(props) => props.theme.light.colors.border.border};
+        --border-brand: ${(props) =>
+        props.theme.light.colors.border.borderBrand};
+        --border-success: ${(props) =>
+        props.theme.light.colors.border.borderSuccess};
+        --border-error: ${(props) =>
+        props.theme.light.colors.border.borderError};
+        --border-warning: ${(props) =>
+        props.theme.light.colors.border.borderWarning};
+        --border-yellow: ${(props) =>
+        props.theme.light.colors.border.borderYellow};
+        --border-purple: ${(props) =>
+        props.theme.light.colors.border.borderPurple};
+        --border-neutral: ${(props) =>
+        props.theme.light.colors.border.borderNeutral};
 
         // Font
-        --font-family: ${(props) => props.theme.font.fontFamily};
-        --font-family-code: ${(props) => props.theme.font.fontFamilyCode};
+        --font-family: ${(props) => props.theme.light.font.fontFamily};
+        --font-family-code: ${(props) => props.theme.light.font.fontFamilyCode};
 
         // Custom tokens to handle visibility based on state
-        --light-visible: ${(props) => props.theme.visibility.lightVisible};
-        --dark-visible: ${(props) => props.theme.visibility.darkVisible};
+        --light-visible: ${(props) =>
+        props.theme.light.visibility.lightVisible};
+        --dark-visible: ${(props) => props.theme.light.visibility.darkVisible};
+    }
+
+    .grauity-theme-dark {
+        // Custom tokens to handle colors based on theme
+        // Text Colors
+        --text-primary: ${(props) => props.theme.dark.colors.text.textPrimary};
+        --text-secondary: ${(props) =>
+        props.theme.dark.colors.text.textSecondary};
+        --text-disabled: ${(props) =>
+        props.theme.dark.colors.text.textDisabled};
+        --text-action: ${(props) => props.theme.dark.colors.text.textAction};
+        --text-action2: ${(props) => props.theme.dark.colors.text.textAction2};
+        --text-brand: ${(props) => props.theme.dark.colors.text.textBrand};
+        --text-success: ${(props) => props.theme.dark.colors.text.textSuccess};
+        --text-error: ${(props) => props.theme.dark.colors.text.textError};
+        --text-warning: ${(props) => props.theme.dark.colors.text.textWarning};
+        --text-yellow: ${(props) => props.theme.dark.colors.text.textYellow};
+        --text-purple: ${(props) => props.theme.dark.colors.text.textPurple};
+
+        // Background Colors
+        --bg-primary: ${(props) =>
+        props.theme.dark.colors.background.bgPrimary};
+        --bg-secondary: ${(props) =>
+        props.theme.dark.colors.background.bgSecondary};
+        --bg-tertiary: ${(props) =>
+        props.theme.dark.colors.background.bgTertiary};
+        --bg-brand: ${(props) => props.theme.dark.colors.background.bgBrand};
+        --bg-success: ${(props) =>
+        props.theme.dark.colors.background.bgSuccess};
+        --bg-error: ${(props) => props.theme.dark.colors.background.bgError};
+        --bg-warning: ${(props) =>
+        props.theme.dark.colors.background.bgWarning};
+        --bg-yellow: ${(props) => props.theme.dark.colors.background.bgYellow};
+        --bg-purple: ${(props) => props.theme.dark.colors.background.bgPurple};
+        --bg-disabled: ${(props) =>
+        props.theme.dark.colors.background.bgDisabled};
+
+        --bg-action-brand: ${(props) =>
+        props.theme.dark.colors.background.bgActionBrand};
+        --bg-action-success: ${(props) =>
+        props.theme.dark.colors.background.bgActionSuccess};
+        --bg-action-error: ${(props) =>
+        props.theme.dark.colors.background.bgActionError};
+        --bg-action-warning: ${(props) =>
+        props.theme.dark.colors.background.bgActionWarning};
+        --bg-action-yellow: ${(props) =>
+        props.theme.dark.colors.background.bgActionYellow};
+        --bg-action-purple: ${(props) =>
+        props.theme.dark.colors.background.bgActionPurple};
+
+        --bg-invert-primary: ${(props) =>
+        props.theme.dark.colors.background.bgInvertPrimary};
+        --bg-invert-secondary: ${(props) =>
+        props.theme.dark.colors.background.bgInvertSecondary};
+        --bg-invert-tertiary: ${(props) =>
+        props.theme.dark.colors.background.bgInvertTertiary};
+
+        --bg-primary-hover: ${(props) =>
+        props.theme.dark.colors.background.bgPrimaryHover};
+        --bg-invert-primary-hover: ${(props) =>
+        props.theme.dark.colors.background.bgInvertPrimaryHover};
+        --bg-action-brand-hover: ${(props) =>
+        props.theme.dark.colors.background.bgActionBrandHover};
+        --bg-action-success-hover: ${(props) =>
+        props.theme.dark.colors.background.bgActionSuccessHover};
+        --bg-action-error-hover: ${(props) =>
+        props.theme.dark.colors.background.bgActionErrorHover};
+        --bg-action-warning-hover: ${(props) =>
+        props.theme.dark.colors.background.bgActionWarningHover};
+        --bg-action-yellow-hover: ${(props) =>
+        props.theme.dark.colors.background.bgActionYellowHover};
+
+        // Alpha Colors
+        --alpha-hover: ${(props) => props.theme.dark.colors.alpha.alphaHover};
+        --alpha-pressed: ${(props) =>
+        props.theme.dark.colors.alpha.alphaPressed};
+        /* --alpha-overlay: ${(props) =>
+        props.theme.dark.colors.alpha.alphaOverlay}; */
+
+        // Border Colors
+        --border: ${(props) => props.theme.dark.colors.border.border};
+        --border-brand: ${(props) =>
+        props.theme.dark.colors.border.borderBrand};
+        --border-success: ${(props) =>
+        props.theme.dark.colors.border.borderSuccess};
+        --border-error: ${(props) =>
+        props.theme.dark.colors.border.borderError};
+        --border-warning: ${(props) =>
+        props.theme.dark.colors.border.borderWarning};
+        --border-yellow: ${(props) =>
+        props.theme.dark.colors.border.borderYellow};
+        --border-purple: ${(props) =>
+        props.theme.dark.colors.border.borderPurple};
+        --border-neutral: ${(props) =>
+        props.theme.dark.colors.border.borderNeutral};
+
+        // Font
+        --font-family: ${(props) => props.theme.dark.font.fontFamily};
+        --font-family-code: ${(props) => props.theme.dark.font.fontFamilyCode};
+
+        // Custom tokens to handle visibility based on state
+        --light-visible: ${(props) => props.theme.dark.visibility.lightVisible};
+        --dark-visible: ${(props) => props.theme.dark.visibility.darkVisible};
     }
 `;
 

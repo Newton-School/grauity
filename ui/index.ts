@@ -2,12 +2,17 @@ export { ICON_TAGS, TAG_ICONS } from './core';
 export type { GrauityInitProps } from './init';
 export { GrauityInit } from './init';
 
-// NSThemeWrapper
+// NSGlobalStyles
 export {
+    GlobalStyle as GrauityGlobalStyle,
+    GrauityThemeProvider,
+    DARK_THEME_CONFIG as NS_DARK_THEME_CONFIG,
+    LIGHT_THEME_CONFIG as NS_LIGHT_THEME_CONFIG,
+    GlobalStyle as NSGlobalStyle,
     ThemeConsumer as NSThemeConsumer,
     ThemeContext as NSThemeContext,
     ThemeWrapper as NSThemeWrapper,
-} from './themes/ThemeContext';
+} from './themes';
 
 // NSIcon
 export { type IconProps, Icon as NSIcon } from './elements/Icon';

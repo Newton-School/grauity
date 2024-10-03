@@ -47,6 +47,8 @@ export const StyledTableHeadingCell = styled.th<TableHeadingCellComponentProps>`
 `;
 
 export const StyledTableRow = styled.tr<TableRowComponentProps>`
+    background-color: var(--bg-primary, #fff);
+
     ${({ condensed }) =>
         !condensed &&
         css`

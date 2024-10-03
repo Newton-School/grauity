@@ -5,19 +5,17 @@ import React, {
     useMemo,
     useState,
 } from 'react';
-import { ThemeProvider } from 'styled-components';
 
 import THEME from './constants';
 import DARK_THEME_OBJ from './darkThemeConstants';
-import GlobalStyle from './GlobalStyle';
 import LIGHT_THEME_OBJ from './lightThemeConstants';
-import { ThemeType } from './types';
+import { GrauityThemeProvider } from './ThemeProvider';
 
 const ThemeContext = createContext(null);
 
 interface ThemeWrapperProps {
     children: React.ReactNode;
-    defaultTheme?: ThemeType;
+    defaultTheme?: any;
     usePreferredColorScheme?: boolean;
 }
 
@@ -33,7 +31,7 @@ const ThemeWrapper = ({
     const [isThemeEnabled, setIsThemeEnabled] = useState(true);
 
     const handleToggleTheme = useCallback(
-        (themeName: ThemeType) => {
+        (themeName: any) => {
             setTheme((oldTheme) =>
                 themeName === THEME.LIGHT
                     ? { ...oldTheme, themeName: THEME.LIGHT }
@@ -105,20 +103,25 @@ const ThemeWrapper = ({
         };
     }, []);
 
+    useEffect(() => {
+        if (isThemeEnabled) {
+            // Remove any existing theme classes
+            document.body.classList.forEach(className => {
+                if (className.startsWith('grauity-theme-')) {
+                    document.body.classList.remove(className);
+                }
+            });
+    
+            // Add the new theme class
+            document.body.classList.add(`grauity-theme-${value?.theme?.themeName}`);
+        }
+    }, [isThemeEnabled, value?.theme?.themeName]);
+
     return (
         <ThemeContext.Provider value={isThemeEnabled ? value : defaultValue}>
-            <ThemeProvider
-                theme={
-                    isThemeEnabled
-                        ? { ...value.theme.themeColors }
-                        : { ...defaultValue.theme.themeColors }
-                }
-            >
-                <>
-                    <GlobalStyle />
-                    {children}
-                </>
-            </ThemeProvider>
+            <GrauityThemeProvider>
+                {children}
+            </GrauityThemeProvider>
         </ThemeContext.Provider>
     );
 };

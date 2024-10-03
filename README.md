@@ -149,3 +149,10 @@ grauity$: npm run build-icons:optimize
 ```bash
 grauity$: npm run build-icons
 ```
+
+### Use icons in newton-web
+To use grauity icons, add the following import in `global-styles.scss` or any root-level CSS/SCSS file. Make sure CSS/SCSS loaders are setup properly in your app.
+
+```js
+@import '~@newtonschool/grauity/dist/css/index.scss';
+```

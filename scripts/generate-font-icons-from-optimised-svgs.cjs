@@ -56,7 +56,7 @@ generateFonts({
             throw new Error(
                 `No tag provided for the icon ${absoluteFilePath}.` +
                     ' The tags should be separated by a pipe character (_).' +
-                    " For example: 'tag1_tag2_tag3_..._tagN_icon-name.svg'"
+                    ' For example: \'tag1_tag2_tag3_..._tagN_icon-name.svg\''
             );
         }
         const tags = splitBaseName.slice(0, splitBaseName.length - 1);
@@ -94,7 +94,7 @@ generateFonts({
         let scssContent = results.assetsOut.scss;
         scssContent = scssContent.replace(
             /\.\/grauity-icons\./g,
-            'fonts/grauity-icons.'
+            '../fonts/grauity-icons.'
         );
         fs.writeFile(results.options.pathOptions.scss, scssContent, (err) => {
             if (err) {
