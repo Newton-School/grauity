@@ -1,3 +1,4 @@
+import { Shimmer } from 'react-shimmer';
 import styled, { css } from 'styled-components';
 
 import { CALENDAR_BLOCK_HEIGHT, CALENDAR_SIDEBAR_WIDTH } from './constants';
@@ -37,9 +38,11 @@ export const StyledCalendarHeader = styled.div<StyledDivProps>`
     top: 0;
     z-index: 4;
     background: var(--bg-primary, #fff);
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.12);
 `;
 
 export const StyledCalendarRow = styled.div<StyledDivProps>`
+    box-sizing: border-box;
     width: 100%;
     min-width: 800px;
     background: var(--bg-primary, #fff);
@@ -58,6 +61,7 @@ export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBloc
     left: 0;
     z-index: 2;
     background: var(--bg-primary, #fff);
+    box-sizing: border-box;
     width: var(--calendar-sidebar-width);
     border-right: var(--calendar-block-border);
     height: 100%;
@@ -89,6 +93,7 @@ export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBloc
 `;
 
 export const StyledCalendarHeaderBlock = styled.div<StyledCalendarBlockProps>`
+    box-sizing: border-box;
     height: 100%;
     display: flex;
     padding: var(--spacing-12px, 12px);
@@ -124,6 +129,8 @@ export const StyledCalendarDateLabel = styled.div<StyledCalendarBlockProps>`
     justify-content: center;
     align-items: center;
     gap: 10px;
+    width: 20px;
+    height: 20px;
     border-radius: 32px;
     background: var(--bg-primary, #fff);
 
@@ -197,4 +204,12 @@ export const StyledEventWrapper = styled.div<StyledEventWrapperProps>`
     width: ${({ $widthFactor }) => `${100 * $widthFactor}%`};
     overflow: hidden;
     height: ${({ $height }) => `${$height}%`};
+`;
+
+export const StyledPlaceholderBlock = styled(Shimmer)<StyledDivProps>`
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--bg-primary, #fff);
 `;

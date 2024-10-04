@@ -1,4 +1,6 @@
+/* eslint-disable indent */
 import React, { useEffect, useRef, useState } from 'react';
+import ContainerDimensions from 'react-container-dimensions';
 
 import Button, { IconButton } from '../Button';
 import { CALENDAR_BLOCK_HEIGHT } from './constants';
@@ -16,6 +18,7 @@ import {
     getTimeListIn12HourFormat,
     getWeekByOffset,
     getWeekDayLabel,
+    isPlaceholderBlock,
 } from './utils';
 import {
     StyledCalendarBlock,
@@ -29,6 +32,7 @@ import {
     StyledCalendarTimelineRow,
     StyledCalendarWrapper,
     StyledEventWrapper,
+    StyledPlaceholderBlock,
 } from './WeeklyCalendar.styles';
 
 export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
@@ -38,6 +42,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         shouldShowWeekControls = true,
         weekOffset: initialWeekOffset = 0,
         onWeekChange = () => {},
+        loading = false,
     } = props;
 
     const [weekOffset, setWeekOffset] = useState(initialWeekOffset);
@@ -168,6 +173,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                     <StyledCalendarMonthButton>
                         <IconButton
                             icon="chevron-left"
+                            disabled={loading}
                             onClick={() => setWeekOffset(weekOffset - 1)}
                             ariaLabel={`Go to week starting from ${getDateFullLabel(
                                 currentWeek[0],
@@ -177,13 +183,19 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                         <div>{getMonthDetails(currentWeek[0])}</div>
                         <IconButton
                             icon="chevron-right"
+                            disabled={loading}
                             onClick={() => setWeekOffset(weekOffset + 1)}
                             ariaLabel={`Go to week starting from ${getDateFullLabel(
                                 currentWeek[0],
                                 7
                             )}`}
                         />
-                        <Button onClick={() => setWeekOffset(0)}>Today</Button>
+                        <Button
+                            disabled={loading}
+                            onClick={() => setWeekOffset(0)}
+                        >
+                            Today
+                        </Button>
                     </StyledCalendarMonthButton>
                 )}
                 <StyledCalendarHeaderRow>
@@ -225,42 +237,82 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                                         : undefined
                                 }
                             >
-                                {(
-                                    calendarEvents[
-                                        getStartTimestampOfHourBlock(
-                                            day,
-                                            hourIndex
-                                        )
-                                    ] || []
-                                ).map((event, eventIndex) => {
-                                    const forcedEventData =
-                                        event.forcedEventData || event;
-                                    return (
-                                        <StyledEventWrapper
-                                            // eslint-disable-next-line react/no-array-index-key
-                                            key={`${eventIndex}_${forcedEventData.start.toString()}`}
-                                            $startPosition={
-                                                getEventBlockStartPosition(
-                                                    event
-                                                ) * 100
-                                            }
-                                            $height={
-                                                getEventBlockHeight(
-                                                    forcedEventData
-                                                ) * 100
-                                            }
-                                            $widthFactor={
-                                                3 / (2 * event.overlap + 1)
-                                            }
-                                            $indexFactor={(2 * event.index) / 3}
-                                        >
-                                            <EventRenderer
-                                                event={event}
-                                                eventRenderer={eventRenderer}
-                                            />
-                                        </StyledEventWrapper>
-                                    );
-                                })}
+                                {loading &&
+                                    isPlaceholderBlock(day, hourIndex) && (
+                                        <>
+                                            <StyledEventWrapper
+                                                $startPosition={0}
+                                                $height={50}
+                                                $widthFactor={1}
+                                                $indexFactor={0}
+                                            >
+                                                <ContainerDimensions>
+                                                    {({ width, height }) => (
+                                                        <StyledPlaceholderBlock
+                                                            width={width}
+                                                            height={height}
+                                                        />
+                                                    )}
+                                                </ContainerDimensions>
+                                            </StyledEventWrapper>
+                                            <StyledEventWrapper
+                                                $startPosition={50}
+                                                $height={50}
+                                                $widthFactor={1}
+                                                $indexFactor={0}
+                                            >
+                                                <ContainerDimensions>
+                                                    {({ width, height }) => (
+                                                        <StyledPlaceholderBlock
+                                                            width={width}
+                                                            height={height}
+                                                        />
+                                                    )}
+                                                </ContainerDimensions>
+                                            </StyledEventWrapper>
+                                        </>
+                                    )}
+                                {!loading &&
+                                    (
+                                        calendarEvents[
+                                            getStartTimestampOfHourBlock(
+                                                day,
+                                                hourIndex
+                                            )
+                                        ] || []
+                                    ).map((event, eventIndex) => {
+                                        const forcedEventData =
+                                            event.forcedEventData || event;
+                                        return (
+                                            <StyledEventWrapper
+                                                // eslint-disable-next-line react/no-array-index-key
+                                                key={`${eventIndex}_${forcedEventData.start.toString()}`}
+                                                $startPosition={
+                                                    getEventBlockStartPosition(
+                                                        event
+                                                    ) * 100
+                                                }
+                                                $height={
+                                                    getEventBlockHeight(
+                                                        forcedEventData
+                                                    ) * 100
+                                                }
+                                                $widthFactor={
+                                                    3 / (2 * event.overlap + 1)
+                                                }
+                                                $indexFactor={
+                                                    (2 * event.index) / 3
+                                                }
+                                            >
+                                                <EventRenderer
+                                                    event={event}
+                                                    eventRenderer={
+                                                        eventRenderer
+                                                    }
+                                                />
+                                            </StyledEventWrapper>
+                                        );
+                                    })}
                             </StyledCalendarBlock>
                         ))}
                     </StyledCalendarTimelineRow>

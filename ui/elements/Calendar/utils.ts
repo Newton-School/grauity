@@ -160,3 +160,17 @@ export async function getOverlapInformationForDay<T>(
 
     return eventsWithOverlap;
 }
+
+export const isPlaceholderBlock = (date: Date, hourIndex: number) => {
+    const day = date.getDay();
+    if (day === 1) {
+        return (hourIndex + 1) % 4 === 0;
+    }
+    if (day === 3) {
+        return hourIndex % 4 === 0;
+    }
+    if (day === 5) {
+        return (hourIndex + 2) % 4 === 0;
+    }
+    return false;
+};
