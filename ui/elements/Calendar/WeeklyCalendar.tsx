@@ -42,7 +42,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         shouldShowWeekControls = true,
         weekOffset: initialWeekOffset = 0,
         onWeekChange = () => {},
-        loading = true,
+        loading = false,
     } = props;
 
     const [weekOffset, setWeekOffset] = useState(initialWeekOffset);
