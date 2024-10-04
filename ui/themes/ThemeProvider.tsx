@@ -31,7 +31,9 @@ export const GrauityThemeProvider = ({
             dark: { ...themeConfig.dark }, // grauity-theme-dark
         }}
     >
-        <GlobalStyle />
-        {children}
+        <>
+            <GlobalStyle />
+            {children}
+        </>
     </StyledComponentsThemeProvider>
 );
