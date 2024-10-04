@@ -26,6 +26,7 @@ export default {
   onWeekChange={() => {}}
   shouldShowWeekControls
   weekOffset={0}
+  loading={false}
 />
                 `,
             },
@@ -169,6 +170,7 @@ const defaultArgs: WeeklyCalendarProps = {
     shouldShowWeekControls: true,
     weekOffset: 0,
     onWeekChange: () => {},
+    loading: false,
 };
 
 export const Component = Template.bind({});

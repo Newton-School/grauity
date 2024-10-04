@@ -55,6 +55,12 @@ export interface WeeklyCalendarProps<T = {}> {
      * @param weekOffset - The new week offset.
      */
     onWeekChange?: (weekOffset: number) => void;
+
+    /**
+     * A boolean indicating whether to show the placeholder for loading state.
+     * @default false
+     */
+    loading?: boolean;
 }
 
 export interface EventRendererProps<T = {}> {
