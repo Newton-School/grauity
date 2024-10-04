@@ -37,6 +37,7 @@ export const StyledCalendarHeader = styled.div<StyledDivProps>`
     top: 0;
     z-index: 4;
     background: var(--bg-primary, #fff);
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.12);
 `;
 
 export const StyledCalendarRow = styled.div<StyledDivProps>`
