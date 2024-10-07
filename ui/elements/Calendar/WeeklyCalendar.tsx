@@ -53,12 +53,23 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         useState<CalendarEventRecordExtended<T> | null>(null);
     const [overlappedEventsData, setOverlappedEventsData] =
         useState<CalendarEventRecordExtended<T> | null>(null);
+    const [currentTimeStickPosition, setCurrentTimeStickPosition] = useState(
+        getCurrentTimeStickPosition()
+    );
 
     const containerRef = useRef<HTMLDivElement>(null);
 
     const currentWeek = getWeekByOffset(weekOffset);
     const timeList = getTimeListIn12HourFormat();
-    const currentTimeStickPosition = getCurrentTimeStickPosition();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentTimeStickPosition(getCurrentTimeStickPosition());
+        }, 5 * 60 * 1000);
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
 
     useEffect(() => {
         setWeekOffset(initialWeekOffset);
