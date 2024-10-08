@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import React, {
     forwardRef,
     useId,
@@ -82,68 +83,78 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         [animatePresence]
     );
 
-    if (!isOpen) {
-        return null;
-    }
-
     return ReactDOM.createPortal(
-        <StyledModalWrapper
-            blurBackground={blurBackground}
-            data-testid="testid-modalwrapper"
-        >
-            <StyledModal
-                onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
-                ref={modalRef}
-                width={width}
-                height={height}
-                minHeight={minHeight}
-                mobileBottomFullWidth={mobileBottomFullWidth}
-                modalPadding={modalPadding}
-                aria-labelledby={`modal-title-${id}`}
-                aria-describedby={`modal-description-${id}`}
-                aria-modal="true"
-                role="dialog"
-                data-testid="testid-modal"
-                {...motionProps}
-            >
-                <StyledModalMain>
-                    {showCloseButton && (
-                        <StyledModalAction justifyContent="end">
-                            <IconButton
-                                onClick={onHide}
-                                size="small"
-                                variant="secondary-outlined"
-                                icon="close"
-                                ariaLabel="Close"
-                                buttonProps={{ autoFocus: true }}
-                            />
-                        </StyledModalAction>
-                    )}
+        <AnimatePresence>
+            {isOpen && (
+                <StyledModalWrapper
+                    blurBackground={blurBackground}
+                    data-testid="testid-modalwrapper"
+                >
+                    <StyledModal
+                        onClick={(e: React.MouseEvent<HTMLDivElement>) =>
+                            e.stopPropagation()
+                        }
+                        ref={modalRef}
+                        width={width}
+                        height={height}
+                        minHeight={minHeight}
+                        mobileBottomFullWidth={mobileBottomFullWidth}
+                        modalPadding={modalPadding}
+                        aria-labelledby={`modal-title-${id}`}
+                        aria-describedby={`modal-description-${id}`}
+                        aria-modal="true"
+                        role="dialog"
+                        data-testid="testid-modal"
+                        {...motionProps}
+                    >
+                        <StyledModalMain>
+                            {showCloseButton && (
+                                <StyledModalAction justifyContent="end">
+                                    <IconButton
+                                        onClick={onHide}
+                                        size="small"
+                                        variant="secondary-outlined"
+                                        icon="close"
+                                        ariaLabel="Close"
+                                        buttonProps={{ autoFocus: true }}
+                                    />
+                                </StyledModalAction>
+                            )}
 
-                    {banner && <StyledModalBanner>{banner}</StyledModalBanner>}
+                            {banner && (
+                                <StyledModalBanner>{banner}</StyledModalBanner>
+                            )}
 
-                    {title && (
-                        <StyledModalTitle id={`modal-title-${id}`}>
-                            {title}
-                        </StyledModalTitle>
-                    )}
+                            {title && (
+                                <StyledModalTitle id={`modal-title-${id}`}>
+                                    {title}
+                                </StyledModalTitle>
+                            )}
 
-                    {description && (
-                        <StyledModalDescription id={`modal-description-${id}`}>
-                            {description}
-                        </StyledModalDescription>
-                    )}
+                            {description && (
+                                <StyledModalDescription
+                                    id={`modal-description-${id}`}
+                                >
+                                    {description}
+                                </StyledModalDescription>
+                            )}
 
-                    {body && (
-                        <StyledModalBody modalBodyMargin={modalBodyMargin}>
-                            {body}
-                        </StyledModalBody>
-                    )}
-                </StyledModalMain>
+                            {body && (
+                                <StyledModalBody
+                                    modalBodyMargin={modalBodyMargin}
+                                >
+                                    {body}
+                                </StyledModalBody>
+                            )}
+                        </StyledModalMain>
 
-                {action && <StyledModalAction>{action}</StyledModalAction>}
-            </StyledModal>
-        </StyledModalWrapper>,
+                        {action && (
+                            <StyledModalAction>{action}</StyledModalAction>
+                        )}
+                    </StyledModal>
+                </StyledModalWrapper>
+            )}
+        </AnimatePresence>,
         document.body
     );
 }) as React.ForwardRefExoticComponent<

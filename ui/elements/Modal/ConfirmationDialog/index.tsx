@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import React, { useId, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -42,7 +43,7 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
                 onCancel();
             }
         },
-        keyCodes: ['Escape']
+        keyCodes: ['Escape'],
     });
 
     useClickAway(modalRef, () => {
@@ -58,77 +59,85 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
         [animatePresence]
     );
 
-    if (!isOpen) {
-        return null;
-    }
-
     return ReactDOM.createPortal(
-        <Modal.Wrapper blurBackground={blurBackground}>
-            <Modal.Modal
-                onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
-                width="auto"
-                height="auto"
-                ref={modalRef}
-                aria-labelledby={`modal-title-${id}`}
-                aria-describedby={`modal-description-${id}`}
-                aria-modal="true"
-                role="dialog"
-                mobileBottomFullWidth={mobileBottomFullWidth}
-                {...motionProps}
-            >
-                <Modal.Main>
-                    {showCloseButton && (
-                        <Modal.Action justifyContent="end">
-                            <IconButton
+        <AnimatePresence>
+            {isOpen && (
+                <Modal.Wrapper blurBackground={blurBackground}>
+                    <Modal.Modal
+                        onClick={(e: React.MouseEvent<HTMLDivElement>) =>
+                            e.stopPropagation()
+                        }
+                        width="auto"
+                        height="auto"
+                        ref={modalRef}
+                        aria-labelledby={`modal-title-${id}`}
+                        aria-describedby={`modal-description-${id}`}
+                        aria-modal="true"
+                        role="dialog"
+                        mobileBottomFullWidth={mobileBottomFullWidth}
+                        {...motionProps}
+                    >
+                        <Modal.Main>
+                            {showCloseButton && (
+                                <Modal.Action justifyContent="end">
+                                    <IconButton
+                                        onClick={onCancel}
+                                        variant="secondary-outlined"
+                                        icon="close"
+                                        ariaLabel="Close"
+                                        buttonProps={{ autoFocus: true }}
+                                    />
+                                </Modal.Action>
+                            )}
+
+                            {banner && <Modal.Banner>{banner}</Modal.Banner>}
+
+                            {title && (
+                                <Modal.Title id={`modal-title-${id}`}>
+                                    {title}
+                                </Modal.Title>
+                            )}
+
+                            {description && (
+                                <Modal.Description
+                                    id={`modal-description-${id}`}
+                                >
+                                    {description}
+                                </Modal.Description>
+                            )}
+
+                            {body && <Modal.Body>{body}</Modal.Body>}
+                        </Modal.Main>
+
+                        <Modal.Action>
+                            <Button
+                                variant={
+                                    cancelButtonVariant ||
+                                    BUTTON_VARIANTS_ENUM.DANGER
+                                }
+                                fullWidth
                                 onClick={onCancel}
-                                variant="secondary-outlined"
-                                icon="close"
-                                ariaLabel="Close"
-                                buttonProps={{ autoFocus: true }}
-                            />
+                                buttonProps={
+                                    !showCloseButton && { autoFocus: true }
+                                }
+                            >
+                                {cancelText}
+                            </Button>
+                            <Button
+                                variant={
+                                    confirmButtonVariant ||
+                                    BUTTON_VARIANTS_ENUM.SUCCESS
+                                }
+                                fullWidth
+                                onClick={onConfirm}
+                            >
+                                {confirmText}
+                            </Button>
                         </Modal.Action>
-                    )}
-
-                    {banner && <Modal.Banner>{banner}</Modal.Banner>}
-
-                    {title && (
-                        <Modal.Title id={`modal-title-${id}`}>
-                            {title}
-                        </Modal.Title>
-                    )}
-
-                    {description && (
-                        <Modal.Description id={`modal-description-${id}`}>
-                            {description}
-                        </Modal.Description>
-                    )}
-
-                    {body && <Modal.Body>{body}</Modal.Body>}
-                </Modal.Main>
-
-                <Modal.Action>
-                    <Button
-                        variant={
-                            cancelButtonVariant || BUTTON_VARIANTS_ENUM.DANGER
-                        }
-                        fullWidth
-                        onClick={onCancel}
-                        buttonProps={!showCloseButton && { autoFocus: true }}
-                    >
-                        {cancelText}
-                    </Button>
-                    <Button
-                        variant={
-                            confirmButtonVariant || BUTTON_VARIANTS_ENUM.SUCCESS
-                        }
-                        fullWidth
-                        onClick={onConfirm}
-                    >
-                        {confirmText}
-                    </Button>
-                </Modal.Action>
-            </Modal.Modal>
-        </Modal.Wrapper>,
+                    </Modal.Modal>
+                </Modal.Wrapper>
+            )}
+        </AnimatePresence>,
         document.body
     );
 };
