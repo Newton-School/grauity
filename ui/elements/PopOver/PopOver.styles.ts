@@ -4,7 +4,7 @@ import { StyledPopOverContainerProps } from './types';
 
 export const StyledPopOverContainer = styled.div<StyledPopOverContainerProps>`
     font-family: var(--font-family, 'Mona Sans');
-    z-index: 1;
+    z-index: 1000;
     position: absolute;
     top: 0;
     left: 0;
