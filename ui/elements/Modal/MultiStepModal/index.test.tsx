@@ -8,6 +8,7 @@ import MultiStepModal from '.';
 
 describe('MultiStepModal', () => {
     const defaultProps: MultiStepModalProps = {
+        isOpen: true,
         modalSteps: [
             {
                 banner: (

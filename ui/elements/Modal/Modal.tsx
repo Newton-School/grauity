@@ -1,4 +1,11 @@
-import React, { forwardRef, useId, useImperativeHandle, useRef } from 'react';
+import React, {
+    forwardRef,
+    useId,
+    useImperativeHandle,
+    useMemo,
+    useRef,
+} from 'react';
+import ReactDOM from 'react-dom';
 
 import {
     useClickAway,
@@ -18,40 +25,49 @@ import {
     StyledModalWrapper,
 } from './Modal.styles';
 import { ModalProps } from './types';
+import { getModalAnimationProps } from './utils';
 
 /**
  * A modal is used to display content that temporarily blocks
  * interactions with the main view of a site or to get user attention
  * on a specific action or information.
  */
-const Modal = forwardRef<HTMLDivElement, ModalProps>(({
-    banner = null,
-    title = null,
-    description = null,
-    body = null,
-    action = null,
-    width = null,
-    height = null,
-    minHeight = null,
-    onHide = () => {},
-    mobileBottomFullWidth = false,
-    modalPadding = '20px',
-    modalBodyMargin = null,
-    showCloseButton = false,
-    hideOnClickAway = false,
-    blurBackground = false,
-}, ref) => {
+const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
+    const {
+        isOpen = true,
+        banner = null,
+        title = null,
+        description = null,
+        body = null,
+        action = null,
+        width = null,
+        height = null,
+        minHeight = null,
+        onHide = () => {},
+        mobileBottomFullWidth = false,
+        modalPadding = '20px',
+        modalBodyMargin = null,
+        showCloseButton = false,
+        hideOnClickAway = false,
+        blurBackground = false,
+        animatePresence = 'fade',
+    } = props;
+
     const modalRef = useRef<HTMLDivElement>(null);
 
     useImperativeHandle(ref, () => modalRef.current);
 
-    useDisableBodyScroll();
+    useDisableBodyScroll(isOpen);
 
-    useKeyboardEvent(() => {
-        if (hideOnClickAway) {
-            onHide();
-        }
-    }, ['Escape']);
+    useKeyboardEvent({
+        onKeyPress: () => {
+            if (hideOnClickAway) {
+                onHide();
+            }
+        },
+        keyCodes: ['Escape'],
+        config: { shouldDetect: isOpen },
+    });
 
     useClickAway(modalRef, () => {
         if (hideOnClickAway) {
@@ -61,13 +77,22 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(({
 
     const id = useId();
 
-    return (
+    const motionProps = useMemo(
+        () => getModalAnimationProps(animatePresence),
+        [animatePresence]
+    );
+
+    if (!isOpen) {
+        return null;
+    }
+
+    return ReactDOM.createPortal(
         <StyledModalWrapper
             blurBackground={blurBackground}
             data-testid="testid-modalwrapper"
         >
             <StyledModal
-                onClick={(e: Event) => e.stopPropagation()}
+                onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
                 ref={modalRef}
                 width={width}
                 height={height}
@@ -79,6 +104,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(({
                 aria-modal="true"
                 role="dialog"
                 data-testid="testid-modal"
+                {...motionProps}
             >
                 <StyledModalMain>
                     {showCloseButton && (
@@ -117,7 +143,8 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(({
 
                 {action && <StyledModalAction>{action}</StyledModalAction>}
             </StyledModal>
-        </StyledModalWrapper>
+        </StyledModalWrapper>,
+        document.body
     );
 }) as React.ForwardRefExoticComponent<
     ModalProps & React.RefAttributes<HTMLDivElement>

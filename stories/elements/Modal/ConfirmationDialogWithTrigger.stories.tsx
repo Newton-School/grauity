@@ -14,6 +14,7 @@ export default {
 };
 
 const defaultArgs: ConfirmationDialogProps = {
+    isOpen: true,
     banner: null,
     title: 'Are you sure?',
     description: 'You will need to sign in again to use the platform.',
@@ -28,10 +29,11 @@ const defaultArgs: ConfirmationDialogProps = {
     hideOnClickAway: false,
     blurBackground: false,
     mobileBottomFullWidth: false,
+    animatePresence: 'fade',
 };
 
 export const Template = (args: ConfirmationDialogProps = defaultArgs) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(args.isOpen);
 
     return (
         <div>
@@ -42,29 +44,28 @@ export const Template = (args: ConfirmationDialogProps = defaultArgs) => {
             >
                 Sign out
             </Button>
-            {isOpen && (
-                <ConfirmationDialog
-                    banner={args?.banner}
-                    title={args?.title}
-                    description={args?.description}
-                    body={args?.body}
-                    onConfirm={() => {
-                        setIsOpen(false);
-                        args?.onConfirm();
-                    }}
-                    onCancel={() => {
-                        setIsOpen(false);
-                        args?.onCancel();
-                    }}
-                    confirmText={args?.confirmText}
-                    cancelText={args?.cancelText}
-                    confirmButtonVariant={args?.confirmButtonVariant}
-                    cancelButtonVariant={args?.cancelButtonVariant}
-                    showCloseButton={args?.showCloseButton}
-                    hideOnClickAway={args?.hideOnClickAway}
-                    blurBackground={args?.blurBackground}
-                />
-            )}
+            <ConfirmationDialog
+                isOpen={isOpen}
+                banner={args?.banner}
+                title={args?.title}
+                description={args?.description}
+                body={args?.body}
+                onConfirm={() => {
+                    setIsOpen(false);
+                    args?.onConfirm();
+                }}
+                onCancel={() => {
+                    setIsOpen(false);
+                    args?.onCancel();
+                }}
+                confirmText={args?.confirmText}
+                cancelText={args?.cancelText}
+                confirmButtonVariant={args?.confirmButtonVariant}
+                cancelButtonVariant={args?.cancelButtonVariant}
+                showCloseButton={args?.showCloseButton}
+                hideOnClickAway={args?.hideOnClickAway}
+                blurBackground={args?.blurBackground}
+            />
         </div>
     );
 };

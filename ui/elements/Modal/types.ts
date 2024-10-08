@@ -1,8 +1,11 @@
 import React from 'react';
 
+import { StyledDivProps } from '../../../common/types';
 import { ButtonVariants } from '../Button/types';
 
 type ModalContentType = React.ReactNode;
+
+export type ModalAnimationType = false | 'slide' | 'slide-reverse' | 'fade';
 
 interface ModalStep {
     /**
@@ -46,6 +49,11 @@ interface ModalStep {
 
 export interface ModalProps {
     /**
+     * Determines if the modal is open.
+     * Available choices: `true`, `false`. Default is `false`
+     * */
+    isOpen: boolean;
+    /**
      * Banner for the modal, can be a valid React node
      * */
     banner?: ModalContentType;
@@ -71,7 +79,7 @@ export interface ModalProps {
     action?: ModalContentType;
 
     /**
-     * Determines if the modal should hide on click away
+     * Determines if the modal should hide on click away.
      * Available choices: `true`, `false`
      *
      * Default: `false`
@@ -79,7 +87,7 @@ export interface ModalProps {
     hideOnClickAway: boolean;
 
     /**
-     * Determines if the modal should blur the background
+     * Determines if the modal should blur the background.
      * Available choices: `true`, `false`
      *
      * Default: `false`
@@ -92,7 +100,7 @@ export interface ModalProps {
     onHide?: () => void;
 
     /**
-     * Determines if the modal should be full width on mobile
+     * Determines if the modal should be full width on mobile.
      * Available choices: `true`, `false`
      *
      * Default: `false`
@@ -125,16 +133,33 @@ export interface ModalProps {
     minHeight?: string;
 
     /**
-     * Determines if the close button should be shown
+     * Determines if the close button should be shown.
      *
      * Available choices: `true`, `false`
      *
      * Default: `false`
      * */
     showCloseButton?: boolean;
+
+    /**
+     * Determines if the modal should animate its opening and closing
+     *
+     * Available choices: `false`, `'slide'` `'slide-reverse'`, `'fade'`
+     *
+     * Default: `'fade'`
+     * */
+    animatePresence?: ModalAnimationType;
 }
 
 export interface MultiStepModalProps {
+    /**
+     * Determines if the modal is open
+     * Available choices: true, false
+     *
+     * Default: `false`
+     * */
+    isOpen?: boolean;
+
     /**
      * Modal steps
      * */
@@ -238,6 +263,20 @@ export interface MultiStepModalProps {
      * Default: `false`
      * */
     showCloseButton?: boolean;
+
+    /**
+     * Ref for the modal
+     * */
+    modalRef?: React.MutableRefObject<any>;
+
+    /**
+     * Value of `animatePresence` prop to be passed to the Modal component
+     *
+     * Available choices: `false`, `'slide'` `'slide-reverse'`, `'fade'`
+     *
+     * Default: `'fade'`
+     * */
+    animatePresence?: ModalAnimationType;
 }
 
 export interface StyleData {
@@ -252,16 +291,14 @@ export interface ModalWrapperProps {
 }
 
 // Components interface for ModalContainer
-export interface ModalContainerProps {
+export interface ModalContainerProps extends StyledDivProps {
     width?: string;
     height?: string;
     minHeight?: string;
     mobileBottomFullWidth?: boolean;
     modalPadding?: string;
-    onClick?: (e: Event) => void;
     ref?: React.MutableRefObject<any>;
     children: React.ReactNode;
-    role: string;
 }
 
 // Components interface for ModalTitle
@@ -295,6 +332,11 @@ export interface ModalPaginationItemProps {
 }
 
 export interface ConfirmationDialogProps {
+    /**
+     * Determines if the modal is open
+     * */
+    isOpen: boolean;
+
     /**
      * Text for the cancel button
      * */
@@ -376,4 +418,13 @@ export interface ConfirmationDialogProps {
      * Default: `false`
      * */
     mobileBottomFullWidth?: boolean;
+
+    /**
+     * Determines if the modal should animate its opening and closing
+     *
+     * Available choices: `false`, `'slide'` `'slide-reverse'`, `'fade'`
+     *
+     * Default: `'fade'`
+     * */
+    animatePresence?: ModalAnimationType;
 }

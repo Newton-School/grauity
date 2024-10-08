@@ -7,6 +7,7 @@ import ConfirmationDialog, { ConfirmationDialogProps } from '.';
 
 describe('ConfirmationDialog', () => {
     const defaultProps: ConfirmationDialogProps = {
+        isOpen: false,
         onConfirm: jest.fn(),
         onCancel: jest.fn(),
         title: 'Modal title',
@@ -16,7 +17,7 @@ describe('ConfirmationDialog', () => {
     };
 
     it('renders the confirmation dialog title, description and buttons', () => {
-        render(<ConfirmationDialog {...defaultProps} />);
+        render(<ConfirmationDialog {...defaultProps} isOpen />);
         expect(screen.getByText('Modal title')).toBeInTheDocument();
         expect(screen.getByText('Modal description')).toBeInTheDocument();
         expect(screen.getByText('Modal confirmText')).toBeInTheDocument();
@@ -24,25 +25,29 @@ describe('ConfirmationDialog', () => {
     });
 
     it('calls onConfirm when confirm button is clicked', () => {
-        render(<ConfirmationDialog {...defaultProps} />);
+        render(<ConfirmationDialog {...defaultProps} isOpen />);
         fireEvent.click(screen.getByText('Modal confirmText'));
         expect(defaultProps.onConfirm).toHaveBeenCalledTimes(1);
     });
 
     it('calls onCancel when cancel button is clicked', () => {
-        render(<ConfirmationDialog {...defaultProps} />);
+        render(<ConfirmationDialog {...defaultProps} isOpen />);
         fireEvent.click(screen.getByText('Modal cancelText'));
         expect(defaultProps.onCancel).toHaveBeenCalledTimes(1);
     });
 
     it('renders the close button when showCloseButton is not falsy', () => {
-        render(<ConfirmationDialog {...defaultProps} showCloseButton />);
+        render(<ConfirmationDialog {...defaultProps} showCloseButton isOpen />);
         expect(screen.getByTestId('testid-iconbutton')).toBeInTheDocument();
     });
 
     it('does not render the close button when showCloseButton is false', () => {
         render(
-            <ConfirmationDialog {...defaultProps} showCloseButton={false} />
+            <ConfirmationDialog
+                {...defaultProps}
+                showCloseButton={false}
+                isOpen
+            />
         );
         expect(
             screen.queryByTestId('testid-iconbutton')
@@ -56,6 +61,7 @@ describe('ConfirmationDialog', () => {
                 {...defaultProps}
                 showCloseButton
                 onCancel={onCancelFn}
+                isOpen
             />
         );
         fireEvent.click(screen.getByTestId('testid-iconbutton'));
@@ -69,6 +75,7 @@ describe('ConfirmationDialog', () => {
                 {...defaultProps}
                 hideOnClickAway
                 onCancel={onCancelFn}
+                isOpen
             />
         );
         fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
@@ -82,6 +89,7 @@ describe('ConfirmationDialog', () => {
                 {...defaultProps}
                 hideOnClickAway={false}
                 onCancel={onCancelFn}
+                isOpen
             />
         );
         fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
@@ -95,6 +103,7 @@ describe('ConfirmationDialog', () => {
                 {...defaultProps}
                 hideOnClickAway
                 onCancel={onCancelFn}
+                isOpen
             />
         );
         fireEvent.mouseDown(document);
@@ -108,6 +117,7 @@ describe('ConfirmationDialog', () => {
                 {...defaultProps}
                 hideOnClickAway={false}
                 onCancel={onCancelFn}
+                isOpen
             />
         );
         fireEvent.mouseDown(document);

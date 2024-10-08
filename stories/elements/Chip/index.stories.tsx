@@ -16,6 +16,7 @@ const defaultArgs: ChipProps = {
     textColor: null,
     backgroundColor: null,
     borderColor: null,
+    rounded: false,
 };
 
 export const Component = Template.bind({});

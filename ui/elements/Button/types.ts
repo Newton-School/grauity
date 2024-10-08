@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { StyledButtonProps } from '../../../common/types';
 import { grauityIconName, grauityIconSizeName } from '../../core';
 
 export type ButtonTypeAttribute = 'button' | 'submit' | 'reset';
@@ -22,7 +23,7 @@ export type ButtonSizes = 'small' | 'medium' | 'large' | 'extra-large';
 
 export type ButtonIconPositions = 'left' | 'right';
 
-export interface ButtonProps {
+export interface ButtonProps extends StyledButtonProps {
     /**
      * Variant of the button
      *

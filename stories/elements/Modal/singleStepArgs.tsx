@@ -7,6 +7,7 @@ import Table from 'ui/elements/Table';
 import simpleTableArgs from '../Table/simpleArgs';
 
 const singleStepArgs: ModalProps = {
+    isOpen: true,
     banner: null,
     title: 'This is a Modal',
     description:
@@ -50,6 +51,7 @@ const singleStepArgs: ModalProps = {
     height: 'auto',
     minHeight: 'auto',
     showCloseButton: true,
+    animatePresence: 'fade',
 };
 
 export default singleStepArgs;

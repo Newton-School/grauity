@@ -12,6 +12,7 @@ export default {
 };
 
 const defaultArgs: ConfirmationDialogProps = {
+    isOpen: true,
     banner: null,
     title: 'Are you sure?',
     description: 'You will need to sign in again to use the platform.',
@@ -25,6 +26,7 @@ const defaultArgs: ConfirmationDialogProps = {
     showCloseButton: false,
     hideOnClickAway: false,
     blurBackground: false,
+    animatePresence: 'fade',
 };
 
 const Template = (args: ConfirmationDialogProps) => (

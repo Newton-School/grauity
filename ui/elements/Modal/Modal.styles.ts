@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
@@ -32,7 +33,7 @@ export const StyledModalWrapper = styled.div<ModalWrapperProps>`
         `}
 `;
 
-export const StyledModal = styled.div<ModalContainerProps>`
+export const StyledModal = styled(motion.div)<ModalContainerProps>`
     border: var(--spacing-1px, 1px) solid var(--border, #e1e5ea);
     background: var(--bg-primary, #fff);
     z-index: 1000;

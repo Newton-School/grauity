@@ -1,4 +1,5 @@
-import React, { useId } from 'react';
+import React, { useId, useMemo } from 'react';
+import ReactDOM from 'react-dom';
 
 import { useKeyboardEvent } from '../../../../hooks';
 import useClickAway from '../../../../hooks/useClickAway';
@@ -6,35 +7,43 @@ import useDisableBodyScroll from '../../../../hooks/useDisableBodyScroll';
 import Button, { BUTTON_VARIANTS_ENUM, IconButton } from '../../Button';
 import Modal from '../Modal';
 import { ConfirmationDialogProps } from '../types';
+import { getModalAnimationProps } from '../utils';
 
 /**
  * A confirmation dialog is a dialog box that asks the user to confirm an action.
  */
-const ConfirmationDialog = ({
-    cancelText = 'Cancel',
-    confirmText = 'Confirm',
-    onCancel = () => {},
-    onConfirm = () => {},
-    banner = null,
-    title = 'Are you sure?',
-    description = 'Please confirm your action.',
-    body = null,
-    cancelButtonVariant = 'danger',
-    confirmButtonVariant = 'success',
-    showCloseButton = false,
-    hideOnClickAway = false,
-    blurBackground = false,
-    mobileBottomFullWidth = false,
-}: ConfirmationDialogProps) => {
+const ConfirmationDialog = (props: ConfirmationDialogProps) => {
+    const {
+        isOpen = false,
+        cancelText = 'Cancel',
+        confirmText = 'Confirm',
+        onCancel = () => {},
+        onConfirm = () => {},
+        banner = null,
+        title = 'Are you sure?',
+        description = 'Please confirm your action.',
+        body = null,
+        cancelButtonVariant = 'danger',
+        confirmButtonVariant = 'success',
+        showCloseButton = false,
+        hideOnClickAway = false,
+        blurBackground = false,
+        mobileBottomFullWidth = false,
+        animatePresence = 'fade',
+    } = props;
+
     const modalRef = React.useRef(null);
 
     useDisableBodyScroll();
 
-    useKeyboardEvent(() => {
-        if (hideOnClickAway) {
-            onCancel();
-        }
-    }, ['Escape']);
+    useKeyboardEvent({
+        onKeyPress: () => {
+            if (hideOnClickAway) {
+                onCancel();
+            }
+        },
+        keyCodes: ['Escape']
+    });
 
     useClickAway(modalRef, () => {
         if (hideOnClickAway) {
@@ -44,10 +53,19 @@ const ConfirmationDialog = ({
 
     const id = useId();
 
-    return (
+    const motionProps = useMemo(
+        () => getModalAnimationProps(animatePresence),
+        [animatePresence]
+    );
+
+    if (!isOpen) {
+        return null;
+    }
+
+    return ReactDOM.createPortal(
         <Modal.Wrapper blurBackground={blurBackground}>
             <Modal.Modal
-                onClick={(e: Event) => e.stopPropagation()}
+                onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
                 width="auto"
                 height="auto"
                 ref={modalRef}
@@ -56,6 +74,7 @@ const ConfirmationDialog = ({
                 aria-modal="true"
                 role="dialog"
                 mobileBottomFullWidth={mobileBottomFullWidth}
+                {...motionProps}
             >
                 <Modal.Main>
                     {showCloseButton && (
@@ -109,7 +128,8 @@ const ConfirmationDialog = ({
                     </Button>
                 </Modal.Action>
             </Modal.Modal>
-        </Modal.Wrapper>
+        </Modal.Wrapper>,
+        document.body
     );
 };
 
