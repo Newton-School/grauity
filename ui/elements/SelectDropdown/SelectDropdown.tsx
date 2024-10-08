@@ -56,7 +56,7 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
                     triggerRef={triggerRef}
                     isOpen={isOpened}
                     direction="bottom"
-                    minimumOffset={{ top: 10, left: 10 }}
+                    minimumOffset={{ top: 10, left: 10, right: 10, bottom: 10 }}
                     onClose={() => setIsOpened(false)}
                     shouldCloseOnOutsideClick
                     disableBackgroundScroll
