@@ -21,7 +21,7 @@ export interface SelectDropdownProps {
     /**
      * Name of the icon to display in the dropdown button.
      */
-    iconName?: grauityIconName;
+    icon?: grauityIconName;
 
     /**
      * Text to display in the dropdown button.

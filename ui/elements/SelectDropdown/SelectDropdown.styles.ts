@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 import { StyledDivProps } from '../../../common/types';
-import Button from '../Button';
 import {
     StyledDropdownSearchInputProps,
     StyledSelectDropdownItemProps,
@@ -14,15 +13,8 @@ export const StyledSelectDropdownWrapper = styled.div<StyledSelectDropdownWrappe
     position: relative;
 `;
 
-export const StyledSelectDropdownButton = styled(Button)`
-    height: 100%;
-    min-height: 0;
-`;
-
 export const StyledSelectDropdownContainer = styled.div<StyledDivProps>`
-    position: absolute;
-    top: calc(100% + var(--spacing-4px, 4px));
-    left: 0;
+    box-sizing: border-box;
     width: max-content;
     min-width: 100%;
     max-width: 300px;
@@ -47,6 +39,7 @@ export const StyledSelectDropdownList = styled.div`
 `;
 
 export const StyledSelectDropdownItem = styled.div<StyledSelectDropdownItemProps>`
+    box-sizing: border-box;
     width: 100%;
     display: flex;
     align-items: center;
@@ -76,6 +69,7 @@ export const StyledSelectDropdownItem = styled.div<StyledSelectDropdownItemProps
 `;
 
 export const StyledDropdownSearchContainer = styled.div`
+    box-sizing: border-box;
     width: 100%;
     height: var(--spacing-36px, 36px);
     padding: var(--spacing-12px, 12px);
@@ -89,6 +83,7 @@ export const StyledDropdownSearchContainer = styled.div`
 `;
 
 export const StyledDropdownSearchInput = styled.input<StyledDropdownSearchInputProps>`
+    box-sizing: border-box;
     outline: none;
     border: none;
     background: var(--bg-primary, #ffffff);
