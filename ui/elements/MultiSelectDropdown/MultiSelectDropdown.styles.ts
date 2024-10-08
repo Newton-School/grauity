@@ -81,7 +81,7 @@ export const StyledDropdownListItem = styled.button<StyledDropdownListItemProps>
     cursor: pointer;
     border-radius: var(--corner-radius-8px, 8px);
     background: var(--bg-primary, #ffffff);
-    border: none;
+    border: 2px solid transparent;
 
     &:hover {
         background: var(--bg-secondary, #f6f7f9);
@@ -89,7 +89,7 @@ export const StyledDropdownListItem = styled.button<StyledDropdownListItemProps>
 
     &:focus-visible {
         background: var(--bg-secondary, #f6f7f9);
-        outline: 2px solid var(--border-brand, #0673f9);
+        border: 2px solid var(--border-brand, #0673f9);
     }
 
     ${({ autoFocus }) =>
@@ -97,7 +97,7 @@ export const StyledDropdownListItem = styled.button<StyledDropdownListItemProps>
         css`
             &:focus {
                 background: var(--bg-secondary, #f6f7f9);
-                outline: 2px solid var(--border-brand, #0673f9);
+                border: 2px solid var(--border-brand, #0673f9);
             }
         `}
 `;
