@@ -18,6 +18,8 @@ export default function PopOver(props: PopOverProps) {
         shouldCloseOnOutsideClick = true,
         onClose = () => {},
         disableBackgroundScroll = false,
+        width,
+        height,
     } = props;
 
     const [adjustedOffset, setAdjustedOffset] = useState<PopOverOffset | null>(
@@ -227,7 +229,14 @@ export default function PopOver(props: PopOverProps) {
 
     return ReactDOM.createPortal(
         <StyledPopOverContainer ref={popOverRef} $offset={adjustedOffset}>
-            {children}
+            <div
+                style={{
+                    width: width || 'fit-content',
+                    height: height || 'fit-content',
+                }}
+            >
+                {children}
+            </div>
         </StyledPopOverContainer>,
         document.body
     );

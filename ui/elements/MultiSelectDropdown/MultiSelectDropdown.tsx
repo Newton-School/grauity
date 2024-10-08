@@ -128,6 +128,7 @@ const MultiSelectDropdown = forwardRef<
                 onClose={() => setIsOpened(false)}
                 disableBackgroundScroll
                 shouldCloseOnOutsideClick
+                width={`${triggerRef.current?.getBoundingClientRect().width}px`}
             >
                 <StyledDropdownContainer ref={dropdownRef}>
                     {shouldEnableSearch && (

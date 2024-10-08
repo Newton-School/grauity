@@ -69,6 +69,16 @@ export interface PopOverProps {
      * @default false
      */
     disableBackgroundScroll?: boolean;
+
+    /**
+     * Width of the PopOver Content.
+     */
+    width?: string;
+
+    /**
+     * Height of the PopOver Content.
+     */
+    height?: string;
 }
 
 export interface StyledPopOverContainerProps extends StyledDivProps {
