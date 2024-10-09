@@ -27,21 +27,23 @@ const Template = (args: DisableBodyScrollProps) => {
                 Trigger
             </Button>
             <DisableBodyScroll {...args} enabled={isOpen}>
-                <div
-                    style={{
-                        width: '250px',
-                        height: '100px',
-                        padding: '10px',
-                        border: '2px solid var(--border)',
-                        backgroundColor: 'white',
-                        overflow: 'auto',
-                    }}
-                >
-                    Content inside DisableBodyScroll
-                    <Button size="small" onClick={() => setIsOpen(false)}>
-                        Close
-                    </Button>
-                </div>
+                {isOpen && (
+                    <div
+                        style={{
+                            width: '250px',
+                            height: '100px',
+                            padding: '10px',
+                            border: '2px solid var(--border)',
+                            backgroundColor: 'white',
+                            overflow: 'auto',
+                        }}
+                    >
+                        Content inside DisableBodyScroll
+                        <Button size="small" onClick={() => setIsOpen(false)}>
+                            Close
+                        </Button>
+                    </div>
+                )}
             </DisableBodyScroll>
         </>
     );

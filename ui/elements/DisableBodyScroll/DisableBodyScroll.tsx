@@ -18,10 +18,6 @@ const DisableBodyScroll = forwardRef<HTMLDivElement, DisableBodyScrollProps>(
             };
         }, [enabled]);
 
-        if (!enabled) {
-            return null;
-        }
-
         return ReactDOM.createPortal(
             <StyledDisableBodyScroll ref={ref} $enabled={enabled}>
                 {children}
