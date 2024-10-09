@@ -92,3 +92,9 @@ export {
     default as NSWeeklyCalendar,
     type WeeklyCalendarProps,
 } from './elements/Calendar';
+
+// NSDisableBodyScroll
+export {
+    type DisableBodyScrollProps,
+    default as NSDisableBodyScroll,
+} from './elements/DisableBodyScroll';
