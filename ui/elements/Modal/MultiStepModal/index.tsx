@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import useClickAway from '../../../../hooks/useClickAway';
-import useDisableBodyScroll from '../../../../hooks/useDisableBodyScroll';
 import Button from '../../Button';
 import Modal from '../Modal';
 import {
@@ -14,25 +12,29 @@ import { MultiStepModalProps } from '../types';
 /**
  * A multi-step modal is a modal that has multiple steps.
  */
-const MultiStepModal = ({
-    modalSteps = [],
-    showModalStepsPagination = true,
-    hideOnClickAway = false,
-    blurBackground = false,
-    onHide = () => {},
-    onFinalStep = () => {},
-    mobileBottomFullWidth = false,
-    onStepChange = () => {},
-    modalPadding = '20px',
-    modalBodyMargin = '12px 0 0 0',
-    width = null,
-    height = null,
-    minHeight = null,
-    showCloseButton = false,
-}: MultiStepModalProps) => {
+const MultiStepModal = (props: MultiStepModalProps) => {
+    const {
+        isOpen = true,
+        modalSteps = [],
+        showModalStepsPagination = true,
+        hideOnClickAway = false,
+        blurBackground = false,
+        onHide = () => {},
+        onFinalStep = () => {},
+        mobileBottomFullWidth = false,
+        onStepChange = () => {},
+        modalPadding = '20px',
+        modalBodyMargin = '12px 0 0 0',
+        width = null,
+        height = null,
+        minHeight = null,
+        showCloseButton = false,
+        modalRef,
+        animatePresence = 'fade',
+    } = props;
+
     const [currentStep, setCurrentStep] = useState(0);
     const hasMounted = useRef(false);
-    const modalRef = useRef(null);
 
     const {
         banner,
@@ -46,14 +48,6 @@ const MultiStepModal = ({
 
     const isLastStep = currentStep === modalSteps.length - 1;
     const isFirstStep = currentStep === 0;
-
-    useDisableBodyScroll();
-
-    useClickAway(modalRef, () => {
-        if (hideOnClickAway) {
-            onHide();
-        }
-    });
 
     useEffect(() => {
         if (
@@ -73,6 +67,7 @@ const MultiStepModal = ({
 
     return (
         <Modal
+            isOpen={isOpen}
             banner={banner}
             title={title}
             description={description}
@@ -136,6 +131,8 @@ const MultiStepModal = ({
                     </Modal.Action>
                 </StyledModalPaginatedActions>
             }
+            ref={modalRef}
+            animatePresence={animatePresence}
         />
     );
 };

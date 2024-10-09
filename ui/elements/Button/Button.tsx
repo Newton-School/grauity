@@ -11,26 +11,29 @@ import { ButtonProps } from './types';
  *
  * To create an icon button, checkout the IconButton component.
  */
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
-    variant = 'primary',
-    size = 'medium',
-    icon = null,
-    iconSize = '24',
-    iconPosition = 'left',
-    className = '',
-    disabled = false,
-    loading = false,
-    style = {},
-    onClick = () => {},
-    fullWidth = false,
-    type = 'button',
-    tooltip = '',
-    tabIndex = 0,
-    onMouseEnter = () => {},
-    onMouseLeave = () => {},
-    children = '',
-    buttonProps,
-}, ref) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+    const {
+        variant = 'primary',
+        size = 'medium',
+        icon = null,
+        iconSize = '24',
+        iconPosition = 'left',
+        className = '',
+        disabled = false,
+        loading = false,
+        style = {},
+        onClick = () => {},
+        fullWidth = false,
+        type = 'button',
+        tooltip = '',
+        tabIndex = 0,
+        onMouseEnter = () => {},
+        onMouseLeave = () => {},
+        children = '',
+        buttonProps,
+        ...rest
+    } = props;
+
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (disabled) {
             e.preventDefault();
@@ -61,8 +64,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
             data-testid="testid-button"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-            {...buttonProps}
             aria-labelledby={`button-content-${id}`}
+            {...buttonProps}
+            {...rest}
         >
             {icon && !loading && (
                 <Icon name={icon} color="inherit" size={iconSize || '24'} />

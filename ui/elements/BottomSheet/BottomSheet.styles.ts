@@ -12,7 +12,7 @@ export const StyledBottomSheetWrapper = styled.div<StyledBottomSheetWrapperProps
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1500;
+    z-index: var(--z-index-bottomsheet-overlay, 1250);
     font-family: var(--font-family, 'Mona Sans');
     width: 100vw;
     height: 100vh;
@@ -51,6 +51,7 @@ export const StyledBottomSheet = styled.div<StyledBottomSheetProps>`
     border-top-left-radius: var(--spacing-8px, 8px);
     border-top-right-radius: var(--spacing-8px, 8px);
     overflow: hidden;
+    z-index: var(--z-index-bottomsheet, 1300);
 
     position: absolute;
     top: calc(100% + ${({ $translateY }) => $translateY}px);
@@ -104,7 +105,7 @@ export const StyledDragHandle = styled.div<StyledDivProps>`
 export const StyledBottomSheetContent = styled.div<StyledBottomSheetContentProps>`
     width: 100%;
     height: calc(100% - ${DRAG_HANDLE_HEIGHT}px);
-    oveflow-x: hidden;
+    overflow-x: hidden;
     overflow-y: auto;
 
     ${({ $height }) =>

@@ -1,4 +1,12 @@
-import React, { forwardRef, useId, useImperativeHandle, useRef } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import React, {
+    forwardRef,
+    useId,
+    useImperativeHandle,
+    useMemo,
+    useRef,
+} from 'react';
+import ReactDOM from 'react-dom';
 
 import {
     useClickAway,
@@ -18,40 +26,50 @@ import {
     StyledModalWrapper,
 } from './Modal.styles';
 import { ModalProps } from './types';
+import { getModalAnimationProps, getShouldRender } from './utils';
 
 /**
  * A modal is used to display content that temporarily blocks
  * interactions with the main view of a site or to get user attention
  * on a specific action or information.
  */
-const Modal = forwardRef<HTMLDivElement, ModalProps>(({
-    banner = null,
-    title = null,
-    description = null,
-    body = null,
-    action = null,
-    width = null,
-    height = null,
-    minHeight = null,
-    onHide = () => {},
-    mobileBottomFullWidth = false,
-    modalPadding = '20px',
-    modalBodyMargin = null,
-    showCloseButton = false,
-    hideOnClickAway = false,
-    blurBackground = false,
-}, ref) => {
+const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
+    const {
+        isOpen = true,
+        banner = null,
+        title = null,
+        description = null,
+        body = null,
+        action = null,
+        width = null,
+        height = null,
+        minHeight = null,
+        onHide = () => {},
+        mobileBottomFullWidth = false,
+        modalPadding = '20px',
+        modalBodyMargin = null,
+        showCloseButton = false,
+        hideOnClickAway = false,
+        blurBackground = false,
+        animatePresence = 'fade',
+        clickEvent = null,
+    } = props;
+
     const modalRef = useRef<HTMLDivElement>(null);
 
     useImperativeHandle(ref, () => modalRef.current);
 
-    useDisableBodyScroll();
+    useDisableBodyScroll(isOpen);
 
-    useKeyboardEvent(() => {
-        if (hideOnClickAway) {
-            onHide();
-        }
-    }, ['Escape']);
+    useKeyboardEvent({
+        onKeyPress: () => {
+            if (hideOnClickAway) {
+                onHide();
+            }
+        },
+        keyCodes: ['Escape'],
+        config: { shouldDetect: isOpen },
+    });
 
     useClickAway(modalRef, () => {
         if (hideOnClickAway) {
@@ -61,63 +79,94 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(({
 
     const id = useId();
 
-    return (
-        <StyledModalWrapper
-            blurBackground={blurBackground}
-            data-testid="testid-modalwrapper"
-        >
-            <StyledModal
-                onClick={(e: Event) => e.stopPropagation()}
-                ref={modalRef}
-                width={width}
-                height={height}
-                minHeight={minHeight}
-                mobileBottomFullWidth={mobileBottomFullWidth}
-                modalPadding={modalPadding}
-                aria-labelledby={`modal-title-${id}`}
-                aria-describedby={`modal-description-${id}`}
-                aria-modal="true"
-                role="dialog"
-                data-testid="testid-modal"
-            >
-                <StyledModalMain>
-                    {showCloseButton && (
-                        <StyledModalAction justifyContent="end">
-                            <IconButton
-                                onClick={onHide}
-                                size="small"
-                                variant="secondary-outlined"
-                                icon="close"
-                                ariaLabel="Close"
-                                buttonProps={{ autoFocus: true }}
-                            />
-                        </StyledModalAction>
-                    )}
+    const motionProps = useMemo(
+        () => getModalAnimationProps(animatePresence, clickEvent),
+        [animatePresence, clickEvent]
+    );
 
-                    {banner && <StyledModalBanner>{banner}</StyledModalBanner>}
+    const shouldRender = useMemo(
+        () =>
+            getShouldRender({
+                isOpen,
+                animatePresence,
+                clickEvent,
+            }),
+        [isOpen, animatePresence, clickEvent]
+    );
 
-                    {title && (
-                        <StyledModalTitle id={`modal-title-${id}`}>
-                            {title}
-                        </StyledModalTitle>
-                    )}
+    return ReactDOM.createPortal(
+        <AnimatePresence>
+            {shouldRender && (
+                <StyledModalWrapper
+                    blurBackground={blurBackground}
+                    data-testid="testid-modalwrapper"
+                >
+                    <StyledModal
+                        onClick={(e: React.MouseEvent<HTMLDivElement>) =>
+                            e.stopPropagation()
+                        }
+                        ref={modalRef}
+                        width={width}
+                        height={height}
+                        minHeight={minHeight}
+                        mobileBottomFullWidth={mobileBottomFullWidth}
+                        modalPadding={modalPadding}
+                        aria-labelledby={`modal-title-${id}`}
+                        aria-describedby={`modal-description-${id}`}
+                        aria-modal="true"
+                        role="dialog"
+                        data-testid="testid-modal"
+                        {...motionProps}
+                    >
+                        <StyledModalMain>
+                            {showCloseButton && (
+                                <StyledModalAction justifyContent="end">
+                                    <IconButton
+                                        onClick={onHide}
+                                        size="small"
+                                        variant="secondary-outlined"
+                                        icon="close"
+                                        ariaLabel="Close"
+                                        buttonProps={{ autoFocus: true }}
+                                    />
+                                </StyledModalAction>
+                            )}
 
-                    {description && (
-                        <StyledModalDescription id={`modal-description-${id}`}>
-                            {description}
-                        </StyledModalDescription>
-                    )}
+                            {banner && (
+                                <StyledModalBanner>{banner}</StyledModalBanner>
+                            )}
 
-                    {body && (
-                        <StyledModalBody modalBodyMargin={modalBodyMargin}>
-                            {body}
-                        </StyledModalBody>
-                    )}
-                </StyledModalMain>
+                            {title && (
+                                <StyledModalTitle id={`modal-title-${id}`}>
+                                    {title}
+                                </StyledModalTitle>
+                            )}
 
-                {action && <StyledModalAction>{action}</StyledModalAction>}
-            </StyledModal>
-        </StyledModalWrapper>
+                            {description && (
+                                <StyledModalDescription
+                                    id={`modal-description-${id}`}
+                                >
+                                    {description}
+                                </StyledModalDescription>
+                            )}
+
+                            {body && (
+                                <StyledModalBody
+                                    modalBodyMargin={modalBodyMargin}
+                                >
+                                    {body}
+                                </StyledModalBody>
+                            )}
+                        </StyledModalMain>
+
+                        {action && (
+                            <StyledModalAction>{action}</StyledModalAction>
+                        )}
+                    </StyledModal>
+                </StyledModalWrapper>
+            )}
+        </AnimatePresence>,
+        document.body
     );
 }) as React.ForwardRefExoticComponent<
     ModalProps & React.RefAttributes<HTMLDivElement>

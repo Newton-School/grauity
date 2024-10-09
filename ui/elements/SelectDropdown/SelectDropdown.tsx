@@ -1,4 +1,4 @@
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import React, { forwardRef, useCallback, useRef, useState } from 'react';
 
 import { useClickAway } from '../../../hooks';

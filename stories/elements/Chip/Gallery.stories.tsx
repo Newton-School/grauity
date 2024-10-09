@@ -31,7 +31,7 @@ const Template = (args: ChipProps) => (
                     </Table.TableDataCell>
                     <Table.TableDataCell>
                         <Chip {...args} variant={variant} key={variant}>
-                            Chip : 01
+                            Chip {variant}
                         </Chip>
                     </Table.TableDataCell>
                 </Table.TableRow>
@@ -47,6 +47,7 @@ const defaultArgs: ChipProps = {
     textColor: null,
     backgroundColor: null,
     borderColor: null,
+    rounded: false,
 };
 
 export const Gallery = Template.bind({});

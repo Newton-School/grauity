@@ -17,29 +17,29 @@ export const Template = (args: ConfirmationDialogProps) => {
             >
                 Sign out
             </Button>
-            {isOpen && (
-                <ConfirmationDialog
-                    banner={args?.banner}
-                    title={args?.title}
-                    description={args?.description}
-                    body={args?.body}
-                    onConfirm={() => {
-                        setIsOpen(false);
-                        args?.onConfirm();
-                    }}
-                    onCancel={() => {
-                        setIsOpen(false);
-                        args?.onCancel();
-                    }}
-                    confirmText={args?.confirmText}
-                    cancelText={args?.cancelText}
-                    confirmButtonVariant={args?.confirmButtonVariant}
-                    cancelButtonVariant={args?.cancelButtonVariant}
-                    showCloseButton={args?.showCloseButton}
-                    hideOnClickAway={args?.hideOnClickAway}
-                    blurBackground={args?.blurBackground}
-                />
-            )}
+            <ConfirmationDialog
+                isOpen={isOpen}
+                banner={args?.banner}
+                title={args?.title}
+                description={args?.description}
+                body={args?.body}
+                onConfirm={() => {
+                    setIsOpen(false);
+                    args?.onConfirm();
+                }}
+                onCancel={() => {
+                    setIsOpen(false);
+                    args?.onCancel();
+                }}
+                confirmText={args?.confirmText}
+                cancelText={args?.cancelText}
+                confirmButtonVariant={args?.confirmButtonVariant}
+                cancelButtonVariant={args?.cancelButtonVariant}
+                showCloseButton={args?.showCloseButton}
+                hideOnClickAway={args?.hideOnClickAway}
+                blurBackground={args?.blurBackground}
+                animatePresence={args?.animatePresence}
+            />
         </div>
     );
 };

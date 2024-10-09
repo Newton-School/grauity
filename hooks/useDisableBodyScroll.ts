@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 /**
  * Hook that makes the body scrollable or not scrollable.
  * Useful for modals, dialogs, etc.
+ *
+ * @param {boolean} disableBodyScroll - Determines if the body should be scrollable or not. Default is `true`
  */
 const useDisableBodyScroll = (disableBodyScroll: boolean = true) => {
     useEffect(() => {

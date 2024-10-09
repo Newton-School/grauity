@@ -175,6 +175,17 @@ export const constantGlobalStyle = `
     --backdrop-blur-20px: blur(20px);
 
     --backdrop-blur: var(--backdrop-blur-8px);
+
+    --z-index-tooltip: 1500;
+    --z-index-dropdown: 1400;
+    --z-index-bottomsheet: 1300;
+    --z-index-bottomsheet-overlay: 1250;
+    --z-index-popover: 1200;
+    --z-index-popover-overlay: 1150;
+    --z-index-modal: 1100;
+    --z-index-modal-overlay: 1050;
+    --z-index-drawer: 1000;
+    --z-index-drawer-overlay: 950;
 `;
 
 const GlobalStyle = createGlobalStyle<any>`

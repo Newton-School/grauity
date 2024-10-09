@@ -7,6 +7,7 @@ import { MultiStepModalProps } from '../../../ui/elements/Modal/types';
 import simpleTableArgs from '../Table/simpleArgs';
 
 const multiStepArgs: MultiStepModalProps = {
+    isOpen: true,
     modalSteps: [
         {
             banner: (
@@ -92,6 +93,7 @@ const multiStepArgs: MultiStepModalProps = {
     height: 'auto',
     minHeight: 'auto',
     showCloseButton: true,
+    animatePresence: 'fade',
 };
 
 export default multiStepArgs;
