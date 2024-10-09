@@ -17,7 +17,7 @@ export const StyledChipDiv = styled.div<StyledChip>`
     border-radius: 4px;
     font-family: var(--font-family, 'Mona Sans');
     font-style: normal;
-    font-weight: 650;
+    font-weight: var(--font-weight-semibold, 550);
     line-height: 120%;
     letter-spacing: 0.4px;
 
@@ -46,5 +46,10 @@ export const StyledChipDiv = styled.div<StyledChip>`
         backgroundColor &&
         css`
             background: ${backgroundColor};
+        `}
+    ${({ rounded }) =>
+        rounded &&
+        css`
+            border-radius: 100px;
         `}
 `;

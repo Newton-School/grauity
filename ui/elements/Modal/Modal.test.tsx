@@ -9,6 +9,7 @@ import { ModalProps } from './types';
 
 describe('Modal', () => {
     const defaultProps: ModalProps = {
+        isOpen: false,
         banner: 'Modal banner',
         title: 'Modal title',
         description: 'Modal description',
@@ -35,27 +36,27 @@ describe('Modal', () => {
         showCloseButton: true,
     };
 
-    it('renders the modal banner, title, description and body', () => {
-        render(<Modal {...defaultProps} />);
+    it('renders the modal correctly when isOpen is true', () => {
+        render(<Modal {...defaultProps} isOpen showCloseButton />);
+        expect(screen.getByTestId('testid-modalwrapper')).toBeInTheDocument();
         expect(screen.getByText('Modal banner')).toBeInTheDocument();
         expect(screen.getByText('Modal title')).toBeInTheDocument();
         expect(screen.getByText('Modal description')).toBeInTheDocument();
         expect(screen.getByText('Modal body')).toBeInTheDocument();
-    });
-
-    it('renders the modal action buttons', () => {
-        render(<Modal {...defaultProps} />);
         expect(screen.getByText('Primary Button')).toBeInTheDocument();
         expect(screen.getByText('Secondary Button')).toBeInTheDocument();
-    });
-
-    it('renders the close button', () => {
-        render(<Modal {...defaultProps} />);
         expect(screen.getByTestId('testid-iconbutton')).toBeInTheDocument();
     });
 
+    it('does not render the modal when isOpen is false', () => {
+        render(<Modal {...defaultProps} isOpen={false} />);
+        expect(
+            screen.queryByTestId('testid-modalwrapper')
+        ).not.toBeInTheDocument();
+    });
+
     it('does not render the close button when showCloseButton is false', () => {
-        render(<Modal {...defaultProps} showCloseButton={false} />);
+        render(<Modal {...defaultProps} isOpen showCloseButton={false} />);
         expect(
             screen.queryByTestId('testid-iconbutton')
         ).not.toBeInTheDocument();
@@ -63,28 +64,42 @@ describe('Modal', () => {
 
     it('calls onHide when close button is clicked', () => {
         const onHideFn = jest.fn();
-        render(<Modal {...defaultProps} onHide={onHideFn} />);
+        render(<Modal {...defaultProps} isOpen onHide={onHideFn} />);
         fireEvent.click(screen.getByTestId('testid-iconbutton'));
         expect(onHideFn).toHaveBeenCalledTimes(1);
     });
 
-    it('calls onHide when Escape button is pressed', () => {
+    it('calls onHide when Escape key is pressed', () => {
         const onHideFn = jest.fn();
-        render(<Modal {...defaultProps} onHide={onHideFn} />);
+        render(<Modal {...defaultProps} isOpen onHide={onHideFn} />);
         fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
         expect(onHideFn).toHaveBeenCalledTimes(1);
     });
 
+    it('does not call onHide when Escape key is pressed if isOpen is false', () => {
+        const onHideFn = jest.fn();
+        render(<Modal {...defaultProps} isOpen={false} onHide={onHideFn} />);
+        fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
+        expect(onHideFn).toHaveBeenCalledTimes(0);
+    });
+
     it('calls onHide when clicked outside the modal', () => {
         const onHideFn = jest.fn();
-        render(<Modal {...defaultProps} onHide={onHideFn} />);
+        render(<Modal {...defaultProps} isOpen onHide={onHideFn} />);
         fireEvent.mouseDown(document);
         expect(onHideFn).toHaveBeenCalledTimes(1);
     });
 
+    it('does not call onHide when clicked outside the modal if isOpen is false', () => {
+        const onHideFn = jest.fn();
+        render(<Modal {...defaultProps} onHide={onHideFn} isOpen={false} />);
+        fireEvent.mouseDown(document);
+        expect(onHideFn).toHaveBeenCalledTimes(0);
+    });
+
     it('does not call onHide when clicked inside the modal', () => {
         const onHideFn = jest.fn();
-        render(<Modal {...defaultProps} onHide={onHideFn} />);
+        render(<Modal {...defaultProps} isOpen onHide={onHideFn} />);
         fireEvent.click(screen.getByTestId('testid-modal'));
         expect(onHideFn).toHaveBeenCalledTimes(0);
     });
@@ -94,6 +109,7 @@ describe('Modal', () => {
         render(
             <Modal
                 {...defaultProps}
+                isOpen
                 onHide={onHideFn}
                 hideOnClickAway={false}
             />
@@ -107,6 +123,7 @@ describe('Modal', () => {
         render(
             <Modal
                 {...defaultProps}
+                isOpen
                 onHide={onHideFn}
                 hideOnClickAway={false}
             />

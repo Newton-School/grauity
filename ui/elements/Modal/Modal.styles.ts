@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
@@ -18,7 +19,7 @@ export const StyledModalWrapper = styled.div<ModalWrapperProps>`
     right: 0;
     bottom: 0;
     background-color: var(--alpha-overlay, rgba(22, 25, 29, 0.8));
-    z-index: 1000;
+    z-index: var(--z-index-modal-overlay, 1050);
     padding: var(--spacing-16px, 16px);
     display: flex;
     justify-content: center;
@@ -32,10 +33,10 @@ export const StyledModalWrapper = styled.div<ModalWrapperProps>`
         `}
 `;
 
-export const StyledModal = styled.div<ModalContainerProps>`
+export const StyledModal = styled(motion.div)<ModalContainerProps>`
     border: var(--spacing-1px, 1px) solid var(--border, #e1e5ea);
     background: var(--bg-primary, #fff);
-    z-index: 1000;
+    z-index: var(--z-index-modal, 1100);
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.25);
     border-radius: var(--corner-radius-12px, 12px);
     width: 500px;

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import kebabCase from 'lodash/kebabCase';
 import React from 'react';
 
 import THEMES from '../../ui/themes/constants';
@@ -13,7 +13,7 @@ import TokenBlock from '../helper-components/TokenBlock';
  */
 export function getKebabCase(str: string): string {
     // First, convert the string to kebab case using lodash
-    let kebabStr = _.kebabCase(str);
+    let kebabStr = kebabCase(str);
 
     // Use a regular expression to remove hyphens before numbers
     kebabStr = kebabStr.replace(/-(\d)/g, '$1');

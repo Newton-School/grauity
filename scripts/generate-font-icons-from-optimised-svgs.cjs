@@ -101,7 +101,7 @@ generateFonts({
                 throw err;
             }
         });
-        console.log(results);
+        // console.log(results);
     })
     .catch((error) => {
         console.error(error);

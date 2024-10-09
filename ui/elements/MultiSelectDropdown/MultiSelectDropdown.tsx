@@ -1,8 +1,9 @@
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import React, {
     forwardRef,
     useCallback,
     useEffect,
+    useId,
     useRef,
     useState,
 } from 'react';
@@ -110,14 +111,26 @@ const MultiSelectDropdown = forwardRef<
 
     useClickAway(dropdownRef, () => setIsOpened(false));
 
+    const id = useId();
+
     return (
-        <StyledDropdownWrapper ref={ref} role="combobox">
+        <StyledDropdownWrapper
+            ref={ref}
+            data-testid="testid-multiselectdropdown-wrapper"
+        >
             <StyledDropdownHeader
+                role="combobox"
+                tabIndex={0}
+                aria-labelledby={`multi-select-dropdown-label-${id}`}
+                aria-expanded={isOpened}
+                aria-controls={`multi-select-dropdown-list-${id}`}
+                aria-haspopup="listbox"
                 ref={triggerRef}
-                role="button"
                 onClick={() => setIsOpened(!isOpened)}
             >
-                <StyledDropdownHeaderTitle>
+                <StyledDropdownHeaderTitle
+                    id={`multi-select-dropdown-list-${id}`}
+                >
                     {getHeaderTitle()}
                 </StyledDropdownHeaderTitle>
                 <Icon name={isOpened ? 'chevron-up' : 'chevron-down'} />
@@ -145,7 +158,10 @@ const MultiSelectDropdown = forwardRef<
                             />
                         </StyledDropdownSearchContainer>
                     )}
-                    <StyledDropdownList>
+                    <StyledDropdownList
+                        role="listbox"
+                        id={`multi-select-dropdown-list-${id}`}
+                    >
                         {shouldEnableAllSelected && (
                             <DropdownListItem
                                 displayText={allOptionText}
@@ -153,7 +169,7 @@ const MultiSelectDropdown = forwardRef<
                                 isSelected={allOptionsSelected}
                             />
                         )}
-                        {Array.from(options || []).map((option) => (
+                        {Array.from(options || []).map((option, index) => (
                             <DropdownListItem
                                 key={option.id}
                                 displayText={option.label}
@@ -162,10 +178,16 @@ const MultiSelectDropdown = forwardRef<
                                     allOptionsSelected ||
                                     selectedOptionsIds[option.id]
                                 }
+                                autoFocus={
+                                    selectedOptionsIds[option.id] || index === 0
+                                }
                             />
                         ))}
                     </StyledDropdownList>
-                    <StyledApplyButton onClick={handleApply}>
+                    <StyledApplyButton
+                        onClick={handleApply}
+                        data-testid="testid-multiselectdropdown-submitbutton"
+                    >
                         Apply
                     </StyledApplyButton>
                 </StyledDropdownContainer>

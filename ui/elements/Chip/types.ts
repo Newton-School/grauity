@@ -60,6 +60,12 @@ export interface ChipProps {
     borderColor?: string;
 
     /**
+     * Flag to determine if the chip should be rounded.
+     * @default false
+     * */
+    rounded?: boolean;
+
+    /**
      * Content to be displayed inside the chip.
      */
     children?: React.ReactNode;
@@ -72,5 +78,6 @@ export interface StyledChip extends StyledDivProps {
     textColor?: string | null;
     backgroundColor?: string | null;
     borderColor?: string | null;
+    rounded?: boolean;
     ref?: React.Ref<HTMLDivElement>;
 }

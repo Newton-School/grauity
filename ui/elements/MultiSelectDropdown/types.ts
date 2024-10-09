@@ -70,11 +70,14 @@ export interface DropdownListItemProps {
     displayText: string;
     onClickFn: () => void;
     isSelected?: boolean;
+    autoFocus?: boolean;
 }
 
 export interface StyledDropdownWrapperProps extends StyledSelectProps {}
 
 export interface StyledDropdownHeaderProps extends StyledButtonProps {}
+
+export interface StyledDropdownListProps extends StyledDivProps {}
 
 export interface StyledDropdownListItemProps extends StyledButtonProps {}
 

@@ -1,5 +1,6 @@
 import classnames from 'classnames';
-import _ from 'lodash';
+import invoke from 'lodash/invoke';
+import isNil from 'lodash/isNil';
 import * as React from 'react';
 
 import { useKeyOnly, useValueAndKey } from '../../helpers';
@@ -35,13 +36,13 @@ function Icon({
             'aria-label'?: string;
         } = {};
 
-        if (_.isNil(ariaLabel)) {
+        if (isNil(ariaLabel)) {
             ariaOptions['aria-hidden'] = 'true';
         } else {
             ariaOptions['aria-label'] = ariaLabel;
         }
 
-        if (!_.isNil(ariaHidden)) {
+        if (!isNil(ariaHidden)) {
             ariaOptions['aria-hidden'] = ariaHidden;
         }
 
@@ -54,7 +55,7 @@ function Icon({
             return;
         }
 
-        _.invoke(props, 'onClick', e, props);
+        invoke(props, 'onClick', e, props);
     };
 
     const ariaOptions = getIconAriaOptions();

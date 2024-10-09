@@ -12,6 +12,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             textColor = null,
             backgroundColor = null,
             borderColor = null,
+            rounded = false,
             children,
         },
         ref
@@ -24,6 +25,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             textColor={textColor}
             backgroundColor={backgroundColor}
             borderColor={borderColor}
+            rounded={rounded}
         >
             {children}
         </StyledChipDiv>

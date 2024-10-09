@@ -6,6 +6,7 @@ import {
     StyledDropdownHeaderProps,
     StyledDropdownItemTextProps,
     StyledDropdownListItemProps,
+    StyledDropdownListProps,
     StyledDropdownSearchInputProps,
     StyledDropdownWrapperProps,
 } from './types';
@@ -34,7 +35,7 @@ export const StyledDropdownHeader = styled.div<StyledDropdownHeaderProps>`
     outline: none;
 `;
 
-export const StyledDropdownHeaderTitle = styled.div`
+export const StyledDropdownHeaderTitle = styled.div<StyledDivProps>`
     height: 100%;
     display: flex;
     align-items: center;
@@ -61,12 +62,12 @@ export const StyledDropdownContainer = styled.div<StyledDivProps>`
         var(--spacing-8px, 8px) var(--spacing-0px, 0px) rgba(0, 0, 0, 0.06);
 `;
 
-export const StyledDropdownList = styled.div`
+export const StyledDropdownList = styled.div<StyledDropdownListProps>`
     width: 100%;
     overflow-y: auto;
 `;
 
-export const StyledDropdownListItem = styled.div<StyledDropdownListItemProps>`
+export const StyledDropdownListItem = styled.button<StyledDropdownListItemProps>`
     width: 100%;
     outline: none;
     display: flex;
@@ -75,10 +76,27 @@ export const StyledDropdownListItem = styled.div<StyledDropdownListItemProps>`
     padding: var(--spacing-8px, 8px) var(--spacing-4px, 4px);
     gap: var(--spacing-8px, 8px);
     cursor: pointer;
+    border-radius: var(--corner-radius-8px, 8px);
+    background: var(--bg-primary, #ffffff);
+    border: 2px solid transparent;
 
     &:hover {
         background: var(--bg-secondary, #f6f7f9);
     }
+
+    &:focus-visible {
+        background: var(--bg-secondary, #f6f7f9);
+        border: 2px solid var(--border-brand, #0673f9);
+    }
+
+    ${({ autoFocus }) =>
+        autoFocus &&
+        css`
+            &:focus {
+                background: var(--bg-secondary, #f6f7f9);
+                border: 2px solid var(--border-brand, #0673f9);
+            }
+        `}
 `;
 
 export const StyledDropdownItemCheckbox = styled.div`
