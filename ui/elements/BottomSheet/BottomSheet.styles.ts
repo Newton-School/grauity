@@ -12,7 +12,7 @@ export const StyledBottomSheetWrapper = styled.div<StyledBottomSheetWrapperProps
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 1500;
     font-family: var(--font-family, 'Mona Sans');
     width: 100vw;
     height: 100vh;

@@ -197,13 +197,6 @@ export default function PopOver(props: PopOverProps) {
     useEffect(() => {
         if (isOpen && autoAdjust && firstOffsetSet) {
             handlePositionAdjust(direction);
-            window.addEventListener('resize', () =>
-                handlePositionAdjust(direction)
-            );
-            return () =>
-                window.removeEventListener('resize', () =>
-                    handlePositionAdjust(direction)
-                );
         }
         return () => {};
     }, [isOpen, autoAdjust, direction, firstOffsetSet]);

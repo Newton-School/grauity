@@ -31,8 +31,8 @@ export const StyledAccordionContent = styled.div<StyledAccordionContentProps>`
 `;
 
 export const StyledAccordionWrapper = styled.div<StyledAccordionWrappeer>`
+    width: 100%;
     border-radius: 4px;
-    margin: 10px 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 `;
 

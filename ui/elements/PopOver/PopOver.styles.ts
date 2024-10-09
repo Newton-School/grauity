@@ -19,4 +19,10 @@ export const StyledPopOverContainer = styled.div<StyledPopOverContainerProps>`
         css`
             left: ${$offset?.left}px;
         `}
+
+    ${({ $offset }) =>
+        !$offset &&
+        css`
+            z-index: -10;
+        `}
 `;
