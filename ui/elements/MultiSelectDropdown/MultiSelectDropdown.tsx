@@ -112,7 +112,10 @@ const MultiSelectDropdown = forwardRef<
     const id = useId();
 
     return (
-        <StyledDropdownWrapper ref={ref}>
+        <StyledDropdownWrapper
+            ref={ref}
+            data-testid="testid-multiselectdropdown-wrapper"
+        >
             <StyledDropdownHeader
                 role="combobox"
                 tabIndex={0}
@@ -171,7 +174,10 @@ const MultiSelectDropdown = forwardRef<
                             />
                         ))}
                     </StyledDropdownList>
-                    <StyledApplyButton onClick={handleApply}>
+                    <StyledApplyButton
+                        onClick={handleApply}
+                        data-testid="testid-multiselectdropdown-submitbutton"
+                    >
                         Apply
                     </StyledApplyButton>
                 </StyledDropdownContainer>

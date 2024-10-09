@@ -26,7 +26,7 @@ import {
     StyledModalWrapper,
 } from './Modal.styles';
 import { ModalProps } from './types';
-import { getModalAnimationProps } from './utils';
+import { getModalAnimationProps, getShouldRender } from './utils';
 
 /**
  * A modal is used to display content that temporarily blocks
@@ -52,6 +52,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         hideOnClickAway = false,
         blurBackground = false,
         animatePresence = 'fade',
+        clickEvent = null,
     } = props;
 
     const modalRef = useRef<HTMLDivElement>(null);
@@ -79,13 +80,23 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     const id = useId();
 
     const motionProps = useMemo(
-        () => getModalAnimationProps(animatePresence),
-        [animatePresence]
+        () => getModalAnimationProps(animatePresence, clickEvent),
+        [animatePresence, clickEvent]
+    );
+
+    const shouldRender = useMemo(
+        () =>
+            getShouldRender({
+                isOpen,
+                animatePresence,
+                clickEvent,
+            }),
+        [isOpen, animatePresence, clickEvent]
     );
 
     return ReactDOM.createPortal(
         <AnimatePresence>
-            {isOpen && (
+            {shouldRender && (
                 <StyledModalWrapper
                     blurBackground={blurBackground}
                     data-testid="testid-modalwrapper"

@@ -1,7 +1,10 @@
+export const MODAL_ANIMATION_DURATION_SECONDS = 0.3;
+
 export enum MODAL_MOTION_VARIANT_TYPES_ENUM {
     SLIDE = 'slide',
     SLIDE_REVERSE = 'slide-reverse',
     FADE = 'fade',
+    EMANATE = 'emanate',
 }
 
 export const MODAL_MOTION_ANIMATION_TYPES = {
@@ -11,7 +14,7 @@ export const MODAL_MOTION_ANIMATION_TYPES = {
             visible: { opacity: 1, y: 0 },
             exit: { opacity: 0, y: 50 },
         },
-        transition: { duration: 0.3 },
+        transition: { duration: MODAL_ANIMATION_DURATION_SECONDS },
     },
     [MODAL_MOTION_VARIANT_TYPES_ENUM.SLIDE_REVERSE]: {
         variants: {
@@ -19,7 +22,7 @@ export const MODAL_MOTION_ANIMATION_TYPES = {
             visible: { opacity: 1, y: 0 },
             exit: { opacity: 0, y: -50 },
         },
-        transition: { duration: 0.3 },
+        transition: { duration: MODAL_ANIMATION_DURATION_SECONDS },
     },
     [MODAL_MOTION_VARIANT_TYPES_ENUM.FADE]: {
         variants: {
@@ -27,6 +30,7 @@ export const MODAL_MOTION_ANIMATION_TYPES = {
             visible: { opacity: 1 },
             exit: { opacity: 0 },
         },
-        transition: { duration: 0.3 },
+        transition: { duration: MODAL_ANIMATION_DURATION_SECONDS },
     },
+    [MODAL_MOTION_VARIANT_TYPES_ENUM.EMANATE]: {},
 };

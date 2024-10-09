@@ -26,23 +26,28 @@ const defaultArgs: ConfirmationDialogProps = {
     hideOnClickAway: false,
     blurBackground: false,
     mobileBottomFullWidth: false,
-    animatePresence: 'slide-reverse',
+    animatePresence: 'emanate',
 };
 
 export const Template = () => {
     const [isOpen, setIsOpen] = useState(defaultArgs.isOpen);
+    const [clickEventObj, setClickEventObj] = useState(null);
 
     return (
         <div>
             <Button
-                onClick={() => setIsOpen(true)}
+                onClick={(event) => {
+                    setIsOpen(true);
+                    setClickEventObj(event);
+                }}
                 variant="danger"
                 icon="signout"
             >
                 Sign out
             </Button>
             <ConfirmationDialog
-                isOpen={isOpen}
+                isOpen={isOpen && clickEventObj}
+                clickEvent={clickEventObj}
                 banner={defaultArgs?.banner}
                 title={defaultArgs?.title}
                 description={defaultArgs?.description}

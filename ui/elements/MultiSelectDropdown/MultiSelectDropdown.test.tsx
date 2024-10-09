@@ -7,7 +7,7 @@ import MultiSelectDropdown from './MultiSelectDropdown';
 import { DropdownOption } from './types';
 
 const openDropdown = () => {
-    const header = screen.getByRole('button');
+    const header = screen.getByRole('combobox');
     fireEvent.click(header);
 };
 
@@ -79,13 +79,20 @@ describe('multi-select-dropdown', () => {
 
     // Select All Options
     it('shows select all options when shouldEnableAllSelected is true', () => {
-        render(<MultiSelectDropdown shouldEnableAllSelected />);
+        render(
+            <MultiSelectDropdown shouldEnableAllSelected allOptionText="All" />
+        );
         openDropdown();
         const allOption = screen.getByText('All');
         expect(allOption).toBeInTheDocument();
     });
     it('does not show select all options when shouldEnableAllSelected is false', () => {
-        render(<MultiSelectDropdown shouldEnableAllSelected={false} />);
+        render(
+            <MultiSelectDropdown
+                shouldEnableAllSelected={false}
+                allOptionText="All"
+            />
+        );
         openDropdown();
         const allOption = screen.queryByText('All');
         expect(allOption).not.toBeInTheDocument();
@@ -105,7 +112,7 @@ describe('multi-select-dropdown', () => {
     // No Option Selected
     it('renders no option selected text correctly', () => {
         render(<MultiSelectDropdown noOptionSelctedText="Select option" />);
-        const header = screen.getByRole('button');
+        const header = screen.getByRole('combobox');
         expect(header).toHaveTextContent('Select option');
     });
 
@@ -119,16 +126,20 @@ describe('multi-select-dropdown', () => {
             />
         );
         openDropdown();
-        const applyButton = screen.getByText('Apply');
+        const applyButton = screen.getByTestId(
+            'testid-multiselectdropdown-submitbutton'
+        );
         fireEvent.click(applyButton);
         expect(onOptionsChange).toHaveBeenCalledTimes(1);
     });
     it('closes dropdown when apply button is clicked', () => {
         render(<MultiSelectDropdown options={options} />);
         openDropdown();
-        const applyButton = screen.getByText('Apply');
+        const applyButton = screen.getByTestId(
+            'testid-multiselectdropdown-submitbutton'
+        );
         fireEvent.click(applyButton);
-        const dropdown = screen.queryByRole('combobox');
+        const dropdown = screen.getByTestId('testid-multiselectdropdown-wrapper');
         expect(dropdown.children).toHaveLength(1);
     });
 
@@ -146,7 +157,9 @@ describe('multi-select-dropdown', () => {
         const option3 = screen.getByText('Option 3');
         fireEvent.click(option1);
         fireEvent.click(option3);
-        const applyButton = screen.getByText('Apply');
+        const applyButton = screen.getByTestId(
+            'testid-multiselectdropdown-submitbutton'
+        );
         fireEvent.click(applyButton);
         expect(onOptionsChange).toHaveBeenCalledWith(
             new Set([
@@ -162,12 +175,15 @@ describe('multi-select-dropdown', () => {
                 options={options}
                 onOptionsChange={onOptionsChange}
                 shouldEnableAllSelected
+                allOptionText="All"
             />
         );
         openDropdown();
         const allOption = screen.getByText('All');
         fireEvent.click(allOption);
-        const applyButton = screen.getByText('Apply');
+        const applyButton = screen.getByTestId(
+            'testid-multiselectdropdown-submitbutton'
+        );
         fireEvent.click(applyButton);
         expect(onOptionsChange).toHaveBeenCalledWith(options);
     });
@@ -175,7 +191,7 @@ describe('multi-select-dropdown', () => {
     // Header Text
     it('renders header text correctly', () => {
         render(<MultiSelectDropdown noOptionSelctedText="Select options" />);
-        const header = screen.getByRole('button');
+        const header = screen.getByRole('combobox');
         expect(header).toHaveTextContent('Select options');
     });
     it('renders header text correctly when one option is selected', () => {
@@ -188,7 +204,7 @@ describe('multi-select-dropdown', () => {
         openDropdown();
         const option1 = screen.getByText('Option 2');
         fireEvent.click(option1);
-        const header = screen.getAllByRole('button')[0];
+        const header = screen.getAllByRole('combobox')[0];
         expect(header).toHaveTextContent('Option 2');
     });
     it('renders header text correctly when multiple options are selected', () => {
@@ -203,7 +219,7 @@ describe('multi-select-dropdown', () => {
         const option2 = screen.getByText('Option 2');
         fireEvent.click(option1);
         fireEvent.click(option2);
-        const header = screen.getAllByRole('button')[0];
+        const header = screen.getAllByRole('combobox')[0];
         expect(header).toHaveTextContent('2 selected');
     });
     it('renders header text correctly when all options are selected', () => {
@@ -212,13 +228,13 @@ describe('multi-select-dropdown', () => {
                 options={options}
                 noOptionSelctedText="Select options"
                 shouldEnableAllSelected
-                allOptionText="All Selected"
+                allOptionText="All"
             />
         );
         openDropdown();
-        const allOption = screen.getByText('All Selected');
+        const allOption = screen.getByText('All');
         fireEvent.click(allOption);
-        const header = screen.getAllByRole('button')[0];
-        expect(header).toHaveTextContent('All Selected');
+        const header = screen.getAllByRole('combobox')[0];
+        expect(header).toHaveTextContent('All');
     });
 });

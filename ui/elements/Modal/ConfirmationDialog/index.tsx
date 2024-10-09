@@ -8,14 +8,14 @@ import useDisableBodyScroll from '../../../../hooks/useDisableBodyScroll';
 import Button, { BUTTON_VARIANTS_ENUM, IconButton } from '../../Button';
 import Modal from '../Modal';
 import { ConfirmationDialogProps } from '../types';
-import { getModalAnimationProps } from '../utils';
+import { getModalAnimationProps, getShouldRender } from '../utils';
 
 /**
  * A confirmation dialog is a dialog box that asks the user to confirm an action.
  */
 const ConfirmationDialog = (props: ConfirmationDialogProps) => {
     const {
-        isOpen = false,
+        isOpen = true,
         cancelText = 'Cancel',
         confirmText = 'Confirm',
         onCancel = () => {},
@@ -31,6 +31,7 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
         blurBackground = false,
         mobileBottomFullWidth = false,
         animatePresence = 'fade',
+        clickEvent = null,
     } = props;
 
     const modalRef = React.useRef(null);
@@ -55,13 +56,23 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
     const id = useId();
 
     const motionProps = useMemo(
-        () => getModalAnimationProps(animatePresence),
-        [animatePresence]
+        () => getModalAnimationProps(animatePresence, clickEvent),
+        [animatePresence, clickEvent]
+    );
+
+    const shouldRender = useMemo(
+        () =>
+            getShouldRender({
+                isOpen,
+                animatePresence,
+                clickEvent,
+            }),
+        [isOpen, animatePresence, clickEvent]
     );
 
     return ReactDOM.createPortal(
         <AnimatePresence>
-            {isOpen && (
+            {shouldRender && (
                 <Modal.Wrapper blurBackground={blurBackground}>
                     <Modal.Modal
                         onClick={(e: React.MouseEvent<HTMLDivElement>) =>

@@ -14,7 +14,7 @@ import { MultiStepModalProps } from '../types';
  */
 const MultiStepModal = (props: MultiStepModalProps) => {
     const {
-        isOpen = false,
+        isOpen = true,
         modalSteps = [],
         showModalStepsPagination = true,
         hideOnClickAway = false,

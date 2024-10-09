@@ -5,7 +5,12 @@ import { ButtonVariants } from '../Button/types';
 
 type ModalContentType = React.ReactNode;
 
-export type ModalAnimationType = false | 'slide' | 'slide-reverse' | 'fade';
+export type ModalAnimationType =
+    | false
+    | 'slide'
+    | 'slide-reverse'
+    | 'fade'
+    | 'emanate';
 
 interface ModalStep {
     /**
@@ -144,11 +149,16 @@ export interface ModalProps {
     /**
      * Determines if the modal should animate its opening and closing
      *
-     * Available choices: `false`, `'slide'` `'slide-reverse'`, `'fade'`
+     * Available choices: `false`, `'slide'` `'slide-reverse'`, `'fade', 'emanate'`
      *
      * Default: `'fade'`
      * */
     animatePresence?: ModalAnimationType;
+
+    /**
+     * Click even object, to be passed by the onClick event for use with `emanate` modal animation
+     * */
+    clickEvent?: any;
 }
 
 export interface MultiStepModalProps {
@@ -427,4 +437,9 @@ export interface ConfirmationDialogProps {
      * Default: `'fade'`
      * */
     animatePresence?: ModalAnimationType;
+
+    /**
+     * Click event
+     * */
+    clickEvent?: any;
 }

@@ -80,13 +80,6 @@ export interface ButtonProps extends StyledButtonProps {
     loading?: boolean;
 
     /**
-     * Function to be called on click
-     *
-     * If the button is disabled, the function will not be called
-     * */
-    onClick?: (e?: any) => void;
-
-    /**
      * Additional styles to be used over the element
      *
      * Default: `{}`
@@ -140,7 +133,7 @@ export interface ButtonProps extends StyledButtonProps {
     /**
      * Additional props to be passed to the button element
      * */
-    buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+    buttonProps?: StyledButtonProps;
 }
 
 export interface IconButtonProps {
@@ -246,11 +239,10 @@ export interface IconButtonProps {
     /**
      * Additional props to be passed to the button element
      * */
-    buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+    buttonProps?: StyledButtonProps;
 }
 
-export interface ButtonComponentProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonComponentProps extends StyledButtonProps {
     variant?: ButtonVariants;
     size?: ButtonSizes;
     icon?: string | number;
