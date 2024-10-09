@@ -29,6 +29,6 @@ describe('DisableBodyScroll Component', () => {
                 </DisableBodyScroll>
             </div>
         );
-        expect(document.body).not.toHaveStyle('overflow: auto');
+        expect(document.body).not.toHaveStyle('overflow: hidden');
     });
 });
