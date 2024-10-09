@@ -2,11 +2,12 @@ import debounce from 'lodash/debounce';
 import React, { forwardRef, useCallback, useRef, useState } from 'react';
 
 import { useClickAway } from '../../../hooks';
+import Button from '../Button';
 import { Icon } from '../Icon';
+import PopOver from '../PopOver';
 import {
     StyledDropdownSearchContainer,
     StyledDropdownSearchInput,
-    StyledSelectDropdownButton,
     StyledSelectDropdownContainer,
     StyledSelectDropdownItem,
     StyledSelectDropdownList,
@@ -18,7 +19,7 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
     (props, ref) => {
         const {
             options = new Set<DropdownOption>([]),
-            iconName,
+            icon,
             text = 'Select',
             shouldEnableSearch = true,
             searchPlaceholder = 'Search',
@@ -30,6 +31,7 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
         const [isOpened, setIsOpened] = useState(false);
         const [searchInput, setSearchInput] = useState('');
 
+        const triggerRef = useRef();
         const dropdownRef = useRef();
 
         const debouncedSearchCallback = useCallback(
@@ -43,13 +45,22 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
 
         return (
             <StyledSelectDropdownWrapper ref={ref} role="combobox">
-                <StyledSelectDropdownButton onClick={() => setIsOpened(true)}>
-                    {iconName && (
-                        <Icon name={iconName} color="var(--text-action)" />
-                    )}
+                <Button
+                    ref={triggerRef}
+                    icon={icon}
+                    onClick={() => setIsOpened(true)}
+                >
                     {text}
-                </StyledSelectDropdownButton>
-                {isOpened && (
+                </Button>
+                <PopOver
+                    triggerRef={triggerRef}
+                    isOpen={isOpened}
+                    direction="bottom"
+                    minimumOffset={{ top: 10, left: 10, right: 10, bottom: 10 }}
+                    onClose={() => setIsOpened(false)}
+                    shouldCloseOnOutsideClick
+                    disableBackgroundScroll
+                >
                     <StyledSelectDropdownContainer ref={dropdownRef}>
                         {shouldEnableSearch && (
                             <StyledDropdownSearchContainer>
@@ -85,7 +96,7 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
                             ))}
                         </StyledSelectDropdownList>
                     </StyledSelectDropdownContainer>
-                )}
+                </PopOver>
             </StyledSelectDropdownWrapper>
         );
     }

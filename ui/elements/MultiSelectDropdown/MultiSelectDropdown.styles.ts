@@ -48,9 +48,6 @@ export const StyledDropdownHeaderTitle = styled.div<StyledDivProps>`
 
 export const StyledDropdownContainer = styled.div<StyledDivProps>`
     box-sizing: border-box;
-    position: absolute;
-    top: calc(100% + var(--spacing-4px, 4px));
-    width: 100%;
     max-height: 300px;
     padding: var(--spacing-8px, 8px);
     display: flex;

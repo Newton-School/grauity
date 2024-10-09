@@ -10,6 +10,7 @@ import React, {
 
 import { useClickAway } from '../../../hooks';
 import { Icon } from '../Icon';
+import PopOver from '../PopOver';
 import DropdownListItem from './DropdownListItem';
 import {
     StyledApplyButton,
@@ -47,6 +48,7 @@ const MultiSelectDropdown = forwardRef<
         Record<string, boolean>
     >({});
 
+    const triggerRef = useRef<HTMLButtonElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const clickOnOption = (option: DropdownOption) => {
@@ -123,6 +125,7 @@ const MultiSelectDropdown = forwardRef<
                 aria-expanded={isOpened}
                 aria-controls={`multi-select-dropdown-list-${id}`}
                 aria-haspopup="listbox"
+                ref={triggerRef}
                 onClick={() => setIsOpened(!isOpened)}
             >
                 <StyledDropdownHeaderTitle
@@ -132,7 +135,14 @@ const MultiSelectDropdown = forwardRef<
                 </StyledDropdownHeaderTitle>
                 <Icon name={isOpened ? 'chevron-up' : 'chevron-down'} />
             </StyledDropdownHeader>
-            {isOpened && (
+            <PopOver
+                isOpen={isOpened}
+                triggerRef={triggerRef}
+                onClose={() => setIsOpened(false)}
+                disableBackgroundScroll
+                shouldCloseOnOutsideClick
+                width={`${triggerRef.current?.getBoundingClientRect().width}px`}
+            >
                 <StyledDropdownContainer ref={dropdownRef}>
                     {shouldEnableSearch && (
                         <StyledDropdownSearchContainer>
@@ -181,7 +191,7 @@ const MultiSelectDropdown = forwardRef<
                         Apply
                     </StyledApplyButton>
                 </StyledDropdownContainer>
-            )}
+            </PopOver>
         </StyledDropdownWrapper>
     );
 });

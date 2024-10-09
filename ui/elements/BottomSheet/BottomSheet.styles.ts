@@ -105,7 +105,7 @@ export const StyledDragHandle = styled.div<StyledDivProps>`
 export const StyledBottomSheetContent = styled.div<StyledBottomSheetContentProps>`
     width: 100%;
     height: calc(100% - ${DRAG_HANDLE_HEIGHT}px);
-    oveflow-x: hidden;
+    overflow-x: hidden;
     overflow-y: auto;
 
     ${({ $height }) =>

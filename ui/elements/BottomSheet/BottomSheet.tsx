@@ -95,13 +95,14 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
         }
 
         return ReactDOM.createPortal(
-            <StyledBottomSheetWrapper ref={ref} $isOpen={isOpen} role="dialog">
+            <StyledBottomSheetWrapper ref={ref} $isOpen={isOpen}>
                 <StyledBottomSheet
                     ref={bottomSheetRef}
                     $isOpen={isOpen}
                     $height={height}
                     $fullScreen={fullScreen}
                     $translateY={translateY}
+                    role="dialog"
                 >
                     {(showDragHandle || closeOnPullDown) && (
                         <StyledDragHandleContainer

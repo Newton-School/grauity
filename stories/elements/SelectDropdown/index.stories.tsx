@@ -9,7 +9,7 @@ export default {
     component: SelectDropDown,
     decorators: [
         (Story: StoryFn) => (
-            <div style={{ width: '150px', height: '40px' }}>
+            <div style={{ width: '600px', height: '600px' }}>
                 <Story />
             </div>
         ),
@@ -19,7 +19,7 @@ export default {
 const Template = (args: SelectDropdownProps) => <SelectDropDown {...args} />;
 
 const defaultArgs: SelectDropdownProps = {
-    iconName: 'plus',
+    icon: 'plus',
     text: 'Select',
     options: new Set([
         { id: '1', label: 'Option 1' },

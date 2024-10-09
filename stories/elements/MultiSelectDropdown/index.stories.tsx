@@ -9,8 +9,10 @@ export default {
     component: MultiSelectDropdown,
     decorators: [
         (Story: StoryFn) => (
-            <div style={{ width: '250px', height: '50px' }}>
-                <Story />
+            <div style={{ width: '600px', height: '600px' }}>
+                <div style={{ width: '250px', height: '50px' }}>
+                    <Story />
+                </div>
             </div>
         ),
     ],
