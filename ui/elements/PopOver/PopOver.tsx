@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
 
-import { useClickAway, useDisableBodyScroll } from '../../../hooks';
+import { useClickAway } from '../../../hooks';
+import DisableBodyScroll from '../DisableBodyScroll';
 import { GAP_BETWEEN_TRIGGER_AND_POPOVER } from './constants';
 import { StyledPopOverContainer } from './PopOver.styles';
 import { PopOverDirection, PopOverOffset, PopOverProps } from './types';
@@ -214,23 +214,22 @@ export default function PopOver(props: PopOverProps) {
         }
     });
 
-    useDisableBodyScroll(isOpen && disableBackgroundScroll);
-
     if (!isOpen) {
         return null;
     }
 
-    return ReactDOM.createPortal(
-        <StyledPopOverContainer ref={popOverRef} $offset={adjustedOffset}>
-            <div
-                style={{
-                    width: width || 'fit-content',
-                    height: height || 'fit-content',
-                }}
-            >
-                {children}
-            </div>
-        </StyledPopOverContainer>,
-        document.body
+    return (
+        <DisableBodyScroll enabled={isOpen && disableBackgroundScroll}>
+            <StyledPopOverContainer ref={popOverRef} $offset={adjustedOffset}>
+                <div
+                    style={{
+                        width: width || 'fit-content',
+                        height: height || 'fit-content',
+                    }}
+                >
+                    {children}
+                </div>
+            </StyledPopOverContainer>
+        </DisableBodyScroll>
     );
 }
