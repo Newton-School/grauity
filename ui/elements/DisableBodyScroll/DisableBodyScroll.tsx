@@ -1,6 +1,7 @@
-import React, { forwardRef, useEffect } from 'react';
+import React, { forwardRef } from 'react';
 import ReactDOM from 'react-dom';
 
+import { useDisableBodyScroll } from '../../../hooks';
 import { StyledDisableBodyScroll } from './DisableBodyScroll.styles';
 import { DisableBodyScrollProps } from './types';
 
@@ -8,15 +9,7 @@ const DisableBodyScroll = forwardRef<HTMLDivElement, DisableBodyScrollProps>(
     (props, ref) => {
         const { children, enabled = true } = props;
 
-        useEffect(() => {
-            if (enabled) {
-                document.body.style.overflow = 'hidden';
-            }
-
-            return () => {
-                document.body.style.overflow = '';
-            };
-        }, [enabled]);
+        useDisableBodyScroll(enabled);
 
         return ReactDOM.createPortal(
             <StyledDisableBodyScroll ref={ref} $enabled={enabled}>

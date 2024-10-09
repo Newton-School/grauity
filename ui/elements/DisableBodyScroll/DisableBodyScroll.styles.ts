@@ -8,7 +8,7 @@ export const StyledDisableBodyScroll = styled.div<StyledDisableBodyScrollProps>`
     left: 0;
     width: 0;
     height: 0;
-    z-index: 10000;
+    z-index: var(--z-index-disable-body-scroll-hoc, 1000);
     background: transparent;
 
     ${({ $enabled }) =>
