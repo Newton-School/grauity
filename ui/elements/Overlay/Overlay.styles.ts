@@ -9,7 +9,7 @@ export const StyledOverlay = styled(motion.div)<StyledOverlayProps>`
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: var(--z-index-disable-body-scroll-hoc, 2000);
+    z-index: var(--z-index-overlay-hoc, 2000);
     background: transparent;
     font-family: var(--font-family, 'Mona Sans');
 

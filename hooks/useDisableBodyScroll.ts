@@ -5,11 +5,11 @@ import { useEffect } from 'react';
  * Hook that makes the body scrollable or not scrollable.
  * Useful for modals, dialogs, etc.
  *
- * @param {boolean} Overlay - Determines if the body should be scrollable or not. Default is `true`
+ * @param {boolean} disableBodyScroll - Determines if the body should be scrollable or not. Default is `true`
  */
-const useDisableBodyScroll = (Overlay: boolean = true) => {
+const useDisableBodyScroll = (disableBodyScroll: boolean = true) => {
     useEffect(() => {
-        if (Overlay) {
+        if (disableBodyScroll) {
             if (typeof window !== 'undefined' && document?.body) {
                 // TODO: This is a fix for the sudden content shift towards the right
                 // which happens when the body is set to overflow hidden (scrollbars are removed).
@@ -21,14 +21,14 @@ const useDisableBodyScroll = (Overlay: boolean = true) => {
         }
 
         return () => {
-            if (Overlay) {
+            if (disableBodyScroll) {
                 if (typeof window !== 'undefined' && document?.body) {
                     // document.body.style.paddingRight = 'unset';
                     document.body.style.overflow = 'auto';
                 }
             }
         };
-    }, [Overlay]);
+    }, [disableBodyScroll]);
 };
 
 export default useDisableBodyScroll;

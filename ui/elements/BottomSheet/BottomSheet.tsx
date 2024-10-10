@@ -1,5 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 
 import Overlay from '../Overlay';
 import {
@@ -8,7 +8,10 @@ import {
     StyledDragHandle,
     StyledDragHandleContainer,
 } from './BottomSheet.styles';
-import { ANIMATION_DURATION, SWIPE_THRESHOLD } from './constants';
+import {
+    ANIMATION_DURATION_IN_MILLISECONDS,
+    SWIPE_THRESHOLD,
+} from './constants';
 import { BottomSheetProps } from './types';
 
 const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
@@ -24,21 +27,8 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             closeOnPullDown = true,
         } = props;
 
-        const [isClosing, setIsClosing] = useState(false);
-        const [shouldRender, setShouldRender] = useState(isOpen);
         const [startY, setStartY] = useState<number | null>(null);
         const [translateY, setTranslateY] = useState(0);
-
-        const triggerClose = () => {
-            setIsClosing(true);
-            setTimeout(() => {
-                setIsClosing(false);
-                setShouldRender(false);
-                setStartY(null);
-                setTranslateY(0);
-                onClose();
-            }, ANIMATION_DURATION);
-        };
 
         const handleTouchStart = (e: React.TouchEvent) => {
             if (!closeOnPullDown) {
@@ -71,14 +61,6 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             setStartY(null);
         };
 
-        useEffect(() => {
-            if (isOpen) {
-                setShouldRender(true);
-            } else if (!isClosing) {
-                triggerClose();
-            }
-        }, [isOpen]);
-
         const motionProps = {
             initial: 'hidden',
             animate: 'visible',
@@ -88,21 +70,23 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
                 visible: { y: '-100%' },
                 exit: { y: 0 },
             },
-            transition: { duration: ANIMATION_DURATION / 1000 },
+            transition: { duration: ANIMATION_DURATION_IN_MILLISECONDS / 1000 },
         };
 
         return (
             <AnimatePresence>
                 {isOpen && (
                     <Overlay
-                        shouldDisableScroll={shouldRender}
+                        shouldDisableScroll={isOpen}
                         shouldTintOverlay
                         onOverlayClick={() => {
                             if (closeOnBackdropClick) {
                                 onClose();
                             }
                         }}
-                        animationDuration={ANIMATION_DURATION / 1000}
+                        animationDuration={
+                            ANIMATION_DURATION_IN_MILLISECONDS / 1000
+                        }
                         data-testid="testid-bottomsheet-wrapper"
                     >
                         <StyledBottomSheet

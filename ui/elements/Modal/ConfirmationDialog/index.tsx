@@ -34,8 +34,6 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
 
     const modalRef = React.useRef(null);
 
-    // useDisableBodyScroll();
-
     useKeyboardEvent({
         onKeyPress: () => {
             if (hideOnClickAway) {
@@ -44,12 +42,6 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
         },
         keyCodes: ['Escape'],
     });
-
-    // useClickAway(modalRef, () => {
-    //     if (hideOnClickAway) {
-    //         onCancel();
-    //     }
-    // });
 
     const id = useId();
 

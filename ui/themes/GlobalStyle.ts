@@ -176,7 +176,7 @@ export const constantGlobalStyle = `
 
     --backdrop-blur: var(--backdrop-blur-8px);
 
-    --z-index-disable-body-scroll-hoc: 2000;
+    --z-index-overlay-hoc: 2000;
     --z-index-tooltip: 1500;
     --z-index-dropdown: 1400;
     --z-index-bottomsheet: 1300;
