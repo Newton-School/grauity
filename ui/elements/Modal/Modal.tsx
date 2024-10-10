@@ -97,6 +97,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                     shouldBlurOverlay={blurBackground}
                     shouldCenterContent
                     data-testid="testid-modalwrapper"
+                    animationDuration={0.3}
                 >
                     <StyledModal
                         onClick={(e: React.MouseEvent<HTMLDivElement>) =>
