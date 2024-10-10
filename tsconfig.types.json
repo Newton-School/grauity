@@ -9,5 +9,5 @@
         "allowJs": false,
         "emitDeclarationOnly": true
     },
-    "exclude": ["node_modules"]
+    "include": ["ui/index.ts"]
 }

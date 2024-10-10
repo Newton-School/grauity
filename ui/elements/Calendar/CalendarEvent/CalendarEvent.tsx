@@ -90,4 +90,6 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
     }
 );
 
+export type { CalendarEventProps };
+
 export default CalendarEvent;

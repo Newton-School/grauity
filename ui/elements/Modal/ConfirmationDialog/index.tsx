@@ -153,6 +153,6 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
     );
 };
 
-export { ConfirmationDialogProps };
+export { type ConfirmationDialogProps };
 
 export default ConfirmationDialog;

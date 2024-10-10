@@ -332,3 +332,5 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         </StyledCalendarWrapper>
     );
 }
+
+export type { WeeklyCalendarProps };

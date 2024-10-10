@@ -192,4 +192,6 @@ Modal.Body = StyledModalBody;
 Modal.Action = StyledModalAction;
 Modal.Divider = StyledModalDivider;
 
+export { type ModalProps };
+
 export default Modal;
