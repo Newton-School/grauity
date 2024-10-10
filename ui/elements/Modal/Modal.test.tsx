@@ -86,15 +86,8 @@ describe('Modal', () => {
     it('calls onHide when clicked outside the modal', () => {
         const onHideFn = jest.fn();
         render(<Modal {...defaultProps} isOpen onHide={onHideFn} />);
-        fireEvent.mouseDown(document);
+        fireEvent.click(screen.getByTestId('testid-modalwrapper'));
         expect(onHideFn).toHaveBeenCalledTimes(1);
-    });
-
-    it('does not call onHide when clicked outside the modal if isOpen is false', () => {
-        const onHideFn = jest.fn();
-        render(<Modal {...defaultProps} onHide={onHideFn} isOpen={false} />);
-        fireEvent.mouseDown(document);
-        expect(onHideFn).toHaveBeenCalledTimes(0);
     });
 
     it('does not call onHide when clicked inside the modal', () => {

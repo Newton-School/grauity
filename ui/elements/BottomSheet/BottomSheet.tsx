@@ -1,11 +1,10 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
+import { AnimatePresence } from 'framer-motion';
+import React, { forwardRef, useEffect, useState } from 'react';
 
-import { useClickAway, useDisableBodyScroll } from '../../../hooks';
+import Overlay from '../Overlay';
 import {
     StyledBottomSheet,
     StyledBottomSheetContent,
-    StyledBottomSheetWrapper,
     StyledDragHandle,
     StyledDragHandleContainer,
 } from './BottomSheet.styles';
@@ -29,8 +28,6 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
         const [shouldRender, setShouldRender] = useState(isOpen);
         const [startY, setStartY] = useState<number | null>(null);
         const [translateY, setTranslateY] = useState(0);
-
-        const bottomSheetRef = useRef<HTMLDivElement>(null);
 
         const triggerClose = () => {
             setIsClosing(true);
@@ -74,14 +71,6 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             setStartY(null);
         };
 
-        useClickAway(bottomSheetRef, () => {
-            if (closeOnBackdropClick) {
-                onClose();
-            }
-        });
-
-        useDisableBodyScroll(shouldRender);
-
         useEffect(() => {
             if (isOpen) {
                 setShouldRender(true);
@@ -90,37 +79,62 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             }
         }, [isOpen]);
 
-        if (!shouldRender) {
-            return null;
-        }
+        const motionProps = {
+            initial: 'hidden',
+            animate: 'visible',
+            exit: 'exit',
+            variants: {
+                hidden: { y: 0 },
+                visible: { y: '-100%' },
+                exit: { y: 0 },
+            },
+            transition: { duration: ANIMATION_DURATION / 1000 },
+        };
 
-        return ReactDOM.createPortal(
-            <StyledBottomSheetWrapper ref={ref} $isOpen={isOpen}>
-                <StyledBottomSheet
-                    ref={bottomSheetRef}
-                    $isOpen={isOpen}
-                    $height={height}
-                    $fullScreen={fullScreen}
-                    $translateY={translateY}
-                    role="dialog"
-                >
-                    {(showDragHandle || closeOnPullDown) && (
-                        <StyledDragHandleContainer
-                            onTouchStart={handleTouchStart}
-                            onTouchMove={handleTouchMove}
-                            onTouchEnd={handleTouchEnd}
-                        >
-                            <StyledDragHandle />
-                        </StyledDragHandleContainer>
-                    )}
-                    <StyledBottomSheetContent
-                        $height={!(showDragHandle || closeOnPullDown) && '100%'}
+        return (
+            <AnimatePresence>
+                {isOpen && (
+                    <Overlay
+                        shouldDisableScroll={shouldRender}
+                        shouldTintOverlay
+                        onOverlayClick={() => {
+                            if (closeOnBackdropClick) {
+                                onClose();
+                            }
+                        }}
+                        animationDuration={ANIMATION_DURATION / 1000}
+                        data-testid="testid-bottomsheet-wrapper"
                     >
-                        {children}
-                    </StyledBottomSheetContent>
-                </StyledBottomSheet>
-            </StyledBottomSheetWrapper>,
-            document.body
+                        <StyledBottomSheet
+                            ref={ref}
+                            $isOpen={isOpen}
+                            $height={height}
+                            $fullScreen={fullScreen}
+                            $translateY={translateY}
+                            role="dialog"
+                            {...motionProps}
+                        >
+                            {(showDragHandle || closeOnPullDown) && (
+                                <StyledDragHandleContainer
+                                    onTouchStart={handleTouchStart}
+                                    onTouchMove={handleTouchMove}
+                                    onTouchEnd={handleTouchEnd}
+                                >
+                                    <StyledDragHandle />
+                                </StyledDragHandleContainer>
+                            )}
+                            <StyledBottomSheetContent
+                                $height={
+                                    !(showDragHandle || closeOnPullDown) &&
+                                    '100%'
+                                }
+                            >
+                                {children}
+                            </StyledBottomSheetContent>
+                        </StyledBottomSheet>
+                    </Overlay>
+                )}
+            </AnimatePresence>
         );
     }
 );

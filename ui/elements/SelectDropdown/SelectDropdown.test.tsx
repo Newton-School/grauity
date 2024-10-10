@@ -80,7 +80,7 @@ describe('SelectDropdown Component', () => {
     it('closes the dropdown when clicked outside', () => {
         render(<SelectDropdown options={options} />);
         openDropdown();
-        fireEvent.mouseDown(document.body);
+        fireEvent.click(screen.getByTestId('testid-pop-over-wrapper'));
         expect(screen.queryAllByRole('option')).toHaveLength(0);
     });
 });

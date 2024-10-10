@@ -9,29 +9,7 @@ import {
     ModalDescriptionProps,
     ModalPaginationItemProps,
     ModalTitleProps,
-    ModalWrapperProps,
 } from './types';
-
-export const StyledModalWrapper = styled.div<ModalWrapperProps>`
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--alpha-overlay, rgba(22, 25, 29, 0.8));
-    z-index: var(--z-index-modal-overlay, 1050);
-    padding: var(--spacing-16px, 16px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--font-family, 'Mona Sans');
-
-    ${({ blurBackground }) =>
-        blurBackground &&
-        css`
-            backdrop-filter: var(--backdrop-blur-8px);
-        `}
-`;
 
 export const StyledModal = styled(motion.div)<ModalContainerProps>`
     border: var(--spacing-1px, 1px) solid var(--border, #e1e5ea);

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { useClickAway } from '../../../hooks';
-import DisableBodyScroll from '../DisableBodyScroll';
+import Overlay from '../Overlay';
 import { GAP_BETWEEN_TRIGGER_AND_POPOVER } from './constants';
 import { StyledPopOverContainer } from './PopOver.styles';
 import { PopOverDirection, PopOverOffset, PopOverProps } from './types';
@@ -201,25 +200,22 @@ export default function PopOver(props: PopOverProps) {
         return () => {};
     }, [isOpen, autoAdjust, direction, firstOffsetSet]);
 
-    useClickAway(popOverRef, (event) => {
-        if (
-            shouldCloseOnOutsideClick &&
-            !(
-                triggerRef &&
-                triggerRef.current &&
-                triggerRef.current.contains(event.target as Node)
-            )
-        ) {
+    const handleCloseOnOutsideClick = () => {
+        if (shouldCloseOnOutsideClick) {
             onClose();
         }
-    });
+    };
 
     if (!isOpen) {
         return null;
     }
 
     return (
-        <DisableBodyScroll enabled={isOpen && disableBackgroundScroll}>
+        <Overlay
+            shouldDisableScroll={isOpen && disableBackgroundScroll}
+            onOverlayClick={handleCloseOnOutsideClick}
+            data-testid="testid-pop-over-wrapper"
+        >
             <StyledPopOverContainer ref={popOverRef} $offset={adjustedOffset}>
                 <div
                     style={{
@@ -230,6 +226,6 @@ export default function PopOver(props: PopOverProps) {
                     {children}
                 </div>
             </StyledPopOverContainer>
-        </DisableBodyScroll>
+        </Overlay>
     );
 }

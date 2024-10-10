@@ -106,7 +106,7 @@ describe('ConfirmationDialog', () => {
                 isOpen
             />
         );
-        fireEvent.mouseDown(document);
+        fireEvent.click(screen.getByTestId('testid-modalwrapper'));
         expect(onCancelFn).toHaveBeenCalledTimes(1);
     });
 
@@ -120,7 +120,7 @@ describe('ConfirmationDialog', () => {
                 isOpen
             />
         );
-        fireEvent.mouseDown(document);
+        fireEvent.click(screen.getByTestId('testid-modalwrapper'));
         expect(onCancelFn).toHaveBeenCalledTimes(0);
     });
 });

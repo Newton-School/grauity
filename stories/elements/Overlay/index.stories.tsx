@@ -1,13 +1,11 @@
 import { StoryFn } from '@storybook/react';
 import React from 'react';
 import Button from 'ui/elements/Button';
-import DisableBodyScroll, {
-    DisableBodyScrollProps,
-} from 'ui/elements/DisableBodyScroll';
+import Overlay, { OverlayProps } from 'ui/elements/Overlay';
 
 export default {
-    title: 'Elements/DisableBodyScroll',
-    component: DisableBodyScroll,
+    title: 'Elements/Overlay',
+    component: Overlay,
     decorators: [
         (Story: StoryFn) => (
             <div style={{ width: '1000px', height: '1000px' }}>
@@ -17,7 +15,7 @@ export default {
     ],
 };
 
-const Template = (args: DisableBodyScrollProps) => {
+const Template = (args: OverlayProps) => {
     const triggerRef = React.useRef<HTMLButtonElement>(null);
     const [isOpen, setIsOpen] = React.useState(false);
 
@@ -26,7 +24,7 @@ const Template = (args: DisableBodyScrollProps) => {
             <Button ref={triggerRef} onClick={() => setIsOpen(!isOpen)}>
                 Trigger
             </Button>
-            <DisableBodyScroll {...args} enabled={isOpen}>
+            <Overlay {...args} shouldDisableScroll={isOpen}>
                 {isOpen && (
                     <div
                         style={{
@@ -38,18 +36,18 @@ const Template = (args: DisableBodyScrollProps) => {
                             overflow: 'auto',
                         }}
                     >
-                        Content inside DisableBodyScroll
+                        Content inside Overlay
                         <Button size="small" onClick={() => setIsOpen(false)}>
                             Close
                         </Button>
                     </div>
                 )}
-            </DisableBodyScroll>
+            </Overlay>
         </>
     );
 };
 
-const defaultArgs: DisableBodyScrollProps = {
+const defaultArgs: OverlayProps = {
     enabled: true,
 };
 
