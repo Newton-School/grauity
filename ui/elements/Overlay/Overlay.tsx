@@ -18,15 +18,20 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
         ...rest
     } = props;
 
-    const childrenRef = useRef(null);
+    const childrenRef = useRef<HTMLDivElement>();
 
     useDisableBodyScroll(shouldDisableScroll);
 
     const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (childrenRef && childrenRef.current.contains(e.target as Node)) {
+        if (
+            childrenRef.current &&
+            childrenRef.current.contains(e.target as Node)
+        ) {
             return;
         }
-        onOverlayClick();
+        if (e.currentTarget.contains(e.target as Node)) {
+            onOverlayClick();
+        }
         e.stopPropagation();
     };
 
