@@ -43,13 +43,19 @@ export {
 export { default as NSTable, type TableProps } from './elements/Table';
 
 // NSModal
+export { type ModalProps, default as NSModal } from './elements/Modal/Modal';
+
+// NSConfirmationDialog
 export {
     type ConfirmationDialogProps,
-    type ModalProps,
-    ConfirmationDialog as NSConfirmationDialog,
-    default as NSModal,
-    MultiStepModal as NSMultiStepModal,
-} from './elements/Modal';
+    default as NSConfirmationDialog,
+} from './elements/Modal/ConfirmationDialog';
+
+// NSMultiStepModal
+export {
+    type MultiStepModalProps,
+    default as NSMultiStepModal,
+} from './elements/Modal/MultiStepModal';
 
 // NSSelectDropdown
 export {
@@ -84,14 +90,14 @@ export {
 // NSCalendarEvent
 export {
     type CalendarEventProps,
-    CalendarEvent as NSCalendarEvent,
-} from './elements/Calendar';
+    default as NSCalendarEvent,
+} from './elements/Calendar/CalendarEvent/CalendarEvent';
 
 // NSWeeklyCalendar
 export {
     default as NSWeeklyCalendar,
     type WeeklyCalendarProps,
-} from './elements/Calendar';
+} from './elements/Calendar/WeeklyCalendar';
 
 // NSOverlay
 export { default as NSOverlay, type OverlayProps } from './elements/Overlay';

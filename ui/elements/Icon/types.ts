@@ -93,4 +93,4 @@ interface IconProps {
     style?: React.CSSProperties;
 }
 
-export { IconProps };
+export { type IconProps };

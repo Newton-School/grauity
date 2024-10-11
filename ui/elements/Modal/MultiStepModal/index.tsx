@@ -141,6 +141,6 @@ MultiStepModal.PaginatedActions = StyledModalPaginatedActions;
 MultiStepModal.Pagination = StyledModalPagination;
 MultiStepModal.PaginationItem = StyledModalPaginationItem;
 
-export { MultiStepModalProps };
+export { type MultiStepModalProps };
 
 export default MultiStepModal;
