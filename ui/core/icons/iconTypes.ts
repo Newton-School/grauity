@@ -30,7 +30,7 @@ export type grauityIconName =
     | 'bookmark-filled'
     | 'bookmark'
     | 'file-alt-filled'
-    | 'File-alt'
+    | 'file-alt'
     | 'file-filled'
     | 'file'
     | 'folder-filled'
@@ -265,7 +265,7 @@ export type grauityIconName =
     | 'hold'
     | 'home-filled'
     | 'home'
-    | 'Hourglass-filled'
+    | 'hourglass-filled'
     | 'hourglass'
     | 'kebab-horizontal-filled'
     | 'kebab-horizontal'
@@ -357,8 +357,6 @@ export type grauityIconName =
     | 'square'
     | 'sticky-note-filled'
     | 'sticky-note'
-    | 'study-plan-filled'
-    | 'study-plan'
     | 'sun-filled'
     | 'sun'
     | 'thumbs-down-filled'
@@ -757,8 +755,6 @@ export type grauityIconKey =
     | 'Square'
     | 'StickyNoteFilled'
     | 'StickyNote'
-    | 'StudyPlanFilled'
-    | 'StudyPlan'
     | 'SunFilled'
     | 'Sun'
     | 'ThumbsDownFilled'
@@ -830,7 +826,7 @@ export enum GRAUITY_ICONS {
     BookmarkFilled = 'bookmark-filled',
     Bookmark = 'bookmark',
     FileAltFilled = 'file-alt-filled',
-    FileAlt = 'File-alt',
+    FileAlt = 'file-alt',
     FileFilled = 'file-filled',
     File = 'file',
     FolderFilled = 'folder-filled',
@@ -1065,7 +1061,7 @@ export enum GRAUITY_ICONS {
     Hold = 'hold',
     HomeFilled = 'home-filled',
     Home = 'home',
-    HourglassFilled = 'Hourglass-filled',
+    HourglassFilled = 'hourglass-filled',
     Hourglass = 'hourglass',
     KebabHorizontalFilled = 'kebab-horizontal-filled',
     KebabHorizontal = 'kebab-horizontal',
@@ -1157,8 +1153,6 @@ export enum GRAUITY_ICONS {
     Square = 'square',
     StickyNoteFilled = 'sticky-note-filled',
     StickyNote = 'sticky-note',
-    StudyPlanFilled = 'study-plan-filled',
-    StudyPlan = 'study-plan',
     SunFilled = 'sun-filled',
     Sun = 'sun',
     ThumbsDownFilled = 'thumbs-down-filled',
