@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 
 import Overlay from '../Overlay';
@@ -206,26 +207,78 @@ export default function PopOver(props: PopOverProps) {
         }
     };
 
-    if (!isOpen) {
-        return null;
-    }
+    const leftMotionVariants = {
+        hidden: { x: -20 },
+        visible: { x: 0 },
+        exit: { x: -20 },
+    };
+
+    const rightMotionVariants = {
+        hidden: { x: 20 },
+        visible: { x: 0 },
+        exit: { x: 20 },
+    };
+
+    const topMotionVariants = {
+        hidden: { y: -20 },
+        visible: { y: 0 },
+        exit: { y: -20 },
+    };
+
+    const bottomMotionVariants = {
+        hidden: { y: 20 },
+        visible: { y: 0 },
+        exit: { y: 20 },
+    };
+
+    const motionProps = {
+        initial: 'hidden',
+        animate: 'visible',
+        exit: 'exit',
+        transition: { duration: 0.3 },
+    };
+
+    const getMotionVariants = (initialDirection: PopOverDirection) => {
+        if (initialDirection === 'top') {
+            return topMotionVariants;
+        }
+        if (initialDirection === 'right') {
+            return rightMotionVariants;
+        }
+        if (initialDirection === 'bottom') {
+            return bottomMotionVariants;
+        }
+        if (initialDirection === 'left') {
+            return leftMotionVariants;
+        }
+        return {};
+    };
 
     return (
-        <Overlay
-            shouldDisableScroll={isOpen && disableBackgroundScroll}
-            onOverlayClick={handleCloseOnOutsideClick}
-            data-testid="testid-pop-over-wrapper"
-        >
-            <StyledPopOverContainer ref={popOverRef} $offset={adjustedOffset}>
-                <div
-                    style={{
-                        width: width || 'fit-content',
-                        height: height || 'fit-content',
-                    }}
+        <AnimatePresence>
+            {isOpen && (
+                <Overlay
+                    shouldDisableScroll={isOpen && disableBackgroundScroll}
+                    onOverlayClick={handleCloseOnOutsideClick}
+                    data-testid="testid-pop-over-wrapper"
                 >
-                    {children}
-                </div>
-            </StyledPopOverContainer>
-        </Overlay>
+                    <StyledPopOverContainer
+                        ref={popOverRef}
+                        $offset={adjustedOffset}
+                        {...motionProps}
+                        variants={getMotionVariants(direction)}
+                    >
+                        <div
+                            style={{
+                                width: width || 'fit-content',
+                                height: height || 'fit-content',
+                            }}
+                        >
+                            {children}
+                        </div>
+                    </StyledPopOverContainer>
+                </Overlay>
+            )}
+        </AnimatePresence>
     );
 }
