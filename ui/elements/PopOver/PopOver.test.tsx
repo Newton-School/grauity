@@ -51,11 +51,12 @@ describe('PopOver', () => {
         fireEvent.click(screen.getByText('Trigger'));
         expect(screen.getByText('PopOver Content')).toBeInTheDocument();
     });
-    it('should close the PopOver component', () => {
+    it('should close the PopOver component', async () => {
         render(<TestPopOverComponent />);
         fireEvent.click(screen.getByText('Trigger'));
         expect(screen.getByText('PopOver Content')).toBeInTheDocument();
-        fireEvent.click(screen.getByText('Trigger'));
+        fireEvent.click(screen.getByTestId('testid-pop-over-wrapper'));
+        await new Promise((r) => setTimeout(r, 3000));
         expect(screen.queryByText('PopOver Content')).not.toBeInTheDocument();
-    });
+    }, 5000);
 });
