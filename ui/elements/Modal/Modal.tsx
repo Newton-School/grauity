@@ -6,14 +6,10 @@ import React, {
     useMemo,
     useRef,
 } from 'react';
-import ReactDOM from 'react-dom';
 
-import {
-    useClickAway,
-    useDisableBodyScroll,
-    useKeyboardEvent,
-} from '../../../hooks';
+import { useDisableBodyScroll, useKeyboardEvent } from '../../../hooks';
 import { IconButton } from '../Button';
+import Overlay from '../Overlay';
 import {
     StyledModal,
     StyledModalAction,
@@ -23,7 +19,6 @@ import {
     StyledModalDivider,
     StyledModalMain,
     StyledModalTitle,
-    StyledModalWrapper,
 } from './Modal.styles';
 import { ModalProps } from './types';
 import { getModalAnimationProps, getShouldRender } from './utils';
@@ -71,12 +66,6 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         config: { shouldDetect: isOpen },
     });
 
-    useClickAway(modalRef, () => {
-        if (hideOnClickAway) {
-            onHide();
-        }
-    });
-
     const id = useId();
 
     const motionProps = useMemo(
@@ -94,12 +83,21 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         [isOpen, animatePresence, clickEvent]
     );
 
-    return ReactDOM.createPortal(
+    return (
         <AnimatePresence>
             {shouldRender && (
-                <StyledModalWrapper
-                    blurBackground={blurBackground}
+                <Overlay
+                    shouldDisableScroll={shouldRender}
+                    onOverlayClick={() => {
+                        if (hideOnClickAway) {
+                            onHide();
+                        }
+                    }}
+                    shouldTintOverlay
+                    shouldBlurOverlay={blurBackground}
+                    shouldCenterContent
                     data-testid="testid-modalwrapper"
+                    animationDuration={0.3}
                 >
                     <StyledModal
                         onClick={(e: React.MouseEvent<HTMLDivElement>) =>
@@ -163,15 +161,13 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                             <StyledModalAction>{action}</StyledModalAction>
                         )}
                     </StyledModal>
-                </StyledModalWrapper>
+                </Overlay>
             )}
-        </AnimatePresence>,
-        document.body
+        </AnimatePresence>
     );
 }) as React.ForwardRefExoticComponent<
     ModalProps & React.RefAttributes<HTMLDivElement>
 > & {
-    Wrapper: typeof StyledModalWrapper;
     Modal: typeof StyledModal;
     Main: typeof StyledModalMain;
     Banner: typeof StyledModalBanner;
@@ -182,7 +178,6 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     Divider: typeof StyledModalDivider;
 };
 
-Modal.Wrapper = StyledModalWrapper;
 Modal.Modal = StyledModal;
 Modal.Main = StyledModalMain;
 Modal.Banner = StyledModalBanner;

@@ -1,11 +1,9 @@
 import { AnimatePresence } from 'framer-motion';
 import React, { useId, useMemo } from 'react';
-import ReactDOM from 'react-dom';
 
 import { useKeyboardEvent } from '../../../../hooks';
-import useClickAway from '../../../../hooks/useClickAway';
-import useDisableBodyScroll from '../../../../hooks/useDisableBodyScroll';
 import Button, { BUTTON_VARIANTS_ENUM, IconButton } from '../../Button';
+import Overlay from '../../Overlay';
 import Modal from '../Modal';
 import { ConfirmationDialogProps } from '../types';
 import { getModalAnimationProps, getShouldRender } from '../utils';
@@ -36,8 +34,6 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
 
     const modalRef = React.useRef(null);
 
-    useDisableBodyScroll();
-
     useKeyboardEvent({
         onKeyPress: () => {
             if (hideOnClickAway) {
@@ -45,12 +41,6 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
             }
         },
         keyCodes: ['Escape'],
-    });
-
-    useClickAway(modalRef, () => {
-        if (hideOnClickAway) {
-            onCancel();
-        }
     });
 
     const id = useId();
@@ -70,10 +60,21 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
         [isOpen, animatePresence, clickEvent]
     );
 
-    return ReactDOM.createPortal(
+    return (
         <AnimatePresence>
             {shouldRender && (
-                <Modal.Wrapper blurBackground={blurBackground}>
+                <Overlay
+                    shouldDisableScroll={shouldRender}
+                    onOverlayClick={() => {
+                        if (hideOnClickAway) {
+                            onCancel();
+                        }
+                    }}
+                    shouldTintOverlay
+                    shouldBlurOverlay={blurBackground}
+                    shouldCenterContent
+                    data-testid="testid-modalwrapper"
+                >
                     <Modal.Modal
                         onClick={(e: React.MouseEvent<HTMLDivElement>) =>
                             e.stopPropagation()
@@ -146,10 +147,9 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
                             </Button>
                         </Modal.Action>
                     </Modal.Modal>
-                </Modal.Wrapper>
+                </Overlay>
             )}
-        </AnimatePresence>,
-        document.body
+        </AnimatePresence>
     );
 };
 

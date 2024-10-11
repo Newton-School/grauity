@@ -294,12 +294,6 @@ export interface StyleData {
     backgroundColor?: string;
 }
 
-// Components interface for ModalWrapper
-export interface ModalWrapperProps {
-    blurBackground?: boolean;
-    children: React.ReactNode;
-}
-
 // Components interface for ModalContainer
 export interface ModalContainerProps extends StyledDivProps {
     width?: string;

@@ -1,8 +1,11 @@
+import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
 import { StyledPopOverContainerProps } from './types';
 
-export const StyledPopOverContainer = styled.div<StyledPopOverContainerProps>`
+export const StyledPopOverContainer = styled(
+    motion.div
+)<StyledPopOverContainerProps>`
     font-family: var(--font-family, 'Mona Sans');
     z-index: var(--z-index-popover, 1200);
     position: absolute;

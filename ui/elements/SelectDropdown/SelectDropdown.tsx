@@ -1,7 +1,6 @@
 import debounce from 'lodash/debounce';
 import React, { forwardRef, useCallback, useRef, useState } from 'react';
 
-import { useClickAway } from '../../../hooks';
 import Button from '../Button';
 import { Icon } from '../Icon';
 import PopOver from '../PopOver';
@@ -40,8 +39,6 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
             }, 500),
             []
         );
-
-        useClickAway(dropdownRef, () => setIsOpened(false));
 
         return (
             <StyledSelectDropdownWrapper ref={ref} role="combobox">

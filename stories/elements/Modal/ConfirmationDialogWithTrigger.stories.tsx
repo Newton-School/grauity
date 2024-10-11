@@ -23,7 +23,7 @@ const defaultArgs: ConfirmationDialogProps = {
     confirmButtonVariant: 'success',
     cancelButtonVariant: 'danger',
     showCloseButton: false,
-    hideOnClickAway: false,
+    hideOnClickAway: true,
     blurBackground: false,
     mobileBottomFullWidth: false,
     animatePresence: 'emanate',

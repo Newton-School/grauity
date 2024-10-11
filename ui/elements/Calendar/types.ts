@@ -70,6 +70,7 @@ export interface EventRendererProps<T = {}> {
 
 export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
     ref?: React.Ref<HTMLDivElement>;
+    'data-testid'?: string;
 }
 
 export interface StyledCalendarBlockProps extends StyledDivProps {

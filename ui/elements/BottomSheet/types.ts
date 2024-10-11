@@ -51,10 +51,6 @@ export interface BottomSheetProps {
     closeOnPullDown?: boolean;
 }
 
-export interface StyledBottomSheetWrapperProps extends StyledDivProps {
-    $isOpen?: boolean;
-}
-
 export interface StyledBottomSheetProps extends StyledDivProps {
     $isOpen?: boolean;
     $height: string;

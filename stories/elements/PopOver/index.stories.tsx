@@ -2,6 +2,7 @@ import { StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 import Button from 'ui/elements/Button';
 import PopOver, { PopOverProps } from 'ui/elements/PopOver';
+import SelectDropdown from 'ui/elements/SelectDropdown';
 
 export default {
     title: 'Elements/PopOver',
@@ -42,6 +43,14 @@ const Template = (args: PopOverProps) => {
                 >
                     <p>This is some popover content.</p>
                     <p>This component is for demonstration purpose only.</p>
+                    <SelectDropdown
+                        options={
+                            new Set([
+                                { id: 1, label: 'Item 1' },
+                                { id: 2, label: 'Item 2' },
+                            ])
+                        }
+                    />
                 </div>
             </PopOver>
         </>

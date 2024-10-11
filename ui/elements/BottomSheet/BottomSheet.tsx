@@ -1,15 +1,17 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
+import { AnimatePresence } from 'framer-motion';
+import React, { forwardRef, useState } from 'react';
 
-import { useClickAway, useDisableBodyScroll } from '../../../hooks';
+import Overlay from '../Overlay';
 import {
     StyledBottomSheet,
     StyledBottomSheetContent,
-    StyledBottomSheetWrapper,
     StyledDragHandle,
     StyledDragHandleContainer,
 } from './BottomSheet.styles';
-import { ANIMATION_DURATION, SWIPE_THRESHOLD } from './constants';
+import {
+    ANIMATION_DURATION_IN_MILLISECONDS,
+    SWIPE_THRESHOLD,
+} from './constants';
 import { BottomSheetProps } from './types';
 
 const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
@@ -25,23 +27,8 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             closeOnPullDown = true,
         } = props;
 
-        const [isClosing, setIsClosing] = useState(false);
-        const [shouldRender, setShouldRender] = useState(isOpen);
         const [startY, setStartY] = useState<number | null>(null);
         const [translateY, setTranslateY] = useState(0);
-
-        const bottomSheetRef = useRef<HTMLDivElement>(null);
-
-        const triggerClose = () => {
-            setIsClosing(true);
-            setTimeout(() => {
-                setIsClosing(false);
-                setShouldRender(false);
-                setStartY(null);
-                setTranslateY(0);
-                onClose();
-            }, ANIMATION_DURATION);
-        };
 
         const handleTouchStart = (e: React.TouchEvent) => {
             if (!closeOnPullDown) {
@@ -74,53 +61,64 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             setStartY(null);
         };
 
-        useClickAway(bottomSheetRef, () => {
-            if (closeOnBackdropClick) {
-                onClose();
-            }
-        });
+        const motionProps = {
+            initial: 'hidden',
+            animate: 'visible',
+            exit: 'exit',
+            variants: {
+                hidden: { y: 0 },
+                visible: { y: '-100%' },
+                exit: { y: 0 },
+            },
+            transition: { duration: ANIMATION_DURATION_IN_MILLISECONDS / 1000 },
+        };
 
-        useDisableBodyScroll(shouldRender);
-
-        useEffect(() => {
-            if (isOpen) {
-                setShouldRender(true);
-            } else if (!isClosing) {
-                triggerClose();
-            }
-        }, [isOpen]);
-
-        if (!shouldRender) {
-            return null;
-        }
-
-        return ReactDOM.createPortal(
-            <StyledBottomSheetWrapper ref={ref} $isOpen={isOpen}>
-                <StyledBottomSheet
-                    ref={bottomSheetRef}
-                    $isOpen={isOpen}
-                    $height={height}
-                    $fullScreen={fullScreen}
-                    $translateY={translateY}
-                    role="dialog"
-                >
-                    {(showDragHandle || closeOnPullDown) && (
-                        <StyledDragHandleContainer
-                            onTouchStart={handleTouchStart}
-                            onTouchMove={handleTouchMove}
-                            onTouchEnd={handleTouchEnd}
-                        >
-                            <StyledDragHandle />
-                        </StyledDragHandleContainer>
-                    )}
-                    <StyledBottomSheetContent
-                        $height={!(showDragHandle || closeOnPullDown) && '100%'}
+        return (
+            <AnimatePresence>
+                {isOpen && (
+                    <Overlay
+                        shouldDisableScroll={isOpen}
+                        shouldTintOverlay
+                        onOverlayClick={() => {
+                            if (closeOnBackdropClick) {
+                                onClose();
+                            }
+                        }}
+                        animationDuration={
+                            ANIMATION_DURATION_IN_MILLISECONDS / 1000
+                        }
+                        data-testid="testid-bottomsheet-wrapper"
                     >
-                        {children}
-                    </StyledBottomSheetContent>
-                </StyledBottomSheet>
-            </StyledBottomSheetWrapper>,
-            document.body
+                        <StyledBottomSheet
+                            ref={ref}
+                            $isOpen={isOpen}
+                            $height={height}
+                            $fullScreen={fullScreen}
+                            $translateY={translateY}
+                            role="dialog"
+                            {...motionProps}
+                        >
+                            {(showDragHandle || closeOnPullDown) && (
+                                <StyledDragHandleContainer
+                                    onTouchStart={handleTouchStart}
+                                    onTouchMove={handleTouchMove}
+                                    onTouchEnd={handleTouchEnd}
+                                >
+                                    <StyledDragHandle />
+                                </StyledDragHandleContainer>
+                            )}
+                            <StyledBottomSheetContent
+                                $height={
+                                    !(showDragHandle || closeOnPullDown) &&
+                                    '100%'
+                                }
+                            >
+                                {children}
+                            </StyledBottomSheetContent>
+                        </StyledBottomSheet>
+                    </Overlay>
+                )}
+            </AnimatePresence>
         );
     }
 );

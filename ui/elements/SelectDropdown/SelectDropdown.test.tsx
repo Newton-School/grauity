@@ -71,16 +71,18 @@ describe('SelectDropdown Component', () => {
     });
 
     // Close Dropdown
-    it('closes the dropdown when an option is selected', () => {
+    it('closes the dropdown when an option is selected', async () => {
         render(<SelectDropdown options={options} />);
         openDropdown();
         fireEvent.click(screen.getByText('Option 1'));
-        expect(screen.queryByRole('option')).not.toBeInTheDocument();
-    });
-    it('closes the dropdown when clicked outside', () => {
+        await new Promise((r) => setTimeout(r, 3000));
+        expect(screen.queryAllByRole('option')).toHaveLength(0);
+    }, 5000);
+    it('closes the dropdown when clicked outside', async () => {
         render(<SelectDropdown options={options} />);
         openDropdown();
-        fireEvent.mouseDown(document.body);
+        fireEvent.click(screen.getByTestId('testid-pop-over-wrapper'));
+        await new Promise((r) => setTimeout(r, 3000));
         expect(screen.queryAllByRole('option')).toHaveLength(0);
-    });
+    }, 5000);
 });
