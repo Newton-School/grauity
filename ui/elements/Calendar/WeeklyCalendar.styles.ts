@@ -106,6 +106,7 @@ export const StyledCalendarHeaderBlock = styled.div<StyledCalendarBlockProps>`
     border-bottom: var(--calendar-block-border);
     background: var(--bg-primary, #fff);
     color: var(--text-secondary, #5b6271);
+    font-size: 12px;
 
     ${({ $active }) =>
         $active &&

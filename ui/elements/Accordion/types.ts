@@ -25,14 +25,7 @@ export interface AccordionProps {
      */
     children?: React.ReactNode;
 }
-export interface StyledAccordionWrappeer extends StyledDivProps {
-    expanded?: boolean;
-}
 
 export interface StyledAccordionHeaderProps extends StyledDivProps {
     onClick: () => void;
-}
-
-export interface StyledAccordionContentProps extends StyledDivProps {
-    expanded: boolean;
 }

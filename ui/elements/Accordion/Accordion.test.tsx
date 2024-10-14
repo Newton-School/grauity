@@ -11,37 +11,28 @@ describe('Accordion Component', () => {
         expect(screen.getByText('Test Title')).toBeInTheDocument();
     });
 
-    it('renders the correct children', () => {
-        render(<Accordion title="Test Title">Test Content</Accordion>);
-        expect(screen.getByText('Test Content')).toBeInTheDocument();
-    });
-
-    it('is collapsed by default', () => {
-        render(<Accordion title="Test Title">Test Content</Accordion>);
-        expect(screen.queryByText('Test Content')).toHaveStyle('max-height: 0');
-    });
-
-    it('is expanded when expanded prop is true', () => {
+    it('renders the correct children when expanded is true', () => {
         render(
             <Accordion title="Test Title" expanded>
                 Test Content
             </Accordion>
         );
-        expect(screen.getByText('Test Content')).toHaveStyle(
-            'max-height: 1000px'
-        );
+        expect(screen.getByText('Test Content')).toBeInTheDocument();
+    });
+    it('renders the correct children when expanded is false', () => {
+        render(<Accordion title="Test Title">Test Content</Accordion>);
+        expect(screen.queryByText('Test Content')).not.toBeInTheDocument();
     });
 
-    it('toggles expanded state when clicked', () => {
+    it('toggles expanded state when clicked', async () => {
         render(<Accordion title="Test Title">Test Content</Accordion>);
         const titleElement = screen.getByText('Test Title');
         fireEvent.click(titleElement);
-        expect(screen.getByText('Test Content')).toHaveStyle(
-            'max-height: 1000px'
-        );
+        expect(screen.getByText('Test Content')).toBeInTheDocument();
         fireEvent.click(titleElement);
-        expect(screen.queryByText('Test Content')).toHaveStyle('max-height: 0');
-    });
+        await new Promise((r) => setTimeout(r, 3000));
+        expect(screen.queryByText('Test Content')).not.toBeInTheDocument();
+    }, 5000);
 
     it('calls onToggle when expanded state changes', () => {
         const handleToggle = jest.fn();
