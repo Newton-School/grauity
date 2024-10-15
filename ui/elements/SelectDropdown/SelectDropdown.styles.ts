@@ -11,6 +11,8 @@ export const StyledSelectDropdownWrapper = styled.div<StyledSelectDropdownWrappe
     width: 100%;
     height: 100%;
     position: relative;
+    display: flex;
+    align-items: center;
 `;
 
 export const StyledSelectDropdownTriggerWrapper = styled.div<StyledDivProps>`

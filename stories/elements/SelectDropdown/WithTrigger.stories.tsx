@@ -11,7 +11,9 @@ export default {
     decorators: [
         (Story: StoryFn) => (
             <div style={{ width: '600px', height: '600px' }}>
-                <Story />
+                <div style={{ width: '250px', height: '50px' }}>
+                    <Story />
+                </div>
             </div>
         ),
     ],
