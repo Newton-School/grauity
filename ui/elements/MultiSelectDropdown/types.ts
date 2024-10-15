@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
     StyledButtonProps,
     StyledDivProps,
@@ -64,6 +66,12 @@ export interface MultiSelectDropdownProps {
      * @param options - The current set of selected options.
      */
     onOptionsChange?: (options: Set<DropdownOption>) => void;
+
+    /**
+     * Additional component to render as the trigger component.
+     * If not provided, the default trigger button will be rendered.
+     */
+    triggerComponent?: React.ReactNode;
 }
 
 export interface DropdownListItemProps {

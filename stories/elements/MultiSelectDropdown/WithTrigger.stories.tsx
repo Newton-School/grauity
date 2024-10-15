@@ -1,11 +1,12 @@
 import { StoryFn } from '@storybook/react';
 import React from 'react';
+import Button from 'ui/elements/Button';
 import MultiSelectDropdown, {
     MultiSelectDropdownProps,
 } from 'ui/elements/MultiSelectDropdown';
 
 export default {
-    title: 'Elements/MultiSelectDropdown',
+    title: 'Elements/MultiSelectDropdown/WithTrigger',
     component: MultiSelectDropdown,
     decorators: [
         (Story: StoryFn) => (
@@ -42,7 +43,7 @@ const defaultArgs: MultiSelectDropdownProps = {
     defaultAllSelected: false,
     allOptionText: 'All',
     onOptionsChange: () => {},
-    triggerComponent: null,
+    triggerComponent: <Button>Custom Trigger</Button>,
 };
 
 export const Component = Template.bind({});
