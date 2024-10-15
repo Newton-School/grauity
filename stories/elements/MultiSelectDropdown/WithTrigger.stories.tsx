@@ -1,12 +1,13 @@
 import { StoryFn } from '@storybook/react';
 import React from 'react';
-import SelectDropDown, {
-    SelectDropdownProps,
-} from 'ui/elements/SelectDropdown';
+import Button from 'ui/elements/Button';
+import MultiSelectDropdown, {
+    MultiSelectDropdownProps,
+} from 'ui/elements/MultiSelectDropdown';
 
 export default {
-    title: 'Elements/SelectDropdown',
-    component: SelectDropDown,
+    title: 'Elements/MultiSelectDropdown/WithTrigger',
+    component: MultiSelectDropdown,
     decorators: [
         (Story: StoryFn) => (
             <div style={{ width: '600px', height: '600px' }}>
@@ -18,11 +19,12 @@ export default {
     ],
 };
 
-const Template = (args: SelectDropdownProps) => <SelectDropDown {...args} />;
+const Template = (args: MultiSelectDropdownProps) => (
+    <MultiSelectDropdown {...args} />
+);
 
-const defaultArgs: SelectDropdownProps = {
-    icon: 'plus',
-    text: 'Select',
+const defaultArgs: MultiSelectDropdownProps = {
+    noOptionSelctedText: 'Select',
     options: new Set([
         { id: '1', label: 'Option 1' },
         { id: '2', label: 'Option 2' },
@@ -37,9 +39,11 @@ const defaultArgs: SelectDropdownProps = {
     shouldEnableSearch: true,
     onSearchInputChange: () => {},
     searchPlaceholder: 'Search',
-    onChange: () => {},
-    noOptionsText: '-- No options available --',
-    triggerComponent: null,
+    shouldEnableAllSelected: true,
+    defaultAllSelected: false,
+    allOptionText: 'All',
+    onOptionsChange: () => {},
+    triggerComponent: <Button>Custom Trigger</Button>,
 };
 
 export const Component = Template.bind({});

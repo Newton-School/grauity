@@ -42,6 +42,7 @@ const defaultArgs: MultiSelectDropdownProps = {
     defaultAllSelected: false,
     allOptionText: 'All',
     onOptionsChange: () => {},
+    triggerComponent: null,
 };
 
 export const Component = Template.bind({});

@@ -20,6 +20,7 @@ import {
     StyledDropdownList,
     StyledDropdownSearchContainer,
     StyledDropdownSearchInput,
+    StyledDropdownTriggerWrapper,
     StyledDropdownWrapper,
 } from './MultiSelectDropdown.styles';
 import { DropdownOption, MultiSelectDropdownProps } from './types';
@@ -38,6 +39,7 @@ const MultiSelectDropdown = forwardRef<
         defaultAllSelected = false,
         allOptionText = 'All',
         onOptionsChange = () => {},
+        triggerComponent,
     } = props;
 
     const [isOpened, setIsOpened] = useState(false);
@@ -48,7 +50,7 @@ const MultiSelectDropdown = forwardRef<
         Record<string, boolean>
     >({});
 
-    const triggerRef = useRef<HTMLButtonElement>(null);
+    const triggerRef = useRef<any>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const clickOnOption = (option: DropdownOption) => {
@@ -118,23 +120,33 @@ const MultiSelectDropdown = forwardRef<
             ref={ref}
             data-testid="testid-multiselectdropdown-wrapper"
         >
-            <StyledDropdownHeader
-                role="combobox"
-                tabIndex={0}
-                aria-labelledby={`multi-select-dropdown-label-${id}`}
-                aria-expanded={isOpened}
-                aria-controls={`multi-select-dropdown-list-${id}`}
-                aria-haspopup="listbox"
-                ref={triggerRef}
-                onClick={() => setIsOpened(!isOpened)}
-            >
-                <StyledDropdownHeaderTitle
-                    id={`multi-select-dropdown-list-${id}`}
+            {triggerComponent && (
+                <StyledDropdownTriggerWrapper
+                    ref={triggerRef}
+                    onClick={() => setIsOpened(true)}
                 >
-                    {getHeaderTitle()}
-                </StyledDropdownHeaderTitle>
-                <Icon name={isOpened ? 'chevron-up' : 'chevron-down'} />
-            </StyledDropdownHeader>
+                    {triggerComponent}
+                </StyledDropdownTriggerWrapper>
+            )}
+            {!triggerComponent && (
+                <StyledDropdownHeader
+                    role="combobox"
+                    tabIndex={0}
+                    aria-labelledby={`multi-select-dropdown-label-${id}`}
+                    aria-expanded={isOpened}
+                    aria-controls={`multi-select-dropdown-list-${id}`}
+                    aria-haspopup="listbox"
+                    ref={triggerRef}
+                    onClick={() => setIsOpened(!isOpened)}
+                >
+                    <StyledDropdownHeaderTitle
+                        id={`multi-select-dropdown-list-${id}`}
+                    >
+                        {getHeaderTitle()}
+                    </StyledDropdownHeaderTitle>
+                    <Icon name={isOpened ? 'chevron-up' : 'chevron-down'} />
+                </StyledDropdownHeader>
+            )}
             <PopOver
                 isOpen={isOpened}
                 triggerRef={triggerRef}

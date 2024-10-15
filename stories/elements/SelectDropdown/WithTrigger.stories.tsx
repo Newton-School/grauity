@@ -1,11 +1,12 @@
 import { StoryFn } from '@storybook/react';
 import React from 'react';
+import Button from 'ui/elements/Button';
 import SelectDropDown, {
     SelectDropdownProps,
 } from 'ui/elements/SelectDropdown';
 
 export default {
-    title: 'Elements/SelectDropdown',
+    title: 'Elements/SelectDropdown/WithTrigger',
     component: SelectDropDown,
     decorators: [
         (Story: StoryFn) => (
@@ -39,7 +40,7 @@ const defaultArgs: SelectDropdownProps = {
     searchPlaceholder: 'Search',
     onChange: () => {},
     noOptionsText: '-- No options available --',
-    triggerComponent: null,
+    triggerComponent: <Button>Cutstom Trigger</Button>,
 };
 
 export const Component = Template.bind({});

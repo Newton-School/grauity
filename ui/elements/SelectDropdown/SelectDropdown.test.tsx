@@ -29,6 +29,28 @@ describe('SelectDropdown Component', () => {
         });
     });
 
+    // Trigger Component
+    it('renders trigger component', () => {
+        render(
+            <SelectDropdown
+                triggerComponent={<button type="button">Trigger Button</button>}
+            />
+        );
+        expect(screen.getByText('Trigger Button')).toBeInTheDocument();
+    });
+    it('displays all options when trigger component is clicked', () => {
+        render(
+            <SelectDropdown
+                options={options}
+                triggerComponent={<button type="button">Trigger Button</button>}
+            />
+        );
+        fireEvent.click(screen.getByText('Trigger Button'));
+        options.forEach((option) => {
+            expect(screen.getByText(option.label)).toBeInTheDocument();
+        });
+    });
+
     // Search Functionality
     it('shows search input when shouldEnableSearch is true', () => {
         render(<SelectDropdown shouldEnableSearch />);

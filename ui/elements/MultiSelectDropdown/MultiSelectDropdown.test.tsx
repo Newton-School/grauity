@@ -77,6 +77,28 @@ describe('multi-select-dropdown', () => {
         expect(option3).toBeInTheDocument();
     });
 
+    // Trigger Component
+    it('renders trigger component', () => {
+        render(
+            <MultiSelectDropdown
+                triggerComponent={<button type="button">Trigger Button</button>}
+            />
+        );
+        expect(screen.getByText('Trigger Button')).toBeInTheDocument();
+    });
+    it('displays all options when trigger component is clicked', () => {
+        render(
+            <MultiSelectDropdown
+                options={options}
+                triggerComponent={<button type="button">Trigger Button</button>}
+            />
+        );
+        fireEvent.click(screen.getByText('Trigger Button'));
+        options.forEach((option) => {
+            expect(screen.getByText(option.label)).toBeInTheDocument();
+        });
+    });
+
     // Select All Options
     it('shows select all options when shouldEnableAllSelected is true', () => {
         render(
@@ -139,7 +161,9 @@ describe('multi-select-dropdown', () => {
             'testid-multiselectdropdown-submitbutton'
         );
         fireEvent.click(applyButton);
-        const dropdown = screen.getByTestId('testid-multiselectdropdown-wrapper');
+        const dropdown = screen.getByTestId(
+            'testid-multiselectdropdown-wrapper'
+        );
         expect(dropdown.children).toHaveLength(1);
     });
 

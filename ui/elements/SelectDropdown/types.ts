@@ -1,3 +1,4 @@
+import React from 'react';
 import { grauityIconName } from 'ui/core';
 
 import {
@@ -58,6 +59,12 @@ export interface SelectDropdownProps {
      * @default -- No options available --
      */
     noOptionsText?: string;
+
+    /**
+     * Additional component to render as the trigger component.
+     * If not provided, the default trigger button will be rendered.
+     */
+    triggerComponent?: React.ReactNode;
 }
 
 export interface StyledSelectDropdownWrapperProps extends StyledSelectProps {}

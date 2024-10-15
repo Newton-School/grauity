@@ -10,6 +10,7 @@ import {
     StyledSelectDropdownContainer,
     StyledSelectDropdownItem,
     StyledSelectDropdownList,
+    StyledSelectDropdownTriggerWrapper,
     StyledSelectDropdownWrapper,
 } from './SelectDropdown.styles';
 import { DropdownOption, SelectDropdownProps } from './types';
@@ -25,6 +26,7 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
             onSearchInputChange = () => {},
             onChange = () => {},
             noOptionsText = '-- No options available --',
+            triggerComponent,
         } = props;
 
         const [isOpened, setIsOpened] = useState(false);
@@ -42,13 +44,23 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
 
         return (
             <StyledSelectDropdownWrapper ref={ref} role="combobox">
-                <Button
-                    ref={triggerRef}
-                    icon={icon}
-                    onClick={() => setIsOpened(true)}
-                >
-                    {text}
-                </Button>
+                {triggerComponent && (
+                    <StyledSelectDropdownTriggerWrapper
+                        ref={triggerRef}
+                        onClick={() => setIsOpened(true)}
+                    >
+                        {triggerComponent}
+                    </StyledSelectDropdownTriggerWrapper>
+                )}
+                {!triggerComponent && (
+                    <Button
+                        ref={triggerRef}
+                        icon={icon}
+                        onClick={() => setIsOpened(true)}
+                    >
+                        {text}
+                    </Button>
+                )}
                 <PopOver
                     triggerRef={triggerRef}
                     isOpen={isOpened}

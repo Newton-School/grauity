@@ -17,6 +17,13 @@ export const StyledDropdownWrapper = styled.div<StyledDropdownWrapperProps>`
     width: 100%;
     position: relative;
     max-width: 200px;
+    display: flex;
+    align-items: center;
+`;
+
+export const StyledDropdownTriggerWrapper = styled.div<StyledDivProps>`
+    width: fit-content;
+    height: fit-content;
 `;
 
 export const StyledDropdownHeader = styled.div<StyledDropdownHeaderProps>`
@@ -49,6 +56,7 @@ export const StyledDropdownHeaderTitle = styled.div<StyledDivProps>`
 export const StyledDropdownContainer = styled.div<StyledDivProps>`
     box-sizing: border-box;
     max-height: 300px;
+    min-width: 200px;
     padding: var(--spacing-8px, 8px);
     display: flex;
     flex-direction: column;
