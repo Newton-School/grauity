@@ -16,6 +16,7 @@ const Placeholder = forwardRef<HTMLDivElement, PlaceholderProps>(
         return (
             <StyledPlaceholder
                 ref={ref}
+                data-testid="data-testid-placeholder"
                 $width={width}
                 $height={height}
                 $borderRadius={borderRadius}
