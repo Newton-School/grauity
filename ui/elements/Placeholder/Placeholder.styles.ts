@@ -3,9 +3,10 @@ import styled, { keyframes } from 'styled-components';
 import { StyledPlaceholderProps } from './types';
 
 const loading = keyframes`  
-100% {
-    transform: translateX(100%);
-  }`;
+    100% {
+        transform: translateX(100%);
+    }
+`;
 
 export const StyledPlaceholder = styled.div<StyledPlaceholderProps>`
     box-sizing: border-box;
