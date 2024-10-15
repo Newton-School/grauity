@@ -13,6 +13,11 @@ export const StyledSelectDropdownWrapper = styled.div<StyledSelectDropdownWrappe
     position: relative;
 `;
 
+export const StyledSelectDropdownTriggerWrapper = styled.div<StyledDivProps>`
+    width: fit-content;
+    height: fit-content;
+`;
+
 export const StyledSelectDropdownContainer = styled.div<StyledDivProps>`
     box-sizing: border-box;
     width: max-content;
