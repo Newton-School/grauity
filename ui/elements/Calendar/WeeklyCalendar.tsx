@@ -1,6 +1,5 @@
 /* eslint-disable indent */
 import React, { useEffect, useRef, useState } from 'react';
-import ContainerDimensions from 'react-container-dimensions';
 
 import Button, { IconButton } from '../Button';
 import { CALENDAR_BLOCK_HEIGHT } from './constants';
@@ -257,14 +256,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                                                 $widthFactor={1}
                                                 $indexFactor={0}
                                             >
-                                                <ContainerDimensions>
-                                                    {({ width, height }) => (
-                                                        <StyledPlaceholderBlock
-                                                            width={width}
-                                                            height={height}
-                                                        />
-                                                    )}
-                                                </ContainerDimensions>
+                                                <StyledPlaceholderBlock margin="0 0 2px 0" />
                                             </StyledEventWrapper>
                                             <StyledEventWrapper
                                                 $startPosition={50}
@@ -272,14 +264,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                                                 $widthFactor={1}
                                                 $indexFactor={0}
                                             >
-                                                <ContainerDimensions>
-                                                    {({ width, height }) => (
-                                                        <StyledPlaceholderBlock
-                                                            width={width}
-                                                            height={height}
-                                                        />
-                                                    )}
-                                                </ContainerDimensions>
+                                                <StyledPlaceholderBlock margin="2px 0 0 0" />
                                             </StyledEventWrapper>
                                         </>
                                     )}

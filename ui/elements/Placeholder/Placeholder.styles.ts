@@ -8,6 +8,7 @@ const loading = keyframes`
   }`;
 
 export const StyledPlaceholder = styled.div<StyledPlaceholderProps>`
+    box-sizing: border-box;
     position: relative;
     width: ${(props) => props.$width};
     height: ${(props) => props.$height};
