@@ -101,3 +101,9 @@ export {
 
 // NSOverlay
 export { default as NSOverlay, type OverlayProps } from './elements/Overlay';
+
+// NSPlaceholder
+export {
+    default as NSPlaceholder,
+    type PlaceholderProps,
+} from './elements/Placeholder';

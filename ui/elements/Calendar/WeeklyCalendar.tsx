@@ -1,8 +1,8 @@
 /* eslint-disable indent */
 import React, { useEffect, useRef, useState } from 'react';
-import ContainerDimensions from 'react-container-dimensions';
 
 import Button, { IconButton } from '../Button';
+import Placeholder from '../Placeholder';
 import { CALENDAR_BLOCK_HEIGHT } from './constants';
 import EventRenderer from './EventRenderer';
 import { CalendarEventRecordExtended, WeeklyCalendarProps } from './types';
@@ -32,7 +32,6 @@ import {
     StyledCalendarTimelineRow,
     StyledCalendarWrapper,
     StyledEventWrapper,
-    StyledPlaceholderBlock,
 } from './WeeklyCalendar.styles';
 
 export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
@@ -257,14 +256,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                                                 $widthFactor={1}
                                                 $indexFactor={0}
                                             >
-                                                <ContainerDimensions>
-                                                    {({ width, height }) => (
-                                                        <StyledPlaceholderBlock
-                                                            width={width}
-                                                            height={height}
-                                                        />
-                                                    )}
-                                                </ContainerDimensions>
+                                                <Placeholder border="1px solid var(--bg-primary, #fff);" />
                                             </StyledEventWrapper>
                                             <StyledEventWrapper
                                                 $startPosition={50}
@@ -272,14 +264,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                                                 $widthFactor={1}
                                                 $indexFactor={0}
                                             >
-                                                <ContainerDimensions>
-                                                    {({ width, height }) => (
-                                                        <StyledPlaceholderBlock
-                                                            width={width}
-                                                            height={height}
-                                                        />
-                                                    )}
-                                                </ContainerDimensions>
+                                                <Placeholder border="1px solid var(--bg-primary, #fff);" />
                                             </StyledEventWrapper>
                                         </>
                                     )}
