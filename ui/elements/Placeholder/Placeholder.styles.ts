@@ -13,6 +13,7 @@ export const StyledPlaceholder = styled.div<StyledPlaceholderProps>`
     position: relative;
     width: ${(props) => props.$width};
     height: ${(props) => props.$height};
+    border: ${(props) => props.$border};
     border-radius: ${(props) => props.$borderRadius};
     margin: ${(props) => props.$margin};
     background-color: ${(props) =>

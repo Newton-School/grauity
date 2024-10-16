@@ -19,6 +19,7 @@ const Template = (args: PlaceholderProps) => <Placeholder {...args} />;
 const defaultArgs: PlaceholderProps = {
     width: '100%',
     height: '100%',
+    border: 'none',
     borderRadius: '0px',
     margin: '0px',
     backgroundColor: 'var(--bg-tertiary, #EDEFF3)',

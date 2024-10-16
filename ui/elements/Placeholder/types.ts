@@ -14,6 +14,12 @@ export interface PlaceholderProps {
     height?: string;
 
     /**
+     * Border of the placeholder block.
+     * @default 'none'
+     */
+    border?: string;
+
+    /**
      * Border radius of the placeholder.
      * @default 0
      */
@@ -35,6 +41,7 @@ export interface PlaceholderProps {
 export interface StyledPlaceholderProps extends StyledDivProps {
     $width: string;
     $height: string;
+    $border: string;
     $borderRadius: string;
     $margin: string;
     $backgroundColor: string;

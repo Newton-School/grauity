@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import Placeholder from '../Placeholder';
 import { CALENDAR_BLOCK_HEIGHT, CALENDAR_SIDEBAR_WIDTH } from './constants';
 import {
     StyledCalendarBlockProps,
@@ -205,12 +204,4 @@ export const StyledEventWrapper = styled.div<StyledEventWrapperProps>`
     width: ${({ $widthFactor }) => `${100 * $widthFactor}%`};
     overflow: hidden;
     height: ${({ $height }) => `${$height}%`};
-`;
-
-export const StyledPlaceholderBlock = styled(Placeholder)<StyledDivProps>`
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    border: 1px solid var(--bg-primary, #fff);
 `;

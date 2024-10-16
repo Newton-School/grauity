@@ -8,6 +8,7 @@ const Placeholder = forwardRef<HTMLDivElement, PlaceholderProps>(
         const {
             width = '100%',
             height = '100%',
+            border = 'none',
             borderRadius = '0px',
             margin = '0px',
             backgroundColor = 'var(--bg-tertiary, #EDEFF3)',
@@ -19,6 +20,7 @@ const Placeholder = forwardRef<HTMLDivElement, PlaceholderProps>(
                 data-testid="data-testid-placeholder"
                 $width={width}
                 $height={height}
+                $border={border}
                 $borderRadius={borderRadius}
                 $margin={margin}
                 $backgroundColor={backgroundColor}
