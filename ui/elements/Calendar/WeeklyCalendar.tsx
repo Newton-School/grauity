@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Button, { IconButton } from '../Button';
 import Placeholder from '../Placeholder';
@@ -56,8 +56,6 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
     const [currentTimeStickPosition, setCurrentTimeStickPosition] = useState(
         getCurrentTimeStickPosition()
     );
-
-    const containerRef = useRef<HTMLDivElement>(null);
 
     const currentWeek = getWeekByOffset(weekOffset);
     const timeList = getTimeListIn12HourFormat();
@@ -162,18 +160,16 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
     }, [overlappedEventsData]);
 
     useEffect(() => {
-        if (containerRef.current && containerRef.current.scrollTo) {
-            containerRef.current.scrollTo({
+        if (window && window.scrollTo) {
+            window.scrollTo({
                 top: CALENDAR_BLOCK_HEIGHT * 8.5,
-                left: 0,
                 behavior: 'auto',
             });
         }
-    }, [containerRef.current]);
+    }, [window]);
 
     return (
         <StyledCalendarWrapper
-            ref={containerRef}
             tabIndex={0}
             aria-label={`Weekly Calendar for the week starting from ${getDateFullLabel(
                 currentWeek[0]
