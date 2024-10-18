@@ -1,21 +1,12 @@
-import { StoryFn } from '@storybook/react';
 import React from 'react';
 import WeeklyCalendar, { WeeklyCalendarProps } from 'ui/elements/Calendar';
+
+import withRemovePadding from '../../../decorators/withRemovePadding';
 
 export default {
     title: 'Elements/Calendar/WeeklyCalendar',
     component: WeeklyCalendar,
-    decorators: [
-        (Story: StoryFn) => (
-            <div
-                style={{
-                    height: '800px',
-                }}
-            >
-                <Story />
-            </div>
-        ),
-    ],
+    decorators: [withRemovePadding],
     parameters: {
         docs: {
             source: {
@@ -25,6 +16,7 @@ export default {
   events={[]}
   onWeekChange={() => {}}
   shouldShowWeekControls
+  header={null}
   weekOffset={0}
   loading={false}
 />
@@ -168,6 +160,7 @@ const defaultArgs: WeeklyCalendarProps = {
     ],
     eventRenderer: null,
     shouldShowWeekControls: true,
+    header: null,
     weekOffset: 0,
     onWeekChange: () => {},
     loading: false,

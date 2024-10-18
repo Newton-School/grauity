@@ -38,6 +38,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
     const {
         events = [],
         eventRenderer,
+        header,
         shouldShowWeekControls = true,
         weekOffset: initialWeekOffset = 0,
         onWeekChange = () => {},
@@ -179,6 +180,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
             )}`}
         >
             <StyledCalendarHeader>
+                {header}
                 {shouldShowWeekControls && (
                     <StyledCalendarMonthButton>
                         <IconButton
