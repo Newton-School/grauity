@@ -39,6 +39,12 @@ export interface WeeklyCalendarProps<T = {}> {
     eventRenderer?: EventRendererFn<T>;
 
     /**
+     * A component to render in the header of the calendar.
+     * @default null
+     */
+    header?: React.ReactNode;
+
+    /**
      * A boolean indicating whether to show week controls.
      * @default true
      */

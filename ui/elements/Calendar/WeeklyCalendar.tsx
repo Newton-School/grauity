@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 import React, { useEffect, useRef, useState } from 'react';
 
+import { getScrollableParent } from '../../../common/utils';
 import Button, { IconButton } from '../Button';
 import Placeholder from '../Placeholder';
 import { CALENDAR_BLOCK_HEIGHT } from './constants';
@@ -38,6 +39,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
     const {
         events = [],
         eventRenderer,
+        header,
         shouldShowWeekControls = true,
         weekOffset: initialWeekOffset = 0,
         onWeekChange = () => {},
@@ -161,13 +163,12 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
     }, [overlappedEventsData]);
 
     useEffect(() => {
-        if (containerRef.current && containerRef.current.scrollTo) {
-            containerRef.current.scrollTo({
-                top: CALENDAR_BLOCK_HEIGHT * 8.5,
-                left: 0,
-                behavior: 'auto',
-            });
+        if (!containerRef.current) {
+            return;
         }
+        const target = getScrollableParent(containerRef.current);
+        const scrollTop = CALENDAR_BLOCK_HEIGHT * 8.5;
+        target.scrollTo({ top: scrollTop, behavior: 'auto' });
     }, [containerRef.current]);
 
     return (
@@ -179,6 +180,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
             )}`}
         >
             <StyledCalendarHeader>
+                {header}
                 {shouldShowWeekControls && (
                     <StyledCalendarMonthButton>
                         <IconButton

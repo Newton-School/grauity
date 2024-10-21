@@ -22,7 +22,6 @@ export const StyledCalendarWrapper = styled.div<StyledDivProps>`
     height: 100%;
     font-family: var(--font-family, 'Mona Sans');
     color: var(--text-primary, #16191d);
-    overflow: auto;
 
     display: grid;
     grid-template-rows: auto 1fr;

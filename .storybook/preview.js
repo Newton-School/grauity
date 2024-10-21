@@ -2,6 +2,7 @@ import {
     withTheme,
     withStorybookTheme,
     withThemeBackground,
+    withPadding,
     withGrauityInit,
 } from './decorators';
 import '../ui/css/index.scss';
@@ -36,6 +37,8 @@ export const decorators = [
     withStorybookTheme,
     // Theme background container
     withThemeBackground,
+    // Padding container
+    withPadding,
 ];
 
 // Storybook Global Types
