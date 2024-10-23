@@ -41,13 +41,16 @@ const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>((props, ref) => {
     }, [finalMinInput, finalMaxInput]);
 
     return (
-        <StyledRangeInputContainer ref={ref} $width={width}>
+        <StyledRangeInputContainer ref={ref} $width={width} role="form">
             <StyledValuesContainer>
                 <div>{finalMinInput}</div>
                 <div>{finalMaxInput}</div>
             </StyledValuesContainer>
             <StyledRangeSliderSection>
                 <StyledRangeInput
+                    role="slider"
+                    name="min"
+                    aria-label={`Min value: ${finalMinInput}`}
                     value={minInput}
                     min={minValue}
                     max={maxValue}
@@ -63,6 +66,9 @@ const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>((props, ref) => {
                     }
                 />
                 <StyledRangeInput
+                    role="slider"
+                    name="max"
+                    aria-label={`Max value: ${finalMaxInput}`}
                     value={maxInput}
                     min={minValue}
                     max={maxValue}
