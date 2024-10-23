@@ -1,4 +1,5 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import debounce from 'lodash/debounce';
+import React, { forwardRef, useCallback, useEffect, useState } from 'react';
 
 import {
     StyledRangeInput,
@@ -36,8 +37,15 @@ const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>((props, ref) => {
         setFinalMaxInput(Math.max(minInput, maxInput));
     }, [minInput, maxInput]);
 
+    const debouncedOnChange = useCallback(
+        debounce((min: number, max: number) => {
+            onChange({ min, max });
+        }, 300),
+        []
+    );
+
     useEffect(() => {
-        onChange({ min: finalMinInput, max: finalMaxInput });
+        debouncedOnChange(finalMinInput, finalMaxInput);
     }, [finalMinInput, finalMaxInput]);
 
     return (
