@@ -17,7 +17,7 @@ const defaultArgs: RangeInputProps = {
         max: 100,
     },
     onChange: () => {},
-    width: '100%',
+    width: '200px',
 };
 
 export const Component = Template.bind({});
