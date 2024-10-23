@@ -107,3 +107,9 @@ export {
     default as NSPlaceholder,
     type PlaceholderProps,
 } from './elements/Placeholder';
+
+// NSRangeInput
+export {
+    default as NSRangeInput,
+    type RangeInputProps,
+} from './elements/RangeInput';
