@@ -8,6 +8,10 @@ import {
     StyledEventWrapperProps,
 } from './types';
 
+export const StyledCalendarExternalHeaderContainer = styled.div<StyledDivProps>`
+    border-bottom: 1px solid var(--border-neutral, #e1e5ea);
+`;
+
 export const StyledCalendarMonthButton = styled.div<StyledDivProps>`
     width: 100%;
     display: flex;
@@ -105,6 +109,7 @@ export const StyledCalendarHeaderBlock = styled.div<StyledCalendarBlockProps>`
     background: var(--bg-primary, #fff);
     color: var(--text-secondary, #5b6271);
     font-size: 12px;
+    font-weight: var(--font-weight-550, 550);
 
     ${({ $active }) =>
         $active &&
