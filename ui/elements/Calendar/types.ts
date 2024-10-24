@@ -8,6 +8,7 @@ export interface CalendarEvent<T = {}> {
     end: Date;
     allDay?: boolean;
     render?: EventRendererFn<T>;
+    focused?: boolean;
 }
 
 export type CalendarEventRecord<T> = Record<number, CalendarEvent<T>[]>;
@@ -94,4 +95,5 @@ export interface StyledEventWrapperProps extends StyledDivProps {
     $height: number;
     $widthFactor: number;
     $indexFactor: number;
+    $focused?: boolean;
 }
