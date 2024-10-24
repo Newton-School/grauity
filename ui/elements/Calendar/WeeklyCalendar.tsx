@@ -301,6 +301,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                                                 $indexFactor={
                                                     (2 * event.index) / 3
                                                 }
+                                                $focused={event.focused}
                                             >
                                                 <EventRenderer
                                                     event={event}

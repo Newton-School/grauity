@@ -34,7 +34,7 @@ export const StyledCalendarWrapper = styled.div<StyledDivProps>`
 export const StyledCalendarHeader = styled.div<StyledDivProps>`
     position: sticky;
     top: 0;
-    z-index: 5;
+    z-index: 6;
     background: var(--bg-primary, #fff);
     box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.12);
 `;
@@ -57,7 +57,7 @@ export const StyledCalendarHeaderRow = styled(
 export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBlockProps>`
     position: sticky;
     left: 0;
-    z-index: 3;
+    z-index: 4;
     background: var(--bg-primary, #fff);
     box-sizing: border-box;
     width: var(--calendar-sidebar-width);
@@ -77,7 +77,7 @@ export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBloc
                 content: '${$text}';
                 position: absolute;
                 top: -7px;
-                z-index: 4;
+                z-index: 5;
                 color: var(--text-disabled, #8c95a6);
                 width: 100%;
                 text-align: center;
@@ -174,7 +174,7 @@ export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
                 position: absolute;
                 top: calc(100% * ${$currentTimeStick});
                 content: '';
-                z-index: 2;
+                z-index: 3;
                 width: 100%;
                 height: var(--spacing-2px, 2px);
                 border-radius: 4px;
@@ -185,7 +185,7 @@ export const StyledCalendarBlock = styled.div<StyledCalendarBlockProps>`
                 top: calc(100% * ${$currentTimeStick} - 4px);
                 left: -5px;
                 content: '';
-                z-index: 2;
+                z-index: 3;
                 width: 10px;
                 height: var(--spacing-10px, 10px);
                 border-radius: 40px;
@@ -201,6 +201,11 @@ export const StyledEventWrapper = styled.div<StyledEventWrapperProps>`
     left: ${({ $indexFactor, $widthFactor }) =>
         `${$indexFactor * 100 * $widthFactor}%`};
     width: ${({ $widthFactor }) => `${100 * $widthFactor}%`};
-    overflow: hidden;
     height: ${({ $height }) => `${$height}%`};
+
+    ${({ $focused }) =>
+        $focused &&
+        css`
+            z-index: 2;
+        `}
 `;
