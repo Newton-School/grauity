@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { CALENDAR_BLOCK_HEIGHT, CALENDAR_SIDEBAR_WIDTH } from './constants';
 import {
     StyledCalendarBlockProps,
+    StyledCalendarStickyEventLineProps,
     StyledCalendarTimelineBlockProps,
     StyledDivProps,
     StyledEventWrapperProps,
@@ -34,10 +35,11 @@ export const StyledCalendarWrapper = styled.div<StyledDivProps>`
     --calendar-block-height: ${CALENDAR_BLOCK_HEIGHT}px;
     --calendar-block-border: 1px solid var(--border-neutral, #e1e5ea);
 
-    --calendar-header-z-index: 6;
-    --calendar-timeline-text-z-index: 5;
-    --calendar-timeline-z-index: 4;
-    --calendar-timestick-z-index: 3;
+    --calendar-header-z-index: 7;
+    --calendar-timeline-text-z-index: 6;
+    --calendar-timeline-z-index: 5;
+    --calendar-timestick-z-index: 4;
+    --calendar-sticky-event-line-z-index: 3;
     --calendar-selected-event-wrapper-z-index: 2;
     --calendar-event-wrapper-z-index: 1;
 `;
@@ -63,6 +65,18 @@ export const StyledCalendarHeaderRow = styled(
     StyledCalendarRow
 )<StyledDivProps>`
     height: fit-content;
+`;
+
+export const StyledCalendarStickyEventLine = styled.div<StyledCalendarStickyEventLineProps>`
+    position: absolute;
+    bottom: ${({ $offset }) => `-${$offset}px`};
+    width: 100%;
+    height: 3px;
+    background: var(--text-brand, #0673f9);
+    border: 1px solid var(--border-neutral, #e1e5ea);
+    border-radius: 2px;
+    overflow: hidden;
+    z-index: var(--calendar-sticky-event-line-z-index);
 `;
 
 export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBlockProps>`
@@ -102,6 +116,7 @@ export const StyledCalendarTimelineBlock = styled.div<StyledCalendarTimelineBloc
 `;
 
 export const StyledCalendarHeaderBlock = styled.div<StyledCalendarBlockProps>`
+    position: relative;
     box-sizing: border-box;
     height: 100%;
     display: flex;

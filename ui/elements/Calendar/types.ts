@@ -70,6 +70,13 @@ export interface WeeklyCalendarProps<T = {}> {
     loading?: boolean;
 }
 
+export type StickyEventLineRecord = Record<string, number>;
+
+export interface StickyEventLineProps<T = {}> {
+    events: CalendarEventRecordExtended<T>;
+    calendarHeaderRef: React.MutableRefObject<HTMLDivElement>;
+}
+
 export interface EventRendererProps<T = {}> {
     event?: CalendarEvent;
     eventRenderer?: EventRendererFn<T>;
@@ -96,4 +103,8 @@ export interface StyledEventWrapperProps extends StyledDivProps {
     $widthFactor: number;
     $indexFactor: number;
     $focused?: boolean;
+}
+
+export interface StyledCalendarStickyEventLineProps extends StyledDivProps {
+    $offset: number;
 }
