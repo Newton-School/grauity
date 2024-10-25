@@ -68,10 +68,11 @@ export const StyledCalendarHeaderRow = styled(
 `;
 
 export const StyledCalendarStickyEventLine = styled.div<StyledCalendarStickyEventLineProps>`
+    box-sizing: border-box;
     position: absolute;
     bottom: ${({ $offset }) => `-${$offset}px`};
     width: 100%;
-    height: 3px;
+    height: 5px;
     background: var(--text-brand, #0673f9);
     border: 1px solid var(--border-neutral, #e1e5ea);
     border-radius: 2px;
