@@ -23,6 +23,14 @@ describe('FloatingActionButton Component', () => {
         screen.getByTestId('floating-button').click();
         expect(onClick).toHaveBeenCalled();
     });
+    it('should pass the triggerRef to the onClick function', () => {
+        const onClick = jest.fn();
+        render(<FloatingActionButton onClick={onClick} />);
+        screen.getByTestId('floating-button').click();
+        expect(onClick).toHaveBeenCalledWith(
+            expect.objectContaining({ current: expect.any(HTMLDivElement) })
+        );
+    });
 
     // Positioning
     it('should render the floating button on the right position', () => {
