@@ -71,13 +71,13 @@ export interface SelectDropdownProps {
      * Width of the dropdown.
      * @default max-content
      */
-    width?: string;
+    width?: string | null;
 }
 
 export interface StyledSelectDropdownWrapperProps extends StyledSelectProps {}
 
 export interface StyledSelectDropdownContainerProps extends StyledDivProps {
-    $width?: string;
+    $width?: string | null;
 }
 
 export interface StyledSelectDropdownItemProps extends StyledButtonProps {
