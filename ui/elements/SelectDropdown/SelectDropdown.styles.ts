@@ -106,6 +106,7 @@ export const StyledDropdownSearchContainer = styled.div`
 
 export const StyledDropdownSearchInput = styled.input<StyledDropdownSearchInputProps>`
     box-sizing: border-box;
+    width: 100%;
     outline: none;
     border: none;
     background: var(--bg-primary, #ffffff);
