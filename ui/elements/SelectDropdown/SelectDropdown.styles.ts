@@ -23,17 +23,17 @@ export const StyledSelectDropdownTriggerWrapper = styled.div<StyledDivProps>`
 
 export const StyledSelectDropdownContainer = styled.div<StyledSelectDropdownContainerProps>`
     box-sizing: border-box;
-    ${({ $width }) =>
-        $width &&
-        css`
-            width: ${$width};
-        `}
-    ${({ $width }) =>
-        !$width &&
-        css`
+    ${({ $width }) => {
+        if ($width) {
+            return `
+                width: ${$width};
+            `;
+        }
+        return `
             width: max-content;
             max-width: 300px;
-        `}
+        `;
+    }}
     max-height: 300px;
     overflow: hidden;
     padding: var(--spacing-8px, 8px);
