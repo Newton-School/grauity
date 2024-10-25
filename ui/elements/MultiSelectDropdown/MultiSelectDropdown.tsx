@@ -142,7 +142,7 @@ const MultiSelectDropdown = forwardRef<
                     <StyledDropdownHeaderTitle
                         id={`multi-select-dropdown-list-${id}`}
                     >
-                        {getHeaderTitle()}
+                        <span>{getHeaderTitle()}</span>
                     </StyledDropdownHeaderTitle>
                     <Icon name={isOpened ? 'chevron-up' : 'chevron-down'} />
                 </StyledDropdownHeader>

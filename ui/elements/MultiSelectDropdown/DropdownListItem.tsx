@@ -39,7 +39,7 @@ const DropdownListItem = ({
                 $selected={isSelected}
                 id={`multi-select-dropdown-listitem-label-${id}`}
             >
-                {displayText}
+                <span>{displayText}</span>
             </StyledDropdownItemText>
         </StyledDropdownListItem>
     );

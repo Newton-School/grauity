@@ -50,6 +50,12 @@ export const StyledDropdownHeaderTitle = styled.div<StyledDivProps>`
     text-align: left;
     color: var(--text-brand, #0673f9);
     overflow: hidden;
+
+    span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 `;
 
 export const StyledDropdownContainer = styled.div<StyledDivProps>`
@@ -72,6 +78,7 @@ export const StyledDropdownContainer = styled.div<StyledDivProps>`
 export const StyledDropdownList = styled.div<StyledDropdownListProps>`
     width: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
 `;
 
 export const StyledDropdownListItem = styled.button<StyledDropdownListItemProps>`
@@ -86,6 +93,7 @@ export const StyledDropdownListItem = styled.button<StyledDropdownListItemProps>
     border-radius: var(--corner-radius-8px, 8px);
     background: var(--bg-primary, #ffffff);
     border: 2px solid transparent;
+    overflow: hidden;
 
     &:hover {
         background: var(--bg-secondary, #f6f7f9);
@@ -110,18 +118,28 @@ export const StyledDropdownItemCheckbox = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 20px;
 `;
 
 export const StyledDropdownItemText = styled.div<StyledDropdownItemTextProps>`
     color: var(--text-primary, #16191d);
     font-size: var(--spacing-14px, 14px);
     font-weight: 500;
+    text-align: left;
+    width: calc(100% - 28px);
 
     ${({ $selected }) =>
         $selected &&
         css`
             color: var(--text-brand, #0673f9);
         `}
+
+    span {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 `;
 
 export const StyledDropdownSearchContainer = styled.div`
