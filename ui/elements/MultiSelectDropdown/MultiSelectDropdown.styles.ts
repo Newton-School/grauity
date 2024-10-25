@@ -16,7 +16,6 @@ export const StyledDropdownWrapper = styled.div<StyledDropdownWrapperProps>`
     height: 100%;
     width: 100%;
     position: relative;
-    max-width: 200px;
     display: flex;
     align-items: center;
 `;
