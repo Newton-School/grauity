@@ -22,6 +22,7 @@ const FloatingActionButton = (props: FloatingActionButtonProps) => {
             $position={position}
             $sideOffset={sideOffset}
             $bottomOffset={bottomOffset}
+            data-testid="floating-button"
         >
             {children}
         </StyledFloatingButton>,
