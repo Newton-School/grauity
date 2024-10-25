@@ -69,6 +69,12 @@ export const StyledSelectDropdownItem = styled.div<StyledSelectDropdownItemProps
     font-weight: 500;
     cursor: pointer;
 
+    span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
     &:hover {
         background: var(--bg-secondary, #f6f7f9);
     }

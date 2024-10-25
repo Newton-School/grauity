@@ -104,7 +104,7 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
                                     }}
                                     role="option"
                                 >
-                                    {option.label}
+                                    <span>{option.label}</span>
                                 </StyledSelectDropdownItem>
                             ))}
                         </StyledSelectDropdownList>
