@@ -40,6 +40,7 @@ const defaultArgs: SelectDropdownProps = {
     onChange: () => {},
     noOptionsText: '-- No options available --',
     triggerComponent: null,
+    width: null,
 };
 
 export const Component = Template.bind({});

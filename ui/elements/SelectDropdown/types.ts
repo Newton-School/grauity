@@ -3,6 +3,7 @@ import { grauityIconName } from 'ui/core';
 
 import {
     StyledButtonProps,
+    StyledDivProps,
     StyledInputProps,
     StyledSelectProps,
 } from '../../../common/types';
@@ -65,9 +66,19 @@ export interface SelectDropdownProps {
      * If not provided, the default trigger button will be rendered.
      */
     triggerComponent?: React.ReactNode;
+
+    /**
+     * Width of the dropdown.
+     * @default max-content
+     */
+    width?: string;
 }
 
 export interface StyledSelectDropdownWrapperProps extends StyledSelectProps {}
+
+export interface StyledSelectDropdownContainerProps extends StyledDivProps {
+    $width?: string;
+}
 
 export interface StyledSelectDropdownItemProps extends StyledButtonProps {
     $disabled?: boolean;
