@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef } from 'react';
+import React, { forwardRef, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { useDisableBodyScroll } from '../../../hooks';
@@ -21,6 +21,18 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
     const childrenRef = useRef<HTMLDivElement>();
 
     useDisableBodyScroll(shouldDisableScroll);
+
+    useEffect(() => {
+        if (childrenRef.current) {
+            const firstFocusableElement = childrenRef.current.querySelector(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            ) as HTMLElement;
+
+            if (firstFocusableElement) {
+                firstFocusableElement.focus();
+            }
+        }
+    }, []);
 
     const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (
