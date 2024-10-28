@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { StyledDivProps } from '../../../common/types';
 import {
     StyledDropdownSearchInputProps,
+    StyledSelectDropdownContainerProps,
     StyledSelectDropdownItemProps,
     StyledSelectDropdownWrapperProps,
 } from './types';
@@ -20,11 +21,19 @@ export const StyledSelectDropdownTriggerWrapper = styled.div<StyledDivProps>`
     height: fit-content;
 `;
 
-export const StyledSelectDropdownContainer = styled.div<StyledDivProps>`
+export const StyledSelectDropdownContainer = styled.div<StyledSelectDropdownContainerProps>`
     box-sizing: border-box;
-    width: max-content;
-    min-width: 100%;
-    max-width: 300px;
+    ${({ $width }) => {
+        if ($width) {
+            return `
+                width: ${$width};
+            `;
+        }
+        return `
+            width: max-content;
+            max-width: 300px;
+        `;
+    }}
     max-height: 300px;
     overflow: hidden;
     padding: var(--spacing-8px, 8px);
@@ -60,6 +69,12 @@ export const StyledSelectDropdownItem = styled.div<StyledSelectDropdownItemProps
     font-weight: 500;
     cursor: pointer;
 
+    span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
     &:hover {
         background: var(--bg-secondary, #f6f7f9);
     }
@@ -91,6 +106,7 @@ export const StyledDropdownSearchContainer = styled.div`
 
 export const StyledDropdownSearchInput = styled.input<StyledDropdownSearchInputProps>`
     box-sizing: border-box;
+    width: 100%;
     outline: none;
     border: none;
     background: var(--bg-primary, #ffffff);

@@ -27,6 +27,7 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
             onChange = () => {},
             noOptionsText = '-- No options available --',
             triggerComponent,
+            width,
         } = props;
 
         const [isOpened, setIsOpened] = useState(false);
@@ -70,7 +71,10 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
                     shouldCloseOnOutsideClick
                     disableBackgroundScroll
                 >
-                    <StyledSelectDropdownContainer ref={dropdownRef}>
+                    <StyledSelectDropdownContainer
+                        ref={dropdownRef}
+                        $width={width}
+                    >
                         {shouldEnableSearch && (
                             <StyledDropdownSearchContainer>
                                 <Icon name="search" />
@@ -100,7 +104,7 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
                                     }}
                                     role="option"
                                 >
-                                    {option.label}
+                                    <span>{option.label}</span>
                                 </StyledSelectDropdownItem>
                             ))}
                         </StyledSelectDropdownList>
