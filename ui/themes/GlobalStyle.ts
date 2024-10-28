@@ -187,6 +187,7 @@ export const constantGlobalStyle = `
     --z-index-modal-overlay: 1050;
     --z-index-drawer: 1000;
     --z-index-drawer-overlay: 950;
+    --z-index-floating-action-button: 500;
 `;
 
 const GlobalStyle = createGlobalStyle<any>`

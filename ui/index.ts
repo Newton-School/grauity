@@ -113,3 +113,9 @@ export {
     default as NSRangeInput,
     type RangeInputProps,
 } from './elements/RangeInput';
+
+// NSFloatingActionButton
+export {
+    type FloatingActionButtonProps,
+    default as NSFloatingActionButton,
+} from './elements/FloatingActionButton';
