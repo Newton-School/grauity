@@ -93,4 +93,5 @@ export const StyledButtonContent = styled.div<ButtonContentProps>`
     font-weight: var(--font-weight-semibold, 600);
     line-height: 160%;
     letter-spacing: 0.4px;
+    max-width: 100%;
 `;
