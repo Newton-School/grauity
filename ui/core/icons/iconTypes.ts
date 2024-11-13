@@ -32,6 +32,8 @@ export type grauityIconName =
     | 'file-alt-filled'
     | 'file-alt'
     | 'file-filled'
+    | 'file-lightning-filled'
+    | 'file-lightning'
     | 'file'
     | 'folder-filled'
     | 'folder-open-filled'
@@ -430,6 +432,8 @@ export type grauityIconKey =
     | 'FileAltFilled'
     | 'FileAlt'
     | 'FileFilled'
+    | 'FileLightningFilled'
+    | 'FileLightning'
     | 'File'
     | 'FolderFilled'
     | 'FolderOpenFilled'
@@ -828,6 +832,8 @@ export enum GRAUITY_ICONS {
     FileAltFilled = 'file-alt-filled',
     FileAlt = 'file-alt',
     FileFilled = 'file-filled',
+    FileLightningFilled = 'file-lightning-filled',
+    FileLightning = 'file-lightning',
     File = 'file',
     FolderFilled = 'folder-filled',
     FolderOpenFilled = 'folder-open-filled',
