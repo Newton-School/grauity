@@ -30,7 +30,7 @@ Like gravity itself, the principles of great design are universal, omnipresent, 
 
 ### Component Naming Convention
 
-gra.UI.ty components should be prefixed by *NS*.
+gra.UI.ty components should be prefixed by _NS_.
 For example, `NSButton`, `NSTable`, `NSInput`
 
 ### Alias
@@ -98,8 +98,8 @@ After you have made changes in grauity, build it.
 grauity$: npm run build
 ```
 
-If changes are not showing up even after rebuilding, you may 
-have to delete `newton-web/node_modules/@newtonschool/grauity` 
+If changes are not showing up even after rebuilding, you may
+have to delete `newton-web/node_modules/@newtonschool/grauity`
 and install it again using
 
 ```bash
@@ -110,7 +110,7 @@ newton-web$: npm run dev
 Then simply import components you want from `@newtonschool/grauity` in `newton-web` like so:
 
 ```js
-import { NSButton, BUTTON_VARIANTS_ENUM } from "@newtonschool/grauity";
+import { NSButton, BUTTON_VARIANTS_ENUM } from '@newtonschool/grauity';
 ```
 
 And use it as you wish
@@ -119,38 +119,49 @@ And use it as you wish
 import { NSButton } from '@newtonschool/grauity';
 
 export const MyComponent = () => (
-  <NSButton
-      variant='primary'
-      onClick={() => {
-          setShowFormErrors(true);
-      }}
-  >
-    Click me!
-  </NSButton>
-)
+    <NSButton
+        variant="primary"
+        onClick={() => {
+            setShowFormErrors(true);
+        }}
+    >
+        Click me!
+    </NSButton>
+);
 ```
 
 ## How to's
 
 ### Add icons
+
 Adding new icons is easy. Design team to provide `.svg` files for new icons, and they are to be added to the [./iconland/seeds/](iconland/seeds) directory. Then follow these steps:
 
+### 0. Update the iconland submodule in grauity
+
+```bash
+grauity$: git submodule update --remote --merge
+```
+
 #### 1. Generate icons
+
 ```bash
 grauity$: npm run build-icons:generate
 ```
 
 #### 2. Optimise icons (from [[iconland/seeds/]](iconland/seeds/) to [iconland/optimised/](iconland/optimised/) )
+
 ```bash
 grauity$: npm run build-icons:optimize
 ```
 
 #### 3. Build font icons from optimised icons
+
 ```bash
 grauity$: npm run build-icons
 ```
 
 ### Use icons in newton-web
+
 To use grauity icons, add the following import in `global-styles.scss` or any root-level CSS/SCSS file. Make sure CSS/SCSS loaders are setup properly in your app.
 
 ```js
