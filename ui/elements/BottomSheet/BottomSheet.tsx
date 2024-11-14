@@ -30,6 +30,11 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
         const [startY, setStartY] = useState<number | null>(null);
         const [translateY, setTranslateY] = useState(0);
 
+        const handleClose = () => {
+            setTranslateY(0);
+            onClose();
+        };
+
         const handleTouchStart = (e: React.TouchEvent) => {
             if (!closeOnPullDown) {
                 return;
@@ -53,7 +58,7 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             }
             if (startY !== null) {
                 if (translateY > SWIPE_THRESHOLD) {
-                    onClose();
+                    handleClose();
                 } else {
                     setTranslateY(0);
                 }
@@ -81,7 +86,7 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
                         shouldTintOverlay
                         onOverlayClick={() => {
                             if (closeOnBackdropClick) {
-                                onClose();
+                                handleClose();
                             }
                         }}
                         animationDuration={
