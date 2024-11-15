@@ -190,7 +190,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         }
 
         target.scrollTo({ top: scrollTop, behavior: 'auto' });
-    }, [containerRef.current, calendarEvents]);
+    }, [containerRef.current, Object.keys(calendarEvents || []).length]);
 
     return (
         <StyledCalendarWrapper
