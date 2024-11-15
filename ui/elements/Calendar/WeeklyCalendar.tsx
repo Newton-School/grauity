@@ -176,7 +176,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         if (shouldScrollToFirstEvent) {
             let earliestEventTime = Infinity;
 
-            Object.keys(calendarEvents || []).forEach((timestamp) => {
+            Object.keys(calendarEvents || {}).forEach((timestamp) => {
                 const cEvents = calendarEvents[parseInt(timestamp, 10)];
                 const hours = new Date(parseInt(timestamp, 10)).getHours();
                 if (cEvents && cEvents.length > 0) {
@@ -190,7 +190,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         }
 
         target.scrollTo({ top: scrollTop, behavior: 'auto' });
-    }, [containerRef.current, Object.keys(calendarEvents || []).length]);
+    }, [containerRef.current, Object.keys(calendarEvents || {}).length]);
 
     return (
         <StyledCalendarWrapper
