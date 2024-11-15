@@ -168,9 +168,24 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
             return;
         }
         const target = getScrollableParent(containerRef.current);
-        const scrollTop = CALENDAR_BLOCK_HEIGHT * 8.5;
+
+        let earliestEventTime = Infinity;
+
+        Object.keys(calendarEvents || []).forEach((timestamp) => {
+            const cEvents = calendarEvents[parseInt(timestamp, 10)];
+            const hours = new Date(parseInt(timestamp, 10)).getHours();
+            if (cEvents && cEvents.length > 0) {
+                earliestEventTime = Math.min(earliestEventTime, hours);
+            }
+        });
+
+        let scrollTop = CALENDAR_BLOCK_HEIGHT * 8.5;
+        if (earliestEventTime !== Infinity) {
+            scrollTop = CALENDAR_BLOCK_HEIGHT * (earliestEventTime - 1);
+        }
+
         target.scrollTo({ top: scrollTop, behavior: 'auto' });
-    }, [containerRef.current]);
+    }, [containerRef.current, calendarEvents]);
 
     return (
         <StyledCalendarWrapper
