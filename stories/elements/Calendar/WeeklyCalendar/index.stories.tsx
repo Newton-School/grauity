@@ -164,6 +164,8 @@ const defaultArgs: WeeklyCalendarProps = {
     weekOffset: 0,
     onWeekChange: () => {},
     loading: false,
+    defaultScrollHour: 8.5,
+    shouldScrollToFirstEvent: true,
 };
 
 export const Component = Template.bind({});

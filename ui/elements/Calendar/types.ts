@@ -68,6 +68,18 @@ export interface WeeklyCalendarProps<T = {}> {
      * @default false
      */
     loading?: boolean;
+
+    /**
+     * The time in hours (24 hour format) to show at top initially.
+     * @default 8.5 (8:30 AM)
+     */
+    defaultScrollHour?: number;
+
+    /**
+     * A boolean indicating whether to scroll to the first event initially.
+     * @default true
+     */
+    shouldScrollToFirstEvent?: boolean;
 }
 
 export interface EventRendererProps<T = {}> {
