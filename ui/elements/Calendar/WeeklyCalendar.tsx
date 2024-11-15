@@ -45,6 +45,8 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         weekOffset: initialWeekOffset = 0,
         onWeekChange = () => {},
         loading = false,
+        defaultScrollHour = 8.5,
+        shouldScrollToFirstEvent = true,
     } = props;
 
     const [weekOffset, setWeekOffset] = useState(initialWeekOffset);
@@ -168,9 +170,27 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
             return;
         }
         const target = getScrollableParent(containerRef.current);
-        const scrollTop = CALENDAR_BLOCK_HEIGHT * 8.5;
+
+        let scrollTop = CALENDAR_BLOCK_HEIGHT * defaultScrollHour;
+
+        if (shouldScrollToFirstEvent) {
+            let earliestEventTime = Infinity;
+
+            Object.keys(calendarEvents || []).forEach((timestamp) => {
+                const cEvents = calendarEvents[parseInt(timestamp, 10)];
+                const hours = new Date(parseInt(timestamp, 10)).getHours();
+                if (cEvents && cEvents.length > 0) {
+                    earliestEventTime = Math.min(earliestEventTime, hours);
+                }
+            });
+
+            if (earliestEventTime !== Infinity) {
+                scrollTop = CALENDAR_BLOCK_HEIGHT * (earliestEventTime - 1);
+            }
+        }
+
         target.scrollTo({ top: scrollTop, behavior: 'auto' });
-    }, [containerRef.current]);
+    }, [containerRef.current, calendarEvents]);
 
     return (
         <StyledCalendarWrapper
