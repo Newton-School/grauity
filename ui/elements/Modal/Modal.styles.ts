@@ -135,11 +135,6 @@ export const StyledModalBody = styled.div<ModalBodyProps>`
     width: 100%;
     flex: 1;
 
-    img {
-        width: 100%;
-        border-radius: var(--corner-radius-8px, 8px);
-    }
-
     @media only screen and (max-width: 600px) {
         font-size: var(--font-size-14px, 14px);
         line-height: var(--spacing-24px, 24px);
