@@ -61,8 +61,8 @@ const LIGHT_THEME_CONFIG = {
         },
     },
     visibility: {
-        lightVisible: 'none',
-        darkVisible: 'block',
+        lightVisible: 'block',
+        darkVisible: 'none',
     },
     font: {
         fontFamily: '"Mona Sans", sans-serif',
