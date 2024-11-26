@@ -20,6 +20,7 @@ const MultiStepModal = (props: MultiStepModalProps) => {
         hideOnClickAway = false,
         blurBackground = false,
         onHide = () => {},
+        onClose = () => {},
         onFinalStep = () => {},
         mobileBottomFullWidth = false,
         onStepChange = () => {},
@@ -49,6 +50,15 @@ const MultiStepModal = (props: MultiStepModalProps) => {
     const isLastStep = currentStep === modalSteps.length - 1;
     const isFirstStep = currentStep === 0;
 
+    const handleClose = () => {
+        if (typeof onHide === 'function') {
+            onHide();
+        }
+        if (typeof onClose === 'function') {
+            onClose();
+        }
+    };
+
     useEffect(() => {
         if (
             hasMounted.current &&
@@ -74,7 +84,7 @@ const MultiStepModal = (props: MultiStepModalProps) => {
             body={body}
             hideOnClickAway={hideOnClickAway}
             blurBackground={blurBackground}
-            onHide={onHide}
+            onClose={handleClose}
             mobileBottomFullWidth={mobileBottomFullWidth}
             modalPadding={modalPadding}
             modalBodyMargin={modalBodyMargin}
@@ -117,7 +127,7 @@ const MultiStepModal = (props: MultiStepModalProps) => {
                                 onClick={() => {
                                     if (isLastStep) {
                                         onFinalStep();
-                                        onHide();
+                                        handleClose();
                                     } else {
                                         setCurrentStep(currentStep + 1);
                                     }

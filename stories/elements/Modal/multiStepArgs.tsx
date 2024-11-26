@@ -81,7 +81,7 @@ const multiStepArgs: MultiStepModalProps = {
     ],
     hideOnClickAway: false,
     blurBackground: false,
-    onHide: () => console.log('onHide'),
+    onClose: () => console.log('onClose'),
     onFinalStep: () => console.log('onFinalStep'),
     mobileBottomFullWidth: false,
     onStepChange: () => console.log('onStepChange'),

@@ -40,6 +40,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         height = null,
         minHeight = null,
         onHide = () => {},
+        onClose = () => {},
         mobileBottomFullWidth = false,
         modalPadding = '20px',
         modalBodyMargin = null,
@@ -48,9 +49,19 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         blurBackground = false,
         animatePresence = 'fade',
         clickEvent = null,
+        children = null,
     } = props;
 
     const modalRef = useRef<HTMLDivElement>(null);
+
+    const handleClose = () => {
+        if (typeof onHide === 'function') {
+            onHide();
+        }
+        if (typeof onClose === 'function') {
+            onClose();
+        }
+    };
 
     useImperativeHandle(ref, () => modalRef.current);
 
@@ -59,7 +70,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     useKeyboardEvent({
         onKeyPress: () => {
             if (hideOnClickAway) {
-                onHide();
+                handleClose();
             }
         },
         keyCodes: ['Escape'],
@@ -90,7 +101,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                     shouldDisableScroll={shouldRender}
                     onOverlayClick={() => {
                         if (hideOnClickAway) {
-                            onHide();
+                            handleClose();
                         }
                     }}
                     shouldTintOverlay
@@ -120,7 +131,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                             {showCloseButton && (
                                 <StyledModalAction justifyContent="end">
                                     <IconButton
-                                        onClick={onHide}
+                                        onClick={handleClose}
                                         size="small"
                                         variant="secondary-outlined"
                                         icon="close"
@@ -153,6 +164,14 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                                     modalBodyMargin={modalBodyMargin}
                                 >
                                     {body}
+                                </StyledModalBody>
+                            )}
+
+                            {children && (
+                                <StyledModalBody
+                                    modalBodyMargin={modalBodyMargin}
+                                >
+                                    {children}
                                 </StyledModalBody>
                             )}
                         </StyledModalMain>

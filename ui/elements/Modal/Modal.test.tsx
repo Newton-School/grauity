@@ -26,7 +26,7 @@ describe('Modal', () => {
         ),
         hideOnClickAway: true,
         blurBackground: false,
-        onHide: () => {},
+        onClose: () => {},
         mobileBottomFullWidth: false,
         modalPadding: '20px',
         modalBodyMargin: '',
@@ -62,66 +62,66 @@ describe('Modal', () => {
         ).not.toBeInTheDocument();
     });
 
-    it('calls onHide when close button is clicked', () => {
-        const onHideFn = jest.fn();
-        render(<Modal {...defaultProps} isOpen onHide={onHideFn} />);
+    it('calls onClose when close button is clicked', () => {
+        const onCloseFn = jest.fn();
+        render(<Modal {...defaultProps} isOpen onClose={onCloseFn} />);
         fireEvent.click(screen.getByTestId('testid-iconbutton'));
-        expect(onHideFn).toHaveBeenCalledTimes(1);
+        expect(onCloseFn).toHaveBeenCalledTimes(1);
     });
 
-    it('calls onHide when Escape key is pressed', () => {
-        const onHideFn = jest.fn();
-        render(<Modal {...defaultProps} isOpen onHide={onHideFn} />);
+    it('calls onClose when Escape key is pressed', () => {
+        const onCloseFn = jest.fn();
+        render(<Modal {...defaultProps} isOpen onClose={onCloseFn} />);
         fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
-        expect(onHideFn).toHaveBeenCalledTimes(1);
+        expect(onCloseFn).toHaveBeenCalledTimes(1);
     });
 
-    it('does not call onHide when Escape key is pressed if isOpen is false', () => {
-        const onHideFn = jest.fn();
-        render(<Modal {...defaultProps} isOpen={false} onHide={onHideFn} />);
+    it('does not call onClose when Escape key is pressed if isOpen is false', () => {
+        const onCloseFn = jest.fn();
+        render(<Modal {...defaultProps} isOpen={false} onClose={onCloseFn} />);
         fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
-        expect(onHideFn).toHaveBeenCalledTimes(0);
+        expect(onCloseFn).toHaveBeenCalledTimes(0);
     });
 
-    it('calls onHide when clicked outside the modal', () => {
-        const onHideFn = jest.fn();
-        render(<Modal {...defaultProps} isOpen onHide={onHideFn} />);
+    it('calls onClose when clicked outside the modal', () => {
+        const onCloseFn = jest.fn();
+        render(<Modal {...defaultProps} isOpen onClose={onCloseFn} />);
         fireEvent.click(screen.getByTestId('testid-modalwrapper'));
-        expect(onHideFn).toHaveBeenCalledTimes(1);
+        expect(onCloseFn).toHaveBeenCalledTimes(1);
     });
 
-    it('does not call onHide when clicked inside the modal', () => {
-        const onHideFn = jest.fn();
-        render(<Modal {...defaultProps} isOpen onHide={onHideFn} />);
+    it('does not call onClose when clicked inside the modal', () => {
+        const onCloseFn = jest.fn();
+        render(<Modal {...defaultProps} isOpen onClose={onCloseFn} />);
         fireEvent.click(screen.getByTestId('testid-modal'));
-        expect(onHideFn).toHaveBeenCalledTimes(0);
+        expect(onCloseFn).toHaveBeenCalledTimes(0);
     });
 
-    it('does not call onHide on outside click when hideOnClickAway is false', () => {
-        const onHideFn = jest.fn();
+    it('does not call onClose on outside click when hideOnClickAway is false', () => {
+        const onCloseFn = jest.fn();
         render(
             <Modal
                 {...defaultProps}
                 isOpen
-                onHide={onHideFn}
+                onClose={onCloseFn}
                 hideOnClickAway={false}
             />
         );
         fireEvent.click(screen.getByTestId('testid-modalwrapper'));
-        expect(onHideFn).toHaveBeenCalledTimes(0);
+        expect(onCloseFn).toHaveBeenCalledTimes(0);
     });
 
-    it('does not call onHide on Escape key press when hideOnClickAway is false', () => {
-        const onHideFn = jest.fn();
+    it('does not call onClose on Escape key press when hideOnClickAway is false', () => {
+        const onCloseFn = jest.fn();
         render(
             <Modal
                 {...defaultProps}
                 isOpen
-                onHide={onHideFn}
+                onClose={onCloseFn}
                 hideOnClickAway={false}
             />
         );
         fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
-        expect(onHideFn).toHaveBeenCalledTimes(0);
+        expect(onCloseFn).toHaveBeenCalledTimes(0);
     });
 });
