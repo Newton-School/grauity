@@ -36,9 +36,12 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         description = null,
         body = null,
         action = null,
-        width = null,
-        height = null,
+        height = 'auto',
+        width = '500px',
         minHeight = null,
+        minWidth = null,
+        maxHeight = '95vh',
+        maxWidth = '95vw',
         onHide = () => {},
         onClose = () => {},
         mobileBottomFullWidth = false,
@@ -118,6 +121,9 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                         width={width}
                         height={height}
                         minHeight={minHeight}
+                        minWidth={minWidth}
+                        maxHeight={maxHeight}
+                        maxWidth={maxWidth}
                         mobileBottomFullWidth={mobileBottomFullWidth}
                         modalPadding={modalPadding}
                         aria-labelledby={`modal-title-${id}`}

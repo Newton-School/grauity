@@ -43,9 +43,6 @@ describe('MultiStepModal', () => {
         showModalStepsPagination: true,
         modalPadding: '20px',
         modalBodyMargin: '12px 0 0 0',
-        width: '500px',
-        height: 'auto',
-        minHeight: 'auto',
         showCloseButton: true,
     };
 

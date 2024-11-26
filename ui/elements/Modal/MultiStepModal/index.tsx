@@ -26,9 +26,12 @@ const MultiStepModal = (props: MultiStepModalProps) => {
         onStepChange = () => {},
         modalPadding = '20px',
         modalBodyMargin = '12px 0 0 0',
-        width = null,
-        height = null,
+        height = 'auto',
+        width = '500px',
         minHeight = null,
+        minWidth = null,
+        maxHeight = '95vh',
+        maxWidth = '95vw',
         showCloseButton = false,
         modalRef,
         animatePresence = 'fade',
@@ -91,6 +94,9 @@ const MultiStepModal = (props: MultiStepModalProps) => {
             width={width}
             height={height}
             minHeight={minHeight}
+            minWidth={minWidth}
+            maxHeight={maxHeight}
+            maxWidth={maxWidth}
             showCloseButton={showCloseButton}
             action={
                 <StyledModalPaginatedActions>

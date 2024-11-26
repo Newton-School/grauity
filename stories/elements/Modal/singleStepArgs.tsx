@@ -47,9 +47,6 @@ const singleStepArgs: ModalProps = {
     mobileBottomFullWidth: false,
     modalPadding: '20px',
     modalBodyMargin: '',
-    width: '500px',
-    height: 'auto',
-    minHeight: 'auto',
     showCloseButton: true,
     animatePresence: 'fade',
 };

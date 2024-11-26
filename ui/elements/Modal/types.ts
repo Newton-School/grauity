@@ -134,6 +134,8 @@ export interface ModalProps {
 
     /**
      * Padding for the modal
+     *
+     * Default: `20px`
      * */
     modalPadding?: string;
 
@@ -143,19 +145,42 @@ export interface ModalProps {
     modalBodyMargin?: string;
 
     /**
-     * Width of the modal
-     * */
-    width?: string;
-
-    /**
      * Height of the modal
+     *
+     * Default: `auto`
      * */
     height?: string;
+
+    /**
+     * Width of the modal
+     *
+     * Default: `500px`
+     * */
+    width?: string;
 
     /**
      * Minimum height of the modal
      * */
     minHeight?: string;
+
+    /**
+     * Minimum width of the modal
+     */
+    minWidth?: string;
+
+    /**
+     * Maximum height of the modal
+     *
+     * Default: `95vh`
+     * */
+    maxHeight?: string;
+
+    /**
+     * Maximum width of the modal
+     *
+     * Default: `95vw`
+     */
+    maxWidth?: string;
 
     /**
      * Determines if the close button should be shown.
@@ -278,18 +303,42 @@ export interface MultiStepModalProps {
 
     /**
      * Width of the modal
+     *
+     * Default: `500px`
      * */
     width?: string;
 
     /**
      * Height of the modal
+     *
+     * Default: `auto`
      * */
     height?: string;
 
     /**
      * Minimum height of the modal
+     *
      * */
     minHeight?: string;
+
+    /**
+     * Minimum width of the modal
+     */
+    minWidth?: string;
+
+    /**
+     * Maximum height of the modal
+     *
+     * Default: `95vh`
+     * */
+    maxHeight?: string;
+
+    /**
+     * Maximum width of the modal
+     *
+     * Default: `95vw`
+     */
+    maxWidth?: string;
 
     /**
      * Determines if the close button should be shown
@@ -327,6 +376,9 @@ export interface ModalContainerProps extends StyledDivProps {
     width?: string;
     height?: string;
     minHeight?: string;
+    minWidth?: string;
+    maxHeight?: string;
+    maxWidth?: string;
     mobileBottomFullWidth?: boolean;
     modalPadding?: string;
     ref?: React.MutableRefObject<any>;
@@ -464,4 +516,42 @@ export interface ConfirmationDialogProps {
      * Click event
      * */
     clickEvent?: any;
+
+    /**
+     * Height of the modal
+     *
+     * Default: `auto`
+     * */
+    height?: string;
+
+    /**
+     * Width of the modal
+     *
+     * Default: `auto`
+     * */
+    width?: string;
+
+    /**
+     * Minimum height of the modal
+     * */
+    minHeight?: string;
+
+    /**
+     * Minimum width of the modal
+     */
+    minWidth?: string;
+
+    /**
+     * Maximum height of the modal
+     *
+     * Default: `95vh`
+     * */
+    maxHeight?: string;
+
+    /**
+     * Maximum width of the modal
+     *
+     * Default: `95vw`
+     */
+    maxWidth?: string;
 }

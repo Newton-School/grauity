@@ -89,9 +89,6 @@ const multiStepArgs: MultiStepModalProps = {
     showHeader: true,
     modalPadding: '20px',
     modalBodyMargin: '20px 0 12px 0',
-    width: '500px',
-    height: 'auto',
-    minHeight: 'auto',
     showCloseButton: true,
     animatePresence: 'fade',
 };
