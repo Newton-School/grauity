@@ -58,6 +58,7 @@ export interface ModalProps {
      * Available choices: `true`, `false`. Default is `false`
      * */
     isOpen: boolean;
+
     /**
      * Banner for the modal, can be a valid React node
      * */
@@ -74,9 +75,20 @@ export interface ModalProps {
     description?: string;
 
     /**
-     * Body for the modal, can be a valid React node
+     * [DEPRECATED] Body for the modal, can be a valid React node
+     *
+     * @deprecated Use `children` instead
+     * @see children
      * */
     body?: ModalContentType;
+
+    /**
+     * Body for the modal can also be passed as its children, it can be a valid React node.
+     *
+     * If `body` prop is provided, children will be rendered after it
+     * @see body
+     * */
+    children?: ModalContentType;
 
     /**
      * Action for the modal, can be a valid React node
@@ -100,9 +112,17 @@ export interface ModalProps {
     blurBackground?: boolean;
 
     /**
-     * Callback function to be called when the modal is hidden
+     * [DEPRECATED] Callback function to be called when the modal is hidden
+     *
+     * @deprecated Use `onClose` instead
+     * @see onClose
      * */
     onHide?: () => void;
+
+    /**
+     * Callback function to be called when the modal is to be closed
+     * */
+    onClose?: () => void;
 
     /**
      * Determines if the modal should be full width on mobile.
@@ -114,6 +134,8 @@ export interface ModalProps {
 
     /**
      * Padding for the modal
+     *
+     * Default: `20px`
      * */
     modalPadding?: string;
 
@@ -123,19 +145,42 @@ export interface ModalProps {
     modalBodyMargin?: string;
 
     /**
-     * Width of the modal
-     * */
-    width?: string;
-
-    /**
      * Height of the modal
+     *
+     * Default: `auto`
      * */
     height?: string;
+
+    /**
+     * Width of the modal
+     *
+     * Default: `500px`
+     * */
+    width?: string;
 
     /**
      * Minimum height of the modal
      * */
     minHeight?: string;
+
+    /**
+     * Minimum width of the modal
+     */
+    minWidth?: string;
+
+    /**
+     * Maximum height of the modal
+     *
+     * Default: `95vh`
+     * */
+    maxHeight?: string;
+
+    /**
+     * Maximum width of the modal
+     *
+     * Default: `95vw`
+     */
+    maxWidth?: string;
 
     /**
      * Determines if the close button should be shown.
@@ -200,9 +245,17 @@ export interface MultiStepModalProps {
     blurBackground?: boolean;
 
     /**
-     * Callback function to be called when the modal is hidden
+     * [DEPRECATED] Callback function to be called when the modal is hidden
+     *
+     * @deprecated Use `onClose` instead
+     * @see onClose
      * */
     onHide?: () => void;
+
+    /**
+     * Callback function to be called when the modal is to be closed
+     * */
+    onClose?: () => void;
 
     /**
      * Callback function to be called when the final step is reached
@@ -250,18 +303,42 @@ export interface MultiStepModalProps {
 
     /**
      * Width of the modal
+     *
+     * Default: `500px`
      * */
     width?: string;
 
     /**
      * Height of the modal
+     *
+     * Default: `auto`
      * */
     height?: string;
 
     /**
      * Minimum height of the modal
+     *
      * */
     minHeight?: string;
+
+    /**
+     * Minimum width of the modal
+     */
+    minWidth?: string;
+
+    /**
+     * Maximum height of the modal
+     *
+     * Default: `95vh`
+     * */
+    maxHeight?: string;
+
+    /**
+     * Maximum width of the modal
+     *
+     * Default: `95vw`
+     */
+    maxWidth?: string;
 
     /**
      * Determines if the close button should be shown
@@ -299,6 +376,9 @@ export interface ModalContainerProps extends StyledDivProps {
     width?: string;
     height?: string;
     minHeight?: string;
+    minWidth?: string;
+    maxHeight?: string;
+    maxWidth?: string;
     mobileBottomFullWidth?: boolean;
     modalPadding?: string;
     ref?: React.MutableRefObject<any>;
@@ -436,4 +516,42 @@ export interface ConfirmationDialogProps {
      * Click event
      * */
     clickEvent?: any;
+
+    /**
+     * Height of the modal
+     *
+     * Default: `auto`
+     * */
+    height?: string;
+
+    /**
+     * Width of the modal
+     *
+     * Default: `auto`
+     * */
+    width?: string;
+
+    /**
+     * Minimum height of the modal
+     * */
+    minHeight?: string;
+
+    /**
+     * Minimum width of the modal
+     */
+    minWidth?: string;
+
+    /**
+     * Maximum height of the modal
+     *
+     * Default: `95vh`
+     * */
+    maxHeight?: string;
+
+    /**
+     * Maximum width of the modal
+     *
+     * Default: `95vw`
+     */
+    maxWidth?: string;
 }

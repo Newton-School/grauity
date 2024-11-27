@@ -20,14 +20,18 @@ const MultiStepModal = (props: MultiStepModalProps) => {
         hideOnClickAway = false,
         blurBackground = false,
         onHide = () => {},
+        onClose = () => {},
         onFinalStep = () => {},
         mobileBottomFullWidth = false,
         onStepChange = () => {},
         modalPadding = '20px',
         modalBodyMargin = '12px 0 0 0',
-        width = null,
-        height = null,
+        height = 'auto',
+        width = '500px',
         minHeight = null,
+        minWidth = null,
+        maxHeight = '95vh',
+        maxWidth = '95vw',
         showCloseButton = false,
         modalRef,
         animatePresence = 'fade',
@@ -48,6 +52,15 @@ const MultiStepModal = (props: MultiStepModalProps) => {
 
     const isLastStep = currentStep === modalSteps.length - 1;
     const isFirstStep = currentStep === 0;
+
+    const handleClose = () => {
+        if (typeof onHide === 'function') {
+            onHide();
+        }
+        if (typeof onClose === 'function') {
+            onClose();
+        }
+    };
 
     useEffect(() => {
         if (
@@ -74,13 +87,16 @@ const MultiStepModal = (props: MultiStepModalProps) => {
             body={body}
             hideOnClickAway={hideOnClickAway}
             blurBackground={blurBackground}
-            onHide={onHide}
+            onClose={handleClose}
             mobileBottomFullWidth={mobileBottomFullWidth}
             modalPadding={modalPadding}
             modalBodyMargin={modalBodyMargin}
             width={width}
             height={height}
             minHeight={minHeight}
+            minWidth={minWidth}
+            maxHeight={maxHeight}
+            maxWidth={maxWidth}
             showCloseButton={showCloseButton}
             action={
                 <StyledModalPaginatedActions>
@@ -117,7 +133,7 @@ const MultiStepModal = (props: MultiStepModalProps) => {
                                 onClick={() => {
                                     if (isLastStep) {
                                         onFinalStep();
-                                        onHide();
+                                        handleClose();
                                     } else {
                                         setCurrentStep(currentStep + 1);
                                     }

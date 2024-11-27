@@ -36,10 +36,14 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         description = null,
         body = null,
         action = null,
-        width = null,
-        height = null,
+        height = 'auto',
+        width = '500px',
         minHeight = null,
+        minWidth = null,
+        maxHeight = '95vh',
+        maxWidth = '95vw',
         onHide = () => {},
+        onClose = () => {},
         mobileBottomFullWidth = false,
         modalPadding = '20px',
         modalBodyMargin = null,
@@ -48,9 +52,19 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         blurBackground = false,
         animatePresence = 'fade',
         clickEvent = null,
+        children = null,
     } = props;
 
     const modalRef = useRef<HTMLDivElement>(null);
+
+    const handleClose = () => {
+        if (typeof onHide === 'function') {
+            onHide();
+        }
+        if (typeof onClose === 'function') {
+            onClose();
+        }
+    };
 
     useImperativeHandle(ref, () => modalRef.current);
 
@@ -59,7 +73,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     useKeyboardEvent({
         onKeyPress: () => {
             if (hideOnClickAway) {
-                onHide();
+                handleClose();
             }
         },
         keyCodes: ['Escape'],
@@ -90,7 +104,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                     shouldDisableScroll={shouldRender}
                     onOverlayClick={() => {
                         if (hideOnClickAway) {
-                            onHide();
+                            handleClose();
                         }
                     }}
                     shouldTintOverlay
@@ -107,6 +121,9 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                         width={width}
                         height={height}
                         minHeight={minHeight}
+                        minWidth={minWidth}
+                        maxHeight={maxHeight}
+                        maxWidth={maxWidth}
                         mobileBottomFullWidth={mobileBottomFullWidth}
                         modalPadding={modalPadding}
                         aria-labelledby={`modal-title-${id}`}
@@ -120,7 +137,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                             {showCloseButton && (
                                 <StyledModalAction justifyContent="end">
                                     <IconButton
-                                        onClick={onHide}
+                                        onClick={handleClose}
                                         size="small"
                                         variant="secondary-outlined"
                                         icon="close"
@@ -153,6 +170,14 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                                     modalBodyMargin={modalBodyMargin}
                                 >
                                     {body}
+                                </StyledModalBody>
+                            )}
+
+                            {children && (
+                                <StyledModalBody
+                                    modalBodyMargin={modalBodyMargin}
+                                >
+                                    {children}
                                 </StyledModalBody>
                             )}
                         </StyledModalMain>

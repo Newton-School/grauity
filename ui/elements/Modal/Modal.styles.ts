@@ -17,15 +17,13 @@ export const StyledModal = styled(motion.div)<ModalContainerProps>`
     z-index: var(--z-index-modal, 1100);
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.25);
     border-radius: var(--corner-radius-12px, 12px);
-    width: 500px;
-    min-width: 400px;
-    height: 525px;
     padding: var(--spacing-20px, 20px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     gap: var(--spacing-16px, 16px);
+    box-sizing: border-box;
 
     @media only screen and (max-width: 600px) {
         padding: var(--spacing-18px, 18px);
@@ -49,6 +47,25 @@ export const StyledModal = styled(motion.div)<ModalContainerProps>`
                   min-height: ${minHeight};
               `
             : ''}
+    ${({ minWidth }) =>
+        minWidth
+            ? css`
+                  min-width: ${minWidth};
+              `
+            : ''}
+    ${({ maxHeight }) =>
+        maxHeight
+            ? css`
+                  max-height: ${maxHeight};
+              `
+            : ''}
+    ${({ maxWidth }) =>
+        maxWidth
+            ? css`
+                  max-width: ${maxWidth};
+              `
+            : ''}
+
     ${({ mobileBottomFullWidth }) =>
         mobileBottomFullWidth
             ? css`
@@ -67,6 +84,10 @@ export const StyledModal = styled(motion.div)<ModalContainerProps>`
     ${({ modalPadding }) =>
         css`
             padding: ${modalPadding};
+
+            @media only screen and (max-width: 600px) {
+                padding: ${modalPadding};
+            }
         `}
 `;
 
@@ -96,11 +117,6 @@ export const StyledModalTitle = styled.h2<ModalTitleProps>`
     line-height: var(--spacing-32px, 32px);
     margin: var(--spacing-0px, 0px) auto;
     text-align: center;
-
-    img {
-        width: 100%;
-        border-radius: var(--corner-radius-8px, 8px);
-    }
 
     @media only screen and (max-width: 600px) {
         font-size: var(--font-size-16px, 16px);
@@ -186,11 +202,6 @@ export const StyledModalAction = styled.div<{
         css`
             justify-content: ${justifyContent};
         `}
-
-    img {
-        width: 100%;
-        border-radius: var(--corner-radius-8px, 8px);
-    }
 `;
 
 export const StyledModalBanner = styled.div`

@@ -12,7 +12,7 @@ const singleStepArgs: ModalProps = {
     title: 'This is a Modal',
     description:
         'This is the Modal description. Below is an implementation of custom Modal body rendering.',
-    body: (
+    children: (
         <Table
             rows={simpleTableArgs.rows}
             columns={simpleTableArgs.columns}
@@ -43,13 +43,10 @@ const singleStepArgs: ModalProps = {
     ),
     hideOnClickAway: true,
     blurBackground: false,
-    onHide: () => console.log('onHide'),
+    onClose: () => console.log('onClose'),
     mobileBottomFullWidth: false,
     modalPadding: '20px',
     modalBodyMargin: '',
-    width: '500px',
-    height: 'auto',
-    minHeight: 'auto',
     showCloseButton: true,
     animatePresence: 'fade',
 };

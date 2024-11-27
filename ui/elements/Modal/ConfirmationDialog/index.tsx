@@ -30,6 +30,12 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
         mobileBottomFullWidth = false,
         animatePresence = 'fade',
         clickEvent = null,
+        height = 'auto',
+        width = 'auto',
+        minHeight = null,
+        minWidth = null,
+        maxHeight = '95vh',
+        maxWidth = '95vw',
     } = props;
 
     const modalRef = React.useRef(null);
@@ -79,14 +85,18 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
                         onClick={(e: React.MouseEvent<HTMLDivElement>) =>
                             e.stopPropagation()
                         }
-                        width="auto"
-                        height="auto"
                         ref={modalRef}
                         aria-labelledby={`modal-title-${id}`}
                         aria-describedby={`modal-description-${id}`}
                         aria-modal="true"
                         role="dialog"
                         mobileBottomFullWidth={mobileBottomFullWidth}
+                        height={height}
+                        width={width}
+                        minHeight={minHeight}
+                        minWidth={minWidth}
+                        maxHeight={maxHeight}
+                        maxWidth={maxWidth}
                         {...motionProps}
                     >
                         <Modal.Main>

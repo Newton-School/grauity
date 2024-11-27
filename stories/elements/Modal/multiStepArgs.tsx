@@ -81,7 +81,7 @@ const multiStepArgs: MultiStepModalProps = {
     ],
     hideOnClickAway: false,
     blurBackground: false,
-    onHide: () => console.log('onHide'),
+    onClose: () => console.log('onClose'),
     onFinalStep: () => console.log('onFinalStep'),
     mobileBottomFullWidth: false,
     onStepChange: () => console.log('onStepChange'),
@@ -89,9 +89,6 @@ const multiStepArgs: MultiStepModalProps = {
     showHeader: true,
     modalPadding: '20px',
     modalBodyMargin: '20px 0 12px 0',
-    width: '500px',
-    height: 'auto',
-    minHeight: 'auto',
     showCloseButton: true,
     animatePresence: 'fade',
 };

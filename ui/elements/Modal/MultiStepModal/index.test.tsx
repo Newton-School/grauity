@@ -36,16 +36,13 @@ describe('MultiStepModal', () => {
         ],
         hideOnClickAway: false,
         blurBackground: false,
-        onHide: jest.fn(),
+        onClose: jest.fn(),
         onFinalStep: jest.fn(),
         mobileBottomFullWidth: false,
         onStepChange: jest.fn(),
         showModalStepsPagination: true,
         modalPadding: '20px',
         modalBodyMargin: '12px 0 0 0',
-        width: '500px',
-        height: 'auto',
-        minHeight: 'auto',
         showCloseButton: true,
     };
 
@@ -80,20 +77,20 @@ describe('MultiStepModal', () => {
         expect(onStepChange).toHaveBeenCalledTimes(1);
     });
 
-    it('calls onFinalStep and onHide when the final step button is clicked', () => {
+    it('calls onFinalStep and onClose when the final step button is clicked', () => {
         const onFinalStep = jest.fn();
-        const onHide = jest.fn();
+        const onClose = jest.fn();
         render(
             <MultiStepModal
                 {...defaultProps}
                 onFinalStep={onFinalStep}
-                onHide={onHide}
+                onClose={onClose}
             />
         );
         fireEvent.click(screen.getByText('Next'));
         fireEvent.click(screen.getByText('Finish'));
         expect(onFinalStep).toHaveBeenCalledTimes(1);
-        expect(onHide).toHaveBeenCalledTimes(1);
+        expect(onClose).toHaveBeenCalledTimes(1);
     });
 
     it('renders the close button when stated', () => {
@@ -101,11 +98,11 @@ describe('MultiStepModal', () => {
         expect(screen.getByTestId('testid-iconbutton')).toBeInTheDocument();
     });
 
-    it('renders the close button and calls onHide when clicked', () => {
-        const onHide = jest.fn();
-        render(<MultiStepModal {...defaultProps} showCloseButton onHide={onHide} />);
+    it('renders the close button and calls onClose when clicked', () => {
+        const onClose = jest.fn();
+        render(<MultiStepModal {...defaultProps} showCloseButton onClose={onClose} />);
         fireEvent.click(screen.getByTestId('testid-iconbutton'));
-        expect(onHide).toHaveBeenCalledTimes(1);
+        expect(onClose).toHaveBeenCalledTimes(1);
     });
 
     it('does not render the close button when showCloseButton is false', () => {
