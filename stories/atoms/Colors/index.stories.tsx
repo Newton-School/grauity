@@ -33,7 +33,6 @@ export const Text = {
                 capitalizeHeaders
                 borderAround={false}
                 borderVertical={false}
-                condensed={false}
                 highlightHeaders={false}
             />
         );
@@ -64,7 +63,6 @@ export const Background = {
                 capitalizeHeaders
                 borderAround={false}
                 borderVertical={false}
-                condensed={false}
                 highlightHeaders={false}
             />
         );
@@ -95,7 +93,6 @@ export const Border = {
                 capitalizeHeaders
                 borderAround={false}
                 borderVertical={false}
-                condensed={false}
                 highlightHeaders={false}
             />
         );
@@ -126,7 +123,6 @@ export const Alpha = {
                 capitalizeHeaders
                 borderAround={false}
                 borderVertical={false}
-                condensed={false}
                 highlightHeaders={false}
             />
         );

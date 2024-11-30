@@ -17,7 +17,7 @@ export default {
 const Template = (args: IconButtonProps) => (
     <Table.Table borderAround={false} borderVertical={false}>
         <Table.TableHead highlightHeaders={false}>
-            <Table.TableRow>
+            <Table.TableRow condensed>
                 <Table.TableHeadingCell align="left">
                     IconButton variant
                 </Table.TableHeadingCell>
@@ -28,7 +28,7 @@ const Template = (args: IconButtonProps) => (
         </Table.TableHead>
         <Table.TableBody>
             {BUTTON_VARIANTS.map((variant) => (
-                <Table.TableRow>
+                <Table.TableRow condensed>
                     <Table.TableDataCell>
                         <TokenBlock copy>{variant}</TokenBlock>
                     </Table.TableDataCell>

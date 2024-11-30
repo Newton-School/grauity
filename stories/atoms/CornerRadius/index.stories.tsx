@@ -69,7 +69,6 @@ export const CornerRadiusTokens = () => {
             borderAround={false}
             highlightHeaders={false}
             borderVertical={false}
-            condensed={false}
         />
     );
 };

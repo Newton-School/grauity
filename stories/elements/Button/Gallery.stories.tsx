@@ -13,7 +13,7 @@ export default {
 const Template = (args: ButtonProps) => (
     <Table.Table borderAround={false} borderVertical={false}>
         <Table.TableHead highlightHeaders={false}>
-            <Table.TableRow>
+            <Table.TableRow condensed>
                 <Table.TableHeadingCell align="left">
                     Button variant
                 </Table.TableHeadingCell>
@@ -24,7 +24,7 @@ const Template = (args: ButtonProps) => (
         </Table.TableHead>
         <Table.TableBody>
             {BUTTON_VARIANTS.map((variant) => (
-                <Table.TableRow>
+                <Table.TableRow condensed>
                     <Table.TableDataCell>
                         <TokenBlock copy>{variant}</TokenBlock>
                     </Table.TableDataCell>

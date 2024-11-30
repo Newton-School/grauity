@@ -34,7 +34,6 @@ export const FoundationColors = () => {
             capitalizeHeaders
             borderAround={false}
             borderVertical={false}
-            condensed={false}
             highlightHeaders={false}
         />
     );
