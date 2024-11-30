@@ -13,12 +13,14 @@ export interface TooltipConfig {
 
 export type TooltipChildren = ReactNode;
 
+export type TooltipPlacement = `${TOOLTIP_PLACEMENT}`;
+
 export interface TooltipProps {
     /**
      * The placement of the tooltip
      * @default 'top'
      * */
-    placement?: TOOLTIP_PLACEMENT;
+    placement?: TooltipPlacement;
 
     /**
      * Whether the tooltip should use fixed positioning
@@ -55,6 +57,12 @@ export interface TooltipProps {
      * A trigger to recompute the tooltip position
      * */
     recomputedTrigger?: any;
+
+    /**
+     * Whether the tooltip should be open by default
+     * @default false
+     * */
+    defaultOpen?: boolean;
 
     /**
      * The children that the tooltip is wrapping

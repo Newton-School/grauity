@@ -10,22 +10,22 @@ import {
 } from '@floating-ui/dom';
 import React, { cloneElement, useEffect, useRef, useState } from 'react';
 
-import { TOOLTIP_PLACEMENT } from './constants';
 import { StyledTooltipArrow, StyledTooltipWrapper } from './Tooltip.styles';
 import { TooltipProps } from './types';
 
 const Tooltip = (props: TooltipProps) => {
     const {
-        placement = TOOLTIP_PLACEMENT.TOP,
+        placement = 'top',
         fixedPositioning = false,
         content,
         config,
         hidden = false,
         hideArrow = false,
         recomputedTrigger,
+        defaultOpen = false,
         children,
     } = props;
-    const [showTooltip, setShowTooltip] = useState(false);
+    const [showTooltip, setShowTooltip] = useState(defaultOpen);
     const floatingEl = useRef<HTMLDivElement>(null);
     const referenceEl = useRef<HTMLDivElement>(null);
     const arrowEl = useRef<HTMLDivElement>(null);
@@ -187,23 +187,30 @@ const Tooltip = (props: TooltipProps) => {
         };
     }, []);
 
-    const cloneChildren = React.isValidElement(children) ? cloneElement(children as React.ReactElement<any>, {
-        ref: referenceEl,
-        style: {
-            position: 'relative',
-        },
-    }) : children;
+    const cloneChildren = React.isValidElement(children)
+        ? cloneElement(children as React.ReactElement<any>, {
+            ref: referenceEl,
+            style: {
+                position: 'relative',
+            },
+        })
+        : children;
 
     return (
         <>
             {cloneChildren}
-            {showTooltip && content && (
+            {showTooltip && content && !hidden && (
                 <StyledTooltipWrapper
                     ref={floatingEl}
                     padding={config?.tooltip?.padding}
                 >
                     {content}
-                    {!hideArrow && <StyledTooltipArrow ref={arrowEl} />}
+                    {!hideArrow && (
+                        <StyledTooltipArrow
+                            ref={arrowEl}
+                            data-testid="testid-tooltip-arrow"
+                        />
+                    )}
                 </StyledTooltipWrapper>
             )}
         </>
