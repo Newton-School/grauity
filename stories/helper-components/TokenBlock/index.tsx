@@ -16,8 +16,8 @@ interface TokenBlockProps {
 
 const TokenBlock = ({
     copy = false,
-    children,
     showCopiedOverlay = false,
+    children,
 }: TokenBlockProps) => {
     const [copied, setCopied] = useState(false);
 
@@ -52,7 +52,7 @@ const TokenBlock = ({
                         variant="tertiary"
                         icon={copied ? 'check' : 'code'}
                     >
-                        {copied ? 'copied!' : 'copy'}
+                        {(copied && !showCopiedOverlay) ? 'Copied!' : 'Copy'}
                     </Button>
                 </StyledHideOnPrintWrapper>
             )}
