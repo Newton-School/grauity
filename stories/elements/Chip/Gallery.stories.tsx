@@ -14,7 +14,7 @@ export default {
 const Template = (args: ChipProps) => (
     <Table.Table borderAround={false} borderVertical={false}>
         <Table.TableHead highlightHeaders={false}>
-            <Table.TableRow>
+            <Table.TableRow condensed>
                 <Table.TableHeadingCell align="left">
                     Chip variant
                 </Table.TableHeadingCell>
@@ -25,7 +25,7 @@ const Template = (args: ChipProps) => (
         </Table.TableHead>
         <Table.TableBody>
             {CHIP_VARIANTS.map((variant) => (
-                <Table.TableRow>
+                <Table.TableRow condensed>
                     <Table.TableDataCell>
                         <TokenBlock copy>{variant}</TokenBlock>
                     </Table.TableDataCell>

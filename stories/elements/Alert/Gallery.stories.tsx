@@ -56,7 +56,7 @@ export default {
 const Template = (args: AlertProps) => (
     <Table.Table borderAround={false} borderVertical={false}>
         <Table.TableHead highlightHeaders={false}>
-            <Table.TableRow>
+            <Table.TableRow condensed>
                 <Table.TableHeadingCell align="left">
                     Type
                 </Table.TableHeadingCell>
@@ -73,7 +73,7 @@ const Template = (args: AlertProps) => (
                 <>
                     {Object.entries(ALERT_VARIANTS_ENUM).map(
                         ([, alertBannerVariant]) => (
-                            <Table.TableRow>
+                            <Table.TableRow condensed>
                                 <Table.TableDataCell>
                                     <TokenBlock copy>
                                         {alertBannerType}

@@ -29,7 +29,7 @@ const Template = (args: TypographyProps) => (
         </Table.TableHead>
         <Table.TableBody>
             {TYPOGRAPHY_VARIANTS.map((variant) => (
-                <Table.TableRow>
+                <Table.TableRow condensed>
                     <Table.TableDataCell>
                         <TokenBlock copy>{variant}</TokenBlock>
                     </Table.TableDataCell>

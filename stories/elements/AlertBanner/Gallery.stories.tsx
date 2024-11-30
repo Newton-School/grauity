@@ -23,7 +23,7 @@ const TableDecorator: React.FC<TableDecoratorProps> = ({
 }) => (
     <Table.Table borderAround={false} borderVertical={false}>
         <Table.TableHead highlightHeaders={false}>
-            <Table.TableRow>
+            <Table.TableRow condensed>
                 <Table.TableHeadingCell align="left">
                     Type
                 </Table.TableHeadingCell>
