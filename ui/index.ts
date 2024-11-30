@@ -14,6 +14,20 @@ export {
     ThemeWrapper as NSThemeWrapper,
 } from './themes';
 
+// NSAlert
+export {
+    ALERT_VARIANTS,
+    ALERT_VARIANTS_ENUM,
+    type AlertProps,
+    default as NSAlert,
+} from './elements/Alert';
+
+// NSAlertBanner
+export {
+    type AlertBannerProps,
+    default as NSAlertBanner,
+} from './elements/AlertBanner';
+
 // NSIcon
 export { type IconProps, Icon as NSIcon } from './elements/Icon';
 
@@ -119,3 +133,6 @@ export {
     type FloatingActionButtonProps,
     default as NSFloatingActionButton,
 } from './elements/FloatingActionButton';
+
+// NSTooltip
+export { default as NSTooltip, type TooltipProps } from './elements/Tooltip';
