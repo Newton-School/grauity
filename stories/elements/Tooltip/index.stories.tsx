@@ -22,7 +22,7 @@ export default {
 
 const Template = (args: TooltipProps) => (
     <Tooltip {...args}>
-        <Button disabled>Hover over me!</Button>
+        <Button variant='tertiary'>Hover over me!</Button>
     </Tooltip>
 );
 
@@ -44,6 +44,7 @@ Default.args = {
 export const WithoutArrow = Template.bind({});
 WithoutArrow.args = {
     ...Default.args,
+    content: 'This is a tooltip without an arrow',
     hideArrow: true,
 };
 
@@ -53,7 +54,7 @@ WithCustomContent.args = {
     content: (
         <div>
             <h3>Custom content</h3>
-            <p>This is a custom tooltip content</p>
+            <p>This is custom tooltip content</p>
         </div>
     )
 };
