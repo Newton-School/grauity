@@ -1,5 +1,6 @@
 import kebabCase from 'lodash/kebabCase';
 import React from 'react';
+import { extractColorVariables } from 'ui/themes/utils';
 
 import THEMES from '../../ui/themes/constants';
 import DARK_THEME_CONFIG from '../../ui/themes/darkThemeConstants';
@@ -27,78 +28,70 @@ interface CategoryToken {
     light: string;
 }
 
-interface ThemeConfig {
-    [key: string]: {
-        [subcategory: string]:
-            | {
-                  [token: string]: string;
-              }
-            | string;
-    };
-}
-
 /**
- * Dynamically creates token mappings for a given category and subcategories.
+ * Dynamically creates token mappings for a given type and categories.
  * Uses the light and dark theme configurations to create the tokens.
  *
- * @param category The category of tokens to create, e.g. colors, text, etc.
- * @param subcategories The subcategories of tokens to create, e.g. text, background, etc. If not provided, all subcategories will be created.
+ * @param type The type of tokens to create, e.g. colors, text, etc.
+ * @param categories The categories of tokens to create, e.g. text, background, etc. If not provided, all categories will be created.
  * @returns
  */
 const createCategoryTokens = ({
-    category,
-    subcategories,
+    type,
+    categories,
     config = {
         light: LIGHT_THEME_CONFIG,
         dark: DARK_THEME_CONFIG,
     },
 }: {
-    category: string;
-    subcategories: string[];
+    type: string;
+    categories: string[];
     config?: {
-        light: ThemeConfig;
-        dark: ThemeConfig;
+        light: Record<string, any>;
+        dark: Record<string, any>;
     };
 }): CategoryToken[] => {
-    const lightThemeCategoryTokens = config.light[category];
-    const darkThemeCategoryTokens = config.dark[category];
+    const lightThemeTypeTokens = config.light[type];
+    const darkThemeTypeTokens = config.dark[type];
 
     const tokens: CategoryToken[] = [];
 
-    const addTokens = (tokenSubcategory: string) => {
-        const lightThemeSubcategoryTokens =
-            lightThemeCategoryTokens[tokenSubcategory];
-        const darkThemeSubcategoryTokens =
-            darkThemeCategoryTokens[tokenSubcategory];
+    const addTokens = (tokenCategory: string) => {
+        const lightThemeCategoryTokens =
+            lightThemeTypeTokens[tokenCategory];
+        const darkThemeCategoryTokens =
+            darkThemeTypeTokens[tokenCategory];
 
         if (
-            typeof lightThemeSubcategoryTokens === 'string' ||
-            typeof darkThemeSubcategoryTokens === 'string'
+            typeof lightThemeCategoryTokens === 'string' ||
+            typeof darkThemeCategoryTokens === 'string'
         ) {
             return;
         }
 
-        Object.keys(lightThemeSubcategoryTokens).forEach((tokenSubCategory) => {
-            if (lightThemeSubcategoryTokens.hasOwnProperty(tokenSubCategory)) {
-                tokens.push({
-                    token: `--${getKebabCase(tokenSubCategory)}`,
-                    dark: darkThemeSubcategoryTokens[tokenSubCategory],
-                    light: lightThemeSubcategoryTokens[tokenSubCategory],
-                });
-            }
+        const lightThemeCategoryVariables = extractColorVariables({[tokenCategory]: lightThemeCategoryTokens});
+        const darkThemeCategoryVariables = extractColorVariables({[tokenCategory]: darkThemeCategoryTokens});
+
+        lightThemeCategoryVariables.forEach((variable) => {
+            const [token, value] = variable.split(':');
+            tokens.push({
+                token: token.trim(),
+                dark: darkThemeCategoryVariables.find((v) => v.startsWith(token))?.split(':')[1].trim(),
+                light: value.trim(),
+            });
         });
     };
 
-    if (subcategories?.length) {
-        subcategories.forEach((subCategory) => {
-            if (lightThemeCategoryTokens.hasOwnProperty(subCategory)) {
-                addTokens(subCategory);
+    if (categories?.length) {
+        categories.forEach((category) => {
+            if (lightThemeTypeTokens.hasOwnProperty(category)) {
+                addTokens(category);
             }
         });
     } else {
-        // add all subcategory tokens from that category if no subcategories are specified
-        Object.keys(lightThemeCategoryTokens).forEach((subCategory) => {
-            addTokens(subCategory);
+        // add all category tokens from that type if no categories are specified
+        Object.keys(lightThemeTypeTokens).forEach((category) => {
+            addTokens(category);
         });
     }
 
@@ -106,34 +99,34 @@ const createCategoryTokens = ({
 };
 
 /**
- * Extracts theme tokens in a category (like 'colors') and
- * subcategory (like 'text' or 'background') from the theme object.
+ * Extracts theme tokens in a type (like 'colors') and
+ * category (like 'text' or 'background') from the theme object.
  *
  *
- * For a given category, token objects returned by this function will
+ * For a given type, token objects returned by this function will
  * have the following keys:
  * - token: The token name
  * - value: The value of the token
- * - [category]: For visual representation of the token
+ * - [type]: For visual representation of the token
  *
- * @param category The category of tokens to create, e.g. colors, font, spacing, etc.
- * @param subcategories The subcategories of tokens to create, e.g. text, background, etc. If not provided, all subcategories will be created.
+ * @param type The type of tokens to create, e.g. colors, font, spacing, etc.
+ * @param categories The categories of tokens to create, e.g. text, background, etc. If not provided, all categories will be created.
  * @param theme The theme to use for the token values
  * @param render A function which returns a component to render the token visually
  * @returns
  */
 export const extractTokensFromTheme = ({
-    category,
-    subcategories = [],
-    theme = THEMES.LIGHT,
+    type,
+    categories = [],
+    currentTheme = THEMES.LIGHT,
     render = () => null,
 }: {
-    category: string;
-    subcategories?: string[];
-    theme?: string;
+    type: string;
+    categories?: string[];
+    currentTheme?: string;
     render: (token: CategoryToken) => React.ReactNode;
 }) => {
-    const colorTokens = createCategoryTokens({ category, subcategories });
+    const colorTokens = createCategoryTokens({ type, categories });
 
     return colorTokens.map((token) => ({
         token: {
@@ -141,10 +134,10 @@ export const extractTokensFromTheme = ({
         },
         value: {
             render: () => (
-                <TokenBlock>{token[theme as keyof CategoryToken]} </TokenBlock>
+                <TokenBlock>{token[currentTheme as keyof CategoryToken]} </TokenBlock>
             ),
         },
-        [category]: {
+        [type]: {
             render: () => render(token),
         },
     }));

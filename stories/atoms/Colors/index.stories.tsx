@@ -13,9 +13,9 @@ export const Text = {
     render: (args: any, { globals }: any) => {
         const { theme } = globals;
         const rows = extractTokensFromTheme({
-            theme,
-            category: 'colors',
-            subcategories: ['text'],
+            currentTheme: theme,
+            type: 'colors',
+            categories: ['text'],
             render: (token) => <ColorRenderer color={`var(${token.token})`} />,
         });
         return (
@@ -25,7 +25,7 @@ export const Text = {
                     { key: 'value', display: 'Value', align: 'left' },
                     {
                         key: 'colors',
-                        display: 'Color',
+                        display: 'Swatch',
                         align: 'left',
                     },
                 ]}
@@ -43,9 +43,9 @@ export const Background = {
     render: (args: any, { globals }: any) => {
         const { theme } = globals;
         const rows = extractTokensFromTheme({
-            theme,
-            category: 'colors',
-            subcategories: ['background'],
+            currentTheme: theme,
+            type: 'colors',
+            categories: ['background'],
             render: (token) => <ColorRenderer color={`var(${token.token})`} />,
         });
         return (
@@ -55,7 +55,7 @@ export const Background = {
                     { key: 'value', display: 'Value', align: 'left' },
                     {
                         key: 'colors',
-                        display: 'Color',
+                        display: 'Swatch',
                         align: 'left',
                     },
                 ]}
@@ -73,9 +73,9 @@ export const Border = {
     render: (args: any, { globals }: any) => {
         const { theme } = globals;
         const rows = extractTokensFromTheme({
-            theme,
-            category: 'colors',
-            subcategories: ['border'],
+            currentTheme: theme,
+            type: 'colors',
+            categories: ['border'],
             render: (token) => <ColorRenderer color={`var(${token.token})`} />,
         });
         return (
@@ -85,37 +85,7 @@ export const Border = {
                     { key: 'value', display: 'Value', align: 'left' },
                     {
                         key: 'colors',
-                        display: 'Color',
-                        align: 'left',
-                    },
-                ]}
-                rows={rows}
-                capitalizeHeaders
-                borderAround={false}
-                borderVertical={false}
-                highlightHeaders={false}
-            />
-        );
-    },
-};
-
-export const Alpha = {
-    render: (args: any, { globals }: any) => {
-        const { theme } = globals;
-        const rows = extractTokensFromTheme({
-            theme,
-            category: 'colors',
-            subcategories: ['alpha'],
-            render: (token) => <ColorRenderer color={`var(${token.token})`} />,
-        });
-        return (
-            <Table
-                columns={[
-                    { key: 'token', display: 'Token', align: 'left' },
-                    { key: 'value', display: 'Value', align: 'left' },
-                    {
-                        key: 'colors',
-                        display: 'Color',
+                        display: 'Swatch',
                         align: 'left',
                     },
                 ]}

@@ -11,8 +11,7 @@ export default {
 };
 
 export const FoundationColors = () => {
-    const colorTokenRegExp =
-        /--(neutral|brand|error|success|warning|yellow|purple|alpha)-\d+: (#[0-9A-Fa-f]{6}|rgba?\([^)]+\));/g;
+    const colorTokenRegExp = /--(neutral|brand|error|success|warning|yellow|purple|alpha)-\d+:\s*(.+)/g;
     const rows = extractTokensFromGlobalStyles({
         type: 'colors',
         globalStyleString: constantGlobalStyle,
@@ -26,7 +25,7 @@ export const FoundationColors = () => {
                 { key: 'value', display: 'Value', align: 'left' },
                 {
                     key: 'colors',
-                    display: 'Visual Representation',
+                    display: 'Swatch',
                     align: 'left',
                 },
             ]}
