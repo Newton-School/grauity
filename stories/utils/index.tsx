@@ -57,10 +57,8 @@ const createCategoryTokens = ({
     const tokens: CategoryToken[] = [];
 
     const addTokens = (tokenCategory: string) => {
-        const lightThemeCategoryTokens =
-            lightThemeTypeTokens[tokenCategory];
-        const darkThemeCategoryTokens =
-            darkThemeTypeTokens[tokenCategory];
+        const lightThemeCategoryTokens = lightThemeTypeTokens[tokenCategory];
+        const darkThemeCategoryTokens = darkThemeTypeTokens[tokenCategory];
 
         if (
             typeof lightThemeCategoryTokens === 'string' ||
@@ -69,14 +67,22 @@ const createCategoryTokens = ({
             return;
         }
 
-        const lightThemeCategoryVariables = extractColorVariables({[tokenCategory]: lightThemeCategoryTokens});
-        const darkThemeCategoryVariables = extractColorVariables({[tokenCategory]: darkThemeCategoryTokens});
+        const lightThemeCategoryVariables = extractColorVariables({
+            [tokenCategory]: lightThemeCategoryTokens,
+        });
+        const darkThemeCategoryVariables = extractColorVariables({
+            [tokenCategory]: darkThemeCategoryTokens,
+        });
 
         lightThemeCategoryVariables.forEach((variable) => {
-            const [token, value] = variable.split(':');
+            const [token, value] = variable.replace(/;$/, '').split(':');
             tokens.push({
                 token: token.trim(),
-                dark: darkThemeCategoryVariables.find((v) => v.startsWith(token))?.split(':')[1].trim(),
+                dark: darkThemeCategoryVariables
+                    .find((v) => v.startsWith(token))
+                    ?.replace(/;$/, '')
+                    .split(':')[1]
+                    .trim(),
                 light: value.trim(),
             });
         });
@@ -109,22 +115,22 @@ const createCategoryTokens = ({
  * - value: The value of the token
  * - [type]: For visual representation of the token
  *
- * @param type The type of tokens to create, e.g. colors, font, spacing, etc.
  * @param categories The categories of tokens to create, e.g. text, background, etc. If not provided, all categories will be created.
  * @param theme The theme to use for the token values
+ * @param type The type of tokens to create, e.g. colors, font, spacing, etc.
  * @param render A function which returns a component to render the token visually
  * @returns
  */
 export const extractTokensFromTheme = ({
-    type,
     categories = [],
     currentTheme = THEMES.LIGHT,
+    type,
     render = () => null,
 }: {
-    type: string;
     categories?: string[];
     currentTheme?: string;
-    render: (token: CategoryToken) => React.ReactNode;
+    type?: string;
+    render?: (token: CategoryToken) => React.ReactNode;
 }) => {
     const colorTokens = createCategoryTokens({ type, categories });
 
@@ -134,12 +140,51 @@ export const extractTokensFromTheme = ({
         },
         value: {
             render: () => (
-                <TokenBlock>{token[currentTheme as keyof CategoryToken]} </TokenBlock>
+                <TokenBlock
+                    copy
+                    color={`var(${token.token})`}
+                    background={type === 'colors' ? 'var(--bg-primary)' : ''}
+                >
+                    {token[currentTheme as keyof CategoryToken]}
+                </TokenBlock>
             ),
         },
-        [type]: {
-            render: () => render(token),
+        light: {
+            render: () => (
+                <div className="grauity-theme-light">
+                    <TokenBlock
+                        copy
+                        color={token.light}
+                        background={
+                            type === 'colors' ? 'var(--bg-primary)' : ''
+                        }
+                    >
+                        {token.light}
+                    </TokenBlock>
+                </div>
+            ),
         },
+        dark: {
+            render: () => (
+                <div className="grauity-theme-dark">
+                    <TokenBlock
+                        copy
+                        color={token.dark}
+                        background={
+                            type === 'colors' ? 'var(--bg-primary)' : ''
+                        }
+                    >
+                        {token.dark}
+                    </TokenBlock>
+                </div>
+            ),
+        },
+        ...(type &&
+            typeof render === 'function' && {
+            [type]: {
+                render: () => render(token),
+            },
+        }),
     }));
 };
 
@@ -151,38 +196,53 @@ export const extractTokensFromTheme = ({
  * - value: The value of the token
  * - [type]: For visual representation of the token
  *
- * @param type The type of token to extract, e.g. colors, font, spacing, etc.
  * @param globalStyle The global styles to extract tokens from, in string form.
  * @param regExp The regular expression to use to extract tokens.
+ * @param type The type of token e.g. colors, font, spacing, etc.
  * @param render A function which returns a component to render the token visually
  *
  * @returns
  */
 export const extractTokensFromGlobalStyles = ({
-    type,
     globalStyleString,
     regExp,
+    type,
     render,
 }: {
-    type: string;
     globalStyleString: string;
     regExp: RegExp;
-    render: (token: string, value: string) => React.ReactNode;
+    type?: string;
+    render?: (token: string, value: string) => React.ReactNode;
 }) => {
     const matches = Array.from(globalStyleString.matchAll(regExp));
 
-    return matches.map(([tokenWithValue, , value]) => {
+    return matches.map(([tokenWithValue, , _value]) => {
         const token = tokenWithValue.split(':')[0];
+        const value = _value.replace(/;$/, '');
+
         return {
             token: {
                 render: () => <TokenBlock copy>{token}</TokenBlock>,
             },
             value: {
-                render: () => <TokenBlock>{value}</TokenBlock>,
+                render: () => (
+                    <TokenBlock
+                        copy
+                        color={type === 'colors' ? `var(${token})` : null}
+                        background={
+                            type === 'colors' ? 'var(--bg-primary)' : ''
+                        }
+                    >
+                        {value}
+                    </TokenBlock>
+                ),
             },
-            [type]: {
-                render: () => render(`var(${token})`, value),
-            },
+            ...(type &&
+                typeof render === 'function' && {
+                [type]: {
+                    render: () => render(`var(${token})`, value),
+                },
+            }),
         };
     });
 };

@@ -2,6 +2,12 @@ import { createGlobalStyle, css } from 'styled-components';
 
 import { extractColorVariables } from './utils';
 
+/**
+ * This is the global style for the application.
+ *
+ * It contains CSS variables for theme-agnostic
+ * foundational colors, spacing, font sizes, font weights and z-indexes.
+ */
 export const constantGlobalStyle = `
     --neutral-0:   #FFFFFF;
     --neutral-100: #F6F7F9;

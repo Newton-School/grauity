@@ -1,7 +1,6 @@
 import React from 'react';
 import Table from 'ui/elements/Table';
 
-import { ColorRenderer } from '../../helper-components/ColorRenderer';
 import { extractTokensFromTheme } from '../../utils';
 
 export default {
@@ -16,24 +15,20 @@ export const Text = {
             currentTheme: theme,
             type: 'colors',
             categories: ['text'],
-            render: (token) => <ColorRenderer color={`var(${token.token})`} />,
         });
         return (
             <Table
                 columns={[
                     { key: 'token', display: 'Token', align: 'left' },
-                    { key: 'value', display: 'Value', align: 'left' },
-                    {
-                        key: 'colors',
-                        display: 'Swatch',
-                        align: 'left',
-                    },
+                    { key: 'light', display: 'Light', align: 'left' },
+                    { key: 'dark', display: 'Dark', align: 'left' },
                 ]}
                 rows={rows}
                 capitalizeHeaders
                 borderAround={false}
                 borderVertical={false}
                 highlightHeaders={false}
+                hoverable
             />
         );
     },
@@ -46,24 +41,20 @@ export const Background = {
             currentTheme: theme,
             type: 'colors',
             categories: ['background'],
-            render: (token) => <ColorRenderer color={`var(${token.token})`} />,
         });
         return (
             <Table
                 columns={[
                     { key: 'token', display: 'Token', align: 'left' },
-                    { key: 'value', display: 'Value', align: 'left' },
-                    {
-                        key: 'colors',
-                        display: 'Swatch',
-                        align: 'left',
-                    },
+                    { key: 'light', display: 'Light', align: 'left' },
+                    { key: 'dark', display: 'Dark', align: 'left' },
                 ]}
                 rows={rows}
                 capitalizeHeaders
                 borderAround={false}
                 borderVertical={false}
                 highlightHeaders={false}
+                hoverable
             />
         );
     },
@@ -76,24 +67,20 @@ export const Border = {
             currentTheme: theme,
             type: 'colors',
             categories: ['border'],
-            render: (token) => <ColorRenderer color={`var(${token.token})`} />,
         });
         return (
             <Table
                 columns={[
                     { key: 'token', display: 'Token', align: 'left' },
-                    { key: 'value', display: 'Value', align: 'left' },
-                    {
-                        key: 'colors',
-                        display: 'Swatch',
-                        align: 'left',
-                    },
+                    { key: 'light', display: 'Light', align: 'left' },
+                    { key: 'dark', display: 'Dark', align: 'left' },
                 ]}
                 rows={rows}
                 capitalizeHeaders
                 borderAround={false}
                 borderVertical={false}
                 highlightHeaders={false}
+                hoverable
             />
         );
     },

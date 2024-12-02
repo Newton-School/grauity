@@ -26,7 +26,7 @@ Inspired by the natural laws that guide the cosmos, **gra.UI.ty** (pronounced "g
 
 ### Philosophy
 
-Like gravity itself, the principles of great design are universal, omnipresent, yet often unobserved. With gra.UI.ty, we aim to tap into these fundamental elements to craft UI components that not only look stunning but feel inherently right.
+Like the gravitational force itself, the principles of great design are universal, omnipresent, yet often unobserved. With gra.UI.ty, we aim to tap into these fundamental elements to craft UI components that not only look stunning but feel inherently right.
 
 ### Component Naming Convention
 
@@ -37,77 +37,64 @@ For example, `NSButton`, `NSTable`, `NSInput`
 
 gra.UI.ty is also affectionately known as **grauity**, **graUIty** or simply as **gravity**
 
-## Key Features
-
--   **Comprehensive Component Set:** From buttons and dialogs to complex data grids and sliders, gra.UI.ty has everything you need. (Coming soon!)
--   **Semantic and Mindful Components:** Our components are more than just divs. Each one is thoughtfully designed with semantic HTML for better accessibility and SEO. We aim to ensure that each component has a clear and meaningful structure.
--   **Modular and Extensible:** Integrate seamlessly with your projects, adding only what you need without bloating your codebase.
--   **Theming and Customization:** Easily adapt the components to match your brand or project’s aesthetic. (Coming soon!)
--   **Accessibility First:** Built with accessibility in mind, ensuring that your applications are usable by everyone. (We'll get there...)
-
 ## Setup gra.UI.ty to make it your own!
 
 ### Developing Components
 
-To develop components gra.UI.ty locally, follow these steps:
+To start your development journey in grauity, follow these steps:
 
 ```bash
-# Install all packages via NPM in grauity
-grauity$: npm install
+# Install all packages in grauity
+npm install
 
-# Initialize submodules for iconland
-grauity$: git submodule init
-grauity$: git submodule update --recursive
+# Update submodules (mainly iconland, the submodule for icons)
+git submodule init
+git submodule update --recursive
 
-# Build icons when running for first time
-grauity$: npm run build-icons
+# Build icons (required when running for first time)
+npm run build-icons
 
-# To run storybook, run this command in grauity
-grauity$: npm run storybook
+# Run grauity Storybook
+npm run storybook
 # Then head to localhost:6006
 
-# To build storybook, run this command in grauity
-grauity$: npm run build-storybook
+# To build grauity Storybook docs, run this command in grauity
+npm run build-storybook
 ```
 
-### Integrating locally with newton-web
+### Integrating locally with your app for side-by-side development & testing
 
-To integrate grauity locally with newton-web, follow these steps:
+To integrate grauity locally with your app, follow these steps:
 
 ```bash
-# Firstly, install all packages via NPM in grauity
+# Install all packages in grauity
 grauity$: npm install
 
-# To build grauity, run this command
+# Build grauity
 grauity$: npm run build
 
-# Then, run these commands in newton-web:
-newton-web$: npm install ../grauity
-# This is assuming `grauity` and `newton-web` share same parent folder
+# Install local version of grauity
+your-app$: npm install ../grauity
 
-# Now, link react, react-dom from grauity to newton-web:
-newton-web$: npm link ../gruity/node_modules/react ../gruity/node_modules/react-dom --legacy-peer-deps
-
-# Finally, run newton-web
-newton-web$: npm run dev
+# Link react, react-dom from grauity to your-app:
+your-app$: npm link ../gruity/node_modules/react ../gruity/node_modules/react-dom --legacy-peer-deps
 ```
 
 After you have made changes in grauity, build it.
-
 ```bash
 grauity$: npm run build
 ```
 
 If changes are not showing up even after rebuilding, you may
-have to delete `newton-web/node_modules/@newtonschool/grauity`
-and install it again using
-
+have to delete `your-app/node_modules/@newtonschool/grauity` folder
+and install `grauity` again:
 ```bash
-newton-web$: npm i ../grauity --legacy-peer-deps
-newton-web$: npm run dev
+grauity$: npm run build
+
+your-app$: npm install ../grauity
 ```
 
-Then simply import components you want from `@newtonschool/grauity` in `newton-web` like so:
+Then simply import components you want from `@newtonschool/grauity` in `your-app` like so:
 
 ```js
 import { NSButton, BUTTON_VARIANTS_ENUM } from '@newtonschool/grauity';
@@ -130,37 +117,70 @@ export const MyComponent = () => (
 );
 ```
 
-## How to's
 
-### Add icons
+# How to's
 
-Adding new icons is easy. Design team to provide `.svg` files for new icons, and they are to be added to the [./iconland/seeds/](iconland/seeds) directory. Then follow these steps:
+## Add new icons from `.svg` files
 
-### 0. Update the iconland submodule in grauity
+### 1. Update the iconland submodule in grauity
 
 ```bash
 grauity$: git submodule update --remote --merge
 ```
 
-#### 1. Generate icons
+### 2. Add your `.svg` files
 
-```bash
-grauity$: npm run build-icons:generate
-```
+To add a new font icon, add your `.svg` files for the new icon in the [./iconland/seeds/](iconland/seeds) directory in the [iconland](./iconland) submodule.
 
-#### 2. Optimise icons (from [[iconland/seeds/]](iconland/seeds/) to [iconland/optimised/](iconland/optimised/) )
+
+#### 3. Optimize & Generate new font files
 
 ```bash
 grauity$: npm run build-icons:optimize
+grauity$: npm run build-icons:generate
 ```
-
-#### 3. Build font icons from optimised icons
-
+*Alternatively*, run the command
 ```bash
 grauity$: npm run build-icons
 ```
 
-### Use icons in newton-web
+Font files will be created in [ui/fonts](ui/fonts) folder.
+
+
+## Use theming in your React app
+
+Without theming, only foundational (theme agnostic) CSS variables (found here: [constantGlobalStyle](ui/themes/GlobalStyle.ts)) will be provided.
+
+To enable theming, wrap your components with `GrauityThemeProvider`:
+```js
+import { GrauityThemeProvider } from '@newtonschool/grauity';
+
+const App = ({ children, ...props }) => {
+  return (
+    <GrauityThemeProvider>
+      {children}
+    </GrauityThemeProvider>
+  )
+};
+
+export default App;
+```
+
+
+Theming can be controlled by providing different class names to your root/local DOM elements, like the body element.
+
+  - Add class `grauity-theme-light` to use the light theme
+  - Add class `grauity-theme-dark` to use the dark theme
+
+Now, you will be provided with the foundational as well as themed CSS variables, whose
+value will change depending on the theme applied.
+
+These themed CSS variables can be found here:
+  - [Dark theme color mapping](./ui/themes/darkThemeConstants.ts)
+  - [Light theme color mapping](./ui/themes/lightThemeConstants.ts)
+
+
+## Use icons in your React app
 
 To use grauity icons, add the following import in `global-styles.scss` or any root-level CSS/SCSS file. Make sure CSS/SCSS loaders are setup properly in your app.
 

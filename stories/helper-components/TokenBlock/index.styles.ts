@@ -7,15 +7,16 @@ export const StyledHideOnPrintWrapper = styled.div`
     }
 `;
 
-export const StyledTokenBlock = styled.div`
+export const StyledTokenBlock = styled.div<any>`
     display: flex;
     padding: var(--spacing-8px, 8px) var(--spacing-12px, 12px);
     justify-content: center;
     align-items: center;
     gap: 8px;
     border-radius: var(--corner-radius-8px, 8px);
-    border: var(--spacing-1px, 1px) solid var(--border, #e1e5ea);
-    background: var(--bg-tertiary, #edeff3);
+    border: 1px solid var(--border, #e1e5ea);
+    background: ${({ background }) =>
+        background || 'var(--bg-tertiary, #edeff3)'};
     color: var(--text-primary, #16191d) !important;
     font-family: var(--font-family-code, 'Fira Code', 'monospace') !important;
     font-size: var(--font-size-14px, 14px) !important;
@@ -23,6 +24,13 @@ export const StyledTokenBlock = styled.div`
     line-height: 120%;
     width: fit-content;
     position: relative;
+    overflow: hidden;
+
+    ${({ interactive }) =>
+        interactive &&
+        css`
+            cursor: pointer;
+        `}
 `;
 
 export const StyledTokenBlockCopiedContainer = styled.div<any>`
