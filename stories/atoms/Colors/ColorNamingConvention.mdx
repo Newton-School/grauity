@@ -1,0 +1,56 @@
+# Color Variable Naming Convention
+
+This naming convention is designed to ensure consistency and readability for color variables.
+The convention follows the structure: `--<category>-<intensity>-<name>-<state>`.
+
+## Structure
+
+1. **Category**: Indicates the general category of the color.
+Examples: `background`, `text`, `border`
+
+2. **Intensity**: Specifies the specific intensity or variant within the type.
+Examples: `subtle`, `moderate`, `emphasis`
+
+3. **Name**: Specifies the name of color usage.
+Examples: `primary`, `secondary`, `tertiary`, `brand`, `success`, `error`, `warning`, `yellow`, `purple`
+
+4. **State**: Specifies the state of the color.
+Examples: `default`, `hover`, `disabled`
+
+
+## Examples
+
+1. **Background Colors**
+- background.subtle.primary.default becomes `--background-subtle-primary-default`
+- background.moderate.secondary.hover becomes `--background-moderate-secondary-hover`
+- background.emphasis.brand.disabled becomes `--background-emphasis-brand-disabled`
+
+2. **Text Colors**
+- text.emphasis.primary.default becomes `--text-emphasis-primary-default`
+- text.subtle.secondary.hover becomes `--text-subtle-secondary-hover`
+- text.moderate.brand.disabled becomes `--text-moderate-brand-disabled`
+
+3. **Border Colors**
+- border.subtle.primary.default becomes `--border-subtle-primary-default`
+- border.moderate.success.hover becomes `--border-moderate-success-hover`
+- border.emphasis.error.disabled becomes `--border-emphasis-error-disabled`
+
+## Full Example List
+
+```typescript
+--background-subtle-primary-default: 'var(--color-neutral-0, #FFF)';
+--background-subtle-primary-hover: 'var(--color-neutral-100, #F6F7F9)';
+--background-subtle-primary-disabled: 'var(--color-neutral-200, #EDEFF3)';
+
+--background-emphasis-brand-default: 'var(--color-brand-500, #0673F9)';
+--background-emphasis-brand-hover: 'var(--color-brand-400, #2989FF)';
+--background-emphasis-brand-disabled: 'var(--color-brand-200, #94C4FF)';
+
+--text-emphasis-primary-default: 'var(--color-neutral-900, #16191D)';
+--text-emphasis-primary-disabled: 'var(--color-neutral-600, #8C95A6)';
+
+--border-subtle-primary-default: 'var(--color-neutral-300, #E1E5EA)';
+--border-subtle-primary-disabled: 'var(--color-neutral-200, #EDEFF3)';
+```
+
+This naming convention ensures that each variable name is descriptive and follows a consistent pattern, making it easier to understand and maintain.
