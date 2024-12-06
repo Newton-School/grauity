@@ -75,6 +75,7 @@ const defaultArgs: BottomSheetProps = {
     height: '50%',
     showDragHandle: true,
     closeOnPullDown: true,
+    className: 'bottom-sheet',
 };
 
 export const Component = Template.bind({});

@@ -47,6 +47,11 @@ export interface OverlayProps {
      * Duration in seconds for the overlay animation
      */
     animationDuration?: number;
+
+    /**
+     * Additional className to be passed to the Overlay
+     */
+    className?: string;
 }
 
 export interface StyledOverlayProps extends StyledDivProps {

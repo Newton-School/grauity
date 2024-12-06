@@ -15,6 +15,7 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
         overlayColor = 'var(--alpha-overlay, rgba(22, 25, 29, 0.8))',
         shouldCenterContent = false,
         animationDuration = 0.5,
+        className,
         ...rest
     } = props;
 
@@ -67,6 +68,7 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
             $shouldBlurOverlay={shouldBlurOverlay}
             $overlayColor={overlayColor}
             $shouldCenterContent={shouldCenterContent}
+            className={className}
             {...rest}
             {...motionProps}
         >
