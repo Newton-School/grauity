@@ -25,6 +25,7 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             height = '50%',
             showDragHandle = true,
             closeOnPullDown = true,
+            className,
         } = props;
 
         const [startY, setStartY] = useState<number | null>(null);
@@ -93,6 +94,7 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
                             ANIMATION_DURATION_IN_MILLISECONDS / 1000
                         }
                         data-testid="testid-bottomsheet-wrapper"
+                        className={className}
                     >
                         <StyledBottomSheet
                             ref={ref}

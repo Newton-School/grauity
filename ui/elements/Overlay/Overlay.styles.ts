@@ -9,6 +9,10 @@ export const StyledOverlay = styled(motion.div)<StyledOverlayProps>`
     left: 0;
     width: 100vw;
     height: 100vh;
+    @supports (height: 100dvh) {
+        height: 100dvh;
+        width: 100dvw;
+    }
     z-index: var(--z-index-overlay-hoc, 2000);
     background: transparent;
     font-family: var(--font-family, 'Mona Sans');

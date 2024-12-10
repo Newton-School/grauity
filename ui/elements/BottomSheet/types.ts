@@ -49,6 +49,11 @@ export interface BottomSheetProps {
      * @default true
      */
     closeOnPullDown?: boolean;
+
+    /**
+     * Additional class name to be passed to the BottomSheet.
+     */
+    className?: string;
 }
 
 export interface StyledBottomSheetProps extends StyledDivProps {
