@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
+import { StyledDivProps } from '../../../../common/types';
 import { CALENDAR_BLOCK_HEIGHT, CALENDAR_SIDEBAR_WIDTH } from './constants';
 import {
     StyledCalendarBlockProps,
     StyledCalendarTimelineBlockProps,
-    StyledDivProps,
     StyledEventWrapperProps,
 } from './types';
 

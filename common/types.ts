@@ -8,6 +8,7 @@ import React from 'react';
  */
 export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
     ref?: React.Ref<HTMLDivElement>;
+    'data-testid'?: string;
 }
 
 /**
