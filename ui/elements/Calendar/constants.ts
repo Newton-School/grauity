@@ -1,2 +1,3 @@
 export const CALENDAR_BLOCK_HEIGHT = 80;
 export const CALENDAR_SIDEBAR_WIDTH = 80;
+export const CALENDAR_STICKY_EVENT_LINE_GAP = 6;

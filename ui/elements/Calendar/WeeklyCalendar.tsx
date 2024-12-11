@@ -4,9 +4,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { getScrollableParent } from '../../../common/utils';
 import Button, { IconButton } from '../Button';
 import Placeholder from '../Placeholder';
-import { CALENDAR_BLOCK_HEIGHT } from './constants';
+import {
+    CALENDAR_BLOCK_HEIGHT,
+    CALENDAR_STICKY_EVENT_LINE_GAP,
+} from './constants';
 import EventRenderer from './EventRenderer';
 import { CalendarEventRecordExtended, WeeklyCalendarProps } from './types';
+import { useCalculateStickyEventLines } from './useCalculateStickyEventLines';
 import {
     checkIsToday,
     getCurrentTimeStickPosition,
@@ -29,6 +33,7 @@ import {
     StyledCalendarHeaderBlock,
     StyledCalendarHeaderRow,
     StyledCalendarMonthButton,
+    StyledCalendarStickyEventLine,
     StyledCalendarTimeline,
     StyledCalendarTimelineBlock,
     StyledCalendarTimelineRow,
@@ -62,9 +67,20 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
     );
 
     const containerRef = useRef<HTMLDivElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null);
 
     const currentWeek = getWeekByOffset(weekOffset);
     const timeList = getTimeListIn12HourFormat();
+
+    const [
+        topStickyLinesCount,
+        bottomStickyLinesCount,
+        topPosition,
+        bottomPosition,
+    ] = useCalculateStickyEventLines({
+        events: eventsGroupedByDay,
+        calendarHeaderRef: headerRef,
+    });
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -200,7 +216,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                 currentWeek[0]
             )}`}
         >
-            <StyledCalendarHeader>
+            <StyledCalendarHeader ref={headerRef}>
                 <StyledCalendarExternalHeaderContainer>
                     {header}
                     {shouldShowWeekControls && (
@@ -246,6 +262,29 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                             >
                                 {day.getDate()}
                             </StyledCalendarDateLabel>
+                            {Array.from(
+                                Array(topStickyLinesCount[day.getDate()] || 0)
+                            ).map((_, index) => (
+                                <StyledCalendarStickyEventLine
+                                    $offset={
+                                        CALENDAR_STICKY_EVENT_LINE_GAP *
+                                        (index + 1)
+                                    }
+                                />
+                            ))}
+                            {Array.from(
+                                Array(
+                                    bottomStickyLinesCount[day.getDate()] || 0
+                                )
+                            ).map((_, index) => (
+                                <StyledCalendarStickyEventLine
+                                    $offset={
+                                        bottomPosition -
+                                        topPosition -
+                                        CALENDAR_STICKY_EVENT_LINE_GAP * index
+                                    }
+                                />
+                            ))}
                         </StyledCalendarHeaderBlock>
                     ))}
                 </StyledCalendarHeaderRow>
