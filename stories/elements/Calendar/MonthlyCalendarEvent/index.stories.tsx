@@ -23,10 +23,10 @@ const Template = (args: MonthlyCalendarEventProps) => <MonthlyCalendarEvent {...
 
 const defaultArgs: MonthlyCalendarEventProps = {
     eventTime: new Date(2024, 9, 25, 8, 0),
-    eventTitle  : 'PSP A - Lab 2 asdhasd asguydguhas guyasdgyuas gusyadgyas',
-    eventTitleColor: '#FFFFFF',
-    eventTimeColor: '#FFFFFFCC',
-    backgroundColor: '#0673F9',
+    eventTitle  : 'Sample Event Title',
+    eventTitleColor: 'var(--text-action2)',
+    eventTimeColor: 'var(--text-action2)',
+    backgroundColor: 'var(--bg-action-brand)',
     borderRadius: '4px',
     width: '100%',
     height: '100%',

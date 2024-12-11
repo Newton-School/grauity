@@ -11,8 +11,8 @@ const MonthlyCalendarEvent = forwardRef<HTMLDivElement, MonthlyCalendarEventProp
 
         return (
             <StyledMonthlyCalendarEvent {...props} ref={ref}>
-                <StyledMonthlyCalendarEventText color={eventTimeColor} fontWeight="500">{eventTimeString}</StyledMonthlyCalendarEventText>
-                <StyledMonthlyCalendarEventTitleText color={eventTitleColor} fontWeight="600">{eventTitle}</StyledMonthlyCalendarEventTitleText>
+                <StyledMonthlyCalendarEventText color={eventTimeColor}>{eventTimeString}</StyledMonthlyCalendarEventText>
+                <StyledMonthlyCalendarEventTitleText color={eventTitleColor}>{eventTitle}</StyledMonthlyCalendarEventTitleText>
             </StyledMonthlyCalendarEvent>
         );
     },

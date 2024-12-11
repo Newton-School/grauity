@@ -14,7 +14,7 @@ export const StyledMonthlyCalendarEvent = styled.div<MonthlyCalendarEventProps>`
     border-radius: ${({ borderRadius }) => borderRadius || '4px'};
     background-color: ${({ backgroundColor }) =>
         backgroundColor || 'var(--bg-brand-action)'};
-    width: ${({ width }) => width || '150px'};
+    width: ${({ width }) => width || '100%'};
     height: ${({ height }) => height || '16px'};
     padding: 2px;
 `;
@@ -23,7 +23,7 @@ export const StyledMonthlyCalendarEventText = styled.p<StyledMonthlyCalendarEven
     color: var(--text-brand-action);
     font-size: 10px;
     font-style: normal;
-    font-weight: ${({ fontWeight }) => fontWeight || '600'};
+    font-weight: 500;
     line-height: 16px;
     letter-spacing: 0.1px;
     padding: 0 2px;
@@ -36,7 +36,7 @@ export const StyledMonthlyCalendarEventTitleText = styled.span<StyledMonthlyCale
     text-overflow: ellipsis;
     font-size: 10px;
     font-style: normal;
-    font-weight: ${({ fontWeight }) => fontWeight || '600'};
+    font-weight: 600;
     line-height: 16px;
     letter-spacing: 0.1px;
     padding: 0 2px;
