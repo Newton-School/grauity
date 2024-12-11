@@ -1,5 +1,4 @@
-import { StyledInputProps } from '../../../common/types';
-import { StyledDivProps } from '../Calendar/types';
+import { StyledDivProps, StyledInputProps } from '../../../common/types';
 
 export type RangeInputValue = {
     min: number;

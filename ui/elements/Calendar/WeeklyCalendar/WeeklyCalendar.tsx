@@ -1,24 +1,26 @@
 /* eslint-disable indent */
 import React, { useEffect, useRef, useState } from 'react';
 
-import { getScrollableParent } from '../../../common/utils';
-import Button, { IconButton } from '../Button';
-import Placeholder from '../Placeholder';
+import { getScrollableParent } from '../../../../common/utils';
+import Button, { IconButton } from '../../Button';
+import Placeholder from '../../Placeholder';
+import {
+    checkIsToday,
+    getDateFullLabel,
+    getMonthDetails,
+    getTimeListIn12HourFormat,
+    getWeekByOffset,
+    getWeekDayLabel,
+} from '../utils';
 import { CALENDAR_BLOCK_HEIGHT } from './constants';
 import EventRenderer from './EventRenderer';
 import { CalendarEventRecordExtended, WeeklyCalendarProps } from './types';
 import {
-    checkIsToday,
     getCurrentTimeStickPosition,
-    getDateFullLabel,
     getEventBlockHeight,
     getEventBlockStartPosition,
-    getMonthDetails,
     getOverlapInformationForDay,
     getStartTimestampOfHourBlock,
-    getTimeListIn12HourFormat,
-    getWeekByOffset,
-    getWeekDayLabel,
     isPlaceholderBlock,
 } from './utils';
 import {
