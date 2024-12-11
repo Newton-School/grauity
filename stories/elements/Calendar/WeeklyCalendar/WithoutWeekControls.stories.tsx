@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Button, { IconButton } from 'ui/elements/Button';
-import WeeklyCalendar, { WeeklyCalendarProps } from 'ui/elements/Calendar';
+import { WeeklyCalendar, WeeklyCalendarProps } from 'ui/elements/Calendar';
 import { getMonthDetails, getWeekByOffset } from 'ui/elements/Calendar/utils';
-import { StyledCalendarMonthButton } from 'ui/elements/Calendar/WeeklyCalendar.styles';
+import { StyledCalendarMonthButton } from 'ui/elements/Calendar/WeeklyCalendar/WeeklyCalendar.styles';
 
 import withRemovePadding from '../../../decorators/withRemovePadding';
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { StyledDivProps } from '../Calendar/types';
+import { StyledDivProps } from '../../../common/types';
 import { StyledRangeInputContainerProps, StyledRangeInputProps } from './types';
 
 export const StyledRangeInputContainer = styled.div<StyledRangeInputContainerProps>`

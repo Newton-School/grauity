@@ -1,6 +1,8 @@
 // Weekly Calendar
-export type { WeeklyCalendarProps } from './types';
-export { default } from './WeeklyCalendar';
+export {
+    default as WeeklyCalendar,
+    type WeeklyCalendarProps,
+} from './WeeklyCalendar';
 
 // Calendar Event
 export { default as CalendarEvent } from './CalendarEvent/CalendarEvent';

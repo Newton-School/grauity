@@ -1,5 +1,5 @@
 import React from 'react';
-import WeeklyCalendar, { WeeklyCalendarProps } from 'ui/elements/Calendar';
+import { WeeklyCalendar, WeeklyCalendarProps } from 'ui/elements/Calendar';
 
 import withRemovePadding from '../../../decorators/withRemovePadding';
 
