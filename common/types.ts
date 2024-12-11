@@ -33,6 +33,18 @@ export interface StyledInputProps
 }
 
 /**
+ * Interface representing the properties for a styled label component.
+ *
+ * @extends React.LabelHTMLAttributes<HTMLLabelElement>
+ * @property {React.Ref<HTMLLabelElement>} [ref] - Optional ref to the label element.
+ */
+export interface StyledLabelProps
+    extends React.LabelHTMLAttributes<HTMLLabelElement> {
+    ref?: React.Ref<HTMLLabelElement>;
+    isRequired?: boolean;
+}
+
+/**
  * Interface representing the properties for a styled button component.
  *
  * @extends React.ButtonHTMLAttributes<HTMLButtonElement>
