@@ -1,7 +1,9 @@
 import React from 'react';
 
+import DateCircle from './DateCircle';
+
 function MonthlyCalendar() {
-    return <div>MonthlyCalendar</div>;
+    return <DateCircle date={new Date()} />;
 }
 
 export default MonthlyCalendar;

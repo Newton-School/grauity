@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 import { StyledDateCircleProps, StyledDateTextProps } from './types';
 
 export const StyledDateCircle = styled.div<StyledDateCircleProps>`
+    font-family: var(--font-family, 'Mona Sans');
+    box-sizing: border-box;
     display: flex;
     padding: var(--spacing-4px, 4px);
     flex-direction: column;
@@ -11,6 +13,8 @@ export const StyledDateCircle = styled.div<StyledDateCircleProps>`
     gap: 10px;
     border-radius: 32px;
     background: var(--color-neutral-100, #f6f7f9);
+    width: 32px;
+    height: 32px;
 
     ${({ isActive }) =>
         isActive &&
@@ -23,9 +27,15 @@ export const StyledDateCircle = styled.div<StyledDateCircleProps>`
         css`
             background: var(--bg-brand-action, #0673f9);
         `}
+
+    ${({ backgroundColor }) =>
+        backgroundColor &&
+        css`
+            background: ${backgroundColor};
+        `}
 `;
 
-export const StyledDateText = styled.span<StyledDateTextProps>`
+export const StyledDateCircleText = styled.span<StyledDateTextProps>`
     color: var(--text-secondary, #5b6271);
     text-align: center;
     font-size: var(--Label-2, 12px);
@@ -38,5 +48,11 @@ export const StyledDateText = styled.span<StyledDateTextProps>`
         isToday &&
         css`
             color: var(--text-action, #ffffff);
+        `}
+
+    ${({ textColor }) =>
+        textColor &&
+        css`
+            color: ${textColor};
         `}
 `;
