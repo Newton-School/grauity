@@ -1,9 +1,18 @@
 import React from 'react';
 
-import DateCircle from './DateCircle';
+import { StyledMonthlyCalendarGrid } from './MonthlyCalendar.styles';
+import MonthlyCalendarGridItem from './MonthlyCalendarGridItem';
+
+const array = Array.from({ length: 35 }, (_, index) => index);
 
 function MonthlyCalendar() {
-    return <DateCircle date={new Date()} />;
+    return (
+        <StyledMonthlyCalendarGrid>
+            {array.map((item) => (
+                <MonthlyCalendarGridItem key={item} />
+            ))}
+        </StyledMonthlyCalendarGrid>
+    );
 }
 
 export default MonthlyCalendar;

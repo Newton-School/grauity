@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { StyledDivProps } from '../../../../common/types';
+import { DATE_SIZE, GRID_GAP } from './constants';
 import { StyledDateCircleProps, StyledDateTextProps } from './types';
 
 export const StyledDateCircle = styled.div<StyledDateCircleProps>`
@@ -10,11 +12,10 @@ export const StyledDateCircle = styled.div<StyledDateCircleProps>`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
     border-radius: 32px;
     background: var(--color-neutral-100, #f6f7f9);
-    width: 32px;
-    height: 32px;
+    width: ${DATE_SIZE}px;
+    height: ${DATE_SIZE}px;
 
     ${({ isInActiveMonth }) =>
         isInActiveMonth &&
@@ -55,4 +56,33 @@ export const StyledDateCircleText = styled.span<StyledDateTextProps>`
         css`
             color: ${textColor};
         `}
+`;
+
+export const StyledMonthlyCalendarGridItem = styled.div<StyledDivProps>`
+    box-sizing: border-box;
+    display: flex;
+    padding: var(--spacing-8px, 8px);
+    flex-direction: column;
+    align-items: flex-end;
+    gap: ${GRID_GAP}px;
+    flex: 1;
+
+    border: 1px solid var(--border-neutral, #e1e5ea);
+    background: var(--bg-secondary, #f6f7f9);
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+`;
+
+export const StyledMonthlyCalendarGrid = styled.div`
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    background: red;
+    border: 1px solid blue;
+    height: 100vh;
+    width: 100vw;
 `;

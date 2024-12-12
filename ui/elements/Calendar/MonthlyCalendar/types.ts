@@ -21,3 +21,7 @@ export interface StyledDateTextProps
     isToday?: boolean;
     textColor?: string;
 }
+
+export interface MoreCalendarEventsProps extends StyledDivProps {
+    text: string;
+}
