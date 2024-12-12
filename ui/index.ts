@@ -107,6 +107,12 @@ export {
     default as NSCalendarEvent,
 } from './elements/Calendar/CalendarEvent/CalendarEvent';
 
+// NSMonthlyCalendarEvent
+export {
+    type MonthlyCalendarEventProps,
+    default as NSMonthlyCalendarEvent,
+} from './elements/Calendar/MonthlyCalendarEvent';
+
 // NSWeeklyCalendar
 export {
     default as NSWeeklyCalendar,
