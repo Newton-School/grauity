@@ -16,8 +16,8 @@ export const StyledDateCircle = styled.div<StyledDateCircleProps>`
     width: 32px;
     height: 32px;
 
-    ${({ isActive }) =>
-        isActive &&
+    ${({ isInActiveMonth }) =>
+        isInActiveMonth &&
         css`
             background: var(--color-neutral-100, #f6f7f9);
         `}

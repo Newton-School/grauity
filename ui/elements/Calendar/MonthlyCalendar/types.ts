@@ -11,7 +11,7 @@ export interface DateCircleProps {
 }
 
 export interface StyledDateCircleProps extends StyledDivProps {
-    isActive?: boolean;
+    isInActiveMonth?: boolean;
     isToday?: boolean;
     backgroundColor?: string;
 }

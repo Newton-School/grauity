@@ -9,12 +9,12 @@ import { DateCircleProps } from './types';
 function DateCircle(props: DateCircleProps) {
     const { date, backgroundColor, textColor } = props;
 
-    const isActive = true;
+    const isInActiveMonth = true;
     const isToday = true;
 
     return (
         <StyledDateCircle
-            isActive={isActive}
+            isInActiveMonth={isInActiveMonth}
             isToday={isToday}
             backgroundColor={backgroundColor}
         >
