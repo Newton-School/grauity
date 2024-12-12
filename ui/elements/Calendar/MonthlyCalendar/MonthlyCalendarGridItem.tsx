@@ -4,6 +4,7 @@ import MonthlyCalendarEvent from '../MonthlyCalendarEvent';
 import { EVENT_HEIGHT } from './constants';
 import DateCircle from './DateCircle';
 import { StyledMonthlyCalendarGridItem } from './MonthlyCalendar.styles';
+import OverflowIndicator from './OverflowIndicator';
 import { numberOfElementsOverflowing } from './utils';
 
 const EVENTS_DATA = [
@@ -83,14 +84,9 @@ function MonthlyCalendarGridItem() {
                     height={`${EVENT_HEIGHT}px`}
                 />
             ))}
-            <MonthlyCalendarEvent
-                eventTime={new Date()}
-                eventTitle={moreEventsText}
-                eventTitleColor="var(--text-action2)"
-                eventTimeColor="var(--text-action2)"
-                backgroundColor="var(--bg-action-brand)"
-                height={`${EVENT_HEIGHT}px`}
-            />
+            {numberOfEventsToRemove ? (
+                <OverflowIndicator text={moreEventsText} />
+            ) : null}
         </StyledMonthlyCalendarGridItem>
     );
 }

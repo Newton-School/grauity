@@ -77,6 +77,7 @@ export const StyledMonthlyCalendarGridItem = styled.div<StyledDivProps>`
 `;
 
 export const StyledMonthlyCalendarGrid = styled.div`
+    font-family: var(--font-family, 'Mona Sans');
     box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -85,4 +86,31 @@ export const StyledMonthlyCalendarGrid = styled.div`
     border: 1px solid blue;
     height: 100vh;
     width: 100vw;
+`;
+
+export const StyledOverflowIndicator = styled.div`
+    cursor: pointer;
+    display: flex;
+    padding: var(--spacing-spacing0, 0px) var(--spacing-4px, 4px);
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+    border-radius: var(--spacing-4px, 4px);
+    border: 1px solid var(--border-neutral, #e1e5ea);
+    background: var(--bg-secondary, #f6f7f9);
+`;
+
+export const StyledOverflowIndicatorText = styled.span`
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    flex: 1 0 0;
+    overflow: hidden;
+    color: var(--text-primary, #16191d);
+    text-overflow: ellipsis;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 160%;
+    letter-spacing: 0.1px;
 `;
