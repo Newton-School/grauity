@@ -82,10 +82,11 @@ export const StyledMonthlyCalendarGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    background: red;
-    border: 1px solid blue;
-    height: 100vh;
-    width: 100vw;
+`;
+
+export const StyledMonthlyCalendarGridContainer = styled.div`
+    width: 100%;
+    height: 100%;
 `;
 
 export const StyledOverflowIndicator = styled.div`
@@ -113,4 +114,32 @@ export const StyledOverflowIndicatorText = styled.span`
     font-weight: 600;
     line-height: 160%;
     letter-spacing: 0.1px;
+`;
+
+export const StyledDayOfWeekHeader = styled.div`
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+`;
+
+export const StyledDayOfWeekHeaderItem = styled.div`
+    display: flex;
+    padding: var(--spacing-12px, 12px);
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border: 1px solid var(--border-neutral, #e1e5ea);
+    background: #fff;
+`;
+
+export const StyledDayOfWeekHeaderItemText = styled.span`
+    color: var(--text-secondary, #5b6271);
+    text-align: center;
+    font-size: var(--Label-2, 12px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: 0.4px;
 `;

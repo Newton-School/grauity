@@ -22,10 +22,6 @@ export interface StyledDateTextProps
     textColor?: string;
 }
 
-export interface MoreCalendarEventsProps extends StyledDivProps {
-    text: string;
-}
-
 export interface OverflowIndicatorProps {
     text: string;
 }
