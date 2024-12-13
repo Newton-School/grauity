@@ -13,8 +13,8 @@ import { RadioButtonProps } from './types';
 const RadioButton = (props: RadioButtonProps) => {
     const {
         name,
-        label,
         value,
+        label,
         isRequired = false,
         size = 'medium',
         state = 'default',

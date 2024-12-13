@@ -12,8 +12,8 @@ const Template = (args: RadioButtonProps) => (
 
 const defaultArgs: RadioButtonProps = {
     name: 'radio',
-    label: 'Radio button',
     value: 1,
+    label: 'Radio button',
     isRequired: false,
     size: 'medium',
     state: 'default',

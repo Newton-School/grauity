@@ -7,8 +7,8 @@ export type RadioButtonState = 'default' | 'error' | 'success';
 
 export interface RadioButtonProps {
     name: string;
+    value: string | number;
     label?: string;
-    value?: string | number;
     isRequired?: boolean;
     size?: RadioButtonSize;
     state?: RadioButtonState;
