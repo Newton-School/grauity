@@ -30,11 +30,17 @@ export default {
     },
 };
 
-const Template = (args: MonthlyCalendarProps) => <MonthlyCalendar {...args} />;
+const Template = (args: MonthlyCalendarProps<any>) => (
+    <MonthlyCalendar {...args} />
+);
 
 export const Component = Template.bind({});
 
-const defaultArgs: MonthlyCalendarProps = {};
+const defaultArgs: MonthlyCalendarProps<any> = {
+    monthOffset: 3,
+    data: [],
+    renderItem: () => <div>Item</div>,
+};
 
 Component.args = {
     ...defaultArgs,

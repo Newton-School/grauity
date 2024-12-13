@@ -1,8 +1,12 @@
 import styled, { css } from 'styled-components';
 
 import { StyledDivProps } from '../../../../common/types';
-import { DATE_SIZE, GRID_GAP } from './constants';
-import { StyledDateCircleProps, StyledDateTextProps } from './types';
+import { DATE_SIZE, DAYS_IN_WEEK, GRID_GAP } from './constants';
+import {
+    GridContainerRows,
+    StyledDateCircleProps,
+    StyledDateTextProps,
+} from './types';
 
 export const StyledDateCircle = styled.div<StyledDateCircleProps>`
     font-family: var(--font-family, 'Mona Sans');
@@ -76,17 +80,17 @@ export const StyledMonthlyCalendarGridItem = styled.div<StyledDivProps>`
     overflow: hidden;
 `;
 
-export const StyledMonthlyCalendarGrid = styled.div`
+export const StyledMonthlyCalendarGrid = styled.div<GridContainerRows>`
     font-family: var(--font-family, 'Mona Sans');
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(${DAYS_IN_WEEK}, 1fr);
+    grid-template-rows: repeat(${({ rows }) => rows}, 1fr);
     width: 100%;
     height: 100%;
 `;
 
-export const StyledMonthlyCalendarGridContainer = styled.div`
+export const StyledMonthlyCalendarGridContainer = styled.div<StyledDivProps>`
     width: 100%;
     height: 100%;
     display: flex;
@@ -150,7 +154,6 @@ export const StyledDayOfWeekHeaderItemText = styled.span`
 
 export const StyledMonthlyGridItemContainer = styled.div`
     flex: 1;
-    background: red;
     flex-direction: column;
     overflow: hidden;
 `;

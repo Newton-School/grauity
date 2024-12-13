@@ -19,7 +19,7 @@ function DateCircle(props: DateCircleProps) {
             backgroundColor={backgroundColor}
         >
             <StyledDateCircleText isToday={isToday} textColor={textColor}>
-                {date.getDate()}
+                {date}
             </StyledDateCircleText>
         </StyledDateCircle>
     );

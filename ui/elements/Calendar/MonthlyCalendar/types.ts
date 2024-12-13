@@ -2,10 +2,14 @@ import React from 'react';
 
 import { StyledDivProps } from '../../../../common/types';
 
-export interface MonthlyCalendarProps extends StyledDivProps {}
+export interface MonthlyCalendarProps<T> extends StyledDivProps {
+    monthOffset: number;
+    data: T[];
+    renderItem: (item: T) => React.ReactNode;
+}
 
 export interface DateCircleProps {
-    date: Date;
+    date: number;
     backgroundColor?: string;
     textColor?: string;
 }
@@ -32,4 +36,12 @@ export interface MonthlyCalendarEvent {
 export interface OverflowIndicatorProps {
     text: string;
     events: MonthlyCalendarEvent[];
+}
+
+export interface GridContainerRows
+    extends React.HTMLAttributes<HTMLDivElement> {
+    rows: number;
+}
+export interface MonthlyCalendarGridItemProps {
+    cellDate: number;
 }

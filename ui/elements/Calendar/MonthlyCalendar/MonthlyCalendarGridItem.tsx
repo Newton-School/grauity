@@ -5,7 +5,7 @@ import { EVENT_HEIGHT } from './constants';
 import DateCircle from './DateCircle';
 import { StyledMonthlyCalendarGridItem } from './MonthlyCalendar.styles';
 import OverflowIndicator from './OverflowIndicator';
-import { MonthlyCalendarEvent } from './types';
+import { MonthlyCalendarEvent, MonthlyCalendarGridItemProps } from './types';
 import { numberOfElementsOverflowing } from './utils';
 
 const EVENTS_DATA: MonthlyCalendarEvent[] = [
@@ -71,7 +71,7 @@ const EVENTS_DATA: MonthlyCalendarEvent[] = [
     },
 ];
 
-function MonthlyCalendarGridItem() {
+function MonthlyCalendarGridItem({ cellDate }: MonthlyCalendarGridItemProps) {
     const [numberOfEventsToRemove, setNumberOfEventsToRemove] = useState(0);
     const gridItemRef = useRef<HTMLDivElement>(null);
 
@@ -97,7 +97,7 @@ function MonthlyCalendarGridItem() {
 
     return (
         <StyledMonthlyCalendarGridItem ref={gridItemRef}>
-            <DateCircle date={new Date()} />
+            <DateCircle date={cellDate} />
             {eventsToRender.map((event) => (
                 <MonthlyCalendarEventItem
                     key={event.id}
