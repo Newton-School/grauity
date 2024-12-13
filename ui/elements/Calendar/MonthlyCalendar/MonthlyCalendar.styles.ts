@@ -82,11 +82,15 @@ export const StyledMonthlyCalendarGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 1fr);
+    width: 100%;
+    height: 100%;
 `;
 
 export const StyledMonthlyCalendarGridContainer = styled.div`
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 `;
 
 export const StyledOverflowIndicator = styled.div`
@@ -142,4 +146,11 @@ export const StyledDayOfWeekHeaderItemText = styled.span`
     font-weight: 600;
     line-height: 120%;
     letter-spacing: 0.4px;
+`;
+
+export const StyledMonthlyGridItemContainer = styled.div`
+    flex: 1;
+    background: red;
+    flex-direction: column;
+    overflow: hidden;
 `;

@@ -4,6 +4,7 @@ import Header from './Header';
 import {
     StyledMonthlyCalendarGrid,
     StyledMonthlyCalendarGridContainer,
+    StyledMonthlyGridItemContainer,
 } from './MonthlyCalendar.styles';
 import MonthlyCalendarGridItem from './MonthlyCalendarGridItem';
 
@@ -13,11 +14,13 @@ function MonthlyCalendar() {
     return (
         <StyledMonthlyCalendarGridContainer>
             <Header />
-            <StyledMonthlyCalendarGrid>
-                {array.map((item) => (
-                    <MonthlyCalendarGridItem key={item} />
-                ))}
-            </StyledMonthlyCalendarGrid>
+            <StyledMonthlyGridItemContainer>
+                <StyledMonthlyCalendarGrid>
+                    {array.map((item) => (
+                        <MonthlyCalendarGridItem key={item} />
+                    ))}
+                </StyledMonthlyCalendarGrid>
+            </StyledMonthlyGridItemContainer>
         </StyledMonthlyCalendarGridContainer>
     );
 }

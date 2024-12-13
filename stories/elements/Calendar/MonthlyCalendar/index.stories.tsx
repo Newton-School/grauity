@@ -6,7 +6,19 @@ import withRemovePadding from '../../../decorators/withRemovePadding';
 export default {
     title: 'Elements/Calendar/MonthlyCalendar',
     component: MonthlyCalendar,
-    decorators: [withRemovePadding],
+    decorators: [
+        (Story: React.ComponentType) => (
+            <div
+                style={{
+                    width: '100vw',
+                    height: '100vh',
+                }}
+            >
+                <Story />
+            </div>
+        ),
+        withRemovePadding,
+    ],
     parameters: {
         docs: {
             source: {
