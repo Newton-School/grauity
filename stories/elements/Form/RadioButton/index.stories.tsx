@@ -15,7 +15,12 @@ const Template = (args: RadioButtonProps) => (
         }}
     >
         <RadioButton {...args} value={1} />
-        <RadioButton {...args} value={2} state="error" />
+        <RadioButton
+            {...args}
+            value={2}
+            state="error"
+            errorMessage="This is the error message"
+        />
         <RadioButton {...args} value={3} state="success" />
     </div>
 );
@@ -24,9 +29,7 @@ const defaultArgs: RadioButtonProps = {
     name: 'radio',
     value: 1,
     label: 'Radio Button',
-    onChange: (e) => {
-        console.log('data:: ', e.target.value);
-    },
+    onChange: () => {},
 };
 
 export const Default = Template.bind({});

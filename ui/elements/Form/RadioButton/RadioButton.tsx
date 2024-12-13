@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
 import {
     StyledRadioButton,
@@ -15,7 +16,6 @@ const RadioButton = (props: RadioButtonProps) => {
         label,
         value,
         isRequired = false,
-        validationMessage,
         helpMessage,
         errorMessage,
         onChange = () => {},
@@ -48,6 +48,7 @@ const RadioButton = (props: RadioButtonProps) => {
                 )}
             </StyledRadioButton>
             {helpMessage && <HelpMessage>{helpMessage}</HelpMessage>}
+            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </StyledRadioButtonWithMessage>
     );
 };
