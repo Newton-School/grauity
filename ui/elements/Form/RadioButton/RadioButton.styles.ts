@@ -1,6 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { StyledDivProps, StyledInputProps } from '../../../../common/types';
+import {
+    StyledDivProps,
+    StyledInputProps,
+    StyledLabelProps,
+} from '../../../../common/types';
+import { Label } from '../Label';
+
+export const StyledRadioButtonWithMessage = styled.div<StyledDivProps>`
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+`;
 
 export const StyledRadioButton = styled.div<StyledDivProps>`
     display: flex;
@@ -9,6 +20,7 @@ export const StyledRadioButton = styled.div<StyledDivProps>`
     font-family: var(--font-family);
     width: fit-content;
     height: fit-content;
+    padding-left: 2px;
 `;
 
 export const StyledRadioButtonInput = styled.input<StyledInputProps>`
@@ -37,12 +49,12 @@ export const StyledRadioButtonInput = styled.input<StyledInputProps>`
         transform: translate(-50%, -50%);
     }
 
-    &:hover[not(:disabled)] {
+    &:hover:not(:disabled) {
         border: 1.4px solid var(--border-subtle-brand-default, #61a8ff);
         background: var(--bg-subtle-brand-default, #e5f1ff);
     }
 
-    &:active[not(:disabled)] {
+    &:active:not(:disabled) {
         border: 0.75px solid var(--border-subtle-brand-default, #61a8ff);
         background: var(--bg-subtle-primary-default, #fff);
     }
@@ -50,4 +62,19 @@ export const StyledRadioButtonInput = styled.input<StyledInputProps>`
     &:disabled {
         border: 1.4px solid var(--border-subtle-primary-disabled, #edeff3);
     }
+`;
+
+export const StyledRadioButtonLabel = styled(Label)`
+    color: var(--text-emphasis-primary-default, #16191d);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 0.1px;
+
+    ${({ disabled }: StyledLabelProps) =>
+        disabled &&
+        css`
+            color: var(--text-emphasis-primary-disabled, #8c95a6);
+        `};
 `;

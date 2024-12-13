@@ -15,7 +15,11 @@ const Template = (args: RadioButtonProps) => (
         }}
     >
         <RadioButton {...args} value={1} />
-        <RadioButton {...args} value={2} />
+        <RadioButton
+            {...args}
+            value={2}
+            helpMessage="You can change the value of the radio button"
+        />
     </div>
 );
 

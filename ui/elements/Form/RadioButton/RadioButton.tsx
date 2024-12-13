@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
-import { Label } from '../Label';
+import { HelpMessage } from '../HelpMessage';
 import {
     StyledRadioButton,
     StyledRadioButtonInput,
+    StyledRadioButtonLabel,
+    StyledRadioButtonWithMessage,
 } from './RadioButton.styles';
 import { RadioButtonProps } from './types';
 
@@ -25,24 +27,26 @@ const RadioButton = (props: RadioButtonProps) => {
     const [isChecked, setIsChecked] = useState(checked);
 
     return (
-        <StyledRadioButton>
-            <StyledRadioButtonInput
-                type="radio"
-                name={name}
-                value={value}
-                onChange={(e) => {
-                    setIsChecked(!isChecked);
-                    onChange(e);
-                }}
-                checked={isChecked}
-                disabled
-            />
-            {label && (
-                <Label name={name} isRequired={isRequired}>
-                    {label}
-                </Label>
-            )}
-        </StyledRadioButton>
+        <StyledRadioButtonWithMessage>
+            <StyledRadioButton>
+                <StyledRadioButtonInput
+                    type="radio"
+                    name={name}
+                    value={value}
+                    onChange={(e) => {
+                        setIsChecked(!isChecked);
+                        onChange(e);
+                    }}
+                    checked={isChecked}
+                />
+                {label && (
+                    <StyledRadioButtonLabel name={name} isRequired={isRequired}>
+                        {label}
+                    </StyledRadioButtonLabel>
+                )}
+            </StyledRadioButton>
+            {helpMessage && <HelpMessage>{helpMessage}</HelpMessage>}
+        </StyledRadioButtonWithMessage>
     );
 };
 
