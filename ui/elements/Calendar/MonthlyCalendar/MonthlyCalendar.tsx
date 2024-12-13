@@ -34,22 +34,19 @@ const MonthlyCalendar = forwardRef<HTMLDivElement, MonthlyCalendarProps<any>>(
         const datesInGrid = [];
         // Append dates from previous month
         for (let i = offsetOfFirstDayFromSunday - 1; i >= 0; i -= 1) {
-            const date = new Date(currentYear, currentMonth, -i).getDate();
+            const date = new Date(currentYear, currentMonth, -i);
             datesInGrid.push(date);
         }
 
         // Append dates from current month
         for (let i = 1; i <= daysInMonth; i += 1) {
-            datesInGrid.push(i);
+            const date = new Date(currentYear, currentMonth, i);
+            datesInGrid.push(date);
         }
 
         // Append dates from next month
         for (let i = 0; i < offsetOfLastDayFromSaturday; i += 1) {
-            const date = new Date(
-                currentYear,
-                currentMonth + 1,
-                i + 1
-            ).getDate();
+            const date = new Date(currentYear, currentMonth + 1, i + 1);
             datesInGrid.push(date);
         }
 
@@ -61,7 +58,10 @@ const MonthlyCalendar = forwardRef<HTMLDivElement, MonthlyCalendarProps<any>>(
                         rows={datesInGrid.length % DAYS_IN_WEEK}
                     >
                         {datesInGrid.map((item) => (
-                            <MonthlyCalendarGridItem cellDate={item} />
+                            <MonthlyCalendarGridItem
+                                monthOffset={monthOffset}
+                                cellDate={item}
+                            />
                         ))}
                     </StyledMonthlyCalendarGrid>
                 </StyledMonthlyGridItemContainer>

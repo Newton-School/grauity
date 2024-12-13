@@ -71,7 +71,8 @@ const EVENTS_DATA: MonthlyCalendarEvent[] = [
     },
 ];
 
-function MonthlyCalendarGridItem({ cellDate }: MonthlyCalendarGridItemProps) {
+function MonthlyCalendarGridItem(props: MonthlyCalendarGridItemProps) {
+    const { cellDate, monthOffset } = props;
     const [numberOfEventsToRemove, setNumberOfEventsToRemove] = useState(0);
     const gridItemRef = useRef<HTMLDivElement>(null);
 
@@ -94,9 +95,19 @@ function MonthlyCalendarGridItem({ cellDate }: MonthlyCalendarGridItemProps) {
     );
 
     const moreEventsText = `+${numberOfEventsToRemove} more`;
+    const today = new Date();
+    const activeMonth = today.getMonth() + monthOffset;
+    const isInActiveMonth = activeMonth === cellDate.getMonth();
+
+    const cellBackgroundColor = isInActiveMonth
+        ? 'var(--bg-primary, #FFF)'
+        : 'var(--bg-secondary, #F6F7F9)';
 
     return (
-        <StyledMonthlyCalendarGridItem ref={gridItemRef}>
+        <StyledMonthlyCalendarGridItem
+            ref={gridItemRef}
+            backgroundColor={cellBackgroundColor}
+        >
             <DateCircle date={cellDate} />
             {eventsToRender.map((event) => (
                 <MonthlyCalendarEventItem

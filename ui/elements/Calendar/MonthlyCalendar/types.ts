@@ -9,7 +9,7 @@ export interface MonthlyCalendarProps<T> extends StyledDivProps {
 }
 
 export interface DateCircleProps {
-    date: number;
+    date: Date;
     backgroundColor?: string;
     textColor?: string;
 }
@@ -43,5 +43,10 @@ export interface GridContainerRows
     rows: number;
 }
 export interface MonthlyCalendarGridItemProps {
-    cellDate: number;
+    cellDate: Date;
+    monthOffset: number;
+}
+
+export interface StyledMonthlyCalendarGridItemProps extends StyledDivProps {
+    backgroundColor?: string;
 }

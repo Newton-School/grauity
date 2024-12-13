@@ -6,6 +6,7 @@ import {
     GridContainerRows,
     StyledDateCircleProps,
     StyledDateTextProps,
+    StyledMonthlyCalendarGridItemProps,
 } from './types';
 
 export const StyledDateCircle = styled.div<StyledDateCircleProps>`
@@ -62,7 +63,7 @@ export const StyledDateCircleText = styled.span<StyledDateTextProps>`
         `}
 `;
 
-export const StyledMonthlyCalendarGridItem = styled.div<StyledDivProps>`
+export const StyledMonthlyCalendarGridItem = styled.div<StyledMonthlyCalendarGridItemProps>`
     box-sizing: border-box;
     display: flex;
     padding: var(--spacing-8px, 8px);
@@ -72,7 +73,7 @@ export const StyledMonthlyCalendarGridItem = styled.div<StyledDivProps>`
     flex: 1;
 
     border: 1px solid var(--border-neutral, #e1e5ea);
-    background: var(--bg-secondary, #f6f7f9);
+    background: ${({ backgroundColor }) => backgroundColor};
 
     width: 100%;
     height: 100%;
