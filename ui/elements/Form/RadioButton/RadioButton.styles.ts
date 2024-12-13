@@ -30,6 +30,7 @@ export const StyledRadioButtonInput = styled.input<StyledRadioButtonInputProps>`
     border: 1.4px solid var(--border-moderate-primary-default, #c9cfd9);
     position: relative;
     cursor: pointer;
+    transition: border-color 70ms ease, background 70ms ease;
 
     ${({ $size }) => {
         if ($size === 'small') {
@@ -67,11 +68,12 @@ export const StyledRadioButtonInput = styled.input<StyledRadioButtonInputProps>`
         return css`
             border: 1.4px solid var(--border-moderate-primary-default, #c9cfd9);
         `;
-    }}    
+    }}
 
     &:checked {
         border: 1.4px solid var(--border-subtle-brand-default, #61a8ff);
         background: var(--background-subtle-primary-default, #fff);
+        transition: border-color 150ms ease, background 150ms ease;
 
         ${({ $state }) => {
             if ($state === 'error') {
@@ -92,6 +94,7 @@ export const StyledRadioButtonInput = styled.input<StyledRadioButtonInputProps>`
             `;
         }}
     }
+
     &:checked::after {
         content: '';
         position: absolute;
@@ -102,6 +105,7 @@ export const StyledRadioButtonInput = styled.input<StyledRadioButtonInputProps>`
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        transition: background 150ms ease;
 
         ${({ $state }) => {
             if ($state === 'error') {
@@ -159,6 +163,7 @@ export const StyledRadioButtonInput = styled.input<StyledRadioButtonInputProps>`
     &:active:not(:disabled) {
         border: 0.75px solid var(--border-subtle-brand-default, #61a8ff);
         background: var(--background-subtle-primary-default, #fff);
+        transition: border-color 150ms ease, background 150ms ease;
 
         ${({ $state }) => {
             if ($state === 'error') {
