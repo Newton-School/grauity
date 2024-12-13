@@ -22,6 +22,14 @@ export interface StyledDateTextProps
     textColor?: string;
 }
 
+export interface MonthlyCalendarEvent {
+    id: string;
+    title: string;
+    start: Date;
+    end: Date;
+}
+
 export interface OverflowIndicatorProps {
     text: string;
+    events: MonthlyCalendarEvent[];
 }

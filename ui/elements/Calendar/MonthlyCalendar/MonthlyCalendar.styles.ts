@@ -93,7 +93,7 @@ export const StyledMonthlyCalendarGridContainer = styled.div`
     flex-direction: column;
 `;
 
-export const StyledOverflowIndicator = styled.div`
+export const StyledOverflowIndicator = styled.div<StyledDivProps>`
     cursor: pointer;
     display: flex;
     padding: var(--spacing-spacing0, 0px) var(--spacing-4px, 4px);
@@ -135,7 +135,7 @@ export const StyledDayOfWeekHeaderItem = styled.div`
     flex: 1 0 0;
     align-self: stretch;
     border: 1px solid var(--border-neutral, #e1e5ea);
-    background: #fff;
+    background: var(--bg-primary, #fff);
 `;
 
 export const StyledDayOfWeekHeaderItemText = styled.span`
@@ -153,4 +153,18 @@ export const StyledMonthlyGridItemContainer = styled.div`
     background: red;
     flex-direction: column;
     overflow: hidden;
+`;
+
+export const StyledOverflowEventsListContainer = styled.div`
+    display: flex;
+    width: 189px;
+    padding: var(--spacing-8px, 8px);
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-spacing3, 4px);
+
+    border-radius: 12px;
+    border: 2px solid var(--border-brand, #94c4ff);
+    background: var(--bg-brand, #e5f1ff);
+    box-shadow: 0px 8px 48px 0px rgba(0, 0, 0, 0.16);
 `;
