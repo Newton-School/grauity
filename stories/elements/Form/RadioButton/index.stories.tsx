@@ -7,33 +7,22 @@ export default {
 };
 
 const Template = (args: RadioButtonProps) => (
-    <div
-        style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '5px',
-        }}
-    >
-        <RadioButton {...args} value={1} />
-        <RadioButton
-            {...args}
-            value={2}
-            state="error"
-            errorMessage="This is the error message"
-        />
-        <RadioButton {...args} value={3} state="success" />
-    </div>
+    <RadioButton {...args} value={1} />
 );
 
 const defaultArgs: RadioButtonProps = {
     name: 'radio',
+    label: 'Radio button',
     value: 1,
-    label: 'Radio Button',
+    isRequired: false,
+    size: 'medium',
+    state: 'default',
+    helpMessage: '',
+    errorMessage: '',
     onChange: () => {},
+    checked: false,
+    disabled: false,
 };
 
-export const Default = Template.bind({});
-Default.args = defaultArgs;
-
-export const WithErrorMessage = Template.bind({});
-WithErrorMessage.args = {};
+export const Component = Template.bind({});
+Component.args = defaultArgs;

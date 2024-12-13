@@ -10,13 +10,13 @@ export interface RadioButtonProps {
     label?: string;
     value?: string | number;
     isRequired?: boolean;
-    validationMessage?: string;
+    size?: RadioButtonSize;
+    state?: RadioButtonState;
     helpMessage?: string;
     errorMessage?: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     checked?: boolean;
-    size?: RadioButtonSize;
-    state?: RadioButtonState;
+    disabled?: boolean;
 }
 
 export interface StyledRadioButtonInputProps extends StyledInputProps {

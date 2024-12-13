@@ -16,12 +16,13 @@ const RadioButton = (props: RadioButtonProps) => {
         label,
         value,
         isRequired = false,
+        size = 'medium',
+        state = 'default',
         helpMessage,
         errorMessage,
         onChange = () => {},
         checked = false,
-        size = 'medium',
-        state = 'default',
+        disabled = false,
     } = props;
 
     const [isChecked, setIsChecked] = useState(checked);
@@ -40,6 +41,7 @@ const RadioButton = (props: RadioButtonProps) => {
                         onChange(e);
                     }}
                     checked={isChecked}
+                    disabled={disabled}
                 />
                 {label && (
                     <StyledRadioButtonLabel name={name} isRequired={isRequired}>
