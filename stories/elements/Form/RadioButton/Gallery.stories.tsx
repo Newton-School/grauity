@@ -14,6 +14,34 @@ export default {
     tags: ['!autodocs'],
 };
 
+const generateCodeString = (args: RadioButtonProps) => {
+    const {
+        name,
+        value,
+        label,
+        isRequired,
+        size,
+        state,
+        helpMessage,
+        errorMessage,
+        checked,
+        disabled,
+    } = args;
+
+    return `<RadioButton
+    name="${name}"
+    value={${value}}
+    label="${label}"
+    isRequired={${isRequired}}
+    size="${size}"
+    state="${state}"
+    helpMessage="${helpMessage}"
+    errorMessage="${errorMessage}"
+    checked={${checked}}
+    disabled={${disabled}}
+    onChange={() => {}} />`;
+};
+
 const Template = (args: RadioButtonProps) => <RadioButton {...args} />;
 
 const defaultArgs: RadioButtonProps = {
@@ -55,6 +83,9 @@ export const Gallery = () => {
                     <Table.TableHeadingCell align="left">
                         Element
                     </Table.TableHeadingCell>
+                    <Table.TableHeadingCell align="left">
+                        Code
+                    </Table.TableHeadingCell>
                 </Table.TableRow>
             </Table.TableHead>
             <Table.TableBody>
@@ -73,6 +104,18 @@ export const Gallery = () => {
                                     size={size}
                                     state={state}
                                 />
+                            </Table.TableDataCell>
+                            <Table.TableDataCell>
+                                <TokenBlock
+                                    copy
+                                    contentToCopy={generateCodeString({
+                                        ...defaultArgs,
+                                        size,
+                                        state,
+                                    })}
+                                >
+                                    Copy Code
+                                </TokenBlock>
                             </Table.TableDataCell>
                         </Table.TableRow>
                     ))
