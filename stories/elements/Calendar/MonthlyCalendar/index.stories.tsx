@@ -37,9 +37,13 @@ const Template = (args: MonthlyCalendarProps<any>) => (
 export const Component = Template.bind({});
 
 const defaultArgs: MonthlyCalendarProps<any> = {
-    monthOffset: 3,
-    data: [],
-    renderItem: () => <div>Item</div>,
+    monthOffset: 0,
+    events: [],
+    eventRenderer: () => <div>Event</div>,
+    shouldShowMonthControls: true,
+    header: <h1>Header</h1>,
+    onMonthChange: () => {},
+    loading: true,
 };
 
 Component.args = {

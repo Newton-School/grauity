@@ -1,18 +1,27 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 
 import { DAYS_IN_WEEK } from './constants';
 import Header from './Header';
+import Loading from './Loading';
 import {
     StyledMonthlyCalendarGrid,
     StyledMonthlyCalendarGridContainer,
     StyledMonthlyGridItemContainer,
 } from './MonthlyCalendar.styles';
 import MonthlyCalendarGridItem from './MonthlyCalendarGridItem';
+import MonthlyControls from './MonthlyControls';
 import { MonthlyCalendarProps } from './types';
 
 const MonthlyCalendar = forwardRef<HTMLDivElement, MonthlyCalendarProps<any>>(
     (props, ref) => {
-        const { monthOffset } = props;
+        const {
+            monthOffset: propsMonthOffset = 0,
+            loading = false,
+            header,
+            shouldShowMonthControls,
+            onMonthChange,
+        } = props;
+        const [monthOffset, setMonthOffset] = useState(propsMonthOffset);
         const currentMonth = new Date().getMonth() + monthOffset;
         const currentYear = new Date().getFullYear();
         const daysInMonth = new Date(
@@ -50,21 +59,37 @@ const MonthlyCalendar = forwardRef<HTMLDivElement, MonthlyCalendarProps<any>>(
             datesInGrid.push(date);
         }
 
+        useEffect(() => {
+            onMonthChange(monthOffset);
+        }, [monthOffset]);
+
         return (
             <StyledMonthlyCalendarGridContainer ref={ref}>
+                {header}
+                {shouldShowMonthControls ? (
+                    <MonthlyControls
+                        loading={loading}
+                        monthOffset={monthOffset}
+                        setMonthOffset={setMonthOffset}
+                    />
+                ) : null}
                 <Header />
-                <StyledMonthlyGridItemContainer>
-                    <StyledMonthlyCalendarGrid
-                        rows={datesInGrid.length % DAYS_IN_WEEK}
-                    >
-                        {datesInGrid.map((item) => (
-                            <MonthlyCalendarGridItem
-                                monthOffset={monthOffset}
-                                cellDate={item}
-                            />
-                        ))}
-                    </StyledMonthlyCalendarGrid>
-                </StyledMonthlyGridItemContainer>
+                {loading ? (
+                    <Loading gridData={datesInGrid} />
+                ) : (
+                    <StyledMonthlyGridItemContainer>
+                        <StyledMonthlyCalendarGrid
+                            rows={datesInGrid.length % DAYS_IN_WEEK}
+                        >
+                            {datesInGrid.map((item) => (
+                                <MonthlyCalendarGridItem
+                                    monthOffset={monthOffset}
+                                    cellDate={item}
+                                />
+                            ))}
+                        </StyledMonthlyCalendarGrid>
+                    </StyledMonthlyGridItemContainer>
+                )}
             </StyledMonthlyCalendarGridContainer>
         );
     }

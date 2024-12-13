@@ -3,9 +3,13 @@ import React from 'react';
 import { StyledDivProps } from '../../../../common/types';
 
 export interface MonthlyCalendarProps<T> extends StyledDivProps {
+    events: T[];
+    eventRenderer: (item: T) => React.ReactNode;
+    shouldShowMonthControls?: boolean;
+    header?: React.ReactNode;
     monthOffset: number;
-    data: T[];
-    renderItem: (item: T) => React.ReactNode;
+    onMonthChange?: (monthOffset: number) => void;
+    loading?: boolean;
 }
 
 export interface DateCircleProps {
@@ -49,4 +53,14 @@ export interface MonthlyCalendarGridItemProps {
 
 export interface StyledMonthlyCalendarGridItemProps extends StyledDivProps {
     backgroundColor?: string;
+}
+
+export interface MonthlyCalendarLoadingProps {
+    gridData: Date[];
+}
+
+export interface MonthlyControlsProps {
+    loading: boolean;
+    monthOffset: number;
+    setMonthOffset: React.Dispatch<React.SetStateAction<number>>;
 }
