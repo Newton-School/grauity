@@ -30,6 +30,8 @@ const RadioButton = (props: RadioButtonProps) => {
         <StyledRadioButtonWithMessage>
             <StyledRadioButton>
                 <StyledRadioButtonInput
+                    $size={size}
+                    $state={state}
                     type="radio"
                     name={name}
                     value={value}

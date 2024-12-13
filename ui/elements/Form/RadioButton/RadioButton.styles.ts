@@ -1,11 +1,9 @@
+/* eslint-disable indent */
 import styled, { css } from 'styled-components';
 
-import {
-    StyledDivProps,
-    StyledInputProps,
-    StyledLabelProps,
-} from '../../../../common/types';
+import { StyledDivProps, StyledLabelProps } from '../../../../common/types';
 import { Label } from '../Label';
+import { StyledRadioButtonInputProps } from './types';
 
 export const StyledRadioButtonWithMessage = styled.div<StyledDivProps>`
     display: flex;
@@ -23,7 +21,7 @@ export const StyledRadioButton = styled.div<StyledDivProps>`
     padding-left: 2px;
 `;
 
-export const StyledRadioButtonInput = styled.input<StyledInputProps>`
+export const StyledRadioButtonInput = styled.input<StyledRadioButtonInputProps>`
     -webkit-appearance: none;
     box-sizing: border-box;
     width: 16px;
@@ -33,9 +31,66 @@ export const StyledRadioButtonInput = styled.input<StyledInputProps>`
     position: relative;
     cursor: pointer;
 
+    ${({ $size }) => {
+        if ($size === 'small') {
+            return css`
+                width: 12px;
+                height: 12px;
+                border-width: 1.25px;
+            `;
+        }
+        if ($size === 'large') {
+            return css`
+                width: 20px;
+                height: 20px;
+                border-width: 1.5px;
+            `;
+        }
+        return css`
+            width: 16px;
+            height: 16px;
+            border-width: 1.4px;
+        `;
+    }}
+
+    ${({ $state }) => {
+        if ($state === 'error') {
+            return css`
+                border-color: var(--border-moderate-error-default, #f8636b);
+            `;
+        }
+        if ($state === 'success') {
+            return css`
+                border-color: var(--border-moderate-success-default, #50ce99);
+            `;
+        }
+        return css`
+            border: 1.4px solid var(--border-moderate-primary-default, #c9cfd9);
+        `;
+    }}    
+
     &:checked {
         border: 1.4px solid var(--border-subtle-brand-default, #61a8ff);
-        background: var(--bg-subtle-primary-default, #fff);
+        background: var(--background-subtle-primary-default, #fff);
+
+        ${({ $state }) => {
+            if ($state === 'error') {
+                return css`
+                    border-color: var(--border-moderate-error-default, #f8636b);
+                `;
+            }
+            if ($state === 'success') {
+                return css`
+                    border-color: var(
+                        --border-moderate-success-default,
+                        #50ce99
+                    );
+                `;
+            }
+            return css`
+                border-color: var(--border-subtle-brand-default, #61a8ff);
+            `;
+        }}
     }
     &:checked::after {
         content: '';
@@ -43,20 +98,86 @@ export const StyledRadioButtonInput = styled.input<StyledInputProps>`
         width: 80%;
         height: 80%;
         border-radius: 50%;
-        background: var(--bg-emphasis-brand-default, #0673f9);
+        background: var(--background-emphasis-brand-default, #0673f9);
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+
+        ${({ $state }) => {
+            if ($state === 'error') {
+                return css`
+                    background: var(
+                        --background-emphasis-error-default,
+                        #f8636b
+                    );
+                `;
+            }
+            if ($state === 'success') {
+                return css`
+                    background: var(
+                        --background-emphasis-success-default,
+                        #50ce99
+                    );
+                `;
+            }
+            return css`
+                background: var(--background-emphasis-brand-default, #0673f9);
+            `;
+        }}
     }
 
     &:hover:not(:disabled) {
-        border: 1.4px solid var(--border-subtle-brand-default, #61a8ff);
-        background: var(--bg-subtle-brand-default, #e5f1ff);
+        border-color: var(--border-subtle-brand-default, #61a8ff);
+        background: var(--background-subtle-brand-default, #e5f1ff);
+
+        ${({ $state }) => {
+            if ($state === 'error') {
+                return css`
+                    border-color: var(--border-moderate-error-default, #f8636b);
+                    background: var(--background-subtle-error-default, #ffe5e7);
+                `;
+            }
+            if ($state === 'success') {
+                return css`
+                    border-color: var(
+                        --border-moderate-success-default,
+                        #50ce99
+                    );
+                    background: var(
+                        --background-subtle-success-default,
+                        #d9fced
+                    );
+                `;
+            }
+            return css`
+                border-color: var(--border-subtle-brand-default, #2989ff);
+                background: var(--background-subtle-brand-default, #e5f1ff);
+            `;
+        }}
     }
 
     &:active:not(:disabled) {
         border: 0.75px solid var(--border-subtle-brand-default, #61a8ff);
-        background: var(--bg-subtle-primary-default, #fff);
+        background: var(--background-subtle-primary-default, #fff);
+
+        ${({ $state }) => {
+            if ($state === 'error') {
+                return css`
+                    border-color: var(--border-moderate-error-default, #f8636b);
+                `;
+            }
+            if ($state === 'success') {
+                return css`
+                    border-color: var(
+                        --border-moderate-success-default,
+                        #50ce99
+                    );
+                `;
+            }
+            return css`
+                border-color: var(--border-subtle-brand-default, #61a8ff);
+            `;
+        }}
     }
 
     &:disabled {
