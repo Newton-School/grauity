@@ -1,20 +1,11 @@
 import React from 'react';
 
+import { DAYS_OF_WEEK } from './constants';
 import {
     StyledDayOfWeekHeader,
     StyledDayOfWeekHeaderItem,
     StyledDayOfWeekHeaderItemText,
 } from './MonthlyCalendar.styles';
-
-const DAYS_OF_WEEK = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-];
 
 function Header() {
     return (
