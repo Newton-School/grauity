@@ -5,6 +5,7 @@ import { StyledDivProps } from '../../../../common/types';
 export interface MonthlyCalendarProps<T> extends StyledDivProps {
     events: T[];
     eventRenderer: (item: T) => React.ReactNode;
+    renderItem?: (item: T) => React.ReactNode;
     shouldShowMonthControls?: boolean;
     header?: React.ReactNode;
     monthOffset: number;
@@ -52,6 +53,7 @@ export interface MonthlyCalendarGridItemProps<T> {
     monthOffset: number;
     events: T[];
     eventRenderer: (item: T) => React.ReactNode;
+    renderItem?: (item: T) => React.ReactNode;
 }
 
 export interface StyledMonthlyCalendarGridItemProps extends StyledDivProps {

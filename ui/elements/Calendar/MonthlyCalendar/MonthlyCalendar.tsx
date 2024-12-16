@@ -21,6 +21,7 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         shouldShowMonthControls,
         onMonthChange,
         events,
+        renderItem,
     } = props;
     const [monthOffset, setMonthOffset] = useState(propsMonthOffset);
     const currentMonth = new Date().getMonth() + monthOffset;
@@ -84,6 +85,7 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
                                 cellDate={item}
                                 events={events}
                                 eventRenderer={eventRenderer}
+                                renderItem={renderItem}
                             />
                         ))}
                     </StyledMonthlyCalendarGrid>

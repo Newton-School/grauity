@@ -7,7 +7,7 @@ import { MonthlyCalendarGridItemProps } from './types';
 import { numberOfElementsOverflowing } from './utils';
 
 function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
-    const { cellDate, monthOffset, events, eventRenderer } = props;
+    const { cellDate, monthOffset, events, eventRenderer, renderItem } = props;
     const [numberOfEventsToRemove, setNumberOfEventsToRemove] = useState(0);
     const gridItemRef = useRef<HTMLDivElement>(null);
 
@@ -37,6 +37,10 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
     const cellBackgroundColor = isInActiveMonth
         ? 'var(--bg-primary, #FFF)'
         : 'var(--bg-secondary, #F6F7F9)';
+
+    if (typeof renderItem === 'function') {
+        return <>{eventsToRender.map((event) => renderItem(event))}</>;
+    }
 
     return (
         <StyledMonthlyCalendarGridItem
