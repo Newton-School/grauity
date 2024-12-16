@@ -37,18 +37,21 @@ export interface MonthlyCalendarEvent {
     end: Date;
 }
 
-export interface OverflowIndicatorProps {
+export interface OverflowIndicatorProps<T> {
     text: string;
-    events: MonthlyCalendarEvent[];
+    events: T[];
+    eventRenderer: (item: T) => React.ReactNode;
 }
 
 export interface GridContainerRows
     extends React.HTMLAttributes<HTMLDivElement> {
     rows: number;
 }
-export interface MonthlyCalendarGridItemProps {
+export interface MonthlyCalendarGridItemProps<T> {
     cellDate: Date;
     monthOffset: number;
+    events: T[];
+    eventRenderer: (item: T) => React.ReactNode;
 }
 
 export interface StyledMonthlyCalendarGridItemProps extends StyledDivProps {
@@ -63,4 +66,12 @@ export interface MonthlyControlsProps {
     loading: boolean;
     monthOffset: number;
     setMonthOffset: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface OverflowEventsListProps<T> {
+    triggerRef: React.RefObject<HTMLDivElement>;
+    isOpen: boolean;
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    events: T[];
+    eventRenderer: (item: T) => React.ReactNode;
 }

@@ -1,21 +1,12 @@
 import React from 'react';
 import PopOver from 'ui/elements/PopOver';
 
-import MonthlyCalendarEventItem from '../MonthlyCalendarEvent';
-import { EVENT_HEIGHT } from './constants';
 import DateCircle from './DateCircle';
 import { StyledOverflowEventsListContainer } from './MonthlyCalendar.styles';
-import { MonthlyCalendarEvent } from './types';
+import { OverflowEventsListProps } from './types';
 
-interface OverflowEventsListProps {
-    triggerRef: React.RefObject<HTMLDivElement>;
-    isOpen: boolean;
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    events: MonthlyCalendarEvent[];
-}
-
-function OverflowEventsList(props: OverflowEventsListProps) {
-    const { isOpen, setIsOpen, triggerRef, events } = props;
+function OverflowEventsList<T>(props: OverflowEventsListProps<T>) {
+    const { isOpen, setIsOpen, triggerRef, events, eventRenderer } = props;
 
     const handleClose = () => {
         setIsOpen(false);
@@ -40,17 +31,7 @@ function OverflowEventsList(props: OverflowEventsListProps) {
         >
             <StyledOverflowEventsListContainer>
                 <DateCircle date={new Date()} />
-                {events.map((event) => (
-                    <MonthlyCalendarEventItem
-                        key={event.id}
-                        eventTime={event.start}
-                        eventTitle={event.title}
-                        eventTitleColor="var(--text-action2)"
-                        eventTimeColor="var(--text-action2)"
-                        backgroundColor="var(--bg-action-brand)"
-                        height={`${EVENT_HEIGHT}px`}
-                    />
-                ))}
+                {events.map((event) => eventRenderer(event))}
             </StyledOverflowEventsListContainer>
         </PopOver>
     );

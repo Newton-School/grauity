@@ -8,8 +8,8 @@ import {
 import OverflowEventsList from './OverflowEventsList';
 import { OverflowIndicatorProps } from './types';
 
-function OverflowIndicator(props: OverflowIndicatorProps) {
-    const { text, events } = props;
+function OverflowIndicator<T>(props: OverflowIndicatorProps<T>) {
+    const { text, events, eventRenderer } = props;
     const [isOpen, setIsOpen] = useState(false);
     const triggerRef = useRef(null);
 
@@ -27,6 +27,7 @@ function OverflowIndicator(props: OverflowIndicatorProps) {
                     isOpen={isOpen}
                     setIsOpen={setIsOpen}
                     triggerRef={triggerRef}
+                    eventRenderer={eventRenderer}
                 />
             )}
         </StyledOverflowIndicator>
