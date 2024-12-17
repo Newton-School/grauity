@@ -27,7 +27,7 @@ export interface MonthlyCalendarProps<T extends { start: Date; end: Date }>
      * @param item - The event item to render
      * @default null
      */
-    renderItem?: (item: T) => React.ReactNode;
+    renderDayItem?: (item: T) => React.ReactNode;
 
     /**
      * Whether to show month navigation controls.
@@ -102,7 +102,7 @@ export interface MonthlyCalendarGridItemProps<T> {
     monthOffset: number;
     events: T[];
     eventRenderer: (item: T) => React.ReactNode;
-    renderItem?: (item: T) => React.ReactNode;
+    renderDayItem?: (item: T) => React.ReactNode;
 }
 
 export interface StyledMonthlyCalendarGridItemProps extends StyledDivProps {

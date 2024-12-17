@@ -15,7 +15,7 @@ const defaultProps: MonthlyCalendarProps<any> = {
     monthOffset: 0,
     onMonthChange: jest.fn(),
     loading: false,
-    renderItem: null,
+    renderDayItem: null,
 };
 
 describe('MonthlyCalendar', () => {
@@ -62,18 +62,18 @@ describe('MonthlyCalendar', () => {
         });
     });
 
-    it('renders correctly with renderItem', async () => {
+    it('renders correctly with renderDayItem', async () => {
         render(
             <MonthlyCalendar
                 {...defaultProps}
-                renderItem={() => <div>Test RenderItem Call</div>}
+                renderDayItem={() => <div>Test renderDayItem Call</div>}
                 events={[
                     { title: 'Test Event', start: new Date(), end: new Date() },
                 ]}
             />
         );
         expect(
-            screen.getAllByText('Test RenderItem Call').length
+            screen.getAllByText('Test renderDayItem Call').length
         ).toBeGreaterThan(0);
     });
 });

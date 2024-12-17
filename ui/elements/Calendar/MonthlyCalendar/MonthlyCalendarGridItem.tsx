@@ -10,7 +10,8 @@ import { numberOfElementsOverflowing } from './utils';
 function MonthlyCalendarGridItem<T extends { start: Date; end: Date }>(
     props: MonthlyCalendarGridItemProps<T>
 ) {
-    const { cellDate, monthOffset, events, eventRenderer, renderItem } = props;
+    const { cellDate, monthOffset, events, eventRenderer, renderDayItem } =
+        props;
     const [numberOfEventsToRemove, setNumberOfEventsToRemove] = useState(0);
     const gridItemRef = useRef<HTMLDivElement>(null);
 
@@ -48,8 +49,8 @@ function MonthlyCalendarGridItem<T extends { start: Date; end: Date }>(
         ? 'var(--bg-primary, #FFF)'
         : 'var(--bg-secondary, #F6F7F9)';
 
-    if (typeof renderItem === 'function') {
-        return <>{eventsToRender.map((event) => renderItem(event))}</>;
+    if (typeof renderDayItem === 'function') {
+        return <>{eventsToRender.map((event) => renderDayItem(event))}</>;
     }
 
     return (

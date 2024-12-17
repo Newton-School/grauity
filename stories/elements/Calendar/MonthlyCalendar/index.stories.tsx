@@ -150,7 +150,7 @@ export default {
                         monthOffset={0}
                         events={[]}
                         eventRenderer={() => <div>Event</div>}
-                        renderItem={null}
+                        renderDayItem={null}
                         shouldShowMonthControls
                         header={null}
                         onMonthChange={() => {}}
@@ -186,7 +186,7 @@ const defaultArgs: MonthlyCalendarProps<any> = {
     header: null,
     onMonthChange: () => {},
     loading: false,
-    renderItem: null,
+    renderDayItem: null,
 };
 
 Component.args = {
