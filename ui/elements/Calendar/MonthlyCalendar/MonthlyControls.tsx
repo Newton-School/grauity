@@ -1,7 +1,10 @@
 import React from 'react';
 
 import Button, { IconButton } from '../../Button';
-import { StyledCalendarMonthButton } from './MonthlyCalendar.styles';
+import {
+    StyledCalendarControlsText,
+    StyledCalendarMonthButton,
+} from './MonthlyCalendar.styles';
 import { MonthlyControlsProps } from './types';
 import { getMonthLabel } from './utils';
 
@@ -19,9 +22,9 @@ function MonthlyControls(props: MonthlyControlsProps) {
                 onClick={() => setMonthOffset(monthOffset - 1)}
                 ariaLabel={`Go to month ${monthLabel}`}
             />
-            <div>
+            <StyledCalendarControlsText>
                 {monthLabel} {currentMonth.getFullYear()}
-            </div>
+            </StyledCalendarControlsText>
             <IconButton
                 icon="chevron-right"
                 disabled={loading}
