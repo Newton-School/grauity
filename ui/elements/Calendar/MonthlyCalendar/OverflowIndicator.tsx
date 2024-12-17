@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { Icon } from 'ui/elements/Icon';
 
+import { Icon } from '../../Icon';
 import {
     StyledOverflowIndicator,
     StyledOverflowIndicatorText,

@@ -1,6 +1,6 @@
 import React from 'react';
-import Button, { IconButton } from 'ui/elements/Button';
 
+import Button, { IconButton } from '../../Button';
 import { StyledCalendarMonthButton } from './MonthlyCalendar.styles';
 import { MonthlyControlsProps } from './types';
 import { getMonthLabel } from './utils';

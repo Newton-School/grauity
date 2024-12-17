@@ -1,6 +1,6 @@
 import React from 'react';
-import PopOver from 'ui/elements/PopOver';
 
+import PopOver from '../../PopOver';
 import DateCircle from './DateCircle';
 import { StyledOverflowEventsListContainer } from './MonthlyCalendar.styles';
 import { OverflowEventsListProps } from './types';

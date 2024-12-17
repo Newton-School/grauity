@@ -1,6 +1,6 @@
 import React from 'react';
-import Placeholder from 'ui/elements/Placeholder';
 
+import Placeholder from '../../Placeholder';
 import { DAYS_IN_WEEK } from './constants';
 import DateCircle from './DateCircle';
 import {
