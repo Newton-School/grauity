@@ -179,6 +179,15 @@ export const StyledCalendarMonthButton = styled.div<StyledDivProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: var(--spacing-16px, 16px) var(--spacing-0px, 0px);
+    padding: 16px 0px;
     gap: var(--spacing-16px, 16px);
+`;
+
+export const StyledCalendarControlsText = styled.span`
+    font-family: var(--font-family, 'Mona Sans');
+    color: var(--text-primary, #16191d);
+    font-size: 14px;
+    font-style: normal;
+    line-height: 14.4px;
+    letter-spacing: 0.1px;
 `;
