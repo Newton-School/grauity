@@ -39,7 +39,9 @@ const TextArea = (props: TextAreaProps) => {
 
     const [isInputValid, setIsInputValid] = useState(getIsValid(value));
 
-    const handleInputClick = (event: React.MouseEvent<HTMLTextAreaElement>) => {
+    const handleInputClick = (
+        event: React.MouseEvent<HTMLTextAreaElement, MouseEvent>
+    ) => {
         onClick(event);
     };
 
@@ -79,10 +81,15 @@ const TextArea = (props: TextAreaProps) => {
                 size={size}
                 readOnly={readOnly}
             />
-            <HelpMessage currentLength={value?.length} maxLength={maxLength}>
-                {helpMessage}
-            </HelpMessage>
-            {(!isInputValid || errorMessage) && validationMessage && (
+            {helpMessage && (
+                <HelpMessage
+                    currentLength={value?.length}
+                    maxLength={maxLength}
+                >
+                    {helpMessage}
+                </HelpMessage>
+            )}
+            {!isInputValid && (errorMessage || validationMessage) && (
                 <ErrorMessage>{errorMessage || validationMessage}</ErrorMessage>
             )}
         </StyledTextAreaFieldContainer>
