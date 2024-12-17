@@ -2,8 +2,7 @@ import React from 'react';
 import { MonthlyCalendar, MonthlyCalendarProps } from 'ui/elements/Calendar';
 import { EVENT_HEIGHT } from 'ui/elements/Calendar/MonthlyCalendar/constants';
 import { MonthlyCalendarEvent } from 'ui/elements/Calendar/MonthlyCalendar/types';
-// eslint-disable-next-line import/no-named-default
-import { default as MonthlyCalendarEventItem } from 'ui/elements/Calendar/MonthlyCalendarEvent';
+import MonthlyCalendarEventItem from 'ui/elements/Calendar/MonthlyCalendarEvent';
 
 import withRemovePadding from '../../../decorators/withRemovePadding';
 
@@ -90,7 +89,16 @@ export default {
         docs: {
             source: {
                 code: `
-                    <MonthlyCalendar/>
+                    <MonthlyCalendar
+                        monthOffset={0}
+                        events={[]}
+                        eventRenderer={() => <div>Event</div>}
+                        renderItem={null}
+                        shouldShowMonthControls
+                        header={null}
+                        onMonthChange={() => {}}
+                        loading={false}
+                    />
                 `,
             },
         },
@@ -118,9 +126,10 @@ const defaultArgs: MonthlyCalendarProps<any> = {
         />
     ),
     shouldShowMonthControls: true,
-    header: <h1>Header</h1>,
+    header: null,
     onMonthChange: () => {},
-    loading: true,
+    loading: false,
+    renderItem: null,
 };
 
 Component.args = {

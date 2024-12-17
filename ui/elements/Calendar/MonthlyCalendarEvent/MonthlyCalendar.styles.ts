@@ -13,7 +13,7 @@ export const StyledMonthlyCalendarEvent = styled.div<MonthlyCalendarEventProps>`
     align-items: center;
     border-radius: ${({ borderRadius }) => borderRadius || '4px'};
     background-color: ${({ backgroundColor }) =>
-        backgroundColor || 'var(--bg-brand-action)'};
+        backgroundColor || 'var(--bg-action-brand)'};
     width: ${({ width }) => width || '100%'};
     height: ${({ height }) => height || '16px'};
     padding: 2px;

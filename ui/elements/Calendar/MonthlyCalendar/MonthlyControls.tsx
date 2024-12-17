@@ -19,7 +19,9 @@ function MonthlyControls(props: MonthlyControlsProps) {
                 onClick={() => setMonthOffset(monthOffset - 1)}
                 ariaLabel={`Go to month ${monthLabel}`}
             />
-            <div>{monthLabel}</div>
+            <div>
+                {monthLabel} {currentMonth.getFullYear()}
+            </div>
             <IconButton
                 icon="chevron-right"
                 disabled={loading}
@@ -27,7 +29,7 @@ function MonthlyControls(props: MonthlyControlsProps) {
                 ariaLabel={`Go to month ${monthLabel}`}
             />
             <Button disabled={loading} onClick={() => setMonthOffset(0)}>
-                This Month
+                Today
             </Button>
         </StyledCalendarMonthButton>
     );

@@ -7,7 +7,7 @@ import {
     StyledDayOfWeekHeaderItemText,
 } from './MonthlyCalendar.styles';
 
-function Header() {
+function GridHeaderRow() {
     return (
         <StyledDayOfWeekHeader>
             {DAYS_OF_WEEK.map((day) => (
@@ -21,4 +21,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default GridHeaderRow;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { DAYS_IN_WEEK } from './constants';
-import Header from './Header';
+import GridHeaderRow from './GridHeaderRow';
 import Loading from './Loading';
 import {
     StyledMonthlyCalendarGrid,
@@ -71,7 +71,7 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
                     setMonthOffset={setMonthOffset}
                 />
             ) : null}
-            <Header />
+            <GridHeaderRow />
             {loading ? (
                 <Loading gridData={datesInGrid} />
             ) : (

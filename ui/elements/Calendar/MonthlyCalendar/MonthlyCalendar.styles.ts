@@ -13,25 +13,25 @@ export const StyledDateCircle = styled.div<StyledDateCircleProps>`
     font-family: var(--font-family, 'Mona Sans');
     box-sizing: border-box;
     display: flex;
-    padding: var(--spacing-4px, 4px);
+    padding: 4px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 32px;
-    background: var(--color-neutral-100, #f6f7f9);
+    background: var(--bg-secondary, #f6f7f9);
     width: ${DATE_SIZE}px;
     height: ${DATE_SIZE}px;
 
     ${({ isInActiveMonth }) =>
         isInActiveMonth &&
         css`
-            background: var(--color-neutral-100, #f6f7f9);
+            background: var(--bg-secondary, #f6f7f9);
         `}
 
     ${({ isToday }) =>
         isToday &&
         css`
-            background: var(--bg-brand-action, #0673f9);
+            background: var(--bg-action-brand, #0673f9);
         `}
 
     ${({ backgroundColor }) =>
@@ -44,7 +44,7 @@ export const StyledDateCircle = styled.div<StyledDateCircleProps>`
 export const StyledDateCircleText = styled.span<StyledDateTextProps>`
     color: var(--text-secondary, #5b6271);
     text-align: center;
-    font-size: var(--Label-2, 12px);
+    font-size: 12px;
     font-style: normal;
     font-weight: 600;
     line-height: 120%;
@@ -66,7 +66,7 @@ export const StyledDateCircleText = styled.span<StyledDateTextProps>`
 export const StyledMonthlyCalendarGridItem = styled.div<StyledMonthlyCalendarGridItemProps>`
     box-sizing: border-box;
     display: flex;
-    padding: var(--spacing-8px, 8px);
+    padding: 8px;
     flex-direction: column;
     align-items: flex-end;
     gap: ${GRID_GAP}px;
@@ -101,11 +101,11 @@ export const StyledMonthlyCalendarGridContainer = styled.div<StyledDivProps>`
 export const StyledOverflowIndicator = styled.div<StyledDivProps>`
     cursor: pointer;
     display: flex;
-    padding: var(--spacing-spacing0, 0px) var(--spacing-4px, 4px);
+    padding: 0px 4px;
     align-items: flex-start;
     gap: 4px;
     align-self: stretch;
-    border-radius: var(--spacing-4px, 4px);
+    border-radius: 4px;
     border: 1px solid var(--border-neutral, #e1e5ea);
     background: var(--bg-secondary, #f6f7f9);
 `;
@@ -121,8 +121,9 @@ export const StyledOverflowIndicatorText = styled.span`
     font-size: 10px;
     font-style: normal;
     font-weight: 600;
-    line-height: 160%;
+    line-height: 14.4px;
     letter-spacing: 0.1px;
+    margin: auto;
 `;
 
 export const StyledDayOfWeekHeader = styled.div`
@@ -146,7 +147,7 @@ export const StyledDayOfWeekHeaderItem = styled.div`
 export const StyledDayOfWeekHeaderItemText = styled.span`
     color: var(--text-secondary, #5b6271);
     text-align: center;
-    font-size: var(--Label-2, 12px);
+    font-size: 12px;
     font-style: normal;
     font-weight: 600;
     line-height: 120%;
@@ -162,7 +163,7 @@ export const StyledMonthlyGridItemContainer = styled.div`
 export const StyledOverflowEventsListContainer = styled.div`
     display: flex;
     width: 189px;
-    padding: var(--spacing-8px, 8px);
+    padding: 8px;
     flex-direction: column;
     align-items: flex-end;
     gap: var(--spacing-spacing3, 4px);

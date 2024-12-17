@@ -2,14 +2,62 @@ import React from 'react';
 
 import { StyledDivProps } from '../../../../common/types';
 
+/**
+ * Props for the MonthlyCalendar component.
+ * Represents a calendar view that displays events in a monthly grid format.
+ *
+ * @extends StyledDivProps
+ * @template T The type of event objects to be displayed
+ */
 export interface MonthlyCalendarProps<T> extends StyledDivProps {
+    /**
+     * Array of events to display in the calendar.
+     */
     events: T[];
+
+    /**
+     * Function to render each event in the calendar.
+     * @param item - The event item to render
+     */
     eventRenderer: (item: T) => React.ReactNode;
+
+    /**
+     * Optional alternative render function for events.
+     * @param item - The event item to render
+     * @default null
+     */
     renderItem?: (item: T) => React.ReactNode;
+
+    /**
+     * Whether to show month navigation controls.
+     * @default true
+     */
     shouldShowMonthControls?: boolean;
+
+    /**
+     * Custom header content to display above the calendar.
+     * @default null
+     */
     header?: React.ReactNode;
+
+    /**
+     * Number of months to offset from the current month.
+     * Positive numbers move forward, negative numbers move backward.
+     * @default 0
+     */
     monthOffset: number;
+
+    /**
+     * Callback fired when the month changes.
+     * @param monthOffset - The new month offset value
+     * @default null
+     */
     onMonthChange?: (monthOffset: number) => void;
+
+    /**
+     * Whether the calendar is in a loading state.
+     * @default false
+     */
     loading?: boolean;
 }
 
