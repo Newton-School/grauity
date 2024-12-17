@@ -142,3 +142,9 @@ export {
 
 // NSTooltip
 export { default as NSTooltip, type TooltipProps } from './elements/Tooltip';
+
+// NSTextArea
+export {
+    default as NSTextArea,
+    type TextAreaProps,
+} from './elements/Form/TextArea';

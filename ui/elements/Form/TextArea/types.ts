@@ -21,6 +21,7 @@ export interface TextAreaProps {
     /**
      * variant of the input field.
      * @type {VARIANTS}
+     * @default 'medium'
      */
     size?: VARIANTS;
 

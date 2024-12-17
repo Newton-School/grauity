@@ -1,6 +1,5 @@
 import React from 'react';
-import TextArea from 'ui/elements/Form/TextArea/TextArea';
-import { TextAreaProps } from 'ui/elements/Form/TextArea/types';
+import TextArea, { TextAreaProps } from 'ui/elements/Form/TextArea';
 
 export default {
     title: 'Elements/Form/TextArea',
