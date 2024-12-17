@@ -12,7 +12,9 @@ import MonthlyCalendarGridItem from './MonthlyCalendarGridItem';
 import MonthlyControls from './MonthlyControls';
 import { MonthlyCalendarProps } from './types';
 
-function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
+function MonthlyCalendar<T extends { start: Date; end: Date }>(
+    props: MonthlyCalendarProps<T>
+) {
     const {
         monthOffset: propsMonthOffset = 0,
         loading = false,

@@ -9,7 +9,8 @@ import { StyledDivProps } from '../../../../common/types';
  * @extends StyledDivProps
  * @template T The type of event objects to be displayed
  */
-export interface MonthlyCalendarProps<T> extends StyledDivProps {
+export interface MonthlyCalendarProps<T extends { start: Date; end: Date }>
+    extends StyledDivProps {
     /**
      * Array of events to display in the calendar.
      */
@@ -86,7 +87,7 @@ export interface MonthlyCalendarEvent {
     end: Date;
 }
 
-export interface OverflowIndicatorProps<T> {
+export interface OverflowIndicatorProps<T extends { start: Date; end: Date }> {
     text: string;
     events: T[];
     eventRenderer: (item: T) => React.ReactNode;

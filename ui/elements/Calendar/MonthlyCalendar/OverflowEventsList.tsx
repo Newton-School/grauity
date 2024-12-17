@@ -5,8 +5,11 @@ import DateCircle from './DateCircle';
 import { StyledOverflowEventsListContainer } from './MonthlyCalendar.styles';
 import { OverflowEventsListProps } from './types';
 
-function OverflowEventsList<T>(props: OverflowEventsListProps<T>) {
+function OverflowEventsList<T extends { start: Date; end: Date }>(
+    props: OverflowEventsListProps<T>
+) {
     const { isOpen, setIsOpen, triggerRef, events, eventRenderer } = props;
+    const cellDate = events[0].start;
 
     const handleClose = () => {
         setIsOpen(false);
@@ -30,7 +33,7 @@ function OverflowEventsList<T>(props: OverflowEventsListProps<T>) {
             triggerRef={triggerRef}
         >
             <StyledOverflowEventsListContainer>
-                <DateCircle date={new Date()} />
+                <DateCircle date={cellDate} />
                 {events.map((event) => eventRenderer(event))}
             </StyledOverflowEventsListContainer>
         </PopOver>

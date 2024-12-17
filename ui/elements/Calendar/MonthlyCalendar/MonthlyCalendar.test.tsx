@@ -67,7 +67,9 @@ describe('MonthlyCalendar', () => {
             <MonthlyCalendar
                 {...defaultProps}
                 renderItem={() => <div>Test RenderItem Call</div>}
-                events={[{ title: 'Test Event' }]}
+                events={[
+                    { title: 'Test Event', start: new Date(), end: new Date() },
+                ]}
             />
         );
         expect(

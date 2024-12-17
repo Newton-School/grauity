@@ -6,66 +6,123 @@ import MonthlyCalendarEventItem from 'ui/elements/Calendar/MonthlyCalendarEvent'
 
 import withRemovePadding from '../../../decorators/withRemovePadding';
 
+const currentYear = new Date().getFullYear();
+const currentMonth = new Date().getMonth();
+
 const EVENTS_DATA: MonthlyCalendarEvent[] = [
+    // Day 1 events
     {
-        id: '1',
-        title: 'Event 1',
-        start: new Date(2024, 9, 25, 8, 0),
-        end: new Date(2024, 9, 25, 10, 0),
+        id: '1-1',
+        title: 'Morning Meeting',
+        start: new Date(currentYear, currentMonth, 1, 9, 0),
+        end: new Date(currentYear, currentMonth, 1, 10, 30),
     },
     {
-        id: '2',
-        title: 'Event 2',
-        start: new Date(2024, 9, 25, 10, 0),
-        end: new Date(2024, 9, 25, 12, 0),
+        id: '1-2',
+        title: 'Morning breakfast',
+        start: new Date(currentYear, currentMonth, 1, 9, 0),
+        end: new Date(currentYear, currentMonth, 1, 10, 30),
     },
     {
-        id: '3',
-        title: 'Event 3',
-        start: new Date(2024, 9, 25, 12, 0),
-        end: new Date(2024, 9, 25, 14, 0),
+        id: '1-3',
+        title: 'Morning Tea',
+        start: new Date(currentYear, currentMonth, 1, 9, 0),
+        end: new Date(currentYear, currentMonth, 1, 10, 30),
     },
     {
-        id: '4',
-        title: 'Event 4',
-        start: new Date(2024, 9, 25, 14, 0),
-        end: new Date(2024, 9, 25, 16, 0),
+        id: '1-4',
+        title: 'Team Lunch',
+        start: new Date(currentYear, currentMonth, 1, 12, 0),
+        end: new Date(currentYear, currentMonth, 1, 13, 0),
     },
     {
-        id: '5',
-        title: 'Event 5',
-        start: new Date(2024, 9, 25, 14, 0),
-        end: new Date(2024, 9, 25, 16, 0),
+        id: '1-5',
+        title: 'Team Dinner',
+        start: new Date(currentYear, currentMonth, 1, 12, 0),
+        end: new Date(currentYear, currentMonth, 1, 13, 0),
+    },
+    // Day 5 events
+    {
+        id: '5-1',
+        title: 'Project Review',
+        start: new Date(currentYear, currentMonth, 5, 11, 0),
+        end: new Date(currentYear, currentMonth, 5, 12, 30),
     },
     {
-        id: '6',
-        title: 'Event 6',
-        start: new Date(2024, 9, 25, 14, 0),
-        end: new Date(2024, 9, 25, 16, 0),
+        id: '5-2',
+        title: 'Client Call',
+        start: new Date(currentYear, currentMonth, 5, 14, 0),
+        end: new Date(currentYear, currentMonth, 5, 15, 0),
     },
     {
-        id: '7',
-        title: 'Event 7',
-        start: new Date(2024, 9, 25, 14, 0),
-        end: new Date(2024, 9, 25, 16, 0),
+        id: '5-3',
+        title: 'Team Sync',
+        start: new Date(currentYear, currentMonth, 5, 16, 0),
+        end: new Date(currentYear, currentMonth, 5, 17, 0),
+    },
+    // Day 10 events
+    {
+        id: '10-1',
+        title: 'Sprint Planning',
+        start: new Date(currentYear, currentMonth, 10, 10, 0),
+        end: new Date(currentYear, currentMonth, 10, 11, 30),
     },
     {
-        id: '8',
-        title: 'Event 8',
-        start: new Date(2024, 9, 25, 14, 0),
-        end: new Date(2024, 9, 25, 16, 0),
+        id: '10-2',
+        title: 'Design Review',
+        start: new Date(currentYear, currentMonth, 10, 13, 0),
+        end: new Date(currentYear, currentMonth, 10, 14, 0),
+    },
+    // Day 15 events
+    {
+        id: '15-1',
+        title: 'Weekly Standup',
+        start: new Date(currentYear, currentMonth, 15, 9, 30),
+        end: new Date(currentYear, currentMonth, 15, 10, 30),
     },
     {
-        id: '9',
-        title: 'Event 9',
-        start: new Date(2024, 9, 25, 14, 0),
-        end: new Date(2024, 9, 25, 16, 0),
+        id: '15-2',
+        title: 'Product Demo',
+        start: new Date(currentYear, currentMonth, 15, 11, 0),
+        end: new Date(currentYear, currentMonth, 15, 12, 0),
     },
     {
-        id: '10',
-        title: 'Event 10',
-        start: new Date(2024, 9, 25, 14, 0),
-        end: new Date(2024, 9, 25, 16, 0),
+        id: '15-3',
+        title: 'Team Building',
+        start: new Date(currentYear, currentMonth, 15, 14, 0),
+        end: new Date(currentYear, currentMonth, 15, 16, 0),
+    },
+    // Day 20 events
+    {
+        id: '20-1',
+        title: 'Code Review',
+        start: new Date(currentYear, currentMonth, 20, 10, 0),
+        end: new Date(currentYear, currentMonth, 20, 11, 0),
+    },
+    {
+        id: '20-2',
+        title: 'Deployment Planning',
+        start: new Date(currentYear, currentMonth, 20, 13, 0),
+        end: new Date(currentYear, currentMonth, 20, 14, 30),
+    },
+    {
+        id: '20-3',
+        title: 'Tech Talk',
+        start: new Date(currentYear, currentMonth, 20, 15, 0),
+        end: new Date(currentYear, currentMonth, 20, 16, 0),
+    },
+    // Day 25 events
+    {
+        id: '25-1',
+        title: 'Monthly Review',
+        start: new Date(currentYear, currentMonth, 25, 9, 0),
+        end: new Date(currentYear, currentMonth, 25, 10, 0),
+    },
+    {
+        id: '25-2',
+        title: 'Team Lunch',
+        start: new Date(currentYear, currentMonth, 25, 12, 0),
+        end: new Date(currentYear, currentMonth, 25, 13, 30),
     },
 ];
 

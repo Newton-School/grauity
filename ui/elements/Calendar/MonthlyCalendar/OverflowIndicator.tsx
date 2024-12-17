@@ -8,7 +8,9 @@ import {
 import OverflowEventsList from './OverflowEventsList';
 import { OverflowIndicatorProps } from './types';
 
-function OverflowIndicator<T>(props: OverflowIndicatorProps<T>) {
+function OverflowIndicator<T extends { start: Date; end: Date }>(
+    props: OverflowIndicatorProps<T>
+) {
     const { text, events, eventRenderer } = props;
     const [isOpen, setIsOpen] = useState(false);
     const triggerRef = useRef(null);
