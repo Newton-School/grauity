@@ -154,3 +154,6 @@ export {
     default as NSRadioButton,
     type RadioButtonProps,
 } from './elements/Form/RadioButton';
+
+// NSTab
+export { default as NSTab, type TabProps } from './elements/Tabs';
