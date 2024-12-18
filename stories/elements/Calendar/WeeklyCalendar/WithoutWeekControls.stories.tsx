@@ -44,8 +44,8 @@ const defaultArgs: WeeklyCalendarProps = {
     eventRenderer: () => <div>Event</div>,
     shouldShowWeekControls: false,
     header: null,
-    weekOffset: 0,
-    onWeekChange: () => {},
+    date: new Date(),
+    onDateChange: () => {},
     defaultScrollHour: 8.5,
     shouldScrollToFirstEvent: true,
 };

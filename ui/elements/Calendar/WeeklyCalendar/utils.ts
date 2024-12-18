@@ -1,4 +1,33 @@
-import { CalendarEvent, CalendarEventExtended } from './types';
+import { CalendarEvent } from '../types';
+import { getCurrentWeek } from '../utils';
+import { CalendarEventExtended } from './types';
+
+export const getWeekOffsetByDate = (date: Date): number => {
+    const current = getCurrentWeek()[0];
+    const required = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate()
+    );
+    const diff = required.getTime() - current.getTime();
+    return Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
+};
+
+export const calculateWeekOffsetFromDateAndInitialOffset = (
+    initialOffset: number | null,
+    date: Date | null
+): number => {
+    if (initialOffset === null && date === null) {
+        return 0;
+    }
+    if (initialOffset === null) {
+        return getWeekOffsetByDate(date);
+    }
+    if (date === null) {
+        return initialOffset;
+    }
+    return getWeekOffsetByDate(date);
+};
 
 export const getCurrentTimeStickPosition = (): number => {
     const current = new Date();
