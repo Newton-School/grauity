@@ -43,6 +43,7 @@ export const checkIsToday = (day: Date): boolean => {
 export const getWeekByOffset = (offset: number = 0): Date[] => {
     const current = new Date();
     current.setDate(current.getDate() + offset * 7);
+    current.setHours(0, 0, 0, 0);
     const week: Date[] = [];
     for (let i = 0; i < 7; i += 1) {
         const first = current.getDate() - current.getDay() + i;
