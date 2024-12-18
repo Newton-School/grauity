@@ -4,10 +4,14 @@ import { StyledLabel } from '../index.styles';
 import { LabelProps } from '../types';
 
 export const Label = (props: LabelProps) => {
-    const { name, isRequired, children } = props;
+    const { name, isRequired, children, className } = props;
 
     return (
-        <StyledLabel htmlFor={name} isRequired={isRequired}>
+        <StyledLabel
+            htmlFor={name}
+            isRequired={isRequired}
+            className={className}
+        >
             {children}
         </StyledLabel>
     );

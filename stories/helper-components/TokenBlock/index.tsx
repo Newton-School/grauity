@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-indent */
+/* eslint-disable indent */
 /* eslint-disable no-nested-ternary */
 import React, { ReactNode, useState } from 'react';
 import { NSIcon, NSTooltip } from 'ui/index';
@@ -13,6 +15,7 @@ interface TokenBlockProps {
     showCopiedOverlay?: boolean;
     color?: string;
     children?: ReactNode;
+    contentToCopy?: ReactNode;
     background?: string;
 }
 
@@ -21,6 +24,7 @@ const TokenBlock = ({
     showCopiedOverlay = false,
     color = null,
     children,
+    contentToCopy,
     background,
 }: TokenBlockProps) => {
     const [copied, setCopied] = useState(false);
@@ -28,7 +32,7 @@ const TokenBlock = ({
     const handleCopy = () => {
         if (typeof navigator !== 'undefined' && navigator.clipboard) {
             navigator.clipboard
-                .writeText(children as string)
+                .writeText((contentToCopy || children) as string)
                 .then(() => {
                     setCopied(true);
                     setTimeout(() => {
@@ -47,18 +51,18 @@ const TokenBlock = ({
 
     const WrapperComponent = copy
         ? ({ children: _children }: any) => (
-            <NSTooltip
-                content={
-                    copied
-                        ? showCopiedOverlay
-                            ? null
-                            : 'Copied!'
-                        : 'Click to copy'
-                }
-            >
-                {_children}
-            </NSTooltip>
-        )
+              <NSTooltip
+                  content={
+                      copied
+                          ? showCopiedOverlay
+                              ? null
+                              : 'Copied!'
+                          : 'Click to copy'
+                  }
+              >
+                  {_children}
+              </NSTooltip>
+          )
         : React.Fragment;
 
     return (

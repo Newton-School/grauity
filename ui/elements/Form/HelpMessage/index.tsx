@@ -1,6 +1,6 @@
 import React from 'react';
-import { Icon } from 'ui/elements/Icon';
 
+import { Icon } from '../../Icon';
 import {
     StyledHelpMessage,
     StyledHelpMessageMaxCharacters,
