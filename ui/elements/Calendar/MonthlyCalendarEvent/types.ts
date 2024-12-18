@@ -48,6 +48,12 @@ export interface MonthlyCalendarEventProps extends StyledDivProps {
      * @default 'var(--text-action2)'
      */
     eventTitleColor?: string;
+
+    /**
+     * Whether the calendar event is active.
+     * @default false
+     */
+    isActive?: boolean;
 }
 
 export interface StyledMonthlyCalendarEventTextProps extends StyledDivProps {

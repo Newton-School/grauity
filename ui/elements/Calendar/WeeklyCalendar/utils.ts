@@ -1,4 +1,5 @@
-import { CalendarEvent, CalendarEventExtended } from './types';
+import { CalendarEvent } from '../types';
+import { CalendarEventExtended } from './types';
 
 export const getCurrentTimeStickPosition = (): number => {
     const current = new Date();
