@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 
 import { Icon } from '../../Icon';
+import { CalendarEventRequiredProps } from '../types';
 import {
     StyledOverflowIndicator,
     StyledOverflowIndicatorText,
@@ -8,7 +9,7 @@ import {
 import OverflowEventsList from './OverflowEventsList';
 import { OverflowIndicatorProps } from './types';
 
-function OverflowIndicator<T extends { start: Date; end: Date }>(
+function OverflowIndicator<T extends CalendarEventRequiredProps>(
     props: OverflowIndicatorProps<T>
 ) {
     const { text, events, eventRenderer } = props;

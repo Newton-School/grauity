@@ -1,11 +1,12 @@
 import React from 'react';
 
 import PopOver from '../../PopOver';
+import { CalendarEventRequiredProps } from '../types';
 import DateCircle from './DateCircle';
 import { StyledOverflowEventsListContainer } from './MonthlyCalendar.styles';
 import { OverflowEventsListProps } from './types';
 
-function OverflowEventsList<T extends { start: Date; end: Date }>(
+function OverflowEventsList<T extends CalendarEventRequiredProps>(
     props: OverflowEventsListProps<T>
 ) {
     const { isOpen, setIsOpen, triggerRef, events, eventRenderer } = props;
