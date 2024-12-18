@@ -44,16 +44,36 @@ export interface WeeklyCalendarProps<T = {}> {
     shouldShowWeekControls?: boolean;
 
     /**
-     * The offset for the week relative to current week, where 0 represents the current week.
-     * @default 0
+     * [DEPRECATED] The offset for the week relative to current week, where 0 represents the current week.
+     *
+     * @default undefined
+     * @deprecated Use `date` prop instead.
+     * @see date
      */
     weekOffset?: number;
 
     /**
-     * A callback function that is called when the week changes.
+     * [DEPRECATED] A callback function that is called when the week changes.
+     *
+     * @deprecated Use `onDateChange` instead.
+     * @see onDateChange
      * @param weekOffset - The new week offset.
      */
     onWeekChange?: (weekOffset: number) => void;
+
+    /**
+     * The date to show in the calendar.
+     *
+     * @default new Date()
+     */
+    date?: Date;
+
+    /**
+     * A callback function that is called when the date changes.
+     *
+     * @param date - The new date.
+     */
+    onDateChange?: (date: Date) => void;
 
     /**
      * A boolean indicating whether to show the placeholder for loading state.

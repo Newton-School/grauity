@@ -12,8 +12,8 @@ const defaultProps: MonthlyCalendarProps<any> = {
     events: [],
     eventRenderer: renderEvent,
     shouldShowMonthControls: true,
-    monthOffset: 0,
-    onMonthChange: jest.fn(),
+    date: new Date(),
+    onDateChange: jest.fn(),
     loading: false,
     renderDayItem: null,
 };
@@ -37,28 +37,25 @@ describe('MonthlyCalendar', () => {
         expect(screen.getByText('Today').parentElement).toBeDisabled();
     });
 
-    it('calls onWeekChange with -1 when "Previous" is clicked', async () => {
+    it('should call onDateChange when clicking on the next month button', async () => {
         render(<MonthlyCalendar {...defaultProps} />);
-
         fireEvent.click(screen.getAllByLabelText(/Go to month/i)[0]);
         await waitFor(() => {
-            expect(defaultProps.onMonthChange).toHaveBeenCalledWith(-1);
+            expect(defaultProps.onDateChange).toHaveBeenCalled();
         });
     });
-
-    it('calls onWeekChange with 1 when "Next" is clicked', async () => {
+    it('should call onDateChange when clicking on the previous month button', async () => {
         render(<MonthlyCalendar {...defaultProps} />);
         fireEvent.click(screen.getAllByLabelText(/Go to month/i)[1]);
         await waitFor(() => {
-            expect(defaultProps.onMonthChange).toHaveBeenCalledWith(1);
+            expect(defaultProps.onDateChange).toHaveBeenCalled();
         });
     });
-
-    it('calls onWeekChange with 0 when "Today" is clicked', async () => {
+    it('should call onDateChange when clicking on the today button', async () => {
         render(<MonthlyCalendar {...defaultProps} />);
         fireEvent.click(screen.getByText('Today'));
         await waitFor(() => {
-            expect(defaultProps.onMonthChange).toHaveBeenCalledWith(0);
+            expect(defaultProps.onDateChange).toHaveBeenCalled();
         });
     });
 
