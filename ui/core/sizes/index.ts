@@ -1,4 +1,4 @@
-export type { grauitySizeName, grauityIconSizeName } from './sizeTypes';
+export type { grauityIconSizeName, grauitySizeName } from './sizeTypes';
 
 export enum GRAUITY_SIZE {
     FOUR = '4',

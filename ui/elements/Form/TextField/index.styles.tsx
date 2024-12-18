@@ -12,7 +12,7 @@ export const StyledTextInputFieldContainer = styled.div`
 `;
 
 export const StyledTextFieldContainer = styled.div<StyledDivProps>`
-        border-radius: 8px;
+    border-radius: 8px;
     border: 1px solid var(--border-neutral, #e1e5ea);
     background: var(--bg-primary, #fff);
     font-size: 14px;
@@ -66,28 +66,4 @@ export const StyledTextField = styled.input<StyledInputProps>`
     &:focus-visible {
         outline: none;
     } */
-`;
-
-export const StyledTextInputAreaField = styled.textarea`
-    border-radius: 8px;
-    border: 1px solid var(--border-neutral, #e1e5ea);
-    background: var(--bg-primary, #fff);
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 0.1px;
-    color: var(--text-primary, #16191d);
-    padding: 8px 12px;
-    ::placeholder {
-        color: var(--text-disabled, #8c95a6);
-    }
-    :active {
-        border: 1px solid black;
-        background: var(--bg-primary, #fff);
-    }
-    caret-color: var(--text-brand, #0673f9);
-    :disabled {
-        background: var(--bg-disabled, #f5f6f7);
-        color: var(--text-disabled, #8c95a6);
-        cursor: not-allowed;
-    }
 `;
