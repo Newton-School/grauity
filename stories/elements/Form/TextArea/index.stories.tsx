@@ -1,10 +1,9 @@
 import React from 'react';
-import TextField from 'ui/elements/Form/TextField/TextField';
-import { TextFieldProps } from 'ui/elements/Form/TextField/types';
+import TextArea, { TextAreaProps } from 'ui/elements/Form/TextArea';
 
 export default {
-    title: 'Elements/Form/TextField',
-    component: TextField,
+    title: 'Elements/Form/TextArea',
+    component: TextArea,
     argTypes: {
         name: { control: 'text' },
         value: { control: 'text' },
@@ -21,17 +20,20 @@ export default {
         onChange: { action: 'onChange' },
         onClick: { action: 'onClick' },
         onBlur: { action: 'onBlur' },
+        readOnly: { control: 'boolean' },
+        cols: { control: 'number' },
+        rows: { control: 'number' },
     },
 };
 
-const Template = (args: TextFieldProps) => {
+const Template = (args: TextAreaProps) => {
     const [value, setValue] = React.useState('');
 
-    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setValue(event.target.value);
     };
 
-    return <TextField {...args} value={value} onChange={onChange} />;
+    return <TextArea {...args} value={value} onChange={onChange} />;
 };
 
 export const Default = Template.bind({});
@@ -48,6 +50,13 @@ Default.args = {
     isDisabled: false,
     autoFocus: false,
     autoComplete: 'on',
+    size: 'medium',
+    cols: 4,
+    rows: 3,
+    onChange: () => {},
+    onClick: () => {},
+    onBlur: () => {},
+    readOnly: false,
 };
 
 export const WithErrorMessage = Template.bind({});
