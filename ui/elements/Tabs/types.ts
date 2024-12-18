@@ -39,6 +39,7 @@ export interface TabProps {
 
     /**
      * The index of the tab that should be initially focused.
+     * @default 0
      */
     initialActiveTab?: number;
 
