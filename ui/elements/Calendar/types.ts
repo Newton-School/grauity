@@ -69,7 +69,7 @@ export interface CalendarProps<T> {
      * @param monthOffset - The new month offset value
      * @default null
      */
-    onDateChange?: (offset: number) => void;
+    onDateChange?: (date: Date) => void;
 
     /**
      * Whether the calendar is in a loading state.

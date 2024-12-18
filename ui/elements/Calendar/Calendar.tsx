@@ -5,17 +5,45 @@ import { CalendarProps } from './types';
 import WeeklyCalendar from './WeeklyCalendar';
 
 function Calendar(props: CalendarProps<any>) {
+    const {
+        events,
+        eventRenderer,
+        view,
+        // onViewChange,
+        shouldShowControls,
+        header,
+        date,
+        onDateChange,
+        loading,
+        weeklyCalendarProps,
+        monthtlyCalendarProps,
+    } = props;
+
     switch (true) {
-        case props?.view === 'monthly':
-            return <MonthlyCalendar {...props} monthOffset={props?.offset} />;
-        case props?.view === 'weekly':
+        case view === 'monthly':
+            return (
+                <MonthlyCalendar
+                    events={events}
+                    eventRenderer={(item) => eventRenderer(item, 'monthly')}
+                    shouldShowMonthControls={shouldShowControls}
+                    header={header}
+                    date={date}
+                    onDateChange={onDateChange}
+                    loading={loading}
+                    {...monthtlyCalendarProps}
+                />
+            );
+        case view === 'weekly':
             return (
                 <WeeklyCalendar
-                    {...props}
-                    {...props?.weeklyCalendarProps}
-                    eventRenderer={(event) =>
-                        props?.eventRenderer(event, 'weekly')
-                    }
+                    events={events}
+                    eventRenderer={(item) => eventRenderer(item, 'weekly')}
+                    shouldShowWeekControls={shouldShowControls}
+                    header={header}
+                    date={date}
+                    onDateChange={onDateChange}
+                    loading={loading}
+                    {...weeklyCalendarProps}
                 />
             );
         default:
