@@ -8,9 +8,17 @@ import {
 import { TabProps } from './types';
 
 function Tabs(props: TabProps) {
-    const { tabItems, backgroundColor, onTabFocusChange = () => {} } = props;
+    const {
+        tabItems = [],
+        backgroundColor = null,
+        onTabFocusChange = () => {},
+        initialActiveTab = 0,
+        focusBackgroundColor = null,
+        focusColor = null,
+        color = null,
+    } = props;
 
-    const [activeTab, setActiveTab] = useState(0);
+    const [activeTab, setActiveTab] = useState(initialActiveTab);
 
     const handleItemClick = (activeTabIndex: number) => {
         setActiveTab(activeTabIndex);
@@ -22,26 +30,21 @@ function Tabs(props: TabProps) {
 
     return (
         <StyledTabContainer backgroundColor={backgroundColor}>
-            <StyledTabItemContainer
-                onClick={() => handleItemClick(0)}
-                isActive={activeTab === 0}
-            >
-                {typeof tabItems[0] === 'string' ? (
-                    <StyledTabItemText>{tabItems[0]}</StyledTabItemText>
-                ) : (
-                    tabItems[0]
-                )}
-            </StyledTabItemContainer>
-            <StyledTabItemContainer
-                onClick={() => handleItemClick(1)}
-                isActive={activeTab === 1}
-            >
-                {typeof tabItems[1] === 'string' ? (
-                    <StyledTabItemText>{tabItems[1]}</StyledTabItemText>
-                ) : (
-                    tabItems[1]
-                )}
-            </StyledTabItemContainer>
+            {tabItems?.map((item, idx) => (
+                <StyledTabItemContainer
+                    onClick={() => handleItemClick(idx)}
+                    isActive={activeTab === idx}
+                    color={color}
+                    focusBackgroundColor={focusBackgroundColor}
+                    focusColor={focusColor}
+                >
+                    {typeof item === 'string' ? (
+                        <StyledTabItemText>{item}</StyledTabItemText>
+                    ) : (
+                        item
+                    )}
+                </StyledTabItemContainer>
+            ))}
         </StyledTabContainer>
     );
 }

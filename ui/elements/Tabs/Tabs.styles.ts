@@ -1,8 +1,12 @@
 import styled, { css } from 'styled-components';
 
-import { TabContainerProps, TabItemContainerProps } from './types';
+import {
+    StyledTabContainerProps,
+    StyledTabItemContainerProps,
+    StyledTextProps,
+} from './types';
 
-export const StyledTabContainer = styled.div<TabContainerProps>`
+export const StyledTabContainer = styled.div<StyledTabContainerProps>`
     box-sizing: border-box;
     display: flex;
     padding: 4px;
@@ -22,7 +26,7 @@ export const StyledTabContainer = styled.div<TabContainerProps>`
         `}
 `;
 
-export const StyledTabItemContainer = styled.div<TabItemContainerProps>`
+export const StyledTabItemContainer = styled.div<StyledTabItemContainerProps>`
     box-sizing: border-box;
     display: flex;
     height: 100%;
@@ -33,24 +37,36 @@ export const StyledTabItemContainer = styled.div<TabItemContainerProps>`
     cursor: pointer;
     flex: 1;
 
-    ${({ isActive }) =>
-        isActive &&
-        css`
-            background: var(--bg-primary, #fff);
-            color: var(--text-brand, #0673f9);
-        `}
-
     ${({ backgroundColor }) =>
         backgroundColor &&
         css`
             background: ${backgroundColor};
         `}
+
+    ${({ color }) =>
+        color &&
+        css`
+            color: ${color};
+        `}
+
+    ${({ isActive, focusColor, focusBackgroundColor }) =>
+        isActive &&
+        css`
+            background: ${focusBackgroundColor || 'var(--bg-primary, #fff)'};
+            color: ${focusColor || 'var(--text-brand, #0673f9)'};
+        `}
 `;
 
-export const StyledTabItemText = styled.span`
+export const StyledTabItemText = styled.span<StyledTextProps>`
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: 22.4px;
     letter-spacing: 0.014px;
+
+    ${({ color }) =>
+        color &&
+        css`
+            color: ${color};
+        `}
 `;

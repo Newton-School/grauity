@@ -2,19 +2,58 @@ import React from 'react';
 
 import { StyledDivProps } from '../../../common/types';
 
-export interface TabContainerProps extends StyledDivProps {
+export interface StyledTabContainerProps extends StyledDivProps {
     backgroundColor?: string;
 }
 
-export interface TabItemContainerProps
+export interface StyledTextProps extends StyledDivProps {
+    color?: string;
+}
+
+export interface StyledTabItemContainerProps
     extends React.HTMLAttributes<HTMLDivElement> {
     isActive?: boolean;
     backgroundColor?: string;
-    children: React.ReactNode;
+    focusColor?: string;
+    color?: string;
+    focusBackgroundColor?: string;
 }
 
 export interface TabProps {
-    tabItems: [React.ReactNode, React.ReactNode];
+    /**
+     * An array of tab items to be rendered.
+     * Each item can be a React node.
+     */
+    tabItems: React.ReactNode[];
+
+    /**
+     * Callback function that is called when the focused tab changes.
+     * @param tabIndex - The index of the newly focused tab.
+     */
     onTabFocusChange?: (tabIndex: number) => void;
+
+    /**
+     * Background color for the tab component.
+     */
     backgroundColor?: string;
+
+    /**
+     * The index of the tab that should be initially focused.
+     */
+    initialActiveTab?: number;
+
+    /**
+     * Focus tab color
+     */
+    focusBackgroundColor?: string;
+
+    /**
+     * Focus tab text color
+     */
+    focusColor?: string;
+
+    /**
+     *  Default Color
+     */
+    color?: string;
 }
