@@ -35,7 +35,7 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
         >
             <StyledOverflowEventsListContainer>
                 <DateCircle date={cellDate} />
-                {events.map((event) => eventRenderer(event))}
+                {events.map((event) => eventRenderer(event, 'monthly'))}
             </StyledOverflowEventsListContainer>
         </PopOver>
     );

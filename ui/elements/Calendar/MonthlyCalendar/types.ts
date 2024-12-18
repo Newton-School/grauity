@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { StyledDivProps } from '../../../../common/types';
-import { CalendarEvent, CalendarEventRequiredProps } from '../types';
+import {
+    CalendarEvent,
+    CalendarEventRequiredProps,
+    CalendarView,
+} from '../types';
 
 export interface MonthlyCalendarProps<T = {}> {
     /**
@@ -13,7 +17,10 @@ export interface MonthlyCalendarProps<T = {}> {
      * Function to render each event in the calendar.
      * @param item - The event item to render
      */
-    eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
+    eventRenderer: (
+        item: CalendarEvent<T>,
+        view: CalendarView
+    ) => React.ReactNode;
 
     /**
      * Optional alternative render function for events.
@@ -76,7 +83,10 @@ export interface StyledDateTextProps
 export interface OverflowIndicatorProps<T extends CalendarEventRequiredProps> {
     text: string;
     events: CalendarEvent<T>[];
-    eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
+    eventRenderer: (
+        item: CalendarEvent<T>,
+        view: CalendarView
+    ) => React.ReactNode;
 }
 
 export interface GridContainerRows
@@ -87,7 +97,10 @@ export interface MonthlyCalendarGridItemProps<T> {
     cellDate: Date;
     monthOffset: number;
     events: CalendarEvent<T>[];
-    eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
+    eventRenderer: (
+        item: CalendarEvent<T>,
+        view: CalendarView
+    ) => React.ReactNode;
     renderDayItem?: (item: CalendarEvent<T>) => React.ReactNode;
 }
 
@@ -110,5 +123,8 @@ export interface OverflowEventsListProps<T> {
     isOpen: boolean;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
     events: CalendarEvent<T>[];
-    eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
+    eventRenderer: (
+        item: CalendarEvent<T>,
+        view: CalendarView
+    ) => React.ReactNode;
 }

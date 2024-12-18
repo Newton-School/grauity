@@ -60,18 +60,16 @@ export interface CalendarProps<T> {
     /**
      * Number of months to offset from the current month.
      * Positive numbers move forward, negative numbers move backward.
-     * @default 0
+     * @default new Date()
      */
-    // monthOffset: number;
-    offset: number;
+    date: Date;
 
     /**
      * Callback fired when the month changes.
      * @param monthOffset - The new month offset value
      * @default null
      */
-    // onMonthChange?: (monthOffset: number) => void;
-    onOffsetChange?: (offset: number) => void;
+    onDateChange?: (offset: number) => void;
 
     /**
      * Whether the calendar is in a loading state.
