@@ -6,7 +6,8 @@ export const StyledTabContainer = styled.div<TabContainerProps>`
     display: flex;
     padding: 4px;
     align-items: center;
-    width: fit-content;
+    width: 100%;
+    height: 100%;
 
     border-radius: 8px;
     border: 1px solid var(--border-neutral, #e1e5ea);
@@ -27,6 +28,7 @@ export const StyledTabItemContainer = styled.div<TabItemContainerProps>`
     align-items: center;
     border-radius: 4px;
     cursor: pointer;
+    flex: 1;
 
     ${({ isActive }) =>
         isActive &&

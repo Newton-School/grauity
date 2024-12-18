@@ -9,7 +9,8 @@ export default {
         (Story: StoryFn) => (
             <div
                 style={{
-                    height: '16px',
+                    height: '100px',
+                    width: '400px',
                 }}
             >
                 <Story />
