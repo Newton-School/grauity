@@ -17,10 +17,10 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         monthOffset: propsMonthOffset = 0,
         loading = false,
         eventRenderer,
-        header,
-        shouldShowMonthControls,
-        onMonthChange,
-        events,
+        header = null,
+        shouldShowMonthControls = true,
+        onMonthChange = () => {},
+        events = [],
         renderDayItem,
     } = props;
     const [monthOffset, setMonthOffset] = useState(propsMonthOffset);
