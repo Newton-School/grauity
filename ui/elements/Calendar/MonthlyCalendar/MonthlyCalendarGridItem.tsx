@@ -58,7 +58,7 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
         >
             <DateCircle date={cellDate} />
             {eventsToRender.map((event) => (
-                <>{eventRenderer(event, 'monthly')}</>
+                <>{eventRenderer(event)}</>
             ))}
             {numberOfEventsToRemove ? (
                 <OverflowIndicator
