@@ -11,19 +11,20 @@ import {
 import MonthlyCalendarGridItem from './MonthlyCalendarGridItem';
 import MonthlyControls from './MonthlyControls';
 import { MonthlyCalendarProps } from './types';
+import { getMonthOffsetByDate } from './utils';
 
 function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
     const {
-        monthOffset: propsMonthOffset = 0,
+        date = new Date(),
+        onDateChange = () => {},
         loading = false,
         eventRenderer,
         header = null,
         shouldShowMonthControls = true,
-        onMonthChange = () => {},
         events = [],
         renderDayItem,
     } = props;
-    const [monthOffset, setMonthOffset] = useState(propsMonthOffset);
+    const [monthOffset, setMonthOffset] = useState(getMonthOffsetByDate(date));
     const currentMonth = new Date().getMonth() + monthOffset;
     const currentYear = new Date().getFullYear();
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -41,24 +42,24 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
     const datesInGrid = [];
     // Append dates from previous month
     for (let i = offsetOfFirstDayFromSunday - 1; i >= 0; i -= 1) {
-        const date = new Date(currentYear, currentMonth, -i);
-        datesInGrid.push(date);
+        const previousMonthDate = new Date(currentYear, currentMonth, -i);
+        datesInGrid.push(previousMonthDate);
     }
 
     // Append dates from current month
     for (let i = 1; i <= daysInMonth; i += 1) {
-        const date = new Date(currentYear, currentMonth, i);
-        datesInGrid.push(date);
+        const currentMonthDate = new Date(currentYear, currentMonth, i);
+        datesInGrid.push(currentMonthDate);
     }
 
     // Append dates from next month
     for (let i = 0; i < offsetOfLastDayFromSaturday; i += 1) {
-        const date = new Date(currentYear, currentMonth + 1, i + 1);
-        datesInGrid.push(date);
+        const nextMonthDate = new Date(currentYear, currentMonth + 1, i + 1);
+        datesInGrid.push(nextMonthDate);
     }
 
     useEffect(() => {
-        onMonthChange(monthOffset);
+        onDateChange(new Date(currentYear, currentMonth));
     }, [monthOffset]);
 
     return (

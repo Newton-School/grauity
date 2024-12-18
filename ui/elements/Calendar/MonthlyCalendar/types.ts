@@ -35,18 +35,18 @@ export interface MonthlyCalendarProps<T = {}> {
     header?: React.ReactNode;
 
     /**
-     * Number of months to offset from the current month.
-     * Positive numbers move forward, negative numbers move backward.
-     * @default 0
+     * The date to show in the calendar.
+     *
+     * @default new Date()
      */
-    monthOffset: number;
+    date?: Date;
 
     /**
-     * Callback fired when the month changes.
-     * @param monthOffset - The new month offset value
-     * @default null
+     * A callback function that is called when the date changes.
+     *
+     * @param date - The new date.
      */
-    onMonthChange?: (monthOffset: number) => void;
+    onDateChange?: (date: Date) => void;
 
     /**
      * Whether the calendar is in a loading state.

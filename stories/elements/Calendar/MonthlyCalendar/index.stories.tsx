@@ -147,13 +147,13 @@ export default {
             source: {
                 code: `
                     <MonthlyCalendar
-                        monthOffset={0}
+                        date: new Date(),
+                        onDateChange: () => {},
                         events={[]}
                         eventRenderer={() => <div>Event</div>}
                         renderDayItem={null}
                         shouldShowMonthControls
                         header={null}
-                        onMonthChange={() => {}}
                         loading={false}
                     />
                 `,
@@ -169,7 +169,8 @@ const Template = (args: MonthlyCalendarProps<any>) => (
 export const Component = Template.bind({});
 
 const defaultArgs: MonthlyCalendarProps<any> = {
-    monthOffset: 0,
+    date: new Date(),
+    onDateChange: () => {},
     events: EVENTS_DATA,
     eventRenderer: (event: CalendarEvent) => (
         <MonthlyCalendarEventItem
@@ -184,7 +185,6 @@ const defaultArgs: MonthlyCalendarProps<any> = {
     ),
     shouldShowMonthControls: true,
     header: null,
-    onMonthChange: () => {},
     loading: false,
     renderDayItem: null,
 };
