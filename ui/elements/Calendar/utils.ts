@@ -2,6 +2,7 @@ export const cloneDate = (date: Date): Date => new Date(date.getTime());
 
 export const getCurrentWeek = (): Date[] => {
     const current = new Date();
+    current.setHours(0, 0, 0, 0);
     const week: Date[] = [];
     for (let i = 0; i < 7; i += 1) {
         const first = current.getDate() - current.getDay() + i;

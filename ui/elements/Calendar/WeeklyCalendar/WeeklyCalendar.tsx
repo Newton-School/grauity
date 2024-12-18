@@ -16,6 +16,7 @@ import { CALENDAR_BLOCK_HEIGHT } from './constants';
 import EventRenderer from './EventRenderer';
 import { CalendarEventRecordExtended, WeeklyCalendarProps } from './types';
 import {
+    calculateWeekOffsetFromDateAndInitialOffset,
     getCurrentTimeStickPosition,
     getEventBlockHeight,
     getEventBlockStartPosition,
@@ -44,14 +45,18 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         eventRenderer,
         header,
         shouldShowWeekControls = true,
-        weekOffset: initialWeekOffset = 0,
+        weekOffset: initialWeekOffset = null,
         onWeekChange = () => {},
+        date = null,
+        onDateChange = () => {},
         loading = false,
         defaultScrollHour = 8.5,
         shouldScrollToFirstEvent = true,
     } = props;
 
-    const [weekOffset, setWeekOffset] = useState(initialWeekOffset);
+    const [weekOffset, setWeekOffset] = useState(
+        calculateWeekOffsetFromDateAndInitialOffset(initialWeekOffset, date)
+    );
     const [calendarEvents, setCalendarEvents] = useState<
         CalendarEventRecordExtended<T>
     >({});
@@ -78,11 +83,14 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
     }, []);
 
     useEffect(() => {
-        setWeekOffset(initialWeekOffset);
+        setWeekOffset(
+            calculateWeekOffsetFromDateAndInitialOffset(initialWeekOffset, date)
+        );
     }, [initialWeekOffset]);
 
     useEffect(() => {
         onWeekChange(weekOffset);
+        onDateChange(currentWeek[0]);
     }, [weekOffset]);
 
     useEffect(() => {
