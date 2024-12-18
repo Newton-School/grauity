@@ -119,6 +119,12 @@ export {
     type WeeklyCalendarProps,
 } from './elements/Calendar/WeeklyCalendar';
 
+// NSMonthlyCalendar
+export {
+    type MonthlyCalendarProps,
+    default as NSMonthlyCalendar,
+} from './elements/Calendar/MonthlyCalendar';
+
 // NSOverlay
 export { default as NSOverlay, type OverlayProps } from './elements/Overlay';
 

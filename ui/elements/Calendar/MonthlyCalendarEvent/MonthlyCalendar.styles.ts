@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import {
     MonthlyCalendarEventProps,
@@ -13,10 +13,19 @@ export const StyledMonthlyCalendarEvent = styled.div<MonthlyCalendarEventProps>`
     align-items: center;
     border-radius: ${({ borderRadius }) => borderRadius || '4px'};
     background-color: ${({ backgroundColor }) =>
-        backgroundColor || 'var(--bg-brand-action)'};
+        backgroundColor || 'var(--bg-action-brand)'};
     width: ${({ width }) => width || '100%'};
     height: ${({ height }) => height || '16px'};
     padding: 2px;
+
+    ${({ isActive, width, height }) =>
+        isActive &&
+        css`
+            border: 2px solid var(--text-action, #fff);
+            box-shadow: 0px 4px 32px var(--spacing-0px, 0px) rgba(0, 0, 0, 0.32);
+            width: calc(${width} + 4px);
+            height: calc(${height} + 4px);
+        `}
 `;
 
 export const StyledMonthlyCalendarEventText = styled.p<StyledMonthlyCalendarEventTextProps>`

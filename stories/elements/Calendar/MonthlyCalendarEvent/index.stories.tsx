@@ -35,6 +35,7 @@ const defaultArgs: MonthlyCalendarEventProps = {
     borderRadius: '4px',
     width: '100%',
     height: '100%',
+    isActive: false,
 };
 
 export const Component = Template.bind({});
