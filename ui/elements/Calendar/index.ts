@@ -15,3 +15,7 @@ export type { MonthlyCalendarEventProps } from './MonthlyCalendarEvent/types';
 // Monthly Calendar
 export { default as MonthlyCalendar } from './MonthlyCalendar/MonthlyCalendar';
 export type { MonthlyCalendarProps } from './MonthlyCalendar/types';
+
+// Calendar
+export { default as Calendar } from './Calendar';
+export type { CalendarProps } from './types';

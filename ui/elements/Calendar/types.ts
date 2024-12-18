@@ -24,12 +24,12 @@ export interface CalendarProps<T> {
      * Calendar view to display. Only supports monthly and weekly
      * @default weekly
      */
-    view: CalendarView;
+    view?: CalendarView;
 
     /**
      * Calendar view callback when viewtype changes
      */
-    onViewChange: (viewType: CalendarView) => void;
+    onViewChange?: (viewType: CalendarView) => void;
 
     /**
      * Array of events to display in the calendar.

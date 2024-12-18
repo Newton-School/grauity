@@ -1,9 +1,11 @@
 /* eslint-disable indent */
 import React, { useEffect, useRef, useState } from 'react';
+import Tabs from 'ui/elements/Tabs';
 
 import { getScrollableParent } from '../../../../common/utils';
 import Button, { IconButton } from '../../Button';
 import Placeholder from '../../Placeholder';
+import { CalendarView } from '../types';
 import {
     checkIsToday,
     getDateFullLabel,
@@ -39,6 +41,8 @@ import {
     StyledEventWrapper,
 } from './WeeklyCalendar.styles';
 
+const TAB_ITEMS: CalendarView[] = ['monthly', 'weekly'];
+
 export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
     const {
         events = [],
@@ -52,6 +56,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         loading = false,
         defaultScrollHour = 8.5,
         shouldScrollToFirstEvent = true,
+        onViewChange = () => {},
     } = props;
 
     const [weekOffset, setWeekOffset] = useState(
@@ -240,6 +245,13 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                             >
                                 Today
                             </Button>
+                            <Tabs
+                                tabItems={TAB_ITEMS}
+                                onTabFocusChange={(idx) =>
+                                    onViewChange(TAB_ITEMS[idx])
+                                }
+                                initialActiveTab={1}
+                            />
                         </StyledCalendarMonthButton>
                     )}
                 </StyledCalendarExternalHeaderContainer>

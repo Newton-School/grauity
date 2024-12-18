@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { StyledDivProps } from '../../../../common/types';
-import { CalendarEvent, CalendarEventRequiredProps } from '../types';
+import {
+    CalendarEvent,
+    CalendarEventRequiredProps,
+    CalendarView,
+} from '../types';
 
 export interface MonthlyCalendarProps<T = {}> {
     /**
@@ -47,6 +51,11 @@ export interface MonthlyCalendarProps<T = {}> {
      * @param date - The new date.
      */
     onDateChange?: (date: Date) => void;
+
+    /**
+     * Expose the change of calendar type from weekly to monthly
+     */
+    onViewChange?: (viewType: CalendarView) => void;
 
     /**
      * Whether the calendar is in a loading state.
@@ -103,6 +112,7 @@ export interface MonthlyControlsProps {
     loading: boolean;
     monthOffset: number;
     setMonthOffset: React.Dispatch<React.SetStateAction<number>>;
+    onViewChange: (viewType: CalendarView) => void;
 }
 
 export interface OverflowEventsListProps<T> {

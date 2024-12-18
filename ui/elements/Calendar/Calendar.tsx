@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import MonthlyCalendar from './MonthlyCalendar';
 import { CalendarProps } from './types';
@@ -9,7 +9,7 @@ function Calendar(props: CalendarProps<any>) {
         events,
         eventRenderer,
         view,
-        // onViewChange,
+        onViewChange = () => {},
         shouldShowControls,
         header,
         date,
@@ -19,8 +19,14 @@ function Calendar(props: CalendarProps<any>) {
         monthtlyCalendarProps,
     } = props;
 
+    const [viewType, setViewType] = useState(view);
+
+    useEffect(() => {
+        onViewChange(viewType);
+    }, [viewType]);
+
     switch (true) {
-        case view === 'monthly':
+        case viewType === 'monthly':
             return (
                 <MonthlyCalendar
                     events={events}
@@ -30,10 +36,13 @@ function Calendar(props: CalendarProps<any>) {
                     date={date}
                     onDateChange={onDateChange}
                     loading={loading}
+                    onViewChange={(currentView) => {
+                        setViewType(currentView);
+                    }}
                     {...monthtlyCalendarProps}
                 />
             );
-        case view === 'weekly':
+        case viewType === 'weekly':
             return (
                 <WeeklyCalendar
                     events={events}
@@ -43,6 +52,9 @@ function Calendar(props: CalendarProps<any>) {
                     date={date}
                     onDateChange={onDateChange}
                     loading={loading}
+                    onViewChange={(currentView) => {
+                        setViewType(currentView);
+                    }}
                     {...weeklyCalendarProps}
                 />
             );
@@ -52,3 +64,4 @@ function Calendar(props: CalendarProps<any>) {
 }
 
 export default Calendar;
+export { CalendarProps };

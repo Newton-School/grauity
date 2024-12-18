@@ -22,6 +22,7 @@ function Tabs(props: TabProps) {
 
     const handleItemClick = (activeTabIndex: number) => {
         setActiveTab(activeTabIndex);
+        onTabFocusChange(activeTab);
     };
 
     useEffect(() => {
