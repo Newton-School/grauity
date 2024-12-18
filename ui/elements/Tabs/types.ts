@@ -15,6 +15,6 @@ export interface TabItemContainerProps
 
 export interface TabProps {
     tabItems: [React.ReactNode, React.ReactNode];
-    onTabItemClick?: (tabIndex: number) => void;
+    onTabFocusChange?: (tabIndex: number) => void;
     backgroundColor?: string;
 }

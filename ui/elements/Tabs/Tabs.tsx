@@ -8,7 +8,7 @@ import {
 import { TabProps } from './types';
 
 function Tabs(props: TabProps) {
-    const { tabItems, backgroundColor, onTabItemClick = () => {} } = props;
+    const { tabItems, backgroundColor, onTabFocusChange = () => {} } = props;
 
     const [activeTab, setActiveTab] = useState(0);
 
@@ -17,7 +17,7 @@ function Tabs(props: TabProps) {
     };
 
     useEffect(() => {
-        onTabItemClick(activeTab);
+        onTabFocusChange(activeTab);
     }, [activeTab]);
 
     return (
