@@ -1,15 +1,15 @@
 import React from 'react';
 import { MonthlyCalendar, MonthlyCalendarProps } from 'ui/elements/Calendar';
 import { EVENT_HEIGHT } from 'ui/elements/Calendar/MonthlyCalendar/constants';
-import { MonthlyCalendarEvent } from 'ui/elements/Calendar/MonthlyCalendar/types';
 import MonthlyCalendarEventItem from 'ui/elements/Calendar/MonthlyCalendarEvent';
+import { CalendarEvent } from 'ui/elements/Calendar/types';
 
 import withRemovePadding from '../../../decorators/withRemovePadding';
 
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth();
 
-const EVENTS_DATA: MonthlyCalendarEvent[] = [
+const EVENTS_DATA: CalendarEvent[] = [
     // Day 1 events
     {
         id: '1-1',
@@ -171,7 +171,7 @@ export const Component = Template.bind({});
 const defaultArgs: MonthlyCalendarProps<any> = {
     monthOffset: 0,
     events: EVENTS_DATA,
-    eventRenderer: (event: MonthlyCalendarEvent) => (
+    eventRenderer: (event: CalendarEvent) => (
         <MonthlyCalendarEventItem
             key={event.id}
             eventTime={event.start}

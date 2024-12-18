@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import { CalendarEventRequiredProps } from '../types';
 import { DAYS_IN_WEEK } from './constants';
 import GridHeaderRow from './GridHeaderRow';
 import Loading from './Loading';
@@ -13,9 +12,7 @@ import MonthlyCalendarGridItem from './MonthlyCalendarGridItem';
 import MonthlyControls from './MonthlyControls';
 import { MonthlyCalendarProps } from './types';
 
-function MonthlyCalendar<T extends CalendarEventRequiredProps>(
-    props: MonthlyCalendarProps<T>
-) {
+function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
     const {
         monthOffset: propsMonthOffset = 0,
         loading = false,

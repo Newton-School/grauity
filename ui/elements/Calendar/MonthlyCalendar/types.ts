@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StyledDivProps } from '../../../../common/types';
-import { CalendarEventRequiredProps } from '../types';
+import { CalendarEvent, CalendarEventRequiredProps } from '../types';
 
 /**
  * Props for the MonthlyCalendar component.
@@ -10,25 +10,24 @@ import { CalendarEventRequiredProps } from '../types';
  * @extends StyledDivProps
  * @template T The type of event objects to be displayed
  */
-export interface MonthlyCalendarProps<T extends CalendarEventRequiredProps>
-    extends StyledDivProps {
+export interface MonthlyCalendarProps<T = {}> {
     /**
      * Array of events to display in the calendar.
      */
-    events: T[];
+    events: CalendarEvent<T>[];
 
     /**
      * Function to render each event in the calendar.
      * @param item - The event item to render
      */
-    eventRenderer: (item: T) => React.ReactNode;
+    eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
 
     /**
      * Optional alternative render function for events.
      * @param item - The event item to render
      * @default null
      */
-    renderDayItem?: (item: T) => React.ReactNode;
+    renderDayItem?: (item: CalendarEvent<T>) => React.ReactNode;
 
     /**
      * Whether to show month navigation controls.
@@ -81,17 +80,10 @@ export interface StyledDateTextProps
     textColor?: string;
 }
 
-export interface MonthlyCalendarEvent {
-    id: string;
-    title: string;
-    start: Date;
-    end: Date;
-}
-
 export interface OverflowIndicatorProps<T extends CalendarEventRequiredProps> {
     text: string;
-    events: T[];
-    eventRenderer: (item: T) => React.ReactNode;
+    events: CalendarEvent<T>[];
+    eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
 }
 
 export interface GridContainerRows
@@ -101,9 +93,9 @@ export interface GridContainerRows
 export interface MonthlyCalendarGridItemProps<T> {
     cellDate: Date;
     monthOffset: number;
-    events: T[];
-    eventRenderer: (item: T) => React.ReactNode;
-    renderDayItem?: (item: T) => React.ReactNode;
+    events: CalendarEvent<T>[];
+    eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
+    renderDayItem?: (item: CalendarEvent<T>) => React.ReactNode;
 }
 
 export interface StyledMonthlyCalendarGridItemProps extends StyledDivProps {
@@ -124,6 +116,6 @@ export interface OverflowEventsListProps<T> {
     triggerRef: React.RefObject<HTMLDivElement>;
     isOpen: boolean;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    events: T[];
-    eventRenderer: (item: T) => React.ReactNode;
+    events: CalendarEvent<T>[];
+    eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
 }

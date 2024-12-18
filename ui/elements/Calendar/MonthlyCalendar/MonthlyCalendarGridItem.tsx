@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { CalendarEventRequiredProps } from '../types';
 import { getDateFullLabel } from '../utils';
 import DateCircle from './DateCircle';
 import { StyledMonthlyCalendarGridItem } from './MonthlyCalendar.styles';
@@ -8,9 +7,7 @@ import OverflowIndicator from './OverflowIndicator';
 import { MonthlyCalendarGridItemProps } from './types';
 import { numberOfElementsOverflowing } from './utils';
 
-function MonthlyCalendarGridItem<T extends CalendarEventRequiredProps>(
-    props: MonthlyCalendarGridItemProps<T>
-) {
+function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
     const { cellDate, monthOffset, events, eventRenderer, renderDayItem } =
         props;
     const [numberOfEventsToRemove, setNumberOfEventsToRemove] = useState(0);

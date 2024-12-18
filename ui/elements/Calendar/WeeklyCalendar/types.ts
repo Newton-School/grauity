@@ -1,17 +1,7 @@
 import React from 'react';
 
 import { StyledDivProps } from '../../../../common/types';
-
-export type EventRendererFn<T> = (event: CalendarEvent<T>) => React.ReactNode;
-
-export interface CalendarEvent<T = {}> {
-    title?: string;
-    start: Date;
-    end: Date;
-    allDay?: boolean;
-    render?: EventRendererFn<T>;
-    focused?: boolean;
-}
+import { CalendarEvent, EventRendererFn } from '../types';
 
 export type CalendarEventRecord<T> = Record<number, CalendarEvent<T>[]>;
 
