@@ -3,13 +3,6 @@ import React from 'react';
 import { StyledDivProps } from '../../../../common/types';
 import { CalendarEvent, CalendarEventRequiredProps } from '../types';
 
-/**
- * Props for the MonthlyCalendar component.
- * Represents a calendar view that displays events in a monthly grid format.
- *
- * @extends StyledDivProps
- * @template T The type of event objects to be displayed
- */
 export interface MonthlyCalendarProps<T = {}> {
     /**
      * Array of events to display in the calendar.
