@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { getMonthLabel } from '../utils';
 import { DAYS_IN_WEEK } from './constants';
 import GridHeaderRow from './GridHeaderRow';
 import Loading from './Loading';
@@ -72,7 +73,11 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
     }, [currentDate]);
 
     return (
-        <StyledMonthlyCalendarGridContainer>
+        <StyledMonthlyCalendarGridContainer
+            aria-label={`Monthly Calendar for the month ${getMonthLabel(
+                new Date(currentYear, currentMonth)
+            )}`}
+        >
             {header}
             {shouldShowMonthControls ? (
                 <MonthlyControls
