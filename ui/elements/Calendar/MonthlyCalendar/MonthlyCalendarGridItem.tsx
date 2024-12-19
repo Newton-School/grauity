@@ -65,6 +65,7 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
                     events={eventsForTheDay}
                     eventRenderer={eventRenderer}
                     text={moreEventsText}
+                    triggerRef={gridItemRef}
                 />
             ) : null}
         </StyledMonthlyCalendarGridItem>

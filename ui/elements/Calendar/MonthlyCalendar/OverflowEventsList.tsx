@@ -16,6 +16,11 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
         setIsOpen(false);
     };
 
+    const { left, top } = triggerRef?.current?.getBoundingClientRect?.() ?? {
+        left: 0,
+        top: 0,
+    };
+
     return (
         <PopOver
             isOpen={isOpen}
@@ -28,10 +33,13 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
                 right: 0,
                 top: 0,
             }}
+            position={{
+                left,
+                top,
+            }}
             onClose={handleClose}
             parentRef={null}
             shouldCloseOnOutsideClick
-            triggerRef={triggerRef}
         >
             <StyledOverflowEventsListContainer>
                 <DateCircle date={cellDate} />
