@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 import MonthlyCalendar from '../MonthlyCalendar';
+import { getMonthLabel } from '../utils';
 import WeeklyCalendar from '../WeeklyCalendar';
+import Header from './Header';
 import { UnifiedCalendarProps } from './types';
+import { getOffsetBy } from './utils';
 
 function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
     const {
@@ -36,8 +39,30 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
                 <MonthlyCalendar
                     events={events}
                     eventRenderer={(item) => eventRenderer(item, 'monthly')}
-                    shouldShowMonthControls={shouldShowControls}
-                    header={header}
+                    shouldShowMonthControls={false}
+                    header={
+                        <>
+                            {header}
+                            {shouldShowControls ? (
+                                <Header
+                                    loading={loading}
+                                    date={currentDate}
+                                    initialActiveTab={0}
+                                    offsetBy={getOffsetBy(
+                                        currentDate,
+                                        'monthly'
+                                    )}
+                                    setDate={setCurrentDate}
+                                    onViewChange={(currentView) => {
+                                        setViewType(currentView);
+                                    }}
+                                    label={`monthly ${getMonthLabel(
+                                        currentDate
+                                    )} ${currentDate.getFullYear()}`}
+                                />
+                            ) : null}
+                        </>
+                    }
                     date={currentDate}
                     onDateChange={setCurrentDate}
                     loading={loading}
@@ -52,8 +77,30 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
                 <WeeklyCalendar
                     events={events}
                     eventRenderer={(item) => eventRenderer(item, 'weekly')}
-                    shouldShowWeekControls={shouldShowControls}
-                    header={header}
+                    shouldShowWeekControls={false}
+                    header={
+                        <>
+                            {header}
+                            {shouldShowControls ? (
+                                <Header
+                                    loading={loading}
+                                    date={currentDate}
+                                    initialActiveTab={1}
+                                    offsetBy={getOffsetBy(
+                                        currentDate,
+                                        'weekly'
+                                    )}
+                                    setDate={setCurrentDate}
+                                    onViewChange={(currentView) => {
+                                        setViewType(currentView);
+                                    }}
+                                    label={`weekly ${getMonthLabel(
+                                        currentDate
+                                    )} ${currentDate.getFullYear()}`}
+                                />
+                            ) : null}
+                        </>
+                    }
                     date={currentDate}
                     onDateChange={setCurrentDate}
                     loading={loading}

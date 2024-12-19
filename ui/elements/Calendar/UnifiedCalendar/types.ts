@@ -89,3 +89,13 @@ export interface UnifiedCalendarProps<T> {
         ) => React.ReactNode;
     };
 }
+
+export interface UnifiedCalendarHeaderProps {
+    loading: boolean;
+    onViewChange: (viewType: CalendarView) => void;
+    date: Date;
+    initialActiveTab: number;
+    setDate: React.Dispatch<React.SetStateAction<Date>>;
+    label: string;
+    offsetBy: number;
+}
