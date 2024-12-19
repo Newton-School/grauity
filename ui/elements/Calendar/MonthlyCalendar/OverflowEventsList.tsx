@@ -25,8 +25,23 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
         const gridWidth = triggerRef?.current?.getBoundingClientRect?.()?.width;
 
         const center = (-popoverWidth + gridWidth) / 2;
+
+        const rightVal = triggerRefRect?.right;
+        const rightBoundary = document.body?.getBoundingClientRect().right;
+
+        if (rightVal + 10 >= rightBoundary) {
+            setRenderPosition({
+                left: triggerRefRect?.left - popoverWidth,
+                top: triggerRefRect?.top - 10,
+            });
+            return;
+        }
+
+        let leftVal = triggerRefRect?.left + center;
+        leftVal = leftVal > 0 ? leftVal : 0;
+
         setRenderPosition({
-            left: triggerRefRect?.left + center,
+            left: leftVal,
             top: triggerRefRect?.top - 10,
         });
     }, [popoverDataRef?.current]);
