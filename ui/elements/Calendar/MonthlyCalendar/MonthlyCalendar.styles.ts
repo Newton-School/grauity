@@ -82,7 +82,6 @@ export const StyledMonthlyCalendarGridItem = styled.div<StyledMonthlyCalendarGri
 `;
 
 export const StyledMonthlyCalendarGrid = styled.div<GridContainerRows>`
-    font-family: var(--font-family, 'Mona Sans');
     box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(${DAYS_IN_WEEK}, 1fr);
@@ -92,6 +91,7 @@ export const StyledMonthlyCalendarGrid = styled.div<GridContainerRows>`
 `;
 
 export const StyledMonthlyCalendarGridContainer = styled.div<StyledDivProps>`
+    font-family: var(--font-family, 'Mona Sans');
     width: 100%;
     height: 100%;
     display: flex;
