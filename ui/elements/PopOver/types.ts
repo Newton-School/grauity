@@ -11,6 +11,11 @@ export type PopOverOffset = {
     right?: number;
 };
 
+export type PopoverPosition = {
+    top: number;
+    left: number;
+};
+
 export interface PopOverProps {
     /**
      * Whether the PopOver is open or not.
@@ -79,6 +84,12 @@ export interface PopOverProps {
      * Height of the PopOver Content.
      */
     height?: string;
+
+    /**
+     * Custom position of the PopOver.
+     * This will directly open the popover at given position without any adjustments.
+     */
+    position?: PopoverPosition;
 }
 
 export interface StyledPopOverContainerProps extends StyledDivProps {
