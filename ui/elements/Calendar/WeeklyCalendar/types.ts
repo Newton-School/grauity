@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StyledDivProps } from '../../../../common/types';
-import { CalendarEvent, CalendarView, EventRendererFn } from '../types';
+import { CalendarEvent, EventRendererFn } from '../types';
 
 export type CalendarEventRecord<T> = Record<number, CalendarEvent<T>[]>;
 
@@ -92,12 +92,6 @@ export interface WeeklyCalendarProps<T = {}> {
      * @default true
      */
     shouldScrollToFirstEvent?: boolean;
-
-    /**
-     * Expose the change of calendar type from weekly to monthly
-     *
-     */
-    onViewChange?: (viewType: CalendarView) => void;
 }
 
 export interface EventRendererProps<T = {}> {

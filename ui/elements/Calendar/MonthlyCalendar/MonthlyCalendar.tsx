@@ -27,7 +27,7 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         onViewChange = () => {},
     } = props;
     const [currentDate, setCurrentDate] = useState(date);
-    const monthOffset = getMonthOffsetByDate(date);
+    const monthOffset = getMonthOffsetByDate(currentDate);
 
     const setMonthOffset = (offset: number) => {
         const newDate = new Date();

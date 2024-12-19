@@ -1,21 +1,16 @@
 import React from 'react';
 
 import Button, { IconButton } from '../../Button';
-import Tabs from '../../Tabs';
-import { CalendarView } from '../types';
 import {
     StyledCalendarControlsText,
     StyledCalendarMonthButton,
     StyledCalendarMonthCalendarControl,
-    StyledTabContainer,
 } from './MonthlyCalendar.styles';
 import { MonthlyControlsProps } from './types';
 import { getMonthLabel } from './utils';
 
-const TAB_ITEMS: CalendarView[] = ['monthly', 'weekly'];
-
 function MonthlyControls(props: MonthlyControlsProps) {
-    const { loading, monthOffset, setMonthOffset, onViewChange } = props;
+    const { loading, monthOffset, setMonthOffset } = props;
     const currentMonth = new Date();
     currentMonth.setMonth(currentMonth.getMonth() + monthOffset);
     const monthLabel = getMonthLabel(currentMonth.getMonth());
@@ -42,14 +37,6 @@ function MonthlyControls(props: MonthlyControlsProps) {
                     Today
                 </Button>
             </StyledCalendarMonthCalendarControl>
-
-            <StyledTabContainer>
-                <Tabs
-                    tabItems={TAB_ITEMS}
-                    onTabFocusChange={(idx) => onViewChange(TAB_ITEMS[idx])}
-                    initialActiveTab={0}
-                />
-            </StyledTabContainer>
         </StyledCalendarMonthButton>
     );
 }

@@ -15,7 +15,7 @@ export const StyledCalendarExternalHeaderContainer = styled.div<StyledDivProps>`
 export const StyledCalendarMonthButton = styled.div<StyledDivProps>`
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     padding: var(--spacing-16px, 16px) var(--spacing-0px, 0px);
     gap: var(--spacing-16px, 16px);
@@ -221,15 +221,4 @@ export const StyledEventWrapper = styled.div<StyledEventWrapperProps>`
         css`
             z-index: var(--calendar-selected-event-wrapper-z-index);
         `}
-`;
-
-export const StyledCalendarMonthCalendarControl = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-left: 8px;
-`;
-
-export const StyledTabContainer = styled.div`
-    margin-right: 8px;
 `;

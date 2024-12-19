@@ -175,10 +175,9 @@ export const StyledOverflowEventsListContainer = styled.div`
 `;
 
 export const StyledCalendarMonthButton = styled.div<StyledDivProps>`
-    box-sizing: border-box;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 16px 0px;
     gap: var(--spacing-16px, 16px);
