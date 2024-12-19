@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import MonthlyCalendar from './MonthlyCalendar';
-import { CalendarProps } from './types';
-import WeeklyCalendar from './WeeklyCalendar';
+import MonthlyCalendar from '../MonthlyCalendar';
+import WeeklyCalendar from '../WeeklyCalendar';
+import { UnifiedCalendarProps } from './types';
 
-function Calendar(props: CalendarProps<any>) {
+function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
     const {
         events = [],
         eventRenderer = () => null,
@@ -68,5 +68,5 @@ function Calendar(props: CalendarProps<any>) {
     }
 }
 
-export default Calendar;
-export { CalendarProps };
+export default UnifiedCalendar;
+export { UnifiedCalendarProps };

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Calendar, CalendarProps } from 'ui/elements/Calendar';
+import { UnifiedCalendar, UnifiedCalendarProps } from 'ui/elements/Calendar';
 import { EVENT_HEIGHT } from 'ui/elements/Calendar/MonthlyCalendar/constants';
 import MonthlyCalendarEventItem from 'ui/elements/Calendar/MonthlyCalendarEvent';
 import { CalendarEvent } from 'ui/elements/Calendar/types';
 
-import withRemovePadding from '../../decorators/withRemovePadding';
+import withRemovePadding from '../../../decorators/withRemovePadding';
 
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth();
@@ -127,8 +127,8 @@ const EVENTS_DATA: CalendarEvent[] = [
 ];
 
 export default {
-    title: 'Elements/Calendar',
-    component: Calendar,
+    title: 'Elements/Calendar/UnifiedCalendar',
+    component: UnifiedCalendar,
     decorators: [
         (Story: React.ComponentType) => (
             <div
@@ -184,11 +184,13 @@ export default {
     },
 };
 
-const Template = (args: CalendarProps<any>) => <Calendar {...args} />;
+const Template = (args: UnifiedCalendarProps<any>) => (
+    <UnifiedCalendar {...args} />
+);
 
 export const Component = Template.bind({});
 
-const defaultArgs: CalendarProps<any> = {
+const defaultArgs: UnifiedCalendarProps<any> = {
     date: new Date(),
     onDateChange: () => {},
     events: EVENTS_DATA,

@@ -17,5 +17,5 @@ export { default as MonthlyCalendar } from './MonthlyCalendar/MonthlyCalendar';
 export type { MonthlyCalendarProps } from './MonthlyCalendar/types';
 
 // Calendar
-export { default as Calendar } from './Calendar';
-export type { CalendarProps } from './types';
+export { default as UnifiedCalendar } from './UnifiedCalendar';
+export type { UnifiedCalendarProps } from './UnifiedCalendar/types';

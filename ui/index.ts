@@ -121,9 +121,9 @@ export {
 
 // NSCalendar
 export {
-    type CalendarProps,
+    type UnifiedCalendarProps as CalendarProps,
     default as NSCalendar,
-} from './elements/Calendar/Calendar';
+} from './elements/Calendar/UnifiedCalendar';
 
 // NSMonthlyCalendar
 export {
