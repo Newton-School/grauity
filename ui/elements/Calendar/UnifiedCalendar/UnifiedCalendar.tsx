@@ -104,9 +104,6 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
                     date={currentDate}
                     onDateChange={setCurrentDate}
                     loading={loading}
-                    onViewChange={(currentView) => {
-                        setViewType(currentView);
-                    }}
                     {...weeklyCalendarProps}
                 />
             );

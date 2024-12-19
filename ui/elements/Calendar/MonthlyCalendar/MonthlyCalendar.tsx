@@ -68,9 +68,16 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         datesInGrid.push(nextMonthDate);
     }
 
+    // Sync Parent State with child
     useEffect(() => {
         onDateChange(currentDate);
     }, [currentDate]);
+
+    useEffect(() => {
+        if (date) {
+            setCurrentDate(date);
+        }
+    }, [date]);
 
     return (
         <StyledMonthlyCalendarGridContainer
