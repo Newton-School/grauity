@@ -35,7 +35,7 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
             }}
             position={{
                 left,
-                top,
+                top: top - 10,
             }}
             onClose={handleClose}
             parentRef={null}

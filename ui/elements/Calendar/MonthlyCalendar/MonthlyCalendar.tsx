@@ -80,6 +80,8 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         }
     }, [date]);
 
+    const rows = datesInGrid.length / DAYS_IN_WEEK;
+
     return (
         <StyledMonthlyCalendarGridContainer
             aria-label={`Monthly Calendar for the month ${getMonthLabel(
@@ -99,9 +101,7 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
                 <Loading gridData={datesInGrid} />
             ) : (
                 <StyledMonthlyGridItemContainer>
-                    <StyledMonthlyCalendarGrid
-                        rows={datesInGrid.length % DAYS_IN_WEEK}
-                    >
+                    <StyledMonthlyCalendarGrid rows={rows}>
                         {datesInGrid.map((item) => (
                             <MonthlyCalendarGridItem
                                 monthOffset={monthOffset}
