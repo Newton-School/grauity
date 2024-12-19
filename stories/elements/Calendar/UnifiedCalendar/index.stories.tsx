@@ -1,5 +1,5 @@
 import React from 'react';
-import { MonthlyCalendar, MonthlyCalendarProps } from 'ui/elements/Calendar';
+import { UnifiedCalendar, UnifiedCalendarProps } from 'ui/elements/Calendar';
 import { EVENT_HEIGHT } from 'ui/elements/Calendar/MonthlyCalendar/constants';
 import MonthlyCalendarEventItem from 'ui/elements/Calendar/MonthlyCalendarEvent';
 import { CalendarEvent } from 'ui/elements/Calendar/types';
@@ -127,8 +127,8 @@ const EVENTS_DATA: CalendarEvent[] = [
 ];
 
 export default {
-    title: 'Elements/Calendar/MonthlyCalendar',
-    component: MonthlyCalendar,
+    title: 'Elements/Calendar/UnifiedCalendar',
+    component: UnifiedCalendar,
     decorators: [
         (Story: React.ComponentType) => (
             <div
@@ -145,15 +145,37 @@ export default {
         docs: {
             source: {
                 code: `
-                    <MonthlyCalendar
-                        date: new Date(),
-                        onDateChange: () => {},
-                        events={[]}
-                        eventRenderer={() => <div>Event</div>}
-                        renderDayItem={null}
-                        shouldShowMonthControls
+                    <Calendar
+                        date={new Date()}
+                        onDateChange={() => {}}
+                        events={[{
+                            id: '1-1',
+                            title: 'Morning Meeting',
+                            start: new Date(currentYear, currentMonth, 1, 9, 0),
+                            end: new Date(currentYear, currentMonth, 1, 10, 30),
+                        }]}
+                        eventRenderer={(event: CalendarEvent) => (
+                            <MonthlyCalendarEventItem
+                                key={event.id}
+                                eventTime={event.start}
+                                eventTitle={event.title}
+                                eventTitleColor="var(--text-action2)"
+                                eventTimeColor="var(--text-action2)"
+                                backgroundColor="var(--bg-action-brand)"
+                                height={50}
+                            />
+                        )}
+                        shouldShowControls
                         header={null}
                         loading={false}
+                        view={'weekly'}
+                        monthlyCalendarProps={{
+                            renderDayItem: null,
+                        }}
+                        weeklyCalendarProps={{
+                            defaultScrollHour: null,
+                            shouldScrollToFirstEvent: false,
+                        }}
                     />
                 `,
             },
@@ -161,13 +183,13 @@ export default {
     },
 };
 
-const Template = (args: MonthlyCalendarProps<any>) => (
-    <MonthlyCalendar {...args} />
+const Template = (args: UnifiedCalendarProps<any>) => (
+    <UnifiedCalendar {...args} />
 );
 
 export const Component = Template.bind({});
 
-const defaultArgs: MonthlyCalendarProps<any> = {
+const defaultArgs: UnifiedCalendarProps<any> = {
     date: new Date(),
     onDateChange: () => {},
     events: EVENTS_DATA,
@@ -182,10 +204,17 @@ const defaultArgs: MonthlyCalendarProps<any> = {
             height={`${EVENT_HEIGHT}px`}
         />
     ),
-    shouldShowMonthControls: true,
+    shouldShowControls: true,
     header: null,
     loading: false,
-    renderDayItem: null,
+    view: 'monthly',
+    monthlyCalendarProps: {
+        renderDayItem: null,
+    },
+    weeklyCalendarProps: {
+        defaultScrollHour: null,
+        shouldScrollToFirstEvent: false,
+    },
 };
 
 Component.args = {

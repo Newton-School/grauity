@@ -5,6 +5,7 @@ export const getMonthOffsetByDate = (date: Date) => {
     const currentMonth = date.getMonth();
     const requiredYear = new Date().getFullYear();
     const requiredMonth = new Date().getMonth();
+
     const monthsPassed = currentYear * 12 + currentMonth;
     const requiredMonthsPassed = requiredYear * 12 + requiredMonth;
     return monthsPassed - requiredMonthsPassed;
@@ -36,4 +37,4 @@ export function numberOfElementsOverflowing(
 }
 
 export const getMonthLabel = (month: number) =>
-    new Date(0, month).toLocaleString('default', { month: 'long' });
+    new Date(0, month).toLocaleString('default', { month: 'short' });

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { getMonthLabel } from '../utils';
 import { DAYS_IN_WEEK } from './constants';
 import GridHeaderRow from './GridHeaderRow';
 import Loading from './Loading';
@@ -24,7 +25,15 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         events = [],
         renderDayItem,
     } = props;
-    const [monthOffset, setMonthOffset] = useState(getMonthOffsetByDate(date));
+    const [currentDate, setCurrentDate] = useState(date);
+    const monthOffset = getMonthOffsetByDate(currentDate);
+
+    const setMonthOffset = (offset: number) => {
+        const newDate = new Date();
+        newDate.setMonth(newDate.getMonth() + offset);
+        setCurrentDate(newDate);
+    };
+
     const currentMonth = new Date().getMonth() + monthOffset;
     const currentYear = new Date().getFullYear();
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -58,12 +67,25 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         datesInGrid.push(nextMonthDate);
     }
 
+    // Sync Parent State with child
     useEffect(() => {
-        onDateChange(new Date(currentYear, currentMonth));
-    }, [monthOffset]);
+        if (date && date?.valueOf() !== currentDate?.valueOf()) {
+            onDateChange(currentDate);
+        }
+    }, [currentDate]);
+
+    useEffect(() => {
+        if (date && date?.valueOf() !== currentDate?.valueOf()) {
+            setCurrentDate(date);
+        }
+    }, [date]);
 
     return (
-        <StyledMonthlyCalendarGridContainer>
+        <StyledMonthlyCalendarGridContainer
+            aria-label={`Monthly Calendar for the month ${getMonthLabel(
+                new Date(currentYear, currentMonth)
+            )}`}
+        >
             {header}
             {shouldShowMonthControls ? (
                 <MonthlyControls
