@@ -161,7 +161,7 @@ export const StyledMonthlyGridItemContainer = styled.div`
     overflow: hidden;
 `;
 
-export const StyledOverflowEventsListContainer = styled.div`
+export const StyledOverflowEventsListContainer = styled.div<StyledDivProps>`
     display: flex;
     width: 189px;
     padding: 8px;
