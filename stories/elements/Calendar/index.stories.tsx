@@ -147,13 +147,29 @@ export default {
             source: {
                 code: `
                     <Calendar
-                        date: new Date(),
-                        onDateChange: () => {},
-                        events={[]}
-                        eventRenderer={() => <div>Event</div>}
-                        renderItem={null}
+                        date={new Date()}
+                        onDateChange={() => {}}
+                        events={[{
+                            id: '1-1',
+                            title: 'Morning Meeting',
+                            start: new Date(currentYear, currentMonth, 1, 9, 0),
+                            end: new Date(currentYear, currentMonth, 1, 10, 30),
+                        }]}
+                        eventRenderer={(event: CalendarEvent) => (
+                            <MonthlyCalendarEventItem
+                                key={event.id}
+                                eventTime={event.start}
+                                eventTitle={event.title}
+                                eventTitleColor="var(--text-action2)"
+                                eventTimeColor="var(--text-action2)"
+                                backgroundColor="var(--bg-action-brand)"
+                                height={50}
+                            />
+                        )}
+                        shouldShowControls
                         header={null}
                         loading={false}
+                        view={'monthly'}
                     />
                 `,
             },
