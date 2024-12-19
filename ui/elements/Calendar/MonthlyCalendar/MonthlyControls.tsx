@@ -1,7 +1,7 @@
 import React from 'react';
-import Tabs from 'ui/elements/Tabs';
 
 import Button, { IconButton } from '../../Button';
+import Tabs from '../../Tabs';
 import { CalendarView } from '../types';
 import {
     StyledCalendarControlsText,

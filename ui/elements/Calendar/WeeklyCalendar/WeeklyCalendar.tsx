@@ -1,10 +1,10 @@
 /* eslint-disable indent */
 import React, { useEffect, useRef, useState } from 'react';
-import Tabs from 'ui/elements/Tabs';
 
 import { getScrollableParent } from '../../../../common/utils';
 import Button, { IconButton } from '../../Button';
 import Placeholder from '../../Placeholder';
+import Tabs from '../../Tabs';
 import { CalendarView } from '../types';
 import {
     checkIsToday,
