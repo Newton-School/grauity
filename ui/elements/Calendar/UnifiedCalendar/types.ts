@@ -47,8 +47,8 @@ export interface UnifiedCalendarProps<T> {
     date: Date;
 
     /**
-     * Callback fired when the month changes.
-     * @param monthOffset - The new month offset value
+     * Callback fired when the date changes.
+     * @param date - The new date value.
      * @default null
      */
     onDateChange?: (date: Date) => void;

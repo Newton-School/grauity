@@ -34,8 +34,8 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
         onDateChange(date);
     }, [currentDate]);
 
-    switch (true) {
-        case viewType === 'monthly':
+    switch (viewType) {
+        case 'monthly':
             return (
                 <MonthlyCalendar
                     events={events}
@@ -80,7 +80,7 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
                     }
                 />
             );
-        case viewType === 'weekly':
+        case 'weekly':
             return (
                 <WeeklyCalendar
                     events={events}
