@@ -6,24 +6,29 @@ import WeeklyCalendar from './WeeklyCalendar';
 
 function Calendar(props: CalendarProps<any>) {
     const {
-        events,
-        eventRenderer,
-        view,
+        events = [],
+        eventRenderer = () => null,
+        view = 'weekly',
         onViewChange = () => {},
-        shouldShowControls,
-        header,
-        date,
-        onDateChange,
-        loading,
-        weeklyCalendarProps,
-        monthtlyCalendarProps,
+        shouldShowControls = true,
+        header = null,
+        date = new Date(),
+        onDateChange = () => {},
+        loading = false,
+        weeklyCalendarProps = {},
+        monthtlyCalendarProps = {},
     } = props;
 
     const [viewType, setViewType] = useState(view);
+    const [currentDate, setCurrentDate] = useState(date);
 
     useEffect(() => {
         onViewChange(viewType);
     }, [viewType]);
+
+    useEffect(() => {
+        onDateChange(date);
+    }, [currentDate]);
 
     switch (true) {
         case viewType === 'monthly':
@@ -33,8 +38,8 @@ function Calendar(props: CalendarProps<any>) {
                     eventRenderer={(item) => eventRenderer(item, 'monthly')}
                     shouldShowMonthControls={shouldShowControls}
                     header={header}
-                    date={date}
-                    onDateChange={onDateChange}
+                    date={currentDate}
+                    onDateChange={setCurrentDate}
                     loading={loading}
                     onViewChange={(currentView) => {
                         setViewType(currentView);
@@ -49,8 +54,8 @@ function Calendar(props: CalendarProps<any>) {
                     eventRenderer={(item) => eventRenderer(item, 'weekly')}
                     shouldShowWeekControls={shouldShowControls}
                     header={header}
-                    date={date}
-                    onDateChange={onDateChange}
+                    date={currentDate}
+                    onDateChange={setCurrentDate}
                     loading={loading}
                     onViewChange={(currentView) => {
                         setViewType(currentView);

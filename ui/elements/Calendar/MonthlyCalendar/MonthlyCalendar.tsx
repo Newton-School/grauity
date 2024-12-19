@@ -25,7 +25,15 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         renderDayItem,
         onViewChange = () => {},
     } = props;
-    const [monthOffset, setMonthOffset] = useState(getMonthOffsetByDate(date));
+    const [currentDate, setCurrentDate] = useState(date);
+    const monthOffset = getMonthOffsetByDate(date);
+
+    const setMonthOffset = (offset: number) => {
+        const newDate = new Date();
+        newDate.setMonth(newDate.getMonth() + offset);
+        setCurrentDate(newDate);
+    };
+
     const currentMonth = new Date().getMonth() + monthOffset;
     const currentYear = new Date().getFullYear();
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -60,8 +68,8 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
     }
 
     useEffect(() => {
-        onDateChange(new Date(currentYear, currentMonth));
-    }, [monthOffset]);
+        onDateChange(currentDate);
+    }, [currentDate]);
 
     return (
         <StyledMonthlyCalendarGridContainer>
