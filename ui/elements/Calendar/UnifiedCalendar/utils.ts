@@ -9,7 +9,7 @@ export const getOffsetBy = (date: Date, view: CalendarView): number => {
 
     const nextWeek = new Date(
         date.getFullYear(),
-        date.getMonth() + 1,
+        date.getMonth(),
         date.getDate() + 7
     );
 
