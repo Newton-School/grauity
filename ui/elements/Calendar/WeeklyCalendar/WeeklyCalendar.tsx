@@ -34,11 +34,13 @@ import {
     StyledCalendarHeaderBlock,
     StyledCalendarHeaderRow,
     StyledCalendarMonthButton,
+    StyledCalendarMonthCalendarControl,
     StyledCalendarTimeline,
     StyledCalendarTimelineBlock,
     StyledCalendarTimelineRow,
     StyledCalendarWrapper,
     StyledEventWrapper,
+    StyledTabContainer,
 } from './WeeklyCalendar.styles';
 
 const TAB_ITEMS: CalendarView[] = ['monthly', 'weekly'];
@@ -219,40 +221,48 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                 <StyledCalendarExternalHeaderContainer>
                     {header}
                     {shouldShowWeekControls && (
-                        <StyledCalendarMonthButton>
-                            <IconButton
-                                icon="chevron-left"
-                                disabled={loading}
-                                onClick={() => setWeekOffset(weekOffset - 1)}
-                                ariaLabel={`Go to week starting from ${getDateFullLabel(
-                                    currentWeek[0],
-                                    -7
-                                )}`}
-                            />
-                            <div>{getMonthDetails(currentWeek[0])}</div>
-                            <IconButton
-                                icon="chevron-right"
-                                disabled={loading}
-                                onClick={() => setWeekOffset(weekOffset + 1)}
-                                ariaLabel={`Go to week starting from ${getDateFullLabel(
-                                    currentWeek[0],
-                                    7
-                                )}`}
-                            />
-                            <Button
-                                disabled={loading}
-                                onClick={() => setWeekOffset(0)}
-                            >
-                                Today
-                            </Button>
-                            <Tabs
-                                tabItems={TAB_ITEMS}
-                                onTabFocusChange={(idx) =>
-                                    onViewChange(TAB_ITEMS[idx])
-                                }
-                                initialActiveTab={1}
-                            />
-                        </StyledCalendarMonthButton>
+                        <StyledCalendarMonthCalendarControl>
+                            <StyledCalendarMonthButton>
+                                <IconButton
+                                    icon="chevron-left"
+                                    disabled={loading}
+                                    onClick={() =>
+                                        setWeekOffset(weekOffset - 1)
+                                    }
+                                    ariaLabel={`Go to week starting from ${getDateFullLabel(
+                                        currentWeek[0],
+                                        -7
+                                    )}`}
+                                />
+                                <div>{getMonthDetails(currentWeek[0])}</div>
+                                <IconButton
+                                    icon="chevron-right"
+                                    disabled={loading}
+                                    onClick={() =>
+                                        setWeekOffset(weekOffset + 1)
+                                    }
+                                    ariaLabel={`Go to week starting from ${getDateFullLabel(
+                                        currentWeek[0],
+                                        7
+                                    )}`}
+                                />
+                                <Button
+                                    disabled={loading}
+                                    onClick={() => setWeekOffset(0)}
+                                >
+                                    Today
+                                </Button>
+                            </StyledCalendarMonthButton>
+                            <StyledTabContainer>
+                                <Tabs
+                                    tabItems={TAB_ITEMS}
+                                    onTabFocusChange={(idx) =>
+                                        onViewChange(TAB_ITEMS[idx])
+                                    }
+                                    initialActiveTab={1}
+                                />
+                            </StyledTabContainer>
+                        </StyledCalendarMonthCalendarControl>
                     )}
                 </StyledCalendarExternalHeaderContainer>
                 <StyledCalendarHeaderRow>

@@ -36,4 +36,4 @@ export function numberOfElementsOverflowing(
 }
 
 export const getMonthLabel = (month: number) =>
-    new Date(0, month).toLocaleString('default', { month: 'long' });
+    new Date(0, month).toLocaleString('default', { month: 'short' });
