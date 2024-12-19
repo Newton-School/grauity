@@ -69,11 +69,13 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
 
     // Sync Parent State with child
     useEffect(() => {
-        onDateChange(currentDate);
+        if (date && date?.valueOf() !== currentDate?.valueOf()) {
+            onDateChange(currentDate);
+        }
     }, [currentDate]);
 
     useEffect(() => {
-        if (date) {
+        if (date && date?.valueOf() !== currentDate?.valueOf()) {
             setCurrentDate(date);
         }
     }, [date]);

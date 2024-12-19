@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useEffect, useState } from 'react';
 
 import MonthlyCalendar from '../MonthlyCalendar';
@@ -67,8 +68,15 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
                     onDateChange={setCurrentDate}
                     loading={loading}
                     {...monthlyCalendarProps}
-                    renderDayItem={(item) =>
-                        monthlyCalendarProps?.renderDayItem(item, 'monthly')
+                    renderDayItem={
+                        typeof monthlyCalendarProps?.renderDayItem ===
+                        'function'
+                            ? (item) =>
+                                  monthlyCalendarProps?.renderDayItem(
+                                      item,
+                                      'monthly'
+                                  )
+                            : null
                     }
                 />
             );
