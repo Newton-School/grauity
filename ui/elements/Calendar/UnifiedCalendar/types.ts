@@ -29,7 +29,7 @@ export interface UnifiedCalendarProps<T> {
     ) => React.ReactNode;
 
     /**
-     * Whether to show month navigation controls.
+     * Whether to show navigation controls.
      * @default true
      */
     shouldShowControls?: boolean;
@@ -41,8 +41,7 @@ export interface UnifiedCalendarProps<T> {
     header?: React.ReactNode;
 
     /**
-     * Number of months to offset from the current month.
-     * Positive numbers move forward, negative numbers move backward.
+     * The date for which the calendar should render events
      * @default new Date()
      */
     date: Date;
@@ -77,13 +76,16 @@ export interface UnifiedCalendarProps<T> {
         shouldScrollToFirstEvent?: boolean;
     };
 
-    monthtlyCalendarProps?: {
+    /**
+     * Monthly calendar properties, only applicable when type is 'monthly'.
+     */
+    monthlyCalendarProps?: {
         /**
          * Optional alternative render function for events.
          * @param item - The event item to render
          * @default null
          */
-        monthlyRenderDayItem?: (
+        renderDayItem?: (
             item: CalendarEvent<T>,
             view: CalendarView
         ) => React.ReactNode;
@@ -97,5 +99,5 @@ export interface UnifiedCalendarHeaderProps {
     initialActiveTab: number;
     setDate: React.Dispatch<React.SetStateAction<Date>>;
     label: string;
-    offsetBy: number;
+    epochDiffForDateChange: number;
 }

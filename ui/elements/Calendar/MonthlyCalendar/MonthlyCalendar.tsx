@@ -24,7 +24,6 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         shouldShowMonthControls = true,
         events = [],
         renderDayItem,
-        onViewChange = () => {},
     } = props;
     const [currentDate, setCurrentDate] = useState(date);
     const monthOffset = getMonthOffsetByDate(currentDate);
@@ -91,7 +90,6 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
                     loading={loading}
                     monthOffset={monthOffset}
                     setMonthOffset={setMonthOffset}
-                    onViewChange={onViewChange}
                 />
             ) : null}
             <GridHeaderRow />

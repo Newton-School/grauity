@@ -170,8 +170,8 @@ export default {
                         header={null}
                         loading={false}
                         view={'weekly'}
-                        monthtlyCalendarProps={{
-                            monthlyRenderDayItem: null,
+                        monthlyCalendarProps={{
+                            renderDayItem: null,
                         }}
                         weeklyCalendarProps={{
                             defaultScrollHour: null,
@@ -209,8 +209,8 @@ const defaultArgs: UnifiedCalendarProps<any> = {
     header: null,
     loading: false,
     view: 'monthly',
-    monthtlyCalendarProps: {
-        monthlyRenderDayItem: null,
+    monthlyCalendarProps: {
+        renderDayItem: null,
     },
     weeklyCalendarProps: {
         defaultScrollHour: null,

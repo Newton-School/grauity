@@ -191,12 +191,3 @@ export const StyledCalendarControlsText = styled.span`
     line-height: 14.4px;
     letter-spacing: 0.1px;
 `;
-export const StyledCalendarMonthCalendarControl = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-left: 8px;
-`;
-export const StyledTabContainer = styled.div`
-    margin-right: 8px;
-`;

@@ -5,7 +5,7 @@ import { getMonthLabel } from '../utils';
 import WeeklyCalendar from '../WeeklyCalendar';
 import Header from './Header';
 import { UnifiedCalendarProps } from './types';
-import { getOffsetBy } from './utils';
+import { getEpochDiffForDateChange } from './utils';
 
 function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
     const {
@@ -19,7 +19,7 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
         onDateChange = () => {},
         loading = false,
         weeklyCalendarProps = {},
-        monthtlyCalendarProps = {},
+        monthlyCalendarProps = {},
     } = props;
 
     const [viewType, setViewType] = useState(view);
@@ -48,7 +48,7 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
                                     loading={loading}
                                     date={currentDate}
                                     initialActiveTab={0}
-                                    offsetBy={getOffsetBy(
+                                    epochDiffForDateChange={getEpochDiffForDateChange(
                                         currentDate,
                                         'monthly'
                                     )}
@@ -66,10 +66,10 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
                     date={currentDate}
                     onDateChange={setCurrentDate}
                     loading={loading}
-                    onViewChange={(currentView) => {
-                        setViewType(currentView);
-                    }}
-                    {...monthtlyCalendarProps}
+                    {...monthlyCalendarProps}
+                    renderDayItem={(item) =>
+                        monthlyCalendarProps?.renderDayItem(item, 'monthly')
+                    }
                 />
             );
         case viewType === 'weekly':
@@ -86,7 +86,7 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
                                     loading={loading}
                                     date={currentDate}
                                     initialActiveTab={1}
-                                    offsetBy={getOffsetBy(
+                                    epochDiffForDateChange={getEpochDiffForDateChange(
                                         currentDate,
                                         'weekly'
                                     )}

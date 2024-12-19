@@ -1,6 +1,9 @@
 import { CalendarView } from '../types';
 
-export const getOffsetBy = (date: Date, view: CalendarView): number => {
+export const getEpochDiffForDateChange = (
+    date: Date,
+    view: CalendarView
+): number => {
     const nextMonth = new Date(
         date.getFullYear(),
         date.getMonth() + 1,
@@ -13,10 +16,10 @@ export const getOffsetBy = (date: Date, view: CalendarView): number => {
         date.getDate() + 7
     );
 
-    switch (true) {
-        case view === 'monthly':
+    switch (view) {
+        case 'monthly':
             return nextMonth.getTime() - date.getTime();
-        case view === 'weekly':
+        case 'weekly':
             return nextWeek.getTime() - date.getTime();
         default:
             return 0;

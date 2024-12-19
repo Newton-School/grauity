@@ -4,7 +4,6 @@ import Button, { IconButton } from '../../Button';
 import {
     StyledCalendarControlsText,
     StyledCalendarMonthButton,
-    StyledCalendarMonthCalendarControl,
 } from './MonthlyCalendar.styles';
 import { MonthlyControlsProps } from './types';
 import { getMonthLabel } from './utils';
@@ -17,26 +16,24 @@ function MonthlyControls(props: MonthlyControlsProps) {
 
     return (
         <StyledCalendarMonthButton>
-            <StyledCalendarMonthCalendarControl>
-                <IconButton
-                    icon="chevron-left"
-                    disabled={loading}
-                    onClick={() => setMonthOffset(monthOffset - 1)}
-                    ariaLabel={`Go to month ${monthLabel}`}
-                />
-                <StyledCalendarControlsText>
-                    {monthLabel} {currentMonth.getFullYear()}
-                </StyledCalendarControlsText>
-                <IconButton
-                    icon="chevron-right"
-                    disabled={loading}
-                    onClick={() => setMonthOffset(monthOffset + 1)}
-                    ariaLabel={`Go to month ${monthLabel}`}
-                />
-                <Button disabled={loading} onClick={() => setMonthOffset(0)}>
-                    Today
-                </Button>
-            </StyledCalendarMonthCalendarControl>
+            <IconButton
+                icon="chevron-left"
+                disabled={loading}
+                onClick={() => setMonthOffset(monthOffset - 1)}
+                ariaLabel={`Go to month ${monthLabel}`}
+            />
+            <StyledCalendarControlsText>
+                {monthLabel} {currentMonth.getFullYear()}
+            </StyledCalendarControlsText>
+            <IconButton
+                icon="chevron-right"
+                disabled={loading}
+                onClick={() => setMonthOffset(monthOffset + 1)}
+                ariaLabel={`Go to month ${monthLabel}`}
+            />
+            <Button disabled={loading} onClick={() => setMonthOffset(0)}>
+                Today
+            </Button>
         </StyledCalendarMonthButton>
     );
 }

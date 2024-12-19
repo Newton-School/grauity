@@ -22,17 +22,17 @@ function UnifiedCalendarHeader(props: UnifiedCalendarHeaderProps) {
         setDate,
         onViewChange,
         initialActiveTab,
-        offsetBy,
+        epochDiffForDateChange,
     } = props;
     const monthLabel = getMonthLabel(date);
 
     const decrementTimeBy = () => {
-        const newDate = new Date(date.getTime() - offsetBy);
+        const newDate = new Date(date.getTime() - epochDiffForDateChange);
         setDate(newDate);
     };
 
     const incrementTimeBy = () => {
-        const newDate = new Date(date.getTime() + offsetBy);
+        const newDate = new Date(date.getTime() + epochDiffForDateChange);
         setDate(newDate);
     };
 
