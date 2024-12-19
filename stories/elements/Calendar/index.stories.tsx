@@ -169,7 +169,14 @@ export default {
                         shouldShowControls
                         header={null}
                         loading={false}
-                        view={'monthly'}
+                        view={'weekly'}
+                        monthtlyCalendarProps={{
+                            monthlyRenderDayItem: null,
+                        }}
+                        weeklyCalendarProps={{
+                            defaultScrollHour: null,
+                            shouldScrollToFirstEvent: false,
+                        }}
                     />
                 `,
             },
@@ -200,6 +207,13 @@ const defaultArgs: CalendarProps<any> = {
     header: null,
     loading: false,
     view: 'monthly',
+    monthtlyCalendarProps: {
+        monthlyRenderDayItem: null,
+    },
+    weeklyCalendarProps: {
+        defaultScrollHour: null,
+        shouldScrollToFirstEvent: false,
+    },
 };
 
 Component.args = {
