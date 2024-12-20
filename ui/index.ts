@@ -119,6 +119,12 @@ export {
     type WeeklyCalendarProps,
 } from './elements/Calendar/WeeklyCalendar';
 
+// NSCalendar
+export {
+    type UnifiedCalendarProps as CalendarProps,
+    default as NSCalendar,
+} from './elements/Calendar/UnifiedCalendar';
+
 // NSMonthlyCalendar
 export {
     type MonthlyCalendarProps,

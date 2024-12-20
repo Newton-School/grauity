@@ -82,7 +82,6 @@ export const StyledMonthlyCalendarGridItem = styled.div<StyledMonthlyCalendarGri
 `;
 
 export const StyledMonthlyCalendarGrid = styled.div<GridContainerRows>`
-    font-family: var(--font-family, 'Mona Sans');
     box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(${DAYS_IN_WEEK}, 1fr);
@@ -92,6 +91,7 @@ export const StyledMonthlyCalendarGrid = styled.div<GridContainerRows>`
 `;
 
 export const StyledMonthlyCalendarGridContainer = styled.div<StyledDivProps>`
+    font-family: var(--font-family, 'Mona Sans');
     width: 100%;
     height: 100%;
     display: flex;
@@ -155,12 +155,13 @@ export const StyledDayOfWeekHeaderItemText = styled.span`
 `;
 
 export const StyledMonthlyGridItemContainer = styled.div`
+    display: flex;
     flex: 1;
     flex-direction: column;
     overflow: hidden;
 `;
 
-export const StyledOverflowEventsListContainer = styled.div`
+export const StyledOverflowEventsListContainer = styled.div<StyledDivProps>`
     display: flex;
     width: 189px;
     padding: 8px;
@@ -186,7 +187,7 @@ export const StyledCalendarMonthButton = styled.div<StyledDivProps>`
 export const StyledCalendarControlsText = styled.span`
     font-family: var(--font-family, 'Mona Sans');
     color: var(--text-primary, #16191d);
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     line-height: 14.4px;
     letter-spacing: 0.1px;

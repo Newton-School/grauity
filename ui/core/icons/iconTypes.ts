@@ -239,6 +239,8 @@ export type grauityIconName =
     | 'double-check'
     | 'download-filled'
     | 'download'
+    | 'eda-filled'
+    | 'eda'
     | 'email-alt-filled'
     | 'email-alt'
     | 'email-filled'
@@ -285,6 +287,8 @@ export type grauityIconName =
     | 'load'
     | 'loudspeaker-filled'
     | 'loudspeaker'
+    | 'machine-learning-filled'
+    | 'machine-learning'
     | 'map-pin-alt1-filled'
     | 'map-pin-alt1'
     | 'map-pin-alt2-filled'
@@ -319,8 +323,12 @@ export type grauityIconName =
     | 'plus-square-filled'
     | 'plus-square'
     | 'plus'
+    | 'power-bi-filled'
+    | 'power-bi'
     | 'printer-filled'
     | 'printer'
+    | 'python-filled'
+    | 'python'
     | 'quiz-filled'
     | 'quiz'
     | 'refresh-filled'
@@ -329,6 +337,8 @@ export type grauityIconName =
     | 'remove'
     | 'reply-filled'
     | 'reply'
+    | 'retail-filled'
+    | 'retail'
     | 'screenshare-start-filled'
     | 'screenshare-start'
     | 'screenshare-stop-filled'
@@ -347,6 +357,8 @@ export type grauityIconName =
     | 'shield-x-filled'
     | 'shield-x'
     | 'shield'
+    | 'shop-filled'
+    | 'shop'
     | 'sidebar-left-filled'
     | 'sidebar-left'
     | 'sidebar-right-filled'
@@ -369,6 +381,8 @@ export type grauityIconName =
     | 'thumbs-up'
     | 'thunder-filled'
     | 'thunder'
+    | 'truck-filled'
+    | 'truck'
     | 'upload-filled'
     | 'upload'
     | 'wrench-filled'
@@ -641,6 +655,8 @@ export type grauityIconKey =
     | 'DoubleCheck'
     | 'DownloadFilled'
     | 'Download'
+    | 'EdaFilled'
+    | 'Eda'
     | 'EmailAltFilled'
     | 'EmailAlt'
     | 'EmailFilled'
@@ -687,6 +703,8 @@ export type grauityIconKey =
     | 'Load'
     | 'LoudspeakerFilled'
     | 'Loudspeaker'
+    | 'MachineLearningFilled'
+    | 'MachineLearning'
     | 'MapPinAlt1Filled'
     | 'MapPinAlt1'
     | 'MapPinAlt2Filled'
@@ -721,8 +739,12 @@ export type grauityIconKey =
     | 'PlusSquareFilled'
     | 'PlusSquare'
     | 'Plus'
+    | 'PowerBiFilled'
+    | 'PowerBi'
     | 'PrinterFilled'
     | 'Printer'
+    | 'PythonFilled'
+    | 'Python'
     | 'QuizFilled'
     | 'Quiz'
     | 'RefreshFilled'
@@ -731,6 +753,8 @@ export type grauityIconKey =
     | 'Remove'
     | 'ReplyFilled'
     | 'Reply'
+    | 'RetailFilled'
+    | 'Retail'
     | 'ScreenshareStartFilled'
     | 'ScreenshareStart'
     | 'ScreenshareStopFilled'
@@ -749,6 +773,8 @@ export type grauityIconKey =
     | 'ShieldXFilled'
     | 'ShieldX'
     | 'Shield'
+    | 'ShopFilled'
+    | 'Shop'
     | 'SidebarLeftFilled'
     | 'SidebarLeft'
     | 'SidebarRightFilled'
@@ -771,6 +797,8 @@ export type grauityIconKey =
     | 'ThumbsUp'
     | 'ThunderFilled'
     | 'Thunder'
+    | 'TruckFilled'
+    | 'Truck'
     | 'UploadFilled'
     | 'Upload'
     | 'WrenchFilled'
@@ -1043,6 +1071,8 @@ export enum GRAUITY_ICONS {
     DoubleCheck = 'double-check',
     DownloadFilled = 'download-filled',
     Download = 'download',
+    EdaFilled = 'eda-filled',
+    Eda = 'eda',
     EmailAltFilled = 'email-alt-filled',
     EmailAlt = 'email-alt',
     EmailFilled = 'email-filled',
@@ -1089,6 +1119,8 @@ export enum GRAUITY_ICONS {
     Load = 'load',
     LoudspeakerFilled = 'loudspeaker-filled',
     Loudspeaker = 'loudspeaker',
+    MachineLearningFilled = 'machine-learning-filled',
+    MachineLearning = 'machine-learning',
     MapPinAlt1Filled = 'map-pin-alt1-filled',
     MapPinAlt1 = 'map-pin-alt1',
     MapPinAlt2Filled = 'map-pin-alt2-filled',
@@ -1123,8 +1155,12 @@ export enum GRAUITY_ICONS {
     PlusSquareFilled = 'plus-square-filled',
     PlusSquare = 'plus-square',
     Plus = 'plus',
+    PowerBiFilled = 'power-bi-filled',
+    PowerBi = 'power-bi',
     PrinterFilled = 'printer-filled',
     Printer = 'printer',
+    PythonFilled = 'python-filled',
+    Python = 'python',
     QuizFilled = 'quiz-filled',
     Quiz = 'quiz',
     RefreshFilled = 'refresh-filled',
@@ -1133,6 +1169,8 @@ export enum GRAUITY_ICONS {
     Remove = 'remove',
     ReplyFilled = 'reply-filled',
     Reply = 'reply',
+    RetailFilled = 'retail-filled',
+    Retail = 'retail',
     ScreenshareStartFilled = 'screenshare-start-filled',
     ScreenshareStart = 'screenshare-start',
     ScreenshareStopFilled = 'screenshare-stop-filled',
@@ -1151,6 +1189,8 @@ export enum GRAUITY_ICONS {
     ShieldXFilled = 'shield-x-filled',
     ShieldX = 'shield-x',
     Shield = 'shield',
+    ShopFilled = 'shop-filled',
+    Shop = 'shop',
     SidebarLeftFilled = 'sidebar-left-filled',
     SidebarLeft = 'sidebar-left',
     SidebarRightFilled = 'sidebar-right-filled',
@@ -1173,6 +1213,8 @@ export enum GRAUITY_ICONS {
     ThumbsUp = 'thumbs-up',
     ThunderFilled = 'thunder-filled',
     Thunder = 'thunder',
+    TruckFilled = 'truck-filled',
+    Truck = 'truck',
     UploadFilled = 'upload-filled',
     Upload = 'upload',
     WrenchFilled = 'wrench-filled',
