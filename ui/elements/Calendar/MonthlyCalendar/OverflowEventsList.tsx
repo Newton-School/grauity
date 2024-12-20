@@ -56,15 +56,8 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
             autoAdjust
             direction="left"
             disableBackgroundScroll
-            minimumOffset={{
-                bottom: 0,
-                left: 0,
-                right: 0,
-                top: 0,
-            }}
             position={renderPosition}
             onClose={handleClose}
-            parentRef={null}
             shouldCloseOnOutsideClick
         >
             <StyledOverflowEventsListContainer ref={popoverDataRef}>
