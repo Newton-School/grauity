@@ -17,6 +17,10 @@ const defaultArgs: ChipProps = {
     backgroundColor: null,
     borderColor: null,
     rounded: false,
+    icon: null,
+    iconSize: '12',
+    iconPosition: 'left',
+    style: {},
 };
 
 export const Component = Template.bind({});

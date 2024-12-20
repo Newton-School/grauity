@@ -74,27 +74,25 @@ export interface ChipProps {
 
     /**
      * Icon to be displayed in the button.
+     * @default null
      * */
     icon?: grauityIconName;
 
     /**
      * Size of the icon
+     * @default '12'
      * */
     iconSize?: grauityIconSizeName;
 
     /**
      * Position of the icon
-     *
-     * Available choices: `left`, `right`
-     *
-     * Default: `left`
+     * @default 'left'
      * */
     iconPosition?: ButtonIconPositions;
 
     /**
      * Additional styles to be used over the element
-     *
-     * Default: `{}`
+     * @default {}
      * */
     style?: React.CSSProperties;
 }
@@ -108,5 +106,5 @@ export interface StyledChip extends StyledDivProps {
     borderColor?: string | null;
     rounded?: boolean;
     ref?: React.Ref<HTMLDivElement>;
-    iconPosition?: 'left' | 'right';
+    iconPosition?: ButtonIconPositions;
 }
