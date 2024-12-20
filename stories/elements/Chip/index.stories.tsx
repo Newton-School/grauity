@@ -7,7 +7,7 @@ export default {
     component: Chip,
 };
 
-const Template = (args: ChipProps) => <Chip {...args}>Chip : 01</Chip>;
+const Template = (args: ChipProps) => <Chip {...args}>This is a chip</Chip>;
 
 const defaultArgs: ChipProps = {
     variant: 'brand',

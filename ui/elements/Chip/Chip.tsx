@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 
-import { StyledChipDiv } from './Chip.styles';
+import { Icon } from '../Icon';
+import { StyledChipDiv, StyledChipText } from './Chip.styles';
 import { ChipProps } from './types';
 
 const Chip = forwardRef<HTMLDivElement, ChipProps>(
@@ -9,16 +10,21 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             variant = 'brand',
             size = 'medium',
             hasBorder = false,
+            icon = null,
+            iconSize = '24',
+            iconPosition = 'left',
             textColor = null,
             backgroundColor = null,
             borderColor = null,
             rounded = false,
+            style = {},
             children,
         },
         ref
     ) => (
         <StyledChipDiv
             ref={ref}
+            style={style}
             variant={variant}
             size={size}
             hasBorder={hasBorder}
@@ -26,8 +32,12 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             backgroundColor={backgroundColor}
             borderColor={borderColor}
             rounded={rounded}
+            iconPosition={iconPosition}
         >
-            {children}
+            {icon && (
+                <Icon name={icon} color="inherit" size={iconSize || '12'} />
+            )}
+            <StyledChipText>{children}</StyledChipText>
         </StyledChipDiv>
     )
 );

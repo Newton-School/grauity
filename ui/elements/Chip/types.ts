@@ -1,6 +1,8 @@
 import React from 'react';
+import { grauityIconName, grauityIconSizeName } from 'ui/core';
 
 import { StyledDivProps } from '../../../common/types';
+import { ButtonIconPositions } from '../Button/types';
 
 export type ChipVariants =
     | 'brand'
@@ -69,6 +71,32 @@ export interface ChipProps {
      * Content to be displayed inside the chip.
      */
     children?: React.ReactNode;
+
+    /**
+     * Icon to be displayed in the button.
+     * */
+    icon?: grauityIconName;
+
+    /**
+     * Size of the icon
+     * */
+    iconSize?: grauityIconSizeName;
+
+    /**
+     * Position of the icon
+     *
+     * Available choices: `left`, `right`
+     *
+     * Default: `left`
+     * */
+    iconPosition?: ButtonIconPositions;
+
+    /**
+     * Additional styles to be used over the element
+     *
+     * Default: `{}`
+     * */
+    style?: React.CSSProperties;
 }
 
 export interface StyledChip extends StyledDivProps {
@@ -80,4 +108,5 @@ export interface StyledChip extends StyledDivProps {
     borderColor?: string | null;
     rounded?: boolean;
     ref?: React.Ref<HTMLDivElement>;
+    iconPosition?: 'left' | 'right';
 }

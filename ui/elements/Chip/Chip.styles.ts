@@ -11,7 +11,7 @@ export const StyledChipDiv = styled.div<StyledChip>`
     padding: 4px 8px;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
     height: fit-content;
     width: fit-content;
     border-radius: 4px;
@@ -52,4 +52,16 @@ export const StyledChipDiv = styled.div<StyledChip>`
         css`
             border-radius: 100px;
         `}
+    ${({ iconPosition }) =>
+        iconPosition === 'right' &&
+        css`
+            flex-direction: row-reverse;
+        `}
+`;
+
+export const StyledChipText = styled.span`
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 `;
