@@ -11,7 +11,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             size = 'medium',
             hasBorder = false,
             icon = null,
-            iconSize = '24',
+            iconSize = '12',
             iconPosition = 'left',
             textColor = null,
             backgroundColor = null,
@@ -34,9 +34,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             rounded={rounded}
             iconPosition={iconPosition}
         >
-            {icon && (
-                <Icon name={icon} color="inherit" size={iconSize || '12'} />
-            )}
+            {icon && <Icon name={icon} color="inherit" size={iconSize} />}
             <StyledChipText>{children}</StyledChipText>
         </StyledChipDiv>
     )
