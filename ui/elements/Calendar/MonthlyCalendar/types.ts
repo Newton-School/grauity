@@ -77,6 +77,7 @@ export interface OverflowIndicatorProps<T extends CalendarEventRequiredProps> {
     text: string;
     events: CalendarEvent<T>[];
     eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
+    triggerRef: React.RefObject<HTMLDivElement>;
 }
 
 export interface GridContainerRows

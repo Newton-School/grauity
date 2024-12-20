@@ -155,12 +155,13 @@ export const StyledDayOfWeekHeaderItemText = styled.span`
 `;
 
 export const StyledMonthlyGridItemContainer = styled.div`
+    display: flex;
     flex: 1;
     flex-direction: column;
     overflow: hidden;
 `;
 
-export const StyledOverflowEventsListContainer = styled.div`
+export const StyledOverflowEventsListContainer = styled.div<StyledDivProps>`
     display: flex;
     width: 189px;
     padding: 8px;

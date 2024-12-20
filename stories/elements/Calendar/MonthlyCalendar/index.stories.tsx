@@ -96,20 +96,20 @@ const EVENTS_DATA: CalendarEvent[] = [
     {
         id: '20-1',
         title: 'Code Review',
-        start: new Date(currentYear, currentMonth, 20, 10, 0),
-        end: new Date(currentYear, currentMonth, 20, 11, 0),
+        start: new Date(currentYear, currentMonth, 21, 10, 0),
+        end: new Date(currentYear, currentMonth, 21, 11, 0),
     },
     {
-        id: '20-2',
+        id: '21-2',
         title: 'Deployment Planning',
-        start: new Date(currentYear, currentMonth, 20, 13, 0),
-        end: new Date(currentYear, currentMonth, 20, 14, 30),
+        start: new Date(currentYear, currentMonth, 21, 13, 0),
+        end: new Date(currentYear, currentMonth, 21, 14, 30),
     },
     {
-        id: '20-3',
+        id: '21-3',
         title: 'Tech Talk',
-        start: new Date(currentYear, currentMonth, 20, 15, 0),
-        end: new Date(currentYear, currentMonth, 20, 16, 0),
+        start: new Date(currentYear, currentMonth, 21, 15, 0),
+        end: new Date(currentYear, currentMonth, 21, 16, 0),
     },
     // Day 25 events
     {
