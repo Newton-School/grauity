@@ -6,6 +6,7 @@ import {
 } from './types';
 
 export const StyledMonthlyCalendarEvent = styled.div<MonthlyCalendarEventProps>`
+    cursor: pointer;
     box-sizing: border-box;
     font-family: var(--font-family, 'Mona Sans');
     display: flex;
@@ -38,6 +39,7 @@ export const StyledMonthlyCalendarEventText = styled.p<StyledMonthlyCalendarEven
     padding: 0 2px;
     color: ${({ color }) => color || 'var(--text-brand-action)'};
     text-wrap: nowrap;
+    margin-bottom: 0px;
 `;
 
 export const StyledMonthlyCalendarEventTitleText = styled.span<StyledMonthlyCalendarEventTextProps>`
