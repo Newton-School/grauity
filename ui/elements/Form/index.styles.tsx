@@ -7,8 +7,8 @@ export const StyledLabel = styled.label<StyledLabelProps>`
     font-size: 12px;
     line-height: 16px;
     letter-spacing: 0.048px;
-    ${({ isRequired }) =>
-        isRequired &&
+    ${({ required }) =>
+        required &&
         css`
             ::after {
                 content: '*';

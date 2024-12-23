@@ -4,7 +4,7 @@ import { StyledLabelProps } from '../../../common/types';
 
 export interface LabelProps extends StyledLabelProps {
     name: string;
-    isRequired: boolean;
+    required: boolean;
     children: React.ReactNode;
 }
 

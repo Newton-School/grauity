@@ -41,7 +41,7 @@ export interface StyledInputProps
 export interface StyledLabelProps
     extends React.LabelHTMLAttributes<HTMLLabelElement> {
     ref?: React.Ref<HTMLLabelElement>;
-    isRequired?: boolean;
+    required?: boolean;
 }
 
 /**

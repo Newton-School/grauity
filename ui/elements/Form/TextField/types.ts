@@ -1,5 +1,26 @@
 import React from 'react';
 
+import { StyledDivProps, StyledInputProps } from '../../../../common/types';
+import { TEXT_FIELD_SIZES } from './constants';
+
+export type TextFieldSize = `${TEXT_FIELD_SIZES}`;
+
+export type InputAdornmentType = React.ReactNode;
+
+export interface InputAdornments {
+    /**
+     * The start adornment for the input field.
+     * @type {InputAdornmentType}
+     * */
+    start?: InputAdornmentType;
+
+    /**
+     * The end adornment for the input field.
+     * @type {InputAdornmentType}
+     * */
+    end?: InputAdornmentType;
+}
+
 export interface TextFieldProps {
     /**
      * The name of the input field. Required.
@@ -18,7 +39,7 @@ export interface TextFieldProps {
      * @type {boolean}
      * @default false
      */
-    isRequired?: boolean;
+    required?: boolean;
 
     /**
      * The placeholder text for the input field.
@@ -44,7 +65,7 @@ export interface TextFieldProps {
      * @type {boolean}
      * @default false
      */
-    isDisabled?: boolean;
+    disabled?: boolean;
 
     /**
      * The function to call when the input value is changed.
@@ -95,4 +116,30 @@ export interface TextFieldProps {
      * @type {number}
      */
     maxLength?: number;
+
+    /**
+     * The size of the input field.
+     * @type {string}
+     * @default 'medium'
+     */
+    size?: TextFieldSize;
+
+    /**
+     * The adornments to display on the input field.
+     * @type {InputAdornments}
+     */
+    adornments?: InputAdornments;
+}
+
+export interface StyledTextFieldInputProps extends StyledInputProps {
+    $size?: TextFieldSize;
+    $adornmentDimensions?: {
+        start: number;
+        end: number;
+    };
+}
+
+export interface StyledTextFieldContainerProps extends StyledDivProps {
+    $size?: TextFieldSize;
+    $disabled?: boolean;
 }
