@@ -53,6 +53,12 @@ export interface MonthlyCalendarProps<T = {}> {
      * @default false
      */
     loading?: boolean;
+
+    /**
+     * Callback to run when events list popover closes
+     * @default () => {}
+     */
+    onPopOverClose?: () => void;
 }
 
 export interface DateCircleProps {
@@ -78,6 +84,7 @@ export interface OverflowIndicatorProps<T extends CalendarEventRequiredProps> {
     events: CalendarEvent<T>[];
     eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
     triggerRef: React.RefObject<HTMLDivElement>;
+    onPopOverClose?: () => void;
 }
 
 export interface GridContainerRows
@@ -90,6 +97,7 @@ export interface MonthlyCalendarGridItemProps<T> {
     events: CalendarEvent<T>[];
     eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
     renderDayItem?: (item: CalendarEvent<T>) => React.ReactNode;
+    onPopOverClose?: () => void;
 }
 
 export interface StyledMonthlyCalendarGridItemProps extends StyledDivProps {
@@ -112,6 +120,7 @@ export interface OverflowEventsListProps<T> {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
     events: CalendarEvent<T>[];
     eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
+    onPopOverClose?: () => void;
 }
 
 export interface StyledOverflowEventsListContainerProps extends StyledDivProps {

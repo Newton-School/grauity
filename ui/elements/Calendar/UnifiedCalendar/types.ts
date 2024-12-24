@@ -89,6 +89,12 @@ export interface UnifiedCalendarProps<T> {
             item: CalendarEvent<T>,
             view: CalendarView
         ) => React.ReactNode;
+
+        /**
+         * Callback to run when popover closes
+         * @default null
+         */
+        onPopOverClose?: () => void;
     };
 }
 

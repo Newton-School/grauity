@@ -210,6 +210,7 @@ const defaultArgs: UnifiedCalendarProps<any> = {
     view: 'monthly',
     monthlyCalendarProps: {
         renderDayItem: null,
+        onPopOverClose: null,
     },
     weeklyCalendarProps: {
         defaultScrollHour: null,
