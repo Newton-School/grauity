@@ -31,7 +31,7 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
 
         if (rightVal + 10 >= rightBoundary) {
             setRenderPosition({
-                left: triggerRefRect?.left - popoverWidth,
+                left: triggerRefRect?.left - 6,
                 top: triggerRefRect?.top - 10,
             });
             return;
@@ -50,6 +50,11 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
         setIsOpen(false);
     };
 
+    const overflowContainerWidth = Math.max(
+        triggerRef?.current?.getBoundingClientRect()?.width ?? 0,
+        190
+    );
+
     return (
         <PopOver
             isOpen={isOpen}
@@ -60,7 +65,10 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
             onClose={handleClose}
             shouldCloseOnOutsideClick
         >
-            <StyledOverflowEventsListContainer ref={popoverDataRef}>
+            <StyledOverflowEventsListContainer
+                width={overflowContainerWidth}
+                ref={popoverDataRef}
+            >
                 <DateCircle date={cellDate} />
                 {events.map((event) => eventRenderer(event))}
             </StyledOverflowEventsListContainer>

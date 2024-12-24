@@ -11,7 +11,7 @@ function GridHeaderRow() {
     return (
         <StyledDayOfWeekHeader>
             {DAYS_OF_WEEK.map((day) => (
-                <StyledDayOfWeekHeaderItem>
+                <StyledDayOfWeekHeaderItem key={day}>
                     <StyledDayOfWeekHeaderItemText>
                         {day.slice(0, 3)}
                     </StyledDayOfWeekHeaderItemText>

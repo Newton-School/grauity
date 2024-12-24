@@ -14,32 +14,32 @@ const EVENTS_DATA: CalendarEvent[] = [
     {
         id: '1-1',
         title: 'Morning Meeting',
-        start: new Date(currentYear, currentMonth, 1, 9, 0),
-        end: new Date(currentYear, currentMonth, 1, 10, 30),
+        start: new Date(currentYear, currentMonth, 7, 9, 0),
+        end: new Date(currentYear, currentMonth, 7, 10, 30),
     },
     {
         id: '1-2',
         title: 'Morning breakfast',
-        start: new Date(currentYear, currentMonth, 1, 9, 0),
-        end: new Date(currentYear, currentMonth, 1, 10, 30),
+        start: new Date(currentYear, currentMonth, 7, 9, 0),
+        end: new Date(currentYear, currentMonth, 7, 10, 30),
     },
     {
         id: '1-3',
         title: 'Morning Tea',
-        start: new Date(currentYear, currentMonth, 1, 9, 0),
-        end: new Date(currentYear, currentMonth, 1, 10, 30),
+        start: new Date(currentYear, currentMonth, 7, 9, 0),
+        end: new Date(currentYear, currentMonth, 7, 10, 30),
     },
     {
         id: '1-4',
         title: 'Team Lunch',
-        start: new Date(currentYear, currentMonth, 1, 12, 0),
-        end: new Date(currentYear, currentMonth, 1, 13, 0),
+        start: new Date(currentYear, currentMonth, 7, 12, 0),
+        end: new Date(currentYear, currentMonth, 7, 13, 0),
     },
     {
         id: '1-5',
         title: 'Team Dinner',
-        start: new Date(currentYear, currentMonth, 1, 12, 0),
-        end: new Date(currentYear, currentMonth, 1, 13, 0),
+        start: new Date(currentYear, currentMonth, 7, 12, 0),
+        end: new Date(currentYear, currentMonth, 7, 13, 0),
     },
     // Day 5 events
     {

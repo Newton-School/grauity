@@ -5,6 +5,7 @@ import { DAYS_IN_WEEK } from './constants';
 import GridHeaderRow from './GridHeaderRow';
 import Loading from './Loading';
 import {
+    StyledCalendarHeader,
     StyledMonthlyCalendarGrid,
     StyledMonthlyCalendarGridContainer,
     StyledMonthlyGridItemContainer,
@@ -88,15 +89,17 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
                 new Date(currentYear, currentMonth)
             )}`}
         >
-            {header}
-            {shouldShowMonthControls ? (
-                <MonthlyControls
-                    loading={loading}
-                    monthOffset={monthOffset}
-                    setMonthOffset={setMonthOffset}
-                />
-            ) : null}
-            <GridHeaderRow />
+            <StyledCalendarHeader>
+                {header}
+                {shouldShowMonthControls ? (
+                    <MonthlyControls
+                        loading={loading}
+                        monthOffset={monthOffset}
+                        setMonthOffset={setMonthOffset}
+                    />
+                ) : null}
+                <GridHeaderRow />
+            </StyledCalendarHeader>
             {loading ? (
                 <Loading gridData={datesInGrid} />
             ) : (
@@ -109,6 +112,7 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
                                 events={events}
                                 eventRenderer={eventRenderer}
                                 renderDayItem={renderDayItem}
+                                key={item.valueOf()}
                             />
                         ))}
                     </StyledMonthlyCalendarGrid>

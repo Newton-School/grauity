@@ -31,10 +31,11 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
         setNumberOfEventsToRemove(numberOfEventsToRemoveComputed);
     }, [monthOffset]);
 
-    const eventsToRender = eventsForTheDay.slice(
-        0,
-        eventsForTheDay.length - numberOfEventsToRemove
-    );
+    const lengthOfArray =
+        eventsForTheDay.length - numberOfEventsToRemove >= 0
+            ? eventsForTheDay.length - numberOfEventsToRemove
+            : 0;
+    const eventsToRender = eventsForTheDay.slice(0, lengthOfArray);
 
     const moreEventsText = `+${numberOfEventsToRemove} more`;
     const currentActiveMonth = new Date();
@@ -58,7 +59,9 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
         >
             <DateCircle date={cellDate} />
             {eventsToRender.map((event) => (
-                <>{eventRenderer(event)}</>
+                <React.Fragment key={event?.id}>
+                    {eventRenderer(event)}
+                </React.Fragment>
             ))}
             {numberOfEventsToRemove ? (
                 <OverflowIndicator
