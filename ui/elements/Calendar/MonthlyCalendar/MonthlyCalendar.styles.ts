@@ -136,7 +136,7 @@ export const StyledDayOfWeekHeader = styled.div`
 export const StyledCalendarHeader = styled.div<StyledDivProps>`
     position: sticky;
     top: 0;
-    z-index: var(--calendar-header-z-index);
+    z-index: 1;
     background: var(--bg-primary, #fff);
     box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.12);
 `;
