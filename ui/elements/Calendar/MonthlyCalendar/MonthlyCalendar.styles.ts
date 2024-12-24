@@ -132,7 +132,15 @@ export const StyledDayOfWeekHeader = styled.div`
     grid-template-columns: repeat(7, 1fr);
 `;
 
-export const StyledDayOfWeekHeaderItem = styled.div`
+export const StyledCalendarHeader = styled.div<StyledDivProps>`
+    position: sticky;
+    top: 0;
+    z-index: var(--calendar-header-z-index);
+    background: var(--bg-primary, #fff);
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.12);
+`;
+
+export const StyledDayOfWeekHeaderItem = styled.div<StyledDivProps>`
     display: flex;
     padding: var(--spacing-12px, 12px);
     flex-direction: column;

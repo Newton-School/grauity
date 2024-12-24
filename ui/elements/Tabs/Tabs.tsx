@@ -37,6 +37,7 @@ function Tabs(props: TabProps) {
                     color={color}
                     focusBackgroundColor={focusBackgroundColor}
                     focusColor={focusColor}
+                    key={typeof item === 'string' ? item : String(item) + idx}
                 >
                     {typeof item === 'string' ? (
                         <StyledTabItemText>{item}</StyledTabItemText>

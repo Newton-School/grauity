@@ -31,7 +31,7 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
 
         if (rightVal + 10 >= rightBoundary) {
             setRenderPosition({
-                left: triggerRefRect?.left - popoverWidth,
+                left: triggerRefRect?.left - 6,
                 top: triggerRefRect?.top - 10,
             });
             return;
