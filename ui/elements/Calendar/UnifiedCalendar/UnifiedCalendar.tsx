@@ -34,6 +34,16 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
         onDateChange(date);
     }, [currentDate]);
 
+    useEffect(() => {
+        if (date.valueOf() !== currentDate.valueOf()) {
+            setCurrentDate(date);
+        }
+    }, [date]);
+
+    useEffect(() => {
+        setViewType(view);
+    }, [view]);
+
     switch (viewType) {
         case 'monthly':
             return (

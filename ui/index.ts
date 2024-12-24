@@ -154,3 +154,6 @@ export {
 
 // NSTooltip
 export { default as NSTooltip, type TooltipProps } from './elements/Tooltip';
+
+// NSTabs
+export { default as NSTab, type TabProps } from './elements/Tabs';
