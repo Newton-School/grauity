@@ -51,6 +51,10 @@ const defaultArgs: AccordionProps = {
     title: 'Accordion',
     expanded: false,
     onToggle: () => {},
+    suffix: null,
+    tileColor: 'var(--bg-secondary)',
+    contentColor: 'var(--text-secondary)',
+    iconColor: 'var(--text-primary)',
 };
 
 export const Component = Template.bind({});

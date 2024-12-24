@@ -5,13 +5,26 @@ import { Icon } from '../Icon';
 import {
     StyledAccordionContent,
     StyledAccordionHeader,
+    StyledAccordionHeaderSuffix,
     StyledAccordionWrapper,
     StyledLine,
 } from './Accordion.styles';
 import { AccordionProps } from './types';
 
 export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
-    ({ title, expanded = false, onToggle = () => {}, children }, ref) => {
+    (
+        {
+            title,
+            expanded = false,
+            onToggle = () => {},
+            children,
+            suffix = null,
+            tileColor = 'var(--bg-secondary)',
+            contentColor = 'var(--text-secondary)',
+            iconColor = 'var(--text-primary)',
+        },
+        ref
+    ) => {
         const [isExpanded, setIsExpanded] = useState(expanded);
         const handleToggle = () => {
             setIsExpanded(!isExpanded);
@@ -36,17 +49,26 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
 
         return (
             <StyledAccordionWrapper ref={ref}>
-                <StyledAccordionHeader onClick={handleToggle}>
+                <StyledAccordionHeader
+                    onClick={handleToggle}
+                    $tileColor={tileColor}
+                >
                     {title}
-                    <Icon
-                        color="var(--text-primary)"
-                        name={isExpanded ? 'chevron-up' : 'chevron-down'}
-                        size="16"
-                    />
+                    <StyledAccordionHeaderSuffix>
+                        {suffix}
+                        <Icon
+                            color={iconColor}
+                            name={isExpanded ? 'chevron-up' : 'chevron-down'}
+                            size="16"
+                        />
+                    </StyledAccordionHeaderSuffix>
                 </StyledAccordionHeader>
                 <AnimatePresence>
                     {isExpanded && (
-                        <StyledAccordionContent {...motionProps}>
+                        <StyledAccordionContent
+                            $contentColor={contentColor}
+                            {...motionProps}
+                        >
                             <StyledLine />
                             {children}
                         </StyledAccordionContent>
