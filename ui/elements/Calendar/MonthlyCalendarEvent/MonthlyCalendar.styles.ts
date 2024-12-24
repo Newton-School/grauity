@@ -39,7 +39,7 @@ export const StyledMonthlyCalendarEventText = styled.p<StyledMonthlyCalendarEven
     padding: 0 2px;
     color: ${({ color }) => color || 'var(--text-brand-action)'};
     text-wrap: nowrap;
-    margin-bottom: 0px;
+    margin: 0px;
 `;
 
 export const StyledMonthlyCalendarEventTitleText = styled.span<StyledMonthlyCalendarEventTextProps>`
