@@ -8,8 +8,14 @@ import { MonthlyCalendarGridItemProps } from './types';
 import { numberOfElementsOverflowing } from './utils';
 
 function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
-    const { cellDate, monthOffset, events, eventRenderer, renderDayItem } =
-        props;
+    const {
+        cellDate,
+        monthOffset,
+        events,
+        eventRenderer,
+        renderDayItem,
+        onPopOverClose,
+    } = props;
     const [numberOfEventsToRemove, setNumberOfEventsToRemove] = useState(0);
     const gridItemRef = useRef<HTMLDivElement>(null);
 
@@ -29,7 +35,7 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
 
         const numberOfEventsToRemoveComputed = numberOfEventsOverflowing + 1;
         setNumberOfEventsToRemove(numberOfEventsToRemoveComputed);
-    }, [monthOffset]);
+    }, [monthOffset, events]);
 
     const lengthOfArray =
         eventsForTheDay.length - numberOfEventsToRemove >= 0
@@ -69,6 +75,7 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
                     eventRenderer={eventRenderer}
                     text={moreEventsText}
                     triggerRef={gridItemRef}
+                    onPopOverClose={onPopOverClose}
                 />
             ) : null}
         </StyledMonthlyCalendarGridItem>
