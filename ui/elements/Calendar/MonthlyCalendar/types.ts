@@ -113,3 +113,7 @@ export interface OverflowEventsListProps<T> {
     events: CalendarEvent<T>[];
     eventRenderer: (item: CalendarEvent<T>) => React.ReactNode;
 }
+
+export interface StyledOverflowEventsListContainerProps extends StyledDivProps {
+    width: number;
+}

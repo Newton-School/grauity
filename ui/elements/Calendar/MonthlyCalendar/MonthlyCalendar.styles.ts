@@ -7,6 +7,7 @@ import {
     StyledDateCircleProps,
     StyledDateTextProps,
     StyledMonthlyCalendarGridItemProps,
+    StyledOverflowEventsListContainerProps,
 } from './types';
 
 export const StyledDateCircle = styled.div<StyledDateCircleProps>`
@@ -169,7 +170,7 @@ export const StyledMonthlyGridItemContainer = styled.div`
     overflow: hidden;
 `;
 
-export const StyledOverflowEventsListContainer = styled.div<StyledDivProps>`
+export const StyledOverflowEventsListContainer = styled.div<StyledOverflowEventsListContainerProps>`
     display: flex;
     width: 189px;
     padding: 8px;
@@ -181,6 +182,12 @@ export const StyledOverflowEventsListContainer = styled.div<StyledDivProps>`
     border: 2px solid var(--border-brand, #94c4ff);
     background: var(--bg-brand, #e5f1ff);
     box-shadow: 0px 8px 48px 0px rgba(0, 0, 0, 0.16);
+
+    ${({ width }) =>
+        width &&
+        css`
+            width: ${width}px;
+        `}
 `;
 
 export const StyledCalendarMonthButton = styled.div<StyledDivProps>`

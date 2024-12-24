@@ -98,8 +98,8 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
                         setMonthOffset={setMonthOffset}
                     />
                 ) : null}
+                <GridHeaderRow />
             </StyledCalendarHeader>
-            <GridHeaderRow />
             {loading ? (
                 <Loading gridData={datesInGrid} />
             ) : (
