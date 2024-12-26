@@ -141,6 +141,9 @@ export const ICON_TAGS = {
     star: ['Reward'],
     'trophy-filled': ['Reward'],
     trophy: ['Reward'],
+    linkedin: ['Social'],
+    twitter: ['Social'],
+    whatsapp: ['Social'],
     'arrow-double-filled': ['System'],
     'arrow-double': ['System'],
     'arrow-down-filled': ['System'],
@@ -570,6 +573,7 @@ export const TAG_ICONS = {
         'trophy-filled',
         'trophy',
     ],
+    Social: ['linkedin', 'twitter', 'whatsapp'],
     System: [
         'arrow-double-filled',
         'arrow-double',

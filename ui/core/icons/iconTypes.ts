@@ -141,6 +141,9 @@ export type grauityIconName =
     | 'star'
     | 'trophy-filled'
     | 'trophy'
+    | 'linkedin'
+    | 'twitter'
+    | 'whatsapp'
     | 'arrow-double-filled'
     | 'arrow-double'
     | 'arrow-down-filled'
@@ -557,6 +560,9 @@ export type grauityIconKey =
     | 'Star'
     | 'TrophyFilled'
     | 'Trophy'
+    | 'Linkedin'
+    | 'Twitter'
+    | 'Whatsapp'
     | 'ArrowDoubleFilled'
     | 'ArrowDouble'
     | 'ArrowDownFilled'
@@ -973,6 +979,9 @@ export enum GRAUITY_ICONS {
     Star = 'star',
     TrophyFilled = 'trophy-filled',
     Trophy = 'trophy',
+    Linkedin = 'linkedin',
+    Twitter = 'twitter',
+    Whatsapp = 'whatsapp',
     ArrowDoubleFilled = 'arrow-double-filled',
     ArrowDouble = 'arrow-double',
     ArrowDownFilled = 'arrow-down-filled',
