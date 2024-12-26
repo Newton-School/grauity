@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NSIconButton } from 'ui/index';
 
+import { IconButton } from '../Button';
 import {
     StyledCorouselContainer,
     StyledCorouselControls,
@@ -80,7 +80,7 @@ const Corousel = (props: CorouselProps) => {
             >
                 <StyledCorouselTitle>{title}</StyledCorouselTitle>
                 <StyledCorouselControls>
-                    <NSIconButton
+                    <IconButton
                         size="small"
                         icon={leftIcon}
                         variant="tertiary"
@@ -91,7 +91,7 @@ const Corousel = (props: CorouselProps) => {
                         onClick={() => handleControlClick('left')}
                         disabled={leftButtonDisabled}
                     />
-                    <NSIconButton
+                    <IconButton
                         size="small"
                         icon={rightIcon}
                         variant="tertiary"
