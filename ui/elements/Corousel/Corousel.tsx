@@ -19,6 +19,7 @@ const Corousel = (props: CorouselProps) => {
         rightIcon = null,
         onLeftClick = () => {},
         onRightClick = () => {},
+        onScrollEnd = () => {},
         gap = 12,
         style = {},
     } = props;
@@ -49,11 +50,14 @@ const Corousel = (props: CorouselProps) => {
 
     useEffect(() => {
         setLeftButtonDisabled(translateX === 0);
-        setRightButtonDisabled(
+        const scrolledToEnd =
             translateX <=
-                containerRef.current?.clientWidth -
-                    containerRef.current?.scrollWidth
-        );
+            containerRef.current?.clientWidth -
+                containerRef.current?.scrollWidth;
+        setRightButtonDisabled(scrolledToEnd);
+        if (scrolledToEnd) {
+            onScrollEnd();
+        }
     }, [
         translateX,
         containerRef.current?.clientWidth,

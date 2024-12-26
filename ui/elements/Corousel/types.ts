@@ -39,6 +39,12 @@ export interface CorouselProps {
     onRightClick?: () => void;
 
     /**
+     * Callback function to be called when the carousel is scrolled to the end.
+     * @default null
+     */
+    onScrollEnd?: () => void;
+
+    /**
      * Gap between the carousel items in pixels.
      * @default 12
      */

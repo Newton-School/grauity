@@ -21,6 +21,7 @@ export default {
   leftIcon={null}
   onLeftClick={() => {}}
   onRightClick={() => {}}
+  onScrollEnd={() => {}}
   rightIcon={null}
   style={{}}
   title="Slide to see"
@@ -52,6 +53,7 @@ const defaultArgs: CorouselProps = {
     rightIcon: null,
     onLeftClick: () => {},
     onRightClick: () => {},
+    onScrollEnd: () => {},
     gap: 12,
     style: {},
 };
