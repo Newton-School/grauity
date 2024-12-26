@@ -5,13 +5,27 @@ import { Icon } from '../Icon';
 import {
     StyledAccordionContent,
     StyledAccordionHeader,
+    StyledAccordionHeaderSuffix,
     StyledAccordionWrapper,
     StyledLine,
 } from './Accordion.styles';
 import { AccordionProps } from './types';
 
 export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
-    ({ title, expanded = false, onToggle = () => {}, children }, ref) => {
+    (
+        {
+            title,
+            expanded = false,
+            onToggle = () => {},
+            children,
+            suffix = null,
+            headerBackgroundColor = 'var(--bg-secondary, #F6F7F9)',
+            contentBackgroundColor = 'var(--bg-secondary, #F6F7F9)',
+            iconColor = 'var(--text-primary, #16191D)',
+            style = {},
+        },
+        ref
+    ) => {
         const [isExpanded, setIsExpanded] = useState(expanded);
         const handleToggle = () => {
             setIsExpanded(!isExpanded);
@@ -35,18 +49,27 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
         };
 
         return (
-            <StyledAccordionWrapper ref={ref}>
-                <StyledAccordionHeader onClick={handleToggle}>
+            <StyledAccordionWrapper ref={ref} style={style}>
+                <StyledAccordionHeader
+                    onClick={handleToggle}
+                    $headerBackgroundColor={headerBackgroundColor}
+                >
                     {title}
-                    <Icon
-                        color="var(--text-primary)"
-                        name={isExpanded ? 'chevron-up' : 'chevron-down'}
-                        size="16"
-                    />
+                    <StyledAccordionHeaderSuffix>
+                        {suffix}
+                        <Icon
+                            color={iconColor}
+                            name={isExpanded ? 'chevron-up' : 'chevron-down'}
+                            size="16"
+                        />
+                    </StyledAccordionHeaderSuffix>
                 </StyledAccordionHeader>
                 <AnimatePresence>
                     {isExpanded && (
-                        <StyledAccordionContent {...motionProps}>
+                        <StyledAccordionContent
+                            $contentBackgroundColor={contentBackgroundColor}
+                            {...motionProps}
+                        >
                             <StyledLine />
                             {children}
                         </StyledAccordionContent>

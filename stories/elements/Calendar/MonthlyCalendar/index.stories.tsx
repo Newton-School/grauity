@@ -186,6 +186,7 @@ const defaultArgs: MonthlyCalendarProps<any> = {
     header: null,
     loading: false,
     renderDayItem: null,
+    onPopOverClose: null,
 };
 
 Component.args = {

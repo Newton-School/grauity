@@ -25,6 +25,7 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         shouldShowMonthControls = true,
         events = [],
         renderDayItem,
+        onPopOverClose = () => {},
     } = props;
     const [currentDate, setCurrentDate] = useState(date);
     const monthOffset = getMonthOffsetByDate(currentDate);
@@ -113,6 +114,7 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
                                 eventRenderer={eventRenderer}
                                 renderDayItem={renderDayItem}
                                 key={item.valueOf()}
+                                onPopOverClose={onPopOverClose}
                             />
                         ))}
                     </StyledMonthlyCalendarGrid>

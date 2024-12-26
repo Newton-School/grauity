@@ -9,7 +9,14 @@ import { OverflowEventsListProps } from './types';
 function OverflowEventsList<T extends CalendarEventRequiredProps>(
     props: OverflowEventsListProps<T>
 ) {
-    const { isOpen, setIsOpen, triggerRef, events, eventRenderer } = props;
+    const {
+        isOpen,
+        setIsOpen,
+        triggerRef,
+        events,
+        eventRenderer,
+        onPopOverClose,
+    } = props;
     const [renderPosition, setRenderPosition] = useState({
         left: 0,
         top: 0,
@@ -47,6 +54,9 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
     }, [popoverDataRef?.current]);
 
     const handleClose = () => {
+        if (typeof onPopOverClose === 'function') {
+            onPopOverClose();
+        }
         setIsOpen(false);
     };
 

@@ -12,7 +12,7 @@ import { OverflowIndicatorProps } from './types';
 function OverflowIndicator<T extends CalendarEventRequiredProps>(
     props: OverflowIndicatorProps<T>
 ) {
-    const { text, events, eventRenderer, triggerRef } = props;
+    const { text, events, eventRenderer, triggerRef, onPopOverClose } = props;
     const [isOpen, setIsOpen] = useState(false);
 
     const onClick = () => {
@@ -30,6 +30,7 @@ function OverflowIndicator<T extends CalendarEventRequiredProps>(
                     setIsOpen={setIsOpen}
                     triggerRef={triggerRef}
                     eventRenderer={eventRenderer}
+                    onPopOverClose={onPopOverClose}
                 />
             )}
         </StyledOverflowIndicator>
