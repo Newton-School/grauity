@@ -1,4 +1,5 @@
 import React from 'react';
+import { grauityIconName } from 'ui/core';
 
 import { StyledDivProps } from '../../../common/types';
 
@@ -18,13 +19,19 @@ export interface CorouselProps {
      * A React node to be used as the left navigation icon.
      * @default chevron-left
      */
-    leftIcon?: React.ReactNode;
+    leftIcon?: grauityIconName;
 
     /**
      * A React node to be used as the right navigation icon.
      * @default chevron-right
      */
-    rightIcon?: React.ReactNode;
+    rightIcon?: grauityIconName;
+
+    /**
+     * The amount of pixels to scroll when the navigation icons are clicked.
+     * @default 100
+     */
+    scrollAmount?: number;
 
     /**
      * Callback function to be called when the left navigation icon is clicked.

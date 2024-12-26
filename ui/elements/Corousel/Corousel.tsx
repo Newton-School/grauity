@@ -15,8 +15,9 @@ const Corousel = (props: CorouselProps) => {
     const {
         items = [],
         title = null,
-        leftIcon = null,
-        rightIcon = null,
+        leftIcon = 'chevron-left',
+        rightIcon = 'chevron-right',
+        scrollAmount = 100,
         onLeftClick = () => {},
         onRightClick = () => {},
         onScrollEnd = () => {},
@@ -35,13 +36,13 @@ const Corousel = (props: CorouselProps) => {
         const currentLeft = containerRef.current?.getBoundingClientRect().left;
 
         if (direction === 'left') {
-            const newLeft = Math.min(0, currentLeft + visibleWidth);
+            const newLeft = Math.min(0, currentLeft + scrollAmount);
             setTranslateX(newLeft);
             onLeftClick();
-        } else {
+        } else if (direction === 'right') {
             const newLeft = Math.max(
                 -scrollableWidth + visibleWidth,
-                currentLeft - visibleWidth
+                currentLeft - scrollAmount
             );
             setTranslateX(newLeft);
             onRightClick();
@@ -69,32 +70,28 @@ const Corousel = (props: CorouselProps) => {
             <StyledCorouselHeaderRow>
                 <StyledCorouselTitle>{title}</StyledCorouselTitle>
                 <StyledCorouselControls>
-                    {leftIcon || (
-                        <NSIconButton
-                            size="small"
-                            icon="chevron-left"
-                            variant="tertiary"
-                            style={{
-                                width: '10px',
-                                borderRadius: '50%',
-                            }}
-                            onClick={() => handleControlClick('left')}
-                            disabled={leftButtonDisabled}
-                        />
-                    )}
-                    {rightIcon || (
-                        <NSIconButton
-                            size="small"
-                            icon="chevron-right"
-                            variant="tertiary"
-                            style={{
-                                width: '10px',
-                                borderRadius: '50%',
-                            }}
-                            onClick={() => handleControlClick('right')}
-                            disabled={rightButtonDisabled}
-                        />
-                    )}
+                    <NSIconButton
+                        size="small"
+                        icon={leftIcon}
+                        variant="tertiary"
+                        style={{
+                            width: '10px',
+                            borderRadius: '50%',
+                        }}
+                        onClick={() => handleControlClick('left')}
+                        disabled={leftButtonDisabled}
+                    />
+                    <NSIconButton
+                        size="small"
+                        icon={rightIcon}
+                        variant="tertiary"
+                        style={{
+                            width: '10px',
+                            borderRadius: '50%',
+                        }}
+                        onClick={() => handleControlClick('right')}
+                        disabled={rightButtonDisabled}
+                    />
                 </StyledCorouselControls>
             </StyledCorouselHeaderRow>
             <StyledCorouselItemsContainer

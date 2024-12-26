@@ -18,11 +18,12 @@ export default {
 <Corousel
   gap={12}
   items={[]}
-  leftIcon={null}
+  leftIcon="chevron-left"
   onLeftClick={() => {}}
   onRightClick={() => {}}
   onScrollEnd={() => {}}
-  rightIcon={null}
+  rightIcon="chevron-right"
+  scrollAmount={100}
   style={{}}
   title="Slide to see"
 />`,
@@ -49,8 +50,9 @@ const defaultArgs: CorouselProps = {
         <div>Item 12</div>,
     ],
     title: 'Slide to see',
-    leftIcon: null,
-    rightIcon: null,
+    leftIcon: 'chevron-left',
+    rightIcon: 'chevron-right',
+    scrollAmount: 100,
     onLeftClick: () => {},
     onRightClick: () => {},
     onScrollEnd: () => {},
