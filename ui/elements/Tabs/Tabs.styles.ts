@@ -36,6 +36,7 @@ export const StyledTabItemContainer = styled.div<StyledTabItemContainerProps>`
     border-radius: 4px;
     cursor: pointer;
     flex: 1;
+    color: var(--text-primary, #fff);
 
     ${({ backgroundColor }) =>
         backgroundColor &&
