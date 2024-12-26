@@ -19,8 +19,8 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
             onToggle = () => {},
             children,
             suffix = null,
-            tileColor = 'var(--bg-secondary)',
-            contentColor = 'var(--text-secondary)',
+            headerBackgroundColor = 'var(--bg-secondary)',
+            contentBackgroundColor = 'var(--text-secondary)',
             iconColor = 'var(--text-primary)',
         },
         ref
@@ -51,7 +51,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
             <StyledAccordionWrapper ref={ref}>
                 <StyledAccordionHeader
                     onClick={handleToggle}
-                    $tileColor={tileColor}
+                    $headerBackgroundColor={headerBackgroundColor}
                 >
                     {title}
                     <StyledAccordionHeaderSuffix>
@@ -66,7 +66,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
                 <AnimatePresence>
                     {isExpanded && (
                         <StyledAccordionContent
-                            $contentColor={contentColor}
+                            $contentBackgroundColor={contentBackgroundColor}
                             {...motionProps}
                         >
                             <StyledLine />

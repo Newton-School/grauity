@@ -52,8 +52,8 @@ const defaultArgs: AccordionProps = {
     expanded: false,
     onToggle: () => {},
     suffix: null,
-    tileColor: 'var(--bg-secondary)',
-    contentColor: 'var(--text-secondary)',
+    headerBackgroundColor: 'var(--bg-secondary)',
+    contentBackgroundColor: 'var(--text-secondary)',
     iconColor: 'var(--text-primary)',
 };
 

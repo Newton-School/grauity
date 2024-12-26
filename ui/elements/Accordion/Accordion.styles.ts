@@ -13,7 +13,7 @@ export const StyledAccordionHeader = styled.div<StyledAccordionHeaderProps>`
     cursor: pointer;
     padding: 8px;
     align-items: center;
-    background-color: ${(props) => props.$tileColor};
+    background-color: ${(props) => props.$headerBackgroundColor};
     font-family: var(--font-family, 'Mona Sans');
     color: var(--text-primary);
     font-size: 14px;
@@ -32,7 +32,7 @@ export const StyledAccordionContent = styled(
     motion.div
 )<StyledAccordionContentProps>`
     overflow: hidden;
-    background-color: ${(props) => props.$contentColor};
+    background-color: ${(props) => props.$contentBackgroundColor};
     padding: 0px 8px;
     font-size: 12px;
     color: var(--text-primary);

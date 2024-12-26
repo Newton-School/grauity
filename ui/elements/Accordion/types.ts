@@ -20,16 +20,16 @@ export interface AccordionProps {
     suffix?: React.ReactNode;
 
     /**
-     * Color of the accordion header tile.
+     * Background color of the accordion header.
      * @default var(--bg-secondary)
      */
-    tileColor?: string;
+    headerBackgroundColor?: string;
 
     /**
-     * Color of the accordion header content.
+     * Background color of the accordion content.
      * @default var(--text-secondary)
      */
-    contentColor?: string;
+    contentBackgroundColor?: string;
 
     /**
      * Color of the accordion header icon.
@@ -51,9 +51,9 @@ export interface AccordionProps {
 
 export interface StyledAccordionHeaderProps extends StyledDivProps {
     onClick: () => void;
-    $tileColor: string;
+    $headerBackgroundColor: string;
 }
 
 export interface StyledAccordionContentProps extends StyledDivProps {
-    $contentColor: string;
+    $contentBackgroundColor: string;
 }
