@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 import { StyledDivProps } from '../../../common/types';
 import {
-    StyledCorouselHeaderRowProps,
-    StyledCorouselItemsContainerProps,
+    StyledCarouselHeaderRowProps,
+    StyledCarouselItemsContainerProps,
 } from './types';
 
-export const StyledCorouselContainer = styled.div<StyledDivProps>`
+export const StyledCarouselContainer = styled.div<StyledDivProps>`
     box-sizing: border-box;
     width: 100%;
     overflow-x: hidden;
@@ -19,7 +19,7 @@ export const StyledCorouselContainer = styled.div<StyledDivProps>`
     font-family: var(--font-family, 'Mona Sans');
 `;
 
-export const StyledCorouselHeaderRow = styled.div<StyledCorouselHeaderRowProps>`
+export const StyledCarouselHeaderRow = styled.div<StyledCarouselHeaderRowProps>`
     width: 100%;
     display: flex;
     flex-direction: ${(props) =>
@@ -28,7 +28,7 @@ export const StyledCorouselHeaderRow = styled.div<StyledCorouselHeaderRowProps>`
     align-items: center;
     align-self: stretch;
 `;
-export const StyledCorouselTitle = styled.div`
+export const StyledCarouselTitle = styled.div`
     color: var(--text-primary, #16191d);
     font-size: 16px;
     font-style: normal;
@@ -36,14 +36,14 @@ export const StyledCorouselTitle = styled.div`
     line-height: 25.6px;
     letter-spacing: 0.1px;
 `;
-export const StyledCorouselControls = styled.div`
+export const StyledCarouselControls = styled.div`
     display: flex;
     height: 24px;
     align-items: flex-start;
     gap: 4px;
 `;
 
-export const StyledCorouselItemsContainer = styled.div<StyledCorouselItemsContainerProps>`
+export const StyledCarouselItemsContainer = styled.div<StyledCarouselItemsContainerProps>`
     width: 100%;
     display: flex;
     gap: ${(props) => props.$gap}px;
@@ -51,6 +51,6 @@ export const StyledCorouselItemsContainer = styled.div<StyledCorouselItemsContai
     transform: translateX(${(props) => props.$translateX}px);
     transition: transform 0.5s ease-in-out;
 `;
-export const StyledCorouselItem = styled.div`
+export const StyledCarouselItem = styled.div`
     flex: 0 0 auto;
 `;

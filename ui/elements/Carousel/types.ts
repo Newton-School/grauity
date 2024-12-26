@@ -5,7 +5,7 @@ import { StyledDivProps } from '../../../common/types';
 
 export type IconPosition = 'left' | 'right';
 
-export interface CorouselProps {
+export interface CarouselProps {
     /**
      * An array of React nodes to be displayed as items in the carousel.
      * default: []
@@ -73,11 +73,11 @@ export interface CorouselProps {
     style?: React.CSSProperties;
 }
 
-export interface StyledCorouselHeaderRowProps extends StyledDivProps {
+export interface StyledCarouselHeaderRowProps extends StyledDivProps {
     $iconPosition: IconPosition;
 }
 
-export interface StyledCorouselItemsContainerProps extends StyledDivProps {
+export interface StyledCarouselItemsContainerProps extends StyledDivProps {
     $gap: number;
     $translateX: number;
 }

@@ -2,16 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { IconButton } from '../Button';
 import {
-    StyledCorouselContainer,
-    StyledCorouselControls,
-    StyledCorouselHeaderRow,
-    StyledCorouselItem,
-    StyledCorouselItemsContainer,
-    StyledCorouselTitle,
-} from './Corousel.styles';
-import { CorouselProps } from './types';
+    StyledCarouselContainer,
+    StyledCarouselControls,
+    StyledCarouselHeaderRow,
+    StyledCarouselItem,
+    StyledCarouselItemsContainer,
+    StyledCarouselTitle,
+} from './Carousel.styles';
+import { CarouselProps } from './types';
 
-const Corousel = (props: CorouselProps) => {
+const Carousel = (props: CarouselProps) => {
     const {
         items = [],
         title = null,
@@ -73,13 +73,13 @@ const Corousel = (props: CorouselProps) => {
     ]);
 
     return (
-        <StyledCorouselContainer style={style}>
-            <StyledCorouselHeaderRow
+        <StyledCarouselContainer style={style}>
+            <StyledCarouselHeaderRow
                 ref={headerRef}
                 $iconPosition={iconPosition}
             >
-                <StyledCorouselTitle>{title}</StyledCorouselTitle>
-                <StyledCorouselControls>
+                <StyledCarouselTitle>{title}</StyledCarouselTitle>
+                <StyledCarouselControls>
                     <IconButton
                         size="small"
                         icon={leftIcon}
@@ -102,19 +102,19 @@ const Corousel = (props: CorouselProps) => {
                         onClick={() => handleControlClick('right')}
                         disabled={rightButtonDisabled}
                     />
-                </StyledCorouselControls>
-            </StyledCorouselHeaderRow>
-            <StyledCorouselItemsContainer
+                </StyledCarouselControls>
+            </StyledCarouselHeaderRow>
+            <StyledCarouselItemsContainer
                 ref={containerRef}
                 $gap={gap}
                 $translateX={translateX}
             >
                 {items.map((item) => (
-                    <StyledCorouselItem>{item}</StyledCorouselItem>
+                    <StyledCarouselItem>{item}</StyledCarouselItem>
                 ))}
-            </StyledCorouselItemsContainer>
-        </StyledCorouselContainer>
+            </StyledCarouselItemsContainer>
+        </StyledCarouselContainer>
     );
 };
 
-export default Corousel;
+export default Carousel;

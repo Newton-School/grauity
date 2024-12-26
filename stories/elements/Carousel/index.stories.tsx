@@ -1,9 +1,9 @@
 import React from 'react';
-import { Corousel, CorouselProps } from 'ui/elements/Corousel';
+import { Carousel, CarouselProps } from 'ui/elements/Carousel';
 
 export default {
-    title: 'Elements/Corousel',
-    component: Corousel,
+    title: 'Elements/Carousel',
+    component: Carousel,
     decorators: [
         (Story: React.FC) => (
             <div style={{ width: '500px' }}>
@@ -15,7 +15,7 @@ export default {
         docs: {
             source: {
                 code: `
-<Corousel
+<Carousel
   gap={12}
   iconPosition="right"
   items={[]}
@@ -33,9 +33,9 @@ export default {
     },
 };
 
-const Template = (args: CorouselProps) => <Corousel {...args} />;
+const Template = (args: CarouselProps) => <Carousel {...args} />;
 
-const defaultArgs: CorouselProps = {
+const defaultArgs: CarouselProps = {
     items: [
         <div>Item 1</div>,
         <div>Item 2</div>,

@@ -3,30 +3,30 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 
-import Corousel from './Corousel';
+import Carousel from './Carousel';
 
 const DummyItem = ({ children }: { children: React.ReactNode }) => (
     <div style={{ width: '200px' }}>{children}</div>
 );
 
-describe('Corousel Component', () => {
+describe('Carousel Component', () => {
     // Rendering
     it('should render the component', () => {
-        render(<Corousel title="Test Corousel" />);
-        const title = screen.getByText('Test Corousel');
+        render(<Carousel title="Test Carousel" />);
+        const title = screen.getByText('Test Carousel');
         expect(title).toBeInTheDocument();
     });
 
     // Title Node
     it('should render the title node', () => {
-        render(<Corousel title={<h1>Test Corousel</h1>} />);
-        const title = screen.getByText('Test Corousel');
+        render(<Carousel title={<h1>Test Carousel</h1>} />);
+        const title = screen.getByText('Test Carousel');
         expect(title).toBeInTheDocument();
     });
 
     // Icons
     it('should render the icons', () => {
-        render(<Corousel leftIcon="chevron-left" rightIcon="chevron-right" />);
+        render(<Carousel leftIcon="chevron-left" rightIcon="chevron-right" />);
         const leftIcon = screen.getByLabelText('chevron-left');
         const rightIcon = screen.getByLabelText('chevron-right');
         expect(leftIcon).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe('Corousel Component', () => {
     // Items
     it('should render the items', () => {
         render(
-            <Corousel
+            <Carousel
                 items={[
                     <DummyItem>Item 1</DummyItem>,
                     <DummyItem>Item 2</DummyItem>,
