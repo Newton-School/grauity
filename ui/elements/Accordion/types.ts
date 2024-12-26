@@ -21,19 +21,19 @@ export interface AccordionProps {
 
     /**
      * Background color of the accordion header.
-     * @default var(--bg-secondary)
+     * @default var(--bg-secondary, #F6F7F9)
      */
     headerBackgroundColor?: string;
 
     /**
      * Background color of the accordion content.
-     * @default var(--text-secondary)
+     * @default var(--bg-secondary, #F6F7F9)
      */
     contentBackgroundColor?: string;
 
     /**
-     * Color of the accordion header icon.
-     * @default var(--text-primary)
+     * Color of the accordion toogle icon.
+     * @default var(--text-primary, #16191D)
      */
     iconColor?: string;
 

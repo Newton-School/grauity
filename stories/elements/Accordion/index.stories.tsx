@@ -52,9 +52,9 @@ const defaultArgs: AccordionProps = {
     expanded: false,
     onToggle: () => {},
     suffix: null,
-    headerBackgroundColor: 'var(--bg-secondary)',
-    contentBackgroundColor: 'var(--text-secondary)',
-    iconColor: 'var(--text-primary)',
+    headerBackgroundColor: 'var(--bg-secondary, #F6F7F9)',
+    contentBackgroundColor: 'var(--bg-secondary, #F6F7F9)',
+    iconColor: 'var(--text-primary, #16191D)',
     style: {},
 };
 
