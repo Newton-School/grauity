@@ -157,3 +157,6 @@ export { default as NSTooltip, type TooltipProps } from './elements/Tooltip';
 
 // NSTabs
 export { default as NSTab, type TabProps } from './elements/Tabs';
+
+// NSCarousel
+export { type CarouselProps, default as NSCarousel } from './elements/Carousel';

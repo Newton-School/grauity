@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, CarouselProps } from 'ui/elements/Carousel';
+import Carousel, { CarouselProps } from 'ui/elements/Carousel';
 
 export default {
     title: 'Elements/Carousel',
