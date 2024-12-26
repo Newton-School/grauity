@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 import { StyledDivProps } from '../../../common/types';
-import { StyledCorouselItemsContainerProps } from './types';
+import {
+    StyledCorouselHeaderRowProps,
+    StyledCorouselItemsContainerProps,
+} from './types';
 
 export const StyledCorouselContainer = styled.div<StyledDivProps>`
     box-sizing: border-box;
@@ -16,9 +19,11 @@ export const StyledCorouselContainer = styled.div<StyledDivProps>`
     font-family: var(--font-family, 'Mona Sans');
 `;
 
-export const StyledCorouselHeaderRow = styled.div`
+export const StyledCorouselHeaderRow = styled.div<StyledCorouselHeaderRowProps>`
     width: 100%;
     display: flex;
+    flex-direction: ${(props) =>
+        props.$iconPosition === 'left' ? 'row-reverse' : 'row'};
     justify-content: space-between;
     align-items: center;
     align-self: stretch;

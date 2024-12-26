@@ -15,9 +15,10 @@ const Corousel = (props: CorouselProps) => {
     const {
         items = [],
         title = null,
+        scrollAmount = 100,
+        iconPosition = 'right',
         leftIcon = 'chevron-left',
         rightIcon = 'chevron-right',
-        scrollAmount = 100,
         onLeftClick = () => {},
         onRightClick = () => {},
         onScrollEnd = () => {},
@@ -25,7 +26,9 @@ const Corousel = (props: CorouselProps) => {
         style = {},
     } = props;
 
+    const headerRef = useRef<HTMLDivElement | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
+
     const [translateX, setTranslateX] = useState(0);
     const [leftButtonDisabled, setLeftButtonDisabled] = useState(false);
     const [rightButtonDisabled, setRightButtonDisabled] = useState(false);
@@ -33,7 +36,11 @@ const Corousel = (props: CorouselProps) => {
     const handleControlClick = (direction: 'left' | 'right') => {
         const scrollableWidth = containerRef.current?.scrollWidth;
         const visibleWidth = containerRef.current?.clientWidth;
-        const currentLeft = containerRef.current?.getBoundingClientRect().left;
+
+        const headerLeft = headerRef.current?.getBoundingClientRect().left;
+        const containerLeft =
+            containerRef.current?.getBoundingClientRect().left;
+        const currentLeft = containerLeft - headerLeft;
 
         if (direction === 'left') {
             const newLeft = Math.min(0, currentLeft + scrollAmount);
@@ -67,7 +74,10 @@ const Corousel = (props: CorouselProps) => {
 
     return (
         <StyledCorouselContainer style={style}>
-            <StyledCorouselHeaderRow>
+            <StyledCorouselHeaderRow
+                ref={headerRef}
+                $iconPosition={iconPosition}
+            >
                 <StyledCorouselTitle>{title}</StyledCorouselTitle>
                 <StyledCorouselControls>
                     <NSIconButton

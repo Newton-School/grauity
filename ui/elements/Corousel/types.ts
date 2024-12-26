@@ -3,6 +3,8 @@ import { grauityIconName } from 'ui/core';
 
 import { StyledDivProps } from '../../../common/types';
 
+export type IconPosition = 'left' | 'right';
+
 export interface CorouselProps {
     /**
      * An array of React nodes to be displayed as items in the carousel.
@@ -12,8 +14,21 @@ export interface CorouselProps {
 
     /**
      * A React node to be displayed as the title of the carousel.
+     * default: null
      */
-    title: React.ReactNode;
+    title?: React.ReactNode;
+
+    /**
+     * The amount of pixels to scroll when the navigation icons are clicked.
+     * @default 100
+     */
+    scrollAmount?: number;
+
+    /**
+     * The position of the navigation icons.
+     * default: right
+     */
+    iconPosition?: IconPosition;
 
     /**
      * A React node to be used as the left navigation icon.
@@ -26,12 +41,6 @@ export interface CorouselProps {
      * @default chevron-right
      */
     rightIcon?: grauityIconName;
-
-    /**
-     * The amount of pixels to scroll when the navigation icons are clicked.
-     * @default 100
-     */
-    scrollAmount?: number;
 
     /**
      * Callback function to be called when the left navigation icon is clicked.
@@ -62,6 +71,10 @@ export interface CorouselProps {
      * @default null
      */
     style?: React.CSSProperties;
+}
+
+export interface StyledCorouselHeaderRowProps extends StyledDivProps {
+    $iconPosition: IconPosition;
 }
 
 export interface StyledCorouselItemsContainerProps extends StyledDivProps {
