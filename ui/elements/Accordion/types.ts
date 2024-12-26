@@ -32,7 +32,7 @@ export interface AccordionProps {
     contentBackgroundColor?: string;
 
     /**
-     * Color of the accordion toogle icon.
+     * Color of the accordion toggle icon.
      * @default var(--text-primary, #16191D)
      */
     iconColor?: string;
