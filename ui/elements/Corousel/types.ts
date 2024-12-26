@@ -53,4 +53,5 @@ export interface CorouselProps {
 
 export interface StyledCorouselItemsContainerProps extends StyledDivProps {
     $gap: number;
+    $translateX: number;
 }

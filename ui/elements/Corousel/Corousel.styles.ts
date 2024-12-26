@@ -4,6 +4,10 @@ import { StyledDivProps } from '../../../common/types';
 import { StyledCorouselItemsContainerProps } from './types';
 
 export const StyledCorouselContainer = styled.div<StyledDivProps>`
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+    padding: 2px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -13,6 +17,7 @@ export const StyledCorouselContainer = styled.div<StyledDivProps>`
 `;
 
 export const StyledCorouselHeaderRow = styled.div`
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,7 +39,13 @@ export const StyledCorouselControls = styled.div`
 `;
 
 export const StyledCorouselItemsContainer = styled.div<StyledCorouselItemsContainerProps>`
+    width: 100%;
     display: flex;
-    align-items: flex-start;
     gap: ${(props) => props.$gap}px;
+    scroll-behavior: smooth;
+    transform: translateX(${(props) => props.$translateX}px);
+    transition: transform 0.5s ease-in-out;
+`;
+export const StyledCorouselItem = styled.div`
+    flex: 0 0 auto;
 `;
