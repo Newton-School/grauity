@@ -47,6 +47,12 @@ export interface AccordionProps {
      * Content to be displayed inside the accordion.
      */
     children?: React.ReactNode;
+
+    /**
+     * Additional CSS properties to be applied for the accordion wrapper.
+     * default: {}
+     */
+    style?: React.CSSProperties;
 }
 
 export interface StyledAccordionHeaderProps extends StyledDivProps {

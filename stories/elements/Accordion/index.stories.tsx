@@ -55,6 +55,7 @@ const defaultArgs: AccordionProps = {
     headerBackgroundColor: 'var(--bg-secondary)',
     contentBackgroundColor: 'var(--text-secondary)',
     iconColor: 'var(--text-primary)',
+    style: {},
 };
 
 export const Component = Template.bind({});

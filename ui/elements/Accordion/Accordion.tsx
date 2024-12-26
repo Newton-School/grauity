@@ -22,6 +22,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
             headerBackgroundColor = 'var(--bg-secondary)',
             contentBackgroundColor = 'var(--text-secondary)',
             iconColor = 'var(--text-primary)',
+            style = {},
         },
         ref
     ) => {
@@ -48,7 +49,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
         };
 
         return (
-            <StyledAccordionWrapper ref={ref}>
+            <StyledAccordionWrapper ref={ref} style={style}>
                 <StyledAccordionHeader
                     onClick={handleToggle}
                     $headerBackgroundColor={headerBackgroundColor}

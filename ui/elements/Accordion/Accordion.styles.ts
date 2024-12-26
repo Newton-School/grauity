@@ -42,6 +42,7 @@ export const StyledAccordionContent = styled(
 export const StyledAccordionWrapper = styled.div<StyledDivProps>`
     width: 100%;
     border-radius: 4px;
+    overflow: hidden;
 `;
 
 export const StyledLine = styled.div`
