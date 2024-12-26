@@ -20,8 +20,8 @@ export const StyledDateCircle = styled.div<StyledDateCircleProps>`
     align-items: center;
     border-radius: 32px;
     background: var(--bg-secondary, #f6f7f9);
-    width: ${DATE_SIZE}px;
-    height: ${DATE_SIZE}px;
+    min-width: ${DATE_SIZE}px;
+    min-height: ${DATE_SIZE}px;
 
     ${({ isInActiveMonth }) =>
         isInActiveMonth &&
