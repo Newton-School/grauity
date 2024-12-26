@@ -54,7 +54,9 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
     }, [popoverDataRef?.current]);
 
     const handleClose = () => {
-        onPopOverClose();
+        if (typeof onPopOverClose === 'function') {
+            onPopOverClose();
+        }
         setIsOpen(false);
     };
 
