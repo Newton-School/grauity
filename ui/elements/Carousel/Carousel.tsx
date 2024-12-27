@@ -15,6 +15,7 @@ const Carousel = (props: CarouselProps) => {
     const {
         items = [],
         title = null,
+        fullWidthItems = false,
         scrollAmount = 100,
         hideIconsOnLessItems = false,
         iconPosition = 'right',
@@ -45,14 +46,18 @@ const Carousel = (props: CarouselProps) => {
             containerRef.current?.getBoundingClientRect().left;
         const currentLeft = containerLeft - headerLeft;
 
+        const actualScrollAmount = fullWidthItems
+            ? visibleWidth + gap
+            : scrollAmount;
+
         if (direction === 'left') {
-            const newLeft = Math.min(0, currentLeft + scrollAmount);
+            const newLeft = Math.min(0, currentLeft + actualScrollAmount);
             setTranslateX(newLeft);
             onLeftClick();
         } else if (direction === 'right') {
             const newLeft = Math.max(
                 -scrollableWidth + visibleWidth,
-                currentLeft - scrollAmount
+                currentLeft - actualScrollAmount
             );
             setTranslateX(newLeft);
             onRightClick();
@@ -133,7 +138,9 @@ const Carousel = (props: CarouselProps) => {
                 $translateX={translateX}
             >
                 {items.map((item) => (
-                    <StyledCarouselItem>{item}</StyledCarouselItem>
+                    <StyledCarouselItem $fullWidth={fullWidthItems}>
+                        {item}
+                    </StyledCarouselItem>
                 ))}
             </StyledCarouselItemsContainer>
         </StyledCarouselContainer>
