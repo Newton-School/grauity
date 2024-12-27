@@ -16,6 +16,7 @@ export default {
             source: {
                 code: `
 <Carousel
+  fullWidthItems={false}
   gap={12}
   iconPosition="right"
   items={[]}
@@ -51,6 +52,7 @@ const defaultArgs: CarouselProps = {
         <div>Item 12</div>,
     ],
     title: 'Slide to see',
+    fullWidthItems: false,
     scrollAmount: 100,
     iconPosition: 'right',
     leftIcon: 'chevron-left',

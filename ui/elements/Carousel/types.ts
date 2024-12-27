@@ -8,15 +8,21 @@ export type IconPosition = 'left' | 'right';
 export interface CarouselProps {
     /**
      * An array of React nodes to be displayed as items in the carousel.
-     * default: []
+     * @default []
      */
     items?: React.ReactNode[];
 
     /**
      * A React node to be displayed as the title of the carousel.
-     * default: null
+     * @default null
      */
     title?: React.ReactNode;
+
+    /**
+     * Whether to make the items take up the full width of the container.
+     * @default false
+     */
+    fullWidthItems?: boolean;
 
     /**
      * The amount of pixels to scroll when the navigation icons are clicked.
@@ -26,7 +32,7 @@ export interface CarouselProps {
 
     /**
      * The position of the navigation icons.
-     * default: right
+     * @default right
      */
     iconPosition?: IconPosition;
 
@@ -80,4 +86,8 @@ export interface StyledCarouselHeaderRowProps extends StyledDivProps {
 export interface StyledCarouselItemsContainerProps extends StyledDivProps {
     $gap: number;
     $translateX: number;
+}
+
+export interface StyledCarouselItemProps extends StyledDivProps {
+    $fullWidth: boolean;
 }

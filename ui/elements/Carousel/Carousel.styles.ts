@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { StyledDivProps } from '../../../common/types';
 import {
     StyledCarouselHeaderRowProps,
+    StyledCarouselItemProps,
     StyledCarouselItemsContainerProps,
 } from './types';
 
@@ -51,6 +52,7 @@ export const StyledCarouselItemsContainer = styled.div<StyledCarouselItemsContai
     transform: translateX(${(props) => props.$translateX}px);
     transition: transform 0.5s ease-in-out;
 `;
-export const StyledCarouselItem = styled.div`
+export const StyledCarouselItem = styled.div<StyledCarouselItemProps>`
     flex: 0 0 auto;
+    ${({ $fullWidth }) => ($fullWidth ? 'width: 100%;' : '')}
 `;
