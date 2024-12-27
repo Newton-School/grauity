@@ -31,6 +31,12 @@ export interface CarouselProps {
     scrollAmount?: number;
 
     /**
+     * Whether to hide the navigation icons when there are less items than the visible area.
+     * @default false
+     */
+    hideIconsOnLessItems?: boolean;
+
+    /**
      * The position of the navigation icons.
      * @default right
      */
@@ -77,6 +83,12 @@ export interface CarouselProps {
      * @default null
      */
     style?: React.CSSProperties;
+
+    /**
+     * Custom class name to be applied to the carousel.
+     * @default null
+     */
+    className?: string;
 }
 
 export interface StyledCarouselHeaderRowProps extends StyledDivProps {
