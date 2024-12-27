@@ -77,6 +77,12 @@ export interface CarouselProps {
      * @default null
      */
     style?: React.CSSProperties;
+
+    /**
+     * Custom class name to be applied to the carousel.
+     * @default null
+     */
+    className?: string;
 }
 
 export interface StyledCarouselHeaderRowProps extends StyledDivProps {

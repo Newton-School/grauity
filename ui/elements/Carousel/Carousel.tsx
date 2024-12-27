@@ -25,6 +25,7 @@ const Carousel = (props: CarouselProps) => {
         onScrollEnd = () => {},
         gap = 12,
         style = {},
+        className = '',
     } = props;
 
     const headerRef = useRef<HTMLDivElement | null>(null);
@@ -93,7 +94,7 @@ const Carousel = (props: CarouselProps) => {
     ]);
 
     return (
-        <StyledCarouselContainer style={style}>
+        <StyledCarouselContainer style={style} className={className}>
             <StyledCarouselHeaderRow
                 ref={headerRef}
                 $iconPosition={iconPosition}

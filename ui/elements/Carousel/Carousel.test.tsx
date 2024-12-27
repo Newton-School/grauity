@@ -53,7 +53,7 @@ describe('Carousel Component', () => {
     });
 
     // Less items
-    it('should hide the icons when there are less items', () => {
+    it('should hide the icons when there are less items and hideIconsOnLessItems is true', () => {
         render(
             <div style={{ width: '500px' }}>
                 <Carousel

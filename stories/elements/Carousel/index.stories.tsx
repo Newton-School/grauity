@@ -62,6 +62,7 @@ const defaultArgs: CarouselProps = {
     onScrollEnd: () => {},
     gap: 12,
     style: {},
+    className: '',
 };
 
 export const Component = Template.bind({});
