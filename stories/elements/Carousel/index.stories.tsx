@@ -16,6 +16,7 @@ export default {
             source: {
                 code: `
 <Carousel
+  hideIconsOnLessItems
   gap={12}
   iconPosition="right"
   items={[]}
@@ -52,6 +53,7 @@ const defaultArgs: CarouselProps = {
     ],
     title: 'Slide to see',
     scrollAmount: 100,
+    hideIconsOnLessItems: true,
     iconPosition: 'right',
     leftIcon: 'chevron-left',
     rightIcon: 'chevron-right',
@@ -60,6 +62,7 @@ const defaultArgs: CarouselProps = {
     onScrollEnd: () => {},
     gap: 12,
     style: {},
+    className: '',
 };
 
 export const Component = Template.bind({});

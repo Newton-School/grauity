@@ -51,4 +51,23 @@ describe('Carousel Component', () => {
         expect(item2).toBeInTheDocument();
         expect(item3).toBeInTheDocument();
     });
+
+    // Less items
+    it('should hide the icons when there are less items and hideIconsOnLessItems is true', () => {
+        render(
+            <div style={{ width: '500px' }}>
+                <Carousel
+                    items={[
+                        <DummyItem>Item 1</DummyItem>,
+                        <DummyItem>Item 2</DummyItem>,
+                    ]}
+                    hideIconsOnLessItems
+                />
+            </div>
+        );
+        const leftIcon = screen.queryByLabelText('chevron-left');
+        const rightIcon = screen.queryByLabelText('chevron-right');
+        expect(leftIcon).not.toBeInTheDocument();
+        expect(rightIcon).not.toBeInTheDocument();
+    });
 });
