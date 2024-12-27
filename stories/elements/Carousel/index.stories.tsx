@@ -66,3 +66,17 @@ export const Component = Template.bind({});
 Component.args = {
     ...defaultArgs,
 };
+
+const FullWidthDummyItem = () => (
+    <div style={{ width: '100%', height: '88px' }}>
+        <Placeholder />
+    </div>
+);
+
+export const FullWidthCarousel = Template.bind({});
+
+FullWidthCarousel.args = {
+    ...defaultArgs,
+    items: Array.from({ length: 10 }).map(() => <FullWidthDummyItem />),
+    fullWidthItems: true,
+};
