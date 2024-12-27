@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel, { CarouselProps } from 'ui/elements/Carousel';
+import Placeholder from 'ui/elements/Placeholder';
 
 export default {
     title: 'Elements/Carousel',
@@ -36,21 +37,14 @@ export default {
 
 const Template = (args: CarouselProps) => <Carousel {...args} />;
 
+const DummyItem = () => (
+    <div style={{ width: '88px', height: '88px' }}>
+        <Placeholder />
+    </div>
+);
+
 const defaultArgs: CarouselProps = {
-    items: [
-        <div>Item 1</div>,
-        <div>Item 2</div>,
-        <div>Item 3</div>,
-        <div>Item 4</div>,
-        <div>Item 5</div>,
-        <div>Item 6</div>,
-        <div>Item 7</div>,
-        <div>Item 8</div>,
-        <div>Item 9</div>,
-        <div>Item 10</div>,
-        <div>Item 11</div>,
-        <div>Item 12</div>,
-    ],
+    items: Array.from({ length: 10 }).map(() => <DummyItem />),
     title: 'Slide to see',
     fullWidthItems: false,
     scrollAmount: 100,
