@@ -16,6 +16,7 @@ const Carousel = (props: CarouselProps) => {
         items = [],
         title = null,
         scrollAmount = 100,
+        hideIconsOnLessItems = false,
         iconPosition = 'right',
         leftIcon = 'chevron-left',
         rightIcon = 'chevron-right',
@@ -32,6 +33,7 @@ const Carousel = (props: CarouselProps) => {
     const [translateX, setTranslateX] = useState(0);
     const [leftButtonDisabled, setLeftButtonDisabled] = useState(false);
     const [rightButtonDisabled, setRightButtonDisabled] = useState(false);
+    const [showIcons, setShowIcons] = useState(true);
 
     const handleControlClick = (direction: 'left' | 'right') => {
         const scrollableWidth = containerRef.current?.scrollWidth;
@@ -72,6 +74,24 @@ const Carousel = (props: CarouselProps) => {
         containerRef.current?.scrollWidth,
     ]);
 
+    useEffect(() => {
+        if (hideIconsOnLessItems) {
+            const containerWidth = containerRef.current?.clientWidth;
+            const scrollWidth = containerRef.current?.scrollWidth;
+            if (containerWidth >= scrollWidth) {
+                setShowIcons(false);
+            } else {
+                setShowIcons(true);
+            }
+        } else {
+            setShowIcons(true);
+        }
+    }, [
+        hideIconsOnLessItems,
+        containerRef.current?.clientWidth,
+        containerRef.current?.scrollWidth,
+    ]);
+
     return (
         <StyledCarouselContainer style={style}>
             <StyledCarouselHeaderRow
@@ -79,30 +99,32 @@ const Carousel = (props: CarouselProps) => {
                 $iconPosition={iconPosition}
             >
                 <StyledCarouselTitle>{title}</StyledCarouselTitle>
-                <StyledCarouselControls>
-                    <IconButton
-                        size="small"
-                        icon={leftIcon}
-                        variant="tertiary"
-                        style={{
-                            width: '10px',
-                            borderRadius: '50%',
-                        }}
-                        onClick={() => handleControlClick('left')}
-                        disabled={leftButtonDisabled}
-                    />
-                    <IconButton
-                        size="small"
-                        icon={rightIcon}
-                        variant="tertiary"
-                        style={{
-                            width: '10px',
-                            borderRadius: '50%',
-                        }}
-                        onClick={() => handleControlClick('right')}
-                        disabled={rightButtonDisabled}
-                    />
-                </StyledCarouselControls>
+                {showIcons && (
+                    <StyledCarouselControls>
+                        <IconButton
+                            size="small"
+                            icon={leftIcon}
+                            variant="tertiary"
+                            style={{
+                                width: '10px',
+                                borderRadius: '50%',
+                            }}
+                            onClick={() => handleControlClick('left')}
+                            disabled={leftButtonDisabled}
+                        />
+                        <IconButton
+                            size="small"
+                            icon={rightIcon}
+                            variant="tertiary"
+                            style={{
+                                width: '10px',
+                                borderRadius: '50%',
+                            }}
+                            onClick={() => handleControlClick('right')}
+                            disabled={rightButtonDisabled}
+                        />
+                    </StyledCarouselControls>
+                )}
             </StyledCarouselHeaderRow>
             <StyledCarouselItemsContainer
                 ref={containerRef}
