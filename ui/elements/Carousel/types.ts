@@ -55,6 +55,12 @@ export interface CarouselProps {
     rightIcon?: grauityIconName;
 
     /**
+     * Gap between the navigation icons in pixels.
+     * @default 12
+     */
+    iconGap?: number;
+
+    /**
      * Callback function to be called when the left navigation icon is clicked.
      * @default null
      */
@@ -93,6 +99,10 @@ export interface CarouselProps {
 
 export interface StyledCarouselHeaderRowProps extends StyledDivProps {
     $iconPosition: IconPosition;
+}
+
+export interface StyledCarouselControlsProps extends StyledDivProps {
+    $iconGap: number;
 }
 
 export interface StyledCarouselItemsContainerProps extends StyledDivProps {
