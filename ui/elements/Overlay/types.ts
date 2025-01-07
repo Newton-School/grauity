@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyledDivProps } from '../Calendar/types';
+import { StyledDivProps } from '../../../common/types';
 
 export interface OverlayProps {
     /**

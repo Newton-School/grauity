@@ -1,5 +1,5 @@
 import React from 'react';
-import WeeklyCalendar, { WeeklyCalendarProps } from 'ui/elements/Calendar';
+import { WeeklyCalendar, WeeklyCalendarProps } from 'ui/elements/Calendar';
 
 import withRemovePadding from '../../../decorators/withRemovePadding';
 
@@ -14,10 +14,10 @@ export default {
 <WeeklyCalendar
   eventRenderer={null}
   events={[]}
-  onWeekChange={() => {}}
   shouldShowWeekControls
   header={null}
-  weekOffset={0}
+  date: new Date(),
+  onDateChange: () => {},
   loading={false}
 />
                 `,
@@ -161,8 +161,8 @@ const defaultArgs: WeeklyCalendarProps = {
     eventRenderer: null,
     shouldShowWeekControls: true,
     header: null,
-    weekOffset: 0,
-    onWeekChange: () => {},
+    date: new Date(),
+    onDateChange: () => {},
     loading: false,
     defaultScrollHour: 8.5,
     shouldScrollToFirstEvent: true,

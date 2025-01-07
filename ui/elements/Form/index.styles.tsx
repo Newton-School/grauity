@@ -16,11 +16,10 @@ export const StyledLabel = styled.label<StyledLabelProps>`
                 padding-left: 4px;
             }
         `}
-
 `;
 
 export const StyledHelpMessage = styled.div`
-    color: var(--text-secondary, #5B6271);
+    color: var(--text-secondary, #5b6271);
     display: flex;
     gap: 4px;
     align-items: center;

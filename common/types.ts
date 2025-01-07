@@ -8,6 +8,7 @@ import React from 'react';
  */
 export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
     ref?: React.Ref<HTMLDivElement>;
+    'data-testid'?: string;
 }
 
 /**
@@ -41,7 +42,8 @@ export interface StyledInputProps
 export interface StyledLabelProps
     extends React.LabelHTMLAttributes<HTMLLabelElement> {
     ref?: React.Ref<HTMLLabelElement>;
-    required?: boolean;
+    isRequired?: boolean;
+    isDisabled?: boolean;
 }
 
 /**
@@ -53,4 +55,15 @@ export interface StyledLabelProps
 export interface StyledButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     ref?: React.Ref<HTMLButtonElement>;
+}
+
+/**
+ * Interface representing the properties for a styled text area component.
+ *
+ * @extends React.TextareaHTMLAttributes<HTMLTextAreaElement>
+ * @property {React.Ref<HTMLTextAreaElement>} [ref] - Optional ref to the text area element.
+ */
+export interface StyledTextAreaProps
+    extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+    ref?: React.Ref<HTMLTextAreaElement>;
 }

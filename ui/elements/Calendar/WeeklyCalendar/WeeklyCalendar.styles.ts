@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
+import { StyledDivProps } from '../../../../common/types';
 import { CALENDAR_BLOCK_HEIGHT, CALENDAR_SIDEBAR_WIDTH } from './constants';
 import {
     StyledCalendarBlockProps,
     StyledCalendarTimelineBlockProps,
-    StyledDivProps,
     StyledEventWrapperProps,
 } from './types';
 
@@ -144,11 +144,13 @@ export const StyledCalendarDateLabel = styled.div<StyledCalendarBlockProps>`
     height: 20px;
     border-radius: 32px;
     background: var(--bg-primary, #fff);
+    color: var(--text-secondary, #5b6271);
 
     ${({ $active }) =>
         $active &&
         css`
-            background: var(--bg-brand, #e5f1ff);
+            background: var(--bg-brand-action, #0673f9);
+            color: var(--text-action, #fff);
         `}
 `;
 

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { StyledCalendarEventWrapperProps, StyledDivProps } from './types';
+import { StyledDivProps } from '../../../../common/types';
+import { StyledCalendarEventWrapperProps } from './types';
 
 export const StyledCalendarEventWrapper = styled.div<StyledCalendarEventWrapperProps>`
     font-family: var(--font-family, 'Mona Sans');

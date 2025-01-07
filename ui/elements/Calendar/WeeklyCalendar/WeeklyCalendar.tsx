@@ -1,24 +1,27 @@
 /* eslint-disable indent */
 import React, { useEffect, useRef, useState } from 'react';
 
-import { getScrollableParent } from '../../../common/utils';
-import Button, { IconButton } from '../Button';
-import Placeholder from '../Placeholder';
+import { getScrollableParent } from '../../../../common/utils';
+import Button, { IconButton } from '../../Button';
+import Placeholder from '../../Placeholder';
+import {
+    checkIsToday,
+    getDateFullLabel,
+    getMonthDetails,
+    getTimeListIn12HourFormat,
+    getWeekByOffset,
+    getWeekDayLabel,
+} from '../utils';
 import { CALENDAR_BLOCK_HEIGHT } from './constants';
 import EventRenderer from './EventRenderer';
 import { CalendarEventRecordExtended, WeeklyCalendarProps } from './types';
 import {
-    checkIsToday,
+    calculateWeekOffsetFromDateAndInitialOffset,
     getCurrentTimeStickPosition,
-    getDateFullLabel,
     getEventBlockHeight,
     getEventBlockStartPosition,
-    getMonthDetails,
     getOverlapInformationForDay,
     getStartTimestampOfHourBlock,
-    getTimeListIn12HourFormat,
-    getWeekByOffset,
-    getWeekDayLabel,
     isPlaceholderBlock,
 } from './utils';
 import {
@@ -42,14 +45,18 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         eventRenderer,
         header,
         shouldShowWeekControls = true,
-        weekOffset: initialWeekOffset = 0,
+        weekOffset: initialWeekOffset = null,
         onWeekChange = () => {},
+        date = null,
+        onDateChange = () => {},
         loading = false,
         defaultScrollHour = 8.5,
         shouldScrollToFirstEvent = true,
     } = props;
 
-    const [weekOffset, setWeekOffset] = useState(initialWeekOffset);
+    const [weekOffset, setWeekOffset] = useState(
+        calculateWeekOffsetFromDateAndInitialOffset(initialWeekOffset, date)
+    );
     const [calendarEvents, setCalendarEvents] = useState<
         CalendarEventRecordExtended<T>
     >({});
@@ -76,11 +83,14 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
     }, []);
 
     useEffect(() => {
-        setWeekOffset(initialWeekOffset);
-    }, [initialWeekOffset]);
+        setWeekOffset(
+            calculateWeekOffsetFromDateAndInitialOffset(initialWeekOffset, date)
+        );
+    }, [initialWeekOffset, date]);
 
     useEffect(() => {
         onWeekChange(weekOffset);
+        onDateChange(currentWeek[0]);
     }, [weekOffset]);
 
     useEffect(() => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Icon } from 'ui/elements/Icon';
 
+import { Icon } from '../../Icon';
 import {
     StyledHelpMessage,
     StyledHelpMessageMaxCharacters,
@@ -17,9 +17,15 @@ export const HelpMessage = (props: HelpMessageProps) => {
 
     return (
         <StyledHelpMessage>
-            <Icon name="exclamation-circle" color="currentColor" size="20" />
             {children && (
-                <StyledHelpMessageText>{children}</StyledHelpMessageText>
+                <>
+                    <Icon
+                        name="exclamation-circle"
+                        color="currentColor"
+                        size="20"
+                    />
+                    <StyledHelpMessageText>{children}</StyledHelpMessageText>
+                </>
             )}
             {maxLength && (
                 <StyledHelpMessageMaxCharacters>

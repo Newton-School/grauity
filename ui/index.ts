@@ -107,11 +107,29 @@ export {
     default as NSCalendarEvent,
 } from './elements/Calendar/CalendarEvent/CalendarEvent';
 
+// NSMonthlyCalendarEvent
+export {
+    type MonthlyCalendarEventProps,
+    default as NSMonthlyCalendarEvent,
+} from './elements/Calendar/MonthlyCalendarEvent';
+
 // NSWeeklyCalendar
 export {
     default as NSWeeklyCalendar,
     type WeeklyCalendarProps,
 } from './elements/Calendar/WeeklyCalendar';
+
+// NSCalendar
+export {
+    type UnifiedCalendarProps as CalendarProps,
+    default as NSCalendar,
+} from './elements/Calendar/UnifiedCalendar';
+
+// NSMonthlyCalendar
+export {
+    type MonthlyCalendarProps,
+    default as NSMonthlyCalendar,
+} from './elements/Calendar/MonthlyCalendar';
 
 // NSOverlay
 export { default as NSOverlay, type OverlayProps } from './elements/Overlay';
@@ -136,3 +154,21 @@ export {
 
 // NSTooltip
 export { default as NSTooltip, type TooltipProps } from './elements/Tooltip';
+
+// NSTabs
+export { default as NSTab, type TabProps } from './elements/Tabs';
+
+// NSCarousel
+export { type CarouselProps, default as NSCarousel } from './elements/Carousel';
+
+// NSTextArea
+export {
+    default as NSTextArea,
+    type TextAreaProps,
+} from './elements/Form/TextArea';
+
+// NSRadioButton
+export {
+    default as NSRadioButton,
+    type RadioButtonProps,
+} from './elements/Form/RadioButton';

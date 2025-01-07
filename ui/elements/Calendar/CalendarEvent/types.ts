@@ -1,4 +1,4 @@
-import React from 'react';
+import { StyledDivProps } from '../../../../common/types';
 
 export interface CalendarEventProps {
     /**
@@ -66,10 +66,6 @@ export interface CalendarEventProps {
      * @default 'var(--color-brand-600)'
      */
     chipBackgroundColor?: string;
-}
-
-export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
-    ref?: React.Ref<HTMLDivElement>;
 }
 
 export interface StyledCalendarEventWrapperProps extends StyledDivProps {

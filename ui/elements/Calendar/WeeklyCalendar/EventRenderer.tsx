@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CalendarEvent from './CalendarEvent/CalendarEvent';
+import CalendarEvent from '../CalendarEvent/CalendarEvent';
 import { EventRendererProps } from './types';
 
 const EventRenderer = ({

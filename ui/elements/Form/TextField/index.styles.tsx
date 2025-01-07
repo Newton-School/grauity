@@ -117,8 +117,8 @@ export const StyledTextFieldContainer = styled.div<StyledTextFieldContainerProps
                 font-size: ${TEXT_FIELD_SIZE_STYLE_MAPPING[$size].fontSize};
             `}
 
-        ${({ $disabled }) =>
-        $disabled &&
+        ${({ $isDisabled }) =>
+        $isDisabled &&
             css`
                 color: var(--text-emphasis-primary-disabled, #8c95a6);
             `}
