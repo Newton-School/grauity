@@ -100,6 +100,13 @@ export const StyledTextFieldInput = styled.input<StyledTextFieldInputProps>`
         ${!!$adornmentDimensions?.start && `padding-left: ${$adornmentDimensions.start}px;`}
         ${!!$adornmentDimensions?.end && `padding-right: ${$adornmentDimensions.end}px;`}
     `}
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+        -webkit-text-fill-color: var(--text-emphasis-primary-default, #1a1d24);
+        -webkit-box-shadow: 0 0 0px 1000px var(--bg-subtle-brand-default, #E5F1FF) inset;
+    }
 `;
 
 export const StyledTextFieldContainer = styled.div<StyledTextFieldContainerProps>`

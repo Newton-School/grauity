@@ -20,3 +20,5 @@ export const ErrorMessage = (props: ErrorMessageProps) => {
         </StyledErrorMessage>
     );
 };
+
+export { ErrorMessageProps };

@@ -16,3 +16,5 @@ export const Label = (props: LabelProps) => {
         </StyledLabel>
     );
 };
+
+export { LabelProps };
