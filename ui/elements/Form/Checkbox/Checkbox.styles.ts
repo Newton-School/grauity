@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import styled, { css } from 'styled-components';
 
 import { StyledDivProps, StyledLabelProps } from '../../../../common/types';
@@ -87,8 +88,8 @@ export const StyledCheckboxButton = styled.button<StyledCheckboxInputProps>`
                 color 150ms ease;
 
             ${(props: StyledCheckboxInputProps) => {
-        if (props.$state === 'error') {
-            return css`
+                if (props.$state === 'error') {
+                    return css`
                         border-color: var(
                             --border-moderate-error-default,
                             #f8636b
@@ -98,9 +99,9 @@ export const StyledCheckboxButton = styled.button<StyledCheckboxInputProps>`
                             #f8636b
                         );
                     `;
-        }
-        if (props.$state === 'success') {
-            return css`
+                }
+                if (props.$state === 'success') {
+                    return css`
                         border-color: var(
                             --border-moderate-success-default,
                             #50ce99
@@ -110,19 +111,19 @@ export const StyledCheckboxButton = styled.button<StyledCheckboxInputProps>`
                             #50ce99
                         );
                     `;
-        }
-        return css`
+                }
+                return css`
                     border-color: var(--border-subtle-brand-default, #61a8ff);
                     color: var(--background-emphasis-brand-default, #0673f9);
                 `;
-    }}
+            }}
         `}
 
     /* Hover State */
     &:hover:not(:disabled) {
         ${({ $checked, $state }) =>
-        !$checked
-            ? css`
+            !$checked
+                ? css`
                       border-color: var(--border-subtle-brand-default, #61a8ff);
                       background: var(
                           --background-subtle-brand-default,
@@ -153,29 +154,29 @@ export const StyledCheckboxButton = styled.button<StyledCheckboxInputProps>`
                           );
                       `}
                   `
-            : ''}
+                : ''}
     }
 
     /* Active State */
     &:active:not(:disabled) {
         ${({ $state }) => {
-        if ($state === 'error') {
-            return css`
+            if ($state === 'error') {
+                return css`
                     border-color: var(--border-moderate-error-default, #f8636b);
                 `;
-        }
-        if ($state === 'success') {
-            return css`
+            }
+            if ($state === 'success') {
+                return css`
                     border-color: var(
                         --border-moderate-success-default,
                         #50ce99
                     );
                 `;
-        }
-        return css`
+            }
+            return css`
                 border-color: var(--border-subtle-brand-default, #61a8ff);
             `;
-    }}
+        }}
     }
 
     /* Disabled State */
