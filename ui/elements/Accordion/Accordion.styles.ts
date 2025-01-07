@@ -2,7 +2,10 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import { StyledDivProps } from '../../../common/types';
-import { StyledAccordionHeaderProps } from './types';
+import {
+    StyledAccordionContentProps,
+    StyledAccordionHeaderProps,
+} from './types';
 
 export const StyledAccordionHeader = styled.div<StyledAccordionHeaderProps>`
     display: flex;
@@ -10,7 +13,7 @@ export const StyledAccordionHeader = styled.div<StyledAccordionHeaderProps>`
     cursor: pointer;
     padding: 8px;
     align-items: center;
-    background-color: var(--bg-secondary, #f6f7f9);
+    background-color: ${(props) => props.$headerBackgroundColor};
     font-family: var(--font-family, 'Mona Sans');
     color: var(--text-primary);
     font-size: 14px;
@@ -20,9 +23,16 @@ export const StyledAccordionHeader = styled.div<StyledAccordionHeaderProps>`
     letter-spacing: 0.1px;
 `;
 
-export const StyledAccordionContent = styled(motion.div)<StyledDivProps>`
+export const StyledAccordionHeaderSuffix = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+export const StyledAccordionContent = styled(
+    motion.div
+)<StyledAccordionContentProps>`
     overflow: hidden;
-    background-color: var(--bg-secondary, #f6f7f9);
+    background-color: ${(props) => props.$contentBackgroundColor};
     padding: 0px 8px;
     font-size: 12px;
     color: var(--text-primary);
@@ -32,6 +42,7 @@ export const StyledAccordionContent = styled(motion.div)<StyledDivProps>`
 export const StyledAccordionWrapper = styled.div<StyledDivProps>`
     width: 100%;
     border-radius: 4px;
+    overflow: hidden;
 `;
 
 export const StyledLine = styled.div`
