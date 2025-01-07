@@ -39,7 +39,7 @@ export interface TextFieldProps {
      * @type {boolean}
      * @default false
      */
-    required?: boolean;
+    isRequired?: boolean;
 
     /**
      * The placeholder text for the input field.
@@ -65,7 +65,7 @@ export interface TextFieldProps {
      * @type {boolean}
      * @default false
      */
-    disabled?: boolean;
+    isDisabled?: boolean;
 
     /**
      * The function to call when the input value is changed.
@@ -141,5 +141,5 @@ export interface StyledTextFieldInputProps extends StyledInputProps {
 
 export interface StyledTextFieldContainerProps extends StyledDivProps {
     $size?: TextFieldSize;
-    $disabled?: boolean;
+    $isDisabled?: boolean;
 }

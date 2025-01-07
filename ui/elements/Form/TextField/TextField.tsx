@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import React, { useId, useLayoutEffect, useRef, useState } from 'react';
 
 import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
@@ -22,8 +22,8 @@ const TextField = (props: TextFieldProps) => {
         helpMessage,
         errorMessage,
         maxLength,
-        required = false,
-        disabled = false,
+        isRequired = false,
+        isDisabled = false,
         autoFocus = false,
         autoComplete = 'on',
         onChange = () => {},
@@ -64,7 +64,7 @@ const TextField = (props: TextFieldProps) => {
     }, [adornments?.start, adornments?.end]);
 
     const getIsValid = (targetValue: string) => {
-        const satisfiesMinLength = required ? targetValue.length > 0 : true;
+        const satisfiesMinLength = isRequired ? targetValue.length > 0 : true;
         const satisfiesMaxLength = maxLength
             ? targetValue.length <= maxLength
             : true;
@@ -90,7 +90,7 @@ const TextField = (props: TextFieldProps) => {
     return (
         <StyledTextInputFieldContainer>
             {label && (
-                <Label name={name} required={required}>
+                <Label name={name} isRequired={isRequired}>
                     {label}
                 </Label>
             )}
@@ -98,7 +98,7 @@ const TextField = (props: TextFieldProps) => {
             <StyledTextFieldContainer
                 ref={inputContainerRef}
                 $size={size}
-                $disabled={disabled}
+                $isDisabled={isDisabled}
             >
                 {adornments?.start && (
                     <StyledTextFieldLeftAdornment id={startAdornmentId}>
@@ -106,7 +106,7 @@ const TextField = (props: TextFieldProps) => {
                     </StyledTextFieldLeftAdornment>
                 )}
                 <StyledTextFieldInput
-                    disabled={disabled}
+                    disabled={isDisabled}
                     type="text"
                     id={name}
                     name={name}

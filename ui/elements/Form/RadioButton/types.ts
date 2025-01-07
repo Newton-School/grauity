@@ -79,7 +79,7 @@ export interface RadioButtonProps {
      * @type {boolean}
      * @default false
      */
-    disabled?: boolean;
+    isDisabled?: boolean;
 }
 
 export interface StyledRadioButtonInputProps extends StyledInputProps {

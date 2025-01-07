@@ -198,8 +198,8 @@ export const StyledRadioButtonLabel = styled(Label)`
     line-height: 22px;
     letter-spacing: 0.1px;
 
-    ${({ disabled }: StyledLabelProps) =>
-        disabled &&
+    ${({ isDisabled }: StyledLabelProps) =>
+        isDisabled &&
         css`
             color: var(--text-emphasis-primary-disabled, #8c95a6);
         `};
