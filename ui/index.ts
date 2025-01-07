@@ -160,6 +160,11 @@ export {
     default as NSRadioButton,
     type RadioButtonProps,
 } from './elements/Form/RadioButton';
+// NSCheckbox
+export {
+    type CheckboxProps,
+    default as NSCheckbox,
+} from './elements/Form/Checkbox';
 
 // NSTab
 export { default as NSTab, type TabProps } from './elements/Tabs';
