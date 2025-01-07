@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useId, useLayoutEffect, useRef, useState } from 'react';
 
 import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
 import { Label } from '../Label';
 import {
-    StyledTextField,
     StyledTextFieldContainer,
+    StyledTextFieldInput,
+    StyledTextFieldLeftAdornment,
+    StyledTextFieldRightAdornment,
     StyledTextInputFieldContainer,
 } from './index.styles';
 import { TextFieldProps } from './types';
@@ -27,7 +29,39 @@ const TextField = (props: TextFieldProps) => {
         onChange = () => {},
         onClick = () => {},
         onBlur = () => {},
+        size = 'medium',
+        adornments,
     } = props;
+
+    const inputContainerRef = useRef(null);
+
+    const id = useId();
+
+    const startAdornmentId = `start-adornment-${id}`;
+    const endAdornmentId = `end-adornment-${id}`;
+
+    const [adornmentDimensions, setAdornmentDimensions] = useState({
+        start: 0,
+        end: 0,
+    });
+
+    useLayoutEffect(() => {
+        if (inputContainerRef.current) {
+            const startAdornmentElement =
+                document.getElementById(startAdornmentId);
+            const endAdornmentElement = document.getElementById(endAdornmentId);
+            const startAdornmentWidth = startAdornmentElement
+                ? startAdornmentElement.offsetWidth
+                : 0;
+            const endAdornmentWidth = endAdornmentElement
+                ? endAdornmentElement.offsetWidth
+                : 0;
+            setAdornmentDimensions({
+                start: startAdornmentWidth,
+                end: endAdornmentWidth,
+            });
+        }
+    }, [adornments?.start, adornments?.end]);
 
     const getIsValid = (targetValue: string) => {
         const satisfiesMinLength = isRequired ? targetValue.length > 0 : true;
@@ -61,8 +95,17 @@ const TextField = (props: TextFieldProps) => {
                 </Label>
             )}
 
-            <StyledTextFieldContainer tabIndex={0}>
-                <StyledTextField
+            <StyledTextFieldContainer
+                ref={inputContainerRef}
+                $size={size}
+                $isDisabled={isDisabled}
+            >
+                {adornments?.start && (
+                    <StyledTextFieldLeftAdornment id={startAdornmentId}>
+                        {adornments?.start}
+                    </StyledTextFieldLeftAdornment>
+                )}
+                <StyledTextFieldInput
                     disabled={isDisabled}
                     type="text"
                     id={name}
@@ -74,8 +117,14 @@ const TextField = (props: TextFieldProps) => {
                     onBlur={handleInputBlur}
                     autoComplete={autoComplete}
                     autoFocus={autoFocus}
-                    tabIndex={-1}
+                    $size={size}
+                    $adornmentDimensions={adornmentDimensions}
                 />
+                {adornments?.end && (
+                    <StyledTextFieldRightAdornment id={endAdornmentId}>
+                        {adornments?.end}
+                    </StyledTextFieldRightAdornment>
+                )}
             </StyledTextFieldContainer>
 
             <HelpMessage currentLength={value?.length} maxLength={maxLength}>

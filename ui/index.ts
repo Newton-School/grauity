@@ -161,6 +161,12 @@ export { default as NSTab, type TabProps } from './elements/Tabs';
 // NSCarousel
 export { type CarouselProps, default as NSCarousel } from './elements/Carousel';
 
+// NSTextField
+export {
+    default as NSTextField,
+    type TextFieldProps,
+} from './elements/Form/TextField';
+
 // NSTextArea
 export {
     default as NSTextArea,

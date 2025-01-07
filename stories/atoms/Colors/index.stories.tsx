@@ -40,7 +40,7 @@ export const Background = {
         const rows = extractTokensFromTheme({
             currentTheme: theme,
             type: 'colors',
-            categories: ['background'],
+            categories: ['bg'],
         });
         return (
             <Table
