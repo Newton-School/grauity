@@ -9,7 +9,7 @@ import { FormRowProps } from './types';
  * @returns 
  */
 const FormRow = (props: FormRowProps) => {
-    const { children, widths = 'equal' } = props;
+    const { children, widths = 'equal', column = false } = props;
 
     const childrenCount = React.Children.count(children);
     const gridTemplateColumns =
@@ -20,7 +20,7 @@ const FormRow = (props: FormRowProps) => {
             : widths;
 
     return (
-        <StyledFormRow $gridTemplateColumns={gridTemplateColumns}>
+        <StyledFormRow $gridTemplateColumns={gridTemplateColumns} $column={column}>
             {children}
         </StyledFormRow>
     );

@@ -14,8 +14,15 @@ export interface FormRowProps {
      * @example '2fr 1fr'
      */
     widths?: string;
+
+    /**
+     * If true, the form row will be rendered as a column.
+     * @default false
+     */
+    column?: boolean;
 }
 
 export interface StyledFormRowProps extends StyledDivProps {
     $gridTemplateColumns: string;
+    $column: boolean;
 }

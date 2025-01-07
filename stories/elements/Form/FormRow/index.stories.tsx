@@ -24,10 +24,12 @@ const Template = () => {
         });
     };
 
+    const isMobileView = window.innerWidth < 600;
+
     return (
         <div style={{ maxWidth: '800px', gap: '20px', display: 'flex', flexDirection: 'column' }}>
             {/* First Name, Middle Name and Last Name */}
-            <NSFormRow>
+            <NSFormRow column={isMobileView}>
                 <NSTextField
                     name="first_name"
                     label="First Name"
@@ -54,7 +56,7 @@ const Template = () => {
             </NSFormRow>
 
             {/* Email and Phone row */}
-            <NSFormRow widths="1fr 2fr">
+            <NSFormRow widths="1fr 2fr" column={isMobileView}>
                 <NSTextField
                     name="email"
                     label="Email"
@@ -80,7 +82,7 @@ const Template = () => {
             </NSFormRow>
 
             {/* Email and Phone row */}
-            <NSFormRow widths="2fr 1fr">
+            <NSFormRow widths="2fr 1fr" column={isMobileView}>
                 <NSTextField
                     name="email"
                     label="Email"
@@ -106,7 +108,7 @@ const Template = () => {
             </NSFormRow>
 
             {/* Description row */}
-            <NSFormRow>
+            <NSFormRow column={isMobileView}>
                 <NSTextArea
                     name="description"
                     label="Description"
@@ -118,26 +120,22 @@ const Template = () => {
             </NSFormRow>
 
             {/* Radio buttons row */}
-            <NSFormRow>
-                <div>
-                    <NSLabel name='account_type'>Account Type</NSLabel>
-                    <div style={{ display: 'flex', gap: '20px' }}>
-                        <NSRadioButton
-                            name="type"
-                            value="1"
-                            label="Personal"
-                            checked={formData.type === '1'}
-                            onChange={handleChange('type')}
-                        />
-                        <NSRadioButton
-                            name="type"
-                            value="2"
-                            label="Business"
-                            checked={formData.type === '2'}
-                            onChange={handleChange('type')}
-                        />
-                    </div>
-                </div>
+            <NSFormRow column>
+                <NSLabel name='account_type'>Account Type</NSLabel>
+                <NSRadioButton
+                    name="type"
+                    value="1"
+                    label="Personal"
+                    checked={formData.type === '1'}
+                    onChange={handleChange('type')}
+                />
+                <NSRadioButton
+                    name="type"
+                    value="2"
+                    label="Business"
+                    checked={formData.type === '2'}
+                    onChange={handleChange('type')}
+                />
             </NSFormRow>
         </div>
     );
