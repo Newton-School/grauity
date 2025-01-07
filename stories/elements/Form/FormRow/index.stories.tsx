@@ -54,7 +54,33 @@ const Template = () => {
             </NSFormRow>
 
             {/* Email and Phone row */}
-            <NSFormRow>
+            <NSFormRow widths="1fr 2fr">
+                <NSTextField
+                    name="email"
+                    label="Email"
+                    value={formData.email}
+                    onChange={handleChange('email')}
+                    isRequired
+                    adornments={{
+                        end: '@gmail.com'
+                    }}
+                    placeholder="Enter your email"
+                />
+                <NSTextField
+                    name="phone"
+                    label="Phone"
+                    value={formData.phone}
+                    onChange={handleChange('phone')}
+                    isRequired
+                    adornments={{
+                        start: '+91'
+                    }}
+                    placeholder="Enter your phone"
+                />
+            </NSFormRow>
+
+            {/* Email and Phone row */}
+            <NSFormRow widths="2fr 1fr">
                 <NSTextField
                     name="email"
                     label="Email"
