@@ -16,3 +16,5 @@ export interface CalendarEvent<T = {}> {
     render?: EventRendererFn<T>;
     focused?: boolean;
 }
+
+export type CalendarView = 'monthly' | 'weekly';

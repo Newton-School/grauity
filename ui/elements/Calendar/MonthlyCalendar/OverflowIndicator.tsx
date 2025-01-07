@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 import { Icon } from '../../Icon';
 import { CalendarEventRequiredProps } from '../types';
@@ -12,16 +12,15 @@ import { OverflowIndicatorProps } from './types';
 function OverflowIndicator<T extends CalendarEventRequiredProps>(
     props: OverflowIndicatorProps<T>
 ) {
-    const { text, events, eventRenderer } = props;
+    const { text, events, eventRenderer, triggerRef, onPopOverClose } = props;
     const [isOpen, setIsOpen] = useState(false);
-    const triggerRef = useRef(null);
 
     const onClick = () => {
         setIsOpen(true);
     };
 
     return (
-        <StyledOverflowIndicator onClick={onClick} ref={triggerRef}>
+        <StyledOverflowIndicator onClick={onClick}>
             <StyledOverflowIndicatorText>{text}</StyledOverflowIndicatorText>
             <Icon color="var(--text-primary)" name="arrow-right" size="16" />
             {isOpen && (
@@ -31,6 +30,7 @@ function OverflowIndicator<T extends CalendarEventRequiredProps>(
                     setIsOpen={setIsOpen}
                     triggerRef={triggerRef}
                     eventRenderer={eventRenderer}
+                    onPopOverClose={onPopOverClose}
                 />
             )}
         </StyledOverflowIndicator>

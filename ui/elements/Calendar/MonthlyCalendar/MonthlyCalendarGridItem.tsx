@@ -8,8 +8,14 @@ import { MonthlyCalendarGridItemProps } from './types';
 import { numberOfElementsOverflowing } from './utils';
 
 function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
-    const { cellDate, monthOffset, events, eventRenderer, renderDayItem } =
-        props;
+    const {
+        cellDate,
+        monthOffset,
+        events,
+        eventRenderer,
+        renderDayItem,
+        onPopOverClose,
+    } = props;
     const [numberOfEventsToRemove, setNumberOfEventsToRemove] = useState(0);
     const gridItemRef = useRef<HTMLDivElement>(null);
 
@@ -29,12 +35,13 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
 
         const numberOfEventsToRemoveComputed = numberOfEventsOverflowing + 1;
         setNumberOfEventsToRemove(numberOfEventsToRemoveComputed);
-    }, [monthOffset]);
+    }, [monthOffset, events]);
 
-    const eventsToRender = eventsForTheDay.slice(
-        0,
-        eventsForTheDay.length - numberOfEventsToRemove
-    );
+    const lengthOfArray =
+        eventsForTheDay.length - numberOfEventsToRemove >= 0
+            ? eventsForTheDay.length - numberOfEventsToRemove
+            : 0;
+    const eventsToRender = eventsForTheDay.slice(0, lengthOfArray);
 
     const moreEventsText = `+${numberOfEventsToRemove} more`;
     const currentActiveMonth = new Date();
@@ -58,13 +65,17 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
         >
             <DateCircle date={cellDate} />
             {eventsToRender.map((event) => (
-                <>{eventRenderer(event)}</>
+                <React.Fragment key={event?.id}>
+                    {eventRenderer(event)}
+                </React.Fragment>
             ))}
             {numberOfEventsToRemove ? (
                 <OverflowIndicator
                     events={eventsForTheDay}
                     eventRenderer={eventRenderer}
                     text={moreEventsText}
+                    triggerRef={gridItemRef}
+                    onPopOverClose={onPopOverClose}
                 />
             ) : null}
         </StyledMonthlyCalendarGridItem>

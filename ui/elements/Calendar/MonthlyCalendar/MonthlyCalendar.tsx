@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
+import { getMonthLabel } from '../utils';
 import { DAYS_IN_WEEK } from './constants';
 import GridHeaderRow from './GridHeaderRow';
 import Loading from './Loading';
 import {
+    StyledCalendarHeader,
     StyledMonthlyCalendarGrid,
     StyledMonthlyCalendarGridContainer,
     StyledMonthlyGridItemContainer,
@@ -23,8 +25,17 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         shouldShowMonthControls = true,
         events = [],
         renderDayItem,
+        onPopOverClose = () => {},
     } = props;
-    const [monthOffset, setMonthOffset] = useState(getMonthOffsetByDate(date));
+    const [currentDate, setCurrentDate] = useState(date);
+    const monthOffset = getMonthOffsetByDate(currentDate);
+
+    const setMonthOffset = (offset: number) => {
+        const newDate = new Date();
+        newDate.setMonth(newDate.getMonth() + offset);
+        setCurrentDate(newDate);
+    };
+
     const currentMonth = new Date().getMonth() + monthOffset;
     const currentYear = new Date().getFullYear();
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -58,28 +69,43 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         datesInGrid.push(nextMonthDate);
     }
 
+    // Sync Parent State with child
     useEffect(() => {
-        onDateChange(new Date(currentYear, currentMonth));
-    }, [monthOffset]);
+        if (date && date?.valueOf() !== currentDate?.valueOf()) {
+            onDateChange(currentDate);
+        }
+    }, [currentDate]);
+
+    useEffect(() => {
+        if (date && date?.valueOf() !== currentDate?.valueOf()) {
+            setCurrentDate(date);
+        }
+    }, [date]);
+
+    const rows = datesInGrid.length / DAYS_IN_WEEK;
 
     return (
-        <StyledMonthlyCalendarGridContainer>
-            {header}
-            {shouldShowMonthControls ? (
-                <MonthlyControls
-                    loading={loading}
-                    monthOffset={monthOffset}
-                    setMonthOffset={setMonthOffset}
-                />
-            ) : null}
-            <GridHeaderRow />
+        <StyledMonthlyCalendarGridContainer
+            aria-label={`Monthly Calendar for the month ${getMonthLabel(
+                new Date(currentYear, currentMonth)
+            )}`}
+        >
+            <StyledCalendarHeader>
+                {header}
+                {shouldShowMonthControls ? (
+                    <MonthlyControls
+                        loading={loading}
+                        monthOffset={monthOffset}
+                        setMonthOffset={setMonthOffset}
+                    />
+                ) : null}
+                <GridHeaderRow />
+            </StyledCalendarHeader>
             {loading ? (
                 <Loading gridData={datesInGrid} />
             ) : (
                 <StyledMonthlyGridItemContainer>
-                    <StyledMonthlyCalendarGrid
-                        rows={datesInGrid.length % DAYS_IN_WEEK}
-                    >
+                    <StyledMonthlyCalendarGrid rows={rows}>
                         {datesInGrid.map((item) => (
                             <MonthlyCalendarGridItem
                                 monthOffset={monthOffset}
@@ -87,6 +113,8 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
                                 events={events}
                                 eventRenderer={eventRenderer}
                                 renderDayItem={renderDayItem}
+                                key={item.valueOf()}
+                                onPopOverClose={onPopOverClose}
                             />
                         ))}
                     </StyledMonthlyCalendarGrid>

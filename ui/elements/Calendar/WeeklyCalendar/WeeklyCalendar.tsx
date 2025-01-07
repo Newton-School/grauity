@@ -86,7 +86,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         setWeekOffset(
             calculateWeekOffsetFromDateAndInitialOffset(initialWeekOffset, date)
         );
-    }, [initialWeekOffset]);
+    }, [initialWeekOffset, date]);
 
     useEffect(() => {
         onWeekChange(weekOffset);
