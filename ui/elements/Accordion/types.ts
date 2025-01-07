@@ -15,6 +15,29 @@ export interface AccordionProps {
     expanded?: boolean;
 
     /**
+     * Suffix element to be displayed before toggle icon.
+     */
+    suffix?: React.ReactNode;
+
+    /**
+     * Background color of the accordion header.
+     * @default var(--bg-secondary, #F6F7F9)
+     */
+    headerBackgroundColor?: string;
+
+    /**
+     * Background color of the accordion content.
+     * @default var(--bg-secondary, #F6F7F9)
+     */
+    contentBackgroundColor?: string;
+
+    /**
+     * Color of the accordion toggle icon.
+     * @default var(--text-primary, #16191D)
+     */
+    iconColor?: string;
+
+    /**
      * Callback function to handle toggle events.
      * @param expanded - The new expanded state of the accordion.
      */
@@ -24,8 +47,19 @@ export interface AccordionProps {
      * Content to be displayed inside the accordion.
      */
     children?: React.ReactNode;
+
+    /**
+     * Additional CSS properties to be applied for the accordion wrapper.
+     * default: {}
+     */
+    style?: React.CSSProperties;
 }
 
 export interface StyledAccordionHeaderProps extends StyledDivProps {
     onClick: () => void;
+    $headerBackgroundColor: string;
+}
+
+export interface StyledAccordionContentProps extends StyledDivProps {
+    $contentBackgroundColor: string;
 }

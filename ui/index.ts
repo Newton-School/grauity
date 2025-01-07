@@ -119,6 +119,12 @@ export {
     type WeeklyCalendarProps,
 } from './elements/Calendar/WeeklyCalendar';
 
+// NSCalendar
+export {
+    type UnifiedCalendarProps as CalendarProps,
+    default as NSCalendar,
+} from './elements/Calendar/UnifiedCalendar';
+
 // NSMonthlyCalendar
 export {
     type MonthlyCalendarProps,
@@ -149,6 +155,12 @@ export {
 // NSTooltip
 export { default as NSTooltip, type TooltipProps } from './elements/Tooltip';
 
+// NSTabs
+export { default as NSTab, type TabProps } from './elements/Tabs';
+
+// NSCarousel
+export { type CarouselProps, default as NSCarousel } from './elements/Carousel';
+
 // NSTextArea
 export {
     default as NSTextArea,
@@ -165,6 +177,3 @@ export {
     type CheckboxProps,
     default as NSCheckbox,
 } from './elements/Form/Checkbox';
-
-// NSTab
-export { default as NSTab, type TabProps } from './elements/Tabs';

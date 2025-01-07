@@ -20,6 +20,7 @@ export default function PopOver(props: PopOverProps) {
         disableBackgroundScroll = false,
         width,
         height,
+        position,
     } = props;
 
     const [adjustedOffset, setAdjustedOffset] = useState<PopOverOffset | null>(
@@ -187,7 +188,15 @@ export default function PopOver(props: PopOverProps) {
     }, [isOpen]);
 
     useEffect(() => {
-        if (isOpen && triggerRef && triggerRef.current && !firstOffsetSet) {
+        if (position) {
+            setAdjustedOffset(position);
+            setFirstOffsetSet(true);
+        } else if (
+            isOpen &&
+            triggerRef &&
+            triggerRef.current &&
+            !firstOffsetSet
+        ) {
             const offset = calculateOffset(direction);
             setAdjustedOffset(offset);
             setFirstOffsetSet(true);
@@ -195,7 +204,7 @@ export default function PopOver(props: PopOverProps) {
     }, [isOpen, direction, firstOffsetSet]);
 
     useEffect(() => {
-        if (isOpen && autoAdjust && firstOffsetSet) {
+        if (!position && isOpen && autoAdjust && firstOffsetSet) {
             handlePositionAdjust(direction);
         }
         return () => {};

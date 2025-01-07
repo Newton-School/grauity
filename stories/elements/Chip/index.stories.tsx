@@ -7,7 +7,7 @@ export default {
     component: Chip,
 };
 
-const Template = (args: ChipProps) => <Chip {...args}>Chip : 01</Chip>;
+const Template = (args: ChipProps) => <Chip {...args}>This is a chip</Chip>;
 
 const defaultArgs: ChipProps = {
     variant: 'brand',
@@ -17,6 +17,10 @@ const defaultArgs: ChipProps = {
     backgroundColor: null,
     borderColor: null,
     rounded: false,
+    icon: null,
+    iconSize: '12',
+    iconPosition: 'left',
+    style: {},
 };
 
 export const Component = Template.bind({});

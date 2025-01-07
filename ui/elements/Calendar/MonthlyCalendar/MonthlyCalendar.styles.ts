@@ -7,6 +7,7 @@ import {
     StyledDateCircleProps,
     StyledDateTextProps,
     StyledMonthlyCalendarGridItemProps,
+    StyledOverflowEventsListContainerProps,
 } from './types';
 
 export const StyledDateCircle = styled.div<StyledDateCircleProps>`
@@ -19,8 +20,8 @@ export const StyledDateCircle = styled.div<StyledDateCircleProps>`
     align-items: center;
     border-radius: 32px;
     background: var(--bg-secondary, #f6f7f9);
-    width: ${DATE_SIZE}px;
-    height: ${DATE_SIZE}px;
+    min-width: ${DATE_SIZE}px;
+    min-height: ${DATE_SIZE}px;
 
     ${({ isInActiveMonth }) =>
         isInActiveMonth &&
@@ -82,7 +83,6 @@ export const StyledMonthlyCalendarGridItem = styled.div<StyledMonthlyCalendarGri
 `;
 
 export const StyledMonthlyCalendarGrid = styled.div<GridContainerRows>`
-    font-family: var(--font-family, 'Mona Sans');
     box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(${DAYS_IN_WEEK}, 1fr);
@@ -92,6 +92,7 @@ export const StyledMonthlyCalendarGrid = styled.div<GridContainerRows>`
 `;
 
 export const StyledMonthlyCalendarGridContainer = styled.div<StyledDivProps>`
+    font-family: var(--font-family, 'Mona Sans');
     width: 100%;
     height: 100%;
     display: flex;
@@ -132,7 +133,15 @@ export const StyledDayOfWeekHeader = styled.div`
     grid-template-columns: repeat(7, 1fr);
 `;
 
-export const StyledDayOfWeekHeaderItem = styled.div`
+export const StyledCalendarHeader = styled.div<StyledDivProps>`
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--bg-primary, #fff);
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.12);
+`;
+
+export const StyledDayOfWeekHeaderItem = styled.div<StyledDivProps>`
     display: flex;
     padding: var(--spacing-12px, 12px);
     flex-direction: column;
@@ -155,12 +164,13 @@ export const StyledDayOfWeekHeaderItemText = styled.span`
 `;
 
 export const StyledMonthlyGridItemContainer = styled.div`
+    display: flex;
     flex: 1;
     flex-direction: column;
     overflow: hidden;
 `;
 
-export const StyledOverflowEventsListContainer = styled.div`
+export const StyledOverflowEventsListContainer = styled.div<StyledOverflowEventsListContainerProps>`
     display: flex;
     width: 189px;
     padding: 8px;
@@ -172,6 +182,12 @@ export const StyledOverflowEventsListContainer = styled.div`
     border: 2px solid var(--border-brand, #94c4ff);
     background: var(--bg-brand, #e5f1ff);
     box-shadow: 0px 8px 48px 0px rgba(0, 0, 0, 0.16);
+
+    ${({ width }) =>
+        width &&
+        css`
+            width: ${width}px;
+        `}
 `;
 
 export const StyledCalendarMonthButton = styled.div<StyledDivProps>`
@@ -186,7 +202,7 @@ export const StyledCalendarMonthButton = styled.div<StyledDivProps>`
 export const StyledCalendarControlsText = styled.span`
     font-family: var(--font-family, 'Mona Sans');
     color: var(--text-primary, #16191d);
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     line-height: 14.4px;
     letter-spacing: 0.1px;
