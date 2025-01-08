@@ -47,6 +47,7 @@ const RadioButton = (props: RadioButtonProps) => {
                     <StyledRadioButtonLabel
                         name={`radio-button-${id}`}
                         isRequired={isRequired}
+                        isDisabled={isDisabled}
                     >
                         {label}
                     </StyledRadioButtonLabel>

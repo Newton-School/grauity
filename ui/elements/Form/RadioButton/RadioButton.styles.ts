@@ -187,6 +187,7 @@ export const StyledRadioButtonInput = styled.input<StyledRadioButtonInputProps>`
 
     &:disabled {
         border: 1.4px solid var(--border-subtle-primary-disabled, #edeff3);
+        cursor: not-allowed;
     }
 `;
 
@@ -197,10 +198,12 @@ export const StyledRadioButtonLabel = styled(Label)`
     font-weight: 500;
     line-height: 22px;
     letter-spacing: 0.1px;
+    cursor: pointer;
 
     ${({ isDisabled }: StyledLabelProps) =>
         isDisabled &&
         css`
             color: var(--text-emphasis-primary-disabled, #8c95a6);
+            cursor: not-allowed;
         `};
 `;
