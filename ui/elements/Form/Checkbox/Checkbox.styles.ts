@@ -81,48 +81,17 @@ export const StyledCheckboxButton = styled.button<StyledCheckboxInputProps>`
     ${({ $checked }) =>
         $checked &&
         css`
-            border-color: var(--border-subtle-brand-default, #61a8ff);
-            background: var(--background-subtle-brand-default, #e5f1ff);
+            border-color: var(--background-emphasis-brand-default, #0673f9);
+            background: var(--background-emphasis-brand-default, #0673f9);
             color: var(--background-emphasis-brand-default, #0673f9);
             transition: border-color 150ms ease, background 150ms ease,
                 color 150ms ease;
-
-            ${(props: StyledCheckboxInputProps) => {
-                if (props.$state === 'error') {
-                    return css`
-                        border-color: var(
-                            --border-moderate-error-default,
-                            #f8636b
-                        );
-                        color: var(
-                            --background-emphasis-error-default,
-                            #f8636b
-                        );
-                    `;
-                }
-                if (props.$state === 'success') {
-                    return css`
-                        border-color: var(
-                            --border-moderate-success-default,
-                            #50ce99
-                        );
-                        color: var(
-                            --background-emphasis-success-default,
-                            #50ce99
-                        );
-                    `;
-                }
-                return css`
-                    border-color: var(--border-subtle-brand-default, #61a8ff);
-                    color: var(--background-emphasis-brand-default, #0673f9);
-                `;
-            }}
         `}
 
     /* Hover State */
     &:hover:not(:disabled) {
-        ${({ $checked, $state }) =>
-            !$checked
+        ${({ $checked, $state, $indeterminate }) =>
+            !$checked && !$indeterminate
                 ? css`
                       border-color: var(--border-subtle-brand-default, #61a8ff);
                       background: var(
@@ -185,13 +154,32 @@ export const StyledCheckboxButton = styled.button<StyledCheckboxInputProps>`
         background: var(--background-subtle-primary-default, #fff);
         cursor: not-allowed;
         opacity: 0.5;
+        ${({ $checked }) =>
+            $checked &&
+            css`
+                border-color: var(--border-subtle-primary-disabled, #edeff3);
+                background: var(--background-subtle-primary-disabled, #edeff3);
+                color: var(--background-subtle-primary-disabled, #edeff3);
+            `}
     }
 
     /* Focus Styles */
     &:focus-visible {
         outline: none;
         box-shadow: 0 0 0 1px var(--focus-ring-color, #61a8ff);
+        /* border: 3px solid var(--border-subtle-brand-default, #61a8ff); */
     }
+
+    /* Indeterminate state */
+    ${({ $indeterminate }) =>
+        $indeterminate &&
+        css`
+            border-color: var(--background-emphasis-brand-default, #0673f9);
+            background: var(--background-emphasis-brand-default, #0673f9);
+            color: var(--background-emphasis-brand-default, #0673f9);
+            transition: border-color 150ms ease, background 150ms ease,
+                color 150ms ease;
+        `}
 `;
 
 export const StyledCheckboxLabel = styled(Label)`

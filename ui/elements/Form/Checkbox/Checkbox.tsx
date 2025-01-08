@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import { Icon } from 'ui/elements/Icon';
 
 import { ErrorMessage } from '../ErrorMessage';
@@ -10,10 +10,10 @@ import {
     StyledCheckboxWithMessage,
 } from './Checkbox.styles';
 import { CheckboxProps } from './types';
+import { getIconSize } from './utils';
 
 const Checkbox: React.FC<CheckboxProps> = ({
     name,
-    value,
     label,
     isRequired = false,
     size = 'medium',
@@ -22,14 +22,22 @@ const Checkbox: React.FC<CheckboxProps> = ({
     errorMessage,
     onChange = () => {},
     checked = false,
-    disabled = false,
+    indeterminate = false,
+    isDisabled = false,
 }) => {
-    const [isChecked, setIsChecked] = useState<boolean>(checked);
+    const id = useId();
 
+    const [isChecked, setIsChecked] = useState<boolean>(checked);
+    const [isIndeterminate, setIsIndeterminate] =
+        useState<boolean>(indeterminate);
     const toggleCheckbox = (e: React.MouseEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isDisabled) {
             return;
         }
+        if (isIndeterminate) {
+            setIsIndeterminate(false);
+        }
+
         setIsChecked((prev) => !prev);
         onChange(e);
     };
@@ -40,24 +48,29 @@ const Checkbox: React.FC<CheckboxProps> = ({
                 <StyledCheckboxButton
                     type="button"
                     role="checkbox"
-                    aria-checked={isChecked}
+                    aria-checked={indeterminate ? 'mixed' : isChecked}
                     data-state={isChecked ? 'checked' : 'unchecked'}
                     $size={size}
                     $state={state}
                     $checked={isChecked}
                     onClick={toggleCheckbox}
-                    disabled={disabled}
-                    id={name}
-                    value={value}
+                    disabled={isDisabled}
+                    id={`checkbox-${id}`}
+                    $indeterminate={isIndeterminate}
+                    aria-labelledby={`checkbox-${id}`}
                 >
                     {isChecked && (
                         <Icon
-                            name="check-square-filled"
-                            color={
-                                isChecked
-                                    ? 'var(--text-brand, #0673F9)'
-                                    : 'var(--text-disabled, #8C95A6)'
-                            }
+                            size={getIconSize(size)}
+                            name="check-filled"
+                            color="var(--text-action)"
+                        />
+                    )}
+                    {isIndeterminate && (
+                        <Icon
+                            size={getIconSize(size)}
+                            name="remove"
+                            color="var(--text-action)"
                         />
                     )}
                 </StyledCheckboxButton>
@@ -65,7 +78,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
                     <StyledCheckboxLabel
                         name={name}
                         isRequired={isRequired}
-                        disabled={disabled}
+                        disabled={isDisabled}
                     >
                         {label}
                     </StyledCheckboxLabel>

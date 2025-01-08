@@ -8,12 +8,12 @@ import Checkbox from './Checkbox';
 describe('Checkbox', () => {
     // Rendering
     it('should render the checkbox button', () => {
-        render(<Checkbox name="checkbox" value={1} label="checkbox button" />);
+        render(<Checkbox name="checkbox" label="checkbox button" />);
         const checkbox = screen.getByRole('checkbox');
         expect(checkbox).toBeInTheDocument();
     });
     it('should render the label', () => {
-        render(<Checkbox name="checkbox" value={1} label="checkbox button" />);
+        render(<Checkbox name="checkbox" label="checkbox button" />);
         const label = screen.getByText('checkbox button');
         expect(label).toBeInTheDocument();
     });
@@ -21,7 +21,6 @@ describe('Checkbox', () => {
         render(
             <Checkbox
                 name="checkbox"
-                value={1}
                 label="checkbox button"
                 helpMessage="Help message"
             />
@@ -33,7 +32,6 @@ describe('Checkbox', () => {
         render(
             <Checkbox
                 name="checkbox"
-                value={1}
                 label="checkbox button"
                 errorMessage="Error message"
             />
@@ -48,7 +46,6 @@ describe('Checkbox', () => {
         render(
             <Checkbox
                 name="checkbox"
-                value={1}
                 label="checkbox button"
                 onChange={onChange}
             />
@@ -63,38 +60,24 @@ describe('Checkbox', () => {
 
     // Checked
     it('should be checked', () => {
-        render(
-            <Checkbox
-                name="checkbox"
-                value={1}
-                label="checkbox button"
-                checked
-            />
-        );
+        render(<Checkbox name="checkbox" label="checkbox button" checked />);
         const checkbox = screen.getByRole('checkbox');
         expect(checkbox).toBeChecked();
     });
     it('should not be checked by default', () => {
-        render(<Checkbox name="checkbox" value={1} label="Checkbox button" />);
+        render(<Checkbox name="checkbox" label="Checkbox button" />);
         const checkbox = screen.getByRole('checkbox');
         expect(checkbox).not.toBeChecked();
     });
 
     // Disabled
     it('should disable the checkbox button', () => {
-        render(
-            <Checkbox
-                name="checkbox"
-                value={1}
-                label="checkbox button"
-                disabled
-            />
-        );
+        render(<Checkbox name="checkbox" label="checkbox button" disabled />);
         const checkbox = screen.getByRole('checkbox');
         expect(checkbox).toBeDisabled();
     });
     it('should not be disabled by default', () => {
-        render(<Checkbox name="checkbox" value={1} label="Checkbox button" />);
+        render(<Checkbox name="checkbox" label="Checkbox button" />);
         const checkbox = screen.getByRole('checkbox');
         expect(checkbox).not.toBeDisabled();
     });

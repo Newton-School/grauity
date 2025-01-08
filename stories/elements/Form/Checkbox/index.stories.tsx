@@ -6,11 +6,10 @@ export default {
     component: Checkbox,
 };
 
-const Template = (args: CheckboxProps) => <Checkbox {...args} value={1} />;
+const Template = (args: CheckboxProps) => <Checkbox {...args} />;
 
 const defaultArgs: CheckboxProps = {
     name: 'checkbox',
-    value: 1,
     label: 'Checkbox',
     isRequired: false,
     size: 'medium',
@@ -19,7 +18,8 @@ const defaultArgs: CheckboxProps = {
     errorMessage: '',
     onChange: () => {},
     checked: false,
-    disabled: false,
+    isDisabled: false,
+    indeterminate: false,
 };
 
 export const Component = Template.bind({});

@@ -14,7 +14,6 @@ export default {
 const generateCodeString = (args: CheckboxProps) => {
     const {
         name,
-        value,
         label,
         isRequired,
         size,
@@ -22,12 +21,12 @@ const generateCodeString = (args: CheckboxProps) => {
         helpMessage,
         errorMessage,
         checked,
-        disabled,
+        isDisabled,
+        indeterminate,
     } = args;
 
     return `<Checkbox
     name="${name}"
-    value={${value}}
     label="${label}"
     isRequired={${isRequired}}
     size="${size}"
@@ -35,7 +34,8 @@ const generateCodeString = (args: CheckboxProps) => {
     helpMessage="${helpMessage}"
     errorMessage="${errorMessage}"
     checked={${checked}}
-    disabled={${disabled}}
+    disabled={${isDisabled}}
+    indeterminate={${indeterminate}}
     onChange={() => {}} />`;
 };
 
@@ -43,7 +43,6 @@ const Template = (args: CheckboxProps) => <Checkbox {...args} />;
 
 const defaultArgs: CheckboxProps = {
     name: 'checkbox',
-    value: 1,
     label: 'Checkbox',
     isRequired: false,
     size: 'medium',
@@ -52,7 +51,8 @@ const defaultArgs: CheckboxProps = {
     errorMessage: '',
     onChange: () => {},
     checked: false,
-    disabled: false,
+    isDisabled: false,
+    indeterminate: false,
 };
 
 export const Gallery = () => {
@@ -66,7 +66,7 @@ export const Gallery = () => {
         'error',
         'success',
     ] as any as Array<CheckboxState>;
-
+    
     return (
         <Table.Table borderAround={false} borderVertical={false}>
             <Table.TableHead highlightHeaders={false}>
