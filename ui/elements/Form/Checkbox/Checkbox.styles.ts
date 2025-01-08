@@ -165,9 +165,7 @@ export const StyledCheckboxButton = styled.button<StyledCheckboxInputProps>`
 
     /* Focus Styles */
     &:focus-visible {
-        outline: none;
-        box-shadow: 0 0 0 1px var(--focus-ring-color, #61a8ff);
-        /* border: 3px solid var(--border-subtle-brand-default, #61a8ff); */
+        outline: 3px solid var(--border-subtle-brand-default, #61a8ff);
     }
 
     /* Indeterminate state */
