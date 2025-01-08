@@ -44,8 +44,7 @@ const RadioButton = (props: RadioButtonProps) => {
                 />
                 {label && (
                     <StyledRadioButtonLabel
-                        htmlFor={`radio-button-${id}`}
-                        name={name}
+                        name={`radio-button-${id}`}
                         isRequired={isRequired}
                     >
                         {label}
