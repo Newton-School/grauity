@@ -59,7 +59,7 @@ export interface RadioButtonProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 
     /**
-     * Indicates if the radio button is checked initially.s
+     * Indicates if the radio button is checked initially.
      * @default false
      */
     checked?: boolean;
