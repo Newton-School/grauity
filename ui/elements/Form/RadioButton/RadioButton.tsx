@@ -42,6 +42,7 @@ const RadioButton = (props: RadioButtonProps) => {
                         onChange(e);
                     }}
                     disabled={isDisabled}
+                    defaultChecked={checked}
                 />
                 {label && (
                     <StyledRadioButtonLabel
