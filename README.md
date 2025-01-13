@@ -86,7 +86,7 @@ newton-web$: npm install ../grauity
 # This is assuming `grauity` and `newton-web` share same parent folder
 
 # Now, link react, react-dom from grauity to newton-web:
-newton-web$: npm link ../gruity/node_modules/react ../gruity/node_modules/react-dom --legacy-peer-deps
+newton-web$: npm link ../grauity/node_modules/react ../grauity/node_modules/react-dom --legacy-peer-deps
 
 # Finally, run newton-web
 newton-web$: npm run dev
