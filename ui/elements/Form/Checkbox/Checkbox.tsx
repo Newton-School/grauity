@@ -55,7 +55,6 @@ const Checkbox: React.FC<CheckboxProps> = ({
                     $checked={isChecked}
                     onClick={toggleCheckbox}
                     disabled={isDisabled}
-                    id={`checkbox-${id}`}
                     $indeterminate={isIndeterminate}
                     aria-labelledby={`checkbox-${id}`}
                 >
@@ -79,6 +78,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
                         name={name}
                         isRequired={isRequired}
                         disabled={isDisabled}
+                        id={`checkbox-${id}`}
                     >
                         {label}
                     </StyledCheckboxLabel>
