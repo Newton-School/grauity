@@ -1,6 +1,6 @@
 const LIGHT_THEME_CONFIG = {
     colors: {
-        background: {
+        bg: {
             subtle: {
                 primary: {
                     default: 'var(--neutral-0, #FFF)',

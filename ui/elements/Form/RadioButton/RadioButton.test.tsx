@@ -78,7 +78,7 @@ describe('RadioButton', () => {
     // Disabled
     it('should disable the radio button', () => {
         render(
-            <RadioButton name="radio" value={1} label="Radio button" disabled />
+            <RadioButton name="radio" value={1} label="Radio button" isDisabled />
         );
         const radioButton = screen.getByRole('radio');
         expect(radioButton).toBeDisabled();

@@ -35,3 +35,5 @@ export const HelpMessage = (props: HelpMessageProps) => {
         </StyledHelpMessage>
     );
 };
+
+export { HelpMessageProps };

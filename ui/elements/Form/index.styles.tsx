@@ -7,6 +7,7 @@ export const StyledLabel = styled.label<StyledLabelProps>`
     font-size: 12px;
     line-height: 16px;
     letter-spacing: 0.048px;
+    font-family: var(--font-family);
     ${({ isRequired }) =>
         isRequired &&
         css`
