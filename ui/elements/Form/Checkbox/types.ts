@@ -66,7 +66,7 @@ export interface CheckboxProps {
     isDisabled?: boolean;
 
     /**
-     * Indicates if the checkbox is indeterminate.
+     * Indicates if the checkbox is indeterminate. Has precedence over `checked`.
      * @default false
      */
     indeterminate?: boolean;

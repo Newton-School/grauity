@@ -59,7 +59,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
                     $indeterminate={isIndeterminate}
                     aria-labelledby={`checkbox-${id}`}
                 >
-                    {isChecked && (
+                    {isChecked && !isIndeterminate && (
                         <Icon
                             size={getIconSize(size)}
                             name="check-filled"
