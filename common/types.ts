@@ -34,6 +34,19 @@ export interface StyledInputProps
 }
 
 /**
+ * Interface representing the properties for a styled label component.
+ *
+ * @extends React.LabelHTMLAttributes<HTMLLabelElement>
+ * @property {React.Ref<HTMLLabelElement>} [ref] - Optional ref to the label element.
+ */
+export interface StyledLabelProps
+    extends React.LabelHTMLAttributes<HTMLLabelElement> {
+    ref?: React.Ref<HTMLLabelElement>;
+    isRequired?: boolean;
+    isDisabled?: boolean;
+}
+
+/**
  * Interface representing the properties for a styled button component.
  *
  * @extends React.ButtonHTMLAttributes<HTMLButtonElement>
@@ -42,4 +55,15 @@ export interface StyledInputProps
 export interface StyledButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     ref?: React.Ref<HTMLButtonElement>;
+}
+
+/**
+ * Interface representing the properties for a styled text area component.
+ *
+ * @extends React.TextareaHTMLAttributes<HTMLTextAreaElement>
+ * @property {React.Ref<HTMLTextAreaElement>} [ref] - Optional ref to the text area element.
+ */
+export interface StyledTextAreaProps
+    extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+    ref?: React.Ref<HTMLTextAreaElement>;
 }

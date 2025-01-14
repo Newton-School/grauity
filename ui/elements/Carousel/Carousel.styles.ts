@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { StyledDivProps } from '../../../common/types';
 import {
+    StyledCarouselControlsProps,
     StyledCarouselHeaderRowProps,
     StyledCarouselItemProps,
     StyledCarouselItemsContainerProps,
@@ -37,11 +38,11 @@ export const StyledCarouselTitle = styled.div`
     line-height: 25.6px;
     letter-spacing: 0.1px;
 `;
-export const StyledCarouselControls = styled.div`
+export const StyledCarouselControls = styled.div<StyledCarouselControlsProps>`
     display: flex;
     height: 24px;
     align-items: flex-start;
-    gap: 4px;
+    gap: ${(props) => props.$iconGap}px;
 `;
 
 export const StyledCarouselItemsContainer = styled.div<StyledCarouselItemsContainerProps>`

@@ -14,5 +14,8 @@
                 }
             }
         ]
+    },
+    "moduleNameMapper": {
+        "^ui/(.*)$": "<rootDir>/ui/$1"
     }
 }

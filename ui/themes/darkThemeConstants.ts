@@ -1,6 +1,6 @@
 const DARK_THEME_CONFIG = {
     colors: {
-        background: {
+        bg: {
             subtle: {
                 primary: {
                     default: 'var(--neutral-1000, #0B0C0E)',

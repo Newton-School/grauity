@@ -21,6 +21,7 @@ const Carousel = (props: CarouselProps) => {
         iconPosition = 'right',
         leftIcon = 'chevron-left',
         rightIcon = 'chevron-right',
+        iconGap = 12,
         onLeftClick = () => {},
         onRightClick = () => {},
         onScrollEnd = () => {},
@@ -106,7 +107,7 @@ const Carousel = (props: CarouselProps) => {
             >
                 <StyledCarouselTitle>{title}</StyledCarouselTitle>
                 {showIcons && (
-                    <StyledCarouselControls>
+                    <StyledCarouselControls $iconGap={iconGap}>
                         <IconButton
                             size="small"
                             icon={leftIcon}
