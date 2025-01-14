@@ -1,84 +1,81 @@
 import React from 'react';
-import RadioButton, { RadioButtonProps } from 'ui/elements/Form/RadioButton';
-import {
-    RadioButtonSize,
-    RadioButtonState,
-} from 'ui/elements/Form/RadioButton/types';
+import Checkbox, { CheckboxProps } from 'ui/elements/Form/Checkbox';
+import { CheckboxSize, CheckboxState } from 'ui/elements/Form/Checkbox/types';
 import Table from 'ui/elements/Table';
 
 import TokenBlock from '../../../helper-components/TokenBlock';
 
 export default {
-    title: 'Elements/Form/RadioButton/Gallery',
-    component: RadioButton,
+    title: 'Elements/Form/Checkbox/Gallery',
+    component: Checkbox,
     tags: ['!autodocs'],
 };
 
-const generateCodeString = (args: RadioButtonProps) => {
+const generateCodeString = (args: CheckboxProps) => {
     const {
         name,
-        value,
         label,
         isRequired,
         size,
         state,
         helpMessage,
         errorMessage,
-        checked,
+        isChecked,
         isDisabled,
+        isIndeterminate,
     } = args;
 
-    return `<RadioButton
+    return `<Checkbox
     name="${name}"
-    value={${value}}
     label="${label}"
     isRequired={${isRequired}}
     size="${size}"
     state="${state}"
     helpMessage="${helpMessage}"
     errorMessage="${errorMessage}"
-    checked={${checked}}
+    isChecked={${isChecked}}
     disabled={${isDisabled}}
+    isIndeterminate={${isIndeterminate}}
     onChange={() => {}} />`;
 };
 
-const Template = (args: RadioButtonProps) => <RadioButton {...args} />;
+const Template = (args: CheckboxProps) => <Checkbox {...args} />;
 
-const defaultArgs: RadioButtonProps = {
-    name: 'radio',
-    value: 1,
-    label: 'Radio button',
+const defaultArgs: CheckboxProps = {
+    name: 'checkbox',
+    label: 'Checkbox',
     isRequired: false,
     size: 'medium',
     state: 'default',
     helpMessage: '',
     errorMessage: '',
     onChange: () => {},
-    checked: false,
+    isChecked: false,
     isDisabled: false,
+    isIndeterminate: false,
 };
 
 export const Gallery = () => {
-    const sizes: Array<RadioButtonSize> = [
+    const sizes: Array<CheckboxSize> = [
         'small',
         'medium',
         'large',
-    ] as any as Array<RadioButtonSize>;
-    const states: Array<RadioButtonState> = [
+    ] as any as Array<CheckboxSize>;
+    const states: Array<CheckboxState> = [
         'default',
         'error',
         'success',
-    ] as any as Array<RadioButtonState>;
-
+    ] as any as Array<CheckboxState>;
+    
     return (
         <Table.Table borderAround={false} borderVertical={false}>
             <Table.TableHead highlightHeaders={false}>
                 <Table.TableRow condensed>
                     <Table.TableHeadingCell align="left">
-                        State
+                        Size
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
-                        Size
+                        State
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
                         Element
@@ -89,14 +86,14 @@ export const Gallery = () => {
                 </Table.TableRow>
             </Table.TableHead>
             <Table.TableBody>
-                {states.map((state) =>
-                    sizes.map((size) => (
+                {sizes.map((size) =>
+                    states.map((state) => (
                         <Table.TableRow condensed>
                             <Table.TableDataCell>
-                                <TokenBlock copy>{state}</TokenBlock>
+                                <TokenBlock copy>{size}</TokenBlock>
                             </Table.TableDataCell>
                             <Table.TableDataCell>
-                                <TokenBlock copy>{size}</TokenBlock>
+                                <TokenBlock copy>{state}</TokenBlock>
                             </Table.TableDataCell>
                             <Table.TableDataCell>
                                 <Template
