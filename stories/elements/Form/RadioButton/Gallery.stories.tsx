@@ -25,7 +25,7 @@ const generateCodeString = (args: RadioButtonProps) => {
         helpMessage,
         errorMessage,
         checked,
-        disabled,
+        isDisabled,
     } = args;
 
     return `<RadioButton
@@ -38,7 +38,7 @@ const generateCodeString = (args: RadioButtonProps) => {
     helpMessage="${helpMessage}"
     errorMessage="${errorMessage}"
     checked={${checked}}
-    disabled={${disabled}}
+    disabled={${isDisabled}}
     onChange={() => {}} />`;
 };
 
@@ -55,7 +55,7 @@ const defaultArgs: RadioButtonProps = {
     errorMessage: '',
     onChange: () => {},
     checked: false,
-    disabled: false,
+    isDisabled: false,
 };
 
 export const Gallery = () => {
@@ -75,10 +75,10 @@ export const Gallery = () => {
             <Table.TableHead highlightHeaders={false}>
                 <Table.TableRow condensed>
                     <Table.TableHeadingCell align="left">
-                        Size
+                        State
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
-                        State
+                        Size
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
                         Element
@@ -89,14 +89,14 @@ export const Gallery = () => {
                 </Table.TableRow>
             </Table.TableHead>
             <Table.TableBody>
-                {sizes.map((size) =>
-                    states.map((state) => (
+                {states.map((state) =>
+                    sizes.map((size) => (
                         <Table.TableRow condensed>
                             <Table.TableDataCell>
-                                <TokenBlock copy>{size}</TokenBlock>
+                                <TokenBlock copy>{state}</TokenBlock>
                             </Table.TableDataCell>
                             <Table.TableDataCell>
-                                <TokenBlock copy>{state}</TokenBlock>
+                                <TokenBlock copy>{size}</TokenBlock>
                             </Table.TableDataCell>
                             <Table.TableDataCell>
                                 <Template

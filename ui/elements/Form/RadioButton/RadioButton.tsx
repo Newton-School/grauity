@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useId } from 'react';
 
 import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
@@ -25,26 +25,33 @@ const RadioButton = (props: RadioButtonProps) => {
         isDisabled = false,
     } = props;
 
-    const [isChecked, setIsChecked] = useState(checked);
+    const id = useId();
 
     return (
         <StyledRadioButtonWithMessage>
             <StyledRadioButton>
                 <StyledRadioButtonInput
+                    aria-label={label}
+                    aria-checked={checked}
+                    id={`radio-button-${id}`}
                     $size={size}
                     $state={state}
                     type="radio"
                     name={name}
                     value={value}
                     onChange={(e) => {
-                        setIsChecked(!isChecked);
                         onChange(e);
                     }}
-                    checked={isChecked}
                     disabled={isDisabled}
+                    defaultChecked={checked}
                 />
                 {label && (
-                    <StyledRadioButtonLabel name={name} isRequired={isRequired}>
+                    <StyledRadioButtonLabel
+                        name={`radio-button-${id}`}
+                        isRequired={isRequired}
+                        isDisabled={isDisabled}
+                        $size={size}
+                    >
                         {label}
                     </StyledRadioButtonLabel>
                 )}
