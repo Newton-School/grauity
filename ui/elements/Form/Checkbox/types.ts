@@ -49,9 +49,9 @@ export interface CheckboxProps {
 
     /**
      * The function to call when the checkbox value changes.
-     * @default undefined
+     * @default () => {}
      */
-    onChange?: (event: React.MouseEvent<HTMLElement>) => void;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 
     /**
      * Indicates if the checkbox is checked initially.
@@ -70,6 +70,12 @@ export interface CheckboxProps {
      * @default false
      */
     indeterminate?: boolean;
+
+    /**
+     * The value of the checkbox.
+     * @default undefined
+     */
+    value?: string | number;
 }
 
 export interface StyledCheckboxInputProps extends StyledButtonProps {

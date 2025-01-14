@@ -7,14 +7,20 @@ export default {
     component: Checkbox,
 };
 
-const Template = (args: CheckboxProps) => (
-    <Checkbox
-        {...args}
-        onChange={(e) => {
-            console.log('Checkbox changed', { e });
-        }}
-    />
-);
+const Template = (args: CheckboxProps) => {
+    const [checked, setChecked] = React.useState(false);
+
+    return (
+        <Checkbox
+            {...args}
+            onChange={(e) => {
+                console.log('Checkbox changed', { e });
+                setChecked(e.target.checked);
+            }}
+            checked={checked}
+        />
+    );
+};
 
 const defaultArgs: CheckboxProps = {
     name: 'checkbox',
@@ -27,6 +33,7 @@ const defaultArgs: CheckboxProps = {
     checked: false,
     isDisabled: false,
     indeterminate: false,
+    value: 'any_value',
 };
 
 export const Component = Template.bind({});

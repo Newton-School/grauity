@@ -1,6 +1,6 @@
-import React, { useId, useState } from 'react';
-import { Icon } from 'ui/elements/Icon';
+import React, { useId } from 'react';
 
+import { Icon } from '../../Icon';
 import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
 import {
@@ -12,6 +12,10 @@ import {
 import { CheckboxProps } from './types';
 import { getIconSize } from './utils';
 
+
+/**
+ * A checkbox is a form element that allows the user to select one or more options from a set of choices.
+ */
 const Checkbox: React.FC<CheckboxProps> = ({
     name,
     label,
@@ -24,22 +28,39 @@ const Checkbox: React.FC<CheckboxProps> = ({
     checked = false,
     indeterminate = false,
     isDisabled = false,
+    value,
 }) => {
     const id = useId();
 
-    const [isChecked, setIsChecked] = useState<boolean>(checked);
-    const [isIndeterminate, setIsIndeterminate] =
-        useState<boolean>(indeterminate);
-    const toggleCheckbox = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleCheckboxButtonClick = (
+        e: React.MouseEvent<HTMLButtonElement>
+    ) => {
         if (isDisabled) {
             return;
         }
-        if (isIndeterminate) {
-            setIsIndeterminate(false);
+
+        if (checked && indeterminate) {
+            onChange({
+                ...e,
+                target: {
+                    ...e.target,
+                    name,
+                    value,
+                    checked: false,
+                },
+            } as any);
+            return;
         }
 
-        setIsChecked((prev) => !prev);
-        onChange(e);
+        onChange({
+            ...e,
+            target: {
+                ...e.target,
+                name,
+                value,
+                checked: !checked,
+            },
+        } as any);
     };
 
     return (
@@ -48,24 +69,26 @@ const Checkbox: React.FC<CheckboxProps> = ({
                 <StyledCheckboxButton
                     type="button"
                     role="checkbox"
-                    aria-checked={indeterminate ? 'mixed' : isChecked}
-                    data-state={isChecked ? 'checked' : 'unchecked'}
+                    name={name}
+                    aria-checked={indeterminate ? 'mixed' : checked}
+                    data-state={checked ? 'checked' : 'unchecked'}
                     $size={size}
                     $state={state}
-                    $checked={isChecked}
-                    onClick={toggleCheckbox}
+                    $checked={checked}
+                    onClick={handleCheckboxButtonClick}
                     disabled={isDisabled}
-                    $indeterminate={isIndeterminate}
-                    aria-labelledby={`checkbox-${id}`}
+                    id={`checkbox-${id}`}
+                    $indeterminate={indeterminate}
+                    aria-labelledby={`checkbox-label-${id}`}
                 >
-                    {isChecked && !isIndeterminate && (
+                    {checked && !indeterminate && (
                         <Icon
                             size={getIconSize(size)}
-                            name="check-filled"
+                            name="check"
                             color="var(--text-action)"
                         />
                     )}
-                    {isIndeterminate && (
+                    {indeterminate && (
                         <Icon
                             size={getIconSize(size)}
                             name="remove"
@@ -75,10 +98,10 @@ const Checkbox: React.FC<CheckboxProps> = ({
                 </StyledCheckboxButton>
                 {label && (
                     <StyledCheckboxLabel
-                        name={name}
+                        name={`checkbox-${id}`}
                         isRequired={isRequired}
-                        disabled={isDisabled}
-                        id={`checkbox-${id}`}
+                        isDisabled={isDisabled}
+                        id={`checkbox-label-${id}`}
                     >
                         {label}
                     </StyledCheckboxLabel>
