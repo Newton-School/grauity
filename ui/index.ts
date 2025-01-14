@@ -194,6 +194,11 @@ export {
     type TextAreaProps,
 } from './elements/Form/TextArea';
 
+// NSCheckbox
+export {
+    type CheckboxProps,
+    default as NSCheckbox,
+} from './elements/Form/Checkbox';
 // NSRadioButton
 export {
     default as NSRadioButton,
