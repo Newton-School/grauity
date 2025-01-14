@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import Checkbox, { CheckboxProps } from 'ui/elements/Form/Checkbox';
 
@@ -6,7 +7,20 @@ export default {
     component: Checkbox,
 };
 
-const Template = (args: CheckboxProps) => <Checkbox {...args} />;
+const Template = (args: CheckboxProps) => {
+    const [checked, setChecked] = React.useState(false);
+
+    return (
+        <Checkbox
+            {...args}
+            onChange={(e) => {
+                console.log('Checkbox changed', { e });
+                setChecked(e.target.checked);
+            }}
+            isChecked={checked}
+        />
+    );
+};
 
 const defaultArgs: CheckboxProps = {
     name: 'checkbox',
@@ -16,10 +30,10 @@ const defaultArgs: CheckboxProps = {
     state: 'default',
     helpMessage: '',
     errorMessage: '',
-    onChange: () => {},
-    checked: false,
+    isChecked: false,
     isDisabled: false,
-    indeterminate: false,
+    isIndeterminate: false,
+    value: 'any_value',
 };
 
 export const Component = Template.bind({});

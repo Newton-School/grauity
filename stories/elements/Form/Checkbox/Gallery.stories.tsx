@@ -20,9 +20,9 @@ const generateCodeString = (args: CheckboxProps) => {
         state,
         helpMessage,
         errorMessage,
-        checked,
+        isChecked,
         isDisabled,
-        indeterminate,
+        isIndeterminate,
     } = args;
 
     return `<Checkbox
@@ -33,9 +33,9 @@ const generateCodeString = (args: CheckboxProps) => {
     state="${state}"
     helpMessage="${helpMessage}"
     errorMessage="${errorMessage}"
-    checked={${checked}}
+    isChecked={${isChecked}}
     disabled={${isDisabled}}
-    indeterminate={${indeterminate}}
+    isIndeterminate={${isIndeterminate}}
     onChange={() => {}} />`;
 };
 
@@ -50,9 +50,9 @@ const defaultArgs: CheckboxProps = {
     helpMessage: '',
     errorMessage: '',
     onChange: () => {},
-    checked: false,
+    isChecked: false,
     isDisabled: false,
-    indeterminate: false,
+    isIndeterminate: false,
 };
 
 export const Gallery = () => {

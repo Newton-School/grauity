@@ -21,7 +21,7 @@ const defaultArgs: RadioButtonProps = {
     errorMessage: '',
     onChange: () => {},
     checked: false,
-    disabled: false,
+    isDisabled: false,
 };
 
 export const Component = Template.bind({});

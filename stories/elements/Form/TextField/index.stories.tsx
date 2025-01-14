@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from 'ui/elements/Form/TextField/TextField';
 import { TextFieldProps } from 'ui/elements/Form/TextField/types';
+import { NSButton, NSIcon } from 'ui/index';
 
 export default {
     title: 'Elements/Form/TextField',
@@ -21,6 +22,12 @@ export default {
         onChange: { action: 'onChange' },
         onClick: { action: 'onClick' },
         onBlur: { action: 'onBlur' },
+        size: {
+            control: {
+                type: 'radio',
+            },
+            options: ['small', 'medium', 'large', 'extra-large'],
+        },
     },
 };
 
@@ -48,6 +55,7 @@ Default.args = {
     isDisabled: false,
     autoFocus: false,
     autoComplete: 'on',
+    size: 'medium',
 };
 
 export const WithErrorMessage = Template.bind({});
@@ -55,4 +63,51 @@ WithErrorMessage.args = {
     ...Default.args,
     isRequired: true,
     errorMessage: 'This field is required',
+};
+
+export const WithLeftAdornment = Template.bind({});
+WithLeftAdornment.args = {
+    ...Default.args,
+    adornments: {
+        start: (
+            <>
+                <NSIcon name="call-end" color="currentColor" />
+                +91
+            </>
+        ),
+    },
+};
+
+export const WithRightAdornment = Template.bind({});
+WithRightAdornment.args = {
+    ...Default.args,
+    adornments: {
+        end: (
+            <>
+                @gmail.com
+                <NSIcon name="check-circle" color="currentColor" />
+                <NSButton size="small" variant="primary-outlined">Save</NSButton>
+            </>
+        ),
+    },
+};
+
+export const WithLeftAndRightAdornment = Template.bind({});
+WithLeftAndRightAdornment.args = {
+    ...Default.args,
+    adornments: {
+        start: (
+            <>
+                <NSIcon name="call-end" color="currentColor" />
+                +91
+            </>
+        ),
+        end: (
+            <>
+                @gmail.com
+                <NSIcon name="check-circle" color="currentColor" />
+                <NSButton size="small" variant="primary-outlined">Save</NSButton>
+            </>
+        ),
+    },
 };
