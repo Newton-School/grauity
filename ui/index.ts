@@ -160,3 +160,9 @@ export { default as NSTab, type TabProps } from './elements/Tabs';
 
 // NSCarousel
 export { type CarouselProps, default as NSCarousel } from './elements/Carousel';
+
+// NSPagination
+export {
+    default as NSPagination,
+    type PaginationProps,
+} from './elements/Pagination';
