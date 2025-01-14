@@ -31,7 +31,7 @@ const RadioButton = (props: RadioButtonProps) => {
         <StyledRadioButtonWithMessage>
             <StyledRadioButton>
                 <StyledRadioButtonInput
-                    aria-labelledby={label}
+                    aria-label={label}
                     aria-checked={checked}
                     id={`radio-button-${id}`}
                     $size={size}
