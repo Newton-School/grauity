@@ -12,7 +12,6 @@ import {
 import { CheckboxProps } from './types';
 import { getIconSize } from './utils';
 
-
 /**
  * A checkbox is a form element that allows the user to select one or more options from a set of choices.
  */
@@ -25,8 +24,8 @@ const Checkbox: React.FC<CheckboxProps> = ({
     helpMessage,
     errorMessage,
     onChange = () => {},
-    checked = false,
-    indeterminate = false,
+    isChecked = false,
+    isIndeterminate = false,
     isDisabled = false,
     value,
 }) => {
@@ -39,7 +38,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
             return;
         }
 
-        if (checked && indeterminate) {
+        if (isChecked && isIndeterminate) {
             onChange({
                 ...e,
                 target: {
@@ -58,7 +57,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
                 ...e.target,
                 name,
                 value,
-                checked: !checked,
+                checked: !isChecked,
             },
         } as any);
     };
@@ -70,25 +69,25 @@ const Checkbox: React.FC<CheckboxProps> = ({
                     type="button"
                     role="checkbox"
                     name={name}
-                    aria-checked={indeterminate ? 'mixed' : checked}
-                    data-state={checked ? 'checked' : 'unchecked'}
+                    aria-checked={isIndeterminate ? 'mixed' : isChecked}
+                    data-state={isChecked ? 'checked' : 'unchecked'}
                     $size={size}
                     $state={state}
-                    $checked={checked}
+                    $checked={isChecked}
                     onClick={handleCheckboxButtonClick}
                     disabled={isDisabled}
                     id={`checkbox-${id}`}
-                    $indeterminate={indeterminate}
+                    $indeterminate={isIndeterminate}
                     aria-labelledby={`checkbox-label-${id}`}
                 >
-                    {checked && !indeterminate && (
+                    {isChecked && !isIndeterminate && (
                         <Icon
                             size={getIconSize(size)}
                             name="check"
                             color="var(--text-action)"
                         />
                     )}
-                    {indeterminate && (
+                    {isIndeterminate && (
                         <Icon
                             size={getIconSize(size)}
                             name="remove"

@@ -185,11 +185,11 @@ const Template = () => {
                     <NSCheckbox
                         name="pizza_toppings"
                         label="Select All"
-                        checked={
+                        isChecked={
                             formData.pizza_toppings.length ===
                             PIZZA_TOPPINGS.length
                         }
-                        indeterminate={
+                        isIndeterminate={
                             formData.pizza_toppings.length > 0 &&
                             formData.pizza_toppings.length <
                                 PIZZA_TOPPINGS.length
@@ -216,7 +216,7 @@ const Template = () => {
                             <NSCheckbox
                                 name="pizza_toppings"
                                 label={pizzaTopping.label}
-                                checked={formData.pizza_toppings.includes(
+                                isChecked={formData.pizza_toppings.includes(
                                     pizzaTopping.value
                                 )}
                                 onChange={handleChange}

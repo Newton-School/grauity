@@ -57,7 +57,7 @@ export interface CheckboxProps {
      * Indicates if the checkbox is checked initially.
      * @default false
      */
-    checked?: boolean;
+    isChecked?: boolean;
 
     /**
      * Indicates if the checkbox is disabled.
@@ -69,7 +69,7 @@ export interface CheckboxProps {
      * Indicates if the checkbox is indeterminate. Has precedence over `checked`.
      * @default false
      */
-    indeterminate?: boolean;
+    isIndeterminate?: boolean;
 
     /**
      * The value of the checkbox.

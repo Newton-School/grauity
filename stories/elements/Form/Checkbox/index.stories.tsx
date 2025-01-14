@@ -17,7 +17,7 @@ const Template = (args: CheckboxProps) => {
                 console.log('Checkbox changed', { e });
                 setChecked(e.target.checked);
             }}
-            checked={checked}
+            isChecked={checked}
         />
     );
 };
@@ -30,9 +30,9 @@ const defaultArgs: CheckboxProps = {
     state: 'default',
     helpMessage: '',
     errorMessage: '',
-    checked: false,
+    isChecked: false,
     isDisabled: false,
-    indeterminate: false,
+    isIndeterminate: false,
     value: 'any_value',
 };
 
