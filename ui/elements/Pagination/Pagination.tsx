@@ -163,6 +163,7 @@ const Pagination = (props: PaginationProps) => {
                 disabled={currentPage === 1}
                 icon="chevron-left"
                 size={size}
+                data-testid="data-testid-pagination-prev"
             >
                 <span className="pagination-button-text">Previous</span>
             </Button>
@@ -176,6 +177,7 @@ const Pagination = (props: PaginationProps) => {
                 icon="chevron-right"
                 iconPosition="right"
                 size={size}
+                data-testid="data-testid-pagination-next"
             >
                 <span className="pagination-button-text">Next</span>
             </Button>

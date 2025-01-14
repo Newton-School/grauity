@@ -26,12 +26,16 @@ describe('Pagination Component', () => {
 
     it('disables the previous button on the first page', () => {
         render(<Pagination {...defaultProps} />);
-        expect(screen.getByText('Previous')).toBeDisabled();
+        expect(
+            screen.getByTestId('data-testid-pagination-prev')
+        ).toBeDisabled();
     });
 
     it('disables the next button on the last page', () => {
         render(<Pagination {...defaultProps} defaultCurrentPage={5} />);
-        expect(screen.getByText('Next')).toBeDisabled();
+        expect(
+            screen.getByTestId('data-testid-pagination-next')
+        ).toBeDisabled();
     });
 
     it('calls onPageChange when the next button is clicked', () => {
