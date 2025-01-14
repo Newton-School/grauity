@@ -20,6 +20,7 @@ export default {
   fullWidthItems={false}
   hideIconsOnLessItems
   gap={12}
+  iconGap={12}
   iconPosition="right"
   items={[]}
   leftIcon="chevron-left"
@@ -53,6 +54,7 @@ const defaultArgs: CarouselProps = {
     iconPosition: 'right',
     leftIcon: 'chevron-left',
     rightIcon: 'chevron-right',
+    iconGap: 12,
     onLeftClick: () => {},
     onRightClick: () => {},
     onScrollEnd: () => {},
