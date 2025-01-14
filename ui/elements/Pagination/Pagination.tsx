@@ -4,6 +4,9 @@ import Button, { IconButton } from '../Button';
 import { StyledPagination, StyledPaginationPages } from './Pagination.styles';
 import { PaginationProps } from './types';
 
+/**
+ * The Pagination component allows users to navigate through a range of pages by selecting a specific page
+ */
 const Pagination = (props: PaginationProps) => {
     const {
         totalPageCount = 0,
