@@ -269,6 +269,7 @@ export interface ButtonComponentProps extends StyledButtonProps {
 export interface ButtonContentProps {
     id?: string;
     children: React.ReactNode;
+    $iconPosition: ButtonIconPositions | false;
 }
 
 export interface ButtonGroupProps {

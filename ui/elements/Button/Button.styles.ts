@@ -94,4 +94,18 @@ export const StyledButtonContent = styled.div<ButtonContentProps>`
     line-height: 160%;
     letter-spacing: 0.4px;
     max-width: 100%;
+
+    ${({ $iconPosition }) => {
+        if ($iconPosition === 'right') {
+            return css`
+                padding-left: var(--spacing-8px, 8px);
+            `;
+        }
+        if ($iconPosition === 'left') {
+            return css`
+                padding-right: var(--spacing-8px, 8px);
+            `;
+        }
+        return '';
+    }}
 `;
