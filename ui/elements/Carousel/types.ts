@@ -25,43 +25,49 @@ export interface CarouselProps {
     fullWidthItems?: boolean;
 
     /**
-     * The amount of pixels to scroll when the navigation icons are clicked.
+     * The amount of pixels to scroll when the navigation icon buttons are clicked.
      * @default 100
      */
     scrollAmount?: number;
 
     /**
-     * Whether to hide the navigation icons when there are less items than the visible area.
+     * Whether to hide the navigation icon buttons when there are less items than the visible area.
      * @default false
      */
     hideIconsOnLessItems?: boolean;
 
     /**
-     * The position of the navigation icons.
+     * The position of the navigation icon buttons.
      * @default right
      */
     iconPosition?: IconPosition;
 
     /**
-     * A React node to be used as the left navigation icon.
+     * The name of left navigation icon.
      * @default chevron-left
      */
     leftIcon?: grauityIconName;
 
     /**
-     * A React node to be used as the right navigation icon.
+     * The name of right navigation icon.
      * @default chevron-right
      */
     rightIcon?: grauityIconName;
 
     /**
-     * Callback function to be called when the left navigation icon is clicked.
+     * Gap between the navigation icon buttons in pixels.
+     * @default 12
+     */
+    iconGap?: number;
+
+    /**
+     * Callback function to be called when the left navigation button is clicked.
      * @default null
      */
     onLeftClick?: () => void;
 
     /**
-     * Callback function to be called when the right navigation icon is clicked.
+     * Callback function to be called when the right navigation button is clicked.
      * @default null
      */
     onRightClick?: () => void;
@@ -93,6 +99,10 @@ export interface CarouselProps {
 
 export interface StyledCarouselHeaderRowProps extends StyledDivProps {
     $iconPosition: IconPosition;
+}
+
+export interface StyledCarouselControlsProps extends StyledDivProps {
+    $iconGap: number;
 }
 
 export interface StyledCarouselItemsContainerProps extends StyledDivProps {
