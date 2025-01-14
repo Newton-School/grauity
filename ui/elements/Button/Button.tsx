@@ -80,7 +80,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
                 />
             )}
             {children && (
-                <StyledButtonContent id={`button-content-${id}`}>
+                <StyledButtonContent
+                    id={`button-content-${id}`}
+                    $iconPosition={icon ? iconPosition : false}
+                >
                     {children}
                 </StyledButtonContent>
             )}
