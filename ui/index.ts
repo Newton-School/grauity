@@ -199,8 +199,15 @@ export {
     type CheckboxProps,
     default as NSCheckbox,
 } from './elements/Form/Checkbox';
+
 // NSRadioButton
 export {
     default as NSRadioButton,
     type RadioButtonProps,
 } from './elements/Form/RadioButton';
+
+// NSPagination
+export {
+    default as NSPagination,
+    type PaginationProps,
+} from './elements/Pagination';
