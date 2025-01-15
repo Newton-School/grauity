@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-indent */
+/* eslint-disable indent */
+/* eslint-disable no-nested-ternary */
 import React, { ReactNode, useState } from 'react';
-import Button from 'ui/elements/Button';
-import { NSIcon } from 'ui/index';
+import { NSIcon, NSTooltip } from 'ui/index';
 
+import { ColorRenderer } from '../ColorRenderer';
 import {
-    StyledHideOnPrintWrapper,
     StyledTokenBlock,
     StyledTokenBlockCopiedContainer,
 } from './index.styles';
@@ -11,20 +13,26 @@ import {
 interface TokenBlockProps {
     copy?: boolean;
     showCopiedOverlay?: boolean;
+    color?: string;
     children?: ReactNode;
+    contentToCopy?: ReactNode;
+    background?: string;
 }
 
 const TokenBlock = ({
     copy = false,
     showCopiedOverlay = false,
+    color = null,
     children,
+    contentToCopy,
+    background,
 }: TokenBlockProps) => {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
         if (typeof navigator !== 'undefined' && navigator.clipboard) {
             navigator.clipboard
-                .writeText(children as string)
+                .writeText((contentToCopy || children) as string)
                 .then(() => {
                     setCopied(true);
                     setTimeout(() => {
@@ -41,28 +49,39 @@ const TokenBlock = ({
         }
     };
 
+    const WrapperComponent = copy
+        ? ({ children: _children }: any) => (
+              <NSTooltip
+                  content={
+                      copied
+                          ? showCopiedOverlay
+                              ? null
+                              : 'Copied!'
+                          : 'Click to copy'
+                  }
+              >
+                  {_children}
+              </NSTooltip>
+          )
+        : React.Fragment;
+
     return (
-        <StyledTokenBlock>
-            {children}
-            {copy && (
-                <StyledHideOnPrintWrapper>
-                    <Button
-                        onClick={handleCopy}
-                        size="small"
-                        variant="tertiary"
-                        icon={copied ? 'check' : 'code'}
-                    >
-                        {(copied && !showCopiedOverlay) ? 'Copied!' : 'Copy'}
-                    </Button>
-                </StyledHideOnPrintWrapper>
-            )}
-            {showCopiedOverlay && (
-                <StyledTokenBlockCopiedContainer copied={copied}>
-                    <NSIcon name="check" />
-                    Copied!
-                </StyledTokenBlockCopiedContainer>
-            )}
-        </StyledTokenBlock>
+        <WrapperComponent>
+            <StyledTokenBlock
+                background={background}
+                interactive={copy}
+                onClick={copy ? handleCopy : null}
+            >
+                {color && <ColorRenderer color={color} size="small" />}
+                {children}
+                {showCopiedOverlay && (
+                    <StyledTokenBlockCopiedContainer copied={copied}>
+                        <NSIcon name="check" color="var(--text-success)" />
+                        Copied!
+                    </StyledTokenBlockCopiedContainer>
+                )}
+            </StyledTokenBlock>
+        </WrapperComponent>
     );
 };
 

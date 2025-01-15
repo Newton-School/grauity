@@ -4,9 +4,9 @@ import { StyledDivProps } from '../../../common/types';
 import { TOOLTIP_PLACEMENT } from './constants';
 
 export interface TooltipConfig {
-    tooltip: {
-        maxWidth: string;
-        padding: string;
+    tooltip?: {
+        maxWidth?: string;
+        padding?: string;
         backgroundColor?: string;
     };
 }

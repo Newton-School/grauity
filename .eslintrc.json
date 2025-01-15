@@ -72,7 +72,8 @@
         ],
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": "error",
-        "no-prototype-builtins": "off"
+        "no-prototype-builtins": "off",
+        "arrow-body-style": "off"
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {

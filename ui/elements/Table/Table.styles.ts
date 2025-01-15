@@ -60,6 +60,14 @@ export const StyledTableRow = styled.tr<TableRowComponentProps>`
             }
         `}
 
+    ${({ hoverable }) =>
+        hoverable &&
+        css`
+            &:hover {
+                background-color: var(--bg-secondary, #f6f7f9);
+            }
+        `}
+
     &:last-of-type ${StyledTableDataCell}:first-of-type {
         border-bottom-left-radius: var(--corner-radius-8px, 8px);
     }

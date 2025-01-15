@@ -27,6 +27,7 @@ const Table = ({
     style = {},
     capitalizeHeaders = false,
     highlightHeaders = true,
+    hoverable = false,
 }: TableProps) => (
     <StyledTable
         borderAround={borderAround}
@@ -62,6 +63,7 @@ const Table = ({
                 <StyledTableRow
                     key={`table--row-${rowIndex + 1}`}
                     condensed={condensed}
+                    hoverable={hoverable}
                 >
                     {columns?.map((column) => (
                         <StyledTableDataCell

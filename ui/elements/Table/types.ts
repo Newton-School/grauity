@@ -213,6 +213,13 @@ export interface TableProps {
      * Default: `true`
      * */
     highlightHeaders?: boolean;
+
+    /**
+     * Determines if table rows should be hoverable
+     *
+     * Default: `false`
+     * */
+    hoverable?: boolean;
 }
 
 // Interface for NSTableWrapper component props
@@ -248,6 +255,7 @@ export interface TableRowComponentProps {
     condensed?: boolean;
     className?: string;
     children: ReactNode;
+    hoverable?: boolean;
 }
 
 // Interface for NSTableDataCell component props
