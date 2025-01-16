@@ -5,7 +5,7 @@ import { StyledErrorMessage, StyledErrorMessageText } from '../index.styles';
 import { ErrorMessageProps } from '../types';
 
 export const ErrorMessage = (props: ErrorMessageProps) => {
-    const { children } = props;
+    const { children, iconSize, style } = props;
 
     if (!children) {
         return null;
@@ -13,9 +13,15 @@ export const ErrorMessage = (props: ErrorMessageProps) => {
 
     return (
         <StyledErrorMessage>
-            <Icon name="exclamation-circle" color="currentColor" size="20" />
+            <Icon
+                name="exclamation-circle"
+                color="currentColor"
+                size={iconSize}
+            />
             {children && (
-                <StyledErrorMessageText>{children}</StyledErrorMessageText>
+                <StyledErrorMessageText style={style}>
+                    {children}
+                </StyledErrorMessageText>
             )}
         </StyledErrorMessage>
     );
