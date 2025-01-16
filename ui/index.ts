@@ -211,3 +211,9 @@ export {
     default as NSPagination,
     type PaginationProps,
 } from './elements/Pagination';
+
+// NSOtpInput
+export {
+    default as NSOtpInput,
+    type OtpInputFieldProps,
+} from './elements/Form/OtpInputField';
