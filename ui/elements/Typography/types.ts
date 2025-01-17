@@ -63,7 +63,7 @@ export type TypographyVariantType =
 
 export interface StyledTypographyInterface {
     variant?: TypographyVariantType;
-    as?: TypographyAsType;
+    as?: any;
     color?: string;
     textAlign?: string;
     textTransform?: string;
@@ -92,7 +92,7 @@ export interface TypographyProps {
      *
      * Default: `auto` (automatically selects the HTML tag based on the variant)
      * */
-    as?: TypographyAsType;
+    as?: any;
 
     /**
      * Text alignment of the Typography element

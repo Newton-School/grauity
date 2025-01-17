@@ -3,11 +3,9 @@ import styled, { css } from 'styled-components';
 import { StyledTypographyInterface } from './types';
 import { getTypographyVariantStyles } from './utils';
 
-export const StyledTypography = styled.p.attrs(
-    (props: StyledTypographyInterface) => ({
-        as: props.as || 'p',
-    })
-)<StyledTypographyInterface>`
+export const StyledTypography = styled.p.attrs((props: any) => ({
+    as: props.as || 'p',
+}))<StyledTypographyInterface>`
     margin: 0;
     padding: 0;
 

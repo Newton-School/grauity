@@ -7,7 +7,7 @@ const iconLoading = keyframes`
     100% { transform: rotate(360deg); }
 `;
 
-export const StyledIcon = styled.i.attrs((props: IconProps) => ({
+export const StyledIcon = styled.i.attrs((props: any) => ({
     as: props.as || 'i',
 }))<IconProps>`
     display: flex;
