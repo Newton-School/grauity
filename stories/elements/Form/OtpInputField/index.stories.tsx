@@ -19,6 +19,7 @@ const defaultArgs: OtpInputFieldProps = {
     isDisabled: false,
     errorMessage: 'Wrong OTP. Please try again',
     successMessage: 'OTP is correct',
+    label: 'Enter OTP',
 };
 
 export const Component = Template.bind({});
