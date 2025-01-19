@@ -4,6 +4,7 @@ import {
     NSCheckbox,
     NSFormRow,
     NSLabel,
+    NSOtpInput,
     NSRadioButton,
     NSTextArea,
     NSTextField,
@@ -35,6 +36,7 @@ const Template = () => {
         email: '',
         description: '',
         account_type: '',
+        otp: '',
         pizza_toppings: [],
     });
 
@@ -160,6 +162,26 @@ const Template = () => {
                         onChange={handleChange}
                         placeholder="Enter description..."
                         rows={4}
+                    />
+                </NSFormRow>
+
+                <NSFormRow column={isMobileView}>
+                    <NSOtpInput
+                        length={4}
+                        style={{ width: '100%' }}
+                        value={formData.otp}
+                        onChange={(otp) => {
+                            setFormData({
+                                ...formData,
+                                otp,
+                            });
+                        }}
+                        label="Enter OTP"
+                        isOtpCorrect={false}
+                        isOtpWrong={false}
+                        isDisabled={false}
+                        errorMessage="Wrong otp. Please try again"
+                        successMessage="Correct Otp"
                     />
                 </NSFormRow>
 

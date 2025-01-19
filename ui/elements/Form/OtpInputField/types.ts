@@ -10,6 +10,12 @@ export interface OtpInputFieldProps {
     value: string;
 
     /**
+     * The label displayed above the OTP input fields.
+     * @type string
+     */
+    label: string;
+
+    /**
      * The total number of OTP input fields.
      * @type number
      */
