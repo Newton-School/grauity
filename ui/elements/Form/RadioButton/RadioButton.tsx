@@ -23,13 +23,14 @@ const RadioButton = (props: RadioButtonProps) => {
         onChange = () => {},
         checked = false,
         isDisabled = false,
+        className,
     } = props;
 
     const id = useId();
 
     return (
         <StyledRadioButtonWithMessage>
-            <StyledRadioButton>
+            <StyledRadioButton className={className}>
                 <StyledRadioButtonInput
                     aria-label={label}
                     aria-checked={checked}

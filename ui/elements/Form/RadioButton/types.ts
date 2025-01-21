@@ -69,6 +69,12 @@ export interface RadioButtonProps {
      * @default false
      */
     isDisabled?: boolean;
+
+    /**
+     * The class name for the radio button.
+     * @default undefined
+     */
+    className?: string;
 }
 
 export interface StyledRadioButtonInputProps extends StyledInputProps {
