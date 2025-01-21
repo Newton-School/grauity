@@ -1,6 +1,6 @@
 {
     "name": "@newtonschool/grauity",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Design System for Newton School",
     "keywords": [
         "Newton School",
@@ -131,10 +131,10 @@
         "@testing-library/jest-dom": "^6.5.0",
         "@testing-library/react": "^16.0.1",
         "@types/jest": "^29.5.12",
+        "@types/lodash": "^4.17.14",
         "@types/node": "^18.11.18",
         "@types/react": "18.2.0",
         "@types/react-dom": "18.2.0",
-        "@types/styled-components": "^5.1.26",
         "@typescript-eslint/eslint-plugin": "^5.62.0",
         "@typescript-eslint/parser": "^5.48.0",
         "ajv": "^8.17.1",
@@ -172,7 +172,7 @@
         "storybook": "^8.2.9",
         "storybook-addon-code-editor": "^3.1.0",
         "style-loader": "^3.3.1",
-        "styled-components": "^5.3.6",
+        "styled-components": "6.1.14",
         "svgo": "^3.0.2",
         "ts-jest": "^29.2.5",
         "typescript": "^4.9.4"

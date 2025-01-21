@@ -5,7 +5,7 @@ export interface GrauityInitProps {
     /**
      * An element type to render as (string or function).
      * */
-    as?: React.ElementType;
+    as?: any;
 
     /**
      * The font size to be applied on this element and so will act as standard for the `ems` of all grauity components.
