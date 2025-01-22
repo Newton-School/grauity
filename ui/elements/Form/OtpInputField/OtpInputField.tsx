@@ -14,7 +14,7 @@ const OtpInputField = ({
     label,
     name,
     length = 4,
-    onChange,
+    onChange = () => {},
     style,
     isOtpCorrect = false,
     isOtpWrong = false,
