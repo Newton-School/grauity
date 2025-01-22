@@ -56,6 +56,7 @@ const defaultArgs: RadioButtonProps = {
     onChange: () => {},
     checked: false,
     isDisabled: false,
+    className: null,
 };
 
 export const Gallery = () => {

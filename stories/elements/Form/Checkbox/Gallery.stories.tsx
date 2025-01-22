@@ -53,6 +53,7 @@ const defaultArgs: CheckboxProps = {
     isChecked: false,
     isDisabled: false,
     isIndeterminate: false,
+    className: null,
 };
 
 export const Gallery = () => {
@@ -66,7 +67,7 @@ export const Gallery = () => {
         'error',
         'success',
     ] as any as Array<CheckboxState>;
-    
+
     return (
         <Table.Table borderAround={false} borderVertical={false}>
             <Table.TableHead highlightHeaders={false}>

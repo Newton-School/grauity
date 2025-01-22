@@ -34,6 +34,7 @@ const defaultArgs: CheckboxProps = {
     isDisabled: false,
     isIndeterminate: false,
     value: 'any_value',
+    className: null,
 };
 
 export const Component = Template.bind({});
