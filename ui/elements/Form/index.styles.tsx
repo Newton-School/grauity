@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { StyledLabelProps } from '../../../common/types';
+import { GenericMessageProps } from './types';
 
 export const StyledLabel = styled.label<StyledLabelProps>`
     color: var(--text-secondary, #5b6271);
@@ -26,7 +27,7 @@ export const StyledHelpMessage = styled.div`
     align-items: center;
 `;
 
-export const StyledHelpMessageText = styled.span`
+export const StyledHelpMessageText = styled.span<GenericMessageProps>`
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
@@ -42,3 +43,9 @@ export const StyledErrorMessage = styled(StyledHelpMessage)`
 `;
 
 export const StyledErrorMessageText = styled(StyledHelpMessageText)``;
+
+export const StyledSuccessMessage = styled(StyledHelpMessage)`
+    color: var(--text-emphasis-success-default, #007a51); ;
+`;
+
+export const StyledSuccessMessageText = styled(StyledHelpMessageText)``;
