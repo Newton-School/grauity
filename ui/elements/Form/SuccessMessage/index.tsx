@@ -1,10 +1,13 @@
 import React from 'react';
 
 import { Icon } from '../../Icon';
-import { StyledErrorMessage, StyledErrorMessageText } from '../index.styles';
-import { ErrorMessageProps } from '../types';
+import {
+    StyledSuccessMessage,
+    StyledSuccessMessageText,
+} from '../index.styles';
+import { SuccessMessageProps } from '../types';
 
-export const ErrorMessage = (props: ErrorMessageProps) => {
+export const SuccessMessage = (props: SuccessMessageProps) => {
     const { children, iconSize = '20', style } = props;
 
     if (!children) {
@@ -12,19 +15,19 @@ export const ErrorMessage = (props: ErrorMessageProps) => {
     }
 
     return (
-        <StyledErrorMessage>
+        <StyledSuccessMessage>
             <Icon
                 name="exclamation-circle"
                 color="currentColor"
                 size={iconSize}
             />
             {children && (
-                <StyledErrorMessageText style={style}>
+                <StyledSuccessMessageText style={style}>
                     {children}
-                </StyledErrorMessageText>
+                </StyledSuccessMessageText>
             )}
-        </StyledErrorMessage>
+        </StyledSuccessMessage>
     );
 };
 
-export { ErrorMessageProps };
+export { SuccessMessageProps };

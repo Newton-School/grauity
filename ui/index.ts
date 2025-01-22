@@ -211,3 +211,15 @@ export {
     default as NSPagination,
     type PaginationProps,
 } from './elements/Pagination';
+
+// NSSuccessMessage
+export {
+    SuccessMessage as NSSuccessMessage,
+    type SuccessMessageProps,
+} from './elements/Form/SuccessMessage';
+
+// NSOtpInput
+export {
+    default as NSOtpInput,
+    type OtpInputFieldProps,
+} from './elements/Form/OtpInputField';
