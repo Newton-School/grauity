@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { NSLabel } from 'ui/index';
+import { Label } from '../Label/index';
 
 import { ErrorMessage } from '../ErrorMessage';
 import { SuccessMessage } from '../SuccessMessage';
@@ -11,7 +11,7 @@ import {
 import { OtpInputFieldProps } from './types';
 
 const OtpInputField = ({
-    label = 'Enter OTP',
+    label = null,
     value = '',
     length,
     onChange,
@@ -113,9 +113,11 @@ const OtpInputField = ({
 
     return (
         <StyledOtpInputField>
-            <NSLabel name="otp" isRequired>
-                {label}
-            </NSLabel>
+            {label && (
+                <Label name="otp" isRequired>
+                    {label}
+                </Label>
+            )}
             <StyledOtpContainer>
                 {Array.from({ length }).map((_, index) => {
                     return (
