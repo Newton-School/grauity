@@ -28,6 +28,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
     isIndeterminate = false,
     isDisabled = false,
     value,
+    className,
 }) => {
     const id = useId();
 
@@ -64,7 +65,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 
     return (
         <StyledCheckboxWithMessage>
-            <StyledCheckbox>
+            <StyledCheckbox className={className}>
                 <StyledCheckboxButton
                     type="button"
                     role="checkbox"

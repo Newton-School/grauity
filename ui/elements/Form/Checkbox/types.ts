@@ -76,6 +76,12 @@ export interface CheckboxProps {
      * @default undefined
      */
     value?: string | number;
+
+    /**
+     * Additional class names to apply to the checkbox.
+     * @default undefined
+     */
+    className?: string;
 }
 
 export interface StyledCheckboxInputProps extends StyledButtonProps {
