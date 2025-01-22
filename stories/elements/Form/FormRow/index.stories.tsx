@@ -168,14 +168,9 @@ const Template = () => {
                 <NSFormRow column={isMobileView}>
                     <NSOtpInput
                         length={4}
+                        name="otp"
                         style={{ width: '100%' }}
-                        value={formData.otp}
-                        onChange={(otp) => {
-                            setFormData({
-                                ...formData,
-                                otp,
-                            });
-                        }}
+                        onChange={handleChange}
                         label="Enter OTP"
                         isOtpCorrect={false}
                         isOtpWrong={false}

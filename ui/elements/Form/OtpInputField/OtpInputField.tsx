@@ -12,7 +12,7 @@ import { OtpInputFieldProps } from './types';
 
 const OtpInputField = ({
     label,
-    name = 'otp',
+    name,
     length = 4,
     onChange,
     style,

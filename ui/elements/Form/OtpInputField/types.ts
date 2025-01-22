@@ -12,9 +12,8 @@ export interface OtpInputFieldProps {
     /**
      * The value of the OTP input fields.
      * @type string
-     * @default 'otp'
      */
-    name?: string;
+    name: string;
 
     /**
      * The total number of OTP input fields.

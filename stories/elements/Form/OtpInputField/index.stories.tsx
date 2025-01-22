@@ -13,6 +13,7 @@ const defaultArgs: OtpInputFieldProps = {
     length: 4,
     onChange: () => {},
     style: {},
+    name: 'otp',
     isOtpCorrect: false,
     isOtpWrong: false,
     isDisabled: false,
