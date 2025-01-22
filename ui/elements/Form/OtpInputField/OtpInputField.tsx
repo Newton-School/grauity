@@ -103,8 +103,10 @@ const OtpInputField = ({
                     updatedOtpValue[targetIndex] = newValue;
                 }
             });
+            inputRefs.current[
+                Math.min(focusedIndex + otpArray.length, length - 1)
+            ]?.focus();
         }
-        inputRefs.current[Math.min(otpArray.length, length - 1)]?.focus();
         setOtpValue(updatedOtpValue);
     };
 
