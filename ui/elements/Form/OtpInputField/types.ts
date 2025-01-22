@@ -61,14 +61,14 @@ export interface OtpInputFieldProps {
      * @type string
      * @default 'Wrong OTP. Please try again'
      */
-    errorMessage: string;
+    errorMessage?: string;
 
     /**
      * The success message displayed when OTP validation succeeds.
      * @type string
      * @default 'OTP is correct'
      */
-    successMessage: string;
+    successMessage?: string;
 }
 
 export interface StyledOtpInputProps extends StyledInputProps {
