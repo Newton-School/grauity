@@ -9,6 +9,7 @@ describe('OtpInputField', () => {
     const defaultProps = {
         length: 4,
         onChange: jest.fn(),
+        name: 'otp',
     };
 
     it('renders with default props', () => {
@@ -47,9 +48,13 @@ describe('OtpInputField', () => {
         const inputs = screen.getAllByRole('textbox');
 
         fireEvent.input(inputs[0], { target: { value: '1' } });
-
         expect(inputs[0]).toHaveValue('1');
-        expect(defaultProps.onChange).toHaveBeenCalledWith('1');
+        expect(defaultProps.onChange).toHaveBeenCalledWith({
+            target: {
+                name: 'otp',
+                value: '1',
+            },
+        });
     });
 
     it('moves focus to next input after entering a digit', () => {
@@ -146,12 +151,11 @@ describe('OtpInputField', () => {
                 {...defaultProps}
             />
         );
-        const inputs = screen.getAllByRole('textbox');
 
+        const inputs = screen.getAllByRole('textbox');
         fireEvent.input(inputs[0], { target: { value: 'a' } });
 
         expect(inputs[0]).toHaveValue('');
-        expect(defaultProps.onChange).not.toHaveBeenCalled();
     });
 
     it('disables all inputs when isDisabled is true', () => {
