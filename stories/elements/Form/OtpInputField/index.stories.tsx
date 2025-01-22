@@ -1,5 +1,5 @@
 import React from 'react';
-import OtpInputField from 'ui/elements/Form/OtpInputField/index';
+import OtpInputField from 'ui/elements/Form/OtpInputField';
 import { OtpInputFieldProps } from 'ui/elements/Form/OtpInputField/types';
 
 export default {
@@ -10,7 +10,6 @@ export default {
 const Template = (args: OtpInputFieldProps) => <OtpInputField {...args} />;
 
 const defaultArgs: OtpInputFieldProps = {
-    value: '',
     length: 4,
     onChange: () => {},
     style: {},

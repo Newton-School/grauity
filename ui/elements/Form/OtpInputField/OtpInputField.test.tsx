@@ -11,14 +11,9 @@ describe('OtpInputField', () => {
         onChange: jest.fn(),
     };
 
-    beforeEach(() => {
-        jest.clearAllMocks();
-    });
-
     it('renders with default props', () => {
         render(
             <OtpInputField
-                value=""
                 label="Enter OTP"
                 style={undefined}
                 isOtpCorrect={false}
@@ -39,7 +34,6 @@ describe('OtpInputField', () => {
     it('handles input changes correctly', () => {
         render(
             <OtpInputField
-                value=""
                 label=""
                 style={undefined}
                 isOtpCorrect={false}
@@ -61,7 +55,6 @@ describe('OtpInputField', () => {
     it('moves focus to next input after entering a digit', () => {
         render(
             <OtpInputField
-                value=""
                 label=""
                 style={undefined}
                 isOtpCorrect={false}
@@ -82,7 +75,6 @@ describe('OtpInputField', () => {
     it('handles arrow key navigation', () => {
         render(
             <OtpInputField
-                value=""
                 label=""
                 style={undefined}
                 isOtpCorrect={false}
@@ -110,7 +102,6 @@ describe('OtpInputField', () => {
     it('shows error message when OTP is wrong', () => {
         render(
             <OtpInputField
-                value=""
                 label=""
                 style={undefined}
                 isOtpCorrect={false}
@@ -128,7 +119,6 @@ describe('OtpInputField', () => {
     it('shows success message when OTP is correct', () => {
         render(
             <OtpInputField
-                value=""
                 label=""
                 style={undefined}
                 isOtpWrong={false}
@@ -146,7 +136,6 @@ describe('OtpInputField', () => {
     it('prevents non-numeric input', () => {
         render(
             <OtpInputField
-                value=""
                 label=""
                 style={undefined}
                 isOtpCorrect={false}
@@ -168,7 +157,6 @@ describe('OtpInputField', () => {
     it('disables all inputs when isDisabled is true', () => {
         render(
             <OtpInputField
-                value=""
                 label=""
                 style={undefined}
                 isOtpCorrect={false}
@@ -184,27 +172,5 @@ describe('OtpInputField', () => {
         inputs.forEach((input) => {
             expect(input).toBeDisabled();
         });
-    });
-
-    it('handles initial value correctly', () => {
-        render(
-            <OtpInputField
-                label=""
-                style={undefined}
-                isOtpCorrect={false}
-                isOtpWrong={false}
-                isDisabled={false}
-                errorMessage=""
-                successMessage=""
-                {...defaultProps}
-                value="1234"
-            />
-        );
-        const inputs = screen.getAllByRole('textbox');
-
-        expect(inputs[0]).toHaveValue('1');
-        expect(inputs[1]).toHaveValue('2');
-        expect(inputs[2]).toHaveValue('3');
-        expect(inputs[3]).toHaveValue('4');
     });
 });

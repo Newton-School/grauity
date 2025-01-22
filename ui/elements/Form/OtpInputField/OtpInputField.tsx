@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Label } from '../Label/index';
 
 import { ErrorMessage } from '../ErrorMessage';
@@ -11,9 +11,9 @@ import {
 import { OtpInputFieldProps } from './types';
 
 const OtpInputField = ({
-    label = null,
-    value = '',
-    length,
+    label,
+    name = 'otp',
+    length = 4,
     onChange,
     style,
     isOtpCorrect = false,
@@ -25,12 +25,16 @@ const OtpInputField = ({
     const inputRefs = useRef<Array<HTMLInputElement | null>>(
         Array(length).fill(null)
     );
-    const [otpValue, setOtpValue] = useState(() => {
-        const valueArray = value ? value.split('') : [];
-        return valueArray.concat(
-            Array(Math.max(0, length - valueArray.length)).fill('')
-        );
-    });
+    const [otpValue, setOtpValue] = useState(Array(length).fill(''));
+
+    useEffect(() => {
+        onChange({
+            target: {
+                name,
+                value: otpValue.join(''),
+            },
+        });
+    }, [otpValue]);
 
     const handleChange = (
         event: React.FormEvent<HTMLInputElement>,
@@ -43,7 +47,6 @@ const OtpInputField = ({
         const updatedOtpValue = [...otpValue];
         updatedOtpValue[index] = newValue;
         setOtpValue(updatedOtpValue);
-        onChange(updatedOtpValue.join(''));
 
         if (index < length - 1 && newValue !== '') {
             inputRefs.current[index + 1]?.focus();
@@ -57,27 +60,23 @@ const OtpInputField = ({
         switch (event.key) {
             case 'ArrowUp':
             case 'ArrowDown':
-            case ' ':
                 event.preventDefault();
                 break;
             case 'ArrowLeft':
                 event.preventDefault();
                 if (index > 0) {
                     inputRefs.current[index - 1]?.focus();
-                    inputRefs.current[index - 1]?.select();
                 }
                 break;
             case 'ArrowRight':
                 event.preventDefault();
                 if (index < length - 1) {
                     inputRefs.current[index + 1]?.focus();
-                    inputRefs.current[index + 1]?.select();
                 }
                 break;
             case 'Backspace':
                 if (!otpValue[index] && index > 0) {
                     inputRefs.current[index - 1]?.focus();
-                    inputRefs.current[index - 1]?.select();
                 }
                 break;
             default:
@@ -102,19 +101,17 @@ const OtpInputField = ({
                 const targetIndex = focusedIndex + index;
                 if (targetIndex < length) {
                     updatedOtpValue[targetIndex] = newValue;
-                    inputRefs.current[targetIndex]?.focus();
                 }
             });
         }
-
+        inputRefs.current[Math.min(otpArray.length, length - 1)]?.focus();
         setOtpValue(updatedOtpValue);
-        onChange(updatedOtpValue.join(''));
     };
 
     return (
         <StyledOtpInputField>
             {label && (
-                <Label name="otp" isRequired>
+                <Label name={name} isRequired>
                     {label}
                 </Label>
             )}
@@ -122,7 +119,7 @@ const OtpInputField = ({
                 {Array.from({ length }).map((_, index) => {
                     return (
                         <StyledOtpInput
-                            key={`otp-input-field-${index + 1}`}
+                            key={`otp-input-field-${name}-${index + 1}`}
                             ref={(el) => {
                                 inputRefs.current[index] = el;
                             }}
@@ -135,8 +132,8 @@ const OtpInputField = ({
                             maxLength={1}
                             onPaste={(e) => handlePaste(e)}
                             onFocus={(e) => e.target.select()}
-                            isOtpCorrect={isOtpCorrect}
-                            isOtpWrong={isOtpWrong}
+                            $isOtpCorrect={isOtpCorrect}
+                            $isOtpWrong={isOtpWrong}
                             disabled={isDisabled}
                         />
                     );

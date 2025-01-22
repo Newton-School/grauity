@@ -212,6 +212,12 @@ export {
     type PaginationProps,
 } from './elements/Pagination';
 
+// NSSuccessMessage
+export {
+    SuccessMessage as NSSuccessMessage,
+    type SuccessMessageProps,
+} from './elements/Form/SuccessMessage';
+
 // NSOtpInput
 export {
     default as NSOtpInput,

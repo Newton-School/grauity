@@ -39,7 +39,7 @@ export interface ErrorMessageProps {
     /**
      * The size of the icon.
      * @type grauityIconSizeName
-     * @default '22'
+     * @default '20'
      */
     iconSize?: grauityIconSizeName;
 
@@ -60,7 +60,7 @@ export interface SuccessMessageProps {
     /**
      * The size of the icon.
      * @type grauityIconSizeName
-     * @default '22'
+     * @default '20'
      */
     iconSize?: grauityIconSizeName;
 

@@ -53,13 +53,13 @@ export const StyledOtpInput = styled.input<StyledOtpInputProps>`
     }
 
     ${(props) =>
-        props.isOtpCorrect &&
+        props.$isOtpCorrect &&
         `
         border-color: var(--border-moderate-success-default, #50CE99);
     `}
 
     ${(props) =>
-        props.isOtpWrong &&
+        props.$isOtpWrong &&
         `
         border-color: var(--border-moderate-error-default, #F8636B);
     `}

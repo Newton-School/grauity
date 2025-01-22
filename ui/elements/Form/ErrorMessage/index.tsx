@@ -5,7 +5,7 @@ import { StyledErrorMessage, StyledErrorMessageText } from '../index.styles';
 import { ErrorMessageProps } from '../types';
 
 export const ErrorMessage = (props: ErrorMessageProps) => {
-    const { children, iconSize, style } = props;
+    const { children, iconSize = '20', style } = props;
 
     if (!children) {
         return null;
