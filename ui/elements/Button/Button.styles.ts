@@ -22,11 +22,19 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     width: max-content;
     gap: var(--spacing-8px, 8px);
 
-    ${({ variant }) =>
+    ${({ variant, $color }) =>
         variant &&
         css`
-            ${BUTTON_VARIANT_STYLES_MAPPING[variant]}
+            ${BUTTON_VARIANT_STYLES_MAPPING[variant][$color]}
         `}
+
+    &:active:not([disabled]) {
+        transform: scale(0.95);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
 
     ${({ size, isIconButton }) => {
         if (!isIconButton) {
@@ -46,21 +54,6 @@ export const StyledButton = styled.button<ButtonComponentProps>`
             width: 100%;
         `}
 
-    ${({ disabled }) =>
-        disabled &&
-        css`
-            background: var(--bg-disabled, #edeff3);
-            color: var(--text-disabled, #8c95a6);
-            border: none;
-            outline: none;
-            cursor: not-allowed;
-
-            &:hover {
-                background: var(--bg-disabled, #edeff3);
-                color: var(--text-disabled, #8c95a6);
-            }
-        `}
-
     ${({ isLoading }) =>
         isLoading &&
         css`
@@ -71,18 +64,9 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         iconPosition === 'right' &&
         css`
             flex-direction: row-reverse;
-        `}
+        `}    
 
-    ${({ animateOnPress }) =>
-        animateOnPress &&
-        css`
-            &:active {
-                transform: scale(0.95);
-            }
-        `}
-    
-
-    transition: all 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out, outline 0.2s ease-in-out;
 `;
 
 export const StyledButtonContent = styled.div<ButtonContentProps>`

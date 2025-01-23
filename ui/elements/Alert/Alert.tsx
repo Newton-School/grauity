@@ -3,6 +3,7 @@ import React, { forwardRef, useId } from 'react';
 import {
     getAlertBannerColors,
     getAlertIconName,
+    getButtonColorFromAlertBannerTypeVariant,
     getButtonVariantFromAlertBannerTypeVariant,
 } from '../AlertBanner/utils';
 import Button from '../Button';
@@ -100,6 +101,10 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(({
                 <IconButton
                     icon="close"
                     variant={getButtonVariantFromAlertBannerTypeVariant(
+                        variant,
+                        type
+                    )}
+                    color={getButtonColorFromAlertBannerTypeVariant(
                         variant,
                         type
                     )}

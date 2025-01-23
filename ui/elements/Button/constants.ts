@@ -1,20 +1,19 @@
 import { grauityIconSizeName } from 'ui/core';
 
-import { ButtonSizes, ButtonVariants } from './types';
+import { ButtonColors, ButtonSizes, ButtonVariants } from './types';
 
 export enum BUTTON_VARIANTS_ENUM {
     PRIMARY = 'primary',
     SECONDARY = 'secondary',
     TERTIARY = 'tertiary',
+}
+
+export enum BUTTON_COLORS_ENUM {
+    BRAND = 'brand',
+    NEUTRAL = 'neutral',
+    ERROR = 'error',
     SUCCESS = 'success',
-    DANGER = 'danger',
     WARNING = 'warning',
-    PRIMARY_OUTLINED = 'primary-outlined',
-    SECONDARY_OUTLINED = 'secondary-outlined',
-    TERTIARY_OUTLINED = 'tertiary-outlined',
-    SUCCESS_OUTLINED = 'success-outlined',
-    DANGER_OUTLINED = 'danger-outlined',
-    WARNING_OUTLINED = 'warning-outlined',
 }
 
 export enum BUTTON_SIZES_ENUM {
@@ -33,15 +32,14 @@ export const BUTTON_VARIANTS = [
     BUTTON_VARIANTS_ENUM.PRIMARY,
     BUTTON_VARIANTS_ENUM.SECONDARY,
     BUTTON_VARIANTS_ENUM.TERTIARY,
-    BUTTON_VARIANTS_ENUM.SUCCESS,
-    BUTTON_VARIANTS_ENUM.DANGER,
-    BUTTON_VARIANTS_ENUM.WARNING,
-    BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED,
-    BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED,
-    BUTTON_VARIANTS_ENUM.TERTIARY_OUTLINED,
-    BUTTON_VARIANTS_ENUM.SUCCESS_OUTLINED,
-    BUTTON_VARIANTS_ENUM.DANGER_OUTLINED,
-    BUTTON_VARIANTS_ENUM.WARNING_OUTLINED,
+];
+
+export const BUTTON_COLORS = [
+    BUTTON_COLORS_ENUM.BRAND,
+    BUTTON_COLORS_ENUM.NEUTRAL,
+    BUTTON_COLORS_ENUM.ERROR,
+    BUTTON_COLORS_ENUM.SUCCESS,
+    BUTTON_COLORS_ENUM.WARNING,
 ];
 
 export const BUTTON_SIZES = [
@@ -57,172 +55,270 @@ export const BUTTON_ICON_POSITIONS = [
 ];
 
 export const BUTTON_VARIANT_STYLES_MAPPING: {
-    [variant in ButtonVariants]: { [cssSelector: string]: any };
+    [variant in ButtonVariants]: {
+        [color in ButtonColors]: {
+            [cssSelector: string]: any;
+        };
+    };
 } = {
     [BUTTON_VARIANTS_ENUM.PRIMARY]: {
-        background: 'var(--bg-action-brand, #0673f9)',
-        color: '#fff',
-        border: 'none',
-        outline: 'none',
-        '&:hover': {
-            background: 'var(--bg-action-brand-hover, #2989ff)',
+        [BUTTON_COLORS_ENUM.BRAND]: {
+            background: 'var(--bg-emphasis-brand-default, #0673f9)',
+            color: 'var(--text-emphasis-white-default, #ffffff)',
+            border: 'none',
+            outline: 'none',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-emphasis-brand-hover, #2989FF)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-brand-default, #61A8FF)',
+            },
+            '&:disabled': {
+                background: 'var(--bg-emphasis-brand-disabled, #94C4FF)',
+                color: 'var(--text-emphasis-white-disabled, #F6F7F9)',
+            },
         },
-        '&:focus': {
-            background: 'var(--bg-action-brand-hover, #2989ff)',
-            outline:
-                'var(--spacing-3px, 3px) solid var(--border-brand, #94c4ff)',
+        [BUTTON_COLORS_ENUM.NEUTRAL]: {
+            background: 'var(--bg-subtle-invert-primary-default, #0B0C0E)',
+            color: 'var(--text-emphasis-invert-primary-default, #FFF)',
+            border: 'none',
+            outline: 'none',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-subtle-invert-primary-hover, #16191D)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-primary-default, #E1E5EA)',
+            },
+            '&:disabled': {
+                background: 'var(--bg-subtle-invert-primary-disabled, #B2B9C7)',
+                color: 'var(--text-emphasis-white-disabled, #F6F7F9)',
+            },
         },
-    },
-    [BUTTON_VARIANTS_ENUM.PRIMARY_OUTLINED]: {
-        background: 'transparent',
-        color: 'var(--text-brand, #0673f9)',
-        border: 'none',
-        outline: 'none',
-        '&:hover': {
-            background: 'var(--bg-brand, #e5f1ff)',
+        [BUTTON_COLORS_ENUM.ERROR]: {
+            background: 'var(--bg-emphasis-error-default, #D22D3A)',
+            color: 'var(--text-emphasis-white-default, #ffffff)',
+            border: 'none',
+            outline: 'none',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-emphasis-error-hover, #EE3F44)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-error-default, #FBBBBF)',
+            },
+            '&:disabled': {
+                background: 'var(--bg-emphasis-error-disabled, #FA9499)',
+                color: 'var(--text-emphasis-white-disabled, #F6F7F9)',
+            },
         },
-        '&:focus': {
-            background: 'var(--bg-brand, #e5f1ff)',
-            outline:
-                'var(--spacing-3px, 3px) solid var(--border-brand, #94c4ff)',
+        [BUTTON_COLORS_ENUM.SUCCESS]: {
+            background: 'var(--bg-emphasis-success-default, #009965)',
+            color: 'var(--text-emphasis-white-default, #ffffff)',
+            border: 'none',
+            outline: 'none',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-emphasis-success-hover, #13B97C)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-success-default, #ACF7D3)',
+            },
+            '&:disabled': {
+                background: 'var(--bg-emphasis-success-disabled, #7EE7B8)',
+                color: 'var(--text-emphasis-white-disabled, #F6F7F9)',
+            },
+        },
+        [BUTTON_COLORS_ENUM.WARNING]: {
+            background: 'var(--bg-emphasis-warning-default, #F37216)',
+            color: 'var(--text-emphasis-white-default, #ffffff)',
+            border: 'none',
+            outline: 'none',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-emphasis-warning-hover, #FD9254)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-warning-default, #FFD2BA)',
+            },
+            '&:disabled': {
+                background: 'var(--bg-emphasis-warning-disabled, #FFB286)',
+                color: 'var(--text-emphasis-white-disabled, #F6F7F9)',
+            },
         },
     },
     [BUTTON_VARIANTS_ENUM.SECONDARY]: {
-        background: 'var(--bg-invert-primary, #0b0c0e)',
-        color: 'var(--text-action2, #ffffff)',
-        border: 'none',
-        outline: 'none',
-        '&:hover': {
-            background: 'var(--bg-invert-primary-hover, #16191d)',
+        [BUTTON_COLORS_ENUM.BRAND]: {
+            color: 'var(--text-emphasis-brand-default, #0673F9)',
+            border: '1px solid var(--border-emphasis-brand-default, #0673F9)',
+            outline: 'none',
+            background: 'transparent',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-subtle-brand-default, #e5f1ff)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-brand-default, #61A8FF)',
+            },
+            '&:disabled': {
+                border: '1px solid var(--border-subtle-brand-disabled, #C2DDFF)',
+                color: 'var(--text-emphasis-brand-disabled, #94C4FF)',
+            },
         },
-        '&:focus': {
-            background: 'var(--bg-invert-primary-hover, #16191d)',
-            outline: 'var(--spacing-3px, 3px) solid var(--border, #e1e5ea)',
+        [BUTTON_COLORS_ENUM.NEUTRAL]: {
+            color: 'var(--text-emphasis-primary-default, #16191D)',
+            border: '1px solid var(--border-emphasis-invert-primary-default, #16191D)',
+            outline: 'none',
+            background: 'transparent',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-subtle-primary-hover, #f6f7f9)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-primary-default, #E1E5EA)',
+            },
+            '&:disabled': {
+                border: '1px solid var(--border-subtle-primary-disabled, #EDEFF3)',
+                color: 'var(--text-emphasis-invert-primary-disabled, #B2B9C7)',
+            },
         },
-    },
-    [BUTTON_VARIANTS_ENUM.SECONDARY_OUTLINED]: {
-        background: 'transparent',
-        color: 'var(--text-primary, #16191d)',
-        border: 'none',
-        outline: 'none',
-        '&:hover': {
-            background: 'var(--bg-secondary, #f6f7f9)',
+        [BUTTON_COLORS_ENUM.ERROR]: {
+            color: 'var(--text-emphasis-error-default, #D22D3A)',
+            border: '1px solid var(--border-emphasis-error-default, #D22D3A)',
+            outline: 'none',
+            background: 'transparent',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-subtle-error-default, #FFE5E7)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-error-default, #FBBBBF)',
+            },
+            '&:disabled': {
+                border: '1px solid var(--border-subtle-error-disabled, #FBBBBF)',
+                color: 'var(--text-emphasis-error-disabled, #FA9499)',
+            },
         },
-        '&:focus': {
-            background: 'var(--bg-secondary, #f6f7f9)',
-            outline: 'var(--spacing-3px, 3px) solid var(--border, #e1e5ea)',
+        [BUTTON_COLORS_ENUM.SUCCESS]: {
+            color: 'var(--text-emphasis-success-default, #007A51)',
+            border: '1px solid var(--border-emphasis-success-default, #009965)',
+            outline: 'none',
+            background: 'transparent',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-subtle-success-default, #D9FCED)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-success-default, #ACF7D3)',
+            },
+            '&:disabled': {
+                border: '1px solid var(--border-subtle-success-disabled, #ACF7D3)',
+                color: 'var(--text-emphasis-success-disabled, #7EE7B8)',
+            },
+        },
+        [BUTTON_COLORS_ENUM.WARNING]: {
+            color: 'var(--text-emphasis-warning-default, #DE5A02)',
+            border: '1px solid var(--border-emphasis-warning-default, #DE5A02)',
+            outline: 'none',
+            background: 'transparent',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-subtle-warning-default, #FFF1E5)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-warning-default, #FFD2BA)',
+            },
+            '&:disabled': {
+                border: '1px solid var(--border-subtle-warning-disabled, #FFD2BA)',
+                color: 'var(--text-emphasis-warning-disabled, #FFB286)',
+            },
         },
     },
     [BUTTON_VARIANTS_ENUM.TERTIARY]: {
-        background: 'var(--bg-primary, #fff)',
-        color: 'var(--text-primary, #16191d)',
-        outline: 'var(--spacing-1px, 1px) solid var(--border-neutral, #e1e5ea)',
-        '&:hover': {
-            background: 'var(--bg-primary-hover, #f6f7f9)',
+        [BUTTON_COLORS_ENUM.BRAND]: {
+            color: 'var(--text-emphasis-brand-default, #0673F9)',
+            border: 'none',
+            outline: 'none',
+            background: 'transparent',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-subtle-brand-default, #e5f1ff)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-brand-default, #61A8FF)',
+            },
+            '&:disabled': {
+                color: 'var(--text-emphasis-brand-disabled, #94C4FF)',
+            },
         },
-        '&:focus': {
-            background: 'var(--bg-primary-hover, #f6f7f9)',
-            outline: 'var(--spacing-3px, 3px) solid var(--border, #e1e5ea)',
+        [BUTTON_COLORS_ENUM.NEUTRAL]: {
+            color: 'var(--text-emphasis-primary-default, #16191D)',
+            border: 'none',
+            outline: 'none',
+            background: 'transparent',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-subtle-primary-hover, #f6f7f9)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-primary-default, #E1E5EA)',
+            },
+            '&:disabled': {
+                color: 'var(--text-emphasis-invert-primary-disabled, #B2B9C7)',
+            },
         },
-    },
-    [BUTTON_VARIANTS_ENUM.TERTIARY_OUTLINED]: {
-        background: 'transparent',
-        color: 'var(--text-primary, #16191d)',
-        border: 'none',
-        outline: 'none',
-        '&:hover': {
-            background: 'var(--bg-primary-hover, #f6f7f9)',
+        [BUTTON_COLORS_ENUM.ERROR]: {
+            color: 'var(--text-emphasis-error-default, #D22D3A)',
+            border: 'none',
+            outline: 'none',
+            background: 'transparent',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-subtle-error-default, #FFE5E7)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-error-default, #FBBBBF)',
+            },
+            '&:disabled': {
+                color: 'var(--text-emphasis-error-disabled, #FA9499)',
+            },
         },
-        '&:focus': {
-            background: 'var(--bg-primary-hover, #f6f7f9)',
-            outline: 'var(--spacing-3px, 3px) solid var(--border, #e1e5ea)',
+        [BUTTON_COLORS_ENUM.SUCCESS]: {
+            color: 'var(--text-emphasis-success-default, #007A51)',
+            border: 'none',
+            outline: 'none',
+            background: 'transparent',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-subtle-success-default, #D9FCED)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-success-default, #ACF7D3)',
+            },
+            '&:disabled': {
+                color: 'var(--text-emphasis-success-disabled, #7EE7B8)',
+            },
         },
-    },
-    [BUTTON_VARIANTS_ENUM.SUCCESS]: {
-        background: 'var(--bg-action-success, #009965)',
-        color: 'var(--text-action, #ffffff)',
-        border: 'none',
-        outline: 'none',
-        '&:hover': {
-            background: 'var(--bg-action-success-hover, #13b97c)',
-        },
-        '&:focus': {
-            background: 'var(--bg-action-success-hover, #13b97c)',
-            outline:
-                'var(--spacing-3px, 3px) solid var(--border-success, #acf7d3)',
-        },
-    },
-    [BUTTON_VARIANTS_ENUM.SUCCESS_OUTLINED]: {
-        background: 'transparent',
-        color: 'var(--text-success, #007a51)',
-        border: 'none',
-        outline: 'none',
-        '&:hover': {
-            background: 'var(--bg-success, #d9fced)',
-        },
-        '&:focus': {
-            background: 'var(--bg-success, #d9fced)',
-            outline:
-                'var(--spacing-3px, 3px) solid var(--border-success, #acf7d3)',
-        },
-    },
-    [BUTTON_VARIANTS_ENUM.DANGER]: {
-        background: 'var(--bg-action-error, #d22d3a)',
-        color: 'var(--text-action, #ffffff)',
-        border: 'none',
-        outline: 'none',
-        '&:hover': {
-            background: 'var(--bg-action-error-hover, #ee3f44)',
-        },
-        '&:focus': {
-            background: 'var(--bg-action-error-hover, #ee3f44)',
-            outline:
-                'var(--spacing-3px, 3px) solid var(--border-error, #fbbbbf)',
-        },
-    },
-    [BUTTON_VARIANTS_ENUM.DANGER_OUTLINED]: {
-        background: 'transparent',
-        color: 'var(--text-error, #d22d3a)',
-        border: 'none',
-        outline: 'none',
-        '&:hover': {
-            background: 'var(--bg-error, #ffe5e7)',
-        },
-        '&:focus': {
-            background: 'var(--bg-error, #ffe5e7)',
-            outline:
-                'var(--spacing-3px, 3px) solid var(--border-error, #fbbbbf)',
-        },
-    },
-    [BUTTON_VARIANTS_ENUM.WARNING]: {
-        background: 'var(--bg-action-warning, #f37216)',
-        color: 'var(--text-action, #ffffff)',
-        border: 'none',
-        outline: 'none',
-        '&:hover': {
-            background: 'var(--bg-action-warning-hover, #fd9254)',
-        },
-        '&:focus': {
-            background: 'var(--bg-action-warning-hover, #fd9254)',
-            outline:
-                'var(--spacing-3px, 3px) solid var(--border-warning, #ffd2ba)',
-        },
-    },
-    [BUTTON_VARIANTS_ENUM.WARNING_OUTLINED]: {
-        background: 'transparent',
-        color: 'var(--text-warning, #de5a02)',
-        border: 'none',
-        outline: 'none',
-        '&:hover': {
-            background: 'var(--bg-warning, #fff1e5)',
-        },
-        '&:focus': {
-            background: 'var(--bg-warning, #fff1e5)',
-            outline:
-                'var(--spacing-3px, 3px) solid var(--border-warning, #ffd2ba)',
+        [BUTTON_COLORS_ENUM.WARNING]: {
+            color: 'var(--text-emphasis-warning-default, #DE5A02)',
+            border: 'none',
+            outline: 'none',
+            background: 'transparent',
+            '&:hover:not([disabled])': {
+                background: 'var(--bg-subtle-warning-default, #FFF1E5)',
+            },
+            '&:focus-visible': {
+                outline:
+                    '3px solid var(--border-subtle-warning-default, #FFD2BA)',
+            },
+            '&:disabled': {
+                color: 'var(--text-emphasis-warning-disabled, #FFB286)',
+            },
         },
     },
 };
+
 export const BUTTON_SIZE_STYLES_MAPPING: {
     [variant in ButtonSizes]: { [cssSelector: string]: any };
 } = {

@@ -2,36 +2,41 @@ import React from 'react';
 
 import { StyledButtonProps } from '../../../common/types';
 import { grauityIconName, grauityIconSizeName } from '../../core';
+import {
+    BUTTON_COLORS_ENUM,
+    BUTTON_ICON_POSITIONS_ENUM,
+    BUTTON_SIZES_ENUM,
+    BUTTON_VARIANTS_ENUM,
+} from './constants';
 
 export type ButtonTypeAttribute = 'button' | 'submit' | 'reset';
 
-export type ButtonVariants =
-    | 'primary'
-    | 'secondary'
-    | 'tertiary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'primary-outlined'
-    | 'secondary-outlined'
-    | 'tertiary-outlined'
-    | 'success-outlined'
-    | 'danger-outlined'
-    | 'warning-outlined';
+export type ButtonVariants = `${BUTTON_VARIANTS_ENUM}`;
 
-export type ButtonSizes = 'small' | 'medium' | 'large' | 'extra-large';
+export type ButtonColors = `${BUTTON_COLORS_ENUM}`;
 
-export type ButtonIconPositions = 'left' | 'right';
+export type ButtonSizes = `${BUTTON_SIZES_ENUM}`;
+
+export type ButtonIconPositions = `${BUTTON_ICON_POSITIONS_ENUM}`;
 
 export interface ButtonProps extends StyledButtonProps {
     /**
      * Variant of the button
      *
-     * Available choices: `primary`, `secondary`, `tertiary`, `success`, `danger`, `warning`, `primary-outlined`, `secondary-outlined`, `tertiary-outlined`, `success-outlined`, `danger-outlined`, `warning-outlined`
+     * Available choices: `primary` (solid), `secondary` (outlined), `tertiary` (text)
      *
      * Default: `primary`
      * */
     variant?: ButtonVariants;
+
+    /**
+     * Color of the button
+     *
+     * Available choices: `brand` (blue), `neutral` (black), `error` (red), `success` (green), `warning` (orange)
+     *
+     * Default: `brand`
+     * */
+    color?: ButtonColors;
 
     /**
      * Size of the button
@@ -147,6 +152,15 @@ export interface IconButtonProps {
     variant?: ButtonVariants;
 
     /**
+     * Color of the button
+     *
+     * Available choices: `brand` (blue), `neutral` (black), `error` (red), `success` (green), `warning` (orange)
+     *
+     * Default: `brand`
+     * */
+    color?: ButtonColors;
+
+    /**
      * Size of the button
      * Available choices: `small`, `medium`, `large`
      *
@@ -244,6 +258,7 @@ export interface IconButtonProps {
 
 export interface ButtonComponentProps extends StyledButtonProps {
     variant?: ButtonVariants;
+    $color?: ButtonColors;
     size?: ButtonSizes;
     icon?: string | number;
     iconSize?: string;
@@ -258,7 +273,6 @@ export interface ButtonComponentProps extends StyledButtonProps {
     children?: React.ReactNode;
     ref?: React.Ref<HTMLButtonElement>;
     type?: ButtonTypeAttribute;
-    animateOnPress?: boolean;
     ariaLabel?: string;
     title?: string;
     tabIndex?: number;

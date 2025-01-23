@@ -31,7 +31,8 @@ export default {
                     [
                         {
                             children: 'Button 1',
-                            variant: 'tertiary',
+                            variant: 'primary',
+                            color: 'neutral',
                             size: 'small',
                             onClick: () => {
                                 alert('Button 1 clicked');
@@ -39,7 +40,8 @@ export default {
                         },
                         {
                             children: 'Button 2',
-                            variant: 'secondary',
+                            variant: 'tertiary',
+                            color: 'neutral',
                             size: 'small',
                             onClick: () => {
                                 alert('Button 2 clicked');
@@ -70,7 +72,8 @@ const defaultArgs: AlertBannerProps = {
     actionButtons: [
         {
             children: 'Button 1',
-            variant: 'tertiary',
+            variant: 'primary',
+            color: 'neutral',
             size: 'small',
             onClick: () => {
                 alert('Button 1 clicked');
@@ -78,7 +81,8 @@ const defaultArgs: AlertBannerProps = {
         },
         {
             children: 'Button 2',
-            variant: 'secondary',
+            variant: 'tertiary',
+            color: 'neutral',
             size: 'small',
             onClick: () => {
                 alert('Button 2 clicked');

@@ -11,6 +11,7 @@ const Template = (args: IconButtonProps) => <IconButton {...args} />;
 
 const defaultArgs: IconButtonProps = {
     variant: 'primary',
+    color: 'brand',
     size: 'medium',
     icon: 'sparkle',
     iconSize: '24',

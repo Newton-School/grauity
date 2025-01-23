@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button, { BUTTON_VARIANTS_ENUM } from 'ui/elements/Button';
+import { BUTTON_COLORS_ENUM } from 'ui/elements/Button/constants';
 import {
     ConfirmationDialog,
     ConfirmationDialogProps,
@@ -12,7 +13,8 @@ export const Template = (args: ConfirmationDialogProps) => {
         <div>
             <Button
                 onClick={() => setIsOpen(true)}
-                variant={BUTTON_VARIANTS_ENUM.DANGER}
+                variant={BUTTON_VARIANTS_ENUM.PRIMARY}
+                color={BUTTON_COLORS_ENUM.ERROR}
                 icon="signout"
             >
                 Sign out
@@ -34,7 +36,9 @@ export const Template = (args: ConfirmationDialogProps) => {
                 confirmText={args?.confirmText}
                 cancelText={args?.cancelText}
                 confirmButtonVariant={args?.confirmButtonVariant}
+                confirmButtonColor={args?.confirmButtonColor}
                 cancelButtonVariant={args?.cancelButtonVariant}
+                cancelButtonColor={args?.cancelButtonColor}
                 showCloseButton={args?.showCloseButton}
                 hideOnClickAway={args?.hideOnClickAway}
                 blurBackground={args?.blurBackground}

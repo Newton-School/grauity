@@ -2,7 +2,7 @@ import { AnimatePresence } from 'framer-motion';
 import React, { useId, useMemo } from 'react';
 
 import { useKeyboardEvent } from '../../../../hooks';
-import Button, { BUTTON_VARIANTS_ENUM, IconButton } from '../../Button';
+import Button, { IconButton } from '../../Button';
 import Overlay from '../../Overlay';
 import Modal from '../Modal';
 import { ConfirmationDialogProps } from '../types';
@@ -22,8 +22,10 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
         title = 'Are you sure?',
         description = 'Please confirm your action.',
         body = null,
-        cancelButtonVariant = 'danger',
-        confirmButtonVariant = 'success',
+        cancelButtonVariant = 'primary',
+        cancelButtonColor = 'error',
+        confirmButtonVariant = 'primary',
+        confirmButtonColor = 'success',
         showCloseButton = false,
         hideOnClickAway = false,
         blurBackground = false,
@@ -104,8 +106,10 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
                                 <Modal.Action justifyContent="end">
                                     <IconButton
                                         onClick={onCancel}
-                                        variant="secondary-outlined"
+                                        variant="tertiary"
+                                        color="neutral"
                                         icon="close"
+                                        size='small'
                                         ariaLabel="Close"
                                         buttonProps={{ autoFocus: true }}
                                     />
@@ -133,10 +137,8 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
 
                         <Modal.Action>
                             <Button
-                                variant={
-                                    cancelButtonVariant ||
-                                    BUTTON_VARIANTS_ENUM.DANGER
-                                }
+                                variant={cancelButtonVariant}
+                                color={cancelButtonColor}
                                 fullWidth
                                 onClick={onCancel}
                                 buttonProps={
@@ -146,10 +148,8 @@ const ConfirmationDialog = (props: ConfirmationDialogProps) => {
                                 {cancelText}
                             </Button>
                             <Button
-                                variant={
-                                    confirmButtonVariant ||
-                                    BUTTON_VARIANTS_ENUM.SUCCESS
-                                }
+                                variant={confirmButtonVariant}
+                                color={confirmButtonColor}
                                 fullWidth
                                 onClick={onConfirm}
                             >

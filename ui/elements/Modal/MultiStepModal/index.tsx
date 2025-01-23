@@ -48,6 +48,7 @@ const MultiStepModal = (props: MultiStepModalProps) => {
         nextButtonText,
         showBackButton,
         buttonVariant,
+        buttonColor,
     } = modalSteps[currentStep] || {};
 
     const isLastStep = currentStep === modalSteps.length - 1;
@@ -115,7 +116,8 @@ const MultiStepModal = (props: MultiStepModalProps) => {
                     <Modal.Action>
                         {showBackButton && !isFirstStep && (
                             <Button
-                                variant="secondary-outlined"
+                                variant="tertiary"
+                                color="neutral"
                                 onClick={() => {
                                     setCurrentStep(currentStep - 1);
                                 }}
@@ -129,6 +131,7 @@ const MultiStepModal = (props: MultiStepModalProps) => {
                         {nextButtonText && (
                             <Button
                                 variant={buttonVariant || 'secondary'}
+                                color={buttonColor || 'brand'}
                                 fullWidth
                                 onClick={() => {
                                     if (isLastStep) {

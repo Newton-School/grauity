@@ -116,7 +116,8 @@ const Carousel = (props: CarouselProps) => {
                         <IconButton
                             size="small"
                             icon={leftIcon}
-                            variant="tertiary"
+                            variant="secondary"
+                            color="neutral"
                             style={{
                                 width: '10px',
                                 borderRadius: '50%',
@@ -127,7 +128,8 @@ const Carousel = (props: CarouselProps) => {
                         <IconButton
                             size="small"
                             icon={rightIcon}
-                            variant="tertiary"
+                            variant="secondary"
+                            color="neutral"
                             style={{
                                 width: '10px',
                                 borderRadius: '50%',

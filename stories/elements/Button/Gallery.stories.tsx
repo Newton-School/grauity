@@ -1,5 +1,6 @@
 import React from 'react';
 import Button, { BUTTON_VARIANTS, ButtonProps } from 'ui/elements/Button';
+import { BUTTON_COLORS } from 'ui/elements/Button/constants';
 import Table from 'ui/elements/Table';
 
 import TokenBlock from '../../helper-components/TokenBlock';
@@ -15,7 +16,10 @@ const Template = (args: ButtonProps) => (
         <Table.TableHead highlightHeaders={false}>
             <Table.TableRow condensed>
                 <Table.TableHeadingCell align="left">
-                    Button variant
+                    Variant
+                </Table.TableHeadingCell>
+                <Table.TableHeadingCell align="left">
+                    Color
                 </Table.TableHeadingCell>
                 <Table.TableHeadingCell align="left">
                     Button
@@ -23,18 +27,30 @@ const Template = (args: ButtonProps) => (
             </Table.TableRow>
         </Table.TableHead>
         <Table.TableBody>
-            {BUTTON_VARIANTS.map((variant) => (
-                <Table.TableRow condensed>
-                    <Table.TableDataCell>
-                        <TokenBlock copy>{variant}</TokenBlock>
-                    </Table.TableDataCell>
-                    <Table.TableDataCell>
-                        <Button {...args} variant={variant} key={variant}>
-                            {args?.children}
-                        </Button>
-                    </Table.TableDataCell>
-                </Table.TableRow>
-            ))}
+            {BUTTON_COLORS.map((color) => {
+                return BUTTON_VARIANTS.map((variant) => {
+                    return (
+                        <Table.TableRow condensed>
+                            <Table.TableDataCell>
+                                <TokenBlock copy>{variant}</TokenBlock>
+                            </Table.TableDataCell>
+                            <Table.TableDataCell>
+                                <TokenBlock copy>{color}</TokenBlock>
+                            </Table.TableDataCell>
+                            <Table.TableDataCell>
+                                <Button
+                                    {...args}
+                                    variant={variant}
+                                    color={color}
+                                    key={variant}
+                                >
+                                    {args?.children}
+                                </Button>
+                            </Table.TableDataCell>
+                        </Table.TableRow>
+                    );
+                });
+            })}
         </Table.TableBody>
     </Table.Table>
 );
@@ -43,6 +59,7 @@ const defaultArgs = {
     children: 'Click Me',
     icon: 'exclamation-circle',
     variant: 'primary',
+    color: 'brand',
     size: 'medium',
     onClick: () => {},
 };

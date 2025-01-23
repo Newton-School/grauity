@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StyledDivProps } from '../../../common/types';
-import { ButtonVariants } from '../Button/types';
+import { ButtonColors, ButtonVariants } from '../Button/types';
 
 type ModalContentType = React.ReactNode;
 
@@ -50,6 +50,11 @@ interface ModalStep {
      * Variant for the button
      * */
     buttonVariant?: ButtonVariants | null;
+
+    /**
+     * Color for the button
+     * */
+    buttonColor?: ButtonColors | null;
 }
 
 export interface ModalProps {
@@ -467,9 +472,19 @@ export interface ConfirmationDialogProps {
     cancelButtonVariant?: ButtonVariants;
 
     /**
+     * Color for the cancel button
+     * */
+    cancelButtonColor?: ButtonColors;
+
+    /**
      * Variant for the confirm button
      * */
     confirmButtonVariant?: ButtonVariants;
+
+    /**
+     * Color for the confirm button
+     * */
+    confirmButtonColor?: ButtonColors;
 
     /**
      * Determines if the close button should be shown

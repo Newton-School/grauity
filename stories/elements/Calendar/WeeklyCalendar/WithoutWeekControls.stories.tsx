@@ -24,11 +24,15 @@ const Template = (args: WeeklyCalendarProps) => {
                 <StyledCalendarMonthButton>
                     <IconButton
                         icon="chevron-left"
+                        variant="secondary"
+                        color="neutral"
                         onClick={() => setWeekOffset(weekOffset - 1)}
                     />
                     <div>{getMonthDetails(currentWeek[0])}</div>
                     <IconButton
                         icon="chevron-right"
+                        variant="secondary"
+                        color="neutral"
                         onClick={() => setWeekOffset(weekOffset + 1)}
                     />
                     <Button onClick={() => setWeekOffset(0)}>Today</Button>

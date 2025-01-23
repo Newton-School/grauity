@@ -4,6 +4,7 @@ import {
     IconButton,
     IconButtonProps,
 } from 'ui/elements/Button';
+import { BUTTON_COLORS } from 'ui/elements/Button/constants';
 import Table from 'ui/elements/Table';
 
 import TokenBlock from '../../helper-components/TokenBlock';
@@ -19,24 +20,39 @@ const Template = (args: IconButtonProps) => (
         <Table.TableHead highlightHeaders={false}>
             <Table.TableRow condensed>
                 <Table.TableHeadingCell align="left">
-                    IconButton variant
+                    Variant
                 </Table.TableHeadingCell>
                 <Table.TableHeadingCell align="left">
-                    IconButton
+                    Color
+                </Table.TableHeadingCell>
+                <Table.TableHeadingCell align="left">
+                    Icon Button
                 </Table.TableHeadingCell>
             </Table.TableRow>
         </Table.TableHead>
         <Table.TableBody>
-            {BUTTON_VARIANTS.map((variant) => (
-                <Table.TableRow condensed>
-                    <Table.TableDataCell>
-                        <TokenBlock copy>{variant}</TokenBlock>
-                    </Table.TableDataCell>
-                    <Table.TableDataCell>
-                        <IconButton {...args} variant={variant} key={variant} />
-                    </Table.TableDataCell>
-                </Table.TableRow>
-            ))}
+            {BUTTON_COLORS.map((color) => {
+                return BUTTON_VARIANTS.map((variant) => {
+                    return (
+                        <Table.TableRow condensed>
+                            <Table.TableDataCell>
+                                <TokenBlock copy>{variant}</TokenBlock>
+                            </Table.TableDataCell>
+                            <Table.TableDataCell>
+                                <TokenBlock copy>{color}</TokenBlock>
+                            </Table.TableDataCell>
+                            <Table.TableDataCell>
+                                <IconButton
+                                    {...args}
+                                    variant={variant}
+                                    color={color}
+                                    key={variant}
+                                />
+                            </Table.TableDataCell>
+                        </Table.TableRow>
+                    );
+                });
+            })}
         </Table.TableBody>
     </Table.Table>
 );
@@ -44,6 +60,7 @@ const Template = (args: IconButtonProps) => (
 const defaultArgs: IconButtonProps = {
     icon: 'exclamation-circle',
     variant: 'primary',
+    color: 'brand',
     size: 'medium',
     onClick: () => {},
 };

@@ -38,12 +38,14 @@ export default {
                 'With action buttons': [
                     {
                         children: 'Button',
-                        variant: 'secondary',
+                        variant: 'primary',
+                        color: 'neutral',
                         size: 'small',
                     },
                     {
                         children: 'Button',
                         variant: 'tertiary',
+                        color: 'neutral',
                         size: 'small',
                     },
                 ],
@@ -114,7 +116,8 @@ Gallery.args = {
     actionButtons: [
         {
             children: 'Button 1',
-            variant: 'tertiary',
+            variant: 'primary',
+            color: 'neutral',
             size: 'small',
             onClick: () => {
                 alert('Button 1 clicked');
@@ -122,7 +125,8 @@ Gallery.args = {
         },
         {
             children: 'Button 2',
-            variant: 'secondary',
+            variant: 'tertiary',
+            color: 'neutral',
             size: 'small',
             onClick: () => {
                 alert('Button 2 clicked');

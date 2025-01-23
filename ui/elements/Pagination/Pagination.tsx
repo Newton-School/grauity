@@ -14,9 +14,12 @@ const Pagination = (props: PaginationProps) => {
         onPageChange,
         size = 'small',
         justifyContent = 'space-between',
-        buttonVariant = 'tertiary',
-        activeButtonVariant = 'secondary',
-        controlButtonVariant = 'tertiary',
+        buttonVariant = 'secondary',
+        buttonColor = 'neutral',
+        activeButtonVariant = 'primary',
+        activeButtonColor = 'neutral',
+        controlButtonVariant = 'secondary',
+        controlButtonColor = 'neutral',
         className = '',
     } = props;
 
@@ -52,6 +55,7 @@ const Pagination = (props: PaginationProps) => {
                             ? activeButtonVariant
                             : buttonVariant
                     }
+                    color={index + 1 === currentPage ? activeButtonColor : buttonColor}
                     onClick={() => handlePageChange(index + 1)}
                     size={size}
                 >
@@ -88,6 +92,7 @@ const Pagination = (props: PaginationProps) => {
                     variant={
                         currentPage === 1 ? activeButtonVariant : buttonVariant
                     }
+                    color={currentPage === 1 ? activeButtonColor : buttonColor}
                     onClick={() => handlePageChange(1)}
                     size={size}
                 >
@@ -97,7 +102,8 @@ const Pagination = (props: PaginationProps) => {
             paginationItems.push(
                 <IconButton
                     key="ellipsis-prev"
-                    variant="tertiary-outlined"
+                    variant="tertiary"
+                    color='neutral'
                     icon="kebab-horizontal"
                     size={size}
                 />
@@ -114,6 +120,11 @@ const Pagination = (props: PaginationProps) => {
                                 ? activeButtonVariant
                                 : buttonVariant
                         }
+                        color={
+                            i === currentPage
+                                ? activeButtonColor
+                                : buttonColor
+                        }
                         onClick={() => handlePageChange(i)}
                         size={size}
                     >
@@ -127,7 +138,8 @@ const Pagination = (props: PaginationProps) => {
             paginationItems.push(
                 <IconButton
                     key="ellipsis-after"
-                    variant="tertiary-outlined"
+                    variant="tertiary"
+                    color='neutral'
                     icon="kebab-horizontal"
                     size={size}
                 />
@@ -139,6 +151,11 @@ const Pagination = (props: PaginationProps) => {
                         totalPageCount === currentPage
                             ? activeButtonVariant
                             : buttonVariant
+                    }
+                    color={
+                        totalPageCount === currentPage
+                            ? activeButtonColor
+                            : buttonColor
                     }
                     onClick={() => handlePageChange(totalPageCount)}
                     size={size}
@@ -162,6 +179,7 @@ const Pagination = (props: PaginationProps) => {
         >
             <Button
                 variant={controlButtonVariant}
+                color={controlButtonColor}
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
                 icon="chevron-left"
@@ -175,6 +193,7 @@ const Pagination = (props: PaginationProps) => {
             </StyledPaginationPages>
             <Button
                 variant={controlButtonVariant}
+                color={controlButtonColor}
                 onClick={handleNextPage}
                 disabled={currentPage === totalPageCount}
                 icon="chevron-right"
