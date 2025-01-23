@@ -1,7 +1,7 @@
 import React from 'react';
 import Table from 'ui/elements/Table';
 
-import { extractTokensFromTheme } from '../../utils';
+import { extractTokensFromTheme } from '../../utils/extractTokensFromTheme';
 
 export default {
     title: 'Atoms/Colors',
