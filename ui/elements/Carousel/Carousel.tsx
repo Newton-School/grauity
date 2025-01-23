@@ -25,6 +25,7 @@ const Carousel = (props: CarouselProps) => {
         onLeftClick = () => {},
         onRightClick = () => {},
         onScrollEnd = () => {},
+        headerGap = 12,
         gap = 12,
         style = {},
         className = '',
@@ -100,7 +101,11 @@ const Carousel = (props: CarouselProps) => {
     ]);
 
     return (
-        <StyledCarouselContainer style={style} className={className}>
+        <StyledCarouselContainer
+            style={style}
+            className={className}
+            $headerGap={headerGap}
+        >
             <StyledCarouselHeaderRow
                 ref={headerRef}
                 $iconPosition={iconPosition}
