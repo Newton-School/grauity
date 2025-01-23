@@ -331,12 +331,12 @@ export type grauityIconName =
     | 'power-bi'
     | 'printer-filled'
     | 'printer'
-    | 'progressHalf-filled'
-    | 'progressHalf'
-    | 'progressQuarter-filled'
-    | 'progressQuarter'
-    | 'progressZero-filled'
-    | 'progressZero'
+    | 'progress-half-filled'
+    | 'progress-half'
+    | 'progress-quarter-filled'
+    | 'progress-quarter'
+    | 'progress-zero-filled'
+    | 'progress-zero'
     | 'python-filled'
     | 'python'
     | 'quiz-filled'
@@ -1183,12 +1183,12 @@ export enum GRAUITY_ICONS {
     PowerBi = 'power-bi',
     PrinterFilled = 'printer-filled',
     Printer = 'printer',
-    ProgressHalfFilled = 'progressHalf-filled',
-    ProgressHalf = 'progressHalf',
-    ProgressQuarterFilled = 'progressQuarter-filled',
-    ProgressQuarter = 'progressQuarter',
-    ProgressZeroFilled = 'progressZero-filled',
-    ProgressZero = 'progressZero',
+    ProgressHalfFilled = 'progress-half-filled',
+    ProgressHalf = 'progress-half',
+    ProgressQuarterFilled = 'progress-quarter-filled',
+    ProgressQuarter = 'progress-quarter',
+    ProgressZeroFilled = 'progress-zero-filled',
+    ProgressZero = 'progress-zero',
     PythonFilled = 'python-filled',
     Python = 'python',
     QuizFilled = 'quiz-filled',
