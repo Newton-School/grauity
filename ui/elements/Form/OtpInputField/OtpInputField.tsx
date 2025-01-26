@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Label } from '../Label/index';
 
 import { ErrorMessage } from '../ErrorMessage';
+import { Label } from '../Label/index';
 import { SuccessMessage } from '../SuccessMessage';
 import {
     StyledOtpContainer,
