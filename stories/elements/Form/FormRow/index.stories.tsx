@@ -10,9 +10,12 @@ import {
     NSTextField,
 } from 'ui/index';
 
+import withRemovePadding from '../../../decorators/withRemovePadding';
+
 export default {
     title: 'Elements/Form/FormRow',
     component: NSFormRow,
+    decorators: [withRemovePadding],
 };
 
 const PIZZA_TOPPINGS = [
@@ -65,7 +68,14 @@ const Template = () => {
     const isMobileView = window.innerWidth < 600;
 
     return (
-        <div style={{ display: 'flex', gap: '12px' }}>
+        <div
+            style={{
+                display: 'flex',
+                gap: '12px',
+                background: 'var(--bg-subtle-secondary-default, #f6f7f9)',
+                padding: '12px',
+            }}
+        >
             <div
                 style={{
                     maxWidth: '800px',
@@ -103,32 +113,6 @@ const Template = () => {
 
                 {/* Email and Phone row */}
                 <NSFormRow widths="1fr 2fr" column={isMobileView}>
-                    <NSTextField
-                        name="email"
-                        label="Email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        isRequired
-                        adornments={{
-                            end: '@gmail.com',
-                        }}
-                        placeholder="Enter your email"
-                    />
-                    <NSTextField
-                        name="phone"
-                        label="Phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        isRequired
-                        adornments={{
-                            start: '+91',
-                        }}
-                        placeholder="Enter your phone"
-                    />
-                </NSFormRow>
-
-                {/* Email and Phone row */}
-                <NSFormRow widths="2fr 1fr" column={isMobileView}>
                     <NSTextField
                         name="email"
                         label="Email"

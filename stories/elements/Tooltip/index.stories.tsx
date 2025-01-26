@@ -22,7 +22,7 @@ export default {
 
 const Template = (args: TooltipProps) => (
     <Tooltip {...args}>
-        <Button variant='tertiary'>Hover over me!</Button>
+        <Button variant='primary' color='brand'>Hover over me!</Button>
     </Tooltip>
 );
 

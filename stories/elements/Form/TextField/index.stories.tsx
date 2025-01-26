@@ -86,7 +86,7 @@ WithRightAdornment.args = {
             <>
                 @gmail.com
                 <NSIcon name="check-circle" color="currentColor" />
-                <NSButton size="small" variant="primary-outlined">Save</NSButton>
+                <NSButton size="small" variant="primary" color="brand">Save</NSButton>
             </>
         ),
     },
@@ -106,7 +106,7 @@ WithLeftAndRightAdornment.args = {
             <>
                 @gmail.com
                 <NSIcon name="check-circle" color="currentColor" />
-                <NSButton size="small" variant="primary-outlined">Save</NSButton>
+                <NSButton size="small" variant="primary" color="brand">Save</NSButton>
             </>
         ),
     },
