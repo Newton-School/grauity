@@ -25,7 +25,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     ${({ variant, $color }) =>
         variant &&
         css`
-            ${BUTTON_VARIANT_STYLES_MAPPING[variant][$color]}
+            ${BUTTON_VARIANT_STYLES_MAPPING[variant]?.[$color]}
         `}
 
     &:active:not([disabled]) {
