@@ -26,27 +26,28 @@ export const StyledTextArea = styled.textarea<TextAreaComponentProps>`
     letter-spacing: var(--letter-spacing-ls-30, 0.1px);
     font-size: var(--font-size-fs-30, 16px);
     color: var(--text-emphasis-primary-default, #16191d);
+    transition: border-color 0.15s ease-in-out,
+        background-color 0.15s ease-in-out, outline 0.2s ease-in-out;
+    outline: 0px solid transparent;
 
     ${({ size }) =>
         size &&
         css`
             ${TEXT_AREA_SIZE_STYLES_MAPPING[size]}
         `};
-    ::placeholder {
+    &::placeholder {
         color: var(--text-emphasis-primary-disabled, #8c95a6);
     }
-    :disabled {
+    &:disabled {
         color: var(--text-emphasis-primary-disabled, #8c95a6);
         background: var(--bg-subtle-secondary-default, #f6f7f9);
     }
-    :hover {
+    &:hover {
         background: var(--bg-subtle-primary-hover, #f6f7f9);
-    }
-    &:active {
-        border: 1px solid var(--border-subtle-brand-default, #61a8ff);
     }
     &:focus {
         border: 1px solid var(--border-subtle-brand-default, #61a8ff);
+        background: var(--bg-subtle-primary-default, #fff);
     }
     &:focus-visible {
         outline: 3px solid var(--border-subtle-brand-default, #61a8ff);

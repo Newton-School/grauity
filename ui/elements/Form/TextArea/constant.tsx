@@ -15,17 +15,21 @@ export const TEXT_AREA_SIZE_STYLES_MAPPING: {
     [VARIANTS_SIZES.SMALL]: {
         padding: 'var(--spacing-spacing3, 4px) var(--spacing-spacing5, 8px);',
         minHeight: 'var(--spacing-32px, 32px)',
+        fontSize: '14px',
     },
     [VARIANTS_SIZES.MEDIUM]: {
         padding: 'var(--spacing-spacing5, 8px) var(--spacing-spacing7, 12px)',
         minHeight: 'var(--spacing-40px, 40px)',
+        fontSize: '14px',
     },
     [VARIANTS_SIZES.LARGE]: {
         padding: 'var(--spacing-spacing7, 12px) var(--spacing-spacing9, 16px)',
         minHeight: 'var(--spacing-48px, 48px)',
+        fontSize: '16px',
     },
     [VARIANTS_SIZES.EXTRA_LARGE]: {
         padding: 'var(--spacing-spacing9, 16px)',
         minHeight: 'var(--spacing-56px, 56px)',
+        fontSize: '16px',
     },
 };

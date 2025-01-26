@@ -50,7 +50,7 @@ export const StyledTextFieldInput = styled.input<StyledTextFieldInputProps>`
     transition: border-color 0.15s ease-in-out,
         background-color 0.15s ease-in-out, outline 0.2s ease-in-out;
     outline: 0px solid transparent;
-    color: var(--text-emphasis-primary-default, #1a1d24);
+    color: var(--text-emphasis-primary-default, #16191d);
     font-family: var(--font-family);
     font-weight: var(--font-weight-fw-10, 500);
 
@@ -67,10 +67,6 @@ export const StyledTextFieldInput = styled.input<StyledTextFieldInputProps>`
     &:focus-visible {
         border: 1px solid var(--border-subtle-brand-default, #61a8ff);
         outline: 2px solid var(--border-subtle-brand-default, #61a8ff);
-    }
-
-    &:focus:not(:focus-visible) {
-        outline: 0px solid transparent;
     }
 
     &:disabled {

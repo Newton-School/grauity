@@ -36,6 +36,7 @@ export const StyledRadioButtonInput = styled.input<StyledRadioButtonInputProps>`
     cursor: pointer;
     transition: border-color 70ms ease, background 70ms ease;
     outline: none;
+    background: var(--background-subtle-primary-default, #fff);
 
     ${({ $size }) => {
         if ($size === 'small') {

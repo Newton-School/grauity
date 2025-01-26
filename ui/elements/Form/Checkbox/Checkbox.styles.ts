@@ -187,6 +187,7 @@ export const StyledCheckboxLabel = styled(Label)`
     font-weight: 500;
     line-height: 22px;
     letter-spacing: 0.1px;
+    cursor: pointer;
 
     ${({ isDisabled }: StyledLabelProps) =>
         isDisabled &&

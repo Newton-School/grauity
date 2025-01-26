@@ -27,6 +27,7 @@ export const StyledOtpInput = styled.input<StyledOtpInputProps>`
     border-radius: var(--corner-radius-cr-4, 8px);
     border: 1px solid var(--border-moderate-primary-default, #c9cfd9);
     background: var(--bg-subtle-primary-default, #fff);
+    color: var(--text-emphasis-primary-default, #16191d);
     text-align: center;
 
     &:focus {
