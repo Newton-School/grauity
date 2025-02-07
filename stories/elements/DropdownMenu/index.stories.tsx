@@ -18,7 +18,7 @@ const defaultArgs: DropdownMenuProps = {
     searchable: false,
     searchPlaceholder: 'Search',
     searchIcon: 'search',
-    onSearchInputChange: () => {},
+    onSearchInputChange: null,
     multiple: false,
     items: [
         {

@@ -1,5 +1,4 @@
-import debounce from 'lodash/debounce';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { grauityIconName } from 'ui/core';
 import TextField from 'ui/elements/Form/TextField';
 import { Icon } from 'ui/elements/Icon';
@@ -21,13 +20,8 @@ const DropdownSearchBox = ({
 }: DropdownSearchBoxProps) => {
     const [searchValue, setSearchValue] = useState('');
 
-    const handleSearchInputChange = useCallback(
-        debounce((value) => onSearchInputChange(value), 500),
-        []
-    );
-
     useEffect(() => {
-        handleSearchInputChange(searchValue);
+        onSearchInputChange(searchValue);
     }, [searchValue]);
 
     if (!searchable) {

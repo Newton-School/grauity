@@ -11,3 +11,16 @@ export function getOptionsFromBaseDropdownItems(
 ): BaseItemOptionProps[] {
     return items.filter((item) => item.type === BaseItemType.OPTION);
 }
+
+export function defaultSearchMethod(
+    searchValue: string,
+    options: BaseItemOptionProps[]
+): BaseItemOptionProps[] {
+    return options.filter(
+        (option) =>
+            option.label?.toLowerCase().includes(searchValue.toLowerCase()) ||
+            option.description
+                ?.toLowerCase()
+                .includes(searchValue.toLowerCase())
+    );
+}
