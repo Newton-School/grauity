@@ -19,6 +19,7 @@ export type BaseItemDividerProps = {
 export type BaseItemOptionProps = {
     type: BaseItemType.OPTION;
     label: string;
+    value: string | number;
     description?: string;
     leftIcon?: grauityIconName;
     rightIcon?: grauityIconName;
@@ -30,7 +31,7 @@ export type BaseItemProps =
     | BaseItemDividerProps
     | BaseItemOptionProps;
 
-export interface DropdownMenuProps {
+export interface CommonDropdownMenuProps {
     /**
      * Whether to show the header of the dropdown menu.
      * - If `showHeader` is false, `title`, `overline`, and `subtext` will be ignored.
@@ -105,6 +106,7 @@ export interface DropdownMenuProps {
         } | {
             type: 'option'
             label: string;
+            value: string;
             description?: string;
             leftIcon?: grauityIconName;
             rightIcon?: grauityIconName;
@@ -174,6 +176,30 @@ export interface DropdownMenuProps {
      */
     styles?: React.CSSProperties;
 }
+
+export interface SingleDropdownMenuProps extends CommonDropdownMenuProps {
+    multiple?: false;
+
+    /**
+     * The value of the selected item.
+     * @default null
+     */
+    selectedValue?: string | number;
+}
+
+export interface MultipleDropdownMenuProps extends CommonDropdownMenuProps {
+    multiple?: true;
+
+    /**
+     * The values of the selected items.
+     * @default []
+     */
+    selectedValues?: (string | number)[];
+}
+
+export type DropdownMenuProps =
+    | SingleDropdownMenuProps
+    | MultipleDropdownMenuProps;
 
 export interface StyledDropdownMenuOptionProps extends StyledDivProps {
     $disabled?: boolean;

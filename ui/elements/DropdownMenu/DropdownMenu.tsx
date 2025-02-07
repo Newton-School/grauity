@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
+import { useClickAway } from '../../../hooks';
 import DropdownMenuFooter from './components/DropdownMenuFooter';
 import DropdownMenuHeader from './components/DropdownMenuHeader';
 import DropdownMenuOption from './components/DropdownMenuOption';
@@ -37,15 +38,66 @@ const DropdownMenu = (props: DropdownMenuProps) => {
         styles = {},
     } = props;
 
+    const dropdownMenuRef = useRef(null);
+
     const [options, setOptions] = useState<BaseItemOptionProps[]>([]);
+    const [selectedOptions, setSelectedOptions] = useState<(string | number)[]>(
+        []
+    );
+
+    const handleClickOption = (value: string | number) => {
+        if (multiple) {
+            const newSelectedOptions = selectedOptions.includes(value)
+                ? selectedOptions.filter((option) => option !== value)
+                : [...selectedOptions, value];
+            setSelectedOptions(newSelectedOptions);
+        } else {
+            setSelectedOptions([value]);
+        }
+    };
+
+    const handleClearAll = () => {
+        setSelectedOptions([]);
+        onClearAll();
+    };
+
+    const handleApply = () => {
+        if (multiple) {
+            onApply(
+                options.filter((option) =>
+                    selectedOptions.includes(option.value)
+                )
+            );
+        } else {
+            onApply(
+                options.find((option) => selectedOptions.includes(option.value))
+            );
+        }
+    };
 
     useEffect(() => {
         const filteredOptions = getOptionsFromBaseDropdownItems(items);
         setOptions(filteredOptions);
     }, [items]);
 
+    useEffect(() => {
+        if (!multiple && selectedOptions.length > 0 && !showActionButtons) {
+            handleApply();
+        }
+    }, [selectedOptions]);
+
+    useClickAway(dropdownMenuRef, () => {
+        if (multiple && !showActionButtons) {
+            handleApply();
+        }
+    });
+
     return (
-        <StyledDropdownMenu className={className} style={styles}>
+        <StyledDropdownMenu
+            className={className}
+            style={styles}
+            ref={dropdownMenuRef}
+        >
             <DropdownMenuHeader
                 showHeader={showHeader}
                 overline={overline}
@@ -68,7 +120,14 @@ const DropdownMenu = (props: DropdownMenuProps) => {
                         return <StyledDropdownMenuDivider />;
                     }
                     if (item.type === BaseItemType.OPTION) {
-                        return <DropdownMenuOption {...item} />;
+                        return (
+                            <DropdownMenuOption
+                                multiple={multiple}
+                                selected={selectedOptions.includes(item.value)}
+                                onClick={handleClickOption}
+                                {...item}
+                            />
+                        );
                     }
                     return null;
                 })}
@@ -79,8 +138,8 @@ const DropdownMenu = (props: DropdownMenuProps) => {
                 showClearAllButton={showClearAllButton}
                 clearAllButtonText={clearAllButtonText}
                 applyButtonText={applyButtonText}
-                onClearAll={onClearAll}
-                onApply={onApply}
+                onClearAll={handleClearAll}
+                onApply={handleApply}
             />
         </StyledDropdownMenu>
     );

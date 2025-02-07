@@ -9,13 +9,35 @@ import {
 } from '../DropdownMenu.styles';
 import { BaseItemOptionProps } from '../types';
 
-const DropdownMenuOption = (props: BaseItemOptionProps) => {
-    const { label, description, leftIcon, rightIcon, disabled } = props;
+interface DropdownMenuOptionProps extends BaseItemOptionProps {
+    multiple: boolean;
+    selected: boolean;
+    onClick: (value: string | number) => void;
+}
+
+const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
+    const {
+        label,
+        value,
+        description,
+        leftIcon,
+        rightIcon,
+        disabled,
+        multiple,
+        selected,
+        onClick,
+    } = props;
 
     return (
         <StyledDropdownMenuOption
             $disabled={disabled}
             tabIndex={disabled ? -1 : 0}
+            onClick={() => {
+                if (disabled) {
+                    return;
+                }
+                onClick(value);
+            }}
         >
             {leftIcon && <Icon name={leftIcon} color="currentColor" />}
             <StyledDropdownMenuOptionContent>
@@ -26,7 +48,18 @@ const DropdownMenuOption = (props: BaseItemOptionProps) => {
                     {description}
                 </StyledDropdownMenuOptionDescription>
             </StyledDropdownMenuOptionContent>
-            {rightIcon && <Icon name={rightIcon} color="currentColor" />}
+            {rightIcon && !multiple && !selected && (
+                <Icon name={rightIcon} color="currentColor" />
+            )}
+            {!multiple && selected && (
+                <Icon name="check" color="currentColor" />
+            )}
+            {multiple && (
+                <Icon
+                    name={selected ? 'check-square-filled' : 'square'}
+                    color="currentColor"
+                />
+            )}
         </StyledDropdownMenuOption>
     );
 };

@@ -72,6 +72,7 @@ export const StyledDropdownMenuSearchBox = styled.div`
     position: sticky;
     top: 0;
     background: var(--bg-subtle-primary-default, #fff);
+    z-index: 1;
 `;
 
 export const StyledDropdownMenuSubHeader = styled.div`
@@ -105,12 +106,13 @@ export const StyledDropdownMenuOption = styled.div<StyledDropdownMenuOptionProps
     gap: 4px;
     align-self: stretch;
     cursor: pointer;
+    color: var(--text-emphasis-primary-default, #16191d);
 
     ${({ $disabled }) =>
         $disabled &&
         css`
-            cursor: not-allowed !important;
-            color: var(--text-emphasis-primary-disabled, #8c95a6) !important;
+            cursor: not-allowed;
+            color: var(--text-emphasis-primary-disabled, #8c95a6);
         `}
 
     &:focus-visible {
