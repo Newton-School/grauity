@@ -15,6 +15,10 @@ export const StyledDropdownMenu = styled.div`
     background: var(--bg-subtle-primary-default, #fff);
     overflow-x: hidden;
     overflow-y: auto;
+
+    * {
+        box-sizing: border-box;
+    }
 `;
 
 export const StyledDropdownMenuHeader = styled.div`
@@ -44,4 +48,20 @@ export const StyledDropdownMenuHeaderSubtext = styled.div`
     font-weight: 450;
     line-height: 14px;
     letter-spacing: 0.4px;
+`;
+
+export const StyledDropdownMenuBody = styled.div`
+    display: flex;
+    padding: 4px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+`;
+export const StyledDropdownMenuSearchBox = styled.div`
+    display: flex;
+    padding: var(--spacing-sp-5, 8px) 0px var(--spacing-sp-3, 4px) 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sp-5, 8px);
+    align-self: stretch;
 `;

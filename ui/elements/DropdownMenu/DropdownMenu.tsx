@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 import DropdownMenuHeader from './components/DropdownMenuHeader';
-import { StyledDropdownMenu } from './DropdownMenu.styles';
+import DropdownSearchBox from './components/DropdownSearchBox';
+import {
+    StyledDropdownMenu,
+    StyledDropdownMenuBody,
+} from './DropdownMenu.styles';
 import { BaseItemOptionProps, DropdownMenuProps } from './types';
 import { getOptionsFromBaseDropdownItems } from './utils';
 
@@ -45,6 +49,14 @@ const DropdownMenu = (props: DropdownMenuProps) => {
                 subtext={subtext}
                 customHeader={customHeader}
             />
+            <StyledDropdownMenuBody>
+                <DropdownSearchBox
+                    searchable={searchable}
+                    searchPlaceholder={searchPlaceholder}
+                    searchIcon={searchIcon}
+                    onSearchInputChange={onSearchInputChange}
+                />
+            </StyledDropdownMenuBody>
         </StyledDropdownMenu>
     );
 };
