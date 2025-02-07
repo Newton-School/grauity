@@ -13,8 +13,7 @@ export const StyledDropdownMenu = styled.div`
     border-radius: var(--corner-radius-cr-4, 8px);
     border: 1px solid var(--border-subtle-primary-default, #e1e5ea);
     background: var(--bg-subtle-primary-default, #fff);
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
 
     * {
         box-sizing: border-box;
@@ -56,6 +55,9 @@ export const StyledDropdownMenuBody = styled.div`
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
+    flex-grow: 1;
+    overflow: auto;
+    position: relative;
 `;
 export const StyledDropdownMenuSearchBox = styled.div`
     display: flex;
@@ -64,4 +66,18 @@ export const StyledDropdownMenuSearchBox = styled.div`
     align-items: flex-start;
     gap: var(--spacing-sp-5, 8px);
     align-self: stretch;
+    position: sticky;
+    top: 0;
+    background: var(--bg-subtle-primary-default, #fff);
+`;
+
+export const StyledDropdownMenuFooter = styled.div`
+    padding: 14px 16px 6px 16px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border-top: 1px solid var(--border-subtle-primary-default, #e1e5ea);
 `;

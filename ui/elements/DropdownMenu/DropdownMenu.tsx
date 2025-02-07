@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import DropdownMenuFooter from './components/DropdownMenuFooter';
 import DropdownMenuHeader from './components/DropdownMenuHeader';
 import DropdownSearchBox from './components/DropdownSearchBox';
 import {
@@ -57,6 +58,15 @@ const DropdownMenu = (props: DropdownMenuProps) => {
                     onSearchInputChange={onSearchInputChange}
                 />
             </StyledDropdownMenuBody>
+            <DropdownMenuFooter
+                multiple={multiple}
+                showActionButtons={showActionButtons}
+                showClearAllButton={showClearAllButton}
+                clearAllButtonText={clearAllButtonText}
+                applyButtonText={applyButtonText}
+                onClearAll={onClearAll}
+                onApply={onApply}
+            />
         </StyledDropdownMenu>
     );
 };
