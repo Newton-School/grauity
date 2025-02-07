@@ -4,8 +4,7 @@ import { grauityIconName } from 'ui/core';
 enum BaseItemType {
     SUB_HEADER = 'subheader',
     DIVIDER = 'divider',
-    DEFAULT = 'default',
-    CHECKBOX = 'checkbox',
+    OPTION = 'option',
 }
 
 type BaseItemSubHeaderProps = {
@@ -15,29 +14,19 @@ type BaseItemSubHeaderProps = {
 type BaseItemDividerProps = {
     type: BaseItemType.DIVIDER;
 };
-type BaseItemDefaultProps = {
-    type: BaseItemType.DEFAULT;
+type BaseItemOptionProps = {
+    type: BaseItemType.OPTION;
     label: string;
     description?: string;
     leftIcon?: grauityIconName;
     rightIcon?: grauityIconName;
     disabled?: boolean;
 };
-type BaseItemCheckboxProps = {
-    type: BaseItemType.CHECKBOX;
-    label: string;
-    description?: string;
-    leftIcon?: grauityIconName;
-    checked?: boolean;
-    disabled?: boolean;
-    onChange?: (checked: boolean) => void;
-};
 
 type BaseItemProps =
     | BaseItemSubHeaderProps
     | BaseItemDividerProps
-    | BaseItemDefaultProps
-    | BaseItemCheckboxProps;
+    | BaseItemOptionProps;
 
 export interface DropdownMenuProps {
     /**
@@ -106,6 +95,19 @@ export interface DropdownMenuProps {
 
     /**
      * List of items to be displayed in the dropdown menu.
+     * @type {
+            type: 'subheader'
+            title?: string;
+        } | {
+            type: 'divider'
+        } | {
+            type: 'option'
+            label: string;
+            description?: string;
+            leftIcon?: grauityIconName;
+            rightIcon?: grauityIconName;
+            disabled?: boolean;
+        }
      * @default []
      */
     items: BaseItemProps[];
@@ -138,7 +140,7 @@ export interface DropdownMenuProps {
 
     /**
      * Callback function called when the "Clear All" button is clicked.
-     * @default Clears all selected items.
+     * @default null
      */
     onClearAll?: () => void;
 
@@ -150,11 +152,23 @@ export interface DropdownMenuProps {
      * @param items - The selected items.
      * @default null
      */
-    onApply?: (items: BaseItemCheckboxProps[] | BaseItemDefaultProps) => void;
+    onApply?: (items: BaseItemOptionProps[] | BaseItemOptionProps) => void;
 
     /**
      * Callback function called when the dropdown menu is scrolled to the bottom.
      * @default null
      */
     onScrollToBottom?: () => void;
+
+    /**
+     * Additional class names for the dropdown menu.
+     * @default null
+     */
+    className?: string;
+
+    /**
+     * Additional styles for the dropdown menu.
+     * @default {}
+     */
+    styles?: React.CSSProperties;
 }
