@@ -99,6 +99,7 @@ const defaultArgs: DropdownMenuProps = {
     onScrollToBottom: () => {},
     className: '',
     styles: {},
+    selectedValues: [],
 };
 
 export const Component = Template.bind({});

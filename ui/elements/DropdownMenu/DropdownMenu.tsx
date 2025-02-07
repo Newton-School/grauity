@@ -36,6 +36,7 @@ const DropdownMenu = (props: DropdownMenuProps) => {
         onScrollToBottom = () => {},
         className = null,
         styles = {},
+        selectedValues = [],
     } = props;
 
     const dropdownMenuRef = useRef(null);
@@ -86,6 +87,14 @@ const DropdownMenu = (props: DropdownMenuProps) => {
         const filteredOptions = getOptionsFromBaseDropdownItems(items);
         setOptions(filteredOptions);
     }, [items]);
+
+    useEffect(() => {
+        if (multiple) {
+            setSelectedOptions(selectedValues);
+        } else {
+            setSelectedOptions(selectedValues.slice(0, 1));
+        }
+    }, [selectedValues]);
 
     useEffect(() => {
         if (!multiple && selectedOptions.length > 0 && !showActionButtons) {

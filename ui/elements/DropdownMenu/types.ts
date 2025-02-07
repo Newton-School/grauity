@@ -31,7 +31,7 @@ export type BaseItemProps =
     | BaseItemDividerProps
     | BaseItemOptionProps;
 
-export interface CommonDropdownMenuProps {
+export interface DropdownMenuProps {
     /**
      * Whether to show the header of the dropdown menu.
      * - If `showHeader` is false, `title`, `overline`, and `subtext` will be ignored.
@@ -175,20 +175,6 @@ export interface CommonDropdownMenuProps {
      * @default {}
      */
     styles?: React.CSSProperties;
-}
-
-export interface SingleDropdownMenuProps extends CommonDropdownMenuProps {
-    multiple?: false;
-
-    /**
-     * The value of the selected item.
-     * @default null
-     */
-    selectedValue?: string | number;
-}
-
-export interface MultipleDropdownMenuProps extends CommonDropdownMenuProps {
-    multiple?: true;
 
     /**
      * The values of the selected items.
@@ -196,10 +182,6 @@ export interface MultipleDropdownMenuProps extends CommonDropdownMenuProps {
      */
     selectedValues?: (string | number)[];
 }
-
-export type DropdownMenuProps =
-    | SingleDropdownMenuProps
-    | MultipleDropdownMenuProps;
 
 export interface StyledDropdownMenuOptionProps extends StyledDivProps {
     $disabled?: boolean;
