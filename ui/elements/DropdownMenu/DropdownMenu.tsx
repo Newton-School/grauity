@@ -75,6 +75,13 @@ const DropdownMenu = (props: DropdownMenuProps) => {
         }
     };
 
+    const handleMenuBodyScroll = (e: React.UIEvent<HTMLDivElement>) => {
+        const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+        if (scrollHeight - scrollTop === clientHeight) {
+            onScrollToBottom();
+        }
+    };
+
     useEffect(() => {
         const filteredOptions = getOptionsFromBaseDropdownItems(items);
         setOptions(filteredOptions);
@@ -105,7 +112,7 @@ const DropdownMenu = (props: DropdownMenuProps) => {
                 subtext={subtext}
                 customHeader={customHeader}
             />
-            <StyledDropdownMenuBody>
+            <StyledDropdownMenuBody onScroll={handleMenuBodyScroll}>
                 <DropdownSearchBox
                     searchable={searchable}
                     searchPlaceholder={searchPlaceholder}

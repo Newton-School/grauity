@@ -95,9 +95,7 @@ const defaultArgs: DropdownMenuProps = {
     clearAllButtonText: 'Clear All',
     applyButtonText: 'Apply',
     onClearAll: () => {},
-    onApply: (items) => {
-        console.log(items);
-    },
+    onApply: () => {},
     onScrollToBottom: () => {},
     className: '',
     styles: {},
