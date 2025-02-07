@@ -59,6 +59,7 @@ export const StyledDropdownMenuBody = styled.div`
     overflow: auto;
     position: relative;
 `;
+
 export const StyledDropdownMenuSearchBox = styled.div`
     display: flex;
     padding: var(--spacing-sp-5, 8px) 0px var(--spacing-sp-3, 4px) 0px;
@@ -69,6 +70,28 @@ export const StyledDropdownMenuSearchBox = styled.div`
     position: sticky;
     top: 0;
     background: var(--bg-subtle-primary-default, #fff);
+`;
+
+export const StyledDropdownMenuSubHeader = styled.div`
+    display: flex;
+    padding: 8px 4px;
+    align-items: center;
+    gap: 4px;
+    align-self: stretch;
+    color: var(--text-emphasis-secondary-default, #5b6271);
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 550;
+    line-height: 12px;
+    letter-spacing: 2px;
+`;
+
+export const StyledDropdownMenuDivider = styled.div`
+    height: 1px;
+    margin: 8px 4px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--border-subtle-primary-default, #e1e5ea);
 `;
 
 export const StyledDropdownMenuFooter = styled.div`

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import DropdownMenuFooter from './components/DropdownMenuFooter';
 import DropdownMenuHeader from './components/DropdownMenuHeader';
+import DropdownMenuSubHeader from './components/DropdownMenuSubHeader';
 import DropdownSearchBox from './components/DropdownSearchBox';
 import {
     StyledDropdownMenu,
     StyledDropdownMenuBody,
+    StyledDropdownMenuDivider,
 } from './DropdownMenu.styles';
-import { BaseItemOptionProps, DropdownMenuProps } from './types';
+import { BaseItemOptionProps, BaseItemType, DropdownMenuProps } from './types';
 import { getOptionsFromBaseDropdownItems } from './utils';
 
 const DropdownMenu = (props: DropdownMenuProps) => {
@@ -57,6 +59,22 @@ const DropdownMenu = (props: DropdownMenuProps) => {
                     searchIcon={searchIcon}
                     onSearchInputChange={onSearchInputChange}
                 />
+                {items.map((item) => {
+                    if (item.type === BaseItemType.SUB_HEADER) {
+                        return (
+                            <DropdownMenuSubHeader
+                                key={`${item.type}`}
+                                {...item}
+                            />
+                        );
+                    }
+                    if (item.type === BaseItemType.DIVIDER) {
+                        return (
+                            <StyledDropdownMenuDivider key={`${item.type}`} />
+                        );
+                    }
+                    return null;
+                })}
             </StyledDropdownMenuBody>
             <DropdownMenuFooter
                 multiple={multiple}
