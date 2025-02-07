@@ -39,7 +39,9 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
                 onClick(value);
             }}
         >
-            {leftIcon && <Icon name={leftIcon} color="currentColor" />}
+            {leftIcon && (
+                <Icon name={leftIcon} color="currentColor" size="20" />
+            )}
             <StyledDropdownMenuOptionContent>
                 <StyledDropdownMenuOptionLabel $disabled={disabled}>
                     {label}
@@ -49,15 +51,16 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
                 </StyledDropdownMenuOptionDescription>
             </StyledDropdownMenuOptionContent>
             {rightIcon && !multiple && !selected && (
-                <Icon name={rightIcon} color="currentColor" />
+                <Icon name={rightIcon} color="currentColor" size="20" />
             )}
             {!multiple && selected && (
-                <Icon name="check" color="currentColor" />
+                <Icon name="check" color="currentColor" size="20" />
             )}
             {multiple && (
                 <Icon
                     name={selected ? 'check-square-filled' : 'square'}
                     color="currentColor"
+                    size="20"
                 />
             )}
         </StyledDropdownMenuOption>

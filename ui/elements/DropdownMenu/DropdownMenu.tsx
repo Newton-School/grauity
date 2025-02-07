@@ -46,17 +46,6 @@ const DropdownMenu = (props: DropdownMenuProps) => {
         []
     );
 
-    const handleClickOption = (value: string | number) => {
-        if (multiple) {
-            const newSelectedOptions = selectedOptions.includes(value)
-                ? selectedOptions.filter((option) => option !== value)
-                : [...selectedOptions, value];
-            setSelectedOptions(newSelectedOptions);
-        } else {
-            setSelectedOptions([value]);
-        }
-    };
-
     const handleClearAll = () => {
         setSelectedOptions([]);
         onClearAll();
@@ -83,6 +72,20 @@ const DropdownMenu = (props: DropdownMenuProps) => {
         }
     };
 
+    const handleClickOption = (value: string | number) => {
+        if (multiple) {
+            const newSelectedOptions = selectedOptions.includes(value)
+                ? selectedOptions.filter((option) => option !== value)
+                : [...selectedOptions, value];
+            setSelectedOptions(newSelectedOptions);
+        } else {
+            setSelectedOptions([value]);
+            if (!showActionButtons) {
+                onApply(options.find((option) => option.value === value));
+            }
+        }
+    };
+
     useEffect(() => {
         const filteredOptions = getOptionsFromBaseDropdownItems(items);
         setOptions(filteredOptions);
@@ -95,12 +98,6 @@ const DropdownMenu = (props: DropdownMenuProps) => {
             setSelectedOptions(selectedValues.slice(0, 1));
         }
     }, [selectedValues]);
-
-    useEffect(() => {
-        if (!multiple && selectedOptions.length > 0 && !showActionButtons) {
-            handleApply();
-        }
-    }, [selectedOptions]);
 
     useClickAway(dropdownMenuRef, () => {
         if (multiple && !showActionButtons) {

@@ -107,3 +107,55 @@ export const Component = Template.bind({});
 Component.args = {
     ...defaultArgs,
 };
+
+// Single Select Dropdown Menu
+const singleSelectArgs: DropdownMenuProps = {
+    showHeader: true,
+    title: 'Select',
+    subtext: 'Click an option to select',
+    multiple: false,
+    searchable: true,
+    items: Array.from({ length: 20 }, (_, i) => ({
+        type: BaseItemType.OPTION,
+        label: `Option ${i + 1}`,
+        value: `option${i + 1}`,
+    })),
+    selectedValues: [],
+};
+
+export const SingleSelect = Template.bind({});
+SingleSelect.args = {
+    ...singleSelectArgs,
+};
+
+export const SingleSelectWithApplyButton = Template.bind({});
+SingleSelectWithApplyButton.args = {
+    ...singleSelectArgs,
+    showActionButtons: true,
+};
+
+// Multiple Select Dropdown Menu
+const multipleSelectArgs: DropdownMenuProps = {
+    showHeader: true,
+    title: 'Select',
+    subtext: 'Click an option to select',
+    multiple: true,
+    searchable: true,
+    items: Array.from({ length: 20 }, (_, i) => ({
+        type: BaseItemType.OPTION,
+        label: `Option ${i + 1}`,
+        value: `option${i + 1}`,
+    })),
+    selectedValues: [],
+};
+
+export const MultipleSelect = Template.bind({});
+MultipleSelect.args = {
+    ...multipleSelectArgs,
+};
+
+export const MultipleSelectWithApplyButton = Template.bind({});
+MultipleSelectWithApplyButton.args = {
+    ...multipleSelectArgs,
+    showActionButtons: true,
+};
