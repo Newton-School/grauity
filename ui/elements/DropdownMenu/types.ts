@@ -1,20 +1,20 @@
 import React from 'react';
 import { grauityIconName } from 'ui/core';
 
-enum BaseItemType {
+export enum BaseItemType {
     SUB_HEADER = 'subheader',
     DIVIDER = 'divider',
     OPTION = 'option',
 }
 
-type BaseItemSubHeaderProps = {
+export type BaseItemSubHeaderProps = {
     type: BaseItemType.SUB_HEADER;
     title: string;
 };
-type BaseItemDividerProps = {
+export type BaseItemDividerProps = {
     type: BaseItemType.DIVIDER;
 };
-type BaseItemOptionProps = {
+export type BaseItemOptionProps = {
     type: BaseItemType.OPTION;
     label: string;
     description?: string;
@@ -23,7 +23,7 @@ type BaseItemOptionProps = {
     disabled?: boolean;
 };
 
-type BaseItemProps =
+export type BaseItemProps =
     | BaseItemSubHeaderProps
     | BaseItemDividerProps
     | BaseItemOptionProps;
