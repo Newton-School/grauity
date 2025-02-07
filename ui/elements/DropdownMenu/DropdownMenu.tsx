@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import DropdownMenuFooter from './components/DropdownMenuFooter';
 import DropdownMenuHeader from './components/DropdownMenuHeader';
+import DropdownMenuOption from './components/DropdownMenuOption';
 import DropdownMenuSubHeader from './components/DropdownMenuSubHeader';
 import DropdownSearchBox from './components/DropdownSearchBox';
 import {
@@ -61,17 +62,13 @@ const DropdownMenu = (props: DropdownMenuProps) => {
                 />
                 {items.map((item) => {
                     if (item.type === BaseItemType.SUB_HEADER) {
-                        return (
-                            <DropdownMenuSubHeader
-                                key={`${item.type}`}
-                                {...item}
-                            />
-                        );
+                        return <DropdownMenuSubHeader {...item} />;
                     }
                     if (item.type === BaseItemType.DIVIDER) {
-                        return (
-                            <StyledDropdownMenuDivider key={`${item.type}`} />
-                        );
+                        return <StyledDropdownMenuDivider />;
+                    }
+                    if (item.type === BaseItemType.OPTION) {
+                        return <DropdownMenuOption {...item} />;
                     }
                     return null;
                 })}

@@ -37,7 +37,6 @@ const defaultArgs: DropdownMenuProps = {
             label: 'Medium',
             description: 'Please write your description here',
             leftIcon: 'check-circle',
-            rightIcon: 'check-circle',
         },
         {
             type: BaseItemType.DIVIDER,
@@ -45,7 +44,6 @@ const defaultArgs: DropdownMenuProps = {
         {
             type: BaseItemType.OPTION,
             label: 'Hard',
-            description: 'Please write your description here',
             leftIcon: 'check-circle',
             rightIcon: 'check-circle',
         },
@@ -54,7 +52,34 @@ const defaultArgs: DropdownMenuProps = {
             label: 'Impossible',
             description: 'Please write your description here',
             leftIcon: 'check-circle',
-            rightIcon: 'check-circle',
+            disabled: true,
+        },
+        {
+            type: BaseItemType.DIVIDER,
+        },
+        {
+            type: BaseItemType.SUB_HEADER,
+            title: 'OTHERS',
+        },
+        {
+            type: BaseItemType.OPTION,
+            label: 'Option 1',
+            leftIcon: 'check-circle',
+        },
+        {
+            type: BaseItemType.OPTION,
+            label: 'Option 2',
+            leftIcon: 'check-circle',
+        },
+        {
+            type: BaseItemType.OPTION,
+            label: 'Option 3',
+            leftIcon: 'check-circle',
+        },
+        {
+            type: BaseItemType.OPTION,
+            label: 'Option 4',
+            leftIcon: 'check-circle',
         },
     ],
     showActionButtons: false,

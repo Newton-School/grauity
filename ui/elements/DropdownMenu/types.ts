@@ -1,6 +1,8 @@
 import React from 'react';
 import { grauityIconName } from 'ui/core';
 
+import { StyledDivProps } from '../../../common/types';
+
 export enum BaseItemType {
     SUB_HEADER = 'subheader',
     DIVIDER = 'divider',
@@ -171,4 +173,8 @@ export interface DropdownMenuProps {
      * @default {}
      */
     styles?: React.CSSProperties;
+}
+
+export interface StyledDropdownMenuOptionProps extends StyledDivProps {
+    $disabled?: boolean;
 }
