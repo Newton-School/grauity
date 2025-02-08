@@ -181,6 +181,28 @@ export interface DropdownMenuProps {
      * @default []
      */
     selectedValues?: (string | number)[];
+
+    /**
+     * The trigger element for the dropdown menu.
+     * - If the trigger element is not provided, the dropdown menu will be always visible.
+     * - If the trigger element is provided, initially the dropdown menu will be hidden.
+     * - If the trigger element is provided, the dropdown menu will be shown when the trigger element is clicked.
+     * @default null
+     */
+    trigger?: React.ReactNode;
+
+    /**
+     * The width of the dropdown menu.
+     * - If width is not provided, the width will be set to 300px.
+     * - If width is provided, the width will be set to the provided value.
+     * - If the width is 100%, the width will be equal to the width of the trigger element or parent element if trigger is not given.
+     * @default '300px'
+     */
+    width?: string;
+}
+
+export interface StyledDropdownMenuProps extends StyledDivProps {
+    $width: string;
 }
 
 export interface StyledDropdownMenuOptionDescriptionProps

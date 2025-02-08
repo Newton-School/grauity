@@ -2,12 +2,20 @@ import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
 import { ANIMATION_DURATION_IN_MILLISECONDS } from './constants';
-import { StyledDropdownMenuOptionDescriptionProps } from './types';
+import {
+    StyledDropdownMenuOptionDescriptionProps,
+    StyledDropdownMenuProps,
+} from './types';
 
-export const StyledDropdownMenu = styled(motion.div)`
+export const StyledTrigger = styled.div`
+    width: fit-content;
+    height: fit-content;
+`;
+
+export const StyledDropdownMenu = styled(motion.div)<StyledDropdownMenuProps>`
     box-sizing: border-box;
     display: flex;
-    width: 300px;
+    width: ${({ $width }) => $width};
     height: 500px;
     padding: 8px 0;
     font-family: var(--font-family);

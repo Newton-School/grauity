@@ -2,7 +2,6 @@ import React from 'react';
 import Button from 'ui/elements/Button';
 
 import { StyledDropdownMenuFooter } from '../DropdownMenu.styles';
-import { BaseItemOptionProps } from '../types';
 
 interface DropdownMenuFooterProps {
     multiple: boolean;
@@ -11,7 +10,7 @@ interface DropdownMenuFooterProps {
     clearAllButtonText: string;
     applyButtonText: string;
     onClearAll: () => void;
-    onApply: (items: BaseItemOptionProps[] | BaseItemOptionProps) => void;
+    onApply: () => void;
 }
 
 const DropdownMenuFooter = ({
@@ -29,7 +28,7 @@ const DropdownMenuFooter = ({
 
     return (
         <StyledDropdownMenuFooter>
-            <Button size="small" variant="primary" onClick={() => onApply([])}>
+            <Button size="small" variant="primary" onClick={() => onApply()}>
                 {applyButtonText}
             </Button>
             {showClearAllButton && multiple && (

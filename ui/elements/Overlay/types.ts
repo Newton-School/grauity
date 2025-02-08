@@ -52,6 +52,15 @@ export interface OverlayProps {
      * Additional className to be passed to the Overlay
      */
     className?: string;
+
+    /**
+     * The custom position of the overlay
+     * @default { top: 0, left: 0 }
+     */
+    position?: {
+        top?: number;
+        left?: number;
+    };
 }
 
 export interface StyledOverlayProps extends StyledDivProps {
@@ -59,4 +68,9 @@ export interface StyledOverlayProps extends StyledDivProps {
     $shouldBlurOverlay?: boolean;
     $overlayColor?: string;
     $shouldCenterContent?: boolean;
+}
+
+export interface StyledOverlayContentProps extends StyledDivProps {
+    $top: number;
+    $left: number;
 }
