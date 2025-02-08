@@ -109,6 +109,7 @@ export const StyledDropdownMenuOption = styled.button`
     outline: none;
     border: none;
     background: none;
+    border-radius: 8px;
 
     ${({ disabled }) =>
         disabled &&
@@ -117,9 +118,12 @@ export const StyledDropdownMenuOption = styled.button`
             color: var(--text-emphasis-primary-disabled, #8c95a6);
         `}
 
+    &:hover {
+        background: var(--bg-subtle-primary-hover, #f6f7f9);
+    }
+
     &:focus-visible {
         z-index: 1;
-        border-radius: 8px;
         outline: 3px solid var(--border-subtle-brand-default, #61a8ff);
     }
 `;

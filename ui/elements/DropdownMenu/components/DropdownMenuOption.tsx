@@ -49,16 +49,24 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
                     {description}
                 </StyledDropdownMenuOptionDescription>
             </StyledDropdownMenuOptionContent>
-            {rightIcon && !multiple && !selected && (
+            {rightIcon && (
                 <Icon name={rightIcon} color="currentColor" size="20" />
             )}
             {!multiple && selected && (
-                <Icon name="check" color="currentColor" size="20" />
+                <Icon
+                    name="check"
+                    color="var(--text-emphasis-brand-default, #0673F9)"
+                    size="20"
+                />
             )}
             {multiple && (
                 <Icon
                     name={selected ? 'check-square-filled' : 'square'}
-                    color="currentColor"
+                    color={
+                        selected
+                            ? 'var(--text-emphasis-brand-default, #0673F9)'
+                            : 'currentColor'
+                    }
                     size="20"
                 />
             )}
