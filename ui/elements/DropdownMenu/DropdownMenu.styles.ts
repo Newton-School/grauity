@@ -121,6 +121,7 @@ export const StyledDropdownMenuOption = styled.button`
     background: none;
     border-radius: 8px;
     transition: outline ${ANIMATION_DURATION_IN_MILLISECONDS}ms ease-out;
+    transition: background ${ANIMATION_DURATION_IN_MILLISECONDS}ms ease-out;
 
     ${({ disabled }) =>
         disabled &&
