@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import DropdownMenu, { DropdownMenuProps } from 'ui/elements/DropdownMenu';
-import {
+import DropdownMenu, {
     BaseItemOptionProps,
     BaseItemType,
-} from 'ui/elements/DropdownMenu/types';
+    DropdownMenuProps,
+} from 'ui/elements/DropdownMenu';
 import { NSButton } from 'ui/index';
 
 export default {

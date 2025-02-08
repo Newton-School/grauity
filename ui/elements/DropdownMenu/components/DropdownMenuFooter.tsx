@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'ui/elements/Button';
+import { NSButton } from 'ui/index';
 
 import { StyledDropdownMenuFooter } from '../DropdownMenu.styles';
 
@@ -28,17 +28,17 @@ const DropdownMenuFooter = ({
 
     return (
         <StyledDropdownMenuFooter>
-            <Button size="small" variant="primary" onClick={() => onApply()}>
+            <NSButton size="small" variant="primary" onClick={() => onApply()}>
                 {applyButtonText}
-            </Button>
+            </NSButton>
             {showClearAllButton && multiple && (
-                <Button
+                <NSButton
                     size="small"
                     variant="secondary-outlined"
                     onClick={onClearAll}
                 >
                     {clearAllButtonText}
-                </Button>
+                </NSButton>
             )}
         </StyledDropdownMenuFooter>
     );
