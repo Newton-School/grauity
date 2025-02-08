@@ -1,8 +1,10 @@
+import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
+import { ANIMATION_DURATION_IN_MILLISECONDS } from './constants';
 import { StyledDropdownMenuOptionDescriptionProps } from './types';
 
-export const StyledDropdownMenu = styled.div`
+export const StyledDropdownMenu = styled(motion.div)`
     box-sizing: border-box;
     display: flex;
     width: 300px;
@@ -110,6 +112,7 @@ export const StyledDropdownMenuOption = styled.button`
     border: none;
     background: none;
     border-radius: 8px;
+    transition: outline ${ANIMATION_DURATION_IN_MILLISECONDS}ms ease-out;
 
     ${({ disabled }) =>
         disabled &&

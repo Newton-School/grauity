@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import { debounce } from 'lodash';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -7,6 +8,7 @@ import DropdownMenuHeader from './components/DropdownMenuHeader';
 import DropdownMenuOption from './components/DropdownMenuOption';
 import DropdownMenuSubHeader from './components/DropdownMenuSubHeader';
 import DropdownSearchBox from './components/DropdownSearchBox';
+import { ANIMATION_DURATION_IN_MILLISECONDS } from './constants';
 import {
     StyledDropdownMenu,
     StyledDropdownMenuBody,
@@ -39,6 +41,18 @@ const DropdownMenu = (props: DropdownMenuProps) => {
         styles = {},
         selectedValues = [],
     } = props;
+
+    const motionProps = {
+        initial: 'hidden',
+        animate: 'visible',
+        exit: 'exit',
+        variants: {
+            hidden: { y: '-8px', opacity: 0 },
+            visible: { y: '8px', opacity: 1 },
+            exit: { y: '-8px', opacity: 0 },
+        },
+        transition: { duration: ANIMATION_DURATION_IN_MILLISECONDS / 1000 },
+    };
 
     const dropdownMenuRef = useRef(null);
 
@@ -133,67 +147,70 @@ const DropdownMenu = (props: DropdownMenuProps) => {
     });
 
     return (
-        <StyledDropdownMenu
-            className={className}
-            style={styles}
-            ref={dropdownMenuRef}
-        >
-            <DropdownMenuHeader
-                showHeader={showHeader}
-                overline={overline}
-                title={title}
-                subtext={subtext}
-                customHeader={customHeader}
-            />
-            <StyledDropdownMenuBody onScroll={handleMenuBodyScroll}>
-                <DropdownSearchBox
-                    searchable={searchable}
-                    searchPlaceholder={searchPlaceholder}
-                    searchIcon={searchIcon}
-                    onSearchInputChange={handleDebouncedSearchInputChange}
+        <AnimatePresence>
+            <StyledDropdownMenu
+                className={className}
+                style={styles}
+                ref={dropdownMenuRef}
+                {...motionProps}
+            >
+                <DropdownMenuHeader
+                    showHeader={showHeader}
+                    overline={overline}
+                    title={title}
+                    subtext={subtext}
+                    customHeader={customHeader}
                 />
-                {Array.isArray(searchedOptions) &&
-                    searchedOptions.map((item) => (
-                        <DropdownMenuOption
-                            multiple={multiple}
-                            selected={selectedOptions.includes(item.value)}
-                            onClick={handleClickOption}
-                            {...item}
-                        />
-                    ))}
-                {!Array.isArray(searchedOptions) &&
-                    items.map((item) => {
-                        if (item.type === BaseItemType.SUB_HEADER) {
-                            return <DropdownMenuSubHeader {...item} />;
-                        }
-                        if (item.type === BaseItemType.DIVIDER) {
-                            return <StyledDropdownMenuDivider />;
-                        }
-                        if (item.type === BaseItemType.OPTION) {
-                            return (
-                                <DropdownMenuOption
-                                    multiple={multiple}
-                                    selected={selectedOptions.includes(
-                                        item.value
-                                    )}
-                                    onClick={handleClickOption}
-                                    {...item}
-                                />
-                            );
-                        }
-                        return null;
-                    })}
-            </StyledDropdownMenuBody>
-            <DropdownMenuFooter
-                multiple={multiple}
-                showActionButtons={showActionButtons}
-                showClearAllButton={showClearAllButton}
-                clearAllButtonText={clearAllButtonText}
-                applyButtonText={applyButtonText}
-                onClearAll={handleClearAll}
-                onApply={handleApply}
-            />
-        </StyledDropdownMenu>
+                <StyledDropdownMenuBody onScroll={handleMenuBodyScroll}>
+                    <DropdownSearchBox
+                        searchable={searchable}
+                        searchPlaceholder={searchPlaceholder}
+                        searchIcon={searchIcon}
+                        onSearchInputChange={handleDebouncedSearchInputChange}
+                    />
+                    {Array.isArray(searchedOptions) &&
+                        searchedOptions.map((item) => (
+                            <DropdownMenuOption
+                                multiple={multiple}
+                                selected={selectedOptions.includes(item.value)}
+                                onClick={handleClickOption}
+                                {...item}
+                            />
+                        ))}
+                    {!Array.isArray(searchedOptions) &&
+                        items.map((item) => {
+                            if (item.type === BaseItemType.SUB_HEADER) {
+                                return <DropdownMenuSubHeader {...item} />;
+                            }
+                            if (item.type === BaseItemType.DIVIDER) {
+                                return <StyledDropdownMenuDivider />;
+                            }
+                            if (item.type === BaseItemType.OPTION) {
+                                return (
+                                    <DropdownMenuOption
+                                        multiple={multiple}
+                                        selected={selectedOptions.includes(
+                                            item.value
+                                        )}
+                                        onClick={handleClickOption}
+                                        {...item}
+                                    />
+                                );
+                            }
+                            return null;
+                        })}
+                </StyledDropdownMenuBody>
+                <DropdownMenuFooter
+                    multiple={multiple}
+                    showActionButtons={showActionButtons}
+                    showClearAllButton={showClearAllButton}
+                    clearAllButtonText={clearAllButtonText}
+                    applyButtonText={applyButtonText}
+                    onClearAll={handleClearAll}
+                    onApply={handleApply}
+                />
+            </StyledDropdownMenu>
+        </AnimatePresence>
     );
 };
 
