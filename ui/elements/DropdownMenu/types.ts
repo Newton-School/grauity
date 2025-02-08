@@ -183,6 +183,7 @@ export interface DropdownMenuProps {
     selectedValues?: (string | number)[];
 }
 
-export interface StyledDropdownMenuOptionProps extends StyledDivProps {
+export interface StyledDropdownMenuOptionDescriptionProps
+    extends StyledDivProps {
     $disabled?: boolean;
 }

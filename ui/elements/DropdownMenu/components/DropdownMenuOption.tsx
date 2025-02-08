@@ -30,8 +30,7 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
 
     return (
         <StyledDropdownMenuOption
-            $disabled={disabled}
-            tabIndex={disabled ? -1 : 0}
+            disabled={disabled}
             onClick={() => {
                 if (disabled) {
                     return;
@@ -43,7 +42,7 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
                 <Icon name={leftIcon} color="currentColor" size="20" />
             )}
             <StyledDropdownMenuOptionContent>
-                <StyledDropdownMenuOptionLabel $disabled={disabled}>
+                <StyledDropdownMenuOptionLabel>
                     {label}
                 </StyledDropdownMenuOptionLabel>
                 <StyledDropdownMenuOptionDescription $disabled={disabled}>

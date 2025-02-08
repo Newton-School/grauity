@@ -99,7 +99,7 @@ const DropdownMenu = (props: DropdownMenuProps) => {
                     searchValue,
                     options
                 );
-                if (filteredOptions.length > 0) {
+                if (filteredOptions.length > 0 || searchValue) {
                     setSearchedOptions(filteredOptions);
                 } else {
                     setSearchedOptions(null);

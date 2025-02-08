@@ -1,13 +1,12 @@
 import styled, { css } from 'styled-components';
 
-import { StyledDropdownMenuOptionProps } from './types';
+import { StyledDropdownMenuOptionDescriptionProps } from './types';
 
 export const StyledDropdownMenu = styled.div`
     box-sizing: border-box;
     display: flex;
     width: 300px;
-    min-height: 400px;
-    max-height: 500px;
+    height: 500px;
     padding: 8px 0;
     font-family: var(--font-family);
     flex-direction: column;
@@ -98,7 +97,7 @@ export const StyledDropdownMenuDivider = styled.div`
     background: var(--border-subtle-primary-default, #e1e5ea);
 `;
 
-export const StyledDropdownMenuOption = styled.div<StyledDropdownMenuOptionProps>`
+export const StyledDropdownMenuOption = styled.button`
     padding: 8px;
     display: flex;
     justify-content: space-between;
@@ -107,15 +106,19 @@ export const StyledDropdownMenuOption = styled.div<StyledDropdownMenuOptionProps
     align-self: stretch;
     cursor: pointer;
     color: var(--text-emphasis-primary-default, #16191d);
+    outline: none;
+    border: none;
+    background: none;
 
-    ${({ $disabled }) =>
-        $disabled &&
+    ${({ disabled }) =>
+        disabled &&
         css`
             cursor: not-allowed;
             color: var(--text-emphasis-primary-disabled, #8c95a6);
         `}
 
     &:focus-visible {
+        z-index: 1;
         border-radius: 8px;
         outline: 3px solid var(--border-subtle-brand-default, #61a8ff);
     }
@@ -127,9 +130,8 @@ export const StyledDropdownMenuOptionContent = styled.div`
     flex-grow: 1;
     overflow: hidden;
 `;
-export const StyledDropdownMenuOptionLabel = styled.div<StyledDropdownMenuOptionProps>`
+export const StyledDropdownMenuOptionLabel = styled.div`
     text-align: left;
-    color: var(--text-emphasis-primary-default, #16191d);
     font-size: 14px;
     font-style: normal;
     font-weight: 450;
@@ -139,14 +141,8 @@ export const StyledDropdownMenuOptionLabel = styled.div<StyledDropdownMenuOption
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-
-    ${({ $disabled }) =>
-        $disabled &&
-        css`
-            color: var(--text-emphasis-primary-disabled, #8c95a6) !important;
-        `}
 `;
-export const StyledDropdownMenuOptionDescription = styled.div<StyledDropdownMenuOptionProps>`
+export const StyledDropdownMenuOptionDescription = styled.div<StyledDropdownMenuOptionDescriptionProps>`
     text-align: left;
     color: var(--text-emphasis-secondary-default, #5b6271);
     font-size: 12px;
