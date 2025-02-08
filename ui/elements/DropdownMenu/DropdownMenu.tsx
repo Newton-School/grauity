@@ -1,8 +1,8 @@
 /* eslint-disable indent */
 import { AnimatePresence } from 'framer-motion';
 import React, { useRef, useState } from 'react';
-import { NSOverlay } from 'ui/index';
 
+import Overlay from '../Overlay';
 import DropdownMenuWithoutTrigger from './components/DropdownMenuWithoutTrigger';
 import { StyledTrigger } from './DropdownMenu.styles';
 import { DropdownMenuProps } from './types';
@@ -24,7 +24,7 @@ const DropdownMenu = (props: DropdownMenuProps) => {
                 {trigger}
             </StyledTrigger>
             {trigger && isOpen && (
-                <NSOverlay
+                <Overlay
                     position={{
                         top: triggerRef.current?.getBoundingClientRect().bottom,
                         left: triggerRef.current?.getBoundingClientRect().left,
@@ -46,7 +46,7 @@ const DropdownMenu = (props: DropdownMenuProps) => {
                         }
                         setIsOpen={setIsOpen}
                     />
-                </NSOverlay>
+                </Overlay>
             )}
             {!trigger && (
                 <DropdownMenuWithoutTrigger {...props} setIsOpen={setIsOpen} />

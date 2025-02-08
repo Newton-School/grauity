@@ -226,10 +226,10 @@ export {
 
 // NSDropdownMenu
 export {
-    BaseItemDividerProps as DropdownMenuBaseItemDividerProps,
-    BaseItemOptionProps as DropdownMenuBaseItemOptionProps,
-    BaseItemProps as DropdownMenuBaseItemProps,
-    BaseItemSubHeaderProps as DropdownMenuBaseItemSubHeaderProps,
+    type BaseItemDividerProps as DropdownMenuBaseItemDividerProps,
+    type BaseItemOptionProps as DropdownMenuBaseItemOptionProps,
+    type BaseItemProps as DropdownMenuBaseItemProps,
+    type BaseItemSubHeaderProps as DropdownMenuBaseItemSubHeaderProps,
     BaseItemType as DropdownMenuBaseItemType,
     type DropdownMenuProps,
     default as NSDropdownMenu,

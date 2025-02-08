@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { grauityIconName } from 'ui/core';
-import { NSIcon, NSTextField } from 'ui/index';
 
+import TextField from '../../Form/TextField';
+import { Icon } from '../../Icon';
 import { StyledDropdownMenuSearchBox } from '../DropdownMenu.styles';
 
 interface DropdownSearchBoxProps {
@@ -29,13 +30,13 @@ const DropdownSearchBox = ({
 
     return (
         <StyledDropdownMenuSearchBox role="searchbox">
-            <NSTextField
+            <TextField
                 name="dropdown-search-box"
                 value={searchValue}
                 onChange={(event) => setSearchValue(event.target.value)}
                 placeholder={searchPlaceholder}
                 adornments={{
-                    start: <NSIcon name={searchIcon} />,
+                    start: <Icon name={searchIcon} />,
                 }}
             />
         </StyledDropdownMenuSearchBox>

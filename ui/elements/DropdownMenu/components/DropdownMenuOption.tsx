@@ -1,6 +1,6 @@
 import React from 'react';
-import { NSIcon } from 'ui/index';
 
+import { Icon } from '../../Icon';
 import {
     StyledDropdownMenuOption,
     StyledDropdownMenuOptionContent,
@@ -41,7 +41,7 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
             }}
         >
             {leftIcon && (
-                <NSIcon name={leftIcon} color="currentColor" size="20" />
+                <Icon name={leftIcon} color="currentColor" size="20" />
             )}
             <StyledDropdownMenuOptionContent>
                 <StyledDropdownMenuOptionLabel>
@@ -52,17 +52,17 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
                 </StyledDropdownMenuOptionDescription>
             </StyledDropdownMenuOptionContent>
             {rightIcon && (
-                <NSIcon name={rightIcon} color="currentColor" size="20" />
+                <Icon name={rightIcon} color="currentColor" size="20" />
             )}
             {!multiple && selected && (
-                <NSIcon
+                <Icon
                     name="check"
                     color="var(--text-emphasis-brand-default, #0673F9)"
                     size="20"
                 />
             )}
             {multiple && (
-                <NSIcon
+                <Icon
                     name={selected ? 'check-square-filled' : 'square'}
                     color={
                         selected
