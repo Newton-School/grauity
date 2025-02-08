@@ -162,6 +162,7 @@ const DropdownMenuWithoutTrigger = (props: DropdownMenuWithoutTriggerProps) => {
             style={styles}
             ref={dropdownMenuRef}
             $width={width}
+            role="menu"
             {...motionProps}
         >
             <DropdownMenuHeader

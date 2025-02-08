@@ -15,7 +15,11 @@ const DropdownMenu = (props: DropdownMenuProps) => {
 
     return (
         <AnimatePresence>
-            <StyledTrigger ref={triggerRef} onClick={() => setIsOpen(!isOpen)}>
+            <StyledTrigger
+                ref={triggerRef}
+                onClick={() => setIsOpen(!isOpen)}
+                role="button"
+            >
                 {trigger}
             </StyledTrigger>
             {trigger && isOpen && (

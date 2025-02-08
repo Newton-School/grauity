@@ -22,7 +22,7 @@ const DropdownMenuHeader = ({
     customHeader,
 }: DropdownMenuHeaderProps) => {
     if (customHeader) {
-        return <>customHeader</>;
+        return <>{customHeader}</>;
     }
 
     if (!showHeader || (!title && !overline && !subtext)) {

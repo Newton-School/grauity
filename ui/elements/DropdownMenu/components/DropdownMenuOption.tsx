@@ -30,6 +30,8 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
 
     return (
         <StyledDropdownMenuOption
+            role="option"
+            aria-selected={selected}
             disabled={disabled}
             onClick={() => {
                 if (disabled) {
