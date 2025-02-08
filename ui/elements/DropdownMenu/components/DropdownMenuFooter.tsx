@@ -9,8 +9,8 @@ interface DropdownMenuFooterProps {
     showClearAllButton: boolean;
     clearAllButtonText: string;
     applyButtonText: string;
-    onClearAll: () => void;
-    onApply: () => void;
+    handleClearAll: () => void;
+    handleApply: () => void;
 }
 
 const DropdownMenuFooter = ({
@@ -19,8 +19,8 @@ const DropdownMenuFooter = ({
     showClearAllButton,
     clearAllButtonText,
     applyButtonText,
-    onClearAll,
-    onApply,
+    handleClearAll,
+    handleApply,
 }: DropdownMenuFooterProps) => {
     if (!showActionButtons) {
         return null;
@@ -28,14 +28,18 @@ const DropdownMenuFooter = ({
 
     return (
         <StyledDropdownMenuFooter>
-            <NSButton size="small" variant="primary" onClick={() => onApply()}>
+            <NSButton
+                size="small"
+                variant="primary"
+                onClick={() => handleApply()}
+            >
                 {applyButtonText}
             </NSButton>
             {showClearAllButton && multiple && (
                 <NSButton
                     size="small"
                     variant="secondary-outlined"
-                    onClick={onClearAll}
+                    onClick={handleClearAll}
                 >
                     {clearAllButtonText}
                 </NSButton>

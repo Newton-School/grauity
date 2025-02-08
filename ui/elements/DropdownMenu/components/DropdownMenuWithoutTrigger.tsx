@@ -227,8 +227,8 @@ const DropdownMenuWithoutTrigger = (props: DropdownMenuWithoutTriggerProps) => {
                 showClearAllButton={showClearAllButton}
                 clearAllButtonText={clearAllButtonText}
                 applyButtonText={applyButtonText}
-                onClearAll={handleClearAll}
-                onApply={handleApply}
+                handleClearAll={handleClearAll}
+                handleApply={handleApply}
             />
         </StyledDropdownMenu>
     );
