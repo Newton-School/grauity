@@ -12,6 +12,11 @@ export interface DropdownOption {
     label: string;
 }
 
+/**
+ * @deprecated This interface is deprecated and will be removed in future versions.
+ * - Use the `DropdownMenu` component instead.
+ * @see {@link https://grauity.newtonschool.co/?path=/docs/elements-dropdownmenu--docs}
+ */
 export interface MultiSelectDropdownProps {
     /**
      * Text to display when no option is selected.

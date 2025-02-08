@@ -25,6 +25,11 @@ import {
 } from './MultiSelectDropdown.styles';
 import { DropdownOption, MultiSelectDropdownProps } from './types';
 
+/**
+ * @deprecated This component is deprecated and will be removed in future releases.
+ * - Use the `DropdownMenu` component instead.
+ * @see {@link https://grauity.newtonschool.co/?path=/docs/elements-dropdownmenu--docs}
+ */
 const MultiSelectDropdown = forwardRef<
     HTMLSelectElement,
     MultiSelectDropdownProps
