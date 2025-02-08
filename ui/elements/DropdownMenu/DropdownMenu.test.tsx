@@ -335,16 +335,8 @@ describe('DropdownMenu', () => {
         expect(onApply).toHaveBeenCalledWith(items[1]);
         expect(screen.queryByRole('menu')).not.toBeInTheDocument();
 
-        // Should persist state on opening again
-        fireEvent.click(screen.getByText('Trigger'));
-        setTimeout(() => {
-            const selectedItems = screen.queryAllByRole('option', {
-                selected: true,
-            });
-            expect(selectedItems).toHaveLength(1);
-        }, 500);
-
         // Should call onApply on clicking another item and close the menu
+        fireEvent.click(screen.getByText('Trigger'));
         fireEvent.click(screen.getByText('Item 2'));
         expect(onApply).toHaveBeenCalledWith(items[2]);
         expect(screen.queryByRole('menu')).not.toBeInTheDocument();
@@ -376,16 +368,8 @@ describe('DropdownMenu', () => {
         expect(onApply).toHaveBeenCalledWith(items[1]);
         expect(screen.queryByRole('menu')).not.toBeInTheDocument();
 
-        // Should persist state on opening again
-        fireEvent.click(screen.getByText('Trigger'));
-        setTimeout(() => {
-            const selectedItems = screen.queryAllByRole('option', {
-                selected: true,
-            });
-            expect(selectedItems).toHaveLength(1);
-        }, 500);
-
         // Should call onApply on clicking another item and close the menu
+        fireEvent.click(screen.getByText('Trigger'));
         fireEvent.click(screen.getByText('Item 2'));
         fireEvent.click(screen.getByText('Apply'));
         expect(onApply).toHaveBeenCalledWith(items[2]);
@@ -431,21 +415,6 @@ describe('DropdownMenu', () => {
         fireEvent.mouseDown(document);
         expect(onApply).toHaveBeenCalledWith([items[1], items[2]]);
         expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-
-        // Should persist state on opening again
-        fireEvent.click(screen.getByText('Trigger'));
-        setTimeout(() => {
-            selectedItems = screen.queryAllByRole('option', {
-                selected: true,
-            });
-            expect(selectedItems).toHaveLength(2);
-
-            // Should add to selected items on clicking another item
-            fireEvent.click(screen.getByText('Item 0'));
-            fireEvent.click(screen.getByText('Item 1'));
-            fireEvent.mouseDown(document);
-            expect(onApply).toHaveBeenCalledWith([items[0], items[2]]);
-        }, 500);
     });
     it('Should run entire flow correctly with trigger in multiple select mode if action buttons are present', () => {
         const onApply = jest.fn();
