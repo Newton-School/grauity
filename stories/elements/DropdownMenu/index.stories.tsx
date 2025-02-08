@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import DropdownMenu, {
-    BaseItemOptionProps,
-    BaseItemType,
+import {
+    DropdownMenuBaseItemOptionProps,
+    DropdownMenuBaseItemType,
     DropdownMenuProps,
-} from 'ui/elements/DropdownMenu';
-import { NSButton } from 'ui/index';
+    NSButton,
+    NSDropdownMenu,
+} from 'ui/index';
 
 export default {
     title: 'Elements/DropdownMenu',
-    component: DropdownMenu,
+    component: NSDropdownMenu,
 };
 
-const Template = (args: DropdownMenuProps) => <DropdownMenu {...args} />;
+const Template = (args: DropdownMenuProps) => <NSDropdownMenu {...args} />;
 
 const defaultArgs: DropdownMenuProps = {
     showHeader: true,
@@ -26,11 +27,11 @@ const defaultArgs: DropdownMenuProps = {
     multiple: false,
     items: [
         {
-            type: BaseItemType.SUB_HEADER,
+            type: DropdownMenuBaseItemType.SUB_HEADER,
             title: 'LEVELS',
         },
         {
-            type: BaseItemType.OPTION,
+            type: DropdownMenuBaseItemType.OPTION,
             label: 'Easy',
             value: 'easy',
             description: 'Please write your description here',
@@ -38,24 +39,24 @@ const defaultArgs: DropdownMenuProps = {
             rightIcon: 'check-circle',
         },
         {
-            type: BaseItemType.OPTION,
+            type: DropdownMenuBaseItemType.OPTION,
             label: 'Medium',
             value: 'medium',
             description: 'Please write your description here',
             leftIcon: 'check-circle',
         },
         {
-            type: BaseItemType.DIVIDER,
+            type: DropdownMenuBaseItemType.DIVIDER,
         },
         {
-            type: BaseItemType.OPTION,
+            type: DropdownMenuBaseItemType.OPTION,
             label: 'Hard',
             value: 'hard',
             leftIcon: 'check-circle',
             rightIcon: 'check-circle',
         },
         {
-            type: BaseItemType.OPTION,
+            type: DropdownMenuBaseItemType.OPTION,
             label: 'Impossible',
             value: 'impossible',
             description: 'Please write your description here',
@@ -63,32 +64,32 @@ const defaultArgs: DropdownMenuProps = {
             disabled: true,
         },
         {
-            type: BaseItemType.DIVIDER,
+            type: DropdownMenuBaseItemType.DIVIDER,
         },
         {
-            type: BaseItemType.SUB_HEADER,
+            type: DropdownMenuBaseItemType.SUB_HEADER,
             title: 'OTHERS',
         },
         {
-            type: BaseItemType.OPTION,
+            type: DropdownMenuBaseItemType.OPTION,
             label: 'Option 1',
             value: 'option1',
             leftIcon: 'check-circle',
         },
         {
-            type: BaseItemType.OPTION,
+            type: DropdownMenuBaseItemType.OPTION,
             label: 'Option 2',
             value: 'option2',
             leftIcon: 'check-circle',
         },
         {
-            type: BaseItemType.OPTION,
+            type: DropdownMenuBaseItemType.OPTION,
             label: 'Option 3',
             value: 'option3',
             leftIcon: 'check-circle',
         },
         {
-            type: BaseItemType.OPTION,
+            type: DropdownMenuBaseItemType.OPTION,
             label: 'Option 4',
             value: 'option4',
             leftIcon: 'check-circle',
@@ -117,20 +118,24 @@ Component.args = {
 // Example Tempate
 const ExampleTemplate = (args: DropdownMenuProps) => {
     const { multiple } = args;
-    const [selectedValues, setSelectedValues] = useState<BaseItemOptionProps[]>(
-        []
-    );
+    const [selectedValues, setSelectedValues] = useState<
+        DropdownMenuBaseItemOptionProps[]
+    >([]);
 
     return (
         <>
-            <DropdownMenu
+            <NSDropdownMenu
                 {...args}
                 selectedValues={selectedValues.map((value) => value.value)}
                 onApply={(values) => {
                     if (multiple) {
-                        setSelectedValues(values as BaseItemOptionProps[]);
+                        setSelectedValues(
+                            values as DropdownMenuBaseItemOptionProps[]
+                        );
                     } else {
-                        setSelectedValues([values as BaseItemOptionProps]);
+                        setSelectedValues([
+                            values as DropdownMenuBaseItemOptionProps,
+                        ]);
                     }
                 }}
             />
@@ -154,7 +159,7 @@ const singleSelectArgs: DropdownMenuProps = {
     multiple: false,
     searchable: true,
     items: Array.from({ length: 20 }, (_, i) => ({
-        type: BaseItemType.OPTION,
+        type: DropdownMenuBaseItemType.OPTION,
         label: `Option ${i + 1}`,
         value: `option${i + 1}`,
     })),
@@ -181,7 +186,7 @@ const multipleSelectArgs: DropdownMenuProps = {
     multiple: true,
     searchable: true,
     items: Array.from({ length: 20 }, (_, i) => ({
-        type: BaseItemType.OPTION,
+        type: DropdownMenuBaseItemType.OPTION,
         label: `Option ${i + 1}`,
         value: `option${i + 1}`,
     })),
