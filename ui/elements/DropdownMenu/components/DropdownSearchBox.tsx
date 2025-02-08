@@ -29,7 +29,7 @@ const DropdownSearchBox = ({
     }
 
     return (
-        <StyledDropdownMenuSearchBox>
+        <StyledDropdownMenuSearchBox role="searchbox">
             <TextField
                 name="dropdown-search-box"
                 value={searchValue}

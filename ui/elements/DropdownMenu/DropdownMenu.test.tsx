@@ -92,6 +92,62 @@ describe('DropdownMenu', () => {
         expect(screen.queryByText('Apply')).not.toBeInTheDocument();
     });
 
+    // Search Funnctionality
+    it('Should render the search input', () => {
+        render(<DropdownMenu {...defaultProps} searchable />);
+        expect(screen.getByRole('searchbox')).toBeInTheDocument();
+    });
+    it('Should call onSearchInputChange on typing in search input', () => {
+        const onSearchInputChange = jest.fn();
+        render(
+            <DropdownMenu
+                {...defaultProps}
+                searchable
+                onSearchInputChange={onSearchInputChange}
+            />
+        );
+
+        fireEvent.change(screen.getByRole('textbox'), {
+            target: { value: 'Search' },
+        });
+        setTimeout(() => {
+            expect(onSearchInputChange).toHaveBeenCalledWith('Search');
+        }, 1000);
+    });
+    it('Should run the default search functionality', async () => {
+        render(
+            <DropdownMenu
+                {...defaultProps}
+                searchable
+                items={getDummyOptions(3)}
+            />
+        );
+
+        // Should filter the items on typing in search input
+        fireEvent.change(screen.getByRole('textbox'), {
+            target: { value: 'Item 1' },
+        });
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                const options = screen.getAllByRole('option');
+                expect(options).toHaveLength(1);
+                expect(options[0]).toHaveTextContent('Item 1');
+                resolve(true);
+            }, 1000)
+        );
+
+        // Should show all items on clearing the search input
+        fireEvent.change(screen.getByRole('textbox'), {
+            target: { value: '' },
+        });
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                expect(screen.getAllByRole('option')).toHaveLength(3);
+                resolve(true);
+            }, 1000)
+        );
+    }, 3000);
+
     // Single Select Mode Flow
     it('Should run entire flow correctly in single select mode if no action buttons', () => {
         const onApply = jest.fn();
