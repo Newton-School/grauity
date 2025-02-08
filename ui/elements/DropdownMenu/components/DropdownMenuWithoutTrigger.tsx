@@ -191,14 +191,24 @@ const DropdownMenuWithoutTrigger = (props: DropdownMenuWithoutTriggerProps) => {
                 {!Array.isArray(searchedOptions) &&
                     items.map((item) => {
                         if (item.type === BaseItemType.SUB_HEADER) {
-                            return <DropdownMenuSubHeader {...item} />;
+                            return (
+                                <DropdownMenuSubHeader
+                                    key={`${item.type}-${item.title}`}
+                                    {...item}
+                                />
+                            );
                         }
                         if (item.type === BaseItemType.DIVIDER) {
-                            return <StyledDropdownMenuDivider />;
+                            return (
+                                <StyledDropdownMenuDivider
+                                    key={`${item.type}`}
+                                />
+                            );
                         }
                         if (item.type === BaseItemType.OPTION) {
                             return (
                                 <DropdownMenuOption
+                                    key={`${item.type}-${item.value}`}
                                     multiple={multiple}
                                     selected={selectedOptions.includes(
                                         item.value

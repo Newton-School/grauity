@@ -16,6 +16,7 @@ const DropdownMenu = (props: DropdownMenuProps) => {
     return (
         <AnimatePresence>
             <StyledTrigger
+                key="dropdown-menu-trigger"
                 ref={triggerRef}
                 onClick={() => setIsOpen(!isOpen)}
                 role="button"
