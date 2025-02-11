@@ -6,6 +6,7 @@ import Overlay from '../Overlay';
 import DropdownMenuWithoutTrigger from './components/DropdownMenuWithoutTrigger';
 import { StyledTrigger } from './DropdownMenu.styles';
 import { DropdownMenuProps } from './types';
+import { calculateDropdownMenuPosition } from './utils';
 
 const DropdownMenu = (props: DropdownMenuProps) => {
     const { trigger, width = '300px' } = props;
@@ -25,10 +26,7 @@ const DropdownMenu = (props: DropdownMenuProps) => {
             </StyledTrigger>
             {trigger && isOpen && (
                 <Overlay
-                    position={{
-                        top: triggerRef.current?.getBoundingClientRect().bottom,
-                        left: triggerRef.current?.getBoundingClientRect().left,
-                    }}
+                    position={calculateDropdownMenuPosition(triggerRef)}
                     shouldDisableScroll={isOpen}
                     onOverlayClick={() => {
                         setIsOpen(false);
