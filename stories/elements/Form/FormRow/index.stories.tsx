@@ -270,12 +270,9 @@ const Template = () => {
                 <NSFormRow widths="2fr 3fr">
                     <NSDropdownMenu
                         trigger={
-                            <NSDropdownTrigger
-                                name="hobby"
-                                value={
-                                    formData.profession || 'Select Profession'
-                                }
-                            />
+                            <NSDropdownTrigger>
+                                {formData.profession || 'Select Profession'}
+                            </NSDropdownTrigger>
                         }
                         items={PROFESSIONS.map((profession) => {
                             return {
@@ -294,10 +291,9 @@ const Template = () => {
                     <NSDropdownMenu
                         multiple
                         trigger={
-                            <NSDropdownTrigger
-                                name="hobbies"
-                                value="Select Hobbies"
-                            />
+                            <NSDropdownTrigger>
+                                Select Hobbies
+                            </NSDropdownTrigger>
                         }
                         items={HOBBIES.map((hobby) => {
                             return {

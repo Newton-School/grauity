@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
+import Button from '../Button';
 import { ANIMATION_DURATION_IN_MILLISECONDS } from './constants';
 import {
     StyledDropdownMenuOptionDescriptionProps,
@@ -184,4 +185,18 @@ export const StyledDropdownMenuFooter = styled.div`
     gap: 8px;
     align-self: stretch;
     border-top: 1px solid var(--border-subtle-primary-default, #e1e5ea);
+`;
+
+export const StyledDropdownDefaultTrigger = styled(Button)`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    outline: 1px solid var(--border-subtle-primary-default, #e1e5ea);
+
+    div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 `;

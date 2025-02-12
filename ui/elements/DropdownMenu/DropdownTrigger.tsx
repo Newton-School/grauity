@@ -1,19 +1,20 @@
 import React from 'react';
 
-import TextField, { TextFieldProps } from '../Form/TextField';
 import { Icon } from '../Icon';
+import { StyledDropdownDefaultTrigger } from './DropdownMenu.styles';
 
-const DropdownTrigger = (props: TextFieldProps) => {
+const DropdownTrigger = ({ children = 'Select' }) => {
     return (
-        <TextField
-            {...props}
+        <StyledDropdownDefaultTrigger
+            variant="secondary-outlined"
+            fullWidth
             onClick={(e) => {
                 e.preventDefault();
             }}
-            adornments={{
-                end: <Icon name="chevron-down" />,
-            }}
-        />
+        >
+            <span>{children}</span>
+            <Icon name="chevron-down" />
+        </StyledDropdownDefaultTrigger>
     );
 };
 
