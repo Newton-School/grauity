@@ -14,7 +14,7 @@ export const StyledDropdownMenu = styled(motion.div)<StyledDropdownMenuProps>`
     box-sizing: border-box;
     display: flex;
     width: ${({ $width }) => $width};
-    height: 500px;
+    max-height: 500px;
     padding: 8px 0;
     font-family: var(--font-family);
     flex-direction: column;
