@@ -233,4 +233,5 @@ export {
     BaseItemType as DropdownMenuBaseItemType,
     type DropdownMenuProps,
     default as NSDropdownMenu,
+    DropdownTrigger as NSDropdownTrigger,
 } from './elements/DropdownMenu';

@@ -7,10 +7,7 @@ import {
     StyledDropdownMenuProps,
 } from './types';
 
-export const StyledTrigger = styled.div`
-    width: fit-content;
-    height: fit-content;
-`;
+export const StyledTrigger = styled.div``;
 
 export const StyledDropdownMenu = styled(motion.div)<StyledDropdownMenuProps>`
     box-sizing: border-box;

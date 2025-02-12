@@ -19,7 +19,10 @@ const DropdownMenu = (props: DropdownMenuProps) => {
             <StyledTrigger
                 key="dropdown-menu-trigger"
                 ref={triggerRef}
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={(e) => {
+                    e.preventDefault();
+                    setIsOpen(!isOpen);
+                }}
                 role="button"
             >
                 {trigger}

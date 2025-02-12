@@ -1,4 +1,5 @@
 export { default } from './DropdownMenu';
+export { default as DropdownTrigger } from './DropdownTrigger';
 export {
     type BaseItemDividerProps,
     type BaseItemOptionProps,
