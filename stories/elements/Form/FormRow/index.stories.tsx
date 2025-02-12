@@ -7,7 +7,6 @@ import {
     NSDropdownMenu,
     NSDropdownTrigger,
     NSFormRow,
-    NSIcon,
     NSLabel,
     NSOtpInput,
     NSRadioButton,
@@ -276,9 +275,6 @@ const Template = () => {
                                 value={
                                     formData.profession || 'Select Profession'
                                 }
-                                adornments={{
-                                    end: <NSIcon name="chevron-down" />,
-                                }}
                             />
                         }
                         items={PROFESSIONS.map((profession) => {
@@ -301,9 +297,6 @@ const Template = () => {
                             <NSDropdownTrigger
                                 name="hobbies"
                                 value="Select Hobbies"
-                                adornments={{
-                                    end: <NSIcon name="chevron-down" />,
-                                }}
                             />
                         }
                         items={HOBBIES.map((hobby) => {
