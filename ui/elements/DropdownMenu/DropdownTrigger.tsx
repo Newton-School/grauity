@@ -1,6 +1,6 @@
 import React from 'react';
-import { NSLabel } from 'ui/index';
 
+import { Label } from '../Form/Label';
 import { Icon } from '../Icon';
 import {
     StyledDropdownDefaultTrigger,
@@ -10,7 +10,7 @@ import {
 const DropdownTrigger = ({ label = 'Select', children = 'Select' }) => {
     return (
         <StyledDropdownDefaultTrigger>
-            <NSLabel name={label}>{label}</NSLabel>
+            <Label name={label}>{label}</Label>
             <StyledDropdownDefaultTriggerButton
                 name={label}
                 variant="secondary-outlined"
