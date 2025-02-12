@@ -30,6 +30,8 @@ export default {
         overlayColor: 'var(--alpha-overlay, rgba(22, 25, 29, 0.8))',
         shouldCenterContent: true,
         animationDuration: 0.3,
+        position: { top: 0, left: 0 },
+        shouldFocusOnFirstElement: true,
     >
         Overlay Content Here!!!
     </Overlay>
@@ -84,6 +86,8 @@ const defaultArgs: OverlayProps = {
     overlayColor: 'var(--alpha-overlay, rgba(22, 25, 29, 0.8))',
     shouldCenterContent: true,
     animationDuration: 0.3,
+    position: { top: 0, left: 0 },
+    shouldFocusOnFirstElement: true,
 };
 
 export const Component = Template.bind({});

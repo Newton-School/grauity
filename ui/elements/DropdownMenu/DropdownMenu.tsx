@@ -9,7 +9,7 @@ import { DropdownMenuProps } from './types';
 import { calculateDropdownMenuPosition } from './utils';
 
 const DropdownMenu = (props: DropdownMenuProps) => {
-    const { trigger, width = '300px' } = props;
+    const { trigger, searchable = false, width = '300px' } = props;
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const triggerRef = useRef<HTMLDivElement>(null);
@@ -34,6 +34,7 @@ const DropdownMenu = (props: DropdownMenuProps) => {
                     onOverlayClick={() => {
                         setIsOpen(false);
                     }}
+                    shouldFocusOnFirstElement={searchable}
                 >
                     <DropdownMenuWithoutTrigger
                         {...props}

@@ -61,6 +61,12 @@ export interface OverlayProps {
         top?: number;
         left?: number;
     };
+
+    /**
+     * Should focus on the first element in the overlay
+     * @default true
+     */
+    shouldFocusOnFirstElement?: boolean;
 }
 
 export interface StyledOverlayProps extends StyledDivProps {

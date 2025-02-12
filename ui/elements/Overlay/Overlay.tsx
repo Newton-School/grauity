@@ -17,6 +17,7 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
         animationDuration = 0.5,
         className,
         position = { top: 0, left: 0 },
+        shouldFocusOnFirstElement = true,
         ...rest
     } = props;
 
@@ -25,7 +26,7 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
     useDisableBodyScroll(shouldDisableScroll);
 
     useEffect(() => {
-        if (childrenRef.current) {
+        if (shouldFocusOnFirstElement && childrenRef.current) {
             const firstFocusableElement = childrenRef.current.querySelector(
                 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
             ) as HTMLElement;
