@@ -187,7 +187,14 @@ export const StyledDropdownMenuFooter = styled.div`
     border-top: 1px solid var(--border-subtle-primary-default, #e1e5ea);
 `;
 
-export const StyledDropdownDefaultTrigger = styled(Button)`
+export const StyledDropdownDefaultTrigger = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+`;
+
+export const StyledDropdownDefaultTriggerButton = styled(Button)`
     display: flex;
     align-items: center;
     justify-content: space-between;
