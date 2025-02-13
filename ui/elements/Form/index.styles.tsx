@@ -14,7 +14,7 @@ export const StyledLabel = styled.label<StyledLabelProps>`
     ${({ isRequired }) =>
         isRequired &&
         css`
-            ::after {
+            &::after {
                 content: '*';
                 color: var(--text-error, #d22d3a);
                 padding-left: 4px;
