@@ -2,7 +2,10 @@ import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
 import Button from '../Button';
-import { ANIMATION_DURATION_IN_MILLISECONDS } from './constants';
+import {
+    ANIMATION_DURATION_IN_MILLISECONDS,
+    DROPDOWN_MENU_MAX_HEIGHT,
+} from './constants';
 import {
     StyledDropdownMenuOptionDescriptionProps,
     StyledDropdownMenuProps,
@@ -14,7 +17,7 @@ export const StyledDropdownMenu = styled(motion.div)<StyledDropdownMenuProps>`
     box-sizing: border-box;
     display: flex;
     width: ${({ $width }) => $width};
-    max-height: 500px;
+    max-height: ${DROPDOWN_MENU_MAX_HEIGHT}px;
     padding: 8px 0;
     font-family: var(--font-family);
     flex-direction: column;

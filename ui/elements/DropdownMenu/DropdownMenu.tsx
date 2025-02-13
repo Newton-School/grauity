@@ -1,18 +1,30 @@
 /* eslint-disable indent */
 import { AnimatePresence } from 'framer-motion';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Overlay from '../Overlay';
 import DropdownMenuWithoutTrigger from './components/DropdownMenuWithoutTrigger';
+import { DROPDOWN_MENU_MAX_HEIGHT } from './constants';
 import { StyledTrigger } from './DropdownMenu.styles';
 import { DropdownMenuProps } from './types';
 import { calculateDropdownMenuPosition } from './utils';
 
 const DropdownMenu = (props: DropdownMenuProps) => {
     const { trigger, searchable = false, width = '300px' } = props;
+
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [dropdownMenuHeight, setDropdownMenuHeight] = useState(
+        DROPDOWN_MENU_MAX_HEIGHT
+    );
 
     const triggerRef = useRef<HTMLDivElement>(null);
+    const dropdownMenuRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (isOpen && dropdownMenuRef.current) {
+            setDropdownMenuHeight(dropdownMenuRef.current.clientHeight);
+        }
+    }, [isOpen]);
 
     return (
         <AnimatePresence>
@@ -29,7 +41,10 @@ const DropdownMenu = (props: DropdownMenuProps) => {
             </StyledTrigger>
             {trigger && isOpen && (
                 <Overlay
-                    position={calculateDropdownMenuPosition(triggerRef)}
+                    position={calculateDropdownMenuPosition(
+                        triggerRef,
+                        dropdownMenuHeight
+                    )}
                     shouldDisableScroll={isOpen}
                     onOverlayClick={() => {
                         setIsOpen(false);
@@ -47,11 +62,16 @@ const DropdownMenu = (props: DropdownMenuProps) => {
                                 : width
                         }
                         setIsOpen={setIsOpen}
+                        dropdownMenuRef={dropdownMenuRef}
                     />
                 </Overlay>
             )}
             {!trigger && (
-                <DropdownMenuWithoutTrigger {...props} setIsOpen={setIsOpen} />
+                <DropdownMenuWithoutTrigger
+                    {...props}
+                    setIsOpen={setIsOpen}
+                    dropdownMenuRef={dropdownMenuRef}
+                />
             )}
         </AnimatePresence>
     );

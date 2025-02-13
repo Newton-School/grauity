@@ -18,6 +18,7 @@ import DropdownSearchBox from './DropdownSearchBox';
 
 interface DropdownMenuWithoutTriggerProps extends DropdownMenuProps {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    dropdownMenuRef: React.RefObject<HTMLDivElement>;
 }
 
 const DropdownMenuWithoutTrigger = (props: DropdownMenuWithoutTriggerProps) => {
@@ -45,6 +46,7 @@ const DropdownMenuWithoutTrigger = (props: DropdownMenuWithoutTriggerProps) => {
         selectedValues = [],
         width = '300px',
         setIsOpen,
+        dropdownMenuRef,
     } = props;
 
     const motionProps = {
@@ -58,8 +60,6 @@ const DropdownMenuWithoutTrigger = (props: DropdownMenuWithoutTriggerProps) => {
         },
         transition: { duration: ANIMATION_DURATION_IN_MILLISECONDS / 1000 },
     };
-
-    const dropdownMenuRef = useRef(null);
 
     const [options, setOptions] = useState<BaseItemOptionProps[]>([]);
     const [selectedOptions, setSelectedOptions] = useState<(string | number)[]>(
