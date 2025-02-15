@@ -54,6 +54,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         clickEvent = null,
         children = null,
         shouldFocusOnFirstElement = true,
+        shouldDisableScroll = false,
     } = props;
 
     const modalRef = useRef<HTMLDivElement>(null);
@@ -102,7 +103,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         <AnimatePresence>
             {shouldRender && (
                 <Overlay
-                    shouldDisableScroll={shouldRender}
+                    shouldDisableScroll={shouldDisableScroll}
                     onOverlayClick={() => {
                         if (hideOnClickAway) {
                             handleClose();

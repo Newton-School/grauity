@@ -210,6 +210,12 @@ export interface ModalProps {
      * @default true
      */
     shouldFocusOnFirstElement?: boolean;
+
+    /**
+     * Flag to determine if the body scroll should be disabled.
+     * @default false
+     */
+    shouldDisableScroll?: boolean;
 }
 
 export interface MultiStepModalProps {
