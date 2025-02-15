@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ErrorMessage } from '../Form/ErrorMessage';
 import { Label } from '../Form/Label';
 import { Icon } from '../Icon';
 import {
@@ -7,7 +8,11 @@ import {
     StyledDropdownDefaultTriggerButton,
 } from './DropdownMenu.styles';
 
-const DropdownTrigger = ({ label = 'Select', children = 'Select' }) => {
+const DropdownTrigger = ({
+    label = 'Select',
+    children = 'Select',
+    errorMessage = '',
+}) => {
     return (
         <StyledDropdownDefaultTrigger>
             <Label name={label}>{label}</Label>
@@ -22,6 +27,7 @@ const DropdownTrigger = ({ label = 'Select', children = 'Select' }) => {
                 <span>{children}</span>
                 <Icon name="chevron-down" />
             </StyledDropdownDefaultTriggerButton>
+            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </StyledDropdownDefaultTrigger>
     );
 };

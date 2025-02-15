@@ -195,6 +195,7 @@ export const StyledDropdownDefaultTrigger = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+    font-family: var(--font-family);
 `;
 
 export const StyledDropdownDefaultTriggerButton = styled(Button)`
