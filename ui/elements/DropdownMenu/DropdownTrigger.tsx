@@ -7,18 +7,22 @@ import {
     StyledDropdownDefaultTrigger,
     StyledDropdownDefaultTriggerButton,
 } from './DropdownMenu.styles';
+import { DropdownTriggerProps } from './types';
 
 const DropdownTrigger = ({
-    label = 'Select',
-    children = 'Select',
+    label,
+    placeholder = 'Select',
+    children,
     errorMessage = '',
     isRequired = false,
-}) => {
+}: DropdownTriggerProps) => {
     return (
         <StyledDropdownDefaultTrigger>
-            <Label name={label} isRequired={isRequired}>
-                {label}
-            </Label>
+            {label && (
+                <Label name={label} isRequired={isRequired}>
+                    {label}
+                </Label>
+            )}
             <StyledDropdownDefaultTriggerButton
                 name={label}
                 variant="secondary-outlined"
@@ -27,7 +31,7 @@ const DropdownTrigger = ({
                     e.preventDefault();
                 }}
             >
-                <span>{children}</span>
+                <span>{children || placeholder}</span>
                 <Icon name="chevron-down" />
             </StyledDropdownDefaultTriggerButton>
             {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}

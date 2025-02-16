@@ -7,4 +7,5 @@ export {
     type BaseItemSubHeaderProps,
     BaseItemType,
     type DropdownMenuProps,
+    type DropdownTriggerProps,
 } from './types';

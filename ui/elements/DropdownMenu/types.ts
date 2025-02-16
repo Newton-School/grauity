@@ -33,6 +33,12 @@ export type BaseItemProps =
 
 export interface DropdownMenuProps {
     /**
+     * The name of the dropdown menu.
+     * @type {string}
+     */
+    name: string;
+
+    /**
      * Whether to show the header of the dropdown menu.
      * - If `showHeader` is false, `title`, `overline`, and `subtext` will be ignored.
      * - if `title`, `overline`, and `subtext` all are not provided, `showHeader` will be ignored.
@@ -199,6 +205,46 @@ export interface DropdownMenuProps {
      * @default '300px'
      */
     width?: string;
+
+    /**
+     * Additional props for the dropdown trigger.
+     * @default {}
+     */
+    triggerProps?: DropdownTriggerProps;
+}
+
+export interface DropdownTriggerProps {
+    /**
+     * The label for the dropdown trigger.
+     * @type {string}
+     */
+    label: string;
+
+    /**
+     * The placeholder text for the dropdown trigger.
+     * @type {string}
+     * @default 'Select'
+     */
+    placeholder?: string;
+
+    /**
+     * The error message to display when the dropdown trigger is invalid.
+     * @type {string}
+     */
+    errorMessage?: string;
+
+    /**
+     * Whether the dropdown trigger is required.
+     * @type {boolean}
+     * @default false
+     */
+    isRequired?: boolean;
+
+    /**
+     * The children of the dropdown trigger.
+     * @type {React.ReactNode}
+     */
+    children?: React.ReactNode;
 }
 
 export interface StyledDropdownMenuProps extends StyledDivProps {
