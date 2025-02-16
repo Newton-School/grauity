@@ -12,10 +12,13 @@ const DropdownTrigger = ({
     label = 'Select',
     children = 'Select',
     errorMessage = '',
+    isRequired = false,
 }) => {
     return (
         <StyledDropdownDefaultTrigger>
-            <Label name={label}>{label}</Label>
+            <Label name={label} isRequired={isRequired}>
+                {label}
+            </Label>
             <StyledDropdownDefaultTriggerButton
                 name={label}
                 variant="secondary-outlined"
