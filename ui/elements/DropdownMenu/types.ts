@@ -34,7 +34,6 @@ export type BaseItemProps =
 export interface DropdownMenuProps {
     /**
      * The name of the dropdown menu.
-     * @type {string}
      */
     name: string;
 

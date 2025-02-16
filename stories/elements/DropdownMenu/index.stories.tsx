@@ -15,6 +15,7 @@ export default {
 const Template = (args: DropdownMenuProps) => <NSDropdownMenu {...args} />;
 
 const defaultArgs: DropdownMenuProps = {
+    name: 'dropdown-menu',
     showHeader: true,
     title: 'Select',
     overline: '',
@@ -153,6 +154,7 @@ const ExampleTemplate = (args: DropdownMenuProps) => {
 
 // Single Select Dropdown Menu
 const singleSelectArgs: DropdownMenuProps = {
+    name: 'single-select',
     showHeader: true,
     title: 'Select',
     subtext: 'Click an option to select',
@@ -180,6 +182,7 @@ SingleSelectWithApplyButton.args = {
 
 // Multiple Select Dropdown Menu
 const multipleSelectArgs: DropdownMenuProps = {
+    name: 'multiple-select',
     showHeader: true,
     title: 'Select',
     subtext: 'Click an option to select',
