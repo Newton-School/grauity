@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import FormRenderer from './FormRenderer';
 import {
@@ -44,6 +44,10 @@ const useFormHook = ({
         },
         [setFormData]
     );
+
+    useEffect(() => {
+        setFormData(initialState);
+    }, [initialState]);
 
     const formRenderer: React.ReactNode = (
         <FormRenderer
