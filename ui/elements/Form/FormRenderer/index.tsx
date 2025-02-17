@@ -13,7 +13,7 @@ export {
     type FormFieldTextFieldProps,
     FormFieldType,
     type FormRow,
-    type FormRowColumnCondition,
+    FormRowColumnCondition,
     type FormState,
     type UseFormHookProps,
     type UseFormHookReturnProps,

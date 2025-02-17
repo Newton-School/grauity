@@ -251,7 +251,7 @@ export {
     type FormFields as NSFormFields,
     type FormFieldTextFieldProps as NSFormFieldTextFieldProps,
     FormFieldType as NSFormFieldType,
-    type FormRowColumnCondition as NSFormRowColumnCondition,
+    FormRowColumnCondition as NSFormRowColumnCondition,
     type FormRow as NSFormRowProps,
     type FormState as NSFormState,
     type UseFormHookProps as NSUseFormHookProps,
