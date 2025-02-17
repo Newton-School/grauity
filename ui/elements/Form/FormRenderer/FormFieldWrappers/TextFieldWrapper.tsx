@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import TextField, { TextFieldProps } from 'ui/elements/Form/TextField';
 
+import TextField, { TextFieldProps } from '../../TextField';
 import { FormFieldProps } from '../types';
 import { getConditionalProps } from '../utils';
 

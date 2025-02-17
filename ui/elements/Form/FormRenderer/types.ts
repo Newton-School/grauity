@@ -1,9 +1,10 @@
 import React from 'react';
-import { IconButtonProps } from 'ui/elements/Button';
-import { DropdownMenuProps } from 'ui/elements/DropdownMenu';
-import { CheckboxProps } from 'ui/elements/Form/Checkbox';
-import { TextFieldProps } from 'ui/elements/Form/TextField';
 import { Schema } from 'yup';
+
+import { IconButtonProps } from '../../Button';
+import { DropdownMenuProps } from '../../DropdownMenu';
+import { CheckboxProps } from '../Checkbox';
+import { TextFieldProps } from '../TextField';
 
 // Form Data
 export interface FormState {

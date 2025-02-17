@@ -1,6 +1,6 @@
 import React from 'react';
-import { IconButton } from 'ui/elements/Button';
 
+import { IconButton } from '../../Button';
 import CheckboxWrapper from './FormFieldWrappers/CheckboxWrapper';
 import DropdownMenuWrapper from './FormFieldWrappers/DropdownMenuWrapper';
 import TextFieldWrapper from './FormFieldWrappers/TextFieldWrapper';

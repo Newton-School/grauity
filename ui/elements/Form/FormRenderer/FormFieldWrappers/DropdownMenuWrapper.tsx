@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
+
 import DropdownMenu, {
     BaseItemOptionProps,
     BaseItemType,
     DropdownMenuProps,
     DropdownTrigger,
-} from 'ui/elements/DropdownMenu';
-
+} from '../../../DropdownMenu';
 import { FormFieldProps } from '../types';
 import { getConditionalProps } from '../utils';
 

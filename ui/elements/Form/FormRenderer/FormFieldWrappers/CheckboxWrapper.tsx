@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import Checkbox, { CheckboxProps } from 'ui/elements/Form/Checkbox';
 
+import Checkbox, { CheckboxProps } from '../../Checkbox';
 import { FormFieldProps } from '../types';
 import { getConditionalProps } from '../utils';
 
