@@ -11,7 +11,7 @@ export {
     type FormFieldIconButtonProps,
     type FormFields,
     type FormFieldTextFieldProps,
-    type FormFieldType,
+    FormFieldType,
     type FormRow,
     type FormRowColumnCondition,
     type FormState,

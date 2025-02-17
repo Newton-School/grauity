@@ -91,9 +91,28 @@ export interface FormConfig {
 
 // UseFormHook
 export interface UseFormHookProps {
+    /**
+     * The initial state of the form.
+     * @default {}
+     */
     initialState?: FormState;
+
+    /**
+     * An array of form rows to be rendered.
+     * @default []
+     */
     formRows?: FormRow[];
+
+    /**
+     * CSS properties to style the form rows.
+     * @default {}
+     */
     rowStyles?: React.CSSProperties;
+
+    /**
+     * Flag to indicate if the form is being viewed on a mobile device.
+     * @default false
+     */
     isMobileView?: boolean;
 }
 export interface UseFormHookReturnProps {

@@ -250,7 +250,7 @@ export {
     type FormFieldIconButtonProps as NSFormFieldIconButtonProps,
     type FormFields as NSFormFields,
     type FormFieldTextFieldProps as NSFormFieldTextFieldProps,
-    type FormFieldType as NSFormFieldType,
+    FormFieldType as NSFormFieldType,
     type FormRowColumnCondition as NSFormRowColumnCondition,
     type FormRow as NSFormRowProps,
     type FormState as NSFormState,
