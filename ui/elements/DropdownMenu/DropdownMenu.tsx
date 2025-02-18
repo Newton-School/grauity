@@ -28,17 +28,19 @@ const DropdownMenu = (props: DropdownMenuProps) => {
 
     return (
         <AnimatePresence>
-            <StyledTrigger
-                key="dropdown-menu-trigger"
-                ref={triggerRef}
-                onClick={(e) => {
-                    e.preventDefault();
-                    setIsOpen(!isOpen);
-                }}
-                role="button"
-            >
-                {trigger}
-            </StyledTrigger>
+            {trigger && (
+                <StyledTrigger
+                    key="dropdown-menu-trigger"
+                    ref={triggerRef}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        setIsOpen(!isOpen);
+                    }}
+                    role="button"
+                >
+                    {trigger}
+                </StyledTrigger>
+            )}
             {trigger && isOpen && (
                 <Overlay
                     position={calculateDropdownMenuPosition(

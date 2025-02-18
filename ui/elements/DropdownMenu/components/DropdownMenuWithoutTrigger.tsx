@@ -1,5 +1,5 @@
 import { debounce } from 'lodash';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { useClickAway } from '../../../../hooks';
 import { ANIMATION_DURATION_IN_MILLISECONDS } from '../constants';
@@ -95,7 +95,7 @@ const DropdownMenuWithoutTrigger = (props: DropdownMenuWithoutTriggerProps) => {
 
     const handleMenuBodyScroll = (e: React.UIEvent<HTMLDivElement>) => {
         const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-        if (scrollHeight - scrollTop === clientHeight) {
+        if (Math.abs(scrollHeight - scrollTop - clientHeight) < 50) {
             onScrollToBottom();
         }
     };

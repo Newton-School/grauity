@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import FormRenderer from './FormRenderer';
 import {
@@ -36,6 +36,12 @@ const useFormHook = ({
         []
     );
 
+    const changeFormData = useCallback((newData: FormState) => {
+        setFormData((prev) => {
+            return { ...prev, ...newData };
+        });
+    }, []);
+
     const handleFormFieldChange = useCallback(
         ({ name, value }: HandleFormFieldChangeProps) => {
             setFormData((prev) => {
@@ -44,10 +50,6 @@ const useFormHook = ({
         },
         [setFormData]
     );
-
-    useEffect(() => {
-        setFormData(initialState);
-    }, [initialState]);
 
     const formRenderer: React.ReactNode = (
         <FormRenderer
@@ -64,6 +66,7 @@ const useFormHook = ({
         formData,
         formRenderer,
         validateFields,
+        changeFormData,
     };
 };
 

@@ -120,6 +120,7 @@ export interface UseFormHookReturnProps {
     formData: FormState;
     formRenderer: React.ReactNode;
     validateFields: (fields: FormFields, data: FormState) => any;
+    changeFormData: (newData: FormState) => void;
 }
 export interface HandleFormFieldChangeProps {
     name: string;
