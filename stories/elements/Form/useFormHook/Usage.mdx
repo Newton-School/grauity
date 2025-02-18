@@ -1,0 +1,190 @@
+## Usage
+
+### Creating Form Fields
+
+- Create all the fields that will be present in the form.
+- Each field should have a type.
+- `rendererProps` will be passed directly to the renderer
+- `renderer` will be used to render the field else a default renderer will be used based on type.
+- `conditionalProps` can be passed to set a prop conditionally based on value of other props.
+- `schema` can be passed to validate the fields. yup schema should be used.
+- Any other props required at user side can be passed in `configProps`.
+
+```typescript
+// Below conditionalProps will set placeholder as CGPA if grade_type is 1 else it will set placeholder as Percentage
+conditionalProps = [
+    {
+        propName: 'placeholder',
+        propValue: 'CGPA',
+        conditions: [{ prop: 'grade_type', value: 1 }],
+    },
+    {
+        propName: 'placeholder',
+        propValue: 'Percentage',
+        conditions: [
+            { prop: 'grade_type', value: 2 },
+        ],
+    },
+]
+```
+
+```typescript
+const formFields: NSFormFields = {
+    first_name: {
+        type: NSFormFieldType.TEXTFIELD,
+        rendererProps: {
+            name: 'first_name',
+            label: 'First Name',
+            placeholder: 'John',
+            isRequired: true,
+        },
+        schema: string().required('First name is required'),
+    },
+    last_name: {
+        type: NSFormFieldType.TEXTFIELD,
+        rendererProps: {
+            name: 'last_name',
+            label: 'Last Name',
+            placeholder: 'Doe',
+            isRequired: true,
+        },
+        schema: string().required('Last name is required'),
+    },
+    hobbies: {
+        type: NSFormFieldType.DROPDOWN_MENU,
+        rendererProps: {
+            name: 'hobbies',
+            multiple: true,
+            items: [
+                {
+                    type: BaseItemType.OPTION,
+                    label: 'Reading',
+                    value: 'reading',
+                },
+                {
+                    type: BaseItemType.OPTION,
+                    label: 'Writing',
+                    value: 'writing',
+                },
+                {
+                    type: BaseItemType.OPTION,
+                    label: 'Drawing',
+                    value: 'drawing',
+                },
+            ],
+            triggerProps: {
+                label: 'Select Hobbies',
+            },
+        },
+        schema: array().min(1, 'Select at least one hobby'),
+    },
+    profession: {
+        type: NSFormFieldType.DROPDOWN_MENU,
+        rendererProps: {
+            name: 'profession',
+            multiple: false,
+            items: [
+                {
+                    type: BaseItemType.OPTION,
+                    label: 'Developer',
+                    value: 'developer',
+                },
+                {
+                    type: BaseItemType.OPTION,
+                    label: 'Designer',
+                    value: 'designer',
+                },
+                {
+                    type: BaseItemType.OPTION,
+                    label: 'Manager',
+                    value: 'manager',
+                },
+                {
+                    type: BaseItemType.OPTION,
+                    label: 'Tester',
+                    value: 'tester',
+                },
+            ],
+            triggerProps: {
+                label: 'Select Profession',
+            },
+        },
+        schema: string().required('Profession is required'),
+    },
+    consent: {
+        type: NSFormFieldType.CHECKBOX,
+        rendererProps: {
+            name: 'consent',
+            label: 'I agree to the terms and conditions',
+            value: 'true',
+            isRequired: true,
+        },
+        schema: array().min(1, 'Please agree to the terms and conditions'),
+    },
+};
+```
+
+### Creating Form Config
+
+- Pass `initialState` to set initial values of the form fields.
+- `rows` will be rendered in the form. Each row can have multiple fields.
+- For `width` and `column` prop refer `FormRow` component.
+- `items` will have all the fields that will be rendered in the row.
+
+```typescript
+// `column` prop can be set from this enum
+enum FormRowColumnCondition {
+    ALWAYS_COLUMN = 'ALWAYS_COLUMN',
+    ALWAYS_ROW = 'ALWAYS_ROW',
+    COLUMN_ON_MOBILE = 'COLUMN_ON_MOBILE',
+}
+```
+
+```typescript
+const formConfig: NSFormConfig = {
+    initialState: {
+        first_name: '',
+        last_name: '',
+        hobbies: [],
+        profession: '',
+        consent: [],
+    },
+    rows: [
+        {
+            widths: '1fr 1fr',
+            items: [formFields.first_name, formFields.last_name],
+        },
+        {
+            widths: '2fr 1fr',
+            items: [formFields.hobbies, formFields.profession],
+        },
+        {
+            widths: '1fr',
+            items: [formFields.consent],
+        },
+    ],
+};
+```
+
+### Rendering Form
+
+- `formData` prop contains the current state of the form.
+- `formRenderer` is a React component. Render it to render the form.
+- `validateFields` is a function to verify the given form fields.
+- `changeFormData` is a function to change current state of the form externally.
+
+```typescript
+const MyForm = () => {
+    const { formData, formRenderer, validateFields, changeFormData } = useNSFormHook({
+        initialState: formConfig.initialState,
+        formRows: formConfig.rows,
+    });
+
+    return (
+        <div>
+            {formRenderer}
+            <button onClick={validateFields}>Validate</button>
+        </div>
+    );
+}
+```
