@@ -153,6 +153,7 @@ export type grauityIconName =
     | 'linkedin'
     | 'twitter'
     | 'whatsapp'
+    | 'x'
     | 'youtube'
     | 'arrow-double-filled'
     | 'arrow-double'
@@ -588,6 +589,7 @@ export type grauityIconKey =
     | 'Linkedin'
     | 'Twitter'
     | 'Whatsapp'
+    | 'X'
     | 'Youtube'
     | 'ArrowDoubleFilled'
     | 'ArrowDouble'
@@ -1023,6 +1025,7 @@ export enum GRAUITY_ICONS {
     Linkedin = 'linkedin',
     Twitter = 'twitter',
     Whatsapp = 'whatsapp',
+    X = 'x',
     Youtube = 'youtube',
     ArrowDoubleFilled = 'arrow-double-filled',
     ArrowDouble = 'arrow-double',

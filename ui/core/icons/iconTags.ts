@@ -153,6 +153,7 @@ export const ICON_TAGS = {
     linkedin: ['Social'],
     twitter: ['Social'],
     whatsapp: ['Social'],
+    x: ['Social'],
     youtube: ['Social'],
     'arrow-double-filled': ['System'],
     'arrow-double': ['System'],
@@ -602,6 +603,7 @@ export const TAG_ICONS = {
         'linkedin',
         'twitter',
         'whatsapp',
+        'x',
         'youtube',
     ],
     System: [
