@@ -141,10 +141,20 @@ export type grauityIconName =
     | 'star'
     | 'trophy-filled'
     | 'trophy'
+    | 'codechef'
+    | 'codeforces'
     | 'facebook'
+    | 'github'
+    | 'google'
+    | 'hackerearth'
+    | 'hackerrank'
+    | 'instagram'
+    | 'leetcode'
     | 'linkedin'
     | 'twitter'
     | 'whatsapp'
+    | 'x'
+    | 'youtube'
     | 'arrow-double-filled'
     | 'arrow-double'
     | 'arrow-down-filled'
@@ -567,10 +577,20 @@ export type grauityIconKey =
     | 'Star'
     | 'TrophyFilled'
     | 'Trophy'
+    | 'Codechef'
+    | 'Codeforces'
     | 'Facebook'
+    | 'Github'
+    | 'Google'
+    | 'Hackerearth'
+    | 'Hackerrank'
+    | 'Instagram'
+    | 'Leetcode'
     | 'Linkedin'
     | 'Twitter'
     | 'Whatsapp'
+    | 'X'
+    | 'Youtube'
     | 'ArrowDoubleFilled'
     | 'ArrowDouble'
     | 'ArrowDownFilled'
@@ -993,10 +1013,20 @@ export enum GRAUITY_ICONS {
     Star = 'star',
     TrophyFilled = 'trophy-filled',
     Trophy = 'trophy',
+    Codechef = 'codechef',
+    Codeforces = 'codeforces',
     Facebook = 'facebook',
+    Github = 'github',
+    Google = 'google',
+    Hackerearth = 'hackerearth',
+    Hackerrank = 'hackerrank',
+    Instagram = 'instagram',
+    Leetcode = 'leetcode',
     Linkedin = 'linkedin',
     Twitter = 'twitter',
     Whatsapp = 'whatsapp',
+    X = 'x',
+    Youtube = 'youtube',
     ArrowDoubleFilled = 'arrow-double-filled',
     ArrowDouble = 'arrow-double',
     ArrowDownFilled = 'arrow-down-filled',
