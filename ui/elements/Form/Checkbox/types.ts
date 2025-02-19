@@ -1,9 +1,12 @@
 import React from 'react';
+import { ACTION_COLORS } from 'ui/core';
 
 import { StyledButtonProps } from '../../../../common/types';
 
 export type CheckboxSize = 'small' | 'medium' | 'large';
 export type CheckboxState = 'default' | 'error' | 'success';
+
+export type CheckboxColors = `${ACTION_COLORS}`;
 
 export interface CheckboxProps {
     /**
@@ -26,6 +29,7 @@ export interface CheckboxProps {
     /**
      * The size of the checkbox.
      * @default medium
+     * @deprecated Use color prop instead
      */
     size?: CheckboxSize;
 
@@ -79,9 +83,11 @@ export interface CheckboxProps {
 
     /**
      * Additional class names to apply to the checkbox.
-     * @default undefined
+     * @default brand
      */
     className?: string;
+
+    color?: CheckboxColors;
 }
 
 export interface StyledCheckboxInputProps extends StyledButtonProps {
@@ -89,4 +95,5 @@ export interface StyledCheckboxInputProps extends StyledButtonProps {
     $state?: CheckboxState;
     $checked?: boolean;
     $indeterminate?: boolean;
+    $color?: CheckboxColors;
 }

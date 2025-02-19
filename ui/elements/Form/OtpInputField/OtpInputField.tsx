@@ -10,18 +10,21 @@ import {
 } from './OtpInputField.styles';
 import { OtpInputFieldProps } from './types';
 
-const OtpInputField = ({
-    label,
-    name,
-    length = 4,
-    onChange = () => {},
-    style,
-    isOtpCorrect = false,
-    isOtpWrong = false,
-    isDisabled = false,
-    errorMessage = 'Wrong OTP. Please try again',
-    successMessage = 'OTP is correct',
-}: OtpInputFieldProps) => {
+const OtpInputField = (props: OtpInputFieldProps) => {
+    const {
+        label,
+        name,
+        length = 4,
+        onChange = () => {},
+        style,
+        isOtpCorrect = false,
+        isOtpWrong = false,
+        isDisabled = false,
+        errorMessage = 'Wrong OTP. Please try again',
+        successMessage = 'OTP is correct',
+        color = 'brand',
+    } = props;
+
     const inputRefs = useRef<Array<HTMLInputElement | null>>(
         Array(length).fill(null)
     );
@@ -113,7 +116,11 @@ const OtpInputField = ({
     return (
         <StyledOtpInputField>
             {label && (
-                <Label name={name} isRequired>
+                <Label
+                    name={name}
+                    isRequired
+                    color={color === 'brand' ? 'primary' : color}
+                >
                     {label}
                 </Label>
             )}
@@ -137,6 +144,7 @@ const OtpInputField = ({
                             $isOtpCorrect={isOtpCorrect}
                             $isOtpWrong={isOtpWrong}
                             disabled={isDisabled}
+                            $color={color}
                         />
                     );
                 })}

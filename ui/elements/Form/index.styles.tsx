@@ -11,6 +11,7 @@ export const StyledLabel = styled.label<StyledLabelProps>`
     line-height: 16px;
     letter-spacing: 0.048px;
     font-family: var(--font-family);
+
     ${({ isRequired }) =>
         isRequired &&
         css`
@@ -20,6 +21,19 @@ export const StyledLabel = styled.label<StyledLabelProps>`
                 padding-left: 4px;
             }
         `}
+
+    ${({ color }) => {
+        return css`
+            color: var(--text-emphasis-${color}-default);
+        `;
+    }}
+
+    ${({ isDisabled }) =>
+        isDisabled &&
+        css`
+            color: var(--text-emphasis-primary-disabled, #8c95a6);
+            cursor: not-allowed;
+        `};
 `;
 
 export const StyledHelpMessage = styled.div`

@@ -18,6 +18,7 @@ const TextArea = (props: TextAreaProps) => {
         errorMessage,
         maxLength,
         isRequired = false,
+        isReadOnly = false,
         isDisabled = false,
         autoFocus = false,
         autoComplete = 'on',
@@ -26,7 +27,7 @@ const TextArea = (props: TextAreaProps) => {
         onChange = () => {},
         onClick = () => {},
         onBlur = () => {},
-        readOnly = false,
+        color = 'brand',
     } = props;
 
     const getIsValid = (targetValue: string) => {
@@ -60,16 +61,21 @@ const TextArea = (props: TextAreaProps) => {
     return (
         <StyledTextAreaFieldContainer>
             {label && (
-                <Label name={name} isRequired={isRequired}>
+                <Label
+                    name={name}
+                    isRequired={isRequired}
+                    color={color === 'brand' ? 'primary' : color}
+                >
                     {label}
                 </Label>
             )}
             <StyledTextArea
-                disabled={isDisabled}
                 id={name}
                 name={name}
                 placeholder={placeholder}
                 value={value}
+                disabled={isDisabled}
+                readOnly={isReadOnly}
                 onClick={handleInputClick}
                 onChange={handleInputChange}
                 onBlur={handleInputBlur}
@@ -79,7 +85,7 @@ const TextArea = (props: TextAreaProps) => {
                 rows={rows}
                 tabIndex={0}
                 size={size}
-                readOnly={readOnly}
+                $color={color}
             />
             {helpMessage && (
                 <HelpMessage

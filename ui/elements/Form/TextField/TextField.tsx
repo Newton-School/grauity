@@ -24,6 +24,7 @@ const TextField = (props: TextFieldProps) => {
         maxLength,
         isRequired = false,
         isDisabled = false,
+        isReadOnly = false,
         autoFocus = false,
         autoComplete = 'on',
         onChange = () => {},
@@ -31,6 +32,7 @@ const TextField = (props: TextFieldProps) => {
         onBlur = () => {},
         size = 'medium',
         adornments,
+        color = 'brand',
     } = props;
 
     const inputContainerRef = useRef(null);
@@ -90,7 +92,11 @@ const TextField = (props: TextFieldProps) => {
     return (
         <StyledTextInputFieldContainer>
             {label && (
-                <Label name={name} isRequired={isRequired}>
+                <Label
+                    name={name}
+                    isRequired={isRequired}
+                    color={color === 'brand' ? 'primary' : color}
+                >
                     {label}
                 </Label>
             )}
@@ -106,12 +112,13 @@ const TextField = (props: TextFieldProps) => {
                     </StyledTextFieldLeftAdornment>
                 )}
                 <StyledTextFieldInput
-                    disabled={isDisabled}
                     type="text"
                     id={name}
                     name={name}
                     placeholder={placeholder}
                     value={value}
+                    readOnly={isReadOnly}
+                    disabled={isDisabled}
                     onChange={handleInputChange}
                     onClick={handleInputClick}
                     onBlur={handleInputBlur}
@@ -119,6 +126,7 @@ const TextField = (props: TextFieldProps) => {
                     autoFocus={autoFocus}
                     $size={size}
                     $adornmentDimensions={adornmentDimensions}
+                    $color={color}
                 />
                 {adornments?.end && (
                     <StyledTextFieldRightAdornment id={endAdornmentId}>

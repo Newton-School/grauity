@@ -17,7 +17,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         color = 'brand',
         size = 'medium',
         icon = null,
-        iconSize = '24',
+        iconSize = '20',
         iconPosition = 'left',
         className = '',
         disabled = false,
@@ -71,13 +71,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
             {...rest}
         >
             {icon && !loading && (
-                <Icon name={icon} color="inherit" size={iconSize || '24'} />
+                <Icon name={icon} color="inherit" size={iconSize} />
             )}
             {loading && (
                 <Icon
                     name="refresh"
                     color="inherit"
-                    size={iconSize || '24'}
+                    size={iconSize}
                     loading={loading}
                 />
             )}

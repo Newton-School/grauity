@@ -7,7 +7,7 @@ import { ExtractColorVariablesType, ThemeColorObjType } from './types';
  * @returns
  *
  * @example
- * getVariableName('background', 'subtle', 'primary', 'default') => '--background-subtle-primary-default'
+ * getVariableName('background', 'subtle', 'primary', 'default') => '--bg-subtle-primary-default'
  *
  */
 export const constructVariableName = (...parts: string[]) => {

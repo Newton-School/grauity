@@ -66,12 +66,12 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
             background: 'var(--bg-emphasis-brand-default, #0673f9)',
             color: 'var(--text-emphasis-white-default, #ffffff)',
             border: 'none',
-            outline: 'none',
+            outline: '0px solid transparent',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-emphasis-brand-hover, #2989FF)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -86,12 +86,12 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
             background: 'var(--bg-subtle-invert-primary-default, #0B0C0E)',
             color: 'var(--text-emphasis-invert-primary-default, #FFF)',
             border: 'none',
-            outline: 'none',
+            outline: '0px solid transparent',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-subtle-invert-primary-hover, #16191D)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -106,12 +106,12 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
             background: 'var(--bg-emphasis-error-default, #D22D3A)',
             color: 'var(--text-emphasis-white-default, #ffffff)',
             border: 'none',
-            outline: 'none',
+            outline: '0px solid transparent',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-emphasis-error-hover, #EE3F44)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -126,12 +126,12 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
             background: 'var(--bg-emphasis-success-default, #009965)',
             color: 'var(--text-emphasis-white-default, #ffffff)',
             border: 'none',
-            outline: 'none',
+            outline: '0px solid transparent',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-emphasis-success-hover, #13B97C)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -146,12 +146,12 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
             background: 'var(--bg-emphasis-warning-default, #F37216)',
             color: 'var(--text-emphasis-white-default, #ffffff)',
             border: 'none',
-            outline: 'none',
+            outline: '0px solid transparent',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-emphasis-warning-hover, #FD9254)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -167,13 +167,13 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
         [BUTTON_COLORS_ENUM.BRAND]: {
             color: 'var(--text-emphasis-brand-default, #0673F9)',
             border: '1px solid var(--border-emphasis-brand-default, #0673F9)',
-            outline: 'none',
+            outline: '0px solid transparent',
             background: 'var(--bg-subtle-primary-default, #ffffff)',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-subtle-brand-default, #e5f1ff)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -187,13 +187,13 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
         [BUTTON_COLORS_ENUM.NEUTRAL]: {
             color: 'var(--text-emphasis-primary-default, #16191D)',
             border: '1px solid var(--border-emphasis-invert-primary-default, #16191D)',
-            outline: 'none',
+            outline: '0px solid transparent',
             background: 'var(--bg-subtle-primary-default, #E5F1FF)',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-subtle-primary-hover, #f6f7f9)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -207,13 +207,13 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
         [BUTTON_COLORS_ENUM.ERROR]: {
             color: 'var(--text-emphasis-error-default, #D22D3A)',
             border: '1px solid var(--border-emphasis-error-default, #D22D3A)',
-            outline: 'none',
+            outline: '0px solid transparent',
             background: 'var(--bg-subtle-primary-default, #E5F1FF)',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-subtle-error-default, #FFE5E7)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -227,13 +227,13 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
         [BUTTON_COLORS_ENUM.SUCCESS]: {
             color: 'var(--text-emphasis-success-default, #007A51)',
             border: '1px solid var(--border-emphasis-success-default, #009965)',
-            outline: 'none',
+            outline: '0px solid transparent',
             background: 'var(--bg-subtle-primary-default, #E5F1FF)',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-subtle-success-default, #D9FCED)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -247,13 +247,13 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
         [BUTTON_COLORS_ENUM.WARNING]: {
             color: 'var(--text-emphasis-warning-default, #DE5A02)',
             border: '1px solid var(--border-emphasis-warning-default, #DE5A02)',
-            outline: 'none',
+            outline: '0px solid transparent',
             background: 'var(--bg-subtle-primary-default, #E5F1FF)',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-subtle-warning-default, #FFF1E5)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -269,13 +269,13 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
         [BUTTON_COLORS_ENUM.BRAND]: {
             color: 'var(--text-emphasis-brand-default, #0673F9)',
             border: 'none',
-            outline: 'none',
+            outline: '0px solid transparent',
             background: 'var(--bg-subtle-primary-default, #E5F1FF)',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-subtle-brand-default, #e5f1ff)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -288,13 +288,13 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
         [BUTTON_COLORS_ENUM.NEUTRAL]: {
             color: 'var(--text-emphasis-primary-default, #16191D)',
             border: 'none',
-            outline: 'none',
+            outline: '0px solid transparent',
             background: 'var(--bg-subtle-primary-default, #E5F1FF)',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-subtle-primary-hover, #f6f7f9)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -307,13 +307,13 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
         [BUTTON_COLORS_ENUM.ERROR]: {
             color: 'var(--text-emphasis-error-default, #D22D3A)',
             border: 'none',
-            outline: 'none',
+            outline: '0px solid transparent',
             background: 'var(--bg-subtle-primary-default, #E5F1FF)',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-subtle-error-default, #FFE5E7)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -326,13 +326,13 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
         [BUTTON_COLORS_ENUM.SUCCESS]: {
             color: 'var(--text-emphasis-success-default, #007A51)',
             border: 'none',
-            outline: 'none',
+            outline: '0px solid transparent',
             background: 'var(--bg-subtle-primary-default, #E5F1FF)',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-subtle-success-default, #D9FCED)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:
@@ -345,13 +345,13 @@ export const BUTTON_VARIANT_STYLES_MAPPING: {
         [BUTTON_COLORS_ENUM.WARNING]: {
             color: 'var(--text-emphasis-warning-default, #DE5A02)',
             border: 'none',
-            outline: 'none',
+            outline: '0px solid transparent',
             background: 'var(--bg-subtle-primary-default, #E5F1FF)',
             '&:hover:not([disabled])': {
                 background: 'var(--bg-subtle-warning-default, #FFF1E5)',
             },
             '&:focus': {
-                outline: 'none',
+                outline: '0px solid transparent',
             },
             '&:focus-visible': {
                 outline:

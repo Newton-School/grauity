@@ -1,4 +1,5 @@
 import React from 'react';
+import { TEXT_COLORS } from 'ui/core';
 
 /**
  * Interface representing the properties for a styled div component.
@@ -44,6 +45,7 @@ export interface StyledLabelProps
     ref?: React.Ref<HTMLLabelElement>;
     isRequired?: boolean;
     isDisabled?: boolean;
+    color?: `${TEXT_COLORS}`;
 }
 
 /**

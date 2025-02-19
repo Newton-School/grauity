@@ -52,7 +52,7 @@ export interface ButtonProps extends StyledButtonProps {
     icon?: grauityIconName;
 
     /**
-     * Size of the icon
+     * Size of the icon, defaults to `20`
      * */
     iconSize?: grauityIconSizeName;
 

@@ -6,6 +6,7 @@ import {
     StyledTextFieldContainerProps,
     StyledTextFieldInputProps,
 } from './types';
+import { getTextFieldStyles } from './utils';
 
 export const StyledTextInputFieldContainer = styled.div`
     display: flex;
@@ -58,22 +59,18 @@ export const StyledTextFieldInput = styled.input<StyledTextFieldInputProps>`
         background: var(--bg-subtle-primary-hover, #f6f7f9);
     }
 
-    &:focus {
-        border: 1px solid var(--border-subtle-brand-default, #61a8ff);
-        background: var(--bg-subtle-primary-default, #fff);
-        outline: 0px solid transparent;
-    }
-
-    &:focus-visible {
-        border: 1px solid var(--border-subtle-brand-default, #61a8ff);
-        outline: 2px solid var(--border-subtle-brand-default, #61a8ff);
-    }
+    ${({ $color }) => getTextFieldStyles($color)}
 
     &:disabled {
         color: var(--text-emphasis-primary-disabled, #8c95a6);
         border: 1px solid var(--border-moderate-primary-default, #c9cfd9);
         background: var(--bg-subtle-secondary-default, #f6f7f9);
         cursor: not-allowed;
+    }
+
+    &:read-only:not(:disabled) {
+        color: var(--text-emphasis-primary-default, #16191d);
+        background: var(--bg-subtle-secondary-default, #f6f7f9);
     }
 
     &::placeholder {
@@ -96,13 +93,6 @@ export const StyledTextFieldInput = styled.input<StyledTextFieldInputProps>`
         ${!!$adornmentDimensions?.start && `padding-left: ${$adornmentDimensions.start}px;`}
         ${!!$adornmentDimensions?.end && `padding-right: ${$adornmentDimensions.end}px;`}
     `}
-
-    &:-webkit-autofill,
-    &:-webkit-autofill:hover,
-    &:-webkit-autofill:focus {
-        -webkit-text-fill-color: var(--text-emphasis-primary-default, #1a1d24);
-        -webkit-box-shadow: 0 0 0px 1000px var(--bg-subtle-brand-default, #E5F1FF) inset;
-    }
 `;
 
 export const StyledTextFieldContainer = styled.div<StyledTextFieldContainerProps>`

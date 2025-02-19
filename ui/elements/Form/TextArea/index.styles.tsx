@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { getTextFieldStyles } from '../TextField/utils';
 import { TEXT_AREA_SIZE_STYLES_MAPPING } from './constant';
 import { TextAreaComponentProps } from './types';
 
@@ -35,23 +36,28 @@ export const StyledTextArea = styled.textarea<TextAreaComponentProps>`
         css`
             ${TEXT_AREA_SIZE_STYLES_MAPPING[size]}
         `};
-    &::placeholder {
-        color: var(--text-emphasis-primary-disabled, #8c95a6);
-    }
-    &:disabled {
-        color: var(--text-emphasis-primary-disabled, #8c95a6);
-        background: var(--bg-subtle-secondary-default, #f6f7f9);
-    }
+
     &:hover {
         background: var(--bg-subtle-primary-hover, #f6f7f9);
     }
-    &:focus {
-        border: 1px solid var(--border-subtle-brand-default, #61a8ff);
-        background: var(--bg-subtle-primary-default, #fff);
+
+    ${({$color}) => $color && getTextFieldStyles($color)}
+
+    &::placeholder {
+        color: var(--text-emphasis-primary-disabled, #8c95a6);
     }
-    &:focus-visible {
-        outline: 3px solid var(--border-subtle-brand-default, #61a8ff);
+
+    &:disabled {
+        color: var(--text-emphasis-primary-disabled, #8c95a6);
+        background: var(--bg-subtle-secondary-default, #f6f7f9);
+        cursor: not-allowed;
     }
+
+    &:read-only:not(:disabled) {
+        color: var(--text-emphasis-primary-default, #16191d);
+        background: var(--bg-subtle-secondary-default, #f6f7f9);
+    }
+
     &[readonly] {
         color: var(--text-emphasis-primary-default, #16191d);
         background: var(--bg-subtle-secondary-default, #f6f7f9);

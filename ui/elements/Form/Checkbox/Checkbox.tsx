@@ -29,6 +29,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
     isDisabled = false,
     value,
     className,
+    color='brand'
 }) => {
     const id = useId();
 
@@ -80,6 +81,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
                     id={`checkbox-${id}`}
                     $indeterminate={isIndeterminate}
                     aria-labelledby={`checkbox-label-${id}`}
+                    $color={color}
                 >
                     {isChecked && !isIndeterminate && (
                         <Icon
