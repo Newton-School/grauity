@@ -22,10 +22,12 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             onClose = () => {},
             fullScreen = false,
             closeOnBackdropClick = true,
-            height = '50%',
+            height = '50vh',
             showDragHandle = true,
             closeOnPullDown = true,
             className,
+            shouldDisableScroll = true,
+            shouldFocusOnFirstElement = true,
         } = props;
 
         const [startY, setStartY] = useState<number | null>(null);
@@ -83,7 +85,8 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             <AnimatePresence>
                 {isOpen && (
                     <Overlay
-                        shouldDisableScroll={isOpen}
+                        shouldFocusOnFirstElement={shouldFocusOnFirstElement}
+                        shouldDisableScroll={isOpen && shouldDisableScroll}
                         shouldTintOverlay
                         onOverlayClick={() => {
                             if (closeOnBackdropClick) {

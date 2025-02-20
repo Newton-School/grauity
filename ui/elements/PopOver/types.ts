@@ -90,6 +90,12 @@ export interface PopOverProps {
      * This will directly open the popover at given position without any adjustments.
      */
     position?: PopoverPosition;
+
+    /**
+     * Should focus on the first element in the popover
+     * @default true
+     */
+    shouldFocusOnFirstElement?: boolean;
 }
 
 export interface StyledPopOverContainerProps extends StyledDivProps {
