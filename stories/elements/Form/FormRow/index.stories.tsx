@@ -38,8 +38,6 @@ const Template = () => {
         account_type: '',
         otp: '',
         pizza_toppings: [],
-        profession: '',
-        hobbies: [],
     });
 
     const handleChange = (
