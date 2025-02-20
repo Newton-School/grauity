@@ -14,8 +14,8 @@ export interface DropdownOption {
 
 /**
  * @deprecated This interface is deprecated and will be removed in future versions.
- * - Use the `DropdownMenu` component instead.
- * @see {@link https://grauity.newtonschool.co/?path=/docs/elements-dropdownmenu--docs}
+ * - Use the `Dropdown` component instead.
+ * @see {@link https://grauity.newtonschool.co/?path=/docs/elements-form-dropdown--docs}
  */
 export interface MultiSelectDropdownProps {
     /**
