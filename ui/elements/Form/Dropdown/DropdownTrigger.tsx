@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
-import { Icon } from 'ui/elements/Icon';
 
+import { Icon } from '../../Icon';
 import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
 import { Label } from '../Label';
