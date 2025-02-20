@@ -213,7 +213,7 @@ export interface ModalProps {
 
     /**
      * Flag to determine if the body scroll should be disabled.
-     * @default false
+     * @default true
      */
     shouldDisableScroll?: boolean;
 }
