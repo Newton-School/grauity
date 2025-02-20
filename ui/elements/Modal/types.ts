@@ -204,6 +204,18 @@ export interface ModalProps {
      * Click even object, to be passed by the onClick event for use with `emanate` modal animation
      * */
     clickEvent?: any;
+
+    /**
+     * Should focus on the first element in the modal
+     * @default true
+     */
+    shouldFocusOnFirstElement?: boolean;
+
+    /**
+     * Flag to determine if the body scroll should be disabled.
+     * @default false
+     */
+    shouldDisableScroll?: boolean;
 }
 
 export interface MultiStepModalProps {
