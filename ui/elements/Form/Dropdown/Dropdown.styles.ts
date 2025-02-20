@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import Button from 'ui/elements/Button';
+
+import Button from '../../Button';
 
 export const StyledDropdown = styled.div`
     display: flex;
