@@ -15,6 +15,11 @@ import {
 } from './SelectDropdown.styles';
 import { DropdownOption, SelectDropdownProps } from './types';
 
+/**
+ * @deprecated This component is deprecated and will be removed in future releases.
+ * - Use the `DropdownMenu` component instead.
+ * @see {@link https://grauity.newtonschool.co/?path=/docs/elements-dropdownmenu--docs}
+ */
 const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
     (props, ref) => {
         const {
