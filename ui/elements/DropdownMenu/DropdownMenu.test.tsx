@@ -134,7 +134,7 @@ describe('DropdownMenu', () => {
                 expect(options).toHaveLength(1);
                 expect(options[0]).toHaveTextContent('Item 1');
                 resolve(true);
-            }, 1000)
+            }, 600)
         );
 
         // Should show all items on clearing the search input
@@ -145,7 +145,7 @@ describe('DropdownMenu', () => {
             setTimeout(() => {
                 expect(screen.getAllByRole('option')).toHaveLength(3);
                 resolve(true);
-            }, 1000)
+            }, 600)
         );
     }, 3000);
 
