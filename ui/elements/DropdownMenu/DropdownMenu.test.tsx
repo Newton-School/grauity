@@ -18,7 +18,6 @@ const getDummyOptions = (count: number): BaseItemOptionProps[] => {
 };
 
 const defaultProps: DropdownMenuProps = {
-    name: 'dropdown',
     items: [],
     selectedValues: [],
 };

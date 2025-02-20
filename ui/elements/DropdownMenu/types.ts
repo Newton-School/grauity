@@ -35,11 +35,6 @@ export type BaseItemProps =
 
 export interface DropdownMenuProps {
     /**
-     * The name of the dropdown menu.
-     */
-    name: string;
-
-    /**
      * Whether to show the header of the dropdown menu.
      * - If `showHeader` is false, `title`, `overline`, and `subtext` will be ignored.
      * - if `title`, `overline`, and `subtext` all are not provided, `showHeader` will be ignored.
