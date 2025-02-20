@@ -212,7 +212,7 @@ export interface ModalProps {
     shouldFocusOnFirstElement?: boolean;
 
     /**
-     * Flag to determine if the body scroll should be disabled.
+     * Flag to determine if the background scroll should be disabled.
      * @default true
      */
     shouldDisableScroll?: boolean;
