@@ -54,7 +54,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         clickEvent = null,
         children = null,
         shouldFocusOnFirstElement = true,
-        shouldDisableScroll = false,
+        shouldDisableScroll = true,
     } = props;
 
     const modalRef = useRef<HTMLDivElement>(null);

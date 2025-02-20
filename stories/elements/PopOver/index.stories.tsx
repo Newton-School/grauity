@@ -68,6 +68,7 @@ const defaultArgs: PopOverProps = {
     onClose: () => {},
     disableBackgroundScroll: true,
     position: null,
+    shouldFocusOnFirstElement: true,
 };
 
 export const Component = Template.bind({});

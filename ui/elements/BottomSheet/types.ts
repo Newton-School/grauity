@@ -34,7 +34,7 @@ export interface BottomSheetProps {
 
     /**
      * The height of the BottomSheet.
-     * @default '50%'
+     * @default '50vh'
      */
     height?: string;
 
@@ -54,6 +54,18 @@ export interface BottomSheetProps {
      * Additional class name to be passed to the BottomSheet.
      */
     className?: string;
+
+    /**
+     * Should focus on the first element in the bottomsheet
+     * @default true
+     */
+    shouldFocusOnFirstElement?: boolean;
+
+    /**
+     * Flag to determine if the background scroll should be disabled.
+     * @default true
+     */
+    shouldDisableScroll?: boolean;
 }
 
 export interface StyledBottomSheetProps extends StyledDivProps {

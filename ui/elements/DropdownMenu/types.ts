@@ -9,6 +9,8 @@ export enum BaseItemType {
     OPTION = 'option',
 }
 
+export type OptionValue = string | number;
+
 export type BaseItemSubHeaderProps = {
     type: BaseItemType.SUB_HEADER;
     title: string;
@@ -19,7 +21,7 @@ export type BaseItemDividerProps = {
 export type BaseItemOptionProps = {
     type: BaseItemType.OPTION;
     label: string;
-    value: string | number;
+    value: OptionValue;
     description?: string;
     leftIcon?: grauityIconName;
     rightIcon?: grauityIconName;
@@ -32,11 +34,6 @@ export type BaseItemProps =
     | BaseItemOptionProps;
 
 export interface DropdownMenuProps {
-    /**
-     * The name of the dropdown menu.
-     */
-    name: string;
-
     /**
      * Whether to show the header of the dropdown menu.
      * - If `showHeader` is false, `title`, `overline`, and `subtext` will be ignored.
@@ -161,7 +158,7 @@ export interface DropdownMenuProps {
      * @param items - The selected items.
      * @default null
      */
-    onApply?: (items: BaseItemOptionProps[] | BaseItemOptionProps) => void;
+    onApply?: (items: BaseItemOptionProps[]) => void;
 
     /**
      * Callback function called when the dropdown menu is scrolled to the bottom.
@@ -185,65 +182,13 @@ export interface DropdownMenuProps {
      * The values of the selected items.
      * @default []
      */
-    selectedValues?: (string | number)[];
-
-    /**
-     * The trigger element for the dropdown menu.
-     * - If the trigger element is not provided, the dropdown menu will be always visible.
-     * - If the trigger element is provided, initially the dropdown menu will be hidden.
-     * - If the trigger element is provided, the dropdown menu will be shown when the trigger element is clicked.
-     * @default null
-     */
-    trigger?: React.ReactNode;
+    selectedValues?: OptionValue[];
 
     /**
      * The width of the dropdown menu.
-     * - If width is not provided, the width will be set to 300px.
-     * - If width is provided, the width will be set to the provided value.
-     * - If the width is 100%, the width will be equal to the width of the trigger element or parent element if trigger is not given.
      * @default '300px'
      */
     width?: string;
-
-    /**
-     * Additional props for the dropdown trigger.
-     * @default {}
-     */
-    triggerProps?: DropdownTriggerProps;
-}
-
-export interface DropdownTriggerProps {
-    /**
-     * The label for the dropdown trigger.
-     * @type {string}
-     */
-    label: string;
-
-    /**
-     * The placeholder text for the dropdown trigger.
-     * @type {string}
-     * @default 'Select'
-     */
-    placeholder?: string;
-
-    /**
-     * The error message to display when the dropdown trigger is invalid.
-     * @type {string}
-     */
-    errorMessage?: string;
-
-    /**
-     * Whether the dropdown trigger is required.
-     * @type {boolean}
-     * @default false
-     */
-    isRequired?: boolean;
-
-    /**
-     * The children of the dropdown trigger.
-     * @type {React.ReactNode}
-     */
-    children?: React.ReactNode;
 }
 
 export interface StyledDropdownMenuProps extends StyledDivProps {

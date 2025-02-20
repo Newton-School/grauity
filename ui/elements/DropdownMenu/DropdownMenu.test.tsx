@@ -18,7 +18,6 @@ const getDummyOptions = (count: number): BaseItemOptionProps[] => {
 };
 
 const defaultProps: DropdownMenuProps = {
-    name: 'dropdown',
     items: [],
     selectedValues: [],
 };
@@ -134,7 +133,7 @@ describe('DropdownMenu', () => {
                 expect(options).toHaveLength(1);
                 expect(options[0]).toHaveTextContent('Item 1');
                 resolve(true);
-            }, 1000)
+            }, 600)
         );
 
         // Should show all items on clearing the search input
@@ -145,7 +144,7 @@ describe('DropdownMenu', () => {
             setTimeout(() => {
                 expect(screen.getAllByRole('option')).toHaveLength(3);
                 resolve(true);
-            }, 1000)
+            }, 600)
         );
     }, 3000);
 
@@ -162,7 +161,7 @@ describe('DropdownMenu', () => {
         let selectedItems = screen.getAllByRole('option', {
             selected: true,
         });
-        expect(onApply).toHaveBeenCalledWith(items[1]);
+        expect(onApply).toHaveBeenCalledWith([items[1]]);
         expect(selectedItems).toHaveLength(1);
 
         // Should call onApply on clicking another item
@@ -170,7 +169,7 @@ describe('DropdownMenu', () => {
         selectedItems = screen.getAllByRole('option', {
             selected: true,
         });
-        expect(onApply).toHaveBeenCalledWith(items[2]);
+        expect(onApply).toHaveBeenCalledWith([items[2]]);
         expect(selectedItems).toHaveLength(1);
     });
     it('Should run entire flow correctly in single select mode if action buttons are present', () => {
@@ -199,7 +198,7 @@ describe('DropdownMenu', () => {
             selected: true,
         });
         expect(selectedItems).toHaveLength(1);
-        expect(onApply).toHaveBeenCalledWith(items[1]);
+        expect(onApply).toHaveBeenCalledWith([items[1]]);
 
         // Should change selected item on clicking another item
         fireEvent.click(screen.getByText('Item 2'));
@@ -214,19 +213,22 @@ describe('DropdownMenu', () => {
             selected: true,
         });
         expect(selectedItems).toHaveLength(1);
-        expect(onApply).toHaveBeenCalledWith(items[2]);
+        expect(onApply).toHaveBeenCalledWith([items[2]]);
     });
 
     // Multiple Select Mode Flow
     it('Should run entire flow correctly in multiple select mode if no action buttons are present', () => {
         const onApply = jest.fn();
         const items = getDummyOptions(3);
+        const ref = React.createRef<HTMLDivElement>();
+
         render(
             <DropdownMenu
                 {...defaultProps}
                 items={items}
                 onApply={onApply}
                 multiple
+                ref={ref}
             />
         );
 
@@ -253,6 +255,8 @@ describe('DropdownMenu', () => {
     it('Should run entire flow correctly in multiple select mode if action buttons are present', () => {
         const onApply = jest.fn();
         const items = getDummyOptions(3);
+        const ref = React.createRef<HTMLDivElement>();
+
         render(
             <DropdownMenu
                 {...defaultProps}
@@ -260,6 +264,7 @@ describe('DropdownMenu', () => {
                 onApply={onApply}
                 showActionButtons
                 multiple
+                ref={ref}
             />
         );
 
@@ -305,178 +310,5 @@ describe('DropdownMenu', () => {
         });
         expect(selectedItems).toHaveLength(2);
         expect(onApply).toHaveBeenCalledWith([items[1], items[2]]);
-    });
-
-    // Should Render Trigger
-    it('Should render the trigger', () => {
-        render(<DropdownMenu {...defaultProps} trigger={<div>Trigger</div>} />);
-        expect(screen.getByText('Trigger')).toBeInTheDocument();
-    });
-
-    // Single Select Mode Flow with Trigger
-    it('Should run entire flow correctly with trigger in single select mode if no action buttons are present', () => {
-        const onApply = jest.fn();
-        const items = getDummyOptions(3);
-        render(
-            <DropdownMenu
-                {...defaultProps}
-                items={items}
-                onApply={onApply}
-                trigger={<div>Trigger</div>}
-            />
-        );
-
-        // Should Open on Click
-        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-        fireEvent.click(screen.getByText('Trigger'));
-        expect(screen.getByRole('menu')).toBeInTheDocument();
-
-        // Should call onApply on clicking an item and close the menu
-        fireEvent.click(screen.getByText('Item 1'));
-        expect(onApply).toHaveBeenCalledWith(items[1]);
-        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-
-        // Should call onApply on clicking another item and close the menu
-        fireEvent.click(screen.getByText('Trigger'));
-        fireEvent.click(screen.getByText('Item 2'));
-        expect(onApply).toHaveBeenCalledWith(items[2]);
-        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-    });
-    it('Should run entire flow correctly with trigger in single select mode if action buttons are present', () => {
-        const onApply = jest.fn();
-        const items = getDummyOptions(3);
-        render(
-            <DropdownMenu
-                {...defaultProps}
-                items={items}
-                onApply={onApply}
-                showActionButtons
-                trigger={<div>Trigger</div>}
-            />
-        );
-
-        // Should Open on Click
-        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-        fireEvent.click(screen.getByText('Trigger'));
-        expect(screen.getByRole('menu')).toBeInTheDocument();
-
-        // Should not call onApply on clicking an item
-        fireEvent.click(screen.getByText('Item 1'));
-        expect(onApply).not.toHaveBeenCalled();
-
-        // Should call onApply on clicking Apply and close the menu
-        fireEvent.click(screen.getByText('Apply'));
-        expect(onApply).toHaveBeenCalledWith(items[1]);
-        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-
-        // Should call onApply on clicking another item and close the menu
-        fireEvent.click(screen.getByText('Trigger'));
-        fireEvent.click(screen.getByText('Item 2'));
-        fireEvent.click(screen.getByText('Apply'));
-        expect(onApply).toHaveBeenCalledWith(items[2]);
-        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-    });
-
-    // Multiple Select Mode Flow with Trigger
-    it('Should run entire flow correctly with trigger in multiple select mode if no action buttons are present', () => {
-        const onApply = jest.fn();
-        const items = getDummyOptions(3);
-        render(
-            <DropdownMenu
-                {...defaultProps}
-                items={items}
-                onApply={onApply}
-                multiple
-                trigger={<div>Trigger</div>}
-            />
-        );
-
-        // Should Open on Click
-        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-        fireEvent.click(screen.getByText('Trigger'));
-        expect(screen.getByRole('menu')).toBeInTheDocument();
-
-        // Should not call onApply on clicking an item
-        fireEvent.click(screen.getByText('Item 1'));
-        let selectedItems = screen.getAllByRole('option', {
-            selected: true,
-        });
-        expect(selectedItems).toHaveLength(1);
-        expect(onApply).not.toHaveBeenCalled();
-
-        // Should add to selected items on clicking another item
-        fireEvent.click(screen.getByText('Item 2'));
-        selectedItems = screen.getAllByRole('option', {
-            selected: true,
-        });
-        expect(selectedItems).toHaveLength(2);
-        expect(onApply).not.toHaveBeenCalled();
-
-        // Should call onApply on clicking outside and close the menu
-        fireEvent.mouseDown(document);
-        expect(onApply).toHaveBeenCalledWith([items[1], items[2]]);
-        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-    });
-    it('Should run entire flow correctly with trigger in multiple select mode if action buttons are present', () => {
-        const onApply = jest.fn();
-        const items = getDummyOptions(3);
-        render(
-            <DropdownMenu
-                {...defaultProps}
-                items={items}
-                onApply={onApply}
-                showActionButtons
-                multiple
-                trigger={<div>Trigger</div>}
-            />
-        );
-
-        // Should Open on Click
-        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-        fireEvent.click(screen.getByText('Trigger'));
-        expect(screen.getByRole('menu')).toBeInTheDocument();
-
-        // Should not call onApply on clicking an item
-        fireEvent.click(screen.getByText('Item 1'));
-        let selectedItems = screen.getAllByRole('option', {
-            selected: true,
-        });
-        expect(selectedItems).toHaveLength(1);
-        expect(onApply).not.toHaveBeenCalled();
-
-        // Should add to selected items on clicking another item
-        fireEvent.click(screen.getByText('Item 2'));
-        selectedItems = screen.getAllByRole('option', {
-            selected: true,
-        });
-        expect(selectedItems).toHaveLength(2);
-        expect(onApply).not.toHaveBeenCalled();
-
-        // Should not call onApply on clicking outside
-        fireEvent.mouseDown(document);
-        expect(onApply).not.toHaveBeenCalled();
-
-        // Should Clear All Selected Items
-        fireEvent.click(screen.getByText('Clear All'));
-        selectedItems = screen.queryAllByRole('option', {
-            selected: true,
-        });
-        expect(selectedItems).toHaveLength(0);
-        fireEvent.click(screen.getByText('Apply'));
-        expect(onApply).toHaveBeenCalledWith([]);
-
-        // Should add to selected items on clicking multiple item
-        fireEvent.click(screen.getByText('Trigger'));
-        fireEvent.click(screen.getByText('Item 1'));
-        fireEvent.click(screen.getByText('Item 2'));
-        selectedItems = screen.getAllByRole('option', {
-            selected: true,
-        });
-        expect(selectedItems).toHaveLength(2);
-
-        // Should call onApply on clicking Apply and close the menu
-        fireEvent.click(screen.getByText('Apply'));
-        expect(onApply).toHaveBeenCalledWith([items[1], items[2]]);
-        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
     });
 });

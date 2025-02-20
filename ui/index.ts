@@ -226,15 +226,20 @@ export {
 
 // NSDropdownMenu
 export {
-    type BaseItemDividerProps as DropdownMenuBaseItemDividerProps,
-    type BaseItemOptionProps as DropdownMenuBaseItemOptionProps,
-    type BaseItemProps as DropdownMenuBaseItemProps,
-    type BaseItemSubHeaderProps as DropdownMenuBaseItemSubHeaderProps,
-    BaseItemType as DropdownMenuBaseItemType,
-    type DropdownMenuProps,
     default as NSDropdownMenu,
-    DropdownTrigger as NSDropdownTrigger,
+    type BaseItemDividerProps as NSDropdownMenuBaseItemDividerProps,
+    type BaseItemOptionProps as NSDropdownMenuBaseItemOptionProps,
+    type BaseItemProps as NSDropdownMenuBaseItemProps,
+    type BaseItemSubHeaderProps as NSDropdownMenuBaseItemSubHeaderProps,
+    BaseItemType as NSDropdownMenuBaseItemType,
+    type DropdownMenuProps as NSDropdownMenuProps,
 } from './elements/DropdownMenu';
+
+// NSDropdown
+export {
+    type DropdownProps,
+    default as NSDropdown,
+} from './elements/Form/Dropdown';
 
 // NSFormRenderer
 export {

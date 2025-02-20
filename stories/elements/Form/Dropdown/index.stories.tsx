@@ -1,19 +1,31 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { DropdownTriggerProps } from 'ui/elements/Form/Dropdown/types';
 import {
-    NSDropdownMenu,
+    DropdownProps,
+    NSDropdown,
     NSDropdownMenuBaseItemOptionProps,
     NSDropdownMenuBaseItemType,
-    NSDropdownMenuProps,
 } from 'ui/index';
 
 export default {
-    title: 'Elements/DropdownMenu',
-    component: NSDropdownMenu,
+    title: 'Elements/Form/Dropdown',
+    component: NSDropdown,
 };
 
-const Template = (args: NSDropdownMenuProps) => <NSDropdownMenu {...args} />;
+const Template = (args: DropdownProps) => <NSDropdown {...args} />;
 
-const defaultArgs: NSDropdownMenuProps = {
+const triggerProps: DropdownTriggerProps = {
+    name: 'dropdown',
+    label: 'Dropdown',
+    placeholder: 'Select',
+    isRequired: false,
+    isDisabled: false,
+    helpMessage: '',
+    errorMessage: '',
+};
+
+const defaultArgs: DropdownProps = {
+    ...triggerProps,
     showHeader: true,
     title: 'Select',
     overline: '',
@@ -104,7 +116,7 @@ const defaultArgs: NSDropdownMenuProps = {
     className: '',
     styles: {},
     selectedValues: [],
-    width: '300px',
+    width: '100%',
 };
 
 export const Component = Template.bind({});
@@ -114,19 +126,17 @@ Component.args = {
 };
 
 // Example Tempate
-const ExampleTemplate = (args: NSDropdownMenuProps) => {
+const ExampleTemplate = (args: DropdownProps) => {
     const [selectedValues, setSelectedValues] = useState<
         NSDropdownMenuBaseItemOptionProps[]
     >([]);
-    const dropdownMenuRef = useRef<HTMLDivElement>();
 
     return (
         <>
-            <NSDropdownMenu
+            <NSDropdown
                 {...args}
                 selectedValues={selectedValues.map((value) => value.value)}
                 onApply={setSelectedValues}
-                ref={dropdownMenuRef}
             />
             <div>
                 <h2>Selected Values</h2>
@@ -141,7 +151,9 @@ const ExampleTemplate = (args: NSDropdownMenuProps) => {
 };
 
 // Single Select Dropdown Menu
-const singleSelectArgs: NSDropdownMenuProps = {
+const singleSelectArgs: DropdownProps = {
+    ...triggerProps,
+    ...defaultArgs,
     showHeader: true,
     title: 'Select',
     subtext: 'Click an option to select',
@@ -167,7 +179,9 @@ SingleSelectWithApplyButton.args = {
 };
 
 // Multiple Select Dropdown Menu
-const multipleSelectArgs: NSDropdownMenuProps = {
+const multipleSelectArgs: DropdownProps = {
+    ...triggerProps,
+    ...defaultArgs,
     showHeader: true,
     title: 'Select',
     subtext: 'Click an option to select',

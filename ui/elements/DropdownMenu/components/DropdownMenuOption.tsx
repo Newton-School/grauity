@@ -7,12 +7,12 @@ import {
     StyledDropdownMenuOptionDescription,
     StyledDropdownMenuOptionLabel,
 } from '../DropdownMenu.styles';
-import { BaseItemOptionProps } from '../types';
+import { BaseItemOptionProps, OptionValue } from '../types';
 
 interface DropdownMenuOptionProps extends BaseItemOptionProps {
     multiple: boolean;
     selected: boolean;
-    onClick: (value: string | number) => void;
+    onClick: (value: OptionValue) => void;
 }
 
 const DropdownMenuOption = (props: DropdownMenuOptionProps) => {

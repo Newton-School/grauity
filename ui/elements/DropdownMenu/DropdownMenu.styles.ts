@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
-import Button from '../Button';
 import {
     ANIMATION_DURATION_IN_MILLISECONDS,
     DROPDOWN_MENU_MAX_HEIGHT,
@@ -10,8 +9,6 @@ import {
     StyledDropdownMenuOptionDescriptionProps,
     StyledDropdownMenuProps,
 } from './types';
-
-export const StyledTrigger = styled.div``;
 
 export const StyledDropdownMenu = styled(motion.div)<StyledDropdownMenuProps>`
     box-sizing: border-box;
@@ -188,26 +185,4 @@ export const StyledDropdownMenuFooter = styled.div`
     gap: 8px;
     align-self: stretch;
     border-top: 1px solid var(--border-subtle-primary-default, #e1e5ea);
-`;
-
-export const StyledDropdownDefaultTrigger = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    font-family: var(--font-family);
-`;
-
-export const StyledDropdownDefaultTriggerButton = styled(Button)`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    outline: 1px solid var(--border-subtle-primary-default, #e1e5ea);
-
-    div {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
 `;
