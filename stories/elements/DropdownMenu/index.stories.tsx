@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
-    DropdownMenuBaseItemOptionProps,
-    DropdownMenuBaseItemType,
-    DropdownMenuProps,
-    NSButton,
     NSDropdownMenu,
+    NSDropdownMenuBaseItemOptionProps,
+    NSDropdownMenuBaseItemType,
+    NSDropdownMenuProps,
 } from 'ui/index';
 
 export default {
@@ -12,9 +11,9 @@ export default {
     component: NSDropdownMenu,
 };
 
-const Template = (args: DropdownMenuProps) => <NSDropdownMenu {...args} />;
+const Template = (args: NSDropdownMenuProps) => <NSDropdownMenu {...args} />;
 
-const defaultArgs: DropdownMenuProps = {
+const defaultArgs: NSDropdownMenuProps = {
     name: 'dropdown-menu',
     showHeader: true,
     title: 'Select',
@@ -28,11 +27,11 @@ const defaultArgs: DropdownMenuProps = {
     multiple: false,
     items: [
         {
-            type: DropdownMenuBaseItemType.SUB_HEADER,
+            type: NSDropdownMenuBaseItemType.SUB_HEADER,
             title: 'LEVELS',
         },
         {
-            type: DropdownMenuBaseItemType.OPTION,
+            type: NSDropdownMenuBaseItemType.OPTION,
             label: 'Easy',
             value: 'easy',
             description: 'Please write your description here',
@@ -40,24 +39,24 @@ const defaultArgs: DropdownMenuProps = {
             rightIcon: 'check-circle',
         },
         {
-            type: DropdownMenuBaseItemType.OPTION,
+            type: NSDropdownMenuBaseItemType.OPTION,
             label: 'Medium',
             value: 'medium',
             description: 'Please write your description here',
             leftIcon: 'check-circle',
         },
         {
-            type: DropdownMenuBaseItemType.DIVIDER,
+            type: NSDropdownMenuBaseItemType.DIVIDER,
         },
         {
-            type: DropdownMenuBaseItemType.OPTION,
+            type: NSDropdownMenuBaseItemType.OPTION,
             label: 'Hard',
             value: 'hard',
             leftIcon: 'check-circle',
             rightIcon: 'check-circle',
         },
         {
-            type: DropdownMenuBaseItemType.OPTION,
+            type: NSDropdownMenuBaseItemType.OPTION,
             label: 'Impossible',
             value: 'impossible',
             description: 'Please write your description here',
@@ -65,32 +64,32 @@ const defaultArgs: DropdownMenuProps = {
             disabled: true,
         },
         {
-            type: DropdownMenuBaseItemType.DIVIDER,
+            type: NSDropdownMenuBaseItemType.DIVIDER,
         },
         {
-            type: DropdownMenuBaseItemType.SUB_HEADER,
+            type: NSDropdownMenuBaseItemType.SUB_HEADER,
             title: 'OTHERS',
         },
         {
-            type: DropdownMenuBaseItemType.OPTION,
+            type: NSDropdownMenuBaseItemType.OPTION,
             label: 'Option 1',
             value: 'option1',
             leftIcon: 'check-circle',
         },
         {
-            type: DropdownMenuBaseItemType.OPTION,
+            type: NSDropdownMenuBaseItemType.OPTION,
             label: 'Option 2',
             value: 'option2',
             leftIcon: 'check-circle',
         },
         {
-            type: DropdownMenuBaseItemType.OPTION,
+            type: NSDropdownMenuBaseItemType.OPTION,
             label: 'Option 3',
             value: 'option3',
             leftIcon: 'check-circle',
         },
         {
-            type: DropdownMenuBaseItemType.OPTION,
+            type: NSDropdownMenuBaseItemType.OPTION,
             label: 'Option 4',
             value: 'option4',
             leftIcon: 'check-circle',
@@ -106,7 +105,6 @@ const defaultArgs: DropdownMenuProps = {
     className: '',
     styles: {},
     selectedValues: [],
-    trigger: null,
     width: '300px',
 };
 
@@ -117,28 +115,19 @@ Component.args = {
 };
 
 // Example Tempate
-const ExampleTemplate = (args: DropdownMenuProps) => {
-    const { multiple } = args;
+const ExampleTemplate = (args: NSDropdownMenuProps) => {
     const [selectedValues, setSelectedValues] = useState<
-        DropdownMenuBaseItemOptionProps[]
+        NSDropdownMenuBaseItemOptionProps[]
     >([]);
+    const dropdownMenuRef = useRef<HTMLDivElement>();
 
     return (
         <>
             <NSDropdownMenu
                 {...args}
                 selectedValues={selectedValues.map((value) => value.value)}
-                onApply={(values) => {
-                    if (multiple) {
-                        setSelectedValues(
-                            values as DropdownMenuBaseItemOptionProps[]
-                        );
-                    } else {
-                        setSelectedValues([
-                            values as DropdownMenuBaseItemOptionProps,
-                        ]);
-                    }
-                }}
+                onApply={setSelectedValues}
+                ref={dropdownMenuRef}
             />
             <div>
                 <h2>Selected Values</h2>
@@ -153,7 +142,7 @@ const ExampleTemplate = (args: DropdownMenuProps) => {
 };
 
 // Single Select Dropdown Menu
-const singleSelectArgs: DropdownMenuProps = {
+const singleSelectArgs: NSDropdownMenuProps = {
     name: 'single-select',
     showHeader: true,
     title: 'Select',
@@ -161,12 +150,11 @@ const singleSelectArgs: DropdownMenuProps = {
     multiple: false,
     searchable: true,
     items: Array.from({ length: 20 }, (_, i) => ({
-        type: DropdownMenuBaseItemType.OPTION,
+        type: NSDropdownMenuBaseItemType.OPTION,
         label: `Option ${i + 1}`,
         value: `option${i + 1}`,
     })),
     selectedValues: [],
-    trigger: <NSButton>Open Dropdown</NSButton>,
 };
 
 export const SingleSelect = ExampleTemplate.bind({});
@@ -181,7 +169,7 @@ SingleSelectWithApplyButton.args = {
 };
 
 // Multiple Select Dropdown Menu
-const multipleSelectArgs: DropdownMenuProps = {
+const multipleSelectArgs: NSDropdownMenuProps = {
     name: 'multiple-select',
     showHeader: true,
     title: 'Select',
@@ -189,12 +177,11 @@ const multipleSelectArgs: DropdownMenuProps = {
     multiple: true,
     searchable: true,
     items: Array.from({ length: 20 }, (_, i) => ({
-        type: DropdownMenuBaseItemType.OPTION,
+        type: NSDropdownMenuBaseItemType.OPTION,
         label: `Option ${i + 1}`,
         value: `option${i + 1}`,
     })),
     selectedValues: [],
-    trigger: <NSButton>Open Dropdown</NSButton>,
 };
 
 export const MultipleSelect = ExampleTemplate.bind({});

@@ -223,3 +223,14 @@ export {
     default as NSOtpInput,
     type OtpInputFieldProps,
 } from './elements/Form/OtpInputField';
+
+// NSDropdownMenu
+export {
+    default as NSDropdownMenu,
+    type BaseItemDividerProps as NSDropdownMenuBaseItemDividerProps,
+    type BaseItemOptionProps as NSDropdownMenuBaseItemOptionProps,
+    type BaseItemProps as NSDropdownMenuBaseItemProps,
+    type BaseItemSubHeaderProps as NSDropdownMenuBaseItemSubHeaderProps,
+    BaseItemType as NSDropdownMenuBaseItemType,
+    type DropdownMenuProps as NSDropdownMenuProps,
+} from './elements/DropdownMenu';
