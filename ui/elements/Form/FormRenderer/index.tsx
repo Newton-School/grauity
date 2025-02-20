@@ -7,7 +7,7 @@ export {
     type FormFieldCheckboxProps,
     type FormFieldCustomProps,
     type FormFieldDatePickerProps,
-    type FormFieldDropdownMenuProps,
+    type FormFieldDropdownProps,
     type FormFieldIconButtonProps,
     type FormFields,
     type FormFieldTextFieldProps,

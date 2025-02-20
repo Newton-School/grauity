@@ -251,7 +251,7 @@ export {
     type FormFieldCheckboxProps as NSFormFieldCheckboxProps,
     type FormFieldCustomProps as NSFormFieldCustomProps,
     type FormFieldDatePickerProps as NSFormFieldDatePickerProps,
-    type FormFieldDropdownMenuProps as NSFormFieldDropdownMenuProps,
+    type FormFieldDropdownProps as NSFormFieldDropdownProps,
     type FormFieldIconButtonProps as NSFormFieldIconButtonProps,
     type FormFields as NSFormFields,
     type FormFieldTextFieldProps as NSFormFieldTextFieldProps,

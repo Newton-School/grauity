@@ -38,9 +38,10 @@ const TemplateUseFormHook = () => {
             schema: string().required('Last name is required'),
         },
         hobbies: {
-            type: NSFormFieldType.DROPDOWN_MENU,
+            type: NSFormFieldType.DROPDOWN,
             rendererProps: {
                 name: 'hobbies',
+                label: 'Select Hobbies',
                 multiple: true,
                 items: [
                     {
@@ -59,16 +60,14 @@ const TemplateUseFormHook = () => {
                         value: 'drawing',
                     },
                 ],
-                triggerProps: {
-                    label: 'Select Hobbies',
-                },
             },
             schema: array().min(1, 'Select at least one hobby'),
         },
         profession: {
-            type: NSFormFieldType.DROPDOWN_MENU,
+            type: NSFormFieldType.DROPDOWN,
             rendererProps: {
                 name: 'profession',
+                label: 'Select Profession',
                 multiple: false,
                 items: [
                     {
@@ -92,9 +91,6 @@ const TemplateUseFormHook = () => {
                         value: 'tester',
                     },
                 ],
-                triggerProps: {
-                    label: 'Select Profession',
-                },
             },
             schema: string().required('Profession is required'),
         },

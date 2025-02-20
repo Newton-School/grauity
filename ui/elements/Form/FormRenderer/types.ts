@@ -2,8 +2,8 @@ import React from 'react';
 import { Schema } from 'yup';
 
 import { IconButtonProps } from '../../Button';
-import { DropdownMenuProps } from '../../DropdownMenu';
 import { CheckboxProps } from '../Checkbox';
+import { DropdownProps } from '../Dropdown';
 import { TextFieldProps } from '../TextField';
 
 // Form Data
@@ -18,7 +18,7 @@ export interface FormErrors {
 export enum FormFieldType {
     TEXTFIELD = 'TEXTFIELD',
     DATE_PICKER = 'DATE_PICKER',
-    DROPDOWN_MENU = 'DROPDOWN_MENU',
+    DROPDOWN = 'DROPDOWN',
     ICON_BUTTON = 'ICON_BUTTON',
     CHECKBOX = 'CHECKBOX',
     CUSTOM = 'CUSTOM',
@@ -44,9 +44,9 @@ export interface FormFieldDatePickerProps extends FormFieldBaseProps {
     type: FormFieldType.DATE_PICKER;
     rendererProps: TextFieldProps;
 }
-export interface FormFieldDropdownMenuProps extends FormFieldBaseProps {
-    type: FormFieldType.DROPDOWN_MENU;
-    rendererProps: DropdownMenuProps;
+export interface FormFieldDropdownProps extends FormFieldBaseProps {
+    type: FormFieldType.DROPDOWN;
+    rendererProps: DropdownProps;
 }
 export interface FormFieldIconButtonProps extends FormFieldBaseProps {
     type: FormFieldType.ICON_BUTTON;
@@ -63,7 +63,7 @@ export interface FormFieldCustomProps extends FormFieldBaseProps {
 export type FormField =
     | FormFieldTextFieldProps
     | FormFieldDatePickerProps
-    | FormFieldDropdownMenuProps
+    | FormFieldDropdownProps
     | FormFieldIconButtonProps
     | FormFieldCheckboxProps
     | FormFieldCustomProps;

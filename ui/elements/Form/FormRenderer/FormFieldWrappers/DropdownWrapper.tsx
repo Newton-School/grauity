@@ -1,27 +1,22 @@
 import React, { useMemo } from 'react';
 
-import DropdownMenu, {
-    BaseItemOptionProps,
-    BaseItemType,
-    DropdownMenuProps,
-    DropdownTrigger,
-} from '../../../DropdownMenu';
+import { BaseItemOptionProps, BaseItemType } from '../../../DropdownMenu';
+import Dropdown, { DropdownProps } from '../../Dropdown';
 import { FormFieldProps } from '../types';
 import { getConditionalProps } from '../utils';
 
-const DropdownMenuWrapper = (props: FormFieldProps) => {
+const DropdownWrapper = (props: FormFieldProps) => {
     const { formField, error, formData, handleChange } = props;
-    const rendererProps = formField.rendererProps as DropdownMenuProps;
-    const { triggerProps } = rendererProps;
+    const rendererProps = formField.rendererProps as DropdownProps;
 
     const conditionalProps = getConditionalProps({
         formField,
         formData,
     });
 
-    const getCurrentValue = () => {
+    const getCurrentValue = (): string => {
         if (rendererProps.multiple) {
-            return triggerProps.placeholder;
+            return rendererProps.placeholder;
         }
         if (Array.isArray(rendererProps.items)) {
             const selectedOption = rendererProps.items.find(
@@ -31,9 +26,9 @@ const DropdownMenuWrapper = (props: FormFieldProps) => {
             ) as BaseItemOptionProps;
             return selectedOption
                 ? selectedOption.label
-                : triggerProps.placeholder;
+                : rendererProps.placeholder;
         }
-        return formData[rendererProps.name] || triggerProps.placeholder;
+        return formData[rendererProps.name] || rendererProps.placeholder;
     };
 
     const getSelectedValues = () => {
@@ -46,20 +41,21 @@ const DropdownMenuWrapper = (props: FormFieldProps) => {
         return [formData[rendererProps.name]];
     };
 
-    const handleApply = (
-        selectedValues: BaseItemOptionProps[] | BaseItemOptionProps
-    ) => {
+    const handleApply = (selectedValues: BaseItemOptionProps[]) => {
         if (rendererProps.multiple) {
             handleChange({
                 name: rendererProps.name,
-                value: (selectedValues as BaseItemOptionProps[]).map(
-                    (item) => item.value
-                ),
+                value: selectedValues.map((item) => item.value),
+            });
+        } else if (selectedValues.length === 0) {
+            handleChange({
+                name: rendererProps.name,
+                value: '',
             });
         } else {
             handleChange({
                 name: rendererProps.name,
-                value: (selectedValues as BaseItemOptionProps).value,
+                value: selectedValues[0].value,
             });
         }
     };
@@ -71,26 +67,17 @@ const DropdownMenuWrapper = (props: FormFieldProps) => {
     }, [conditionalProps.selectedValues]);
 
     return (
-        <DropdownMenu
+        <Dropdown
             key={rendererProps.name}
             showHeader={false}
-            trigger={
-                <DropdownTrigger
-                    label={triggerProps.label}
-                    errorMessage={error}
-                    isRequired={triggerProps.isRequired}
-                    placeholder={triggerProps.placeholder}
-                >
-                    {getCurrentValue()}
-                </DropdownTrigger>
-            }
-            width="100%"
             {...rendererProps}
+            placeholder={getCurrentValue()}
             selectedValues={getSelectedValues()}
             onApply={handleApply}
             {...conditionalProps}
+            errorMessage={error}
         />
     );
 };
 
-export default DropdownMenuWrapper;
+export default DropdownWrapper;
