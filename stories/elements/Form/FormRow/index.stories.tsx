@@ -1,11 +1,7 @@
 import React from 'react';
-import { BaseItemOptionProps } from 'ui/elements/DropdownMenu';
 import Typography from 'ui/elements/Typography';
 import {
-    DropdownMenuBaseItemType,
     NSCheckbox,
-    NSDropdownMenu,
-    NSDropdownTrigger,
     NSFormRow,
     NSLabel,
     NSOtpInput,
@@ -31,23 +27,6 @@ const ACCOUNT_TYPES = [
     { label: 'Enterprise', value: 'enterprise' },
 ];
 
-const PROFESSIONS = [
-    { label: 'Doctor', value: 'doctor' },
-    { label: 'Engineer', value: 'engineer' },
-    { label: 'Teacher', value: 'teacher' },
-    { label: 'Lawyer', value: 'lawyer' },
-    { label: 'Artist', value: 'artist' },
-    { label: 'Farmer', value: 'farmer' },
-];
-
-const HOBBIES = [
-    { label: 'Reading', value: 'reading' },
-    { label: 'Writing', value: 'writing' },
-    { label: 'Coding', value: 'coding' },
-    { label: 'Singing', value: 'singing' },
-    { label: 'Dancing', value: 'dancing' },
-];
-
 const Template = () => {
     const [formData, setFormData] = React.useState({
         first_name: '',
@@ -59,8 +38,6 @@ const Template = () => {
         account_type: '',
         otp: '',
         pizza_toppings: [],
-        profession: '',
-        hobbies: [],
     });
 
     const handleChange = (
@@ -264,56 +241,6 @@ const Template = () => {
                             />
                         ))}
                     </NSFormRow>
-                </NSFormRow>
-
-                {/* Dropdown Menu */}
-                <NSFormRow widths="2fr 3fr">
-                    <NSDropdownMenu
-                        name="profession"
-                        trigger={
-                            <NSDropdownTrigger label="Profession">
-                                {formData.profession || 'Select Profession'}
-                            </NSDropdownTrigger>
-                        }
-                        items={PROFESSIONS.map((profession) => {
-                            return {
-                                ...profession,
-                                type: DropdownMenuBaseItemType.OPTION,
-                            };
-                        })}
-                        selectedValues={[formData.profession]}
-                        onApply={(selectedValue: BaseItemOptionProps) =>
-                            setFormData({
-                                ...formData,
-                                profession: selectedValue.value as string,
-                            })
-                        }
-                    />
-                    <NSDropdownMenu
-                        name="hobbies"
-                        multiple
-                        trigger={
-                            <NSDropdownTrigger label="Hobbies">
-                                Select Hobbies
-                            </NSDropdownTrigger>
-                        }
-                        items={HOBBIES.map((hobby) => {
-                            return {
-                                ...hobby,
-                                type: DropdownMenuBaseItemType.OPTION,
-                            };
-                        })}
-                        selectedValues={formData.hobbies}
-                        onApply={(selectedValues: BaseItemOptionProps[]) =>
-                            setFormData({
-                                ...formData,
-                                hobbies: selectedValues.map(
-                                    (value) => value.value as string
-                                ),
-                            })
-                        }
-                        showActionButtons
-                    />
                 </NSFormRow>
             </div>
             <div
