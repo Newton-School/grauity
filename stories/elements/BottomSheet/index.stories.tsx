@@ -74,7 +74,7 @@ const defaultArgs: BottomSheetProps = {
     onClose: () => {},
     fullScreen: false,
     closeOnBackdropClick: true,
-    height: '50%',
+    height: '50vh',
     showDragHandle: true,
     closeOnPullDown: true,
     shouldDisableScroll: true,
