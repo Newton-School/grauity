@@ -21,6 +21,7 @@ export default function PopOver(props: PopOverProps) {
         width,
         height,
         position,
+        shouldFocusOnFirstElement = true,
     } = props;
 
     const [adjustedOffset, setAdjustedOffset] = useState<PopOverOffset | null>(
@@ -267,6 +268,7 @@ export default function PopOver(props: PopOverProps) {
         <AnimatePresence>
             {isOpen && (
                 <Overlay
+                    shouldFocusOnFirstElement={shouldFocusOnFirstElement}
                     shouldDisableScroll={isOpen && disableBackgroundScroll}
                     onOverlayClick={handleCloseOnOutsideClick}
                     data-testid="testid-pop-over-wrapper"

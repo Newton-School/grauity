@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
-import { StyledOverlayProps } from './types';
+import { StyledOverlayContentProps, StyledOverlayProps } from './types';
 
 export const StyledOverlay = styled(motion.div)<StyledOverlayProps>`
     position: fixed;
@@ -37,4 +37,12 @@ export const StyledOverlay = styled(motion.div)<StyledOverlayProps>`
             justify-content: center;
             align-items: center;
         `}
+`;
+
+export const StyledOverlayContent = styled.div<StyledOverlayContentProps>`
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    top: ${({ $top }) => $top}px;
+    left: ${({ $left }) => $left}px;
 `;
