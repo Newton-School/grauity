@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
     NSDropdownMenu,
     NSDropdownMenuBaseItemOptionProps,
@@ -118,7 +118,6 @@ const ExampleTemplate = (args: NSDropdownMenuProps) => {
     const [selectedValues, setSelectedValues] = useState<
         NSDropdownMenuBaseItemOptionProps[]
     >([]);
-    const dropdownMenuRef = useRef<HTMLDivElement>();
 
     return (
         <>
@@ -126,7 +125,6 @@ const ExampleTemplate = (args: NSDropdownMenuProps) => {
                 {...args}
                 selectedValues={selectedValues.map((value) => value.value)}
                 onApply={setSelectedValues}
-                ref={dropdownMenuRef}
             />
             <div>
                 <h2>Selected Values</h2>

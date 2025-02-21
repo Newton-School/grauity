@@ -220,7 +220,6 @@ describe('DropdownMenu', () => {
     it('Should run entire flow correctly in multiple select mode if no action buttons are present', () => {
         const onApply = jest.fn();
         const items = getDummyOptions(3);
-        const ref = React.createRef<HTMLDivElement>();
 
         render(
             <DropdownMenu
@@ -228,7 +227,6 @@ describe('DropdownMenu', () => {
                 items={items}
                 onApply={onApply}
                 multiple
-                ref={ref}
             />
         );
 
@@ -255,7 +253,6 @@ describe('DropdownMenu', () => {
     it('Should run entire flow correctly in multiple select mode if action buttons are present', () => {
         const onApply = jest.fn();
         const items = getDummyOptions(3);
-        const ref = React.createRef<HTMLDivElement>();
 
         render(
             <DropdownMenu
@@ -264,7 +261,6 @@ describe('DropdownMenu', () => {
                 onApply={onApply}
                 showActionButtons
                 multiple
-                ref={ref}
             />
         );
 
