@@ -22,7 +22,7 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             onClose = () => {},
             fullScreen = false,
             closeOnBackdropClick = true,
-            height = '50vh',
+            height = '50%',
             showDragHandle = true,
             closeOnPullDown = true,
             className,

@@ -40,9 +40,14 @@ export const StyledOverlay = styled(motion.div)<StyledOverlayProps>`
 `;
 
 export const StyledOverlayContent = styled.div<StyledOverlayContentProps>`
-    width: fit-content;
-    height: fit-content;
+    width: 100%;
+    height: 100%;
     position: relative;
     top: ${({ $top }) => $top}px;
     left: ${({ $left }) => $left}px;
+`;
+
+export const StyledOverlayContentChildren = styled.div`
+    width: fit-content;
+    height: fit-content;
 `;
