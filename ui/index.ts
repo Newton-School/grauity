@@ -234,3 +234,9 @@ export {
     BaseItemType as NSDropdownMenuBaseItemType,
     type DropdownMenuProps as NSDropdownMenuProps,
 } from './elements/DropdownMenu';
+
+// NSDropdown
+export {
+    type DropdownProps,
+    default as NSDropdown,
+} from './elements/Form/Dropdown';

@@ -1,0 +1,225 @@
+import '@testing-library/jest-dom';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
+
+import { BaseItemOptionProps, BaseItemType } from '../../DropdownMenu';
+import Dropdown from './Dropdown';
+import { DropdownProps } from './types';
+
+const getDummyOptions = (count: number): BaseItemOptionProps[] => {
+    return Array.from({ length: count }, (_, i) => ({
+        type: BaseItemType.OPTION,
+        label: `Item ${i}`,
+        value: `item-${i}`,
+    }));
+};
+
+const defaultProps: DropdownProps = {
+    items: [],
+    selectedValues: [],
+    name: 'dropdown',
+    clearAllButtonText: 'Clear',
+    applyButtonText: 'Apply',
+};
+
+describe('Dropdown', () => {
+    // Rendering Trigger
+    it('Should render the trigger', () => {
+        const { getByRole } = render(<Dropdown {...defaultProps} />);
+        expect(getByRole('button')).toBeInTheDocument();
+    });
+
+    // Rendering Label
+    it('Should render the label', () => {
+        const { getByText } = render(
+            <Dropdown {...defaultProps} label="Dropdown" />
+        );
+        expect(getByText('Dropdown')).toBeInTheDocument();
+    });
+
+    // Rendering Placeholder
+    it('Should render the placeholder', () => {
+        const { getByText } = render(
+            <Dropdown {...defaultProps} placeholder="Select an item" />
+        );
+        expect(getByText('Select an item')).toBeInTheDocument();
+    });
+
+    // Rendering Help Message
+    it('Should render the help message', () => {
+        const { getByText } = render(
+            <Dropdown {...defaultProps} helpMessage="Help message" />
+        );
+        expect(getByText('Help message')).toBeInTheDocument();
+    });
+
+    // Rendering Error Message
+    it('Should render the error message', () => {
+        const { getByText } = render(
+            <Dropdown {...defaultProps} errorMessage="Error message" />
+        );
+        expect(getByText('Error message')).toBeInTheDocument();
+    });
+
+    // Single Select Mode Flow
+    it('Should run entire flow correctly in single select mode if no action buttons', () => {
+        const onApply = jest.fn();
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                placeholder="Select"
+                items={items}
+                onApply={onApply}
+            />
+        );
+
+        // Should open the dropdown
+        fireEvent.click(screen.getByText('Select'));
+        expect(screen.getByText('Item 0')).toBeInTheDocument();
+
+        // Should call onApply on selecting an item
+        fireEvent.click(screen.getByText('Item 0'));
+        expect(onApply).toHaveBeenCalledWith([items[0]]);
+
+        // Should close the dropdown
+        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+
+        // Should call onApply on selecting another item
+        fireEvent.click(screen.getByText('Select'));
+        fireEvent.click(screen.getByText('Item 1'));
+        expect(onApply).toHaveBeenCalledWith([items[1]]);
+        expect(screen.queryByText('Item 1')).not.toBeInTheDocument();
+    });
+    it('Should run entire flow correctly in single select mode if action buttons are present', () => {
+        const onApply = jest.fn();
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                placeholder="Select"
+                items={items}
+                onApply={onApply}
+                showActionButtons
+            />
+        );
+
+        // Should open the dropdown
+        fireEvent.click(screen.getByText('Select'));
+        expect(screen.getByText('Item 0')).toBeInTheDocument();
+
+        // Should not call onApply on selecting an item
+        fireEvent.click(screen.getByText('Item 0'));
+        expect(onApply).not.toHaveBeenCalled();
+
+        // Should call onApply on clicking apply button
+        fireEvent.click(screen.getByText('Apply'));
+        expect(onApply).toHaveBeenCalledWith([items[0]]);
+
+        // Should close the dropdown
+        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+    });
+
+    // Multi Select Mode Flow
+    it('Should run entire flow correctly in multi select mode if no action buttons', () => {
+        const onApply = jest.fn();
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                placeholder="Select"
+                items={items}
+                onApply={onApply}
+                multiple
+            />
+        );
+
+        // Should open the dropdown
+        fireEvent.click(screen.getByText('Select'));
+        expect(screen.getByText('Item 0')).toBeInTheDocument();
+
+        // Should not call onApply on selecting an item
+        fireEvent.click(screen.getByText('Item 0'));
+        let selectedItems = screen.getAllByRole('option', {
+            selected: true,
+        });
+        expect(selectedItems).toHaveLength(1);
+        expect(onApply).not.toHaveBeenCalled();
+        fireEvent.click(screen.getByText('Item 1'));
+        selectedItems = screen.getAllByRole('option', {
+            selected: true,
+        });
+        expect(selectedItems).toHaveLength(2);
+        expect(onApply).not.toHaveBeenCalled();
+
+        // Should call onApply on clicking outside the dropdown
+        fireEvent.mouseDown(document.body);
+        expect(onApply).toHaveBeenCalledWith([items[0], items[1]]);
+
+        // Should close the dropdown
+        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+    });
+    it('Should run entire flow correctly in multi select mode if action buttons are present', () => {
+        const onApply = jest.fn();
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                placeholder="Select"
+                items={items}
+                onApply={onApply}
+                multiple
+                showActionButtons
+            />
+        );
+
+        // Should open the dropdown
+        fireEvent.click(screen.getByText('Select'));
+        expect(screen.getByText('Item 0')).toBeInTheDocument();
+
+        // Should not call onApply on selecting an item
+        fireEvent.click(screen.getByText('Item 0'));
+        let selectedItems = screen.getAllByRole('option', {
+            selected: true,
+        });
+        expect(selectedItems).toHaveLength(1);
+        expect(onApply).not.toHaveBeenCalled();
+        fireEvent.click(screen.getByText('Item 1'));
+        selectedItems = screen.getAllByRole('option', {
+            selected: true,
+        });
+        expect(selectedItems).toHaveLength(2);
+        expect(onApply).not.toHaveBeenCalled();
+
+        // Should not call onApply on clicking outside the dropdown
+        fireEvent.mouseDown(document.body);
+        expect(onApply).not.toHaveBeenCalled();
+
+        // Should call onApply on clicking apply button
+        fireEvent.click(screen.getByText('Apply'));
+        expect(onApply).toHaveBeenCalledWith([items[0], items[1]]);
+        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+
+        // Should clear the selected items on clicking clear button
+        fireEvent.click(screen.getByText('Select'));
+        fireEvent.click(screen.getByText('Item 0'));
+        fireEvent.click(screen.getByText('Item 1'));
+        selectedItems = screen.getAllByRole('option', {
+            selected: true,
+        });
+        expect(selectedItems).toHaveLength(2);
+        fireEvent.click(screen.getByText('Clear'));
+        selectedItems = screen.queryAllByRole('option', {
+            selected: true,
+        });
+        expect(selectedItems).toHaveLength(0);
+        fireEvent.click(screen.getByText('Apply'));
+        expect(onApply).toHaveBeenCalledWith([]);
+        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+    });
+});
