@@ -74,12 +74,16 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
             {...rest}
             {...motionProps}
         >
-            <StyledOverlayContent
-                ref={childrenRef}
-                $top={position.top}
-                $left={position.left}
-            >
-                {children}
+            <StyledOverlayContent $top={position.top} $left={position.left}>
+                <div
+                    ref={childrenRef}
+                    style={{
+                        width: 'fit-content',
+                        height: 'fit-content',
+                    }}
+                >
+                    {children}
+                </div>
             </StyledOverlayContent>
         </StyledOverlay>,
         document.body
