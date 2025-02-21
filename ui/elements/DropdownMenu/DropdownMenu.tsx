@@ -48,7 +48,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             clearAllButtonText = 'Clear All',
             applyButtonText = 'Apply',
             onClearAll = () => {},
-            onApply = () => {},
+            onChange = () => {},
             onScrollToBottom = () => {},
             className = null,
             styles = {},
@@ -74,9 +74,9 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
 
         const handleApply = (customValues: BaseItemOptionProps[] = null) => {
             if (Array.isArray(customValues)) {
-                onApply(customValues);
+                onChange(customValues);
             } else {
-                onApply(
+                onChange(
                     options.filter((option) =>
                         selectedOptions.includes(option.value)
                     )

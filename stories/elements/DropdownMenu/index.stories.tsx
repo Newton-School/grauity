@@ -99,7 +99,7 @@ const defaultArgs: NSDropdownMenuProps = {
     clearAllButtonText: 'Clear All',
     applyButtonText: 'Apply',
     onClearAll: () => {},
-    onApply: () => {},
+    onChange: () => {},
     onScrollToBottom: () => {},
     className: '',
     styles: {},
@@ -124,7 +124,7 @@ const ExampleTemplate = (args: NSDropdownMenuProps) => {
             <NSDropdownMenu
                 {...args}
                 selectedValues={selectedValues.map((value) => value.value)}
-                onApply={setSelectedValues}
+                onChange={setSelectedValues}
             />
             <div>
                 <h2>Selected Values</h2>

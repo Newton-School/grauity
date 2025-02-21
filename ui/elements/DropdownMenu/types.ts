@@ -152,13 +152,13 @@ export interface DropdownMenuProps {
 
     /**
      * Callback function called to apply the selected items.
-     * - In single select mode, if `showActionButtons` is false, `onApply` will be called when an option is clicked.
-     * - In multiple select mode, if `showActionButtons` is false, `onApply` will be called when clicked outside the dropdown menu.
-     * - If `showActionButtons` is true, `onApply` will be called when the "Apply" button is clicked.
+     * - In single select mode, if `showActionButtons` is false, `onChange` will be called when an option is clicked.
+     * - In multiple select mode, if `showActionButtons` is false, `onChange` will be called when clicked outside the dropdown menu.
+     * - If `showActionButtons` is true, `onChange` will be called when the "Apply" button is clicked.
      * @param items - The selected items.
      * @default null
      */
-    onApply?: (items: BaseItemOptionProps[]) => void;
+    onChange?: (items: BaseItemOptionProps[]) => void;
 
     /**
      * Callback function called when the dropdown menu is scrolled to the bottom.

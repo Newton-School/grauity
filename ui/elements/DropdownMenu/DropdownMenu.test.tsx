@@ -150,55 +150,55 @@ describe('DropdownMenu', () => {
 
     // Single Select Mode Flow
     it('Should run entire flow correctly in single select mode if no action buttons', () => {
-        const onApply = jest.fn();
+        const onChange = jest.fn();
         const items = getDummyOptions(3);
         render(
-            <DropdownMenu {...defaultProps} items={items} onApply={onApply} />
+            <DropdownMenu {...defaultProps} items={items} onChange={onChange} />
         );
 
-        // Should call onApply on clicking an item
+        // Should call onChange on clicking an item
         fireEvent.click(screen.getByText('Item 1'));
         let selectedItems = screen.getAllByRole('option', {
             selected: true,
         });
-        expect(onApply).toHaveBeenCalledWith([items[1]]);
+        expect(onChange).toHaveBeenCalledWith([items[1]]);
         expect(selectedItems).toHaveLength(1);
 
-        // Should call onApply on clicking another item
+        // Should call onChange on clicking another item
         fireEvent.click(screen.getByText('Item 2'));
         selectedItems = screen.getAllByRole('option', {
             selected: true,
         });
-        expect(onApply).toHaveBeenCalledWith([items[2]]);
+        expect(onChange).toHaveBeenCalledWith([items[2]]);
         expect(selectedItems).toHaveLength(1);
     });
     it('Should run entire flow correctly in single select mode if action buttons are present', () => {
-        const onApply = jest.fn();
+        const onChange = jest.fn();
         const items = getDummyOptions(3);
         render(
             <DropdownMenu
                 {...defaultProps}
                 items={items}
-                onApply={onApply}
+                onChange={onChange}
                 showActionButtons
             />
         );
 
-        // Should not call onApply on clicking an item
+        // Should not call onChange on clicking an item
         fireEvent.click(screen.getByText('Item 1'));
         let selectedItems = screen.getAllByRole('option', {
             selected: true,
         });
         expect(selectedItems).toHaveLength(1);
-        expect(onApply).not.toHaveBeenCalled();
+        expect(onChange).not.toHaveBeenCalled();
 
-        // Should call onApply on clicking Apply
+        // Should call onChange on clicking Apply
         fireEvent.click(screen.getByText('Apply'));
         selectedItems = screen.getAllByRole('option', {
             selected: true,
         });
         expect(selectedItems).toHaveLength(1);
-        expect(onApply).toHaveBeenCalledWith([items[1]]);
+        expect(onChange).toHaveBeenCalledWith([items[1]]);
 
         // Should change selected item on clicking another item
         fireEvent.click(screen.getByText('Item 2'));
@@ -207,36 +207,36 @@ describe('DropdownMenu', () => {
         });
         expect(selectedItems).toHaveLength(1);
 
-        // Should call onApply on clicking Apply
+        // Should call onChange on clicking Apply
         fireEvent.click(screen.getByText('Apply'));
         selectedItems = screen.getAllByRole('option', {
             selected: true,
         });
         expect(selectedItems).toHaveLength(1);
-        expect(onApply).toHaveBeenCalledWith([items[2]]);
+        expect(onChange).toHaveBeenCalledWith([items[2]]);
     });
 
     // Multiple Select Mode Flow
     it('Should run entire flow correctly in multiple select mode if no action buttons are present', () => {
-        const onApply = jest.fn();
+        const onChange = jest.fn();
         const items = getDummyOptions(3);
 
         render(
             <DropdownMenu
                 {...defaultProps}
                 items={items}
-                onApply={onApply}
+                onChange={onChange}
                 multiple
             />
         );
 
-        // Should not call onApply on clicking an item
+        // Should not call onChange on clicking an item
         fireEvent.click(screen.getByText('Item 1'));
         let selectedItems = screen.getAllByRole('option', {
             selected: true,
         });
         expect(selectedItems).toHaveLength(1);
-        expect(onApply).not.toHaveBeenCalled();
+        expect(onChange).not.toHaveBeenCalled();
 
         // Should add to selected items on clicking another item
         fireEvent.click(screen.getByText('Item 2'));
@@ -244,33 +244,33 @@ describe('DropdownMenu', () => {
             selected: true,
         });
         expect(selectedItems).toHaveLength(2);
-        expect(onApply).not.toHaveBeenCalled();
+        expect(onChange).not.toHaveBeenCalled();
 
-        // Should call onApply on clicking outside
+        // Should call onChange on clicking outside
         fireEvent.mouseDown(document);
-        expect(onApply).toHaveBeenCalledWith([items[1], items[2]]);
+        expect(onChange).toHaveBeenCalledWith([items[1], items[2]]);
     });
     it('Should run entire flow correctly in multiple select mode if action buttons are present', () => {
-        const onApply = jest.fn();
+        const onChange = jest.fn();
         const items = getDummyOptions(3);
 
         render(
             <DropdownMenu
                 {...defaultProps}
                 items={items}
-                onApply={onApply}
+                onChange={onChange}
                 showActionButtons
                 multiple
             />
         );
 
-        // Should not call onApply on clicking an item
+        // Should not call onChange on clicking an item
         fireEvent.click(screen.getByText('Item 1'));
         let selectedItems = screen.getAllByRole('option', {
             selected: true,
         });
         expect(selectedItems).toHaveLength(1);
-        expect(onApply).not.toHaveBeenCalled();
+        expect(onChange).not.toHaveBeenCalled();
 
         // Should add to selected items on clicking another item
         fireEvent.click(screen.getByText('Item 2'));
@@ -278,11 +278,11 @@ describe('DropdownMenu', () => {
             selected: true,
         });
         expect(selectedItems).toHaveLength(2);
-        expect(onApply).not.toHaveBeenCalled();
+        expect(onChange).not.toHaveBeenCalled();
 
-        // Should not call onApply on clicking outside
+        // Should not call onChange on clicking outside
         fireEvent.mouseDown(document);
-        expect(onApply).not.toHaveBeenCalled();
+        expect(onChange).not.toHaveBeenCalled();
 
         // Should Clear All Selected Items
         fireEvent.click(screen.getByText('Clear All'));
@@ -299,12 +299,12 @@ describe('DropdownMenu', () => {
         });
         expect(selectedItems).toHaveLength(2);
 
-        // Should call onApply on clicking Apply
+        // Should call onChange on clicking Apply
         fireEvent.click(screen.getByText('Apply'));
         selectedItems = screen.getAllByRole('option', {
             selected: true,
         });
         expect(selectedItems).toHaveLength(2);
-        expect(onApply).toHaveBeenCalledWith([items[1], items[2]]);
+        expect(onChange).toHaveBeenCalledWith([items[1], items[2]]);
     });
 });

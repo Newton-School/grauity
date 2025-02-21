@@ -10,7 +10,7 @@ import { DropdownProps } from './types';
 import { calculateDropdownMenuPosition } from './utils';
 
 const Dropdown = (props: DropdownProps) => {
-    const { width = '100%', onApply = () => {} } = props;
+    const { width = '100%', onChange = () => {} } = props;
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [dropdownMenuHeight, setDropdownMenuHeight] = useState(
@@ -58,8 +58,8 @@ const Dropdown = (props: DropdownProps) => {
                                 : width
                         }
                         ref={dropdownMenuRef}
-                        onApply={(values) => {
-                            onApply(values);
+                        onChange={(values) => {
+                            onChange(values);
                             setIsOpen(false);
                         }}
                     />

@@ -111,7 +111,7 @@ const defaultArgs: DropdownProps = {
     clearAllButtonText: 'Clear All',
     applyButtonText: 'Apply',
     onClearAll: () => {},
-    onApply: () => {},
+    onChange: () => {},
     onScrollToBottom: () => {},
     className: '',
     styles: {},
@@ -136,7 +136,7 @@ const ExampleTemplate = (args: DropdownProps) => {
             <NSDropdown
                 {...args}
                 selectedValues={selectedValues.map((value) => value.value)}
-                onApply={setSelectedValues}
+                onChange={setSelectedValues}
             />
             <div>
                 <h2>Selected Values</h2>
