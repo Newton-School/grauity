@@ -5,6 +5,7 @@ import React, {
     RefObject,
     useCallback,
     useEffect,
+    useRef,
     useState,
 } from 'react';
 
@@ -62,6 +63,9 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
         const [searchedOptions, setSearchedOptions] = useState<
             BaseItemOptionProps[] | null
         >(null);
+
+        const dropdownMenuRef = useRef<HTMLDivElement>(null);
+        const dropdownRef = ref || dropdownMenuRef;
 
         const handleClearAll = () => {
             setSelectedOptions([]);
@@ -135,7 +139,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             setSelectedOptions(selectedValues);
         }, [selectedValues]);
 
-        useClickAway(ref as RefObject<HTMLElement>, () => {
+        useClickAway(dropdownRef as RefObject<HTMLElement>, () => {
             if (multiple && !showActionButtons) {
                 handleApply();
             }
@@ -145,7 +149,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             <StyledDropdownMenu
                 className={className}
                 style={styles}
-                ref={ref}
+                ref={dropdownRef}
                 $width={width}
                 role="menu"
                 {...FRAMER_MOTION_PROPS}
