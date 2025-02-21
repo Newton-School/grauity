@@ -73,10 +73,10 @@ export interface StyledOverlayProps extends StyledDivProps {
     $shouldTintOverlay?: boolean;
     $shouldBlurOverlay?: boolean;
     $overlayColor?: string;
-    $shouldCenterContent?: boolean;
 }
 
 export interface StyledOverlayContentProps extends StyledDivProps {
     $top: number;
     $left: number;
+    $shouldCenterContent?: boolean;
 }

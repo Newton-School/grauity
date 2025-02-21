@@ -29,14 +29,6 @@ export const StyledOverlay = styled(motion.div)<StyledOverlayProps>`
         css`
             backdrop-filter: var(--backdrop-blur-8px);
         `}
-    
-    ${({ $shouldCenterContent }) =>
-        $shouldCenterContent &&
-        css`
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        `}
 `;
 
 export const StyledOverlayContent = styled.div<StyledOverlayContentProps>`
@@ -45,6 +37,14 @@ export const StyledOverlayContent = styled.div<StyledOverlayContentProps>`
     position: relative;
     top: ${({ $top }) => $top}px;
     left: ${({ $left }) => $left}px;
+
+    ${({ $shouldCenterContent }) =>
+        $shouldCenterContent &&
+        css`
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        `}
 `;
 
 export const StyledOverlayContentChildren = styled.div`

@@ -73,12 +73,15 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
             $shouldTintOverlay={shouldTintOverlay}
             $shouldBlurOverlay={shouldBlurOverlay}
             $overlayColor={overlayColor}
-            $shouldCenterContent={shouldCenterContent}
             className={className}
             {...rest}
             {...motionProps}
         >
-            <StyledOverlayContent $top={position.top} $left={position.left}>
+            <StyledOverlayContent
+                $top={position.top}
+                $left={position.left}
+                $shouldCenterContent={shouldCenterContent}
+            >
                 <StyledOverlayContentChildren ref={childrenRef}>
                     {children}
                 </StyledOverlayContentChildren>
