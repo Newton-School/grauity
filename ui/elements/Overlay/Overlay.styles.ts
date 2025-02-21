@@ -46,3 +46,8 @@ export const StyledOverlayContent = styled.div<StyledOverlayContentProps>`
     top: ${({ $top }) => $top}px;
     left: ${({ $left }) => $left}px;
 `;
+
+export const StyledOverlayContentChildren = styled.div`
+    width: fit-content;
+    height: fit-content;
+`;

@@ -2,7 +2,11 @@ import React, { forwardRef, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { useDisableBodyScroll } from '../../../hooks';
-import { StyledOverlay, StyledOverlayContent } from './Overlay.styles';
+import {
+    StyledOverlay,
+    StyledOverlayContent,
+    StyledOverlayContentChildren,
+} from './Overlay.styles';
 import { OverlayProps } from './types';
 
 const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
@@ -75,15 +79,9 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
             {...motionProps}
         >
             <StyledOverlayContent $top={position.top} $left={position.left}>
-                <div
-                    ref={childrenRef}
-                    style={{
-                        width: 'fit-content',
-                        height: 'fit-content',
-                    }}
-                >
+                <StyledOverlayContentChildren ref={childrenRef}>
                     {children}
-                </div>
+                </StyledOverlayContentChildren>
             </StyledOverlayContent>
         </StyledOverlay>,
         document.body

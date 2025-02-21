@@ -84,9 +84,9 @@ const defaultArgs: OverlayProps = {
     shouldTintOverlay: true,
     shouldBlurOverlay: false,
     overlayColor: 'var(--alpha-overlay, rgba(22, 25, 29, 0.8))',
-    shouldCenterContent: false,
+    shouldCenterContent: true,
     animationDuration: 0.3,
-    position: { top: 100, left: 500 },
+    position: { top: 0, left: 0 },
     shouldFocusOnFirstElement: true,
 };
 
