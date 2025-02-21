@@ -34,7 +34,7 @@ export interface BottomSheetProps {
 
     /**
      * The height of the BottomSheet.
-     * @default '50vh'
+     * @default '50%'
      */
     height?: string;
 
