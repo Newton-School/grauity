@@ -15,6 +15,8 @@ export type grauityIconName =
     | 'project'
     | 'terminal-filled'
     | 'terminal'
+    | 'nst-filled'
+    | 'nst'
     | 'desktop-filled'
     | 'desktop'
     | 'gamepad-filled'
@@ -97,6 +99,8 @@ export type grauityIconName =
     | 'lock-open-filled'
     | 'lock-open'
     | 'lock'
+    | 'magic-orb-filled'
+    | 'magic-orb'
     | 'message-filled'
     | 'message-info-filled'
     | 'message-info'
@@ -451,6 +455,8 @@ export type grauityIconKey =
     | 'Project'
     | 'TerminalFilled'
     | 'Terminal'
+    | 'NstFilled'
+    | 'Nst'
     | 'DesktopFilled'
     | 'Desktop'
     | 'GamepadFilled'
@@ -533,6 +539,8 @@ export type grauityIconKey =
     | 'LockOpenFilled'
     | 'LockOpen'
     | 'Lock'
+    | 'MagicOrbFilled'
+    | 'MagicOrb'
     | 'MessageFilled'
     | 'MessageInfoFilled'
     | 'MessageInfo'
@@ -887,6 +895,8 @@ export enum GRAUITY_ICONS {
     Project = 'project',
     TerminalFilled = 'terminal-filled',
     Terminal = 'terminal',
+    NstFilled = 'nst-filled',
+    Nst = 'nst',
     DesktopFilled = 'desktop-filled',
     Desktop = 'desktop',
     GamepadFilled = 'gamepad-filled',
@@ -969,6 +979,8 @@ export enum GRAUITY_ICONS {
     LockOpenFilled = 'lock-open-filled',
     LockOpen = 'lock-open',
     Lock = 'lock',
+    MagicOrbFilled = 'magic-orb-filled',
+    MagicOrb = 'magic-orb',
     MessageFilled = 'message-filled',
     MessageInfoFilled = 'message-info-filled',
     MessageInfo = 'message-info',
