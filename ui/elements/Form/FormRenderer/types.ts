@@ -19,6 +19,7 @@ export enum FormFieldType {
     TEXTFIELD = 'TEXTFIELD',
     DATE_PICKER = 'DATE_PICKER',
     DROPDOWN = 'DROPDOWN',
+    DROPDOWN_MENU = 'DROPDOWN_MENU',
     ICON_BUTTON = 'ICON_BUTTON',
     CHECKBOX = 'CHECKBOX',
     CUSTOM = 'CUSTOM',
@@ -48,6 +49,10 @@ export interface FormFieldDropdownProps extends FormFieldBaseProps {
     type: FormFieldType.DROPDOWN;
     rendererProps: DropdownProps;
 }
+export interface FormFieldDropdownMenuProps extends FormFieldBaseProps {
+    type: FormFieldType.DROPDOWN_MENU;
+    rendererProps: DropdownProps;
+}
 export interface FormFieldIconButtonProps extends FormFieldBaseProps {
     type: FormFieldType.ICON_BUTTON;
     rendererProps: IconButtonProps;
@@ -64,6 +69,7 @@ export type FormField =
     | FormFieldTextFieldProps
     | FormFieldDatePickerProps
     | FormFieldDropdownProps
+    | FormFieldDropdownMenuProps
     | FormFieldIconButtonProps
     | FormFieldCheckboxProps
     | FormFieldCustomProps;
