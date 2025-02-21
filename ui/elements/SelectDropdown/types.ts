@@ -13,6 +13,11 @@ export interface DropdownOption {
     label: string;
 }
 
+/**
+ * @deprecated This interface is deprecated and will be removed in future versions.
+ * - Use the `Dropdown` component instead.
+ * @see {@link https://grauity.newtonschool.co/?path=/docs/elements-form-dropdown--docs}
+ */
 export interface SelectDropdownProps {
     /**
      * Set of options available for selection.
