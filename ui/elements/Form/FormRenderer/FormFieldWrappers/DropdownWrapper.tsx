@@ -73,7 +73,7 @@ const DropdownWrapper = (props: FormFieldProps) => {
             {...rendererProps}
             placeholder={getCurrentValue()}
             selectedValues={getSelectedValues()}
-            onApply={handleApply}
+            onChange={handleApply}
             {...conditionalProps}
             errorMessage={error}
         />

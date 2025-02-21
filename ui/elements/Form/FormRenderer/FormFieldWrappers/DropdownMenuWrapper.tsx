@@ -55,7 +55,7 @@ const DropdownMenuWrapper = (props: FormFieldProps) => {
             showHeader={false}
             {...rendererProps}
             selectedValues={getSelectedValues()}
-            onApply={handleApply}
+            onChange={handleApply}
             {...conditionalProps}
         />
     );
