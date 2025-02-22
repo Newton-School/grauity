@@ -18,11 +18,19 @@ export const StyledBottomSheet = styled(motion.div)<StyledBottomSheetProps>`
     top: calc(100vh + ${({ $translateY }) => $translateY}px);
     left: 0;
 
+    @supports (height: 100dvh) {
+        top: calc(100dvh + ${({ $translateY }) => $translateY}px);
+    }
+
     ${({ $fullScreen }) =>
         $fullScreen &&
         css`
             height: 100vh;
             border-radius: 0;
+
+            @supports (height: 100dvh) {
+                height: 100dvh;
+            }
         `};
 `;
 
