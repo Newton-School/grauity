@@ -1,4 +1,10 @@
-import React, { useId, useLayoutEffect, useRef, useState } from 'react';
+import React, {
+    forwardRef,
+    useId,
+    useLayoutEffect,
+    useRef,
+    useState,
+} from 'react';
 
 import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
@@ -12,7 +18,7 @@ import {
 } from './index.styles';
 import { TextFieldProps } from './types';
 
-const TextField = (props: TextFieldProps) => {
+const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
     const {
         name,
         value = '',
@@ -106,6 +112,7 @@ const TextField = (props: TextFieldProps) => {
                     </StyledTextFieldLeftAdornment>
                 )}
                 <StyledTextFieldInput
+                    ref={ref}
                     disabled={isDisabled}
                     type="text"
                     id={name}
@@ -136,6 +143,6 @@ const TextField = (props: TextFieldProps) => {
             )}
         </StyledTextInputFieldContainer>
     );
-};
+});
 
 export default TextField;
