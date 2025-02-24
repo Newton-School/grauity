@@ -13,6 +13,8 @@ interface DropdownMenuOptionProps extends BaseItemOptionProps {
     multiple: boolean;
     selected: boolean;
     onClick: (value: OptionValue) => void;
+    optionRef: (el: HTMLButtonElement) => void;
+    onKeyDown: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
 }
 
 const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
@@ -26,12 +28,15 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
         multiple,
         selected,
         onClick,
+        optionRef,
+        onKeyDown,
     } = props;
 
     const id = useId();
 
     return (
         <StyledDropdownMenuOption
+            ref={optionRef}
             role="option"
             aria-labelledby={`option-label-${id}`}
             aria-selected={selected}
@@ -42,6 +47,11 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
                     return;
                 }
                 onClick(value);
+            }}
+            onKeyDown={(event) => {
+                if (!disabled) {
+                    onKeyDown(event);
+                }
             }}
         >
             {leftIcon && (

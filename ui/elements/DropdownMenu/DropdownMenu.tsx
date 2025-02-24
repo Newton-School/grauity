@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable indent */
 import { debounce } from 'lodash';
 import React, {
@@ -66,6 +67,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
 
         const dropdownMenuRef = useRef<HTMLDivElement>(null);
         const dropdownRef = ref || dropdownMenuRef;
+        const optionRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
         const handleClearAll = () => {
             setSelectedOptions([]);
@@ -130,6 +132,32 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             [options]
         );
 
+        const handleKeyDown = (
+            event: React.KeyboardEvent<HTMLButtonElement>,
+            index: number
+        ) => {
+            switch (event.key) {
+                case 'ArrowDown':
+                    event.preventDefault();
+                    const nextIndex = (index + 1) % options.length;
+                    optionRefs.current[nextIndex]?.focus();
+                    break;
+                case 'ArrowUp':
+                    event.preventDefault();
+                    const prevIndex =
+                        (index - 1 + options.length) % options.length;
+                    optionRefs.current[prevIndex]?.focus();
+                    break;
+                case 'Enter':
+                case ' ':
+                    event.preventDefault();
+                    handleClickOption(options[index].value);
+                    break;
+                default:
+                    break;
+            }
+        };
+
         useEffect(() => {
             const filteredOptions = getOptionsFromBaseDropdownItems(items);
             setOptions(filteredOptions);
@@ -169,16 +197,22 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                         onSearchInputChange={handleDebouncedSearchInputChange}
                     />
                     {Array.isArray(searchedOptions) &&
-                        searchedOptions.map((item) => (
+                        searchedOptions.map((item, index) => (
                             <DropdownMenuOption
+                                optionRef={(el) => {
+                                    optionRefs.current[index] = el;
+                                }}
                                 multiple={multiple}
                                 selected={selectedOptions.includes(item.value)}
                                 onClick={handleClickOption}
+                                onKeyDown={(event) =>
+                                    handleKeyDown(event, index)
+                                }
                                 {...item}
                             />
                         ))}
                     {!Array.isArray(searchedOptions) &&
-                        items.map((item) => {
+                        items.map((item, index) => {
                             if (item.type === BaseItemType.SUB_HEADER) {
                                 return (
                                     <DropdownMenuSubHeader
@@ -197,12 +231,18 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                             if (item.type === BaseItemType.OPTION) {
                                 return (
                                     <DropdownMenuOption
+                                        optionRef={(el) => {
+                                            optionRefs.current[index] = el;
+                                        }}
                                         key={`${item.type}-${item.value}`}
                                         multiple={multiple}
                                         selected={selectedOptions.includes(
                                             item.value
                                         )}
                                         onClick={handleClickOption}
+                                        onKeyDown={(event) =>
+                                            handleKeyDown(event, index)
+                                        }
                                         {...item}
                                     />
                                 );
