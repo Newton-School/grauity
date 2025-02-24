@@ -3,15 +3,25 @@ import React from 'react';
 import { StyledDropdownMenuSubHeader } from '../DropdownMenu.styles';
 import { BaseItemSubHeaderProps } from '../types';
 
-const DropdownMenuSubHeader = (props: BaseItemSubHeaderProps) => {
-    const { title } = props;
+interface DropdownMenuSubHeaderProps extends BaseItemSubHeaderProps {
+    itemRef: (el: HTMLDivElement) => void;
+    onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void;
+}
+
+const DropdownMenuSubHeader = (props: DropdownMenuSubHeaderProps) => {
+    const { title, itemRef, onKeyDown } = props;
 
     if (!title) {
         return null;
     }
 
     return (
-        <StyledDropdownMenuSubHeader tabIndex={0} aria-label={title}>
+        <StyledDropdownMenuSubHeader
+            ref={itemRef}
+            tabIndex={0}
+            aria-label={title}
+            onKeyDown={onKeyDown}
+        >
             {title}
         </StyledDropdownMenuSubHeader>
     );
