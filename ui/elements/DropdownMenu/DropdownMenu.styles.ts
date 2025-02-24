@@ -97,7 +97,7 @@ export const StyledDropdownMenuSubHeader = styled.div`
 
     &:focus-visible {
         border-radius: 8px;
-        outline: 2px solid var(--border-subtle-brand-default, #61a8ff);
+        outline: 3px solid var(--border-subtle-brand-default, #61a8ff);
     }
 `;
 
