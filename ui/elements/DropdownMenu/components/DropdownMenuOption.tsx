@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import { Icon } from '../../Icon';
 import {
@@ -28,9 +28,12 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
         onClick,
     } = props;
 
+    const id = useId();
+
     return (
         <StyledDropdownMenuOption
             role="option"
+            aria-labelledby={`option-label-${id}`}
             aria-selected={selected}
             disabled={disabled}
             onClick={() => {
@@ -44,10 +47,13 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
                 <Icon name={leftIcon} color="currentColor" size="20" />
             )}
             <StyledDropdownMenuOptionContent>
-                <StyledDropdownMenuOptionLabel>
+                <StyledDropdownMenuOptionLabel id={`option-label-${id}`}>
                     {label}
                 </StyledDropdownMenuOptionLabel>
-                <StyledDropdownMenuOptionDescription $disabled={disabled}>
+                <StyledDropdownMenuOptionDescription
+                    $disabled={disabled}
+                    id={`option-description-${id}`}
+                >
                     {description}
                 </StyledDropdownMenuOptionDescription>
             </StyledDropdownMenuOptionContent>
