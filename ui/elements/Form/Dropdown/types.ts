@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { DropdownMenuProps } from '../../DropdownMenu';
 
 export interface DropdownTriggerProps {
@@ -40,6 +42,13 @@ export interface DropdownTriggerProps {
      * The error message to display when the dropdown field is invalid
      */
     errorMessage?: string;
+
+    /**
+     * The custom trigger element to display in the dropdown
+     * @default null
+     * @example <Button>Click me</Button>
+     */
+    customTrigger?: React.ReactNode;
 }
 
 export interface DropdownTriggerInternalProps extends DropdownTriggerProps {
