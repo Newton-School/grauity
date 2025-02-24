@@ -36,7 +36,6 @@ const DropdownSearchBox = ({
         <StyledDropdownMenuSearchBox role="searchbox" onKeyDown={onKeyDown}>
             <TextField
                 ref={searchRef}
-                autoFocus
                 name="dropdown-search-box"
                 value={searchValue}
                 onChange={(event) => setSearchValue(event.target.value)}
