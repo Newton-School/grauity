@@ -35,6 +35,7 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
             role="option"
             aria-labelledby={`option-label-${id}`}
             aria-selected={selected}
+            aria-checked={multiple ? selected : undefined}
             disabled={disabled}
             onClick={() => {
                 if (disabled) {
