@@ -10,7 +10,11 @@ const DropdownMenuSubHeader = (props: BaseItemSubHeaderProps) => {
         return null;
     }
 
-    return <StyledDropdownMenuSubHeader>{title}</StyledDropdownMenuSubHeader>;
+    return (
+        <StyledDropdownMenuSubHeader tabIndex={0} aria-label={title}>
+            {title}
+        </StyledDropdownMenuSubHeader>
+    );
 };
 
 export default DropdownMenuSubHeader;
