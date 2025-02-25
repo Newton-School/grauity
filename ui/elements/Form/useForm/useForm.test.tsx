@@ -2,10 +2,25 @@ import '@testing-library/jest-dom';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { array, string } from 'yup';
+import { array, object, string } from 'yup';
 
 import { BaseItemType } from '../../DropdownMenu';
-import { FormConfig, FormFields, FormFieldType, useForm } from '.';
+import {
+    FieldName,
+    FormConfig,
+    FormFields,
+    FormFieldType,
+    useForm,
+    UseFormProps,
+} from '.';
+
+const fieldNames: FieldName[] = [
+    'first_name',
+    'last_name',
+    'hobbies',
+    'profession',
+    'consent',
+];
 
 const formFields: FormFields = {
     first_name: {
@@ -16,7 +31,6 @@ const formFields: FormFields = {
             placeholder: 'John',
             isRequired: true,
         },
-        schema: string().required('First name is required'),
     },
     last_name: {
         type: FormFieldType.TEXTFIELD,
@@ -26,7 +40,6 @@ const formFields: FormFields = {
             placeholder: 'Doe',
             isRequired: true,
         },
-        schema: string().required('Last name is required'),
     },
     hobbies: {
         type: FormFieldType.DROPDOWN,
@@ -52,7 +65,6 @@ const formFields: FormFields = {
                 },
             ],
         },
-        schema: array().min(1, 'Select at least one hobby'),
     },
     profession: {
         type: FormFieldType.DROPDOWN,
@@ -83,7 +95,6 @@ const formFields: FormFields = {
                 },
             ],
         },
-        schema: string().required('Profession is required'),
     },
     consent: {
         type: FormFieldType.CHECKBOX,
@@ -93,11 +104,11 @@ const formFields: FormFields = {
             value: 'true',
             isRequired: true,
         },
-        schema: array().min(1, 'Please agree to the terms and conditions'),
     },
 };
+
 const formConfig: FormConfig = {
-    fields: formFields,
+    fieldNames,
     initialState: {
         first_name: '',
         last_name: '',
@@ -119,25 +130,23 @@ const formConfig: FormConfig = {
             items: [formFields.consent],
         },
     ],
+    schema: object({
+        first_name: string().required('First name is required'),
+        last_name: string().required('Last name is required'),
+        hobbies: array().min(1, 'Select at least one hobby'),
+        profession: string().required('Profession is required'),
+        consent: array().min(1, 'Please agree to the terms and conditions'),
+    }),
 };
 
-const TestForm = () => {
-    const { formRenderer, formData, validateFields } = useForm({
-        initialState: formConfig.initialState,
-        formRows: formConfig.rows,
-        shouldFocusOnFirstError: true,
+const TestForm = (props: UseFormProps) => {
+    const { formRenderer, formData } = useForm({
+        ...props,
     });
-
-    const handleSubmit = () => {
-        validateFields(formConfig.fields, formData);
-    };
 
     return (
         <>
             <div>{formRenderer}</div>
-            <button type="submit" onClick={handleSubmit}>
-                Submit
-            </button>
             <div data-testid="form-data">{JSON.stringify(formData)}</div>
         </>
     );
@@ -146,9 +155,9 @@ const TestForm = () => {
 describe('useForm', () => {
     // Rendering
     it('Should render form', () => {
-        render(<TestForm />);
+        render(<TestForm formConfig={formConfig} />);
 
-        Object.keys(formFields).forEach((key) => {
+        fieldNames.forEach((key) => {
             const field = formFields[key];
             if (field.rendererProps.label) {
                 expect(
@@ -170,7 +179,7 @@ describe('useForm', () => {
 
     // Form data change
     it('Should change text fields', () => {
-        render(<TestForm />);
+        render(<TestForm formConfig={formConfig} />);
 
         const firstNameInput = screen.getByLabelText('First Name');
         const lastNameInput = screen.getByLabelText('Last Name');
@@ -189,7 +198,7 @@ describe('useForm', () => {
         );
     });
     it('Should change dropdown fields', () => {
-        render(<TestForm />);
+        render(<TestForm formConfig={formConfig} />);
 
         const hobbiesDropdown = screen.getByText('Select Hobbies');
         const professionDropdown = screen.getByText('Select Profession');
@@ -213,7 +222,7 @@ describe('useForm', () => {
         );
     });
     it('Should change checkbox fields', () => {
-        render(<TestForm />);
+        render(<TestForm formConfig={formConfig} />);
 
         const consentCheckbox = screen.getByLabelText(
             'I agree to the terms and conditions'
@@ -232,8 +241,8 @@ describe('useForm', () => {
     });
 
     // Validation
-    it('Should validate text fields', () => {
-        render(<TestForm />);
+    it('Should run validations', () => {
+        render(<TestForm formConfig={formConfig} />);
 
         // Submitting without filling any input
         fireEvent.click(screen.getByText('Submit'));
