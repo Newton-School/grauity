@@ -241,7 +241,7 @@ export {
     default as NSDropdown,
 } from './elements/Form/Dropdown';
 
-// NSFormRenderer
+// useNSForm
 export {
     type ConditionalProp as NSConditionalProp,
     type FormConfig as NSFormConfig,
@@ -260,7 +260,7 @@ export {
     FormRowColumnCondition as NSFormRowColumnCondition,
     type FormRow as NSFormRowProps,
     type FormState as NSFormState,
-    type UseFormHookProps as NSUseFormHookProps,
-    type UseFormHookReturnProps as NSUseFormHookReturnProps,
-    useFormHook as useNSFormHook,
-} from './elements/Form/FormRenderer';
+    type UseFormProps as NSUseFormProps,
+    type UseFormReturnProps as NSUseFormReturnProps,
+    useForm as useNSForm,
+} from './elements/Form/useForm';

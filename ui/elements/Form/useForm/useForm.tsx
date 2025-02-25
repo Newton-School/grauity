@@ -6,18 +6,18 @@ import {
     FormFields,
     FormState,
     HandleFormFieldChangeProps,
-    UseFormHookProps,
-    UseFormHookReturnProps,
+    UseFormProps,
+    UseFormReturnProps,
 } from './types';
 import { checkFieldValidation } from './utils';
 
-const useFormHook = ({
+const useForm = ({
     initialState = {},
     formRows = [],
     rowStyles = {},
     isMobileView = false,
     shouldFocusOnFirstError = true,
-}: UseFormHookProps): UseFormHookReturnProps => {
+}: UseFormProps): UseFormReturnProps => {
     const [formData, setFormData] = useState<FormState>(initialState);
     const [errors, setErrors] = useState<FormErrors>({});
 
@@ -72,4 +72,4 @@ const useFormHook = ({
     };
 };
 
-export default useFormHook;
+export default useForm;

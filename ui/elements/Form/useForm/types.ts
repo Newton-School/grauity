@@ -96,8 +96,8 @@ export interface FormConfig {
     rows: FormRow[];
 }
 
-// UseFormHook
-export interface UseFormHookProps {
+// UseForm
+export interface UseFormProps {
     /**
      * The initial state of the form.
      * @default {}
@@ -128,7 +128,7 @@ export interface UseFormHookProps {
      */
     shouldFocusOnFirstError?: boolean;
 }
-export interface UseFormHookReturnProps {
+export interface UseFormReturnProps {
     formData: FormState;
     formRenderer: React.ReactNode;
     validateFields: (fields: FormFields, data: FormState) => any;

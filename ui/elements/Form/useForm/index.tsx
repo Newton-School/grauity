@@ -16,7 +16,7 @@ export {
     type FormRow,
     FormRowColumnCondition,
     type FormState,
-    type UseFormHookProps,
-    type UseFormHookReturnProps,
+    type UseFormProps,
+    type UseFormReturnProps,
 } from './types';
-export { default as useFormHook } from './useFormHook';
+export { default as useForm } from './useForm';

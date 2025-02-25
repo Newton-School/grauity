@@ -5,7 +5,7 @@ import React from 'react';
 import { array, string } from 'yup';
 
 import { BaseItemType } from '../../DropdownMenu';
-import { FormConfig, FormFields, FormFieldType, useFormHook } from '.';
+import { FormConfig, FormFields, FormFieldType, useForm } from '.';
 
 const formFields: FormFields = {
     first_name: {
@@ -122,7 +122,7 @@ const formConfig: FormConfig = {
 };
 
 const TestForm = () => {
-    const { formRenderer, formData, validateFields } = useFormHook({
+    const { formRenderer, formData, validateFields } = useForm({
         initialState: formConfig.initialState,
         formRows: formConfig.rows,
         shouldFocusOnFirstError: true,
@@ -143,7 +143,7 @@ const TestForm = () => {
     );
 };
 
-describe('useFormHook', () => {
+describe('useForm', () => {
     // Rendering
     it('Should render form', () => {
         render(<TestForm />);
