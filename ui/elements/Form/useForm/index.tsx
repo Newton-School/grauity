@@ -17,6 +17,7 @@ export {
     type FormRow,
     FormRowColumnCondition,
     type FormState,
+    FormValidationType,
     type UseFormProps,
     type UseFormReturnProps,
 } from './types';

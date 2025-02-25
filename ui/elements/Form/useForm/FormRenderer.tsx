@@ -12,6 +12,8 @@ const FormRenderer = (props: FormRendererProps) => {
         errors = {},
         formRows = [],
         rowStyles = {},
+        handleValidate = () => {},
+        whenToValidate,
         handleChange = () => {},
         handleSubmit = () => {},
         isMobileView = false,
@@ -72,6 +74,8 @@ const FormRenderer = (props: FormRendererProps) => {
                                 error={errors[formField.rendererProps.name]}
                                 formData={formData}
                                 handleChange={handleChange}
+                                whenToValidate={whenToValidate}
+                                handleValidate={handleValidate}
                             />
                         ))}
                     </FormRow>

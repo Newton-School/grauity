@@ -98,6 +98,10 @@ export interface FormConfig {
 }
 
 // UseForm
+export enum FormValidationType {
+    ON_BLUR = 'onBlur',
+    ON_CHANGE = 'onChange',
+}
 export interface UseFormProps {
     /**
      * The form configuration object.
@@ -122,6 +126,15 @@ export interface UseFormProps {
      * @default {}
      */
     rowStyles?: React.CSSProperties;
+
+    /**
+     * The type of validation to be used for the form fields.
+     * - 'onBlur': Validate the form fields on blur.
+     * - 'onChange': Validate the form fields on change.
+     * - If not provided, all fields will be validated on submit.
+     * @default null
+     */
+    whenToValidate?: FormValidationType;
 
     /**
      * Flag to indicate if the form is being viewed on a mobile device.
@@ -178,8 +191,9 @@ export interface UseFormReturnProps {
     /**
      * Function to validate the form fields.
      * @param fields - The form fields to validate. (Default: All fields)
+     * @param data - The form data to validate. (Default: Current form data)
      */
-    validate: (fields: FieldName[]) => void;
+    validate: (fields: FieldName[], data: FormState) => void;
 
     /**
      * Function to submit the form.
@@ -208,6 +222,8 @@ export interface FormRendererProps {
     errors?: FormErrors;
     formRows?: FormRow[];
     rowStyles?: React.CSSProperties;
+    handleValidate?: (props: HandleFormFieldChangeProps) => void;
+    whenToValidate?: FormValidationType;
     handleChange?: (props: HandleFormFieldChangeProps) => void;
     handleSubmit?: () => void;
     isMobileView?: boolean;
@@ -223,6 +239,8 @@ export interface FormFieldProps {
     error?: string;
     formData: FormState;
     handleChange: (props: HandleFormFieldChangeProps) => void;
+    whenToValidate?: FormValidationType;
+    handleValidate: (props: HandleFormFieldChangeProps) => void;
 }
 
 // Utility Functions

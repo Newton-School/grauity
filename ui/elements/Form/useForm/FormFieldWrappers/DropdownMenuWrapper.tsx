@@ -2,11 +2,17 @@ import React, { useMemo } from 'react';
 
 import DropdownMenu, { BaseItemOptionProps } from '../../../DropdownMenu';
 import { DropdownProps } from '../../Dropdown';
-import { FormFieldProps } from '../types';
+import { FormFieldProps, FormValidationType } from '../types';
 import { getConditionalProps } from '../utils';
 
 const DropdownMenuWrapper = (props: FormFieldProps) => {
-    const { formField, formData, handleChange } = props;
+    const {
+        formField,
+        formData,
+        handleChange,
+        handleValidate,
+        whenToValidate,
+    } = props;
     const rendererProps = formField.rendererProps as DropdownProps;
 
     const conditionalProps = getConditionalProps({
@@ -25,22 +31,26 @@ const DropdownMenuWrapper = (props: FormFieldProps) => {
     };
 
     const handleApply = (selectedValues: BaseItemOptionProps[]) => {
+        let value: any = '';
         if (rendererProps.multiple) {
-            handleChange({
-                name: rendererProps.name,
-                value: selectedValues.map((item) => item.value),
-            });
+            value = selectedValues.map((item) => item.value);
         } else if (selectedValues.length === 0) {
-            handleChange({
-                name: rendererProps.name,
-                value: '',
-            });
+            value = '';
         } else {
-            handleChange({
+            value = selectedValues[0].value;
+        }
+
+        if (whenToValidate === FormValidationType.ON_CHANGE) {
+            handleValidate({
                 name: rendererProps.name,
-                value: selectedValues[0].value,
+                value,
             });
         }
+
+        handleChange({
+            name: rendererProps.name,
+            value,
+        });
     };
 
     useMemo(() => {

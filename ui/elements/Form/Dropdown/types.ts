@@ -40,6 +40,11 @@ export interface DropdownTriggerProps {
      * The error message to display when the dropdown field is invalid
      */
     errorMessage?: string;
+
+    /**
+     * The function to call when the dropdown menu is closed
+     */
+    onClose?: () => void;
 }
 
 export interface DropdownTriggerInternalProps extends DropdownTriggerProps {

@@ -1,3 +1,4 @@
+import debounce from 'lodash/debounce';
 import React, { useCallback, useState } from 'react';
 
 import FormRenderer from './FormRenderer';
@@ -14,6 +15,7 @@ import { checkFieldValidation } from './utils';
 const useForm = ({
     formConfig,
     rowStyles = {},
+    whenToValidate,
     isMobileView = false,
     shouldFocusOnFirstError = true,
     shouldSubmitOnEnter = true,
@@ -32,20 +34,25 @@ const useForm = ({
     const [errors, setErrors] = useState<FormErrors>({});
 
     const validate = useCallback(
-        (fields: FieldName[] = []) => {
+        (fields: FieldName[] = [], data: FormState = null) => {
             const fieldsToValidate = fields.length > 0 ? fields : fieldNames;
+            const dataToValidate = data || formData;
+
             const errorObj: FormErrors = {};
 
             fieldsToValidate.forEach((fieldName) => {
                 const errorMessage = checkFieldValidation({
                     field: fieldName,
-                    data: formData,
+                    data: dataToValidate,
                     schema,
                 });
                 errorObj[fieldName] = errorMessage;
             });
 
-            setErrors(errorObj);
+            setErrors((prev) => ({
+                ...prev,
+                ...errorObj,
+            }));
             return errorObj;
         },
         [setErrors, formData, schema, fieldNames]
@@ -77,12 +84,21 @@ const useForm = ({
         [setFormData]
     );
 
+    const handleIndividualFieldValidation = useCallback(
+        debounce(({ name, value }: HandleFormFieldChangeProps) => {
+            validate([name], { ...formData, [name]: value });
+        }, 300),
+        [validate]
+    );
+
     const formRenderer: React.ReactNode = (
         <FormRenderer
             formData={formData}
             errors={errors}
             formRows={rows}
             rowStyles={rowStyles}
+            handleValidate={handleIndividualFieldValidation}
+            whenToValidate={whenToValidate}
             handleChange={handleFormFieldChange}
             handleSubmit={submit}
             isMobileView={isMobileView}

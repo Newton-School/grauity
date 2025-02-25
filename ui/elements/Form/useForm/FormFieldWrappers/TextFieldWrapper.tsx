@@ -1,11 +1,18 @@
 import React, { useMemo } from 'react';
 
 import TextField, { TextFieldProps } from '../../TextField';
-import { FormFieldProps } from '../types';
+import { FormFieldProps, FormValidationType } from '../types';
 import { getConditionalProps } from '../utils';
 
 const TextFieldWrapper = (props: FormFieldProps) => {
-    const { formField, error, formData, handleChange } = props;
+    const {
+        formField,
+        error,
+        formData,
+        handleChange,
+        handleValidate,
+        whenToValidate,
+    } = props;
     const rendererProps = formField.rendererProps as TextFieldProps;
 
     const conditionalProps = getConditionalProps({
@@ -30,9 +37,23 @@ const TextFieldWrapper = (props: FormFieldProps) => {
             key={rendererProps.name}
             {...rendererProps}
             value={formData[rendererProps.name] || ''}
-            onChange={(e) =>
-                handleChange({ name: e.target.name, value: e.target.value })
-            }
+            onChange={(e) => {
+                if (whenToValidate === FormValidationType.ON_CHANGE) {
+                    handleValidate({
+                        name: e.target.name,
+                        value: e.target.value,
+                    });
+                }
+                handleChange({ name: e.target.name, value: e.target.value });
+            }}
+            onBlur={(e) => {
+                if (whenToValidate === FormValidationType.ON_BLUR) {
+                    handleValidate({
+                        name: e.target.name,
+                        value: e.target.value,
+                    });
+                }
+            }}
             {...conditionalProps}
             validationMessage={error}
             errorMessage={error}

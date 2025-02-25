@@ -2,11 +2,18 @@ import React, { useMemo } from 'react';
 
 import { BaseItemOptionProps, BaseItemType } from '../../../DropdownMenu';
 import Dropdown, { DropdownProps } from '../../Dropdown';
-import { FormFieldProps } from '../types';
+import { FormFieldProps, FormValidationType } from '../types';
 import { getConditionalProps } from '../utils';
 
 const DropdownWrapper = (props: FormFieldProps) => {
-    const { formField, error, formData, handleChange } = props;
+    const {
+        formField,
+        error,
+        formData,
+        handleChange,
+        handleValidate,
+        whenToValidate,
+    } = props;
     const rendererProps = formField.rendererProps as DropdownProps;
 
     const conditionalProps = getConditionalProps({
@@ -42,22 +49,26 @@ const DropdownWrapper = (props: FormFieldProps) => {
     };
 
     const handleApply = (selectedValues: BaseItemOptionProps[]) => {
+        let value: any = '';
         if (rendererProps.multiple) {
-            handleChange({
-                name: rendererProps.name,
-                value: selectedValues.map((item) => item.value),
-            });
+            value = selectedValues.map((item) => item.value);
         } else if (selectedValues.length === 0) {
-            handleChange({
-                name: rendererProps.name,
-                value: '',
-            });
+            value = '';
         } else {
-            handleChange({
+            value = selectedValues[0].value;
+        }
+
+        if (whenToValidate === FormValidationType.ON_CHANGE) {
+            handleValidate({
                 name: rendererProps.name,
-                value: selectedValues[0].value,
+                value,
             });
         }
+
+        handleChange({
+            name: rendererProps.name,
+            value,
+        });
     };
 
     useMemo(() => {
@@ -74,6 +85,14 @@ const DropdownWrapper = (props: FormFieldProps) => {
             placeholder={getCurrentValue()}
             selectedValues={getSelectedValues()}
             onChange={handleApply}
+            onClose={() => {
+                if (whenToValidate === FormValidationType.ON_BLUR) {
+                    handleValidate({
+                        name: rendererProps.name,
+                        value: formData[rendererProps.name],
+                    });
+                }
+            }}
             {...conditionalProps}
             errorMessage={error}
         />

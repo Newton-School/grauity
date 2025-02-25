@@ -10,7 +10,7 @@ import { DropdownProps } from './types';
 import { calculateDropdownMenuPosition } from './utils';
 
 const Dropdown = (props: DropdownProps) => {
-    const { width = '100%', onChange = () => {} } = props;
+    const { width = '100%', onChange = () => {}, onClose = () => {} } = props;
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [dropdownMenuHeight, setDropdownMenuHeight] = useState(
@@ -45,6 +45,7 @@ const Dropdown = (props: DropdownProps) => {
                     shouldDisableScroll={isOpen}
                     onOverlayClick={() => {
                         setIsOpen(false);
+                        onClose();
                     }}
                 >
                     <DropdownMenu
@@ -61,6 +62,7 @@ const Dropdown = (props: DropdownProps) => {
                         onChange={(values) => {
                             onChange(values);
                             setIsOpen(false);
+                            onClose();
                         }}
                     />
                 </Overlay>

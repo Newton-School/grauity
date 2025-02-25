@@ -22,6 +22,7 @@ const triggerProps: DropdownTriggerProps = {
     isDisabled: false,
     helpMessage: '',
     errorMessage: '',
+    onClose: () => {},
 };
 
 const defaultArgs: DropdownProps = {

@@ -1,11 +1,18 @@
 import React, { useMemo } from 'react';
 
 import Checkbox, { CheckboxProps } from '../../Checkbox';
-import { FormFieldProps } from '../types';
+import { FormFieldProps, FormValidationType } from '../types';
 import { getConditionalProps } from '../utils';
 
 const CheckboxWrapper = (props: FormFieldProps) => {
-    const { formField, error, formData, handleChange } = props;
+    const {
+        formField,
+        error,
+        formData,
+        handleChange,
+        handleValidate,
+        whenToValidate,
+    } = props;
     const rendererProps = formField.rendererProps as CheckboxProps;
 
     const isChecked = Array.from(formData[rendererProps.name] || []).includes(
@@ -14,22 +21,29 @@ const CheckboxWrapper = (props: FormFieldProps) => {
     const conditionalProps = getConditionalProps({ formField, formData });
 
     const handleCheckboxChange = (isCheckedValue: boolean) => {
+        let value: any = [];
         if (isCheckedValue) {
-            handleChange({
-                name: rendererProps.name,
-                value: [
-                    ...(formData[rendererProps.name] || []),
-                    rendererProps.value,
-                ],
-            });
+            value = [
+                ...(formData[rendererProps.name] || []),
+                rendererProps.value,
+            ];
         } else {
-            handleChange({
+            value = formData[rendererProps.name].filter(
+                (val: string) => val !== rendererProps.value
+            );
+        }
+
+        if (whenToValidate === FormValidationType.ON_CHANGE) {
+            handleValidate({
                 name: rendererProps.name,
-                value: formData[rendererProps.name].filter(
-                    (value: string) => value !== rendererProps.value
-                ),
+                value,
             });
         }
+
+        handleChange({
+            name: rendererProps.name,
+            value,
+        });
     };
 
     useMemo(() => {

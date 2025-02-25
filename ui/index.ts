@@ -261,6 +261,7 @@ export {
     FormRowColumnCondition as NSFormRowColumnCondition,
     type FormRow as NSFormRowProps,
     type FormState as NSFormState,
+    FormValidationType as NSFormValidationType,
     type UseFormProps as NSUseFormProps,
     type UseFormReturnProps as NSUseFormReturnProps,
     useForm as useNSForm,

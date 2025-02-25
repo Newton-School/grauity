@@ -187,6 +187,7 @@ const defaultArgs: NSUseFormProps = {
         schema: undefined,
     },
     rowStyles: {},
+    whenToValidate: null,
     isMobileView: false,
     shouldFocusOnFirstError: true,
     shouldSubmitOnEnter: true,
