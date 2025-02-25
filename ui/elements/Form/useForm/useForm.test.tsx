@@ -152,6 +152,23 @@ const TestForm = (props: UseFormProps) => {
     );
 };
 
+const TestFormWithSubmitButton = (props: UseFormProps) => {
+    const { formRenderer, formData, submit } = useForm({
+        ...props,
+        shouldShowSubmitButton: false,
+    });
+
+    return (
+        <>
+            <div>{formRenderer}</div>
+            <button type="button" onClick={submit}>
+                Custom Submit Button
+            </button>
+            <div data-testid="form-data">{JSON.stringify(formData)}</div>
+        </>
+    );
+};
+
 describe('useForm', () => {
     // Rendering
     it('Should render form', () => {
@@ -267,6 +284,61 @@ describe('useForm', () => {
 
         // Submitting again
         fireEvent.click(screen.getByText('Submit'));
+
+        expect(
+            screen.queryByText('First name is required')
+        ).not.toBeInTheDocument();
+        expect(
+            screen.queryByText('Last name is required')
+        ).not.toBeInTheDocument();
+        expect(
+            screen.queryByText('Select at least one hobby')
+        ).toBeInTheDocument();
+        expect(
+            screen.queryByText('Profession is required')
+        ).toBeInTheDocument();
+        expect(
+            screen.queryByText('Please agree to the terms and conditions')
+        ).toBeInTheDocument();
+    });
+
+    // Custom submit button
+    it('Should run validation and submit form with custom submit button', () => {
+        render(<TestFormWithSubmitButton formConfig={formConfig} />);
+
+        const submitButton = screen.getByText('Custom Submit Button');
+        fireEvent.click(submitButton);
+
+        expect(screen.getByText('First name is required')).toBeInTheDocument();
+        expect(screen.getByText('Last name is required')).toBeInTheDocument();
+        expect(
+            screen.queryByText('Select at least one hobby')
+        ).toBeInTheDocument();
+        expect(
+            screen.queryByText('Profession is required')
+        ).toBeInTheDocument();
+        expect(
+            screen.queryByText('Please agree to the terms and conditions')
+        ).toBeInTheDocument();
+
+        expect(screen.getByTestId('form-data')).toHaveTextContent(
+            JSON.stringify({
+                first_name: '',
+                last_name: '',
+                hobbies: [],
+                profession: '',
+                consent: [],
+            })
+        );
+
+        // Filling some inputs
+        const firstNameInput = screen.getByLabelText('First Name');
+        const lastNameInput = screen.getByLabelText('Last Name');
+        fireEvent.change(firstNameInput, { target: { value: 'John' } });
+        fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
+
+        // Submitting again
+        fireEvent.click(submitButton);
 
         expect(
             screen.queryByText('First name is required')
