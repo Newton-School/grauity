@@ -307,4 +307,26 @@ describe('DropdownMenu', () => {
         expect(selectedItems).toHaveLength(2);
         expect(onChange).toHaveBeenCalledWith([items[1], items[2]]);
     });
+
+    // Accessibility
+    it('Should navigate through items using keyboard', () => {
+        const items = getDummyOptions(3);
+        render(<DropdownMenu {...defaultProps} items={items} />);
+
+        // Should go to next item on pressing down arrow key
+        const options = screen.getAllByRole('option');
+        fireEvent.keyDown(options[0], { key: 'ArrowDown' });
+        expect(options[1]).toHaveFocus();
+
+        // Should go to previous item on pressing up arrow key
+        fireEvent.keyDown(options[1], { key: 'ArrowUp' });
+        expect(options[0]).toHaveFocus();
+
+        // Should select the item on pressing enter key
+        fireEvent.keyDown(options[0], { key: 'Enter' });
+        expect(options[0]).toHaveAttribute('aria-selected', 'true');
+        fireEvent.keyDown(options[1], { key: 'Enter' });
+        expect(options[0]).toHaveAttribute('aria-selected', 'false');
+        expect(options[1]).toHaveAttribute('aria-selected', 'true');
+    });
 });
