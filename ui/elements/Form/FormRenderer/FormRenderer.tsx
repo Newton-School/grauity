@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import FormRow from '../FormRow';
 import FormField from './FormField';
@@ -13,7 +13,29 @@ const FormRenderer = (props: FormRendererProps) => {
         rowStyles = {},
         handleChange = () => {},
         isMobileView = false,
+        shouldFocusOnFirstError = true,
     } = props;
+
+    const formFieldRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+    useEffect(() => {
+        if (shouldFocusOnFirstError) {
+            const firstErrorField = Object.keys(errors).find(
+                (key) => errors[key]
+            );
+            if (
+                firstErrorField &&
+                errors[firstErrorField] &&
+                formFieldRefs.current[firstErrorField]
+            ) {
+                formFieldRefs.current[firstErrorField].focus();
+            }
+        }
+    }, [errors, shouldFocusOnFirstError]);
+
+    const setFormFieldRef = (name: string, element: HTMLDivElement | null) => {
+        formFieldRefs.current[name] = element;
+    };
 
     return (
         <>
@@ -28,6 +50,12 @@ const FormRenderer = (props: FormRendererProps) => {
                     >
                         {(row.items || []).map((formField) => (
                             <FormField
+                                ref={(element) =>
+                                    setFormFieldRef(
+                                        formField.rendererProps.name,
+                                        element
+                                    )
+                                }
                                 formField={formField}
                                 error={errors[formField.rendererProps.name]}
                                 formData={formData}

@@ -121,6 +121,12 @@ export interface UseFormHookProps {
      * @default false
      */
     isMobileView?: boolean;
+
+    /**
+     * Flag to indicate if the form should focus on the first error when the form is validated.
+     * @default true
+     */
+    shouldFocusOnFirstError?: boolean;
 }
 export interface UseFormHookReturnProps {
     formData: FormState;
@@ -141,6 +147,7 @@ export interface FormRendererProps {
     rowStyles?: React.CSSProperties;
     handleChange?: (props: HandleFormFieldChangeProps) => void;
     isMobileView?: boolean;
+    shouldFocusOnFirstError?: boolean;
 }
 
 // FormField

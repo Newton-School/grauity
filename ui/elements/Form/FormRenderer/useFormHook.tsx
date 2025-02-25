@@ -16,6 +16,7 @@ const useFormHook = ({
     formRows = [],
     rowStyles = {},
     isMobileView = false,
+    shouldFocusOnFirstError = true,
 }: UseFormHookProps): UseFormHookReturnProps => {
     const [formData, setFormData] = useState<FormState>(initialState);
     const [errors, setErrors] = useState<FormErrors>({});
@@ -59,6 +60,7 @@ const useFormHook = ({
             rowStyles={rowStyles}
             handleChange={handleFormFieldChange}
             isMobileView={isMobileView}
+            shouldFocusOnFirstError={shouldFocusOnFirstError}
         />
     );
 

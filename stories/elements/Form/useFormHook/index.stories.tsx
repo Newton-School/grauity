@@ -6,6 +6,7 @@ import {
     NSFormConfig,
     NSFormFields,
     NSFormFieldType,
+    NSUseFormHookProps,
     useNSFormHook,
 } from 'ui/index';
 import { array, string } from 'yup';
@@ -15,7 +16,7 @@ export default {
     component: useNSFormHook,
 };
 
-const TemplateUseFormHook = () => {
+const TemplateUseFormHook = (args: NSUseFormHookProps) => {
     const formFields: NSFormFields = {
         first_name: {
             type: NSFormFieldType.TEXTFIELD,
@@ -131,6 +132,7 @@ const TemplateUseFormHook = () => {
     };
 
     const { formData, formRenderer, validateFields } = useNSFormHook({
+        ...args,
         initialState: formConfig.initialState,
         formRows: formConfig.rows,
     });
@@ -172,3 +174,15 @@ const TemplateUseFormHook = () => {
 };
 
 export const ExampleUseFormHook = TemplateUseFormHook.bind({});
+
+const defaultArgs: NSUseFormHookProps = {
+    initialState: {},
+    formRows: [],
+    rowStyles: {},
+    isMobileView: false,
+    shouldFocusOnFirstError: true,
+};
+
+ExampleUseFormHook.args = {
+    ...defaultArgs,
+};

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import { IconButton } from '../../Button';
 import CheckboxWrapper from './FormFieldWrappers/CheckboxWrapper';
@@ -7,37 +7,47 @@ import DropdownWrapper from './FormFieldWrappers/DropdownWrapper';
 import TextFieldWrapper from './FormFieldWrappers/TextFieldWrapper';
 import { FormFieldProps, FormFieldType } from './types';
 
-const FormField = (props: FormFieldProps) => {
+const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
     const { formField } = props;
 
+    let rendererComponent = null;
+
     if (typeof formField.renderer === 'function') {
-        return <>{formField.renderer(props)}</>;
+        rendererComponent = <>{formField.renderer(props)}</>;
     }
 
     if (
         formField.type === FormFieldType.TEXTFIELD ||
         formField.type === FormFieldType.DATE_PICKER
     ) {
-        return <TextFieldWrapper {...props} />;
+        rendererComponent = <TextFieldWrapper {...props} />;
     }
 
     if (formField.type === FormFieldType.DROPDOWN) {
-        return <DropdownWrapper {...props} />;
+        rendererComponent = <DropdownWrapper {...props} />;
     }
 
     if (formField.type === FormFieldType.DROPDOWN_MENU) {
-        return <DropdownMenuWrapper {...props} />;
+        rendererComponent = <DropdownMenuWrapper {...props} />;
     }
 
     if (formField.type === FormFieldType.ICON_BUTTON) {
-        return <IconButton {...formField.rendererProps} />;
+        rendererComponent = <IconButton {...formField.rendererProps} />;
     }
 
     if (formField.type === FormFieldType.CHECKBOX) {
-        return <CheckboxWrapper {...props} />;
+        rendererComponent = <CheckboxWrapper {...props} />;
     }
 
-    return null;
-};
+    if (!rendererComponent) {
+        return null;
+    }
+
+    return (
+        <div ref={ref} tabIndex={-1}>
+            {rendererComponent}
+        </div>
+    );
+});
 
 export default FormField;
