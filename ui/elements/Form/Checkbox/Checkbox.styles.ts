@@ -9,13 +9,13 @@ export const StyledCheckboxWithMessage = styled.div<StyledDivProps>`
     display: flex;
     flex-direction: column;
     gap: 5px;
+    font-family: var(--font-family);
 `;
 
 export const StyledCheckbox = styled.div<StyledDivProps>`
     display: flex;
     align-items: center;
     gap: 8px;
-    font-family: var(--font-family);
     width: fit-content;
     height: fit-content;
     padding-left: 2px;
