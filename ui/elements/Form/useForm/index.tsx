@@ -1,5 +1,6 @@
 export {
     type ConditionalProp,
+    type FieldName,
     type FormConfig,
     type FormErrors,
     type FormField,

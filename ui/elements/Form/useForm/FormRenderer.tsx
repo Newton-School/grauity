@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
+import Button from '../../Button';
 import FormRow from '../FormRow';
 import FormField from './FormField';
 import { FormRendererProps } from './types';
@@ -12,8 +13,11 @@ const FormRenderer = (props: FormRendererProps) => {
         formRows = [],
         rowStyles = {},
         handleChange = () => {},
+        handleSubmit = () => {},
         isMobileView = false,
         shouldFocusOnFirstError = true,
+        shouldSubmitOnEnter = true,
+        shouldShowSubmitButton = true,
     } = props;
 
     const formFieldRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
@@ -38,7 +42,14 @@ const FormRenderer = (props: FormRendererProps) => {
     };
 
     return (
-        <>
+        <form
+            onSubmit={(e) => {
+                e.preventDefault();
+                if (shouldSubmitOnEnter) {
+                    handleSubmit();
+                }
+            }}
+        >
             {formRows.map((row) => (
                 <div style={rowStyles}>
                     <FormRow
@@ -65,7 +76,17 @@ const FormRenderer = (props: FormRendererProps) => {
                     </FormRow>
                 </div>
             ))}
-        </>
+            {shouldShowSubmitButton && (
+                <Button
+                    fullWidth
+                    onClick={() => {
+                        handleSubmit();
+                    }}
+                >
+                    Submit
+                </Button>
+            )}
+        </form>
     );
 };
 

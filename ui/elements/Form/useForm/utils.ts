@@ -1,3 +1,5 @@
+import { object, reach, Schema } from 'yup';
+
 import {
     CheckFieldValidationProps,
     FormRowColumnCondition,
@@ -9,11 +11,21 @@ import {
 export function checkFieldValidation({
     field,
     data,
+    schema,
 }: CheckFieldValidationProps): string {
-    const { schema } = field;
-    if (schema) {
+    let validationSchema: Schema = null;
+
+    try {
+        validationSchema = object({
+            [field]: reach(schema, field),
+        });
+    } catch (e) {
+        return '';
+    }
+
+    if (validationSchema) {
         try {
-            schema.validateSync(data);
+            validationSchema.validateSync(data);
         } catch (e) {
             return e.message;
         }

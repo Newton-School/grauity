@@ -2,14 +2,13 @@ import React from 'react';
 import { BaseItemType } from 'ui/elements/DropdownMenu';
 import Typography from 'ui/elements/Typography';
 import {
-    NSButton,
+    NSFieldName,
     NSFormConfig,
-    NSFormFields,
     NSFormFieldType,
     NSUseFormProps,
     useNSForm,
 } from 'ui/index';
-import { array, string } from 'yup';
+import { array, object, string } from 'yup';
 
 export default {
     title: 'Elements/Form/useForm',
@@ -17,97 +16,16 @@ export default {
 };
 
 const TemplateUseForm = (args: NSUseFormProps) => {
-    const formFields: NSFormFields = {
-        first_name: {
-            type: NSFormFieldType.TEXTFIELD,
-            rendererProps: {
-                name: 'first_name',
-                label: 'First Name',
-                placeholder: 'John',
-                isRequired: true,
-            },
-            schema: string().required('First name is required'),
-        },
-        last_name: {
-            type: NSFormFieldType.TEXTFIELD,
-            rendererProps: {
-                name: 'last_name',
-                label: 'Last Name',
-                placeholder: 'Doe',
-                isRequired: true,
-            },
-            schema: string().required('Last name is required'),
-        },
-        hobbies: {
-            type: NSFormFieldType.DROPDOWN,
-            rendererProps: {
-                name: 'hobbies',
-                label: 'Select Hobbies',
-                multiple: true,
-                items: [
-                    {
-                        type: BaseItemType.OPTION,
-                        label: 'Reading',
-                        value: 'reading',
-                    },
-                    {
-                        type: BaseItemType.OPTION,
-                        label: 'Writing',
-                        value: 'writing',
-                    },
-                    {
-                        type: BaseItemType.OPTION,
-                        label: 'Drawing',
-                        value: 'drawing',
-                    },
-                ],
-            },
-            schema: array().min(1, 'Select at least one hobby'),
-        },
-        profession: {
-            type: NSFormFieldType.DROPDOWN,
-            rendererProps: {
-                name: 'profession',
-                label: 'Select Profession',
-                multiple: false,
-                items: [
-                    {
-                        type: BaseItemType.OPTION,
-                        label: 'Developer',
-                        value: 'developer',
-                    },
-                    {
-                        type: BaseItemType.OPTION,
-                        label: 'Designer',
-                        value: 'designer',
-                    },
-                    {
-                        type: BaseItemType.OPTION,
-                        label: 'Manager',
-                        value: 'manager',
-                    },
-                    {
-                        type: BaseItemType.OPTION,
-                        label: 'Tester',
-                        value: 'tester',
-                    },
-                ],
-            },
-            schema: string().required('Profession is required'),
-        },
-        consent: {
-            type: NSFormFieldType.CHECKBOX,
-            rendererProps: {
-                name: 'consent',
-                label: 'I agree to the terms and conditions',
-                value: 'true',
-                isRequired: true,
-            },
-            schema: array().min(1, 'Please agree to the terms and conditions'),
-        },
-    };
+    const fieldNames: NSFieldName[] = [
+        'first_name',
+        'last_name',
+        'hobbies',
+        'profession',
+        'consent',
+    ];
+
     const formConfig: NSFormConfig = {
-        fields: formFields,
+        fieldNames,
         initialState: {
             first_name: '',
             last_name: '',
@@ -118,23 +36,117 @@ const TemplateUseForm = (args: NSUseFormProps) => {
         rows: [
             {
                 widths: '1fr 1fr',
-                items: [formFields.first_name, formFields.last_name],
+                items: [
+                    {
+                        type: NSFormFieldType.TEXTFIELD,
+                        rendererProps: {
+                            name: 'first_name',
+                            label: 'First Name',
+                            placeholder: 'John',
+                            isRequired: true,
+                        },
+                    },
+                    {
+                        type: NSFormFieldType.TEXTFIELD,
+                        rendererProps: {
+                            name: 'last_name',
+                            label: 'Last Name',
+                            placeholder: 'Doe',
+                            isRequired: true,
+                        },
+                    },
+                ],
             },
             {
                 widths: '2fr 1fr',
-                items: [formFields.hobbies, formFields.profession],
+                items: [
+                    {
+                        type: NSFormFieldType.DROPDOWN,
+                        rendererProps: {
+                            name: 'hobbies',
+                            label: 'Select Hobbies',
+                            multiple: true,
+                            items: [
+                                {
+                                    type: BaseItemType.OPTION,
+                                    label: 'Reading',
+                                    value: 'reading',
+                                },
+                                {
+                                    type: BaseItemType.OPTION,
+                                    label: 'Writing',
+                                    value: 'writing',
+                                },
+                                {
+                                    type: BaseItemType.OPTION,
+                                    label: 'Drawing',
+                                    value: 'drawing',
+                                },
+                            ],
+                        },
+                    },
+                    {
+                        type: NSFormFieldType.DROPDOWN,
+                        rendererProps: {
+                            name: 'profession',
+                            label: 'Select Profession',
+                            multiple: false,
+                            items: [
+                                {
+                                    type: BaseItemType.OPTION,
+                                    label: 'Developer',
+                                    value: 'developer',
+                                },
+                                {
+                                    type: BaseItemType.OPTION,
+                                    label: 'Designer',
+                                    value: 'designer',
+                                },
+                                {
+                                    type: BaseItemType.OPTION,
+                                    label: 'Manager',
+                                    value: 'manager',
+                                },
+                                {
+                                    type: BaseItemType.OPTION,
+                                    label: 'Tester',
+                                    value: 'tester',
+                                },
+                            ],
+                        },
+                    },
+                ],
             },
             {
                 widths: '1fr',
-                items: [formFields.consent],
+                items: [
+                    {
+                        type: NSFormFieldType.CHECKBOX,
+                        rendererProps: {
+                            name: 'consent',
+                            label: 'I agree to the terms and conditions',
+                            value: 'true',
+                            isRequired: true,
+                        },
+                    },
+                ],
             },
         ],
+        schema: object({
+            first_name: string().required('First Name is required'),
+            last_name: string().required('Last Name is required'),
+            hobbies: array().min(1, 'Select at least one hobby'),
+            profession: string().required('Profession is required'),
+            consent: array().min(1, 'Please agree to the terms and conditions'),
+        }),
     };
 
-    const { formData, formRenderer, validateFields } = useNSForm({
+    const { formData, formRenderer } = useNSForm({
         ...args,
-        initialState: formConfig.initialState,
-        formRows: formConfig.rows,
+        formConfig,
+        rowStyles: {
+            padding: '8px',
+        },
     });
 
     return (
@@ -149,14 +161,6 @@ const TemplateUseForm = (args: NSUseFormProps) => {
                 }}
             >
                 {formRenderer}
-                <NSButton
-                    fullWidth
-                    onClick={() => {
-                        validateFields(formFields, formData);
-                    }}
-                >
-                    Submit
-                </NSButton>
             </div>
             <div
                 style={{
@@ -176,11 +180,18 @@ const TemplateUseForm = (args: NSUseFormProps) => {
 export const ExampleUseForm = TemplateUseForm.bind({});
 
 const defaultArgs: NSUseFormProps = {
-    initialState: {},
-    formRows: [],
+    formConfig: {
+        fieldNames: [],
+        initialState: {},
+        rows: [],
+        schema: undefined,
+    },
     rowStyles: {},
     isMobileView: false,
     shouldFocusOnFirstError: true,
+    shouldSubmitOnEnter: true,
+    shouldShowSubmitButton: true,
+    onSubmit: () => {},
 };
 
 ExampleUseForm.args = {

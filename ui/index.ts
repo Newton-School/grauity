@@ -244,6 +244,7 @@ export {
 // useNSForm
 export {
     type ConditionalProp as NSConditionalProp,
+    type FieldName as NSFieldName,
     type FormConfig as NSFormConfig,
     type FormErrors as NSFormErrors,
     type FormField as NSFormField,
