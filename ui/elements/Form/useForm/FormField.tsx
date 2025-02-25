@@ -13,7 +13,7 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
     let rendererComponent = null;
 
     if (typeof formField.renderer === 'function') {
-        rendererComponent = <>{formField.renderer(props)}</>;
+        rendererComponent = formField.renderer(props);
     } else if (
         formField.type === FormFieldType.TEXTFIELD ||
         formField.type === FormFieldType.DATE_PICKER

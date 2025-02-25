@@ -18,9 +18,14 @@ const FormRenderer = (props: FormRendererProps) => {
         shouldFocusOnFirstError = true,
         shouldSubmitOnEnter = true,
         shouldShowSubmitButton = true,
+        submitButtonProps = {},
     } = props;
 
     const formFieldRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+    const setFormFieldRef = (name: string, element: HTMLDivElement | null) => {
+        formFieldRefs.current[name] = element;
+    };
 
     useEffect(() => {
         if (shouldFocusOnFirstError) {
@@ -36,10 +41,6 @@ const FormRenderer = (props: FormRendererProps) => {
             }
         }
     }, [errors, shouldFocusOnFirstError]);
-
-    const setFormFieldRef = (name: string, element: HTMLDivElement | null) => {
-        formFieldRefs.current[name] = element;
-    };
 
     return (
         <form
@@ -79,11 +80,12 @@ const FormRenderer = (props: FormRendererProps) => {
             {shouldShowSubmitButton && (
                 <Button
                     fullWidth
+                    {...submitButtonProps}
                     onClick={() => {
                         handleSubmit();
                     }}
                 >
-                    Submit
+                    {submitButtonProps.children ?? 'Submit'}
                 </Button>
             )}
         </form>

@@ -18,6 +18,7 @@ const useForm = ({
     shouldFocusOnFirstError = true,
     shouldSubmitOnEnter = true,
     shouldShowSubmitButton = true,
+    submitButtonProps = {},
     onSubmit = () => {},
 }: UseFormProps): UseFormReturnProps => {
     const {
@@ -88,6 +89,7 @@ const useForm = ({
             shouldFocusOnFirstError={shouldFocusOnFirstError}
             shouldSubmitOnEnter={shouldSubmitOnEnter}
             shouldShowSubmitButton={shouldShowSubmitButton}
+            submitButtonProps={submitButtonProps}
         />
     );
 

@@ -192,6 +192,7 @@ const defaultArgs: NSUseFormProps = {
     shouldSubmitOnEnter: true,
     shouldShowSubmitButton: true,
     onSubmit: () => {},
+    submitButtonProps: {},
 };
 
 ExampleUseForm.args = {

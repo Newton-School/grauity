@@ -1,7 +1,7 @@
 import React from 'react';
 import { Schema } from 'yup';
 
-import { IconButtonProps } from '../../Button';
+import { ButtonProps, IconButtonProps } from '../../Button';
 import { CheckboxProps } from '../Checkbox';
 import { DropdownProps } from '../Dropdown';
 import { TextFieldProps } from '../TextField';
@@ -150,6 +150,12 @@ export interface UseFormProps {
     shouldShowSubmitButton?: boolean;
 
     /**
+     * Props for the submit button.
+     * - These props will be passed to the default submit button.
+     */
+    submitButtonProps?: ButtonProps;
+
+    /**
      * Function to be called when the form is submitted.
      * - This function will be called after the form is validated and there are no errors.
      * @param data - The form data to be submitted.
@@ -208,6 +214,7 @@ export interface FormRendererProps {
     shouldFocusOnFirstError?: boolean;
     shouldSubmitOnEnter?: boolean;
     shouldShowSubmitButton?: boolean;
+    submitButtonProps?: ButtonProps;
 }
 
 // FormField
