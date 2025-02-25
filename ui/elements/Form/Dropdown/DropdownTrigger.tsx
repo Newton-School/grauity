@@ -34,6 +34,7 @@ const DropdownTrigger = forwardRef<
                 </Label>
             )}
             <StyledDropdownTrigger
+                id={name}
                 name={name}
                 variant="secondary-outlined"
                 fullWidth
