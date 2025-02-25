@@ -44,8 +44,9 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
     }
 
     return (
-        <div ref={ref} tabIndex={-1}>
+        <div>
             {rendererComponent}
+            <div ref={ref} tabIndex={-1} />
         </div>
     );
 });
