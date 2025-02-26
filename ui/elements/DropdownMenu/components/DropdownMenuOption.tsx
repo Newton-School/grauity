@@ -33,7 +33,8 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
             role="option"
             aria-selected={selected}
             disabled={disabled}
-            onClick={() => {
+            onClick={(e) => {
+                e.preventDefault();
                 if (disabled) {
                     return;
                 }
