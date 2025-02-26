@@ -12,6 +12,33 @@ import {
 } from './types';
 import { checkFieldValidation } from './utils';
 
+/**
+ * Custom hook to manage form state, validation, and submission and rendering.
+ *
+ * @param {Object} formConfig - Configuration object for the form.
+ * @param {Object} [rowStyles={}] - Optional styles for form rows.
+ * @param {string} whenToValidate - Determines when to validate the form fields.
+ * @param {boolean} [isMobileView=false] - Flag to indicate if the form is in mobile view.
+ * @param {boolean} [shouldFocusOnFirstError=true] - Flag to indicate if the first error field should be focused.
+ * @param {boolean} [shouldSubmitOnEnter=true] - Flag to indicate if the form should be submitted on pressing Enter.
+ * @param {boolean} [shouldShowSubmitButton=true] - Flag to indicate if the submit button should be shown.
+ * @param {Object} [submitButtonProps={}] - Optional properties for the submit button.
+ * @param {Function} [onSubmit=() => {}] - Callback function to handle form submission.
+ *
+ * @returns {Object} - Returns an object containing:
+ * - `formData`: The current state of the form data.
+ * - `formRenderer`: The rendered form component.
+ * - `validate`: Function to validate form fields.
+ * - `submit`: Function to submit the form.
+ * - `changeFormData`: Function to update form data externally.
+ *
+ * @description
+ * This hook provides the following functionalities:
+ * - Validates form fields based on the provided schema in `formConfig`.
+ * - Handles form submission and triggers the `onSubmit` callback if there are no validation errors.
+ * - Provides a form renderer component to render the form UI with default submit button.
+ * - Allows updating form data and handling individual field changes.
+ */
 const useForm = ({
     formConfig,
     rowStyles = {},

@@ -117,6 +117,7 @@ export interface UseFormProps {
      *          - `renderer`: A function that returns a React node. (Props: formField, error, formData, handleChange)
      *          - `rendererProps`: Props required for the form field renderer. (Eg: name, label, placeholder, etc.)
      *          - `configProps`: An object with additional form field props required at user side.
+     * - `schema`: A Yup schema object to validate the form fields.
      * @required
      */
     formConfig: FormConfig;
