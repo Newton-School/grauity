@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { DropdownTriggerProps } from 'ui/elements/Form/Dropdown/types';
 import {
     DropdownProps,
+    NSButton,
     NSDropdown,
     NSDropdownMenuBaseItemOptionProps,
     NSDropdownMenuBaseItemType,
@@ -205,4 +206,12 @@ export const MultipleSelectWithApplyButton = ExampleTemplate.bind({});
 MultipleSelectWithApplyButton.args = {
     ...multipleSelectArgs,
     showActionButtons: true,
+};
+
+// Dropdown With Custom Trigger
+export const CustomTrigger = ExampleTemplate.bind({});
+CustomTrigger.args = {
+    ...singleSelectArgs,
+    width: '300px',
+    customTrigger: <NSButton>Custom Trigger</NSButton>,
 };
