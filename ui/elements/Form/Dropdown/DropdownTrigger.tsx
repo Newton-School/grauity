@@ -20,7 +20,19 @@ const DropdownTrigger = forwardRef<
         helpMessage,
         errorMessage,
         onTriggerClick = () => {},
+        selectedValues = [],
+        multiple = false,
     } = props;
+
+    const getCurrentValue = (): string => {
+        if (multiple) {
+            return placeholder;
+        }
+        if (Array.isArray(selectedValues)) {
+            return selectedValues?.[0]?.label || placeholder;
+        }
+        return placeholder;
+    };
 
     return (
         <StyledDropdown ref={ref}>
@@ -39,7 +51,7 @@ const DropdownTrigger = forwardRef<
                 fullWidth
                 onClick={() => onTriggerClick()}
             >
-                <span>{placeholder}</span>
+                <span>{getCurrentValue()}</span>
                 <Icon name="chevron-down" />
             </StyledDropdownTrigger>
             {helpMessage && <HelpMessage>{helpMessage}</HelpMessage>}

@@ -1,4 +1,4 @@
-import { DropdownMenuProps } from '../../DropdownMenu';
+import { BaseItemOptionProps, DropdownMenuProps } from '../../DropdownMenu';
 
 export interface DropdownTriggerProps {
     /**
@@ -44,6 +44,8 @@ export interface DropdownTriggerProps {
 
 export interface DropdownTriggerInternalProps extends DropdownTriggerProps {
     onTriggerClick: () => void;
+    selectedValues: BaseItemOptionProps[];
+    multiple: boolean;
 }
 
 export interface DropdownProps extends DropdownTriggerProps, DropdownMenuProps {
