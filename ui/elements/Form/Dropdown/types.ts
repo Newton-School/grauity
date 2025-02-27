@@ -1,4 +1,4 @@
-import { DropdownMenuProps } from '../../DropdownMenu';
+import { BaseItemOptionProps, DropdownMenuProps } from '../../DropdownMenu';
 
 export interface DropdownTriggerProps {
     /**
@@ -25,10 +25,9 @@ export interface DropdownTriggerProps {
     isRequired?: boolean;
 
     /**
-      * Whether to disable the dropdown field
- 
-      * @default false
-      */
+     * Whether to disable the dropdown field
+     * @default false
+     */
     isDisabled?: boolean;
 
     /**
@@ -40,10 +39,21 @@ export interface DropdownTriggerProps {
      * The error message to display when the dropdown field is invalid
      */
     errorMessage?: string;
+
+    /**
+     * Whether to show the selected value on trigger
+     * - If it is false, the placeholder will be shown always.
+     * - In single select mode, value will be shown.
+     * - In multi select mode, 'n selected' will be shown.
+     * @default true
+     */
+    showSelectedValueOnTrigger?: boolean;
 }
 
 export interface DropdownTriggerInternalProps extends DropdownTriggerProps {
     onTriggerClick: () => void;
+    selectedValues: BaseItemOptionProps[];
+    multiple: boolean;
 }
 
 export interface DropdownProps extends DropdownTriggerProps, DropdownMenuProps {
