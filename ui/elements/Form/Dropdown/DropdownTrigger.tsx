@@ -26,8 +26,13 @@ const DropdownTrigger = forwardRef<
     } = props;
 
     const getCurrentValue = (): string => {
-        if (multiple || !showSelectedValueOnTrigger) {
+        if (!showSelectedValueOnTrigger) {
             return placeholder;
+        }
+        if (multiple) {
+            return selectedValues?.length
+                ? `${selectedValues.length} selected`
+                : placeholder;
         }
         if (Array.isArray(selectedValues)) {
             return selectedValues?.[0]?.label || placeholder;

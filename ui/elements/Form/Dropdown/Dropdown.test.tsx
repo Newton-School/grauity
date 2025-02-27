@@ -245,7 +245,7 @@ describe('Dropdown', () => {
         expect(screen.queryByText('Item 0')).toBeInTheDocument();
         expect(screen.queryByText('Select')).not.toBeInTheDocument();
     });
-    it('Should not show selected value on trigger in multi select mode', () => {
+    it('Should show selected value on trigger in multi select mode', () => {
         const items = getDummyOptions(3);
 
         render(
@@ -261,10 +261,11 @@ describe('Dropdown', () => {
         // Opening the dropdown and selecting option
         fireEvent.click(screen.getByText('Select'));
         fireEvent.click(screen.getByText('Item 0'));
+        fireEvent.click(screen.getByText('Item 1'));
         fireEvent.mouseDown(document.body);
 
         // Should show the selected value and not placeholder
-        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
-        expect(screen.queryByText('Select')).toBeInTheDocument();
+        expect(screen.queryByText('Select')).not.toBeInTheDocument();
+        expect(screen.queryByText('2 selected')).toBeInTheDocument();
     });
 });
