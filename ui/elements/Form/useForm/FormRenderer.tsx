@@ -82,15 +82,23 @@ const FormRenderer = (props: FormRendererProps) => {
                 </div>
             ))}
             {shouldShowSubmitButton && (
-                <Button
-                    fullWidth
-                    {...submitButtonProps}
-                    onClick={() => {
-                        handleSubmit();
-                    }}
-                >
-                    {submitButtonProps.children ?? 'Submit'}
-                </Button>
+                <div style={rowStyles}>
+                    <FormRow widths="1fr">
+                        <Button
+                            type="submit"
+                            fullWidth
+                            {...submitButtonProps}
+                            onClick={() => {
+                                handleSubmit();
+                            }}
+                        >
+                            {submitButtonProps.children ?? 'Submit'}
+                        </Button>
+                    </FormRow>
+                </div>
+            )}
+            {!shouldShowSubmitButton && (
+                <input type="submit" hidden aria-hidden="true" />
             )}
         </form>
     );
