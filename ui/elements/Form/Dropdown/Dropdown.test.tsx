@@ -223,4 +223,48 @@ describe('Dropdown', () => {
         expect(onChange).toHaveBeenCalledWith([]);
         expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
     });
+
+    // Show Selected Value
+    it('Should show selected value on trigger in single select mode', () => {
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                placeholder="Select"
+                items={items}
+                showSelectedValueOnTrigger
+            />
+        );
+
+        // Opening the dropdown and selecting option
+        fireEvent.click(screen.getByText('Select'));
+        fireEvent.click(screen.getByText('Item 0'));
+
+        // Should show the selected value and not placeholder
+        expect(screen.queryByText('Item 0')).toBeInTheDocument();
+        expect(screen.queryByText('Select')).not.toBeInTheDocument();
+    });
+    it('Should not show selected value on trigger in multi select mode', () => {
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                placeholder="Select"
+                items={items}
+                multiple
+                showSelectedValueOnTrigger
+            />
+        );
+
+        // Opening the dropdown and selecting option
+        fireEvent.click(screen.getByText('Select'));
+        fireEvent.click(screen.getByText('Item 0'));
+        fireEvent.mouseDown(document.body);
+
+        // Should show the selected value and not placeholder
+        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        expect(screen.queryByText('Select')).toBeInTheDocument();
+    });
 });
