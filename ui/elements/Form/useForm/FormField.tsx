@@ -14,19 +14,27 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
 
     if (typeof formField.renderer === 'function') {
         rendererComponent = formField.renderer(props);
-    } else if (
-        formField.type === FormFieldType.TEXTFIELD ||
-        formField.type === FormFieldType.DATE_PICKER
-    ) {
-        rendererComponent = <TextFieldWrapper {...props} />;
-    } else if (formField.type === FormFieldType.DROPDOWN) {
-        rendererComponent = <DropdownWrapper {...props} />;
-    } else if (formField.type === FormFieldType.DROPDOWN_MENU) {
-        rendererComponent = <DropdownMenuWrapper {...props} />;
-    } else if (formField.type === FormFieldType.ICON_BUTTON) {
-        rendererComponent = <IconButton {...formField.rendererProps} />;
-    } else if (formField.type === FormFieldType.CHECKBOX) {
-        rendererComponent = <CheckboxWrapper {...props} />;
+    } else {
+        switch (formField.type) {
+            case FormFieldType.TEXTFIELD:
+            case FormFieldType.DATE_PICKER:
+                rendererComponent = <TextFieldWrapper {...props} />;
+                break;
+            case FormFieldType.DROPDOWN:
+                rendererComponent = <DropdownWrapper {...props} />;
+                break;
+            case FormFieldType.DROPDOWN_MENU:
+                rendererComponent = <DropdownMenuWrapper {...props} />;
+                break;
+            case FormFieldType.ICON_BUTTON:
+                rendererComponent = <IconButton {...formField.rendererProps} />;
+                break;
+            case FormFieldType.CHECKBOX:
+                rendererComponent = <CheckboxWrapper {...props} />;
+                break;
+            default:
+                break;
+        }
     }
 
     if (!rendererComponent) {
