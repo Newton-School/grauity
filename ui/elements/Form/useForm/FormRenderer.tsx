@@ -85,7 +85,6 @@ const FormRenderer = (props: FormRendererProps) => {
                 <div style={rowStyles}>
                     <FormRow widths="1fr">
                         <Button
-                            type="submit"
                             fullWidth
                             {...submitButtonProps}
                             onClick={() => {
@@ -97,9 +96,7 @@ const FormRenderer = (props: FormRendererProps) => {
                     </FormRow>
                 </div>
             )}
-            {!shouldShowSubmitButton && (
-                <input type="submit" hidden aria-hidden="true" />
-            )}
+            <input type="submit" hidden aria-hidden="true" />
         </form>
     );
 };
