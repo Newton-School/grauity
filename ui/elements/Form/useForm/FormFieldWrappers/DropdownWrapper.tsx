@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import { BaseItemOptionProps, BaseItemType } from '../../../DropdownMenu';
+import { BaseItemOptionProps } from '../../../DropdownMenu';
 import Dropdown, { DropdownProps } from '../../Dropdown';
 import { FormFieldProps, FormValidationType } from '../types';
 import { getConditionalProps } from '../utils';
@@ -20,23 +20,6 @@ const DropdownWrapper = (props: FormFieldProps) => {
         formField,
         formData,
     });
-
-    const getCurrentValue = (): string => {
-        if (rendererProps.multiple) {
-            return rendererProps.placeholder;
-        }
-        if (Array.isArray(rendererProps.items)) {
-            const selectedOption = rendererProps.items.find(
-                (item) =>
-                    item.type === BaseItemType.OPTION &&
-                    item.value === formData[rendererProps.name]
-            ) as BaseItemOptionProps;
-            return selectedOption
-                ? selectedOption.label
-                : rendererProps.placeholder;
-        }
-        return formData[rendererProps.name] || rendererProps.placeholder;
-    };
 
     const getSelectedValues = () => {
         if (!formData[rendererProps.name]) {
@@ -82,7 +65,6 @@ const DropdownWrapper = (props: FormFieldProps) => {
             key={rendererProps.name}
             showHeader={false}
             {...rendererProps}
-            placeholder={getCurrentValue()}
             selectedValues={getSelectedValues()}
             onChange={handleApply}
             onClose={() => {
