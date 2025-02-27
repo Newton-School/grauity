@@ -43,7 +43,8 @@ export interface DropdownTriggerProps {
     /**
      * Whether to show the selected value on trigger
      * - If it is false, the placeholder will be shown always.
-     * - In multi select mode, the placeholder will be shown always.
+     * - In single select mode, value will be shown.
+     * - In multi select mode, 'n selected' will be shown.
      * @default true
      */
     showSelectedValueOnTrigger?: boolean;
