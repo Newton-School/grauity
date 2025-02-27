@@ -175,3 +175,23 @@ const MyForm = () => {
     );
 }
 ```
+
+### Creating Custom Field
+
+- A custom renderer can be passed to the form config to the `renderer` prop.
+- Following props will be available to custom renderer.
+    - `formField` - Entire field object passed in the form config rows.
+        - Renderer props will be available in `formField.rendererProps`.
+    - `error` - Error message if field is invalid.
+    - `formData` - Current state of the form. Keys will be field names and value will be current value.
+    - `handleChange` - Function to change the value of the field.
+        - User needs to give `name` and `value` as arguments.
+        - Example: `handleChange({ name: 'first_name', value: 'John' })`
+    - `whenToValidate` - When to validate the form. Can be `null`, `onBlur`, `onChange`.
+        - If `null`, entire form will be validated on submit.
+        - If `onBlur`, form field will be validated on blur.
+        - If `onChange`, form field will be validated on change.
+        - User needs to write the logic for `onBlur` and `onChange` in the custom renderer.
+    - `handleValidate` - Function to validate the form field.
+        - User needs to call this function in the custom renderer based on `whenToValidate`.
+        - Example: `handleValidate({ name: 'first_name', value: 'John' })`
