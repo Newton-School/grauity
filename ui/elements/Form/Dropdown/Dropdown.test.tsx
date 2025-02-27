@@ -21,6 +21,7 @@ const defaultProps: DropdownProps = {
     name: 'dropdown',
     clearAllButtonText: 'Clear',
     applyButtonText: 'Apply',
+    showSelectedValueOnTrigger: false,
 };
 
 describe('Dropdown', () => {

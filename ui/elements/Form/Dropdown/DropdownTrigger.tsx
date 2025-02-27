@@ -19,13 +19,14 @@ const DropdownTrigger = forwardRef<
         isDisabled = false,
         helpMessage,
         errorMessage,
+        showSelectedValueOnTrigger = true,
         onTriggerClick = () => {},
         selectedValues = [],
         multiple = false,
     } = props;
 
     const getCurrentValue = (): string => {
-        if (multiple) {
+        if (multiple || !showSelectedValueOnTrigger) {
             return placeholder;
         }
         if (Array.isArray(selectedValues)) {
