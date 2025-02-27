@@ -1,14 +1,40 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 
 import { IconButton } from '../../Button';
+import TextField from '../TextField';
 import CheckboxWrapper from './FormFieldWrappers/CheckboxWrapper';
 import DropdownMenuWrapper from './FormFieldWrappers/DropdownMenuWrapper';
 import DropdownWrapper from './FormFieldWrappers/DropdownWrapper';
-import TextFieldWrapper from './FormFieldWrappers/TextFieldWrapper';
-import { FormFieldProps, FormFieldType } from './types';
+import { FormFieldProps, FormFieldType, FormValidationType } from './types';
+import { getConditionalProps } from './utils';
 
 const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
-    const { formField } = props;
+    const {
+        error,
+        formField,
+        formData,
+        handleChange,
+        handleValidate,
+        whenToValidate,
+    } = props;
+    const { rendererProps } = formField;
+
+    const conditionalProps = getConditionalProps({
+        formField,
+        formData,
+    });
+
+    useEffect(() => {
+        if (
+            conditionalProps.value !== undefined &&
+            conditionalProps.value !== null
+        ) {
+            handleChange({
+                name: rendererProps.name,
+                value: conditionalProps.value,
+            });
+        }
+    }, [conditionalProps.value]);
 
     let rendererComponent = null;
 
@@ -18,7 +44,30 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
         switch (formField.type) {
             case FormFieldType.TEXTFIELD:
             case FormFieldType.DATE_PICKER:
-                rendererComponent = <TextFieldWrapper {...props} />;
+                rendererComponent = (
+                    <TextField
+                        key={rendererProps.name}
+                        {...rendererProps}
+                        value={formData[rendererProps.name] || ''}
+                        {...conditionalProps}
+                        onChange={(e) => {
+                            handleChange({
+                                name: e.target.name,
+                                value: e.target.value,
+                            });
+                        }}
+                        onBlur={(e) => {
+                            if (whenToValidate === FormValidationType.ON_BLUR) {
+                                handleValidate({
+                                    name: e.target.name,
+                                    value: e.target.value,
+                                });
+                            }
+                        }}
+                        validationMessage={error}
+                        errorMessage={error}
+                    />
+                );
                 break;
             case FormFieldType.DROPDOWN:
                 rendererComponent = <DropdownWrapper {...props} />;
@@ -27,7 +76,7 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                 rendererComponent = <DropdownMenuWrapper {...props} />;
                 break;
             case FormFieldType.ICON_BUTTON:
-                rendererComponent = <IconButton {...formField.rendererProps} />;
+                rendererComponent = <IconButton {...rendererProps} />;
                 break;
             case FormFieldType.CHECKBOX:
                 rendererComponent = <CheckboxWrapper {...props} />;
