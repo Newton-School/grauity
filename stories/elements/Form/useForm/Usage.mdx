@@ -125,12 +125,16 @@ const formConfig: NSFormConfig = {
             widths: '1fr',
             items: [
                 {
-                    type: NSFormFieldType.CHECKBOX,
+                    type: NSFormFieldType.CHECKBOX_GROUP,
                     rendererProps: {
                         name: 'consent',
-                        label: 'I agree to the terms and conditions',
-                        value: 'true',
                         isRequired: true,
+                        options: [
+                            {
+                                label: 'I agree to the terms and conditions',
+                                value: 'true',
+                            },
+                        ],
                     },
                 },
             ],
@@ -191,7 +195,8 @@ const MyForm = () => {
         - If `null`, entire form will be validated on submit.
         - If `onBlur`, form field will be validated on blur.
         - If `onChange`, form field will be validated on change.
-        - User needs to write the logic for `onBlur` and `onChange` in the custom renderer.
+        - User needs to write the logic for `onBlur` in the custom renderer.
     - `handleValidate` - Function to validate the form field.
         - User needs to call this function in the custom renderer based on `whenToValidate`.
         - Example: `handleValidate({ name: 'first_name', value: 'John' })`
+        - No need to check for `onChange`. It will be handled by the `handleChange` function automatically.
