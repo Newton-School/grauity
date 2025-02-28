@@ -17,7 +17,7 @@ const getDummyOptions = (count: number): BaseItemOptionProps[] => {
 
 const defaultProps: DropdownProps = {
     items: [],
-    selectedValues: [],
+    value: '',
     name: 'dropdown',
     clearAllButtonText: 'Clear',
     applyButtonText: 'Apply',

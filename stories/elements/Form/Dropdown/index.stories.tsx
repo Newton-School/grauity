@@ -143,7 +143,9 @@ const ExampleSingleSelectTemplate = (args: DropdownProps) => {
             />
             <div>
                 <h2>Selected Values</h2>
-                <ul>{selectedValue?.label || ''}</ul>{' '}
+                <ul>
+                    <li>{selectedValue?.label || ''}</li>
+                </ul>
             </div>
         </>
     );

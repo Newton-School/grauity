@@ -130,7 +130,9 @@ const ExampleSingleSelectTemplate = (args: NSDropdownMenuProps) => {
             />
             <div>
                 <h2>Selected Values</h2>
-                <ul>{selectedValue?.label || ''}</ul>
+                <ul>
+                    <li>{selectedValue?.label || ''}</li>
+                </ul>
             </div>
         </>
     );
@@ -201,7 +203,7 @@ const multipleSelectArgs: NSDropdownMenuProps = {
         label: `Option ${i + 1}`,
         value: `option${i + 1}`,
     })),
-    selectedValues: [],
+    value: [],
 };
 
 export const MultipleSelect = ExampleMultiSelectTemplate.bind({});

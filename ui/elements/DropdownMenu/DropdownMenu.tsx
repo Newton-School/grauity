@@ -66,9 +66,8 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
         );
 
         const [options, setOptions] = useState<BaseItemOptionProps[]>([]);
-        const [selectedOptions, setSelectedOptions] = useState<OptionValue[]>(
-            []
-        );
+        const [selectedOptions, setSelectedOptions] =
+            useState<OptionValue[]>(selectedValues);
         const [searchedOptions, setSearchedOptions] = useState<
             BaseItemOptionProps[] | null
         >(null);
@@ -157,10 +156,6 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             const filteredOptions = getOptionsFromBaseDropdownItems(items);
             setOptions(filteredOptions);
         }, [items]);
-
-        useEffect(() => {
-            setSelectedOptions(selectedValues);
-        }, [selectedValues]);
 
         useClickAway(dropdownRef as RefObject<HTMLElement>, () => {
             if (multiple && !showActionButtons) {
