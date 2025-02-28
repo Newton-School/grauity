@@ -156,6 +156,8 @@ export interface DropdownMenuProps {
      * - In multiple select mode, if `showActionButtons` is false, `onChange` will be called when clicked outside the dropdown menu.
      * - If `showActionButtons` is true, `onChange` will be called when the "Apply" button is clicked.
      * @param items - The selected items.
+     * - If `multiple` is false, `items` will be a single object.
+     * - If `multiple` is true, `items` will be an array of objects.
      * @default null
      */
     onChange?: (items: BaseItemOptionProps | BaseItemOptionProps[]) => void;
@@ -180,7 +182,9 @@ export interface DropdownMenuProps {
 
     /**
      * The values of the selected items.
-     * @default []
+     * - If `multiple` is false, `value` should be a string or number.
+     * - If `multiple` is true, `value` should be an array of strings or numbers.
+     * @default null
      */
     value?: OptionValue | OptionValue[];
 
