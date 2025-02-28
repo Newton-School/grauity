@@ -10,8 +10,17 @@ import { DropdownProps } from './types';
 import { calculateDropdownMenuPosition } from './utils';
 
 const Dropdown = (props: DropdownProps) => {
-    const { menuProps = {}, multiple = false, onChange = () => {} } = props;
-    const { width = '300px', fullWidth = true } = menuProps;
+    const { menuProps, multiple = false, onChange = () => {} } = props;
+
+    let width;
+    let fullWidth;
+
+    if (menuProps) {
+        ({ width, fullWidth } = menuProps);
+    } else {
+        width = '300px';
+        fullWidth = true;
+    }
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [dropdownMenuHeight, setDropdownMenuHeight] = useState(
