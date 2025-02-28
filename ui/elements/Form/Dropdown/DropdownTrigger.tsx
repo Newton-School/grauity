@@ -4,7 +4,11 @@ import { Icon } from '../../Icon';
 import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
 import { Label } from '../Label';
-import { StyledDropdown, StyledDropdownTrigger } from './Dropdown.styles';
+import {
+    StyledCustomTrigger,
+    StyledDropdown,
+    StyledDropdownTrigger,
+} from './Dropdown.styles';
 import { DropdownTriggerInternalProps } from './types';
 
 const DropdownTrigger = forwardRef<
@@ -23,6 +27,7 @@ const DropdownTrigger = forwardRef<
         onTriggerClick = () => {},
         selectedValues = [],
         multiple = false,
+        trigger,
     } = props;
 
     const getCurrentValue = (): string => {
@@ -39,6 +44,14 @@ const DropdownTrigger = forwardRef<
         }
         return placeholder;
     };
+
+    if (trigger) {
+        return (
+            <StyledCustomTrigger ref={ref} onClick={() => onTriggerClick()}>
+                {trigger}
+            </StyledCustomTrigger>
+        );
+    }
 
     return (
         <StyledDropdown ref={ref}>
