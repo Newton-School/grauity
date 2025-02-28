@@ -228,10 +228,10 @@ export interface FormRendererProps {
     handleChange?: (props: HandleFormFieldChangeProps) => void;
     handleSubmit?: () => void;
     isMobileView?: boolean;
-    shouldFocusOnFirstError?: boolean;
     shouldSubmitOnEnter?: boolean;
     shouldShowSubmitButton?: boolean;
     submitButtonProps?: ButtonProps;
+    setFormFieldRef?: (name: FieldName, element: any) => void;
 }
 
 // FormField

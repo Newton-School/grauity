@@ -1,7 +1,9 @@
+import React from 'react';
 import { object, reach, Schema } from 'yup';
 
 import {
     CheckFieldValidationProps,
+    FormErrors,
     FormRowColumnCondition,
     GetConditionalProps,
     GetConditionalPropsReturn,
@@ -73,4 +75,20 @@ export function getConditionalProps({
         return props.reduce((acc, prop) => ({ ...acc, ...prop }), {});
     }
     return {};
+}
+
+export function focusOnFirstErrorField(
+    errors: FormErrors,
+    formFieldRefs: React.MutableRefObject<{
+        [key: string]: HTMLDivElement | null;
+    }>
+) {
+    const firstErrorField = Object.keys(errors).find((key) => errors[key]);
+    if (
+        firstErrorField &&
+        errors[firstErrorField] &&
+        formFieldRefs.current[firstErrorField]
+    ) {
+        formFieldRefs.current[firstErrorField].focus();
+    }
 }

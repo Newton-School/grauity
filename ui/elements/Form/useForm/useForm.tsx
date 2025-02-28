@@ -1,16 +1,17 @@
 import debounce from 'lodash/debounce';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import FormRenderer from './FormRenderer';
 import {
     FieldName,
     FormErrors,
     FormState,
+    FormValidationType,
     HandleFormFieldChangeProps,
     UseFormProps,
     UseFormReturnProps,
 } from './types';
-import { checkFieldValidation } from './utils';
+import { checkFieldValidation, focusOnFirstErrorField } from './utils';
 
 /**
  * Custom hook to manage form state, validation, and submission and rendering.
@@ -60,6 +61,12 @@ const useForm = ({
     const [formData, setFormData] = useState<FormState>(initialState);
     const [errors, setErrors] = useState<FormErrors>({});
 
+    const formFieldRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+    const setFormFieldRef = (name: string, element: HTMLDivElement | null) => {
+        formFieldRefs.current[name] = element;
+    };
+
     const validate = useCallback(
         (fields: FieldName[] = [], data: FormState = null) => {
             const fieldsToValidate = fields.length > 0 ? fields : fieldNames;
@@ -93,6 +100,8 @@ const useForm = ({
 
         if (!hasErrors) {
             onSubmit(formData);
+        } else if (shouldFocusOnFirstError) {
+            focusOnFirstErrorField(errorObj, formFieldRefs);
         }
     }, [validate]);
 
@@ -104,6 +113,9 @@ const useForm = ({
 
     const handleFormFieldChange = useCallback(
         ({ name, value }: HandleFormFieldChangeProps) => {
+            if (whenToValidate === FormValidationType.ON_CHANGE) {
+                validate([name], { ...formData, [name]: value });
+            }
             setFormData((prev) => {
                 return { ...prev, [name]: value };
             });
@@ -129,10 +141,10 @@ const useForm = ({
             handleChange={handleFormFieldChange}
             handleSubmit={submit}
             isMobileView={isMobileView}
-            shouldFocusOnFirstError={shouldFocusOnFirstError}
             shouldSubmitOnEnter={shouldSubmitOnEnter}
             shouldShowSubmitButton={shouldShowSubmitButton}
             submitButtonProps={submitButtonProps}
+            setFormFieldRef={setFormFieldRef}
         />
     );
 

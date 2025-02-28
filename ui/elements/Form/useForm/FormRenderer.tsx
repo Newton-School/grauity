@@ -17,32 +17,11 @@ const FormRenderer = (props: FormRendererProps) => {
         handleChange = () => {},
         handleSubmit = () => {},
         isMobileView = false,
-        shouldFocusOnFirstError = true,
         shouldSubmitOnEnter = true,
         shouldShowSubmitButton = true,
         submitButtonProps = {},
+        setFormFieldRef = () => {},
     } = props;
-
-    const formFieldRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-
-    const setFormFieldRef = (name: string, element: HTMLDivElement | null) => {
-        formFieldRefs.current[name] = element;
-    };
-
-    useEffect(() => {
-        if (shouldFocusOnFirstError) {
-            const firstErrorField = Object.keys(errors).find(
-                (key) => errors[key]
-            );
-            if (
-                firstErrorField &&
-                errors[firstErrorField] &&
-                formFieldRefs.current[firstErrorField]
-            ) {
-                formFieldRefs.current[firstErrorField].focus();
-            }
-        }
-    }, [errors, shouldFocusOnFirstError]);
 
     return (
         <form

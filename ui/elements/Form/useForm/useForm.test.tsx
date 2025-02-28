@@ -100,9 +100,13 @@ const formFields: FormFields = {
         type: FormFieldType.CHECKBOX_GROUP,
         rendererProps: {
             name: 'consent',
-            label: 'I agree to the terms and conditions',
-            value: 'true',
             isRequired: true,
+            options: [
+                {
+                    label: 'I agree to the terms and conditions',
+                    value: 'true',
+                },
+            ],
         },
     },
 };

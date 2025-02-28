@@ -79,14 +79,18 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                         onChange={(selectedValue) => {
                             handleChange({
                                 name: rendererProps.name,
-                                value: selectedValue,
+                                value: Array.isArray(selectedValue)
+                                    ? selectedValue.map((val) => val.value)
+                                    : selectedValue.value,
                             });
                         }}
-                        onClose={() => {
+                        onClose={(selectedValue) => {
                             if (whenToValidate === FormValidationType.ON_BLUR) {
                                 handleValidate({
                                     name: rendererProps.name,
-                                    value: formData[rendererProps.name],
+                                    value: Array.isArray(selectedValue)
+                                        ? selectedValue.map((val) => val.value)
+                                        : selectedValue.value,
                                 });
                             }
                         }}
@@ -105,7 +109,9 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                         onChange={(selectedValue) => {
                             handleChange({
                                 name: rendererProps.name,
-                                value: selectedValue,
+                                value: Array.isArray(selectedValue)
+                                    ? selectedValue.map((val) => val.value)
+                                    : selectedValue.value,
                             });
                         }}
                         {...conditionalProps}

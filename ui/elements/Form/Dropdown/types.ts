@@ -51,8 +51,10 @@ export interface DropdownTriggerProps {
 
     /**
      * The function to call when the dropdown menu is closed
+     *
+     * @param value The selected value(s) in the dropdown menu
      */
-    onClose?: () => void;
+    onClose?: (value: BaseItemOptionProps | BaseItemOptionProps[]) => void;
 }
 
 export interface DropdownTriggerInternalProps extends DropdownTriggerProps {
