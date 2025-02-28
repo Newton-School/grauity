@@ -17,7 +17,7 @@ const getDummyOptions = (count: number): BaseItemOptionProps[] => {
 
 const defaultProps: DropdownProps = {
     items: [],
-    selectedValues: [],
+    value: null,
     name: 'dropdown',
     clearAllButtonText: 'Clear',
     applyButtonText: 'Apply',
@@ -83,7 +83,7 @@ describe('Dropdown', () => {
 
         // Should call onChange on selecting an item
         fireEvent.click(screen.getByText('Item 0'));
-        expect(onChange).toHaveBeenCalledWith([items[0]]);
+        expect(onChange).toHaveBeenCalledWith(items[0]);
 
         // Should close the dropdown
         expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
@@ -91,7 +91,7 @@ describe('Dropdown', () => {
         // Should call onChange on selecting another item
         fireEvent.click(screen.getByText('Select'));
         fireEvent.click(screen.getByText('Item 1'));
-        expect(onChange).toHaveBeenCalledWith([items[1]]);
+        expect(onChange).toHaveBeenCalledWith(items[1]);
         expect(screen.queryByText('Item 1')).not.toBeInTheDocument();
     });
     it('Should run entire flow correctly in single select mode if action buttons are present', () => {
@@ -118,7 +118,7 @@ describe('Dropdown', () => {
 
         // Should call onChange on clicking apply button
         fireEvent.click(screen.getByText('Apply'));
-        expect(onChange).toHaveBeenCalledWith([items[0]]);
+        expect(onChange).toHaveBeenCalledWith(items[0]);
 
         // Should close the dropdown
         expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
@@ -291,6 +291,6 @@ describe('Dropdown', () => {
         expect(screen.getByText('Item 0')).toBeInTheDocument();
         fireEvent.click(screen.getByText('Item 0'));
 
-        expect(onChange).toHaveBeenCalledWith([items[0]]);
+        expect(onChange).toHaveBeenCalledWith(items[0]);
     });
 });

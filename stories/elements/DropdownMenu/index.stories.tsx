@@ -103,7 +103,7 @@ const defaultArgs: NSDropdownMenuProps = {
     onScrollToBottom: () => {},
     className: '',
     styles: {},
-    selectedValues: [],
+    value: [],
     width: '300px',
 };
 
@@ -113,8 +113,57 @@ Component.args = {
     ...defaultArgs,
 };
 
-// Example Tempate
-const ExampleTemplate = (args: NSDropdownMenuProps) => {
+// Single Select Dropdown Menu
+const ExampleSingleSelectTemplate = (args: NSDropdownMenuProps) => {
+    const [selectedValue, setSelectedValue] =
+        useState<NSDropdownMenuBaseItemOptionProps>();
+
+    return (
+        <>
+            <NSDropdownMenu
+                {...args}
+                multiple={false}
+                value={selectedValue}
+                onChange={(value) =>
+                    setSelectedValue(value as NSDropdownMenuBaseItemOptionProps)
+                }
+            />
+            <div>
+                <h2>Selected Values</h2>
+                <ul>
+                    <li>{selectedValue?.label || ''}</li>
+                </ul>
+            </div>
+        </>
+    );
+};
+
+const singleSelectArgs: NSDropdownMenuProps = {
+    showHeader: true,
+    title: 'Select',
+    subtext: 'Click an option to select',
+    multiple: false,
+    searchable: true,
+    items: Array.from({ length: 20 }, (_, i) => ({
+        type: NSDropdownMenuBaseItemType.OPTION,
+        label: `Option ${i + 1}`,
+        value: `option${i + 1}`,
+    })),
+};
+
+export const SingleSelect = ExampleSingleSelectTemplate.bind({});
+SingleSelect.args = {
+    ...singleSelectArgs,
+};
+
+export const SingleSelectWithApplyButton = ExampleSingleSelectTemplate.bind({});
+SingleSelectWithApplyButton.args = {
+    ...singleSelectArgs,
+    showActionButtons: true,
+};
+
+// Multiple Select Dropdown Menu
+const ExampleMultiSelectTemplate = (args: NSDropdownMenuProps) => {
     const [selectedValues, setSelectedValues] = useState<
         NSDropdownMenuBaseItemOptionProps[]
     >([]);
@@ -123,8 +172,13 @@ const ExampleTemplate = (args: NSDropdownMenuProps) => {
         <>
             <NSDropdownMenu
                 {...args}
-                selectedValues={selectedValues.map((value) => value.value)}
-                onChange={setSelectedValues}
+                multiple
+                value={selectedValues}
+                onChange={(value) =>
+                    setSelectedValues(
+                        value as NSDropdownMenuBaseItemOptionProps[]
+                    )
+                }
             />
             <div>
                 <h2>Selected Values</h2>
@@ -138,33 +192,6 @@ const ExampleTemplate = (args: NSDropdownMenuProps) => {
     );
 };
 
-// Single Select Dropdown Menu
-const singleSelectArgs: NSDropdownMenuProps = {
-    showHeader: true,
-    title: 'Select',
-    subtext: 'Click an option to select',
-    multiple: false,
-    searchable: true,
-    items: Array.from({ length: 20 }, (_, i) => ({
-        type: NSDropdownMenuBaseItemType.OPTION,
-        label: `Option ${i + 1}`,
-        value: `option${i + 1}`,
-    })),
-    selectedValues: [],
-};
-
-export const SingleSelect = ExampleTemplate.bind({});
-SingleSelect.args = {
-    ...singleSelectArgs,
-};
-
-export const SingleSelectWithApplyButton = ExampleTemplate.bind({});
-SingleSelectWithApplyButton.args = {
-    ...singleSelectArgs,
-    showActionButtons: true,
-};
-
-// Multiple Select Dropdown Menu
 const multipleSelectArgs: NSDropdownMenuProps = {
     showHeader: true,
     title: 'Select',
@@ -176,15 +203,17 @@ const multipleSelectArgs: NSDropdownMenuProps = {
         label: `Option ${i + 1}`,
         value: `option${i + 1}`,
     })),
-    selectedValues: [],
+    value: [],
 };
 
-export const MultipleSelect = ExampleTemplate.bind({});
+export const MultipleSelect = ExampleMultiSelectTemplate.bind({});
 MultipleSelect.args = {
     ...multipleSelectArgs,
 };
 
-export const MultipleSelectWithApplyButton = ExampleTemplate.bind({});
+export const MultipleSelectWithApplyButton = ExampleMultiSelectTemplate.bind(
+    {}
+);
 MultipleSelectWithApplyButton.args = {
     ...multipleSelectArgs,
     showActionButtons: true,

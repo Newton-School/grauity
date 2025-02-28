@@ -21,13 +21,12 @@ import {
     StyledDropdownMenuBody,
     StyledDropdownMenuDivider,
 } from './DropdownMenu.styles';
+import { BaseItemOptionProps, BaseItemType, DropdownMenuProps } from './types';
 import {
-    BaseItemOptionProps,
-    BaseItemType,
-    DropdownMenuProps,
-    OptionValue,
-} from './types';
-import { defaultSearchMethod, getOptionsFromBaseDropdownItems } from './utils';
+    defaultSearchMethod,
+    getOptionsFromBaseDropdownItems,
+    getSelectedValuesForDropdownType,
+} from './utils';
 
 const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
     (props, ref) => {
@@ -52,14 +51,18 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             onScrollToBottom = () => {},
             className = null,
             styles = {},
-            selectedValues = [],
+            value = null,
             width = '300px',
         } = props;
 
-        const [options, setOptions] = useState<BaseItemOptionProps[]>([]);
-        const [selectedOptions, setSelectedOptions] = useState<OptionValue[]>(
-            []
+        const selectedValues = getSelectedValuesForDropdownType(
+            multiple,
+            value
         );
+
+        const [options, setOptions] = useState<BaseItemOptionProps[]>([]);
+        const [selectedOptions, setSelectedOptions] =
+            useState<BaseItemOptionProps[]>(selectedValues);
         const [searchedOptions, setSearchedOptions] = useState<
             BaseItemOptionProps[] | null
         >(null);
@@ -73,28 +76,42 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
         };
 
         const handleApply = (customValues: BaseItemOptionProps[] = null) => {
+            let finalValues: BaseItemOptionProps[] = [];
             if (Array.isArray(customValues)) {
-                onChange(customValues);
+                finalValues = customValues;
             } else {
-                onChange(
-                    options.filter((option) =>
-                        selectedOptions.includes(option.value)
+                finalValues = options.filter((option) =>
+                    selectedOptions.find(
+                        (selectedOption) =>
+                            selectedOption.value === option.value
                     )
                 );
             }
+
+            if (multiple) {
+                onChange(finalValues);
+            } else if (finalValues.length > 0) {
+                onChange(finalValues[0]);
+            }
         };
 
-        const handleClickOption = (value: OptionValue) => {
+        const handleClickOption = (clickedValue: BaseItemOptionProps) => {
             if (multiple) {
-                const newSelectedOptions = selectedOptions.includes(value)
-                    ? selectedOptions.filter((option) => option !== value)
-                    : [...selectedOptions, value];
+                const newSelectedOptions = selectedOptions.includes(
+                    clickedValue
+                )
+                    ? selectedOptions.filter(
+                          (option) => option !== clickedValue
+                      )
+                    : [...selectedOptions, clickedValue];
                 setSelectedOptions(newSelectedOptions);
             } else {
-                setSelectedOptions([value]);
+                setSelectedOptions([clickedValue]);
                 if (!showActionButtons) {
                     handleApply(
-                        options.filter((option) => option.value === value)
+                        options.filter(
+                            (option) => option.value === clickedValue.value
+                        )
                     );
                 }
             }
@@ -126,7 +143,10 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
         };
 
         const handleDebouncedSearchInputChange = useCallback(
-            debounce((value) => handleSearchInputChange(value), 500),
+            debounce(
+                (searchValue) => handleSearchInputChange(searchValue),
+                500
+            ),
             [options]
         );
 
@@ -134,10 +154,6 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             const filteredOptions = getOptionsFromBaseDropdownItems(items);
             setOptions(filteredOptions);
         }, [items]);
-
-        useEffect(() => {
-            setSelectedOptions(selectedValues);
-        }, [selectedValues]);
 
         useClickAway(dropdownRef as RefObject<HTMLElement>, () => {
             if (multiple && !showActionButtons) {
@@ -172,8 +188,17 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                         searchedOptions.map((item) => (
                             <DropdownMenuOption
                                 multiple={multiple}
-                                selected={selectedOptions.includes(item.value)}
-                                onClick={handleClickOption}
+                                selected={selectedOptions
+                                    .map((option) => option.value)
+                                    .includes(item.value)}
+                                onClick={(clickedValue) =>
+                                    handleClickOption(
+                                        options.find(
+                                            (option) =>
+                                                option.value === clickedValue
+                                        )
+                                    )
+                                }
                                 {...item}
                             />
                         ))}
@@ -199,10 +224,18 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                     <DropdownMenuOption
                                         key={`${item.type}-${item.value}`}
                                         multiple={multiple}
-                                        selected={selectedOptions.includes(
-                                            item.value
-                                        )}
-                                        onClick={handleClickOption}
+                                        selected={selectedOptions
+                                            .map((option) => option.value)
+                                            .includes(item.value)}
+                                        onClick={(clickedValue) =>
+                                            handleClickOption(
+                                                options.find(
+                                                    (option) =>
+                                                        option.value ===
+                                                        clickedValue
+                                                )
+                                            )
+                                        }
                                         {...item}
                                     />
                                 );

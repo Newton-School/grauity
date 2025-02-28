@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 
+import { BaseItemOptionProps } from '../../DropdownMenu';
 import { Icon } from '../../Icon';
 import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
@@ -34,13 +35,17 @@ const DropdownTrigger = forwardRef<
         if (!showSelectedValueOnTrigger) {
             return placeholder;
         }
-        if (multiple) {
+        if (multiple && Array.isArray(selectedValues)) {
             return selectedValues?.length
                 ? `${selectedValues.length} selected`
                 : placeholder;
         }
-        if (Array.isArray(selectedValues)) {
-            return selectedValues?.[0]?.label || placeholder;
+        if (!multiple) {
+            return (
+                (selectedValues as BaseItemOptionProps)?.label ||
+                (selectedValues as BaseItemOptionProps[])?.[0]?.label ||
+                placeholder
+            );
         }
         return placeholder;
     };

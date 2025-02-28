@@ -61,7 +61,7 @@ export interface DropdownTriggerProps {
 
 export interface DropdownTriggerInternalProps extends DropdownTriggerProps {
     onTriggerClick: () => void;
-    selectedValues: BaseItemOptionProps[];
+    selectedValues: BaseItemOptionProps | BaseItemOptionProps[];
     multiple: boolean;
 }
 

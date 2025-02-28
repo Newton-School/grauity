@@ -19,7 +19,7 @@ const getDummyOptions = (count: number): BaseItemOptionProps[] => {
 
 const defaultProps: DropdownMenuProps = {
     items: [],
-    selectedValues: [],
+    value: null,
 };
 
 describe('DropdownMenu', () => {
@@ -161,7 +161,7 @@ describe('DropdownMenu', () => {
         let selectedItems = screen.getAllByRole('option', {
             selected: true,
         });
-        expect(onChange).toHaveBeenCalledWith([items[1]]);
+        expect(onChange).toHaveBeenCalledWith(items[1]);
         expect(selectedItems).toHaveLength(1);
 
         // Should call onChange on clicking another item
@@ -169,7 +169,7 @@ describe('DropdownMenu', () => {
         selectedItems = screen.getAllByRole('option', {
             selected: true,
         });
-        expect(onChange).toHaveBeenCalledWith([items[2]]);
+        expect(onChange).toHaveBeenCalledWith(items[2]);
         expect(selectedItems).toHaveLength(1);
     });
     it('Should run entire flow correctly in single select mode if action buttons are present', () => {
@@ -198,7 +198,7 @@ describe('DropdownMenu', () => {
             selected: true,
         });
         expect(selectedItems).toHaveLength(1);
-        expect(onChange).toHaveBeenCalledWith([items[1]]);
+        expect(onChange).toHaveBeenCalledWith(items[1]);
 
         // Should change selected item on clicking another item
         fireEvent.click(screen.getByText('Item 2'));
@@ -213,7 +213,7 @@ describe('DropdownMenu', () => {
             selected: true,
         });
         expect(selectedItems).toHaveLength(1);
-        expect(onChange).toHaveBeenCalledWith([items[2]]);
+        expect(onChange).toHaveBeenCalledWith(items[2]);
     });
 
     // Multiple Select Mode Flow
