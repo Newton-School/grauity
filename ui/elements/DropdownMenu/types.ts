@@ -33,7 +33,7 @@ export type BaseItemProps =
     | BaseItemDividerProps
     | BaseItemOptionProps;
 
-export interface DropdownMenuWrapperProps {
+export interface DropdownMenuProps {
     /**
      * Whether to show the header of the dropdown menu.
      * - If `showHeader` is false, `title`, `overline`, and `subtext` will be ignored.
@@ -158,7 +158,7 @@ export interface DropdownMenuWrapperProps {
      * @param items - The selected items.
      * @default null
      */
-    onChange?: (items: BaseItemOptionProps[]) => void;
+    onChange?: (items: BaseItemOptionProps | BaseItemOptionProps[]) => void;
 
     /**
      * Callback function called when the dropdown menu is scrolled to the bottom.
@@ -182,31 +182,13 @@ export interface DropdownMenuWrapperProps {
      * The values of the selected items.
      * @default []
      */
-    selectedValues?: OptionValue[];
+    value?: OptionValue | OptionValue[];
 
     /**
      * The width of the dropdown menu.
      * @default '300px'
      */
     width?: string;
-}
-
-export interface DropdownMenuProps extends DropdownMenuWrapperProps {
-    /**
-     * Callback function called to apply the selected items.
-     * - In single select mode, if `showActionButtons` is false, `onChange` will be called when an option is clicked.
-     * - In multiple select mode, if `showActionButtons` is false, `onChange` will be called when clicked outside the dropdown menu.
-     * - If `showActionButtons` is true, `onChange` will be called when the "Apply" button is clicked.
-     * @param items - The selected items.
-     * @default null
-     */
-    onChange?: (items: BaseItemOptionProps | BaseItemOptionProps[]) => void;
-
-    /**
-     * The values of the selected items.
-     * @default []
-     */
-    value?: OptionValue | OptionValue[];
 }
 
 export interface StyledDropdownMenuProps extends StyledDivProps {
