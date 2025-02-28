@@ -236,8 +236,11 @@ describe('useForm', () => {
             JSON.stringify({
                 first_name: '',
                 last_name: '',
-                hobbies: ['reading', 'writing'],
-                profession: 'developer',
+                hobbies: [
+                    formFields.hobbies.rendererProps.items[0],
+                    formFields.hobbies.rendererProps.items[1],
+                ],
+                profession: formFields.profession.rendererProps.items[0],
                 consent: [],
             })
         );
