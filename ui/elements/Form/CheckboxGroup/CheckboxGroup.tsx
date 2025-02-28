@@ -22,7 +22,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
         } = props;
 
         return (
-            <StyledCheckboxGroup ref={ref} className={className}>
+            <StyledCheckboxGroup ref={ref} className={className} role="group">
                 {label && (
                     <Label name={name} isRequired={isRequired}>
                         {label}
