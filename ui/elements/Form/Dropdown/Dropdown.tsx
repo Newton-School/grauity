@@ -20,6 +20,7 @@ const Dropdown = (props: DropdownProps) => {
         items = [],
         value = null,
         onChange = () => {},
+        onClose = () => {},
     } = props;
 
     let width;
