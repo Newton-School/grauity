@@ -30,7 +30,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
             first_name: '',
             last_name: '',
             hobbies: [],
-            profession: '',
+            profession: null,
             consent: [],
         },
         rows: [
@@ -140,7 +140,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
             first_name: string().required('First Name is required'),
             last_name: string().required('Last Name is required'),
             hobbies: array().min(1, 'Select at least one hobby'),
-            profession: string().required('Profession is required'),
+            profession: object().nullable().required('Select a profession'),
             consent: array().min(1, 'Please agree to the terms and conditions'),
         }),
     };
