@@ -9,7 +9,7 @@ import { CheckboxGroupProps, CheckBoxValue } from './types';
 const defaultProps: CheckboxGroupProps = {
     name: 'checkbox',
     label: 'Checkbox group',
-    options: [
+    items: [
         { value: 'option1', label: 'Option 1' },
         { value: 'option2', label: 'Option 2' },
         { value: 'option3', label: 'Option 3' },
@@ -99,8 +99,8 @@ describe('CheckboxGroup', () => {
         render(
             <ControlledCheckboxGroup
                 {...defaultProps}
-                options={[
-                    ...defaultProps.options,
+                items={[
+                    ...defaultProps.items,
                     { value: 'option4', label: 'Option 4', isDisabled: true },
                 ]}
                 onChange={onChange}

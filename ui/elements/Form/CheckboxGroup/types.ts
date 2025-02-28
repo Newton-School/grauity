@@ -2,7 +2,7 @@ import { CheckboxProps } from '../Checkbox/types';
 
 export type CheckBoxValue = string | number;
 
-export interface CheckboxOptionProps extends Omit<CheckboxProps, 'name'> {
+export interface CheckboxItemProps extends Omit<CheckboxProps, 'name'> {
     name?: string;
 }
 
@@ -20,11 +20,11 @@ export interface CheckboxGroupProps {
     label?: string;
 
     /**
-     * The options available in the checkbox group.
-     * Each option should adhere to the `CheckboxProps` interface.
+     * The items available in the checkbox group.
+     * Each item should adhere to the `CheckboxProps` interface.
      * @default []
      */
-    options: CheckboxOptionProps[];
+    items: CheckboxItemProps[];
 
     /**
      * The currently selected values in the checkbox group.
