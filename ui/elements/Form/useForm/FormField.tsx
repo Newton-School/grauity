@@ -1,6 +1,5 @@
 import React, { forwardRef, useEffect } from 'react';
 
-import { IconButton } from '../../Button';
 import DropdownMenu from '../../DropdownMenu';
 import CheckboxGroup from '../CheckboxGroup';
 import Dropdown from '../Dropdown';
@@ -43,7 +42,6 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
     } else {
         switch (formField.type) {
             case FormFieldType.TEXTFIELD:
-            case FormFieldType.DATE_PICKER:
                 rendererComponent = (
                     <TextField
                         key={rendererProps.name}
@@ -117,9 +115,6 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                         {...conditionalProps}
                     />
                 );
-                break;
-            case FormFieldType.ICON_BUTTON:
-                rendererComponent = <IconButton {...rendererProps} />;
                 break;
             case FormFieldType.CHECKBOX_GROUP:
                 rendererComponent = (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Schema } from 'yup';
 
-import { ButtonProps, IconButtonProps } from '../../Button';
+import { ButtonProps } from '../../Button';
 import { CheckboxGroupProps } from '../CheckboxGroup';
 import { DropdownProps } from '../Dropdown';
 import { TextFieldProps } from '../TextField';
@@ -18,10 +18,8 @@ export interface FormErrors {
 // Form Field
 export enum FormFieldType {
     TEXTFIELD = 'TEXTFIELD',
-    DATE_PICKER = 'DATE_PICKER',
     DROPDOWN = 'DROPDOWN',
     DROPDOWN_MENU = 'DROPDOWN_MENU',
-    ICON_BUTTON = 'ICON_BUTTON',
     CHECKBOX_GROUP = 'CHECKBOX_GROUP',
     CUSTOM = 'CUSTOM',
 }
@@ -41,10 +39,6 @@ export interface FormFieldTextFieldProps extends FormFieldBaseProps {
     type: FormFieldType.TEXTFIELD;
     rendererProps: TextFieldProps;
 }
-export interface FormFieldDatePickerProps extends FormFieldBaseProps {
-    type: FormFieldType.DATE_PICKER;
-    rendererProps: TextFieldProps;
-}
 export interface FormFieldDropdownProps extends FormFieldBaseProps {
     type: FormFieldType.DROPDOWN;
     rendererProps: DropdownProps;
@@ -52,10 +46,6 @@ export interface FormFieldDropdownProps extends FormFieldBaseProps {
 export interface FormFieldDropdownMenuProps extends FormFieldBaseProps {
     type: FormFieldType.DROPDOWN_MENU;
     rendererProps: DropdownProps;
-}
-export interface FormFieldIconButtonProps extends FormFieldBaseProps {
-    type: FormFieldType.ICON_BUTTON;
-    rendererProps: IconButtonProps;
 }
 export interface FormFieldCheckboxGroupProps extends FormFieldBaseProps {
     type: FormFieldType.CHECKBOX_GROUP;
@@ -67,10 +57,8 @@ export interface FormFieldCustomProps extends FormFieldBaseProps {
 }
 export type FormField =
     | FormFieldTextFieldProps
-    | FormFieldDatePickerProps
     | FormFieldDropdownProps
     | FormFieldDropdownMenuProps
-    | FormFieldIconButtonProps
     | FormFieldCheckboxGroupProps
     | FormFieldCustomProps;
 export interface FormFields {
@@ -113,7 +101,7 @@ export interface UseFormProps {
      *      - `column`: A string representing the column condition for the row. (Options: 'ALWAYS_COLUMN', 'ALWAYS_ROW', 'COLUMN_ON_MOBILE')
      *      - `items`: An array of form field objects.
      *          - Each form field object contains the following properties:
-     *          - `type`: A string representing the form field type. (Options: 'TEXTFIELD', 'DATE_PICKER', 'DROPDOWN', 'DROPDOWN_MENU', 'ICON_BUTTON', 'CHECKBOX_GROUP', 'CUSTOM')
+     *          - `type`: A string representing the form field type. (Options: 'TEXTFIELD', 'DROPDOWN', 'DROPDOWN_MENU', 'CHECKBOX_GROUP', 'CUSTOM')
      *          - `renderer`: A function that returns a React node. (Props: formField, error, formData, handleChange)
      *          - `rendererProps`: Props required for the form field renderer. (Eg: name, label, placeholder, etc.)
      *          - `configProps`: An object with additional form field props required at user side.
