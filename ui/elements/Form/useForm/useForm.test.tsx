@@ -101,7 +101,7 @@ const formFields: FormFields = {
         rendererProps: {
             name: 'consent',
             isRequired: true,
-            options: [
+            items: [
                 {
                     label: 'I agree to the terms and conditions',
                     value: 'true',
