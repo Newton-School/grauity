@@ -118,7 +118,10 @@ const defaultArgs: DropdownProps = {
     className: '',
     styles: {},
     selectedValues: [],
-    width: '100%',
+    menuProps: {
+        width: '300px',
+        fullWidth: true,
+    },
 };
 
 export const Component = Template.bind({});
@@ -212,6 +215,9 @@ MultipleSelectWithApplyButton.args = {
 export const CustomTrigger = ExampleTemplate.bind({});
 CustomTrigger.args = {
     ...singleSelectArgs,
-    width: '300px',
-    customTrigger: <NSButton>Custom Trigger</NSButton>,
+    menuProps: {
+        width: '300px',
+        fullWidth: false,
+    },
+    trigger: <NSButton>Custom Trigger</NSButton>,
 };

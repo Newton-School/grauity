@@ -27,7 +27,7 @@ const DropdownTrigger = forwardRef<
         onTriggerClick = () => {},
         selectedValues = [],
         multiple = false,
-        customTrigger,
+        trigger,
     } = props;
 
     const getCurrentValue = (): string => {
@@ -45,10 +45,10 @@ const DropdownTrigger = forwardRef<
         return placeholder;
     };
 
-    if (customTrigger) {
+    if (trigger) {
         return (
             <StyledCustomTrigger ref={ref} onClick={() => onTriggerClick()}>
-                {customTrigger}
+                {trigger}
             </StyledCustomTrigger>
         );
     }

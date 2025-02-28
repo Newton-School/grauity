@@ -56,7 +56,7 @@ export interface DropdownTriggerProps {
      * @default null
      * @example <Button>Click me</Button>
      */
-    customTrigger?: React.ReactNode;
+    trigger?: React.ReactNode;
 }
 
 export interface DropdownTriggerInternalProps extends DropdownTriggerProps {
@@ -66,9 +66,17 @@ export interface DropdownTriggerInternalProps extends DropdownTriggerProps {
 }
 
 export interface DropdownProps extends DropdownTriggerProps, DropdownMenuProps {
-    /**
-     * The width of the dropdown menu.
-     * @default '100%'
-     */
-    width?: string;
+    menuProps?: {
+        /**
+         * The width of the dropdown menu.
+         * @default '300px'
+         */
+        width?: string;
+
+        /**
+         * Whether the dropdown menu is same width as trigger
+         * @default true
+         */
+        fullWidth?: boolean;
+    };
 }

@@ -278,7 +278,7 @@ describe('Dropdown', () => {
             <Dropdown
                 {...defaultProps}
                 items={items}
-                customTrigger={<button type="button">Custom Trigger</button>}
+                trigger={<button type="button">Custom Trigger</button>}
                 onChange={onChange}
             />
         );
