@@ -16,9 +16,9 @@ const Dropdown = (props: DropdownProps) => {
     const [dropdownMenuHeight, setDropdownMenuHeight] = useState(
         DROPDOWN_MENU_MAX_HEIGHT
     );
-    const [selectedValues, setSelectedValues] = useState<BaseItemOptionProps[]>(
-        []
-    );
+    const [selectedValues, setSelectedValues] = useState<
+        BaseItemOptionProps | BaseItemOptionProps[]
+    >([]);
 
     const triggerRef = useRef<HTMLDivElement>(null);
     const dropdownMenuRef = useRef<HTMLDivElement>(null);
