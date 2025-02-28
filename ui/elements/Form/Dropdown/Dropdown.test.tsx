@@ -17,7 +17,7 @@ const getDummyOptions = (count: number): BaseItemOptionProps[] => {
 
 const defaultProps: DropdownProps = {
     items: [],
-    value: '',
+    value: null,
     name: 'dropdown',
     clearAllButtonText: 'Clear',
     applyButtonText: 'Apply',
@@ -291,6 +291,6 @@ describe('Dropdown', () => {
         expect(screen.getByText('Item 0')).toBeInTheDocument();
         fireEvent.click(screen.getByText('Item 0'));
 
-        expect(onChange).toHaveBeenCalledWith([items[0]]);
+        expect(onChange).toHaveBeenCalledWith(items[0]);
     });
 });

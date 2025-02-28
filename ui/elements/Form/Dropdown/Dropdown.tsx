@@ -44,7 +44,9 @@ const Dropdown = (props: DropdownProps) => {
         items.filter(
             (item) =>
                 item.type === BaseItemType.OPTION &&
-                selectedValues.includes(item.value)
+                selectedValues
+                    .map((option) => option.value)
+                    .includes(item.value)
         ) as BaseItemOptionProps[]
     );
 

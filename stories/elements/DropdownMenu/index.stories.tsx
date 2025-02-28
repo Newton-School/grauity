@@ -123,7 +123,7 @@ const ExampleSingleSelectTemplate = (args: NSDropdownMenuProps) => {
             <NSDropdownMenu
                 {...args}
                 multiple={false}
-                value={selectedValue?.value}
+                value={selectedValue}
                 onChange={(value) =>
                     setSelectedValue(value as NSDropdownMenuBaseItemOptionProps)
                 }
@@ -173,7 +173,7 @@ const ExampleMultiSelectTemplate = (args: NSDropdownMenuProps) => {
             <NSDropdownMenu
                 {...args}
                 multiple
-                value={selectedValues.map((value) => value.value)}
+                value={selectedValues}
                 onChange={(value) =>
                     setSelectedValues(
                         value as NSDropdownMenuBaseItemOptionProps[]

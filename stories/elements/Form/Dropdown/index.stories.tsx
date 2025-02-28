@@ -140,7 +140,7 @@ const ExampleSingleSelectTemplate = (args: DropdownProps) => {
             <NSDropdown
                 {...args}
                 multiple={false}
-                value={selectedValue?.value}
+                value={selectedValue}
                 onChange={(value) =>
                     setSelectedValue(value as NSDropdownMenuBaseItemOptionProps)
                 }
@@ -191,7 +191,7 @@ const ExampleMultiSelectTemplate = (args: DropdownProps) => {
             <NSDropdown
                 {...args}
                 multiple
-                value={selectedValues.map((value) => value.value)}
+                value={selectedValues}
                 onChange={(value) =>
                     setSelectedValues(
                         value as NSDropdownMenuBaseItemOptionProps[]
@@ -239,7 +239,7 @@ MultipleSelectWithApplyButton.args = {
 };
 
 // Dropdown With Custom Trigger
-export const CustomTrigger = ExampleTemplate.bind({});
+export const CustomTrigger = ExampleSingleSelectTemplate.bind({});
 CustomTrigger.args = {
     ...singleSelectArgs,
     menuProps: {
