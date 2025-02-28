@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { DropdownTriggerProps } from 'ui/elements/Form/Dropdown/types';
 import {
     DropdownProps,
+    NSButton,
     NSDropdown,
     NSDropdownMenuBaseItemOptionProps,
     NSDropdownMenuBaseItemType,
@@ -118,7 +119,10 @@ const defaultArgs: DropdownProps = {
     className: '',
     styles: {},
     value: [],
-    width: '100%',
+    menuProps: {
+        width: '300px',
+        fullWidth: true,
+    },
 };
 
 export const Component = Template.bind({});
@@ -137,7 +141,7 @@ const ExampleSingleSelectTemplate = (args: DropdownProps) => {
             <NSDropdown
                 {...args}
                 multiple={false}
-                value={selectedValue?.value}
+                value={selectedValue}
                 onChange={(value) =>
                     setSelectedValue(value as NSDropdownMenuBaseItemOptionProps)
                 }
@@ -188,7 +192,7 @@ const ExampleMultiSelectTemplate = (args: DropdownProps) => {
             <NSDropdown
                 {...args}
                 multiple
-                value={selectedValues.map((value) => value.value)}
+                value={selectedValues}
                 onChange={(value) =>
                     setSelectedValues(
                         value as NSDropdownMenuBaseItemOptionProps[]
@@ -233,4 +237,15 @@ export const MultipleSelectWithApplyButton = ExampleMultiSelectTemplate.bind(
 MultipleSelectWithApplyButton.args = {
     ...multipleSelectArgs,
     showActionButtons: true,
+};
+
+// Dropdown With Custom Trigger
+export const CustomTrigger = ExampleSingleSelectTemplate.bind({});
+CustomTrigger.args = {
+    ...singleSelectArgs,
+    menuProps: {
+        width: '300px',
+        fullWidth: false,
+    },
+    trigger: <NSButton>Custom Trigger</NSButton>,
 };

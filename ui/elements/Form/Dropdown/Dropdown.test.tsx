@@ -17,7 +17,7 @@ const getDummyOptions = (count: number): BaseItemOptionProps[] => {
 
 const defaultProps: DropdownProps = {
     items: [],
-    value: '',
+    value: null,
     name: 'dropdown',
     clearAllButtonText: 'Clear',
     applyButtonText: 'Apply',
@@ -267,5 +267,30 @@ describe('Dropdown', () => {
         // Should show the selected value and not placeholder
         expect(screen.queryByText('Select')).not.toBeInTheDocument();
         expect(screen.queryByText('2 selected')).toBeInTheDocument();
+    });
+
+    // Custom Trigger
+    it('Should render the custom trigger', () => {
+        const onChange = jest.fn();
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                items={items}
+                trigger={<button type="button">Custom Trigger</button>}
+                onChange={onChange}
+            />
+        );
+
+        expect(screen.getByText('Custom Trigger')).toBeInTheDocument();
+
+        // Opening the dropdown and selecting option
+        fireEvent.click(screen.getByText('Custom Trigger'));
+
+        expect(screen.getByText('Item 0')).toBeInTheDocument();
+        fireEvent.click(screen.getByText('Item 0'));
+
+        expect(onChange).toHaveBeenCalledWith(items[0]);
     });
 });

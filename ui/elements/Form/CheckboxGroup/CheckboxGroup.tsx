@@ -12,7 +12,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
         const {
             name,
             label,
-            options = [],
+            items = [],
             value = [],
             onChange = () => {},
             isRequired = false,
@@ -28,19 +28,17 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
                         {label}
                     </Label>
                 )}
-                {options.map((option) => (
+                {items.map((item) => (
                     <Checkbox
-                        key={`${name}-${option.value}`}
+                        key={`${name}-${item.value}`}
                         name={name}
-                        {...option}
-                        isChecked={value.includes(option.value)}
+                        {...item}
+                        isChecked={value.includes(item.value)}
                         onChange={(e) => {
                             if (e.target.checked) {
-                                onChange([...value, option.value]);
+                                onChange([...value, item.value]);
                             } else {
-                                onChange(
-                                    value.filter((v) => v !== option.value)
-                                );
+                                onChange(value.filter((v) => v !== item.value));
                             }
                         }}
                     />

@@ -182,11 +182,11 @@ export interface DropdownMenuProps {
 
     /**
      * The values of the selected items.
-     * - If `multiple` is false, `value` should be a string or number.
-     * - If `multiple` is true, `value` should be an array of strings or numbers.
+     * - If `multiple` is false, `value` should be a selected object
+     * - If `multiple` is true, `value` should be an array of selected objects
      * @default null
      */
-    value?: OptionValue | OptionValue[];
+    value?: BaseItemOptionProps | BaseItemOptionProps[];
 
     /**
      * The width of the dropdown menu.

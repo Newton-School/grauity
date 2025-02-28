@@ -23,7 +23,7 @@ const Template = (args: CheckboxGroupProps) => {
 const defaultArgs: CheckboxGroupProps = {
     name: 'checkbox',
     label: 'Select an option',
-    options: [
+    items: [
         { label: 'Option 1', value: 'option1' },
         { label: 'Option 2', value: 'option2' },
         { label: 'Option 3', value: 'option3' },

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { BaseItemOptionProps, DropdownMenuProps } from '../../DropdownMenu';
 
 export interface DropdownTriggerProps {
@@ -50,6 +52,13 @@ export interface DropdownTriggerProps {
     showSelectedValueOnTrigger?: boolean;
 
     /**
+     * The custom trigger element to display in the dropdown
+     * @default null
+     * @example <Button>Click me</Button>
+     */
+    trigger?: React.ReactNode;
+
+    /**
      * The function to call when the dropdown menu is closed
      *
      * @param value The selected value(s) in the dropdown menu
@@ -64,9 +73,17 @@ export interface DropdownTriggerInternalProps extends DropdownTriggerProps {
 }
 
 export interface DropdownProps extends DropdownTriggerProps, DropdownMenuProps {
-    /**
-     * The width of the dropdown menu.
-     * @default '100%'
-     */
-    width?: string;
+    menuProps?: {
+        /**
+         * The width of the dropdown menu.
+         * @default '300px'
+         */
+        width?: string;
+
+        /**
+         * Whether the dropdown menu is same width as trigger
+         * @default true
+         */
+        fullWidth?: boolean;
+    };
 }

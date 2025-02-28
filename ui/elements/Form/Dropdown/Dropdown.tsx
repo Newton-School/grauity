@@ -15,13 +15,22 @@ import { calculateDropdownMenuPosition } from './utils';
 
 const Dropdown = (props: DropdownProps) => {
     const {
-        width = '100%',
+        menuProps,
         multiple = false,
         items = [],
         value = null,
         onChange = () => {},
-        onClose = () => {},
     } = props;
+
+    let width;
+    let fullWidth;
+
+    if (menuProps) {
+        ({ width, fullWidth } = menuProps);
+    } else {
+        width = '300px';
+        fullWidth = true;
+    }
 
     const selectedValues = getSelectedValuesForDropdownType(multiple, value);
 
@@ -35,7 +44,9 @@ const Dropdown = (props: DropdownProps) => {
         items.filter(
             (item) =>
                 item.type === BaseItemType.OPTION &&
-                selectedValues.includes(item.value)
+                selectedValues
+                    .map((option) => option.value)
+                    .includes(item.value)
         ) as BaseItemOptionProps[]
     );
 
@@ -75,7 +86,7 @@ const Dropdown = (props: DropdownProps) => {
                     <DropdownMenu
                         {...props}
                         width={
-                            width === '100%'
+                            fullWidth
                                 ? `${
                                       triggerRef.current?.getBoundingClientRect()
                                           .width

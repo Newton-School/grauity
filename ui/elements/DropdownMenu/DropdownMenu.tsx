@@ -21,12 +21,7 @@ import {
     StyledDropdownMenuBody,
     StyledDropdownMenuDivider,
 } from './DropdownMenu.styles';
-import {
-    BaseItemOptionProps,
-    BaseItemType,
-    DropdownMenuProps,
-    OptionValue,
-} from './types';
+import { BaseItemOptionProps, BaseItemType, DropdownMenuProps } from './types';
 import {
     defaultSearchMethod,
     getOptionsFromBaseDropdownItems,
@@ -67,7 +62,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
 
         const [options, setOptions] = useState<BaseItemOptionProps[]>([]);
         const [selectedOptions, setSelectedOptions] =
-            useState<OptionValue[]>(selectedValues);
+            useState<BaseItemOptionProps[]>(selectedValues);
         const [searchedOptions, setSearchedOptions] = useState<
             BaseItemOptionProps[] | null
         >(null);
@@ -86,7 +81,10 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                 finalValues = customValues;
             } else {
                 finalValues = options.filter((option) =>
-                    selectedOptions.includes(option.value)
+                    selectedOptions.find(
+                        (selectedOption) =>
+                            selectedOption.value === option.value
+                    )
                 );
             }
 
@@ -97,7 +95,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             }
         };
 
-        const handleClickOption = (clickedValue: OptionValue) => {
+        const handleClickOption = (clickedValue: BaseItemOptionProps) => {
             if (multiple) {
                 const newSelectedOptions = selectedOptions.includes(
                     clickedValue
@@ -112,7 +110,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                 if (!showActionButtons) {
                     handleApply(
                         options.filter(
-                            (option) => option.value === clickedValue
+                            (option) => option.value === clickedValue.value
                         )
                     );
                 }
@@ -190,8 +188,17 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                         searchedOptions.map((item) => (
                             <DropdownMenuOption
                                 multiple={multiple}
-                                selected={selectedOptions.includes(item.value)}
-                                onClick={handleClickOption}
+                                selected={selectedOptions
+                                    .map((option) => option.value)
+                                    .includes(item.value)}
+                                onClick={(clickedValue) =>
+                                    handleClickOption(
+                                        options.find(
+                                            (option) =>
+                                                option.value === clickedValue
+                                        )
+                                    )
+                                }
                                 {...item}
                             />
                         ))}
@@ -217,10 +224,18 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                     <DropdownMenuOption
                                         key={`${item.type}-${item.value}`}
                                         multiple={multiple}
-                                        selected={selectedOptions.includes(
-                                            item.value
-                                        )}
-                                        onClick={handleClickOption}
+                                        selected={selectedOptions
+                                            .map((option) => option.value)
+                                            .includes(item.value)}
+                                        onClick={(clickedValue) =>
+                                            handleClickOption(
+                                                options.find(
+                                                    (option) =>
+                                                        option.value ===
+                                                        clickedValue
+                                                )
+                                            )
+                                        }
                                         {...item}
                                     />
                                 );
