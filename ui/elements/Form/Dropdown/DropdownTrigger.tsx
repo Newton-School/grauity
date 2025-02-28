@@ -37,7 +37,9 @@ const DropdownTrigger = forwardRef<
         }
         if (!multiple) {
             return (
-                (selectedValues as BaseItemOptionProps)?.label || placeholder
+                (selectedValues as BaseItemOptionProps)?.label ||
+                (selectedValues as BaseItemOptionProps[])?.[0]?.label ||
+                placeholder
             );
         }
         return placeholder;
