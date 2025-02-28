@@ -125,7 +125,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
                         rendererProps: {
                             name: 'consent',
                             isRequired: true,
-                            options: [
+                            items: [
                                 {
                                     label: 'I agree to the terms and conditions',
                                     value: 'true',

@@ -73,22 +73,18 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                         key={rendererProps.name}
                         showHeader={false}
                         {...rendererProps}
-                        value={formData[rendererProps.name] || ''}
+                        value={formData[rendererProps.name]}
                         onChange={(selectedValue) => {
                             handleChange({
                                 name: rendererProps.name,
-                                value: Array.isArray(selectedValue)
-                                    ? selectedValue.map((val) => val.value)
-                                    : selectedValue.value,
+                                value: selectedValue,
                             });
                         }}
                         onClose={(selectedValue) => {
                             if (whenToValidate === FormValidationType.ON_BLUR) {
                                 handleValidate({
                                     name: rendererProps.name,
-                                    value: Array.isArray(selectedValue)
-                                        ? selectedValue.map((val) => val.value)
-                                        : selectedValue.value,
+                                    value: selectedValue,
                                 });
                             }
                         }}
@@ -103,13 +99,11 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                         key={rendererProps.name}
                         showHeader={false}
                         {...rendererProps}
-                        value={formData[rendererProps.name] || ''}
+                        value={formData[rendererProps.name]}
                         onChange={(selectedValue) => {
                             handleChange({
                                 name: rendererProps.name,
-                                value: Array.isArray(selectedValue)
-                                    ? selectedValue.map((val) => val.value)
-                                    : selectedValue.value,
+                                value: selectedValue,
                             });
                         }}
                         {...conditionalProps}
