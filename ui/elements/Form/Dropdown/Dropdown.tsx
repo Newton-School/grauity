@@ -2,7 +2,7 @@
 import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 
-import DropdownMenu from '../../DropdownMenu';
+import DropdownMenu, { BaseItemOptionProps } from '../../DropdownMenu';
 import { DROPDOWN_MENU_MAX_HEIGHT } from '../../DropdownMenu/constants';
 import Overlay from '../../Overlay';
 import DropdownTrigger from './DropdownTrigger';
@@ -10,12 +10,20 @@ import { DropdownProps } from './types';
 import { calculateDropdownMenuPosition } from './utils';
 
 const Dropdown = (props: DropdownProps) => {
-    const { width = '100%', onChange = () => {}, onClose = () => {} } = props;
+    const {
+        width = '100%',
+        multiple = false,
+        onChange = () => {},
+        onClose = () => {},
+    } = props;
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [dropdownMenuHeight, setDropdownMenuHeight] = useState(
         DROPDOWN_MENU_MAX_HEIGHT
     );
+    const [selectedValues, setSelectedValues] = useState<
+        BaseItemOptionProps | BaseItemOptionProps[]
+    >([]);
 
     const triggerRef = useRef<HTMLDivElement>(null);
     const dropdownMenuRef = useRef<HTMLDivElement>(null);
@@ -34,6 +42,8 @@ const Dropdown = (props: DropdownProps) => {
                 onTriggerClick={() => {
                     setIsOpen(!isOpen);
                 }}
+                selectedValues={selectedValues}
+                multiple={multiple}
             />
             {isOpen && (
                 <Overlay
@@ -60,6 +70,7 @@ const Dropdown = (props: DropdownProps) => {
                         }
                         ref={dropdownMenuRef}
                         onChange={(values) => {
+                            setSelectedValues(values);
                             onChange(values);
                             setIsOpen(false);
                             onClose();

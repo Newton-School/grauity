@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { BaseItemOptionProps, BaseItemProps, BaseItemType } from './types';
+import {
+    BaseItemOptionProps,
+    BaseItemProps,
+    BaseItemType,
+    OptionValue,
+} from './types';
 
 /**
  * Filters the given array of `BaseItemProps` and returns only the items of type `BaseItemType.OPTION`.
@@ -39,3 +44,16 @@ export function defaultSearchMethod(
                 .includes(searchValue.toLowerCase())
     );
 }
+
+export const getSelectedValuesForDropdownType = (
+    multiple: boolean,
+    value: OptionValue | OptionValue[]
+): OptionValue[] => {
+    if (!value) {
+        return [];
+    }
+    if (multiple) {
+        return value as OptionValue[];
+    }
+    return [value as OptionValue];
+};

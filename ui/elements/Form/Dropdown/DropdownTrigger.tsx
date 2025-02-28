@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 
+import { BaseItemOptionProps } from '../../DropdownMenu';
 import { Icon } from '../../Icon';
 import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
@@ -19,8 +20,28 @@ const DropdownTrigger = forwardRef<
         isDisabled = false,
         helpMessage,
         errorMessage,
+        showSelectedValueOnTrigger = true,
         onTriggerClick = () => {},
+        selectedValues = [],
+        multiple = false,
     } = props;
+
+    const getCurrentValue = (): string => {
+        if (!showSelectedValueOnTrigger) {
+            return placeholder;
+        }
+        if (multiple && Array.isArray(selectedValues)) {
+            return selectedValues?.length
+                ? `${selectedValues.length} selected`
+                : placeholder;
+        }
+        if (!multiple) {
+            return (
+                (selectedValues as BaseItemOptionProps)?.label || placeholder
+            );
+        }
+        return placeholder;
+    };
 
     return (
         <StyledDropdown ref={ref}>
@@ -40,7 +61,7 @@ const DropdownTrigger = forwardRef<
                 fullWidth
                 onClick={() => onTriggerClick()}
             >
-                <span>{placeholder}</span>
+                <span>{getCurrentValue()}</span>
                 <Icon name="chevron-down" />
             </StyledDropdownTrigger>
             {helpMessage && <HelpMessage>{helpMessage}</HelpMessage>}

@@ -17,10 +17,11 @@ const getDummyOptions = (count: number): BaseItemOptionProps[] => {
 
 const defaultProps: DropdownProps = {
     items: [],
-    selectedValues: [],
+    value: '',
     name: 'dropdown',
     clearAllButtonText: 'Clear',
     applyButtonText: 'Apply',
+    showSelectedValueOnTrigger: false,
 };
 
 describe('Dropdown', () => {
@@ -82,7 +83,7 @@ describe('Dropdown', () => {
 
         // Should call onChange on selecting an item
         fireEvent.click(screen.getByText('Item 0'));
-        expect(onChange).toHaveBeenCalledWith([items[0]]);
+        expect(onChange).toHaveBeenCalledWith(items[0]);
 
         // Should close the dropdown
         expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
@@ -90,7 +91,7 @@ describe('Dropdown', () => {
         // Should call onChange on selecting another item
         fireEvent.click(screen.getByText('Select'));
         fireEvent.click(screen.getByText('Item 1'));
-        expect(onChange).toHaveBeenCalledWith([items[1]]);
+        expect(onChange).toHaveBeenCalledWith(items[1]);
         expect(screen.queryByText('Item 1')).not.toBeInTheDocument();
     });
     it('Should run entire flow correctly in single select mode if action buttons are present', () => {
@@ -117,7 +118,7 @@ describe('Dropdown', () => {
 
         // Should call onChange on clicking apply button
         fireEvent.click(screen.getByText('Apply'));
-        expect(onChange).toHaveBeenCalledWith([items[0]]);
+        expect(onChange).toHaveBeenCalledWith(items[0]);
 
         // Should close the dropdown
         expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
@@ -221,5 +222,50 @@ describe('Dropdown', () => {
         fireEvent.click(screen.getByText('Apply'));
         expect(onChange).toHaveBeenCalledWith([]);
         expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+    });
+
+    // Show Selected Value
+    it('Should show selected value on trigger in single select mode', () => {
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                placeholder="Select"
+                items={items}
+                showSelectedValueOnTrigger
+            />
+        );
+
+        // Opening the dropdown and selecting option
+        fireEvent.click(screen.getByText('Select'));
+        fireEvent.click(screen.getByText('Item 0'));
+
+        // Should show the selected value and not placeholder
+        expect(screen.queryByText('Item 0')).toBeInTheDocument();
+        expect(screen.queryByText('Select')).not.toBeInTheDocument();
+    });
+    it('Should show selected value on trigger in multi select mode', () => {
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                placeholder="Select"
+                items={items}
+                multiple
+                showSelectedValueOnTrigger
+            />
+        );
+
+        // Opening the dropdown and selecting option
+        fireEvent.click(screen.getByText('Select'));
+        fireEvent.click(screen.getByText('Item 0'));
+        fireEvent.click(screen.getByText('Item 1'));
+        fireEvent.mouseDown(document.body);
+
+        // Should show the selected value and not placeholder
+        expect(screen.queryByText('Select')).not.toBeInTheDocument();
+        expect(screen.queryByText('2 selected')).toBeInTheDocument();
     });
 });

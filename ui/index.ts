@@ -241,6 +241,12 @@ export {
     default as NSDropdown,
 } from './elements/Form/Dropdown';
 
+// NSCheckboxGroup
+export {
+    type CheckboxGroupProps,
+    default as NSCheckboxGroup,
+} from './elements/Form/CheckboxGroup';
+
 // useNSForm
 export {
     type ConditionalProp as NSConditionalProp,
