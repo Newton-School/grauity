@@ -23,3 +23,8 @@ export const StyledDropdownTrigger = styled(Button)`
         align-items: center;
     }
 `;
+
+export const StyledCustomTrigger = styled.div`
+    height: fit-content;
+    width: fit-content;
+`;

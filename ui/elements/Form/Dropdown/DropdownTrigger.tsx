@@ -1,10 +1,15 @@
 import React, { forwardRef } from 'react';
 
+import { BaseItemOptionProps } from '../../DropdownMenu';
 import { Icon } from '../../Icon';
 import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
 import { Label } from '../Label';
-import { StyledDropdown, StyledDropdownTrigger } from './Dropdown.styles';
+import {
+    StyledCustomTrigger,
+    StyledDropdown,
+    StyledDropdownTrigger,
+} from './Dropdown.styles';
 import { DropdownTriggerInternalProps } from './types';
 
 const DropdownTrigger = forwardRef<
@@ -23,22 +28,35 @@ const DropdownTrigger = forwardRef<
         onTriggerClick = () => {},
         selectedValues = [],
         multiple = false,
+        trigger,
     } = props;
 
     const getCurrentValue = (): string => {
         if (!showSelectedValueOnTrigger) {
             return placeholder;
         }
-        if (multiple) {
+        if (multiple && Array.isArray(selectedValues)) {
             return selectedValues?.length
                 ? `${selectedValues.length} selected`
                 : placeholder;
         }
-        if (Array.isArray(selectedValues)) {
-            return selectedValues?.[0]?.label || placeholder;
+        if (!multiple) {
+            return (
+                (selectedValues as BaseItemOptionProps)?.label ||
+                (selectedValues as BaseItemOptionProps[])?.[0]?.label ||
+                placeholder
+            );
         }
         return placeholder;
     };
+
+    if (trigger) {
+        return (
+            <StyledCustomTrigger ref={ref} onClick={() => onTriggerClick()}>
+                {trigger}
+            </StyledCustomTrigger>
+        );
+    }
 
     return (
         <StyledDropdown ref={ref}>

@@ -17,7 +17,7 @@ const getDummyOptions = (count: number): BaseItemOptionProps[] => {
 
 const defaultProps: DropdownProps = {
     items: [],
-    selectedValues: [],
+    value: null,
     name: 'dropdown',
     clearAllButtonText: 'Clear',
     applyButtonText: 'Apply',
@@ -83,7 +83,7 @@ describe('Dropdown', () => {
 
         // Should call onChange on selecting an item
         fireEvent.click(screen.getByText('Item 0'));
-        expect(onChange).toHaveBeenCalledWith([items[0]]);
+        expect(onChange).toHaveBeenCalledWith(items[0]);
 
         // Should close the dropdown
         expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
@@ -91,7 +91,7 @@ describe('Dropdown', () => {
         // Should call onChange on selecting another item
         fireEvent.click(screen.getByText('Select'));
         fireEvent.click(screen.getByText('Item 1'));
-        expect(onChange).toHaveBeenCalledWith([items[1]]);
+        expect(onChange).toHaveBeenCalledWith(items[1]);
         expect(screen.queryByText('Item 1')).not.toBeInTheDocument();
     });
     it('Should run entire flow correctly in single select mode if action buttons are present', () => {
@@ -118,7 +118,7 @@ describe('Dropdown', () => {
 
         // Should call onChange on clicking apply button
         fireEvent.click(screen.getByText('Apply'));
-        expect(onChange).toHaveBeenCalledWith([items[0]]);
+        expect(onChange).toHaveBeenCalledWith(items[0]);
 
         // Should close the dropdown
         expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
@@ -267,5 +267,30 @@ describe('Dropdown', () => {
         // Should show the selected value and not placeholder
         expect(screen.queryByText('Select')).not.toBeInTheDocument();
         expect(screen.queryByText('2 selected')).toBeInTheDocument();
+    });
+
+    // Custom Trigger
+    it('Should render the custom trigger', () => {
+        const onChange = jest.fn();
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                items={items}
+                trigger={<button type="button">Custom Trigger</button>}
+                onChange={onChange}
+            />
+        );
+
+        expect(screen.getByText('Custom Trigger')).toBeInTheDocument();
+
+        // Opening the dropdown and selecting option
+        fireEvent.click(screen.getByText('Custom Trigger'));
+
+        expect(screen.getByText('Item 0')).toBeInTheDocument();
+        fireEvent.click(screen.getByText('Item 0'));
+
+        expect(onChange).toHaveBeenCalledWith(items[0]);
     });
 });

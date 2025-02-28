@@ -39,3 +39,16 @@ export function defaultSearchMethod(
                 .includes(searchValue.toLowerCase())
     );
 }
+
+export const getSelectedValuesForDropdownType = (
+    multiple: boolean,
+    value: BaseItemOptionProps | BaseItemOptionProps[]
+): BaseItemOptionProps[] => {
+    if (!value) {
+        return [];
+    }
+    if (multiple) {
+        return value as BaseItemOptionProps[];
+    }
+    return [value as BaseItemOptionProps];
+};

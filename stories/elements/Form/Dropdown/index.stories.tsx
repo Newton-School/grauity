@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { DropdownTriggerProps } from 'ui/elements/Form/Dropdown/types';
 import {
     DropdownProps,
+    NSButton,
     NSDropdown,
     NSDropdownMenuBaseItemOptionProps,
     NSDropdownMenuBaseItemType,
@@ -116,8 +117,11 @@ const defaultArgs: DropdownProps = {
     onScrollToBottom: () => {},
     className: '',
     styles: {},
-    selectedValues: [],
-    width: '100%',
+    value: [],
+    menuProps: {
+        width: '300px',
+        fullWidth: true,
+    },
 };
 
 export const Component = Template.bind({});
@@ -126,32 +130,30 @@ Component.args = {
     ...defaultArgs,
 };
 
-// Example Tempate
-const ExampleTemplate = (args: DropdownProps) => {
-    const [selectedValues, setSelectedValues] = useState<
-        NSDropdownMenuBaseItemOptionProps[]
-    >([]);
+// Single Select Dropdown Menu
+const ExampleSingleSelectTemplate = (args: DropdownProps) => {
+    const [selectedValue, setSelectedValue] =
+        useState<NSDropdownMenuBaseItemOptionProps>();
 
     return (
         <>
             <NSDropdown
                 {...args}
-                selectedValues={selectedValues.map((value) => value.value)}
-                onChange={setSelectedValues}
+                multiple={false}
+                value={selectedValue}
+                onChange={(value) =>
+                    setSelectedValue(value as NSDropdownMenuBaseItemOptionProps)
+                }
             />
             <div>
                 <h2>Selected Values</h2>
                 <ul>
-                    {selectedValues.map((value) => (
-                        <li key={value.value}>{value.label}</li>
-                    ))}
+                    <li>{selectedValue?.label || ''}</li>
                 </ul>
             </div>
         </>
     );
 };
-
-// Single Select Dropdown Menu
 const singleSelectArgs: DropdownProps = {
     ...triggerProps,
     ...defaultArgs,
@@ -165,21 +167,48 @@ const singleSelectArgs: DropdownProps = {
         label: `Option ${i + 1}`,
         value: `option${i + 1}`,
     })),
-    selectedValues: [],
 };
 
-export const SingleSelect = ExampleTemplate.bind({});
+export const SingleSelect = ExampleSingleSelectTemplate.bind({});
 SingleSelect.args = {
     ...singleSelectArgs,
 };
 
-export const SingleSelectWithApplyButton = ExampleTemplate.bind({});
+export const SingleSelectWithApplyButton = ExampleSingleSelectTemplate.bind({});
 SingleSelectWithApplyButton.args = {
     ...singleSelectArgs,
     showActionButtons: true,
 };
 
 // Multiple Select Dropdown Menu
+const ExampleMultiSelectTemplate = (args: DropdownProps) => {
+    const [selectedValues, setSelectedValues] = useState<
+        NSDropdownMenuBaseItemOptionProps[]
+    >([]);
+
+    return (
+        <>
+            <NSDropdown
+                {...args}
+                multiple
+                value={selectedValues}
+                onChange={(value) =>
+                    setSelectedValues(
+                        value as NSDropdownMenuBaseItemOptionProps[]
+                    )
+                }
+            />
+            <div>
+                <h2>Selected Values</h2>
+                <ul>
+                    {selectedValues.map((value) => (
+                        <li key={value.value}>{value.label}</li>
+                    ))}
+                </ul>
+            </div>
+        </>
+    );
+};
 const multipleSelectArgs: DropdownProps = {
     ...triggerProps,
     ...defaultArgs,
@@ -193,16 +222,29 @@ const multipleSelectArgs: DropdownProps = {
         label: `Option ${i + 1}`,
         value: `option${i + 1}`,
     })),
-    selectedValues: [],
+    value: [],
 };
 
-export const MultipleSelect = ExampleTemplate.bind({});
+export const MultipleSelect = ExampleMultiSelectTemplate.bind({});
 MultipleSelect.args = {
     ...multipleSelectArgs,
 };
 
-export const MultipleSelectWithApplyButton = ExampleTemplate.bind({});
+export const MultipleSelectWithApplyButton = ExampleMultiSelectTemplate.bind(
+    {}
+);
 MultipleSelectWithApplyButton.args = {
     ...multipleSelectArgs,
     showActionButtons: true,
+};
+
+// Dropdown With Custom Trigger
+export const CustomTrigger = ExampleSingleSelectTemplate.bind({});
+CustomTrigger.args = {
+    ...singleSelectArgs,
+    menuProps: {
+        width: '300px',
+        fullWidth: false,
+    },
+    trigger: <NSButton>Custom Trigger</NSButton>,
 };
