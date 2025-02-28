@@ -2,6 +2,10 @@ import { CheckboxProps } from '../Checkbox/types';
 
 export type CheckBoxValue = string | number;
 
+export interface CheckboxOptionProps extends Omit<CheckboxProps, 'name'> {
+    name?: string;
+}
+
 export interface CheckboxGroupProps {
     /**
      * The name of the checkbox fields.
@@ -20,7 +24,7 @@ export interface CheckboxGroupProps {
      * Each option should adhere to the `CheckboxProps` interface.
      * @default []
      */
-    options: CheckboxProps[];
+    options: CheckboxOptionProps[];
 
     /**
      * The currently selected values in the checkbox group.
@@ -33,6 +37,12 @@ export interface CheckboxGroupProps {
      * @param value - The updated array of selected values.
      */
     onChange?: (value: CheckBoxValue[]) => void;
+
+    /**
+     * Whether the checkbox group is required.
+     * @default false
+     */
+    isRequired?: boolean;
 
     /**
      * The help message for the checkbox group.

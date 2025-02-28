@@ -15,6 +15,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
             options = [],
             value = [],
             onChange = () => {},
+            isRequired = false,
             helpMessage,
             errorMessage,
             className,
@@ -22,7 +23,11 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
 
         return (
             <StyledCheckboxGroup ref={ref} className={className}>
-                {label && <Label name={name}>{label}</Label>}
+                {label && (
+                    <Label name={name} isRequired={isRequired}>
+                        {label}
+                    </Label>
+                )}
                 {options.map((option) => (
                     <Checkbox
                         key={`${name}-${option.value}`}
