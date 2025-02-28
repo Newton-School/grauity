@@ -2,8 +2,12 @@
 import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 
-import DropdownMenu, { BaseItemOptionProps } from '../../DropdownMenu';
+import DropdownMenu, {
+    BaseItemOptionProps,
+    BaseItemType,
+} from '../../DropdownMenu';
 import { DROPDOWN_MENU_MAX_HEIGHT } from '../../DropdownMenu/constants';
+import { getSelectedValuesForDropdownType } from '../../DropdownMenu/utils';
 import Overlay from '../../Overlay';
 import DropdownTrigger from './DropdownTrigger';
 import { DropdownProps } from './types';
@@ -13,17 +17,27 @@ const Dropdown = (props: DropdownProps) => {
     const {
         width = '100%',
         multiple = false,
+        items = [],
+        value = null,
         onChange = () => {},
         onClose = () => {},
     } = props;
+
+    const selectedValues = getSelectedValuesForDropdownType(multiple, value);
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [dropdownMenuHeight, setDropdownMenuHeight] = useState(
         DROPDOWN_MENU_MAX_HEIGHT
     );
-    const [selectedValues, setSelectedValues] = useState<
+    const [selectedOptions, setSelectedOptions] = useState<
         BaseItemOptionProps | BaseItemOptionProps[]
-    >([]);
+    >(
+        items.filter(
+            (item) =>
+                item.type === BaseItemType.OPTION &&
+                selectedValues.includes(item.value)
+        ) as BaseItemOptionProps[]
+    );
 
     const triggerRef = useRef<HTMLDivElement>(null);
     const dropdownMenuRef = useRef<HTMLDivElement>(null);
@@ -42,7 +56,7 @@ const Dropdown = (props: DropdownProps) => {
                 onTriggerClick={() => {
                     setIsOpen(!isOpen);
                 }}
-                selectedValues={selectedValues}
+                selectedValues={selectedOptions}
                 multiple={multiple}
             />
             {isOpen && (
@@ -55,7 +69,7 @@ const Dropdown = (props: DropdownProps) => {
                     shouldDisableScroll={isOpen}
                     onOverlayClick={() => {
                         setIsOpen(false);
-                        onClose(selectedValues);
+                        onClose(selectedOptions);
                     }}
                 >
                     <DropdownMenu
@@ -70,7 +84,7 @@ const Dropdown = (props: DropdownProps) => {
                         }
                         ref={dropdownMenuRef}
                         onChange={(values) => {
-                            setSelectedValues(values);
+                            setSelectedOptions(values);
                             onChange(values);
                             setIsOpen(false);
                             onClose(values);
