@@ -2,7 +2,7 @@ import React from 'react';
 import { Schema } from 'yup';
 
 import { ButtonProps, IconButtonProps } from '../../Button';
-import { CheckboxProps } from '../Checkbox';
+import { CheckboxGroupProps } from '../CheckboxGroup';
 import { DropdownProps } from '../Dropdown';
 import { TextFieldProps } from '../TextField';
 
@@ -22,7 +22,7 @@ export enum FormFieldType {
     DROPDOWN = 'DROPDOWN',
     DROPDOWN_MENU = 'DROPDOWN_MENU',
     ICON_BUTTON = 'ICON_BUTTON',
-    CHECKBOX = 'CHECKBOX',
+    CHECKBOX_GROUP = 'CHECKBOX_GROUP',
     CUSTOM = 'CUSTOM',
 }
 export interface ConditionalProp {
@@ -57,9 +57,9 @@ export interface FormFieldIconButtonProps extends FormFieldBaseProps {
     type: FormFieldType.ICON_BUTTON;
     rendererProps: IconButtonProps;
 }
-export interface FormFieldCheckboxProps extends FormFieldBaseProps {
-    type: FormFieldType.CHECKBOX;
-    rendererProps: CheckboxProps;
+export interface FormFieldCheckboxGroupProps extends FormFieldBaseProps {
+    type: FormFieldType.CHECKBOX_GROUP;
+    rendererProps: CheckboxGroupProps;
 }
 export interface FormFieldCustomProps extends FormFieldBaseProps {
     type: FormFieldType.CUSTOM;
@@ -71,7 +71,7 @@ export type FormField =
     | FormFieldDropdownProps
     | FormFieldDropdownMenuProps
     | FormFieldIconButtonProps
-    | FormFieldCheckboxProps
+    | FormFieldCheckboxGroupProps
     | FormFieldCustomProps;
 export interface FormFields {
     [key: FieldName]: FormField;
@@ -113,7 +113,7 @@ export interface UseFormProps {
      *      - `column`: A string representing the column condition for the row. (Options: 'ALWAYS_COLUMN', 'ALWAYS_ROW', 'COLUMN_ON_MOBILE')
      *      - `items`: An array of form field objects.
      *          - Each form field object contains the following properties:
-     *          - `type`: A string representing the form field type. (Options: 'TEXTFIELD', 'DATE_PICKER', 'DROPDOWN', 'DROPDOWN_MENU', 'ICON_BUTTON', 'CHECKBOX', 'CUSTOM')
+     *          - `type`: A string representing the form field type. (Options: 'TEXTFIELD', 'DATE_PICKER', 'DROPDOWN', 'DROPDOWN_MENU', 'ICON_BUTTON', 'CHECKBOX_GROUP', 'CUSTOM')
      *          - `renderer`: A function that returns a React node. (Props: formField, error, formData, handleChange)
      *          - `rendererProps`: Props required for the form field renderer. (Eg: name, label, placeholder, etc.)
      *          - `configProps`: An object with additional form field props required at user side.

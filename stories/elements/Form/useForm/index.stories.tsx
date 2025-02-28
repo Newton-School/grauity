@@ -121,7 +121,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
                 widths: '1fr',
                 items: [
                     {
-                        type: NSFormFieldType.CHECKBOX,
+                        type: NSFormFieldType.CHECKBOX_GROUP,
                         rendererProps: {
                             name: 'consent',
                             label: 'I agree to the terms and conditions',

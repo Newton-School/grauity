@@ -5,7 +5,7 @@ export {
     type FormErrors,
     type FormField,
     type FormFieldBaseProps,
-    type FormFieldCheckboxProps,
+    type FormFieldCheckboxGroupProps,
     type FormFieldCustomProps,
     type FormFieldDatePickerProps,
     type FormFieldDropdownMenuProps,

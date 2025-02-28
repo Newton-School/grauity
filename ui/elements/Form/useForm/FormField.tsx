@@ -1,10 +1,10 @@
 import React, { forwardRef, useEffect } from 'react';
 
 import { IconButton } from '../../Button';
+import DropdownMenu from '../../DropdownMenu';
+import CheckboxGroup from '../CheckboxGroup';
+import Dropdown from '../Dropdown';
 import TextField from '../TextField';
-import CheckboxWrapper from './FormFieldWrappers/CheckboxWrapper';
-import DropdownMenuWrapper from './FormFieldWrappers/DropdownMenuWrapper';
-import DropdownWrapper from './FormFieldWrappers/DropdownWrapper';
 import { FormFieldProps, FormFieldType, FormValidationType } from './types';
 import { getConditionalProps } from './utils';
 
@@ -70,16 +70,67 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                 );
                 break;
             case FormFieldType.DROPDOWN:
-                rendererComponent = <DropdownWrapper {...props} />;
+                rendererComponent = (
+                    <Dropdown
+                        key={rendererProps.name}
+                        showHeader={false}
+                        {...rendererProps}
+                        value={formData[rendererProps.name] || ''}
+                        onChange={(selectedValue) => {
+                            handleChange({
+                                name: rendererProps.name,
+                                value: selectedValue,
+                            });
+                        }}
+                        onClose={() => {
+                            if (whenToValidate === FormValidationType.ON_BLUR) {
+                                handleValidate({
+                                    name: rendererProps.name,
+                                    value: formData[rendererProps.name],
+                                });
+                            }
+                        }}
+                        {...conditionalProps}
+                        errorMessage={error}
+                    />
+                );
                 break;
             case FormFieldType.DROPDOWN_MENU:
-                rendererComponent = <DropdownMenuWrapper {...props} />;
+                rendererComponent = (
+                    <DropdownMenu
+                        key={rendererProps.name}
+                        showHeader={false}
+                        {...rendererProps}
+                        value={formData[rendererProps.name] || ''}
+                        onChange={(selectedValue) => {
+                            handleChange({
+                                name: rendererProps.name,
+                                value: selectedValue,
+                            });
+                        }}
+                        {...conditionalProps}
+                    />
+                );
                 break;
             case FormFieldType.ICON_BUTTON:
                 rendererComponent = <IconButton {...rendererProps} />;
                 break;
-            case FormFieldType.CHECKBOX:
-                rendererComponent = <CheckboxWrapper {...props} />;
+            case FormFieldType.CHECKBOX_GROUP:
+                rendererComponent = (
+                    <CheckboxGroup
+                        key={rendererProps.name}
+                        {...rendererProps}
+                        value={formData[rendererProps.name] || []}
+                        onChange={(selectedValues) => {
+                            handleChange({
+                                name: rendererProps.name,
+                                value: selectedValues,
+                            });
+                        }}
+                        {...conditionalProps}
+                        errorMessage={error}
+                    />
+                );
                 break;
             default:
                 break;
