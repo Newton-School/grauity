@@ -117,7 +117,7 @@ const formConfig: FormConfig = {
         first_name: '',
         last_name: '',
         hobbies: [],
-        profession: '',
+        profession: null,
         consent: [],
     },
     rows: [
@@ -138,7 +138,7 @@ const formConfig: FormConfig = {
         first_name: string().required('First name is required'),
         last_name: string().required('Last name is required'),
         hobbies: array().min(1, 'Select at least one hobby'),
-        profession: string().required('Profession is required'),
+        profession: object().nullable().required('Select a profession'),
         consent: array().min(1, 'Please agree to the terms and conditions'),
     }),
 };
@@ -192,7 +192,7 @@ describe('useForm', () => {
                 first_name: '',
                 last_name: '',
                 hobbies: [],
-                profession: '',
+                profession: null,
                 consent: [],
             })
         );
@@ -213,7 +213,7 @@ describe('useForm', () => {
                 first_name: 'John',
                 last_name: 'Doe',
                 hobbies: [],
-                profession: '',
+                profession: null,
                 consent: [],
             })
         );
@@ -258,7 +258,7 @@ describe('useForm', () => {
                 first_name: '',
                 last_name: '',
                 hobbies: [],
-                profession: '',
+                profession: null,
                 consent: ['true'],
             })
         );
@@ -276,9 +276,7 @@ describe('useForm', () => {
         expect(
             screen.queryByText('Select at least one hobby')
         ).toBeInTheDocument();
-        expect(
-            screen.queryByText('Profession is required')
-        ).toBeInTheDocument();
+        expect(screen.queryByText('Select a profession')).toBeInTheDocument();
         expect(
             screen.queryByText('Please agree to the terms and conditions')
         ).toBeInTheDocument();
@@ -301,9 +299,7 @@ describe('useForm', () => {
         expect(
             screen.queryByText('Select at least one hobby')
         ).toBeInTheDocument();
-        expect(
-            screen.queryByText('Profession is required')
-        ).toBeInTheDocument();
+        expect(screen.queryByText('Select a profession')).toBeInTheDocument();
         expect(
             screen.queryByText('Please agree to the terms and conditions')
         ).toBeInTheDocument();
@@ -321,9 +317,7 @@ describe('useForm', () => {
         expect(
             screen.queryByText('Select at least one hobby')
         ).toBeInTheDocument();
-        expect(
-            screen.queryByText('Profession is required')
-        ).toBeInTheDocument();
+        expect(screen.queryByText('Select a profession')).toBeInTheDocument();
         expect(
             screen.queryByText('Please agree to the terms and conditions')
         ).toBeInTheDocument();
@@ -333,7 +327,7 @@ describe('useForm', () => {
                 first_name: '',
                 last_name: '',
                 hobbies: [],
-                profession: '',
+                profession: null,
                 consent: [],
             })
         );
@@ -356,9 +350,7 @@ describe('useForm', () => {
         expect(
             screen.queryByText('Select at least one hobby')
         ).toBeInTheDocument();
-        expect(
-            screen.queryByText('Profession is required')
-        ).toBeInTheDocument();
+        expect(screen.queryByText('Select a profession')).toBeInTheDocument();
         expect(
             screen.queryByText('Please agree to the terms and conditions')
         ).toBeInTheDocument();
