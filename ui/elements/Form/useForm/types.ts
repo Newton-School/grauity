@@ -24,9 +24,10 @@ export enum FormFieldType {
     CUSTOM = 'custom',
 }
 export interface ConditionalProp {
-    propName: string;
-    propValue: any;
-    conditions: Array<{ prop: string; value: any }>;
+    prop: string;
+    is: (data: FormState) => boolean;
+    then: any;
+    otherwise: any;
 }
 export interface FormFieldBaseProps {
     type: FormFieldType;

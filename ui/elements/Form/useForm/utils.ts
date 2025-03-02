@@ -55,26 +55,19 @@ export function getConditionalProps({
     formField,
     formData,
 }: GetConditionalProps): GetConditionalPropsReturn {
-    if (formField.conditionalProps) {
-        const props = formField.conditionalProps.map(
-            ({ propName, propValue, conditions }) => {
-                const isConditionMatched = conditions.every(
-                    ({ prop, value }) => {
-                        if (typeof value === 'object') {
-                            return (
-                                JSON.stringify(formData[prop]) ===
-                                JSON.stringify(value)
-                            );
-                        }
-                        return formData[prop] === value;
-                    }
-                );
-                return isConditionMatched ? { [propName]: propValue } : {};
-            }
-        );
-        return props.reduce((acc, prop) => ({ ...acc, ...prop }), {});
-    }
-    return {};
+    const conditionalProps = formField.conditionalProps || [];
+    const finalProps: Record<string, any> = {};
+
+    conditionalProps.forEach(({ prop, is, then, otherwise }) => {
+        const isMatched = is(formData);
+        if (isMatched) {
+            finalProps[prop] = then;
+        } else {
+            finalProps[prop] = otherwise;
+        }
+    });
+
+    return finalProps;
 }
 
 export function focusOnFirstErrorField(
