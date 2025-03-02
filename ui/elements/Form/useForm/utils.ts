@@ -61,8 +61,10 @@ export function getConditionalProps({
     conditionalProps.forEach(({ prop, is, then, otherwise }) => {
         const isMatched = is(formData);
         if (isMatched) {
-            finalProps[prop] = then;
-        } else {
+            if (then !== undefined) {
+                finalProps[prop] = then;
+            }
+        } else if (otherwise !== undefined) {
             finalProps[prop] = otherwise;
         }
     });

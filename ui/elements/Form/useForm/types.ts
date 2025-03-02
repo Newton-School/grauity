@@ -26,8 +26,8 @@ export enum FormFieldType {
 export interface ConditionalProp {
     prop: string;
     is: (data: FormState) => boolean;
-    then: any;
-    otherwise: any;
+    then?: any;
+    otherwise?: any;
 }
 export interface FormFieldBaseProps {
     type: FormFieldType;
