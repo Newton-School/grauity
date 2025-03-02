@@ -14,7 +14,7 @@ import {
 import { checkFieldValidation, focusOnFirstErrorField } from './utils';
 
 /**
- * Custom hook to manage form state, validation, and submission and rendering.
+ * Custom hook to manage form state, validation, submission and rendering.
  *
  * @param {Object} formConfig - Configuration object for the form.
  * @param {Object} [rowStyles={}] - Optional styles for form rows.

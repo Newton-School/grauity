@@ -17,11 +17,11 @@ export interface FormErrors {
 
 // Form Field
 export enum FormFieldType {
-    TEXTFIELD = 'TEXTFIELD',
-    DROPDOWN = 'DROPDOWN',
-    DROPDOWN_MENU = 'DROPDOWN_MENU',
-    CHECKBOX_GROUP = 'CHECKBOX_GROUP',
-    CUSTOM = 'CUSTOM',
+    TEXTFIELD = 'textfield',
+    DROPDOWN = 'dropdown',
+    DROPDOWN_MENU = 'dropdown-menu',
+    CHECKBOX_GROUP = 'checkbox-group',
+    CUSTOM = 'custom',
 }
 export interface ConditionalProp {
     propName: string;
@@ -101,7 +101,7 @@ export interface UseFormProps {
      *      - `column`: A string representing the column condition for the row. (Options: 'ALWAYS_COLUMN', 'ALWAYS_ROW', 'COLUMN_ON_MOBILE')
      *      - `items`: An array of form field objects.
      *          - Each form field object contains the following properties:
-     *          - `type`: A string representing the form field type. (Options: 'TEXTFIELD', 'DROPDOWN', 'DROPDOWN_MENU', 'CHECKBOX_GROUP', 'CUSTOM')
+     *          - `type`: A string representing the form field type. (Options: 'textfield', 'dropdown', 'dropdown-menu', 'checkbox-group', 'custom')
      *          - `renderer`: A function that returns a React node. (Props: formField, error, formData, handleChange)
      *          - `rendererProps`: Props required for the form field renderer. (Eg: name, label, placeholder, etc.)
      *          - `configProps`: An object with additional form field props required at user side.
