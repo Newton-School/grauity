@@ -8,9 +8,11 @@ import { TextFieldProps } from '../TextField';
 
 // Form Data
 export type FieldName = string;
+
 export interface FormState {
     [key: FieldName]: any;
 }
+
 export interface FormErrors {
     [key: FieldName]: string;
 }
@@ -23,12 +25,14 @@ export enum FormFieldType {
     CHECKBOX_GROUP = 'checkbox-group',
     CUSTOM = 'custom',
 }
+
 export interface ConditionalProp {
     prop: string;
     is: (data: FormState) => boolean;
     then?: any;
     otherwise?: any;
 }
+
 export interface FormFieldBaseProps {
     type: FormFieldType;
     renderer?: (props: FormFieldProps) => React.ReactNode;
@@ -36,32 +40,39 @@ export interface FormFieldBaseProps {
     conditionalProps?: ConditionalProp[];
     configProps?: any;
 }
+
 export interface FormFieldTextFieldProps extends FormFieldBaseProps {
     type: FormFieldType.TEXTFIELD;
     rendererProps: TextFieldProps;
 }
+
 export interface FormFieldDropdownProps extends FormFieldBaseProps {
     type: FormFieldType.DROPDOWN;
     rendererProps: DropdownProps;
 }
+
 export interface FormFieldDropdownMenuProps extends FormFieldBaseProps {
     type: FormFieldType.DROPDOWN_MENU;
     rendererProps: DropdownProps;
 }
+
 export interface FormFieldCheckboxGroupProps extends FormFieldBaseProps {
     type: FormFieldType.CHECKBOX_GROUP;
     rendererProps: CheckboxGroupProps;
 }
+
 export interface FormFieldCustomProps extends FormFieldBaseProps {
     type: FormFieldType.CUSTOM;
     rendererProps: any;
 }
+
 export type FormField =
     | FormFieldTextFieldProps
     | FormFieldDropdownProps
     | FormFieldDropdownMenuProps
     | FormFieldCheckboxGroupProps
     | FormFieldCustomProps;
+
 export interface FormFields {
     [key: FieldName]: FormField;
 }
@@ -75,10 +86,11 @@ export interface FormRow {
 
 // Form Config
 export enum FormRowColumnCondition {
-    ALWAYS_COLUMN = 'ALWAYS_COLUMN',
-    ALWAYS_ROW = 'ALWAYS_ROW',
-    COLUMN_ON_MOBILE = 'COLUMN_ON_MOBILE',
+    ALWAYS_COLUMN = 'always-column',
+    ALWAYS_ROW = 'always-row',
+    COLUMN_ON_MOBILE = 'column-on-mobile',
 }
+
 export interface FormConfig {
     fieldNames: FieldName[];
     initialState: FormState;
@@ -91,6 +103,7 @@ export enum FormValidationType {
     ON_BLUR = 'onBlur',
     ON_CHANGE = 'onChange',
 }
+
 export interface UseFormProps {
     /**
      * The form configuration object.
@@ -99,7 +112,7 @@ export interface UseFormProps {
      * - `initialState`: An object with the field name as the key and the initial value as the value.
      * - `rows`: An array of objects with the following properties:
      *      - `widths`: A string representing the column widths for the row. (Eg: '1fr 1fr')
-     *      - `column`: A string representing the column condition for the row. (Options: 'ALWAYS_COLUMN', 'ALWAYS_ROW', 'COLUMN_ON_MOBILE')
+     *      - `column`: A string representing the column condition for the row. (Options: 'always-column', 'always-row', 'column-on-mobile')
      *      - `items`: An array of form field objects.
      *          - Each form field object contains the following properties:
      *          - `type`: A string representing the form field type. (Options: 'textfield', 'dropdown', 'dropdown-menu', 'checkbox-group', 'custom')
@@ -165,6 +178,7 @@ export interface UseFormProps {
      */
     onSubmit?: (data: FormState) => void;
 }
+
 export interface UseFormReturnProps {
     /**
      * The current state of the form.
@@ -239,14 +253,17 @@ export interface CheckFieldValidationProps {
     data: FormState;
     schema: Schema;
 }
+
 export interface GetFormRowColumnValueProps {
     column: FormRowColumnCondition;
     isMobileView?: boolean;
 }
+
 export interface GetConditionalProps {
     formField: FormField;
     formData: FormState;
 }
+
 export interface GetConditionalPropsReturn {
     [key: string]: any;
 }
