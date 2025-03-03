@@ -22,6 +22,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
         'hobbies',
         'profession',
         'consent',
+        'age',
     ];
 
     const formConfig: NSFormConfig = {
@@ -32,6 +33,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
             hobbies: [],
             profession: null,
             consent: [],
+            age: null,
         },
         rows: [
             {
@@ -135,6 +137,37 @@ const TemplateUseForm = (args: NSUseFormProps) => {
                     },
                 ],
             },
+            {
+                widths: '1fr',
+                items: [
+                    {
+                        type: NSFormFieldType.RADIOBUTTON_GROUP,
+                        rendererProps: {
+                            name: 'age',
+                            label: 'Select Age',
+                            isRequired: true,
+                            items: [
+                                {
+                                    label: '< 18',
+                                    value: '< 18',
+                                },
+                                {
+                                    label: '18 - 30',
+                                    value: '18 - 30',
+                                },
+                                {
+                                    label: '31 - 50',
+                                    value: '31 - 50',
+                                },
+                                {
+                                    label: '> 50',
+                                    value: '> 50',
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
         ],
         schema: object({
             first_name: string().required('First Name is required'),
@@ -142,6 +175,12 @@ const TemplateUseForm = (args: NSUseFormProps) => {
             hobbies: array().min(1, 'Select at least one hobby'),
             profession: object().nullable().required('Select a profession'),
             consent: array().min(1, 'Please agree to the terms and conditions'),
+            age: string()
+                .required('Select age')
+                .equals(
+                    ['18 - 30', '31 - 50', '> 50'],
+                    'Age must be greater than 18'
+                ),
         }),
     };
 

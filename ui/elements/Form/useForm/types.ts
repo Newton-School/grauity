@@ -4,6 +4,7 @@ import { Schema } from 'yup';
 import { ButtonProps } from '../../Button';
 import { CheckboxGroupProps } from '../CheckboxGroup';
 import { DropdownProps } from '../Dropdown';
+import { RadioButtonGroupProps } from '../RadioButtonGroup';
 import { TextFieldProps } from '../TextField';
 
 // Form Data
@@ -23,6 +24,7 @@ export enum FormFieldType {
     DROPDOWN = 'dropdown',
     DROPDOWN_MENU = 'dropdown-menu',
     CHECKBOX_GROUP = 'checkbox-group',
+    RADIOBUTTON_GROUP = 'radio-button-group',
     CUSTOM = 'custom',
 }
 
@@ -61,6 +63,11 @@ export interface FormFieldCheckboxGroupProps extends FormFieldBaseProps {
     rendererProps: CheckboxGroupProps;
 }
 
+export interface FormFieldRadioButtonGroupProps extends FormFieldBaseProps {
+    type: FormFieldType.RADIOBUTTON_GROUP;
+    rendererProps: RadioButtonGroupProps;
+}
+
 export interface FormFieldCustomProps extends FormFieldBaseProps {
     type: FormFieldType.CUSTOM;
     rendererProps: any;
@@ -71,6 +78,7 @@ export type FormField =
     | FormFieldDropdownProps
     | FormFieldDropdownMenuProps
     | FormFieldCheckboxGroupProps
+    | FormFieldRadioButtonGroupProps
     | FormFieldCustomProps;
 
 export interface FormFields {
@@ -115,7 +123,7 @@ export interface UseFormProps {
      *      - `column`: A string representing the column condition for the row. (Options: 'always-column', 'always-row', 'column-on-mobile')
      *      - `items`: An array of form field objects.
      *          - Each form field object contains the following properties:
-     *          - `type`: A string representing the form field type. (Options: 'textfield', 'dropdown', 'dropdown-menu', 'checkbox-group', 'custom')
+     *          - `type`: A string representing the form field type. (Options: 'textfield', 'dropdown', 'dropdown-menu', 'checkbox-group', 'radio-button-group', 'custom')
      *          - `renderer`: A function that returns a React node. (Props: formField, error, formData, handleChange)
      *          - `rendererProps`: Props required for the form field renderer. (Eg: name, label, placeholder, etc.)
      *          - `configProps`: An object with additional form field props required at user side.
