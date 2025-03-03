@@ -57,6 +57,13 @@ export interface DropdownTriggerProps {
      * @example <Button>Click me</Button>
      */
     trigger?: React.ReactNode;
+
+    /**
+     * The function to call when the dropdown menu is closed
+     *
+     * @param value The selected value(s) in the dropdown menu
+     */
+    onClose?: (value: BaseItemOptionProps | BaseItemOptionProps[]) => void;
 }
 
 export interface DropdownTriggerInternalProps extends DropdownTriggerProps {

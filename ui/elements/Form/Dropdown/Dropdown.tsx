@@ -20,6 +20,7 @@ const Dropdown = (props: DropdownProps) => {
         items = [],
         value = null,
         onChange = () => {},
+        onClose = () => {},
     } = props;
 
     let width;
@@ -80,6 +81,7 @@ const Dropdown = (props: DropdownProps) => {
                     shouldDisableScroll={isOpen}
                     onOverlayClick={() => {
                         setIsOpen(false);
+                        onClose(selectedOptions);
                     }}
                 >
                     <DropdownMenu
@@ -97,6 +99,7 @@ const Dropdown = (props: DropdownProps) => {
                             setSelectedOptions(values);
                             onChange(values);
                             setIsOpen(false);
+                            onClose(values);
                         }}
                     />
                 </Overlay>

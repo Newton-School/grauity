@@ -24,6 +24,7 @@ const triggerProps: DropdownTriggerProps = {
     helpMessage: '',
     errorMessage: '',
     showSelectedValueOnTrigger: true,
+    onClose: () => {},
 };
 
 const defaultArgs: DropdownProps = {
