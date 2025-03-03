@@ -119,7 +119,9 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
 
         const handleMenuBodyScroll = (e: React.UIEvent<HTMLDivElement>) => {
             const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-            if (Math.abs(scrollHeight - scrollTop - clientHeight) < 50) {
+            console.log('::', scrollTop, clientHeight, scrollHeight);
+            if (Math.abs(scrollHeight - scrollTop - clientHeight) < 1) {
+                console.log(':::scroll to bottom');
                 onScrollToBottom();
             }
         };
