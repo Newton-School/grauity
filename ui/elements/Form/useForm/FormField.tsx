@@ -3,6 +3,7 @@ import React, { forwardRef, useEffect } from 'react';
 import DropdownMenu from '../../DropdownMenu';
 import CheckboxGroup from '../CheckboxGroup';
 import Dropdown from '../Dropdown';
+import RadioButtonGroup from '../RadioButtonGroup';
 import TextField from '../TextField';
 import { FormFieldProps, FormFieldType, FormValidationType } from './types';
 import { getConditionalProps } from './utils';
@@ -120,6 +121,23 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                             handleChange({
                                 name: rendererProps.name,
                                 value: selectedValues,
+                            });
+                        }}
+                        {...conditionalProps}
+                        errorMessage={error}
+                    />
+                );
+                break;
+            case FormFieldType.RADIOBUTTON_GROUP:
+                rendererComponent = (
+                    <RadioButtonGroup
+                        key={rendererProps.name}
+                        {...rendererProps}
+                        value={formData[rendererProps.name]}
+                        onChange={(selectedValue) => {
+                            handleChange({
+                                name: rendererProps.name,
+                                value: selectedValue,
                             });
                         }}
                         {...conditionalProps}

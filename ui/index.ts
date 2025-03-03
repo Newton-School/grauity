@@ -247,6 +247,12 @@ export {
     default as NSCheckboxGroup,
 } from './elements/Form/CheckboxGroup';
 
+// NSRadioButtonGroup
+export {
+    default as NSRadioButtonGroup,
+    type RadioButtonGroupProps,
+} from './elements/Form/RadioButtonGroup';
+
 // useNSForm
 export {
     type ConditionalProp as NSConditionalProp,
