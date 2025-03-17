@@ -2,10 +2,10 @@ import styled, { css } from 'styled-components';
 
 import {
     BUTTON_SIZE_STYLES_MAPPING,
-    BUTTON_VARIANT_STYLES_MAPPING,
     ICON_BUTTON_SIZE_STYLES_MAPPING,
 } from './constants';
 import { ButtonComponentProps, ButtonContentProps } from './types';
+import { getButtonStyles } from './utils';
 
 export const StyledButton = styled.button<ButtonComponentProps>`
     font-size: var(--font-size-14px, 14px);
@@ -21,12 +21,10 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     cursor: pointer;
     width: max-content;
     gap: var(--spacing-8px, 8px);
+    transform-origin: center;
 
     ${({ variant, $color }) =>
-        variant &&
-        css`
-            ${BUTTON_VARIANT_STYLES_MAPPING[variant]?.[$color]}
-        `}
+        variant && getButtonStyles({ variant, color: $color })}
 
     &:active:not([disabled]) {
         transform: scale(0.95);
@@ -66,7 +64,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
             flex-direction: row-reverse;
         `}    
 
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out, outline 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out, outline 0.2s ease-in-out, transform 0.2s ease-in-out;
 `;
 
 export const StyledButtonContent = styled.div<ButtonContentProps>`
