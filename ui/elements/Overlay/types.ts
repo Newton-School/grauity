@@ -52,11 +52,31 @@ export interface OverlayProps {
      * Additional className to be passed to the Overlay
      */
     className?: string;
+
+    /**
+     * The custom position of the overlay
+     * @default { top: 0, left: 0 }
+     */
+    position?: {
+        top?: number;
+        left?: number;
+    };
+
+    /**
+     * Should focus on the first element in the overlay
+     * @default true
+     */
+    shouldFocusOnFirstElement?: boolean;
 }
 
 export interface StyledOverlayProps extends StyledDivProps {
     $shouldTintOverlay?: boolean;
     $shouldBlurOverlay?: boolean;
     $overlayColor?: string;
+}
+
+export interface StyledOverlayContentProps extends StyledDivProps {
+    $top: number;
+    $left: number;
     $shouldCenterContent?: boolean;
 }

@@ -2,7 +2,11 @@ import React, { forwardRef, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { useDisableBodyScroll } from '../../../hooks';
-import { StyledOverlay } from './Overlay.styles';
+import {
+    StyledOverlay,
+    StyledOverlayContent,
+    StyledOverlayContentChildren,
+} from './Overlay.styles';
 import { OverlayProps } from './types';
 
 const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
@@ -16,6 +20,8 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
         shouldCenterContent = false,
         animationDuration = 0.5,
         className,
+        position = { top: 0, left: 0 },
+        shouldFocusOnFirstElement = true,
         ...rest
     } = props;
 
@@ -24,7 +30,7 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
     useDisableBodyScroll(shouldDisableScroll);
 
     useEffect(() => {
-        if (childrenRef.current) {
+        if (shouldFocusOnFirstElement && childrenRef.current) {
             const firstFocusableElement = childrenRef.current.querySelector(
                 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
             ) as HTMLElement;
@@ -67,12 +73,19 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
             $shouldTintOverlay={shouldTintOverlay}
             $shouldBlurOverlay={shouldBlurOverlay}
             $overlayColor={overlayColor}
-            $shouldCenterContent={shouldCenterContent}
             className={className}
             {...rest}
             {...motionProps}
         >
-            <div ref={childrenRef}>{children}</div>
+            <StyledOverlayContent
+                $top={position.top}
+                $left={position.left}
+                $shouldCenterContent={shouldCenterContent}
+            >
+                <StyledOverlayContentChildren ref={childrenRef}>
+                    {children}
+                </StyledOverlayContentChildren>
+            </StyledOverlayContent>
         </StyledOverlay>,
         document.body
     );

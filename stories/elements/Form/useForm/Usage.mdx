@@ -1,0 +1,202 @@
+## Usage
+
+### Creating Form Config
+
+- Form config object should contain these properties:
+    - `fieldNames` - Array of field names.
+    - `initialState` - Object containing initial state of the form. Keys will be field names and value will be initial value.
+    - `rows` - Array of objects containing row configurations. Each object will contain widths, column and items keys.
+    - `schema` - Yup schema required to validate the form
+
+```typescript
+// `widths` prop can be set like `1fr 1fr`
+
+// `column` prop can be set from this enum
+enum FormRowColumnCondition {
+    ALWAYS_COLUMN = 'always-column',
+    ALWAYS_ROW = 'always-row',
+    COLUMN_ON_MOBILE = 'column-on-mobile',
+}
+```
+
+```typescript
+// Example Form Config
+
+const formConfig: NSFormConfig = {
+    fieldNames: [
+        'first_name',
+        'last_name',
+        'hobbies',
+        'profession',
+        'consent',
+    ],
+    initialState: {
+        first_name: '',
+        last_name: '',
+        hobbies: [],
+        profession: '',
+        consent: [],
+    },
+    rows: [
+        {
+            widths: '1fr 1fr',
+            items: [
+                {
+                    type: NSFormFieldType.TEXTFIELD,
+                    rendererProps: {
+                        name: 'first_name',
+                        label: 'First Name',
+                        placeholder: 'John',
+                        isRequired: true,
+                    },
+                },
+                {
+                    type: NSFormFieldType.TEXTFIELD,
+                    rendererProps: {
+                        name: 'last_name',
+                        label: 'Last Name',
+                        placeholder: 'Doe',
+                        isRequired: true,
+                    },
+                },
+            ],
+        },
+        {
+            widths: '2fr 1fr',
+            items: [
+                {
+                    type: NSFormFieldType.DROPDOWN,
+                    rendererProps: {
+                        name: 'hobbies',
+                        label: 'Select Hobbies',
+                        multiple: true,
+                        items: [
+                            {
+                                type: BaseItemType.OPTION,
+                                label: 'Reading',
+                                value: 'reading',
+                            },
+                            {
+                                type: BaseItemType.OPTION,
+                                label: 'Writing',
+                                value: 'writing',
+                            },
+                            {
+                                type: BaseItemType.OPTION,
+                                label: 'Drawing',
+                                value: 'drawing',
+                            },
+                        ],
+                    },
+                },
+                {
+                    type: NSFormFieldType.DROPDOWN,
+                    rendererProps: {
+                        name: 'profession',
+                        label: 'Select Profession',
+                        multiple: false,
+                        items: [
+                            {
+                                type: BaseItemType.OPTION,
+                                label: 'Developer',
+                                value: 'developer',
+                            },
+                            {
+                                type: BaseItemType.OPTION,
+                                label: 'Designer',
+                                value: 'designer',
+                            },
+                            {
+                                type: BaseItemType.OPTION,
+                                label: 'Manager',
+                                value: 'manager',
+                            },
+                            {
+                                type: BaseItemType.OPTION,
+                                label: 'Tester',
+                                value: 'tester',
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
+        {
+            widths: '1fr',
+            items: [
+                {
+                    type: NSFormFieldType.CHECKBOX_GROUP,
+                    rendererProps: {
+                        name: 'consent',
+                        isRequired: true,
+                        options: [
+                            {
+                                label: 'I agree to the terms and conditions',
+                                value: 'true',
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
+    ],
+    schema: object({
+        first_name: string().required('First Name is required'),
+        last_name: string().required('Last Name is required'),
+        hobbies: array().min(1, 'Select at least one hobby'),
+        profession: string().required('Profession is required'),
+        consent: array().min(1, 'Please agree to the terms and conditions'),
+    }),
+};
+```
+
+### Rendering Form
+
+- `formData` prop contains the current state of the form.
+- `formRenderer` is a React component. Render it to render the form.
+- `validate` is a function to validate the form.
+- `submit` is a function to submit the form externally if `shouldShowSubmitButton` is `false`.
+- `changeFormData` is a function to change current state of the form externally.
+
+```typescript
+const MyForm = () => {
+    const { formData, formRenderer, validate, submit, changeFormData } = useNSForm({
+        formConfig,
+        rowStyles = {},
+        whenToValidate = null,
+        isMobileView = false,
+        shouldFocusOnFirstError = true,
+        shouldSubmitOnEnter = true,
+        shouldShowSubmitButton = true,
+        onSubmit = () => {},
+        submitButtonProps = {},
+    });
+
+    return (
+        <div>
+            {formRenderer}
+        </div>
+    );
+}
+```
+
+### Creating Custom Field
+
+- A custom renderer can be passed to the form config to the `renderer` prop.
+- Following props will be available to custom renderer.
+    - `formField` - Entire field object passed in the form config rows.
+        - Renderer props will be available in `formField.rendererProps`.
+    - `error` - Error message if field is invalid.
+    - `formData` - Current state of the form. Keys will be field names and value will be current value.
+    - `handleChange` - Function to change the value of the field.
+        - User needs to give `name` and `value` as arguments.
+        - Example: `handleChange({ name: 'first_name', value: 'John' })`
+    - `whenToValidate` - When to validate the form. Can be `null`, `onBlur`, `onChange`.
+        - If `null`, entire form will be validated on submit.
+        - If `onBlur`, form field will be validated on blur.
+        - If `onChange`, form field will be validated on change.
+        - User needs to write the logic for `onBlur` in the custom renderer.
+    - `handleValidate` - Function to validate the form field.
+        - User needs to call this function in the custom renderer based on `whenToValidate`.
+        - Example: `handleValidate({ name: 'first_name', value: 'John' })`
+        - No need to check for `onChange`. It will be handled by the `handleChange` function automatically.

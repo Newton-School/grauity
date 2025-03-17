@@ -19,6 +19,8 @@ export default {
         height={'50%'}
         showDragHandle={true}
         closeOnPullDown={true}
+        shouldDisableScroll{true}
+        shouldFocusOnFirstElement{true}
     >
         Bottom Sheet Content Here!!!
     </BottomSheet>
@@ -77,6 +79,8 @@ const defaultArgs: BottomSheetProps = {
     height: '50%',
     showDragHandle: true,
     closeOnPullDown: true,
+    shouldDisableScroll: true,
+    shouldFocusOnFirstElement: true,
     className: 'bottom-sheet',
 };
 

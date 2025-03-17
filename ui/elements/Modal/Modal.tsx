@@ -53,6 +53,8 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         animatePresence = 'fade',
         clickEvent = null,
         children = null,
+        shouldFocusOnFirstElement = true,
+        shouldDisableScroll = true,
     } = props;
 
     const modalRef = useRef<HTMLDivElement>(null);
@@ -101,7 +103,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         <AnimatePresence>
             {shouldRender && (
                 <Overlay
-                    shouldDisableScroll={shouldRender}
+                    shouldDisableScroll={shouldDisableScroll}
                     onOverlayClick={() => {
                         if (hideOnClickAway) {
                             handleClose();
@@ -112,6 +114,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                     shouldCenterContent
                     data-testid="testid-modalwrapper"
                     animationDuration={0.3}
+                    shouldFocusOnFirstElement={shouldFocusOnFirstElement}
                 >
                     <StyledModal
                         onClick={(e: React.MouseEvent<HTMLDivElement>) =>

@@ -6,7 +6,7 @@ import { DRAG_HANDLE_HEIGHT } from './constants';
 import { StyledBottomSheetContentProps, StyledBottomSheetProps } from './types';
 
 export const StyledBottomSheet = styled(motion.div)<StyledBottomSheetProps>`
-    width: 100%;
+    width: 100vw;
     height: ${({ $height }) => $height};
     background: var(--bg-primary, #fff);
     border-top-left-radius: var(--spacing-8px, 8px);
@@ -15,14 +15,22 @@ export const StyledBottomSheet = styled(motion.div)<StyledBottomSheetProps>`
     z-index: var(--z-index-bottomsheet, 1300);
 
     position: absolute;
-    top: calc(100% + ${({ $translateY }) => $translateY}px);
+    top: calc(100vh + ${({ $translateY }) => $translateY}px);
     left: 0;
+
+    @supports (height: 100dvh) {
+        top: calc(100dvh + ${({ $translateY }) => $translateY}px);
+    }
 
     ${({ $fullScreen }) =>
         $fullScreen &&
         css`
-            height: 100%;
+            height: 100vh;
             border-radius: 0;
+
+            @supports (height: 100dvh) {
+                height: 100dvh;
+            }
         `};
 `;
 

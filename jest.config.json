@@ -16,6 +16,7 @@
         ]
     },
     "moduleNameMapper": {
-        "^ui/(.*)$": "<rootDir>/ui/$1"
+        "^ui/(.*)$": "<rootDir>/ui/$1",
+        "framer-motion": "<rootDir>/__mocks__/framer-motion.js"
     }
 }

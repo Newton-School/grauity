@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
-import { StyledOverlayProps } from './types';
+import { StyledOverlayContentProps, StyledOverlayProps } from './types';
 
 export const StyledOverlay = styled(motion.div)<StyledOverlayProps>`
     position: fixed;
@@ -29,7 +29,15 @@ export const StyledOverlay = styled(motion.div)<StyledOverlayProps>`
         css`
             backdrop-filter: var(--backdrop-blur-8px);
         `}
-    
+`;
+
+export const StyledOverlayContent = styled.div<StyledOverlayContentProps>`
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: ${({ $top }) => $top}px;
+    left: ${({ $left }) => $left}px;
+
     ${({ $shouldCenterContent }) =>
         $shouldCenterContent &&
         css`
@@ -37,4 +45,9 @@ export const StyledOverlay = styled(motion.div)<StyledOverlayProps>`
             justify-content: center;
             align-items: center;
         `}
+`;
+
+export const StyledOverlayContentChildren = styled.div`
+    width: fit-content;
+    height: fit-content;
 `;
