@@ -145,7 +145,7 @@ export interface IconButtonProps {
     /**
      * Variant of the button
      *
-     * Available choices: `primary`, `secondary`, `tertiary`, `success`, `danger`, `warning`, `primary-outlined`, `secondary-outlined`, `tertiary-outlined`, `success-outlined`, `danger-outlined`, `warning-outlined`
+     * Available choices: `primary` (solid filled), `secondary` (outlined), `tertiary (text)`
      *
      * Default: `primary`
      * */

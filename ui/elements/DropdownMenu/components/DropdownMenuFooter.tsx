@@ -31,6 +31,7 @@ const DropdownMenuFooter = ({
             <Button
                 size="small"
                 variant="primary"
+                color="brand"
                 onClick={() => handleApply()}
             >
                 {applyButtonText}
@@ -38,7 +39,8 @@ const DropdownMenuFooter = ({
             {showClearAllButton && multiple && (
                 <Button
                     size="small"
-                    variant="secondary-outlined"
+                    variant="tertiary"
+                    color="neutral"
                     onClick={handleClearAll}
                 >
                     {clearAllButtonText}

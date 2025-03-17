@@ -27,13 +27,15 @@ const singleStepArgs: ModalProps = {
         <>
             <Button
                 variant="primary"
+                color="brand"
                 onClick={() => console.log('Primary Button Clicked')}
                 fullWidth
             >
                 Primary Button
             </Button>
             <Button
-                variant="secondary"
+                variant="primary"
+                color="neutral"
                 onClick={() => console.log('Secondary Button Clicked')}
                 fullWidth
             >

@@ -72,7 +72,8 @@ const DropdownTrigger = forwardRef<
             <StyledDropdownTrigger
                 id={name}
                 name={name}
-                variant="secondary-outlined"
+                variant="primary"
+                color="neutral"
                 fullWidth
                 onClick={() => onTriggerClick()}
             >

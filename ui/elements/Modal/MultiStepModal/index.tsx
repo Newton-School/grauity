@@ -130,8 +130,8 @@ const MultiStepModal = (props: MultiStepModalProps) => {
 
                         {nextButtonText && (
                             <Button
-                                variant={buttonVariant || 'secondary'}
-                                color={buttonColor || 'brand'}
+                                variant={buttonVariant || 'primary'}
+                                color={buttonColor || 'neutral'}
                                 fullWidth
                                 onClick={() => {
                                     if (isLastStep) {
