@@ -16,10 +16,10 @@ describe('Modal', () => {
         body: 'Modal body',
         action: (
             <>
-                <Button variant="primary" onClick={() => {}} fullWidth>
+                <Button variant="primary" color="brand" onClick={() => {}} fullWidth>
                     Primary Button
                 </Button>
-                <Button variant="secondary" onClick={() => {}} fullWidth>
+                <Button variant="primary" color="neutral" onClick={() => {}} fullWidth>
                     Secondary Button
                 </Button>
             </>

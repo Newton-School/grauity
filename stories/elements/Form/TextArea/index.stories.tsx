@@ -4,26 +4,6 @@ import TextArea, { TextAreaProps } from 'ui/elements/Form/TextArea';
 export default {
     title: 'Elements/Form/TextArea',
     component: TextArea,
-    argTypes: {
-        name: { control: 'text' },
-        value: { control: 'text' },
-        label: { control: 'text' },
-        isRequired: { control: 'boolean' },
-        placeholder: { control: 'text' },
-        validationMessage: { control: 'text' },
-        helpMessage: { control: 'text' },
-        errorMessage: { control: 'text' },
-        maxLength: { control: 'number' },
-        isDisabled: { control: 'boolean' },
-        autoFocus: { control: 'boolean' },
-        autoComplete: { control: 'text' },
-        onChange: { action: 'onChange' },
-        onClick: { action: 'onClick' },
-        onBlur: { action: 'onBlur' },
-        readOnly: { control: 'boolean' },
-        cols: { control: 'number' },
-        rows: { control: 'number' },
-    },
 };
 
 const Template = (args: TextAreaProps) => {
@@ -56,7 +36,7 @@ Default.args = {
     onChange: () => {},
     onClick: () => {},
     onBlur: () => {},
-    readOnly: false,
+    isReadOnly: false,
 };
 
 export const WithErrorMessage = Template.bind({});

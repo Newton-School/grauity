@@ -96,7 +96,7 @@ describe('TextArea Component', () => {
     });
 
     test('applies readOnly when readOnly prop is true', () => {
-        render(<TextArea {...defaultProps} readOnly />);
+        render(<TextArea {...defaultProps} isReadOnly />);
         const textarea = screen.getByRole('textbox');
 
         expect(textarea).toHaveAttribute('readonly');

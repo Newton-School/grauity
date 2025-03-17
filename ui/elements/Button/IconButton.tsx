@@ -13,6 +13,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     (
         {
             variant = 'primary',
+            color = 'brand',
             size = 'medium',
             icon = null,
             iconSize = '24',
@@ -54,6 +55,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
                 isLoading={loading}
                 disabled={disabled || loading}
                 variant={variant}
+                $color={color}
                 size={size}
                 fullWidth={fullWidth}
                 type={type}
@@ -66,14 +68,13 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
                 isIconButton
                 {...buttonProps}
                 data-testid="testid-iconbutton"
-                animateOnPress
             >
                 {icon && !loading && (
                     <Icon name={icon} color="inherit" size={computedIconSize} />
                 )}
                 {loading && (
                     <Icon
-                        name="load"
+                        name="refresh"
                         color="inherit"
                         size={computedIconSize}
                         loading={loading}

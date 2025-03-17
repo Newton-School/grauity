@@ -25,7 +25,7 @@ export interface AlertBannerProps {
     /**
      * Variant of the alert banner
      *
-     * Available choices: `'primary'`, `'secondary'`, `'tertiary'`, `'success'`, `'danger'`, `'warning'`
+     * Available choices: `'primary'`, `'secondary'`, `'tertiary'`, `'success'`, `'error'`, `'warning'`
      *
      * Default: `'primary'`
      * */

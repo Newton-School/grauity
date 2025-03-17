@@ -3,7 +3,7 @@ import React, { forwardRef, useId } from 'react';
 
 import { Icon } from '../Icon';
 import { StyledButton, StyledButtonContent } from './Button.styles';
-import { ButtonProps } from './types';
+import { ButtonColors, ButtonProps } from './types';
 
 /**
  * A Button is a component that is used to trigger an action.
@@ -14,9 +14,10 @@ import { ButtonProps } from './types';
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     const {
         variant = 'primary',
+        color = 'brand',
         size = 'medium',
         icon = null,
-        iconSize = '24',
+        iconSize = '20',
         iconPosition = 'left',
         className = '',
         disabled = false,
@@ -55,6 +56,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
             isLoading={loading}
             disabled={disabled || loading}
             variant={variant}
+            $color={color as ButtonColors}
             size={size}
             fullWidth={fullWidth}
             iconPosition={iconPosition}
@@ -69,13 +71,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
             {...rest}
         >
             {icon && !loading && (
-                <Icon name={icon} color="inherit" size={iconSize || '24'} />
+                <Icon name={icon} color="inherit" size={iconSize} />
             )}
             {loading && (
                 <Icon
-                    name="load"
+                    name="refresh"
                     color="inherit"
-                    size={iconSize || '24'}
+                    size={iconSize}
                     loading={loading}
                 />
             )}

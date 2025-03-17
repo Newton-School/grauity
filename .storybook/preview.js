@@ -3,7 +3,6 @@ import {
     withStorybookTheme,
     withThemeBackground,
     withPadding,
-    withGrauityInit,
 } from './decorators';
 import '../ui/css/index.scss';
 

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { getTextFieldStyles } from '../TextField/utils';
 import { StyledOtpInputProps } from './types';
 
 export const StyledOtpInputField = styled.div`
@@ -27,23 +28,14 @@ export const StyledOtpInput = styled.input<StyledOtpInputProps>`
     border-radius: var(--corner-radius-cr-4, 8px);
     border: 1px solid var(--border-moderate-primary-default, #c9cfd9);
     background: var(--bg-subtle-primary-default, #fff);
+    color: var(--text-emphasis-primary-default, #16191d);
     text-align: center;
-
-    &:focus {
-        border-color: var(--border-subtle-brand-default, #61a8ff);
-        outline: none;
-
-        &:focus-visible {
-            box-shadow: 0 0 0 2px var(--border-subtle-brand-default, #61a8ff);
-            outline: none;
-        }
-    }
 
     &::placeholder {
         color: var(--text-emphasis-primary-disabled, #8c95a6);
     }
 
-    &:hover:not(:focus) {
+    &:hover {
         background: linear-gradient(
                 0deg,
                 var(--bg-subtle-primary-hover, #f6f7f9) 0%,
@@ -51,6 +43,8 @@ export const StyledOtpInput = styled.input<StyledOtpInputProps>`
             ),
             var(--bg-subtle-primary-default, #fff);
     }
+
+    ${({ $color }) => getTextFieldStyles($color)}
 
     ${(props) =>
         props.$isOtpCorrect &&

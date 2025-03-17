@@ -1,10 +1,25 @@
 import React from 'react';
+import { TEXT_COLORS } from 'ui/core';
 
 import { StyledLabelProps } from '../../../common/types';
 import { grauityIconSizeName } from '../../core/sizes/sizeTypes';
 
+export type FormTextColors = `${TEXT_COLORS}`;
+
 export interface LabelProps extends StyledLabelProps {
+    /**
+     * The name of the label. Required for use with form elements' `htmlFor` attribute.
+     */
     name: string;
+
+    /**
+     * The color of the label. Defaults to 'secondary'.
+     */
+    color?: FormTextColors;
+
+    /**
+     * The content of the label.
+     */
     children: React.ReactNode;
 }
 

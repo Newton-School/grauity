@@ -1,6 +1,9 @@
 import React from 'react';
 
 import { StyledInputProps } from '../../../../common/types';
+import { TextFieldColors } from '../TextField/types';
+
+export type OtpFieldColors = TextFieldColors;
 
 export interface OtpInputFieldProps {
     /**
@@ -69,6 +72,12 @@ export interface OtpInputFieldProps {
      * @default 'OTP is correct'
      */
     successMessage?: string;
+
+    /**
+     * The color of the OTP input fields.
+     * @default 'brand'
+     */
+    color?: OtpFieldColors;
 }
 
 export interface StyledOtpInputProps extends StyledInputProps {
@@ -83,4 +92,10 @@ export interface StyledOtpInputProps extends StyledInputProps {
      * @type boolean
      */
     $isOtpWrong: boolean;
+
+    /**
+     * The color of the OTP input fields.
+     * @type OtpFieldColors
+     */
+    $color?: OtpFieldColors;
 }

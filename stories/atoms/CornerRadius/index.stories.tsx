@@ -2,7 +2,7 @@ import React from 'react';
 import Table from 'ui/elements/Table';
 
 import { constantGlobalStyle } from '../../../ui/themes/GlobalStyle';
-import { extractTokensFromGlobalStyles } from '../../utils';
+import { extractTokensFromGlobalStyles } from '../../utils/extractTokensFromGlobalStyles';
 
 export default {
     title: 'Atoms/Corner Radius',

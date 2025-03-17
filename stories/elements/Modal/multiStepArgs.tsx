@@ -20,6 +20,7 @@ const multiStepArgs: MultiStepModalProps = {
             nextButtonText: 'Go to Step 2',
             showBackButton: false,
             buttonVariant: 'primary',
+            buttonColor: 'brand',
         },
         {
             banner: null,
@@ -35,7 +36,8 @@ const multiStepArgs: MultiStepModalProps = {
             ),
             nextButtonText: 'Go to Step 3',
             showBackButton: true,
-            buttonVariant: 'secondary',
+            buttonVariant: 'primary',
+            buttonColor: 'neutral',
         },
         {
             banner: null,
@@ -45,7 +47,8 @@ const multiStepArgs: MultiStepModalProps = {
             body: null,
             nextButtonText: 'Go to Step 4',
             showBackButton: true,
-            buttonVariant: 'success',
+            buttonVariant: 'primary',
+            buttonColor: 'error',
         },
         {
             banner: null,
@@ -56,7 +59,8 @@ const multiStepArgs: MultiStepModalProps = {
             ),
             nextButtonText: 'Go to Step 5',
             showBackButton: true,
-            buttonVariant: 'danger',
+            buttonVariant: 'primary',
+            buttonColor: 'warning',
         },
         {
             banner: null,
@@ -76,7 +80,8 @@ const multiStepArgs: MultiStepModalProps = {
             ),
             nextButtonText: 'Awesome, Finish!',
             showBackButton: true,
-            buttonVariant: 'warning',
+            buttonVariant: 'primary',
+            buttonColor: 'success',
         },
     ],
     hideOnClickAway: false,

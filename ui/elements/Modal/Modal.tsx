@@ -142,7 +142,8 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                                     <IconButton
                                         onClick={handleClose}
                                         size="small"
-                                        variant="secondary-outlined"
+                                        variant="tertiary"
+                                        color="neutral"
                                         icon="close"
                                         ariaLabel="Close"
                                         buttonProps={{ autoFocus: true }}

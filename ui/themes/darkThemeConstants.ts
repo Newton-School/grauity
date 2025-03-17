@@ -7,13 +7,28 @@ const DARK_THEME_CONFIG = {
                     hover: 'var(--neutral-900, #16191D)',
                     disabled: 'var(--neutral-800, #23282F)',
                 },
+                'invert-primary': {
+                    default: 'var(--neutral-0, #FFF)',
+                    hover: 'var(--neutral-100, #F6F7F9)',
+                    disabled: 'var(--neutral-750, #30363D)',
+                },
                 secondary: {
                     default: 'var(--neutral-900, #16191D)',
                     hover: '',
                     disabled: '',
                 },
+                'invert-secondary': {
+                    default: 'var(--neutral-100, #F6F7F9)',
+                    hover: '',
+                    disabled: '',
+                },
                 tertiary: {
                     default: 'var(--neutral-800, #23282F)',
+                    hover: '',
+                    disabled: '',
+                },
+                'invert-tertiary': {
+                    default: 'var(--neutral-200, #EDEFF3)',
                     hover: '',
                     disabled: '',
                 },
@@ -244,6 +259,11 @@ const DARK_THEME_CONFIG = {
                     hover: '',
                     disabled: 'var(--neutral-700, #5B6271)',
                 },
+                'invert-primary': {
+                    default: 'var(--neutral-900, #16191D)',
+                    hover: '',
+                    disabled: 'var(--neutral-700, #5B6271)',
+                },
                 secondary: {
                     default: 'var(--neutral-500, #B2B9C7)',
                     hover: '',
@@ -298,6 +318,11 @@ const DARK_THEME_CONFIG = {
                     hover: '',
                     disabled: 'var(--neutral-800, #23282F)',
                 },
+                'invert-primary': {
+                    default: 'var(--neutral-300, #E1E5EA)',
+                    hover: '',
+                    disabled: 'var(--neutral-200, #EDEFF3)',
+                },
                 secondary: {
                     default: '',
                     hover: '',
@@ -345,6 +370,11 @@ const DARK_THEME_CONFIG = {
                     hover: '',
                     disabled: '',
                 },
+                'invert-primary': {
+                    default: 'var(--neutral-300, #E1E5EA)',
+                    hover: '',
+                    disabled: '',
+                },
                 secondary: {
                     default: '',
                     hover: '',
@@ -389,6 +419,11 @@ const DARK_THEME_CONFIG = {
             emphasis: {
                 primary: {
                     default: 'var(--neutral-900, #16191D)',
+                    hover: '',
+                    disabled: '',
+                },
+                'invert-primary': {
+                    default: 'var(--color-neutral-0, #FFF)',
                     hover: '',
                     disabled: '',
                 },

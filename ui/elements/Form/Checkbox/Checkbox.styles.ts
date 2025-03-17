@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { StyledDivProps, StyledLabelProps } from '../../../../common/types';
 import { Label } from '../Label';
 import { StyledCheckboxInputProps } from './types';
+import { getCheckboxStyles } from './utils';
 
 export const StyledCheckboxWithMessage = styled.div<StyledDivProps>`
     display: flex;
@@ -26,7 +27,7 @@ export const StyledCheckboxButton = styled.button<StyledCheckboxInputProps>`
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    background: var(--background-subtle-primary-default, #fff);
+    background: var(--bg-subtle-primary-default, #fff);
     border-radius: 5px;
     border: 1.5px solid var(--border-moderate-primary-default, #c9cfd9);
     cursor: pointer;
@@ -60,124 +61,19 @@ export const StyledCheckboxButton = styled.button<StyledCheckboxInputProps>`
         `;
     }}
 
-    /* State Variants */
-    ${({ $state }) => {
-        if ($state === 'error') {
-            return css`
-                border-color: var(--border-moderate-error-default, #f8636b);
-            `;
-        }
-        if ($state === 'success') {
-            return css`
-                border-color: var(--border-moderate-success-default, #50ce99);
-            `;
-        }
-        return css`
-            border-color: var(--border-moderate-primary-default, #c9cfd9);
-        `;
-    }}
-
-    /* Checked State */
-    ${({ $checked }) =>
-        $checked &&
-        css`
-            border-color: var(--background-emphasis-brand-default, #0673f9);
-            background: var(--background-emphasis-brand-default, #0673f9);
-            color: var(--background-emphasis-brand-default, #0673f9);
-            transition: border-color 150ms ease, background 150ms ease,
-                color 150ms ease;
-        `}
-
-    /* Hover State */
-    &:hover:not(:disabled) {
-        ${({ $checked, $state, $indeterminate }) =>
-            !$checked && !$indeterminate
-                ? css`
-                      border-color: var(--border-subtle-brand-default, #61a8ff);
-                      background: var(
-                          --background-subtle-brand-default,
-                          #e5f1ff
-                      );
-
-                      ${$state === 'error' &&
-                      css`
-                          border-color: var(
-                              --border-moderate-error-default,
-                              #f8636b
-                          );
-                          background: var(
-                              --background-subtle-error-default,
-                              #ffe5e7
-                          );
-                      `}
-
-                      ${$state === 'success' &&
-                      css`
-                          border-color: var(
-                              --border-moderate-success-default,
-                              #50ce99
-                          );
-                          background: var(
-                              --background-subtle-success-default,
-                              #d9fced
-                          );
-                      `}
-                  `
-                : ''}
-    }
-
-    /* Active State */
-    &:active:not(:disabled) {
-        ${({ $state }) => {
-            if ($state === 'error') {
-                return css`
-                    border-color: var(--border-moderate-error-default, #f8636b);
-                `;
-            }
-            if ($state === 'success') {
-                return css`
-                    border-color: var(
-                        --border-moderate-success-default,
-                        #50ce99
-                    );
-                `;
-            }
-            return css`
-                border-color: var(--border-subtle-brand-default, #61a8ff);
-            `;
-        }}
-    }
+    ${({ $color, $checked, $indeterminate }) =>
+        getCheckboxStyles({
+            color: $color,
+            checked: $checked,
+            indeterminate: $indeterminate,
+        })}
 
     /* Disabled State */
     &:disabled {
         border-color: var(--border-subtle-primary-disabled, #edeff3);
-        background: var(--background-subtle-primary-default, #fff);
         cursor: not-allowed;
         opacity: 0.5;
-        ${({ $checked }) =>
-            $checked &&
-            css`
-                border-color: var(--border-subtle-primary-disabled, #edeff3);
-                background: var(--background-subtle-primary-disabled, #edeff3);
-                color: var(--background-subtle-primary-disabled, #edeff3);
-            `}
     }
-
-    /* Focus Styles */
-    &:focus-visible {
-        outline: 3px solid var(--border-subtle-brand-default, #61a8ff);
-    }
-
-    /* Indeterminate state */
-    ${({ $indeterminate }) =>
-        $indeterminate &&
-        css`
-            border-color: var(--background-emphasis-brand-default, #0673f9);
-            background: var(--background-emphasis-brand-default, #0673f9);
-            color: var(--background-emphasis-brand-default, #0673f9);
-            transition: border-color 150ms ease, background 150ms ease,
-                color 150ms ease;
-        `}
 `;
 
 export const StyledCheckboxLabel = styled(Label)`
@@ -187,6 +83,7 @@ export const StyledCheckboxLabel = styled(Label)`
     font-weight: 500;
     line-height: 22px;
     letter-spacing: 0.1px;
+    cursor: pointer;
 
     ${({ isDisabled }: StyledLabelProps) =>
         isDisabled &&

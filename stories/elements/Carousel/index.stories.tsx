@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel, { CarouselProps } from 'ui/elements/Carousel';
-import Placeholder from 'ui/elements/Placeholder';
+
+import { getRandomPastelColor } from '../../utils/getRandomPastelColor';
 
 export default {
     title: 'Elements/Carousel',
@@ -19,6 +20,7 @@ export default {
 <Carousel
   fullWidthItems={false}
   hideIconsOnLessItems
+  headerGap={30}
   gap={12}
   iconGap={12}
   iconPosition="right"
@@ -39,17 +41,26 @@ export default {
 
 const Template = (args: CarouselProps) => <Carousel {...args} />;
 
-const DummyItem = () => (
-    <div style={{ width: '88px', height: '88px' }}>
-        <Placeholder />
-    </div>
-);
+const DummyItem = () => {
+    const { color, borderColor } = getRandomPastelColor();
+    return (
+        <div
+            style={{
+                width: '132px',
+                height: '132px',
+                backgroundColor: color,
+                borderRadius: '8px',
+                outline: `3px solid ${borderColor}`,
+            }}
+        />
+    );
+};
 
 const defaultArgs: CarouselProps = {
     items: Array.from({ length: 10 }).map(() => <DummyItem />),
     title: 'Slide to see',
     fullWidthItems: false,
-    scrollAmount: 100,
+    scrollAmount: 150,
     hideIconsOnLessItems: true,
     iconPosition: 'right',
     leftIcon: 'chevron-left',
@@ -58,7 +69,8 @@ const defaultArgs: CarouselProps = {
     onLeftClick: () => {},
     onRightClick: () => {},
     onScrollEnd: () => {},
-    gap: 12,
+    headerGap: 30,
+    gap: 20,
     style: {},
     className: '',
 };
@@ -69,11 +81,20 @@ Component.args = {
     ...defaultArgs,
 };
 
-const FullWidthDummyItem = () => (
-    <div style={{ width: '100%', height: '88px' }}>
-        <Placeholder />
-    </div>
-);
+const FullWidthDummyItem = () => {
+    const { color, borderColor } = getRandomPastelColor();
+    return (
+        <div
+            style={{
+                width: '100%',
+                height: '132px',
+                backgroundColor: color,
+                borderRadius: '8px',
+                outline: `3px solid ${borderColor}`,
+            }}
+        />
+    );
+};
 
 export const FullWidthCarousel = Template.bind({});
 

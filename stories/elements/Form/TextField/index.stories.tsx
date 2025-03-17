@@ -6,29 +6,6 @@ import { NSButton, NSIcon } from 'ui/index';
 export default {
     title: 'Elements/Form/TextField',
     component: TextField,
-    argTypes: {
-        name: { control: 'text' },
-        value: { control: 'text' },
-        label: { control: 'text' },
-        isRequired: { control: 'boolean' },
-        placeholder: { control: 'text' },
-        validationMessage: { control: 'text' },
-        helpMessage: { control: 'text' },
-        errorMessage: { control: 'text' },
-        maxLength: { control: 'number' },
-        isDisabled: { control: 'boolean' },
-        autoFocus: { control: 'boolean' },
-        autoComplete: { control: 'text' },
-        onChange: { action: 'onChange' },
-        onClick: { action: 'onClick' },
-        onBlur: { action: 'onBlur' },
-        size: {
-            control: {
-                type: 'radio',
-            },
-            options: ['small', 'medium', 'large', 'extra-large'],
-        },
-    },
 };
 
 const Template = (args: TextFieldProps) => {
@@ -53,9 +30,11 @@ Default.args = {
     errorMessage: 'This is an error message',
     maxLength: 100,
     isDisabled: false,
+    isReadOnly: false,
     autoFocus: false,
     autoComplete: 'on',
     size: 'medium',
+    color: 'brand',
 };
 
 export const WithErrorMessage = Template.bind({});
@@ -86,7 +65,7 @@ WithRightAdornment.args = {
             <>
                 @gmail.com
                 <NSIcon name="check-circle" color="currentColor" />
-                <NSButton size="small" variant="primary-outlined">Save</NSButton>
+                <NSButton size="small" variant="primary" color="brand">Save</NSButton>
             </>
         ),
     },
@@ -106,7 +85,7 @@ WithLeftAndRightAdornment.args = {
             <>
                 @gmail.com
                 <NSIcon name="check-circle" color="currentColor" />
-                <NSButton size="small" variant="primary-outlined">Save</NSButton>
+                <NSButton size="small" variant="primary" color="brand">Save</NSButton>
             </>
         ),
     },

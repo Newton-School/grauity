@@ -1,5 +1,5 @@
 import { StyledDivProps } from '../../../common/types';
-import { ButtonSizes, ButtonVariants } from '../Button/types';
+import { ButtonColors, ButtonSizes, ButtonVariants } from '../Button/types';
 
 export type PaginationJustifyContent =
     | 'space-between'
@@ -38,22 +38,40 @@ export interface PaginationProps {
     justifyContent?: PaginationJustifyContent;
 
     /**
-     * The type of the pagination button. Defaults to 'tertiary'.
-     * @default 'tertiary'
+     * The type of the pagination button. Defaults to 'secondary'.
+     * @default 'secondary'
      */
     buttonVariant?: ButtonVariants;
 
     /**
-     * The type of the active pagination button. Defaults to 'secondary'.
-     * @default 'secondary'
+     * The color of the pagination button. Defaults to 'neutral'.
+     * @default 'neutral'
+     */
+    buttonColor?: ButtonColors;
+
+    /**
+     * The type of the active pagination button. Defaults to 'primary'.
+     * @default 'primary'
      */
     activeButtonVariant?: ButtonVariants;
 
     /**
-     * The type of the control pagination button. Defaults to 'tertiary'.
-     * @default 'tertiary'
+     * The color of the active pagination button. Defaults to 'neutral'.
+     * @default 'neutral'
+     */
+    activeButtonColor?: ButtonColors;
+
+    /**
+     * The type of the control pagination button. Defaults to 'secondary'.
+     * @default 'secondary'
      */
     controlButtonVariant?: ButtonVariants;
+
+    /**
+     * The color of the control pagination button. Defaults to 'neutral'.
+     * @default 'neutral'
+     */
+    controlButtonColor?: ButtonColors;
 
     /**
      * The class name of the pagination.

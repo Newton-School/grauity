@@ -24,6 +24,7 @@ const RadioButton = (props: RadioButtonProps) => {
         checked = false,
         isDisabled = false,
         className,
+        color='brand',
     } = props;
 
     const id = useId();
@@ -45,6 +46,7 @@ const RadioButton = (props: RadioButtonProps) => {
                     }}
                     disabled={isDisabled}
                     defaultChecked={checked}
+                    $color={color}
                 />
                 {label && (
                     <StyledRadioButtonLabel
@@ -52,6 +54,7 @@ const RadioButton = (props: RadioButtonProps) => {
                         isRequired={isRequired}
                         isDisabled={isDisabled}
                         $size={size}
+                        color={color === 'brand' ? 'primary' : color}
                     >
                         {label}
                     </StyledRadioButtonLabel>

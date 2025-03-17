@@ -76,11 +76,11 @@ grauity$: npm run build
 # Install local version of grauity
 your-app$: npm install ../grauity
 
-# Now, link react, react-dom from grauity to newton-web:
-newton-web$: npm link ../grauity/node_modules/react ../grauity/node_modules/react-dom --legacy-peer-deps
+# Now, link react, react-dom from grauity to your-app:
+your-app$: npm link ../grauity/node_modules/react ../grauity/node_modules/react-dom --legacy-peer-deps
 
-# Finally, run newton-web
-newton-web$: npm run dev
+# Finally, run your-app
+your-app$: npm run dev
 ```
 
 After you have made changes in grauity, build it.

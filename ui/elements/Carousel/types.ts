@@ -79,6 +79,12 @@ export interface CarouselProps {
     onScrollEnd?: () => void;
 
     /**
+     * Gap between the carousel header and the items row in pixels.
+     * @default 12
+     */
+    headerGap?: number;
+
+    /**
      * Gap between the carousel items in pixels.
      * @default 12
      */
@@ -95,6 +101,10 @@ export interface CarouselProps {
      * @default null
      */
     className?: string;
+}
+
+export interface StyledCarouselContainerProps extends StyledDivProps {
+    $headerGap: number;
 }
 
 export interface StyledCarouselHeaderRowProps extends StyledDivProps {

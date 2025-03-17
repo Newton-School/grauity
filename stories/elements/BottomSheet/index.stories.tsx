@@ -53,7 +53,9 @@ const Template = (args: BottomSheetProps) => {
                         <span>These are my tasks for next week:</span>
                         <IconButton
                             icon="close"
-                            variant="secondary-outlined"
+                            variant="secondary"
+                            color="neutral"
+                            size="small"
                             onClick={() => setIsOpen(false)}
                         />
                     </div>

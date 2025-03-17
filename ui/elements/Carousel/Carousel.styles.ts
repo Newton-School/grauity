@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-import { StyledDivProps } from '../../../common/types';
 import {
+    StyledCarouselContainerProps,
     StyledCarouselControlsProps,
     StyledCarouselHeaderRowProps,
     StyledCarouselItemProps,
     StyledCarouselItemsContainerProps,
 } from './types';
 
-export const StyledCarouselContainer = styled.div<StyledDivProps>`
+export const StyledCarouselContainer = styled.div<StyledCarouselContainerProps>`
     box-sizing: border-box;
     width: 100%;
     overflow-x: hidden;
@@ -16,9 +16,9 @@ export const StyledCarouselContainer = styled.div<StyledDivProps>`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
     align-self: stretch;
     font-family: var(--font-family, 'Mona Sans');
+    ${({ $headerGap }) => $headerGap && `gap: ${$headerGap}px;`}
 `;
 
 export const StyledCarouselHeaderRow = styled.div<StyledCarouselHeaderRowProps>`

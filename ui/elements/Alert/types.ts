@@ -42,11 +42,15 @@ export interface AlertProps {
 
     /**
      * Alert title
+     *
+     * Default: `''`
      * */
     title?: React.ReactNode;
 
     /**
      * Alert description
+     *
+     * Default: `''`
      * */
     description?: React.ReactNode;
     /**

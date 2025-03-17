@@ -12,6 +12,7 @@ import { AlertBannerProps } from './types';
 import {
     getAlertBannerColors,
     getAlertIconName,
+    getButtonColorFromAlertBannerTypeVariant,
     getButtonVariantFromAlertBannerTypeVariant,
 } from './utils';
 
@@ -87,6 +88,10 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
                         {showCloseButton && (
                             <IconButton
                                 variant={getButtonVariantFromAlertBannerTypeVariant(
+                                    variant,
+                                    type
+                                )}
+                                color={getButtonColorFromAlertBannerTypeVariant(
                                     variant,
                                     type
                                 )}

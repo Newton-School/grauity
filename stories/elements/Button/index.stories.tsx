@@ -11,9 +11,10 @@ const Template = (args: ButtonProps) => <Button {...args} />;
 
 const defaultArgs: ButtonProps = {
     variant: 'primary',
+    color: 'brand',
     size: 'medium',
     icon: 'sparkle',
-    iconSize: '24',
+    iconSize: '20',
     iconPosition: 'left',
     className: 'my-class',
     disabled: false,

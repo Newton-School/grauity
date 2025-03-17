@@ -20,8 +20,10 @@ const defaultArgs: ConfirmationDialogProps = {
     onCancel: () => {},
     confirmText: 'Sign out',
     cancelText: 'Stay Signed in',
-    confirmButtonVariant: 'success',
-    cancelButtonVariant: 'danger',
+    confirmButtonVariant: 'primary',
+    confirmButtonColor: 'success',
+    cancelButtonVariant: 'primary',
+    cancelButtonColor: 'error',
     showCloseButton: false,
     hideOnClickAway: true,
     blurBackground: false,
@@ -40,7 +42,8 @@ export const Template = () => {
                     setIsOpen(true);
                     setClickEventObj(event);
                 }}
-                variant="danger"
+                variant="primary"
+                color="error"
                 icon="signout"
             >
                 Sign out
