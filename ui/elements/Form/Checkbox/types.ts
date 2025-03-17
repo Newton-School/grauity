@@ -29,12 +29,12 @@ export interface CheckboxProps {
     /**
      * The size of the checkbox.
      * @default medium
-     * @deprecated Use color prop instead
      */
     size?: CheckboxSize;
 
     /**
      * The state of the checkbox.
+     * @deprecated Use color prop instead
      * @default default
      */
     state?: CheckboxState;
@@ -83,10 +83,14 @@ export interface CheckboxProps {
 
     /**
      * Additional class names to apply to the checkbox.
-     * @default brand
+     * @default undefined
      */
     className?: string;
 
+    /**
+     * The color of the checkbox.
+     * @default brand
+     */
     color?: CheckboxColors;
 }
 
