@@ -59,7 +59,7 @@ export const getButtonStyles = ({
 
             return css`
                 color: var(--text-emphasis-${colorSpace}-default);
-                border: 2px solid var(--border-subtle-${colorSpace}-default);
+                border: 1.5px solid var(--border-subtle-${colorSpace}-default);
                 outline: 0px solid transparent;
                 background: var(--bg-subtle-primary-default);
                 &:hover:not([disabled]) {
@@ -72,7 +72,7 @@ export const getButtonStyles = ({
                     outline: 3px solid var(--border-subtle-${color}-default);
                 }
                 &:disabled {
-                    border: 2px solid
+                    border: 1.5px solid
                         var(--border-subtle-${colorSpace}-disabled);
                     color: var(--text-emphasis-${colorSpace}-disabled);
                 }
