@@ -139,6 +139,13 @@ export interface ButtonProps extends StyledButtonProps {
      * Additional props to be passed to the button element
      * */
     buttonProps?: StyledButtonProps;
+
+    /**
+     * Show button animation on click.
+     *
+     * Default: `true` (scales to 95% of its size on click)
+     * */
+    showAnimationOnClick?: boolean;
 }
 
 export interface IconButtonProps {
@@ -254,6 +261,13 @@ export interface IconButtonProps {
      * Additional props to be passed to the button element
      * */
     buttonProps?: StyledButtonProps;
+
+    /**
+     * Show button animation on click.
+     *
+     * Default: `true` (scales to 95% of its size on click)
+     * */
+    showAnimationOnClick?: boolean;
 }
 
 export interface ButtonComponentProps extends StyledButtonProps {
@@ -278,6 +292,7 @@ export interface ButtonComponentProps extends StyledButtonProps {
     tabIndex?: number;
     onMouseEnter?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     onMouseLeave?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    $showAnimationOnClick?: boolean;
 }
 
 export interface ButtonContentProps {

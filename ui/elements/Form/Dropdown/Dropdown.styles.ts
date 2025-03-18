@@ -14,7 +14,6 @@ export const StyledDropdownTrigger = styled(Button)`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    outline: 1px solid var(--border-subtle-primary-default, #e1e5ea);
 
     div {
         width: 100%;
