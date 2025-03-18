@@ -72,10 +72,11 @@ const DropdownTrigger = forwardRef<
             <StyledDropdownTrigger
                 id={name}
                 name={name}
-                variant="primary"
+                variant="secondary"
                 color="neutral"
                 fullWidth
                 onClick={() => onTriggerClick()}
+                showAnimationOnClick={false}
             >
                 <span>{getCurrentValue()}</span>
                 <Icon name="chevron-down" />

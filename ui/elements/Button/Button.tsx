@@ -32,6 +32,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         onMouseLeave = () => {},
         children = '',
         buttonProps,
+        showAnimationOnClick = true,
         ...rest
     } = props;
 
@@ -67,6 +68,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
             aria-labelledby={`button-content-${id}`}
+            $showAnimationOnClick={showAnimationOnClick}
             {...buttonProps}
             {...rest}
         >

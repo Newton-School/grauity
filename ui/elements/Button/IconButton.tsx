@@ -30,6 +30,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
             onMouseEnter = () => {},
             onMouseLeave = () => {},
             buttonProps,
+            showAnimationOnClick = true,
         },
         ref
     ) => {
@@ -66,6 +67,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 isIconButton
+                $showAnimationOnClick={showAnimationOnClick}
                 {...buttonProps}
                 data-testid="testid-iconbutton"
             >

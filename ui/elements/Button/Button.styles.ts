@@ -26,9 +26,13 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     ${({ variant, $color }) =>
         variant && getButtonStyles({ variant, color: $color })}
 
-    &:active:not([disabled]) {
-        transform: scale(0.95);
-    }
+    ${({ $showAnimationOnClick }) =>
+        $showAnimationOnClick &&
+        css`
+            &:active:not([disabled]) {
+                transform: scale(0.95);
+            }
+        `}
 
     &:disabled {
         cursor: not-allowed;
