@@ -62,7 +62,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         iconPosition === 'right' &&
         css`
             flex-direction: row-reverse;
-        `}    
+        `}
 
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out, outline 0.2s ease-in-out, transform 0.2s ease-in-out;
 `;
@@ -73,7 +73,6 @@ export const StyledButtonContent = styled.div<ButtonContentProps>`
     gap: var(--spacing-8px, 8px);
     font-size: var(--font-size-14px, 14px);
     font-weight: var(--font-weight-semibold, 600);
-    line-height: 160%;
     letter-spacing: 0.4px;
     max-width: 100%;
 
