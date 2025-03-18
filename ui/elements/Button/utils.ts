@@ -12,7 +12,9 @@ export const getButtonStyles = ({
 }) => {
     switch (variant) {
         case BUTTON_VARIANTS_ENUM.PRIMARY: {
-            const bgColor =
+            const colorSpace =
+                color === BUTTON_COLORS_ENUM.NEUTRAL ? 'primary' : color;
+            const backgroundColor =
                 color === BUTTON_COLORS_ENUM.NEUTRAL
                     ? 'var(--bg-subtle-invert-primary-default)'
                     : `var(--bg-emphasis-${color}-default)`;
@@ -30,7 +32,7 @@ export const getButtonStyles = ({
                     : `var(--bg-emphasis-${color}-hover)`;
 
             return css`
-                background: ${bgColor};
+                background: ${backgroundColor};
                 color: ${textColor};
                 border: none;
                 outline: 0px solid transparent;
@@ -41,7 +43,8 @@ export const getButtonStyles = ({
                     outline: 0px solid transparent;
                 }
                 &:focus-visible {
-                    outline: 3px solid var(--border-subtle-${color}-default);
+                    outline: 3px solid
+                        var(--border-subtle-${colorSpace}-default);
                 }
                 &:disabled {
                     background: ${disabledBackgroundColor};
@@ -69,7 +72,8 @@ export const getButtonStyles = ({
                     outline: 0px solid transparent;
                 }
                 &:focus-visible {
-                    outline: 3px solid var(--border-subtle-${color}-default);
+                    outline: 3px solid
+                        var(--border-subtle-${colorSpace}-default);
                 }
                 &:disabled {
                     border: 1.5px solid
@@ -90,7 +94,7 @@ export const getButtonStyles = ({
                 color: var(--text-emphasis-${color}-default);
                 border: none;
                 outline: 0px solid transparent;
-                background: var(--bg-subtle-primary-default);
+                background: transparent;
                 &:hover:not([disabled]) {
                     background: ${hoverBackgroundColor};
                 }
@@ -98,7 +102,8 @@ export const getButtonStyles = ({
                     outline: 0px solid transparent;
                 }
                 &:focus-visible {
-                    outline: 3px solid var(--border-subtle-${color}-default);
+                    outline: 3px solid
+                        var(--border-subtle-${colorSpace}-default);
                 }
                 &:disabled {
                     color: var(--text-emphasis-${colorSpace}-disabled);
