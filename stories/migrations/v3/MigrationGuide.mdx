@@ -1,0 +1,224 @@
+import { Table } from '@storybook/components';
+
+# NSButton Migration Guide (v3.0.0)
+
+This document describes the automated migration script for updating NSButton components to v3.0.0.
+
+## Overview
+
+The migration script (`updateNSButtonV3-0-0.js`) handles the transition to the new NSButton API by:
+
+-   Updating the `variant` prop based on a mapping table
+-   Adding a new `color` prop automatically
+-   Preserving existing behavior where appropriate
+-   Flagging complex cases for manual review
+
+## Transformation Rules
+
+### Skip Conditions
+
+The script will skip transformation when:
+
+-   Both `variant` and `color` props are already present (assumed migrat ed)
+-   No `variant` prop exists (default behavior remains unchanged)
+
+### Supported Cases
+
+#### 1. Static Literal Values
+
+```jsx
+// Before
+<NSButton variant="primary" />
+
+// After
+<NSButton variant="primary" color="brand" />
+```
+
+#### 2. Conditional (Ternary) Expressions
+
+```jsx
+// Before
+<NSButton variant={isPrimary ? 'primary' : 'secondary'} />
+
+// After
+<NSButton
+  variant={isPrimary ? 'primary' : 'primary'}
+  color={isPrimary ? 'brand' : 'neutral'}
+/>
+```
+
+#### 3. Simple Template Literals
+
+```jsx
+// Before
+<NSButton variant={`primary`} />
+
+// After
+<NSButton variant="primary" color="brand" />
+```
+
+### Manual Review Cases
+
+The script will add TODO comments for cases requiring manual review:
+
+1. **Complex Expressions**
+
+```jsx
+// Will add TODO comment
+<NSButton variant={getVariant()} />
+```
+
+2. **Template Literals with Expressions**
+
+```jsx
+// Will add TODO comment
+<NSButton variant={`${type}-primary`} />
+```
+
+3. **Styled-Components Usage**
+
+```jsx
+// Will add TODO comment
+const StyledButton = styled(NSButton)``;
+```
+
+## Variant Mapping Table
+
+<Table>
+    <thead>
+        <tr>
+            <th>Old Variant</th>
+            <th>New Variant</th>
+            <th>New Color</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>primary</td>
+            <td>primary</td>
+            <td>brand</td>
+        </tr>
+        <tr>
+            <td>secondary</td>
+            <td>primary</td>
+            <td>neutral</td>
+        </tr>
+        <tr>
+            <td>tertiary</td>
+            <td>secondary</td>
+            <td>neutral</td>
+        </tr>
+        <tr>
+            <td>danger</td>
+            <td>primary</td>
+            <td>error</td>
+        </tr>
+        <tr>
+            <td>success</td>
+            <td>primary</td>
+            <td>success</td>
+        </tr>
+        <tr>
+            <td>warning</td>
+            <td>primary</td>
+            <td>warning</td>
+        </tr>
+        <tr>
+            <td>primary-outlined</td>
+            <td>tertiary</td>
+            <td>brand</td>
+        </tr>
+        <tr>
+            <td>secondary-outlined</td>
+            <td>tertiary</td>
+            <td>neutral</td>
+        </tr>
+        <tr>
+            <td>tertiary-outlined</td>
+            <td>tertiary</td>
+            <td>neutral</td>
+        </tr>
+        <tr>
+            <td>danger-outlined</td>
+            <td>tertiary</td>
+            <td>error</td>
+        </tr>
+        <tr>
+            <td>success-outlined</td>
+            <td>tertiary</td>
+            <td>success</td>
+        </tr>
+        <tr>
+            <td>warning-outlined</td>
+            <td>tertiary</td>
+            <td>warning</td>
+        </tr>
+    </tbody>
+</Table>
+
+## Usage
+
+Run the migration script using:
+
+```bash
+npx jscodeshift -t ./internals/scripts/updateNSButtonV3-0-0.js <path>
+```
+
+### Options
+
+-   `--dry`: Perform a dry run (no changes are made)
+-   `--print`: Print transformed files to stdout
+-   `-d`: Print additional debug information
+
+## Post-Migration Steps
+
+1. Review all TODO comments added by the migration script
+2. Test all migrated components, especially those with:
+    - Complex conditional logic
+    - Styled-components inheritance
+    - Dynamic variant values
+3. Run your test suite to catch any potential issues
+4. Manually verify visual appearance of migrated buttons
+
+## Known Limitations
+
+1. Cannot automatically transform complex dynamic expressions
+2. Requires manual review for styled-components inheritance
+3. May need manual adjustments for components using advanced patterns
+
+## Examples of Manual Cases
+
+### 1. Complex Conditionals
+
+```jsx
+// Before
+<NSButton variant={isError ? 'danger' : isPrimary ? 'primary' : 'secondary'} />
+
+// Needs manual update to:
+<NSButton
+  variant={isError ? 'primary' : isPrimary ? 'primary' : 'primary'}
+  color={isError ? 'error' : isPrimary ? 'brand' : 'neutral'}
+/>
+```
+
+### 2. Dynamic Values
+
+```jsx
+// Before
+<NSButton variant={computeVariant(type)} />
+
+// Needs manual update to:
+<NSButton
+  variant={computeNewVariant(type)}
+  color={computeNewColor(type)}
+/>
+```
+
+## Support
+
+For issues or questions about the migration:
+
+1. Check the TODO comments in your codebase
+2. Review this documentation for similar cases
+3. Consult the NSButton v3.0.0 documentation
+4. Reach out to the maintainers for complex cases
