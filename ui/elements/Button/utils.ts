@@ -41,7 +41,9 @@ export const getButtonStyles = ({
                         var(--border-subtle-${colorSpaceInverted}-default);
                 }
                 &:disabled {
-                    background: var(--bg-emphasis-${colorSpace}-disabled);
+                    background: var(
+                        --bg-${bgColorIntensity}-${colorSpace}-disabled
+                    );
                     color: var(--text-emphasis-white-disabled);
                 }
             `;
