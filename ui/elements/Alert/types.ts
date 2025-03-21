@@ -25,7 +25,7 @@ export interface AlertProps {
     /**
      * Variant of the alert
      *
-     * Available choices: `'primary'`, `'secondary'`, `'tertiary'`, `'success'`, `'danger'`, `'warning'`
+     * Available choices: `'primary'`, `'secondary'`, `'tertiary'`, `'success'`, `'error'`, `'warning'`
      *
      * Default: `'primary'`
      * */

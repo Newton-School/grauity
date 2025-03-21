@@ -13,41 +13,37 @@ export const getButtonStyles = ({
     switch (variant) {
         case BUTTON_VARIANTS_ENUM.PRIMARY: {
             const colorSpace =
+                color === BUTTON_COLORS_ENUM.NEUTRAL ? 'invert-primary' : color;
+            const colorSpaceInverted =
                 color === BUTTON_COLORS_ENUM.NEUTRAL ? 'primary' : color;
-            const backgroundColor =
+            const textColorSpace =
                 color === BUTTON_COLORS_ENUM.NEUTRAL
-                    ? 'var(--bg-subtle-invert-primary-default)'
-                    : `var(--bg-emphasis-${color}-default)`;
-            const textColor =
-                color === BUTTON_COLORS_ENUM.NEUTRAL
-                    ? 'var(--text-emphasis-invert-primary-default)'
-                    : 'var(--text-emphasis-white-default)';
-            const disabledBackgroundColor =
-                color === BUTTON_COLORS_ENUM.NEUTRAL
-                    ? 'var(--bg-subtle-invert-primary-disabled)'
-                    : `var(--bg-emphasis-${color}-disabled)`;
-            const hoverBackgroundColor =
-                color === BUTTON_COLORS_ENUM.NEUTRAL
-                    ? 'var(--bg-subtle-invert-primary-hover)'
-                    : `var(--bg-emphasis-${color}-hover)`;
+                    ? 'invert-primary'
+                    : 'white';
+            const bgColorIntensity =
+                color === BUTTON_COLORS_ENUM.NEUTRAL ? 'subtle' : 'emphasis';
 
             return css`
-                background: ${backgroundColor};
-                color: ${textColor};
+                background: var(--bg-${bgColorIntensity}-${colorSpace}-default);
+                color: var(--text-emphasis-${textColorSpace}-default);
                 border: none;
                 outline: 0px solid transparent;
                 &:hover:not([disabled]) {
-                    background: ${hoverBackgroundColor};
+                    background: var(
+                        --bg-${bgColorIntensity}-${colorSpace}-hover
+                    );
                 }
                 &:focus {
                     outline: 0px solid transparent;
                 }
                 &:focus-visible {
                     outline: 3px solid
-                        var(--border-subtle-${colorSpace}-default);
+                        var(--border-subtle-${colorSpaceInverted}-default);
                 }
                 &:disabled {
-                    background: ${disabledBackgroundColor};
+                    background: var(
+                        --bg-${bgColorIntensity}-${colorSpace}-disabled
+                    );
                     color: var(--text-emphasis-white-disabled);
                 }
             `;
@@ -91,7 +87,7 @@ export const getButtonStyles = ({
                     : `var(--bg-subtle-${color}-default)`;
 
             return css`
-                color: var(--text-emphasis-${color}-default);
+                color: var(--text-emphasis-${colorSpace}-default);
                 border: none;
                 outline: 0px solid transparent;
                 background: transparent;

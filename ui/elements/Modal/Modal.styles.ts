@@ -99,6 +99,12 @@ export const StyledModalMain = styled.div<ModalBodyMainProps>`
     flex: 1;
     gap: var(--spacing-12px, 12px);
 
+    ${({ $overflow }) =>
+        $overflow &&
+        css`
+            overflow: ${$overflow};
+        `}
+
     @media only screen and (max-width: 600px) {
         padding: 0;
     }
