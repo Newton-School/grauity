@@ -55,6 +55,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         children = null,
         shouldFocusOnFirstElement = true,
         shouldDisableScroll = true,
+        overflow = 'auto',
     } = props;
 
     const modalRef = useRef<HTMLDivElement>(null);
@@ -136,7 +137,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                         data-testid="testid-modal"
                         {...motionProps}
                     >
-                        <StyledModalMain>
+                        <StyledModalMain $overflow={overflow}>
                             {showCloseButton && (
                                 <StyledModalAction justifyContent="end">
                                     <IconButton

@@ -221,6 +221,12 @@ export interface ModalProps {
      * @default true
      */
     shouldDisableScroll?: boolean;
+
+    /**
+     * Overflow for the modal, is applied to the main modal content container element
+     * @default auto
+     */
+    overflow?: string;
 }
 
 export interface MultiStepModalProps {
@@ -423,6 +429,7 @@ export interface ModalBodyProps {
 // Components interface for ModalBodyMain
 export interface ModalBodyMainProps {
     children: React.ReactNode;
+    $overflow?: string;
 }
 
 // Components interface for ModalPaginationItemProps
