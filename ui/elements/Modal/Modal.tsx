@@ -46,6 +46,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         onClose = () => {},
         mobileBottomFullWidth = false,
         modalPadding = '20px',
+        border = '1px solid var(--border, #e1e5ea)',
         modalBodyMargin = null,
         showCloseButton = false,
         hideOnClickAway = false,
@@ -130,6 +131,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                         maxWidth={maxWidth}
                         mobileBottomFullWidth={mobileBottomFullWidth}
                         modalPadding={modalPadding}
+                        $border={border}
                         aria-labelledby={`modal-title-${id}`}
                         aria-describedby={`modal-description-${id}`}
                         aria-modal="true"
