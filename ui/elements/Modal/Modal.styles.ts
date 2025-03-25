@@ -12,7 +12,6 @@ import {
 } from './types';
 
 export const StyledModal = styled(motion.div)<ModalContainerProps>`
-    border: var(--spacing-1px, 1px) solid var(--border, #e1e5ea);
     background: var(--bg-primary, #fff);
     z-index: var(--z-index-modal, 1100);
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.25);
@@ -88,6 +87,12 @@ export const StyledModal = styled(motion.div)<ModalContainerProps>`
             @media only screen and (max-width: 600px) {
                 padding: ${modalPadding};
             }
+        `}
+
+    ${({ $border }) =>
+        $border &&
+        css`
+            border: ${$border};
         `}
 `;
 

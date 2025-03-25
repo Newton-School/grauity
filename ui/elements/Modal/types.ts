@@ -227,6 +227,11 @@ export interface ModalProps {
      * @default auto
      */
     overflow?: string;
+
+    /**
+     * Border for the modal. By default, it is `1px solid var(--border, #e1e5ea)`
+     * */
+    border?: string;
 }
 
 export interface MultiStepModalProps {
