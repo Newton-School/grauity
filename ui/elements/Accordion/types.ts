@@ -70,7 +70,6 @@ export interface AccordionProps {
 
     /**
      * Prop to show/hide seperator between the accordion
-     * /
      * @default true
      */
     showSeparator?: boolean;
