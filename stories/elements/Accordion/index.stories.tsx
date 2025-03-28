@@ -3,7 +3,7 @@ import React from 'react';
 import Accordion from 'ui/elements/Accordion/Accordion';
 import { AccordionProps } from 'ui/elements/Accordion/types';
 
-const Template = ({ ...args }: AccordionProps) => (
+const Template = (args: AccordionProps) => (
     <>
         <Accordion {...args}>
             <div
@@ -46,6 +46,8 @@ const defaultArgs: AccordionProps = {
     iconColor: 'var(--text-primary, #16191D)',
     style: {},
     className: '',
+    showSeparator: true,
+    iconSize: '16',
 };
 
 export const Component = Template.bind({});
@@ -54,9 +56,9 @@ Component.args = {
     ...defaultArgs,
 };
 
-const meta: Meta<typeof Template> = {
+const meta: Meta<typeof Accordion> = {
     title: 'Elements/Accordion',
-    component: Template,
+    component: Accordion,
     decorators: [
         (Story: React.FC) => (
             <div style={{ width: '500px' }}>
