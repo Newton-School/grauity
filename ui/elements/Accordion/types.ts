@@ -1,4 +1,5 @@
 import React from 'react';
+import { grauityIconSizeName } from 'ui/core';
 
 import { StyledDivProps } from '../../../common/types';
 
@@ -38,6 +39,12 @@ export interface AccordionProps {
     iconColor?: string;
 
     /**
+     * Size of the accordion toggle icon.
+     * @default '16'
+     */
+    iconSize?: grauityIconSizeName;
+
+    /**
      * Callback function to handle toggle events.
      * @param expanded - The new expanded state of the accordion.
      */
@@ -50,9 +57,22 @@ export interface AccordionProps {
 
     /**
      * Additional CSS properties to be applied for the accordion wrapper.
-     * default: {}
+     * @default: {}
      */
     style?: React.CSSProperties;
+
+    /**
+     * Additional class names to be applied for the accordion wrapper.
+     * to be used for styling by styled-components.
+     * @default: ''
+     */
+    className?: string;
+
+    /**
+     * Prop to show/hide seperator between the accordion
+     * @default true
+     */
+    showSeparator?: boolean;
 }
 
 export interface StyledAccordionHeaderProps extends StyledDivProps {
