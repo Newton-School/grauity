@@ -57,14 +57,14 @@ export interface AccordionProps {
 
     /**
      * Additional CSS properties to be applied for the accordion wrapper.
-     * default: {}
+     * @default: {}
      */
     style?: React.CSSProperties;
 
     /**
      * Additional class names to be applied for the accordion wrapper.
      * to be used for styling by styled-components.
-     * default: ''
+     * @default: ''
      */
     className?: string;
 
