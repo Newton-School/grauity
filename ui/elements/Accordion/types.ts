@@ -53,6 +53,13 @@ export interface AccordionProps {
      * default: {}
      */
     style?: React.CSSProperties;
+
+    /**
+     * Additional class names to be applied for the accordion wrapper.
+     * to be used for styling by styled-components.
+     * default: ''
+     */
+    className?: string;
 }
 
 export interface StyledAccordionHeaderProps extends StyledDivProps {

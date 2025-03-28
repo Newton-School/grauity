@@ -23,6 +23,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
             contentBackgroundColor = 'var(--bg-secondary, #F6F7F9)',
             iconColor = 'var(--text-primary, #16191D)',
             style = {},
+            className = '',
         },
         ref
     ) => {
@@ -49,10 +50,15 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
         };
 
         return (
-            <StyledAccordionWrapper ref={ref} style={style}>
+            <StyledAccordionWrapper
+                ref={ref}
+                style={style}
+                className={className}
+            >
                 <StyledAccordionHeader
                     onClick={handleToggle}
                     $headerBackgroundColor={headerBackgroundColor}
+                    className="accordion-header"
                 >
                     {title}
                     <StyledAccordionHeaderSuffix>
@@ -61,6 +67,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
                             color={iconColor}
                             name={isExpanded ? 'chevron-up' : 'chevron-down'}
                             size="16"
+                            className="accordion-icon"
                         />
                     </StyledAccordionHeaderSuffix>
                 </StyledAccordionHeader>
@@ -69,6 +76,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
                         <StyledAccordionContent
                             $contentBackgroundColor={contentBackgroundColor}
                             {...motionProps}
+                            className="accordion-content"
                         >
                             <StyledLine />
                             {children}

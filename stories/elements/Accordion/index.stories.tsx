@@ -1,22 +1,11 @@
+import type { Meta } from '@storybook/react';
 import React from 'react';
 import Accordion from 'ui/elements/Accordion/Accordion';
 import { AccordionProps } from 'ui/elements/Accordion/types';
 
-export default {
-    title: 'Elements/Accordion',
-    component: Accordion,
-    decorators: [
-        (Story: React.FC) => (
-            <div style={{ width: '500px' }}>
-                <Story />
-            </div>
-        ),
-    ],
-};
-
-const Template = (args: AccordionProps) => (
+const Template = ({ ...args }: AccordionProps) => (
     <>
-        <Accordion {...args} title="Accordion 1">
+        <Accordion {...args}>
             <div
                 style={{
                     display: 'flex',
@@ -48,7 +37,7 @@ const Template = (args: AccordionProps) => (
 );
 
 const defaultArgs: AccordionProps = {
-    title: 'Accordion',
+    title: 'Accordion 1',
     expanded: false,
     onToggle: () => {},
     suffix: null,
@@ -56,6 +45,7 @@ const defaultArgs: AccordionProps = {
     contentBackgroundColor: 'var(--bg-secondary, #F6F7F9)',
     iconColor: 'var(--text-primary, #16191D)',
     style: {},
+    className: '',
 };
 
 export const Component = Template.bind({});
@@ -63,3 +53,17 @@ export const Component = Template.bind({});
 Component.args = {
     ...defaultArgs,
 };
+
+const meta: Meta<typeof Template> = {
+    title: 'Elements/Accordion',
+    component: Template,
+    decorators: [
+        (Story: React.FC) => (
+            <div style={{ width: '500px' }}>
+                <Story />
+            </div>
+        ),
+    ],
+};
+
+export default meta;
