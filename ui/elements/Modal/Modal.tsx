@@ -56,7 +56,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         children = null,
         shouldFocusOnFirstElement = true,
         shouldDisableScroll = true,
-        overflow = 'auto',
+        overflow = 'visible',
     } = props;
 
     const modalRef = useRef<HTMLDivElement>(null);
