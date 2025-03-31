@@ -65,6 +65,22 @@ export interface TooltipProps {
     defaultOpen?: boolean;
 
     /**
+     * Whether the tooltip is open
+     * */
+    isOpen?: boolean | null;
+
+    /**
+     * The background color of the tooltip
+     * @default 'var(--text-primary)'
+     * */
+    backgroundColor?: string;
+
+    /**
+     * Additional className to be passed to the tooltip
+     */
+    className?: string;
+
+    /**
      * The children that the tooltip is wrapping
      * */
     children: TooltipChildren;
@@ -75,5 +91,19 @@ export interface StyledTooltipProps extends StyledDivProps {
      * The padding of the tooltip
      * @default '12px'
      * */
-    padding?: string;
+    $padding?: string;
+
+    /**
+     * The background color of the tooltip
+     * @default 'var(--text-primary)'
+     * */
+    $backgroundColor?: string;
+}
+
+export interface StyledTooltipArrowProps extends StyledDivProps {
+    /**
+     * The background color of the tooltip
+     * @default 'var(--text-primary)'
+     * */
+    $backgroundColor?: string;
 }

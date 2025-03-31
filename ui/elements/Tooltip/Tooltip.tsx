@@ -18,14 +18,17 @@ const Tooltip = (props: TooltipProps) => {
         placement = 'top',
         fixedPositioning = false,
         content,
+        className = '',
         config,
         hidden = false,
         hideArrow = false,
         recomputedTrigger,
         defaultOpen = false,
+        isOpen = null,
+        backgroundColor = 'var(--text-primary)',
         children,
     } = props;
-    const [showTooltip, setShowTooltip] = useState(defaultOpen);
+    const [showTooltip, setShowTooltip] = useState(isOpen || defaultOpen);
     const floatingEl = useRef<HTMLDivElement>(null);
     const referenceEl = useRef<HTMLDivElement>(null);
     const arrowEl = useRef<HTMLDivElement>(null);
@@ -44,7 +47,8 @@ const Tooltip = (props: TooltipProps) => {
                 floatingEl.current &&
                 !floatingEl.current.contains(e.target as Node) &&
                 referenceEl.current &&
-                !referenceEl.current.contains(e.target as Node)
+                !referenceEl.current.contains(e.target as Node) &&
+                isOpen === null
             ) {
                 setShowTooltip(false);
             }
@@ -155,7 +159,7 @@ const Tooltip = (props: TooltipProps) => {
     }, [showTooltip, fixedPositioning, recomputedTrigger, content]);
 
     useEffect(() => {
-        if (referenceEl.current) {
+        if (referenceEl.current && isOpen === null) {
             referenceEl.current.addEventListener(
                 'mouseleave',
                 hideTooltipHandler
@@ -170,7 +174,7 @@ const Tooltip = (props: TooltipProps) => {
             );
         }
         return () => {
-            if (referenceEl.current) {
+            if (referenceEl.current && isOpen === null) {
                 referenceEl.current.removeEventListener(
                     'mouseenter',
                     showTooltipHandler
@@ -202,13 +206,16 @@ const Tooltip = (props: TooltipProps) => {
             {showTooltip && content && !hidden && (
                 <StyledTooltipWrapper
                     ref={floatingEl}
-                    padding={config?.tooltip?.padding}
+                    $padding={config?.tooltip?.padding}
+                    $backgroundColor={backgroundColor}
+                    className={className}
                 >
                     {content}
                     {!hideArrow && (
                         <StyledTooltipArrow
                             ref={arrowEl}
                             data-testid="testid-tooltip-arrow"
+                            $backgroundColor={backgroundColor}
                         />
                     )}
                 </StyledTooltipWrapper>

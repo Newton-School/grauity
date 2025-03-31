@@ -18,11 +18,14 @@ export default {
         hidden: { control: 'boolean' },
         hideArrow: { control: 'boolean' },
     },
+    className: '',
 };
 
 const Template = (args: TooltipProps) => (
     <Tooltip {...args}>
-        <Button variant='primary' color='brand'>Hover over me!</Button>
+        <Button variant="primary" color="brand">
+            Hover over me!
+        </Button>
     </Tooltip>
 );
 
@@ -56,5 +59,12 @@ WithCustomContent.args = {
             <h3>Custom content</h3>
             <p>This is custom tooltip content</p>
         </div>
-    )
+    ),
+};
+
+export const ControlExternally = Template.bind({});
+ControlExternally.args = {
+    ...Default.args,
+    content: 'This is a tooltip is operated by isOpen prop',
+    isOpen: true,
 };
