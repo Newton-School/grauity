@@ -1,8 +1,8 @@
 import { TOOLTIP_PLACEMENT } from 'elements/Tooltip/constants';
 import Tooltip from 'elements/Tooltip/Tooltip';
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'ui/elements/Button';
-import { TooltipProps } from 'ui/index';
+import { NSButtonGroup, NSCheckbox, TooltipProps } from 'ui/index';
 
 export default {
     title: 'Elements/Tooltip',
@@ -18,11 +18,14 @@ export default {
         hidden: { control: 'boolean' },
         hideArrow: { control: 'boolean' },
     },
+    className: '',
 };
 
 const Template = (args: TooltipProps) => (
     <Tooltip {...args}>
-        <Button variant='primary' color='brand'>Hover over me!</Button>
+        <Button variant="primary" color="brand">
+            Hover over me!
+        </Button>
     </Tooltip>
 );
 
@@ -56,5 +59,34 @@ WithCustomContent.args = {
             <h3>Custom content</h3>
             <p>This is custom tooltip content</p>
         </div>
-    )
+    ),
+};
+
+const TemplateWithControl = (args: TooltipProps) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <NSButtonGroup>
+            <Tooltip {...args} isOpen={isOpen}>
+                <Button variant="primary" color="brand">
+                    Hover over me!
+                </Button>
+            </Tooltip>
+            <NSCheckbox
+                name="isOpen"
+                label="Open Tooltip"
+                isChecked={isOpen}
+                onChange={() => {
+                    setIsOpen(!isOpen);
+                }}
+            />
+        </NSButtonGroup>
+    );
+};
+
+export const ControlExternally = TemplateWithControl.bind({});
+ControlExternally.args = {
+    ...Default.args,
+    content: 'This is a tooltip is operated by isOpen prop',
+    isOpen: true,
 };

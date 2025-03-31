@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Tooltip, { TooltipProps } from '.';
 
@@ -12,13 +12,13 @@ describe('Tooltip Component', () => {
         fixedPositioning: false,
         hidden: false,
         hideArrow: false,
-        children: <button type='button'>Hover over me!</button>,
+        children: <button type="button">Hover over me!</button>,
     };
 
     it('renders the tooltip content on hover', () => {
         render(
             <Tooltip {...defaultProps}>
-                <button type='button'>Hover over me!</button>
+                <button type="button">Hover over me!</button>
             </Tooltip>
         );
         fireEvent.mouseEnter(screen.getByRole('button'));
@@ -30,7 +30,7 @@ describe('Tooltip Component', () => {
     it('hides the tooltip content on mouse leave', () => {
         render(
             <Tooltip {...defaultProps}>
-                <button type='button'>Hover over me!</button>
+                <button type="button">Hover over me!</button>
             </Tooltip>
         );
         fireEvent.mouseEnter(screen.getByRole('button'));
@@ -43,7 +43,7 @@ describe('Tooltip Component', () => {
     it('does not render the tooltip content when hidden is true', () => {
         render(
             <Tooltip {...defaultProps} hidden>
-                <button type='button'>Hover over me!</button>
+                <button type="button">Hover over me!</button>
             </Tooltip>
         );
         fireEvent.mouseEnter(screen.getByRole('button'));
@@ -55,7 +55,7 @@ describe('Tooltip Component', () => {
     it('renders the tooltip arrow by default', () => {
         render(
             <Tooltip {...defaultProps}>
-                <button type='button'>Hover over me!</button>
+                <button type="button">Hover over me!</button>
             </Tooltip>
         );
         fireEvent.mouseEnter(screen.getByRole('button'));
@@ -65,7 +65,7 @@ describe('Tooltip Component', () => {
     it('does not render the tooltip arrow when hideArrow is true', () => {
         render(
             <Tooltip {...defaultProps} hideArrow>
-                <button type='button'>Hover over me!</button>
+                <button type="button">Hover over me!</button>
             </Tooltip>
         );
         fireEvent.mouseEnter(screen.getByRole('button'));
@@ -77,7 +77,7 @@ describe('Tooltip Component', () => {
     it('renders the tooltip content by default when defaultOpen is true', () => {
         render(
             <Tooltip {...defaultProps} defaultOpen>
-                <button type='button'>Hover over me!</button>
+                <button type="button">Hover over me!</button>
             </Tooltip>
         );
         expect(
@@ -88,7 +88,7 @@ describe('Tooltip Component', () => {
     it('hides the tooltip content when defaultOpen is true and user hovers away from the button', () => {
         render(
             <Tooltip {...defaultProps} defaultOpen>
-                <button type='button'>Hover over me!</button>
+                <button type="button">Hover over me!</button>
             </Tooltip>
         );
         fireEvent.mouseEnter(screen.getByRole('button'));
@@ -101,7 +101,7 @@ describe('Tooltip Component', () => {
     it('closes the tooltip when clicked outside', () => {
         render(
             <Tooltip {...defaultProps}>
-                <button type='button'>Hover over me!</button>
+                <button type="button">Hover over me!</button>
             </Tooltip>
         );
         fireEvent.mouseEnter(screen.getByRole('button'));
@@ -109,5 +109,70 @@ describe('Tooltip Component', () => {
         expect(
             screen.queryByText(defaultProps.content as string)
         ).not.toBeInTheDocument();
+    });
+
+    it('renders the tooltip content when isOpen is true', () => {
+        render(
+            <Tooltip {...defaultProps} isOpen>
+                <button type="button">Hover over me!</button>
+            </Tooltip>
+        );
+        expect(
+            screen.getByText(defaultProps.content as string)
+        ).toBeInTheDocument();
+    });
+
+    it('does not render the tooltip content when isOpen is false', () => {
+        render(
+            <Tooltip {...defaultProps} isOpen={false}>
+                <button type="button">Hover over me!</button>
+            </Tooltip>
+        );
+        expect(
+            screen.queryByText(defaultProps.content as string)
+        ).not.toBeInTheDocument();
+
+        // Hover over the button
+        fireEvent.mouseEnter(screen.getByRole('button'));
+
+        // Tooltip should still be hidden
+        expect(
+            screen.queryByText(defaultProps.content as string)
+        ).not.toBeInTheDocument();
+    });
+
+    it('should control the tooltip with isOpen state', () => {
+        const ControlledTooltip = () => {
+            const [isOpen, setIsOpen] = useState(true);
+
+            return (
+                <>
+                    <Tooltip {...defaultProps} isOpen={isOpen}>
+                        <button type="button">Hover over me!</button>
+                    </Tooltip>
+                    <button
+                        type="button"
+                        data-testid="toggle-button"
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        Toggle Tooltip
+                    </button>
+                </>
+            );
+        };
+
+        render(<ControlledTooltip />);
+
+        expect(
+            screen.getByText(defaultProps.content as string)
+        ).toBeInTheDocument();
+        fireEvent.click(screen.getByTestId('toggle-button'));
+        expect(
+            screen.queryByText(defaultProps.content as string)
+        ).not.toBeInTheDocument();
+        fireEvent.click(screen.getByTestId('toggle-button'));
+        expect(
+            screen.getByText(defaultProps.content as string)
+        ).toBeInTheDocument();
     });
 });
