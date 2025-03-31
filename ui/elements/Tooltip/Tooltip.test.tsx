@@ -160,7 +160,7 @@ describe('Tooltip Component', () => {
                     <button
                         type="button"
                         data-testid="toggle-button"
-                        onClick={() => setIsOpen(false)}
+                        onClick={() => setIsOpen(!isOpen)}
                     >
                         Toggle Tooltip
                     </button>
@@ -177,5 +177,9 @@ describe('Tooltip Component', () => {
         expect(
             screen.queryByText(defaultProps.content as string)
         ).not.toBeInTheDocument();
+        fireEvent.click(screen.getByTestId('toggle-button'));
+        expect(
+            screen.getByText(defaultProps.content as string)
+        ).toBeInTheDocument();
     });
 });
