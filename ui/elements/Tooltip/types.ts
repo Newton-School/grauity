@@ -66,6 +66,8 @@ export interface TooltipProps {
 
     /**
      * Whether the tooltip is open
+     * If provided with true or false, the tooltip will become controlled.
+     * @default null
      * */
     isOpen?: boolean | null;
 
@@ -101,7 +103,7 @@ export interface StyledTooltipProps extends StyledDivProps {
 
     /**
      * The background color of the tooltip
-     * @default 'var(--text-primary)'
+     * @default 'var(--bg-subtle-invert-primary-default)'
      * */
     $backgroundColor?: string;
 
@@ -111,7 +113,7 @@ export interface StyledTooltipProps extends StyledDivProps {
 export interface StyledTooltipArrowProps extends StyledDivProps {
     /**
      * The background color of the tooltip
-     * @default 'var(--text-primary)'
+     * @default 'var(--bg-subtle-invert-primary-default)'
      * */
     $backgroundColor?: string;
 }

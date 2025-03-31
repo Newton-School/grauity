@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Tooltip, { TooltipProps } from '.';
 
@@ -128,6 +128,52 @@ describe('Tooltip Component', () => {
                 <button type="button">Hover over me!</button>
             </Tooltip>
         );
+        expect(
+            screen.queryByText(defaultProps.content as string)
+        ).not.toBeInTheDocument();
+    });
+
+    it('does not render the tooltip content on hover when isOpen is false', () => {
+        render(
+            <Tooltip {...defaultProps} isOpen={false}>
+                <button type="button">Hover over me!</button>
+            </Tooltip>
+        );
+
+        fireEvent.mouseEnter(screen.getByRole('button'));
+
+        // Tooltip should still be hidden
+        expect(
+            screen.queryByText(defaultProps.content as string)
+        ).not.toBeInTheDocument();
+    });
+
+    it('hides the tooltip content when isOpen changes from true to false', () => {
+        const ControlledTooltip = () => {
+            const [isOpen, setIsOpen] = useState(true);
+
+            return (
+                <>
+                    <Tooltip {...defaultProps} isOpen={isOpen}>
+                        <button type="button">Hover over me!</button>
+                    </Tooltip>
+                    <button
+                        type="button"
+                        data-testid="toggle-button"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        Toggle Tooltip
+                    </button>
+                </>
+            );
+        };
+
+        render(<ControlledTooltip />);
+
+        expect(
+            screen.getByText(defaultProps.content as string)
+        ).toBeInTheDocument();
+        fireEvent.click(screen.getByTestId('toggle-button'));
         expect(
             screen.queryByText(defaultProps.content as string)
         ).not.toBeInTheDocument();
