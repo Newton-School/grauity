@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { StyledTooltipArrowProps, StyledTooltipProps } from './types';
 
@@ -10,9 +10,17 @@ export const StyledTooltipWrapper = styled.div<StyledTooltipProps>`
     display: flex;
     padding: ${({ $padding }) => $padding || '12px'};
     border-radius: 8px;
-    color: var(--bg-tertiary, #23282f);
     box-shadow: 0px 1px 4px 0px rgba(51, 51, 51, 0.12);
-    background: ${({ $backgroundColor }) => $backgroundColor};
+    ${({ $color }) =>
+        $color &&
+        css`
+            color: ${$color};
+        `}
+    ${({ $backgroundColor }) =>
+        $backgroundColor &&
+        css`
+            background: ${$backgroundColor};
+        `}
     text-align: center;
     font-size: 12px;
     font-weight: 600;

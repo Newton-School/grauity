@@ -1,8 +1,8 @@
 import { TOOLTIP_PLACEMENT } from 'elements/Tooltip/constants';
 import Tooltip from 'elements/Tooltip/Tooltip';
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'ui/elements/Button';
-import { TooltipProps } from 'ui/index';
+import { NSButtonGroup, NSCheckbox, TooltipProps } from 'ui/index';
 
 export default {
     title: 'Elements/Tooltip',
@@ -62,7 +62,29 @@ WithCustomContent.args = {
     ),
 };
 
-export const ControlExternally = Template.bind({});
+const TemplateWithControl = (args: TooltipProps) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <NSButtonGroup>
+            <Tooltip {...args} isOpen={isOpen}>
+                <Button variant="primary" color="brand">
+                    Hover over me!
+                </Button>
+            </Tooltip>
+            <NSCheckbox
+                name="isOpen"
+                label="Open Tooltip"
+                isChecked={isOpen}
+                onChange={() => {
+                    setIsOpen(!isOpen);
+                }}
+            />
+        </NSButtonGroup>
+    );
+};
+
+export const ControlExternally = TemplateWithControl.bind({});
 ControlExternally.args = {
     ...Default.args,
     content: 'This is a tooltip is operated by isOpen prop',

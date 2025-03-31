@@ -25,7 +25,8 @@ const Tooltip = (props: TooltipProps) => {
         recomputedTrigger,
         defaultOpen = false,
         isOpen = null,
-        backgroundColor = 'var(--text-primary)',
+        color = 'var(--text-emphasis-invert-primary-default)',
+        backgroundColor = 'var(--bg-subtle-invert-primary-default)',
         children,
     } = props;
     const [showTooltip, setShowTooltip] = useState(isOpen || defaultOpen);
@@ -40,6 +41,10 @@ const Tooltip = (props: TooltipProps) => {
     const hideTooltipHandler = () => {
         setShowTooltip(false);
     };
+
+    useEffect(() => {
+        setShowTooltip(isOpen || defaultOpen);
+    }, [isOpen, defaultOpen]);
 
     useEffect(() => {
         const onClickOutSide = (e: Event) => {
@@ -208,6 +213,7 @@ const Tooltip = (props: TooltipProps) => {
                     ref={floatingEl}
                     $padding={config?.tooltip?.padding}
                     $backgroundColor={backgroundColor}
+                    $color={color}
                     className={className}
                 >
                     {content}

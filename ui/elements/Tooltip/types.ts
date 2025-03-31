@@ -70,8 +70,14 @@ export interface TooltipProps {
     isOpen?: boolean | null;
 
     /**
+     * The text color of the tooltip
+     * @default 'var(--text-emphasis-invert-primary-default)'
+     * */
+    color?: string;
+
+    /**
      * The background color of the tooltip
-     * @default 'var(--text-primary)'
+     * @default 'var(--bg-subtle-invert-primary-default)'
      * */
     backgroundColor?: string;
 
@@ -98,6 +104,8 @@ export interface StyledTooltipProps extends StyledDivProps {
      * @default 'var(--text-primary)'
      * */
     $backgroundColor?: string;
+
+    $color?: string;
 }
 
 export interface StyledTooltipArrowProps extends StyledDivProps {
