@@ -142,6 +142,8 @@ export type grauityIconName =
     | 'medal-filled'
     | 'medal'
     | 'star-filled'
+    | 'star-half-filled'
+    | 'star-half'
     | 'star'
     | 'trophy-filled'
     | 'trophy'
@@ -582,6 +584,8 @@ export type grauityIconKey =
     | 'MedalFilled'
     | 'Medal'
     | 'StarFilled'
+    | 'StarHalfFilled'
+    | 'StarHalf'
     | 'Star'
     | 'TrophyFilled'
     | 'Trophy'
@@ -1022,6 +1026,8 @@ export enum GRAUITY_ICONS {
     MedalFilled = 'medal-filled',
     Medal = 'medal',
     StarFilled = 'star-filled',
+    StarHalfFilled = 'star-half-filled',
+    StarHalf = 'star-half',
     Star = 'star',
     TrophyFilled = 'trophy-filled',
     Trophy = 'trophy',
