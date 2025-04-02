@@ -10,11 +10,11 @@ export default {
 };
 
 export const FontSizeTokens = () => {
-    const fontWeightTokensRegExp = /(.*?--font-size-[\w-]+):\s*(.+);/g;
+    const fontSizeTokensRegExp = /(.*?--font-size-[\w-]+):\s*(.+);/g;
     const rows = extractTokensFromGlobalStyles({
         type: 'visual',
         globalStyleString: constantGlobalStyle,
-        regExp: fontWeightTokensRegExp,
+        regExp: fontSizeTokensRegExp,
     });
 
     return (
