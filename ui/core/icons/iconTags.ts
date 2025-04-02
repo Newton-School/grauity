@@ -51,6 +51,8 @@ export const ICON_TAGS = {
     pin: ['Docs'],
     'currency-rupee-filled': ['Finance'],
     'currency-rupee': ['Finance'],
+    'ai-voice-filled': ['Media'],
+    'ai-voice': ['Media'],
     'headphone-filled': ['Media'],
     'headphone-mic-filled': ['Media'],
     'headphone-mic': ['Media'],
@@ -500,6 +502,8 @@ export const TAG_ICONS = {
     ],
     Finance: ['currency-rupee-filled', 'currency-rupee'],
     Media: [
+        'ai-voice-filled',
+        'ai-voice',
         'headphone-filled',
         'headphone-mic-filled',
         'headphone-mic',
