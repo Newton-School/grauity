@@ -51,6 +51,8 @@ export type grauityIconName =
     | 'pin'
     | 'currency-rupee-filled'
     | 'currency-rupee'
+    | 'ai-voice-filled'
+    | 'ai-voice'
     | 'headphone-filled'
     | 'headphone-mic-filled'
     | 'headphone-mic'
@@ -493,6 +495,8 @@ export type grauityIconKey =
     | 'Pin'
     | 'CurrencyRupeeFilled'
     | 'CurrencyRupee'
+    | 'AiVoiceFilled'
+    | 'AiVoice'
     | 'HeadphoneFilled'
     | 'HeadphoneMicFilled'
     | 'HeadphoneMic'
@@ -935,6 +939,8 @@ export enum GRAUITY_ICONS {
     Pin = 'pin',
     CurrencyRupeeFilled = 'currency-rupee-filled',
     CurrencyRupee = 'currency-rupee',
+    AiVoiceFilled = 'ai-voice-filled',
+    AiVoice = 'ai-voice',
     HeadphoneFilled = 'headphone-filled',
     HeadphoneMicFilled = 'headphone-mic-filled',
     HeadphoneMic = 'headphone-mic',
