@@ -49,6 +49,7 @@ export const SpacingTokens = () => {
             borderAround={false}
             highlightHeaders={false}
             borderVertical={false}
+            hoverable
         />
     );
 };
