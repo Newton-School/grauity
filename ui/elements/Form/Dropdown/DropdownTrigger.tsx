@@ -53,7 +53,10 @@ const DropdownTrigger = forwardRef<
 
     if (trigger) {
         return (
-            <StyledCustomTrigger ref={ref as React.Ref<HTMLDivElement>} onClick={() => onTriggerClick()}>
+            <StyledCustomTrigger
+                ref={ref as React.Ref<HTMLDivElement>}
+                onClick={() => onTriggerClick()}
+            >
                 {trigger}
             </StyledCustomTrigger>
         );
@@ -82,7 +85,7 @@ const DropdownTrigger = forwardRef<
                 showAnimationOnClick={false}
             >
                 <span>{getCurrentValue()}</span>
-                <Icon name="chevron-down" />
+                <Icon name="chevron-down" color="currentColor" />
             </StyledDropdownTrigger>
             {helpMessage && <HelpMessage>{helpMessage}</HelpMessage>}
             {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
