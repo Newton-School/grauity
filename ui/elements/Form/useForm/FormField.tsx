@@ -65,6 +65,7 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                         }}
                         validationMessage={error}
                         errorMessage={error}
+                        color={error ? 'error' : 'brand'}
                     />
                 );
                 break;
@@ -91,6 +92,7 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                         }}
                         {...conditionalProps}
                         errorMessage={error}
+                        color={error ? 'error' : 'brand'}
                     />
                 );
                 break;
@@ -125,6 +127,7 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                         }}
                         {...conditionalProps}
                         errorMessage={error}
+                        color={error ? 'error' : 'brand'}
                     />
                 );
                 break;
@@ -142,6 +145,7 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                         }}
                         {...conditionalProps}
                         errorMessage={error}
+                        color={error ? 'error' : 'brand'}
                     />
                 );
                 break;
