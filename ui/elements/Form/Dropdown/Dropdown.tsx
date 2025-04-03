@@ -62,6 +62,14 @@ const Dropdown = (props: DropdownProps) => {
     const triggerRef = useRef<HTMLButtonElement>(null);
     const dropdownMenuRef = useRef<HTMLDivElement>(null);
 
+    const handleDropdownMenuClose = (
+        values: BaseItemOptionProps | BaseItemOptionProps[]
+    ) => {
+        setIsOpen(false);
+        onClose(values);
+        triggerRef?.current?.focus();
+    };
+
     useEffect(() => {
         if (isOpen && dropdownMenuRef.current) {
             setDropdownMenuHeight(dropdownMenuRef.current.clientHeight);
@@ -88,8 +96,7 @@ const Dropdown = (props: DropdownProps) => {
                     shouldFocusOnFirstElement
                     shouldDisableScroll={isOpen}
                     onOverlayClick={() => {
-                        setIsOpen(false);
-                        onClose(selectedOptions);
+                        handleDropdownMenuClose(selectedOptions);
                     }}
                 >
                     <DropdownMenu
@@ -106,8 +113,7 @@ const Dropdown = (props: DropdownProps) => {
                         onChange={(values) => {
                             setSelectedOptions(values);
                             onChange(values);
-                            setIsOpen(false);
-                            onClose(values);
+                            handleDropdownMenuClose(values);
                         }}
                     />
                 </Overlay>
