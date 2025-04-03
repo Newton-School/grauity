@@ -208,6 +208,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             } else if (event.key === 'Escape') {
                 event.preventDefault();
                 handleApply();
+                return;
             } else {
                 return;
             }
