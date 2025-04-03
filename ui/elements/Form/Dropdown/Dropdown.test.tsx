@@ -146,13 +146,13 @@ describe('Dropdown', () => {
         // Should not call onChange on selecting an item
         fireEvent.click(screen.getByText('Item 0'));
         let selectedItems = screen.getAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(1);
         expect(onChange).not.toHaveBeenCalled();
         fireEvent.click(screen.getByText('Item 1'));
         selectedItems = screen.getAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(2);
         expect(onChange).not.toHaveBeenCalled();
@@ -186,13 +186,13 @@ describe('Dropdown', () => {
         // Should not call onChange on selecting an item
         fireEvent.click(screen.getByText('Item 0'));
         let selectedItems = screen.getAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(1);
         expect(onChange).not.toHaveBeenCalled();
         fireEvent.click(screen.getByText('Item 1'));
         selectedItems = screen.getAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(2);
         expect(onChange).not.toHaveBeenCalled();
@@ -211,12 +211,12 @@ describe('Dropdown', () => {
         fireEvent.click(screen.getByText('Item 0'));
         fireEvent.click(screen.getByText('Item 1'));
         selectedItems = screen.getAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(2);
         fireEvent.click(screen.getByText('Clear'));
         selectedItems = screen.queryAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(0);
         fireEvent.click(screen.getByText('Apply'));
