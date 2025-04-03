@@ -45,6 +45,7 @@ const defaultArgs: ChipProps = {
     size: 'medium',
     hasBorder: false,
     textColor: null,
+    className: 'chip',
     backgroundColor: null,
     borderColor: null,
     rounded: false,
