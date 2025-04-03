@@ -24,6 +24,7 @@ const DropdownTrigger = forwardRef<
         isDisabled = false,
         helpMessage,
         errorMessage,
+        color = 'brand',
         showSelectedValueOnTrigger = true,
         onTriggerClick = () => {},
         selectedValues = [],
@@ -65,6 +66,7 @@ const DropdownTrigger = forwardRef<
                     name={name}
                     isRequired={isRequired}
                     isDisabled={isDisabled}
+                    color={color === 'brand' ? 'primary' : color}
                 >
                     {label}
                 </Label>
@@ -73,7 +75,7 @@ const DropdownTrigger = forwardRef<
                 id={name}
                 name={name}
                 variant="secondary"
-                color="neutral"
+                color={color === 'brand' ? 'neutral' : color}
                 fullWidth
                 onClick={() => onTriggerClick()}
                 showAnimationOnClick={false}

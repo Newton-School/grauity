@@ -23,6 +23,7 @@ const triggerProps: DropdownTriggerProps = {
     isDisabled: false,
     helpMessage: '',
     errorMessage: '',
+    color: 'brand',
     showSelectedValueOnTrigger: true,
     onClose: () => {},
 };
