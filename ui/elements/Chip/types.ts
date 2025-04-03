@@ -95,6 +95,12 @@ export interface ChipProps {
      * @default {}
      * */
     style?: React.CSSProperties;
+
+    /**
+     * Additional className to be passed to the chip
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface StyledChip extends StyledDivProps {

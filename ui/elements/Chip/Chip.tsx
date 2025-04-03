@@ -18,12 +18,14 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             borderColor = null,
             rounded = false,
             style = {},
+            className = '',
             children,
         },
         ref
     ) => (
         <StyledChipDiv
             ref={ref}
+            className={className}
             style={style}
             variant={variant}
             size={size}
