@@ -9,6 +9,7 @@ import React, {
     useState,
 } from 'react';
 
+import { handleKeyboardInteractionInListViews } from '../../../common/utils';
 import { useClickAway } from '../../../hooks';
 import DropdownMenuFooter from './components/DropdownMenuFooter';
 import DropdownMenuHeader from './components/DropdownMenuHeader';
@@ -163,6 +164,24 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             [options]
         );
 
+        const focusOnGivenIndex = (
+            index: number,
+            itemList: BaseItemProps[] = [],
+            refsList: React.MutableRefObject<
+                (HTMLDivElement | HTMLButtonElement)[]
+            >
+        ) => {
+            if (index <= -1 || index >= itemList.length) {
+                if (searchable) {
+                    searchRef.current?.focus();
+                } else {
+                    itemRefs.current[0]?.focus();
+                }
+            } else {
+                refsList.current[index]?.focus();
+            }
+        };
+
         const handleKeyDown = (
             event: React.KeyboardEvent<any>,
             index: number,
@@ -171,56 +190,36 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                 (HTMLDivElement | HTMLButtonElement)[]
             >
         ) => {
-            let indexToFocus = -1;
-            if (
-                (event.key === 'Tab' && !event.shiftKey) ||
-                event.key === 'ArrowDown'
-            ) {
-                event.preventDefault();
-                let nextIndex = index + 1;
-                while (
-                    nextIndex < itemList.length &&
-                    !isDropdownMenuItemNavigable(itemList[nextIndex])
-                ) {
-                    nextIndex += 1;
-                }
-                indexToFocus = nextIndex;
-            } else if (
-                (event.key === 'Tab' && event.shiftKey) ||
-                event.key === 'ArrowUp'
-            ) {
-                event.preventDefault();
-                let prevIndex = index - 1;
-                while (
-                    prevIndex >= 0 &&
-                    !isDropdownMenuItemNavigable(itemList[prevIndex])
-                ) {
-                    prevIndex -= 1;
-                }
-                indexToFocus = prevIndex;
-            } else if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                const item = itemList[index];
-                if (item.type === BaseItemType.OPTION && !item.disabled) {
-                    handleClickOption(item);
-                }
-                return;
-            } else if (event.key === 'Escape') {
-                event.preventDefault();
-                handleApply();
-                return;
-            } else {
-                return;
-            }
-            if (indexToFocus <= -1 || indexToFocus >= itemList.length) {
-                if (searchable) {
-                    searchRef.current?.focus();
-                } else {
-                    itemRefs.current[0]?.focus();
-                }
-            } else {
-                refsList.current[indexToFocus]?.focus();
-            }
+            handleKeyboardInteractionInListViews(
+                event,
+                () => {
+                    let nextIndex = index + 1;
+                    while (
+                        nextIndex < itemList.length &&
+                        !isDropdownMenuItemNavigable(itemList[nextIndex])
+                    ) {
+                        nextIndex += 1;
+                    }
+                    focusOnGivenIndex(nextIndex, itemList, refsList);
+                },
+                () => {
+                    let prevIndex = index - 1;
+                    while (
+                        prevIndex >= 0 &&
+                        !isDropdownMenuItemNavigable(itemList[prevIndex])
+                    ) {
+                        prevIndex -= 1;
+                    }
+                    focusOnGivenIndex(prevIndex, itemList, refsList);
+                },
+                () => {
+                    const item = itemList[index];
+                    if (item.type === BaseItemType.OPTION && !item.disabled) {
+                        handleClickOption(item);
+                    }
+                },
+                handleApply
+            );
         };
 
         useEffect(() => {
