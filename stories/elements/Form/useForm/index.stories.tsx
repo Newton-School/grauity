@@ -68,6 +68,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
                             name: 'hobbies',
                             label: 'Select Hobbies',
                             multiple: true,
+                            isRequired: true,
                             items: [
                                 {
                                     type: BaseItemType.OPTION,
@@ -93,6 +94,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
                             name: 'profession',
                             label: 'Select Profession',
                             multiple: false,
+                            isRequired: true,
                             items: [
                                 {
                                     type: BaseItemType.OPTION,

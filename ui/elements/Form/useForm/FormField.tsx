@@ -120,6 +120,12 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                         {...rendererProps}
                         value={formData[rendererProps.name] || []}
                         onChange={(selectedValues) => {
+                            if (whenToValidate === FormValidationType.ON_BLUR) {
+                                handleValidate({
+                                    name: rendererProps.name,
+                                    value: selectedValues,
+                                });
+                            }
                             handleChange({
                                 name: rendererProps.name,
                                 value: selectedValues,
@@ -138,6 +144,12 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                         {...rendererProps}
                         value={formData[rendererProps.name]}
                         onChange={(selectedValue) => {
+                            if (whenToValidate === FormValidationType.ON_BLUR) {
+                                handleValidate({
+                                    name: rendererProps.name,
+                                    value: selectedValue,
+                                });
+                            }
                             handleChange({
                                 name: rendererProps.name,
                                 value: selectedValue,

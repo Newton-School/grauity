@@ -67,6 +67,7 @@ export const StyledDropdownMenuBody = styled.div`
     flex-grow: 1;
     overflow: auto;
     position: relative;
+    gap: 4px;
 `;
 
 export const StyledDropdownMenuSearchBox = styled.div`
@@ -109,7 +110,7 @@ export const StyledDropdownMenuOption = styled.button`
     padding: 8px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 4px;
     align-self: stretch;
     cursor: pointer;
@@ -117,7 +118,7 @@ export const StyledDropdownMenuOption = styled.button`
     outline: none;
     border: none;
     background: none;
-    border-radius: 8px;
+    border-radius: 4px;
     transition: outline ${ANIMATION_DURATION_IN_MILLISECONDS}ms ease-out;
     transition: background ${ANIMATION_DURATION_IN_MILLISECONDS}ms ease-out;
 
@@ -130,6 +131,10 @@ export const StyledDropdownMenuOption = styled.button`
 
     &:hover {
         background: var(--bg-subtle-primary-hover, #f6f7f9);
+    }
+
+    &:focus {
+        outline: none;
     }
 
     &:focus-visible {

@@ -13,7 +13,7 @@ import {
 import { DropdownTriggerInternalProps } from './types';
 
 const DropdownTrigger = forwardRef<
-    HTMLDivElement,
+    HTMLButtonElement | HTMLDivElement,
     DropdownTriggerInternalProps
 >((props, ref) => {
     const {
@@ -53,14 +53,14 @@ const DropdownTrigger = forwardRef<
 
     if (trigger) {
         return (
-            <StyledCustomTrigger ref={ref} onClick={() => onTriggerClick()}>
+            <StyledCustomTrigger ref={ref as React.Ref<HTMLDivElement>} onClick={() => onTriggerClick()}>
                 {trigger}
             </StyledCustomTrigger>
         );
     }
 
     return (
-        <StyledDropdown ref={ref}>
+        <StyledDropdown>
             {label && (
                 <Label
                     name={name}
@@ -72,6 +72,7 @@ const DropdownTrigger = forwardRef<
                 </Label>
             )}
             <StyledDropdownTrigger
+                ref={ref as React.Ref<HTMLButtonElement>}
                 id={name}
                 name={name}
                 variant="secondary"

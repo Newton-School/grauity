@@ -37,6 +37,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
                     <Checkbox
                         key={`${name}-${item.value}`}
                         name={name}
+                        isRequired={isRequired && !label && items.length === 1}
                         {...item}
                         isChecked={value.includes(item.value)}
                         color={color}
