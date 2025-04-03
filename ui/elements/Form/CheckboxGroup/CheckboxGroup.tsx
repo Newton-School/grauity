@@ -18,13 +18,18 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
             isRequired = false,
             helpMessage,
             errorMessage,
+            color = 'brand',
             className,
         } = props;
 
         return (
             <StyledCheckboxGroup ref={ref} className={className} role="group">
                 {label && (
-                    <Label name={name} isRequired={isRequired}>
+                    <Label
+                        name={name}
+                        isRequired={isRequired}
+                        color={color === 'brand' ? 'primary' : color}
+                    >
                         {label}
                     </Label>
                 )}
@@ -34,6 +39,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
                         name={name}
                         {...item}
                         isChecked={value.includes(item.value)}
+                        color={color}
                         onChange={(e) => {
                             if (e.target.checked) {
                                 onChange([...value, item.value]);
