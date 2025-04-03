@@ -42,16 +42,24 @@ const Dropdown = (props: DropdownProps) => {
     const [selectedOptions, setSelectedOptions] = useState<
         BaseItemOptionProps | BaseItemOptionProps[]
     >(
-        items.filter(
-            (item) =>
-                item.type === BaseItemType.OPTION &&
-                selectedValues
-                    .map((option) => option.value)
-                    .includes(item.value)
-        ) as BaseItemOptionProps[]
+        multiple
+            ? (items.filter(
+                  (item) =>
+                      item.type === BaseItemType.OPTION &&
+                      selectedValues
+                          .map((option) => option.value)
+                          .includes(item.value)
+              ) as BaseItemOptionProps[])
+            : (items.find(
+                  (item) =>
+                      item.type === BaseItemType.OPTION &&
+                      selectedValues
+                          .map((option) => option.value)
+                          .includes(item.value)
+              ) as BaseItemOptionProps)
     );
 
-    const triggerRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLButtonElement>(null);
     const dropdownMenuRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

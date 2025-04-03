@@ -33,6 +33,7 @@ const defaultArgs: RadioButtonGroupProps = {
     isRequired: false,
     helpMessage: '',
     errorMessage: '',
+    color: 'brand',
     className: '',
 };
 

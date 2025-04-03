@@ -33,6 +33,7 @@ const defaultArgs: CheckboxGroupProps = {
     isRequired: false,
     helpMessage: '',
     errorMessage: '',
+    color: 'brand',
     className: '',
 };
 

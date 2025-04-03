@@ -1,4 +1,4 @@
-import { RadioButtonProps } from '../RadioButton/types';
+import { RadioButtonColors, RadioButtonProps } from '../RadioButton/types';
 
 export type RadioButtonValue = string | number;
 
@@ -55,6 +55,12 @@ export interface RadioButtonGroupProps {
      * @default undefined
      */
     errorMessage?: string;
+
+    /**
+     * Color of the radio button group fields.
+     * @default 'brand'
+     */
+    color?: RadioButtonColors;
 
     /**
      * Additional class names to apply to the radio button.

@@ -1,4 +1,4 @@
-import { CheckboxProps } from '../Checkbox/types';
+import { CheckboxColors, CheckboxProps } from '../Checkbox/types';
 
 export type CheckBoxValue = string | number;
 
@@ -55,6 +55,12 @@ export interface CheckboxGroupProps {
      * @default undefined
      */
     errorMessage?: string;
+
+    /**
+     * Color of the checkbox group fields.
+     * @default 'brand'
+     */
+    color?: CheckboxColors;
 
     /**
      * Additional class names to apply to the checkbox.

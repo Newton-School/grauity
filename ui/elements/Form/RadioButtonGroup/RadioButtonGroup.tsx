@@ -43,6 +43,7 @@ const RadioButtonGroup = forwardRef<HTMLDivElement, RadioButtonGroupProps>(
             isRequired = false,
             helpMessage,
             errorMessage,
+            color = 'brand',
             className,
         } = props;
 
@@ -53,7 +54,11 @@ const RadioButtonGroup = forwardRef<HTMLDivElement, RadioButtonGroupProps>(
                 role="group"
             >
                 {label && (
-                    <Label name={name} isRequired={isRequired}>
+                    <Label
+                        name={name}
+                        isRequired={isRequired}
+                        color={color === 'brand' ? 'primary' : color}
+                    >
                         {label}
                     </Label>
                 )}
@@ -63,6 +68,7 @@ const RadioButtonGroup = forwardRef<HTMLDivElement, RadioButtonGroupProps>(
                         name={name}
                         {...item}
                         checked={value === item.value}
+                        color={color}
                         onChange={(e) => {
                             onChange(e.target.value);
                         }}

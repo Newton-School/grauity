@@ -13,7 +13,7 @@ import {
 import { DropdownTriggerInternalProps } from './types';
 
 const DropdownTrigger = forwardRef<
-    HTMLDivElement,
+    HTMLButtonElement | HTMLDivElement,
     DropdownTriggerInternalProps
 >((props, ref) => {
     const {
@@ -24,6 +24,7 @@ const DropdownTrigger = forwardRef<
         isDisabled = false,
         helpMessage,
         errorMessage,
+        color = 'brand',
         showSelectedValueOnTrigger = true,
         onTriggerClick = () => {},
         selectedValues = [],
@@ -52,28 +53,30 @@ const DropdownTrigger = forwardRef<
 
     if (trigger) {
         return (
-            <StyledCustomTrigger ref={ref} onClick={() => onTriggerClick()}>
+            <StyledCustomTrigger ref={ref as React.Ref<HTMLDivElement>} onClick={() => onTriggerClick()}>
                 {trigger}
             </StyledCustomTrigger>
         );
     }
 
     return (
-        <StyledDropdown ref={ref}>
+        <StyledDropdown>
             {label && (
                 <Label
                     name={name}
                     isRequired={isRequired}
                     isDisabled={isDisabled}
+                    color={color === 'brand' ? 'primary' : color}
                 >
                     {label}
                 </Label>
             )}
             <StyledDropdownTrigger
+                ref={ref as React.Ref<HTMLButtonElement>}
                 id={name}
                 name={name}
                 variant="secondary"
-                color="neutral"
+                color={color === 'brand' ? 'neutral' : color}
                 fullWidth
                 onClick={() => onTriggerClick()}
                 showAnimationOnClick={false}

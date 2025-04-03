@@ -1,4 +1,5 @@
 import React from 'react';
+import { ACTION_COLORS } from 'ui/core';
 
 import { BaseItemOptionProps, DropdownMenuProps } from '../../DropdownMenu';
 
@@ -41,6 +42,12 @@ export interface DropdownTriggerProps {
      * The error message to display when the dropdown field is invalid
      */
     errorMessage?: string;
+
+    /**
+     * Color of the dropdown field.
+     * @default 'brand'
+     */
+    color?: `${ACTION_COLORS}`;
 
     /**
      * Whether to show the selected value on trigger
