@@ -51,8 +51,6 @@ export type grauityIconName =
     | 'pin'
     | 'currency-rupee-filled'
     | 'currency-rupee'
-    | 'ai-voice-filled'
-    | 'ai-voice'
     | 'headphone-filled'
     | 'headphone-mic-filled'
     | 'headphone-mic'
@@ -81,6 +79,8 @@ export type grauityIconName =
     | 'volume-minimum'
     | 'volume-mute-filled'
     | 'volume-mute'
+    | 'waveform-filled'
+    | 'waveform'
     | 'comment-filled'
     | 'comment'
     | 'connector-filled'
@@ -495,8 +495,6 @@ export type grauityIconKey =
     | 'Pin'
     | 'CurrencyRupeeFilled'
     | 'CurrencyRupee'
-    | 'AiVoiceFilled'
-    | 'AiVoice'
     | 'HeadphoneFilled'
     | 'HeadphoneMicFilled'
     | 'HeadphoneMic'
@@ -525,6 +523,8 @@ export type grauityIconKey =
     | 'VolumeMinimum'
     | 'VolumeMuteFilled'
     | 'VolumeMute'
+    | 'WaveformFilled'
+    | 'Waveform'
     | 'CommentFilled'
     | 'Comment'
     | 'ConnectorFilled'
@@ -939,8 +939,6 @@ export enum GRAUITY_ICONS {
     Pin = 'pin',
     CurrencyRupeeFilled = 'currency-rupee-filled',
     CurrencyRupee = 'currency-rupee',
-    AiVoiceFilled = 'ai-voice-filled',
-    AiVoice = 'ai-voice',
     HeadphoneFilled = 'headphone-filled',
     HeadphoneMicFilled = 'headphone-mic-filled',
     HeadphoneMic = 'headphone-mic',
@@ -969,6 +967,8 @@ export enum GRAUITY_ICONS {
     VolumeMinimum = 'volume-minimum',
     VolumeMuteFilled = 'volume-mute-filled',
     VolumeMute = 'volume-mute',
+    WaveformFilled = 'waveform-filled',
+    Waveform = 'waveform',
     CommentFilled = 'comment-filled',
     Comment = 'comment',
     ConnectorFilled = 'connector-filled',
