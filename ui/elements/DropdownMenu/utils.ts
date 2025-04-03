@@ -52,3 +52,16 @@ export const getSelectedValuesForDropdownType = (
     }
     return [value as BaseItemOptionProps];
 };
+
+export function isDropdownMenuItemNavigable(item: BaseItemProps): boolean {
+    if (item.type === BaseItemType.OPTION) {
+        return !item.disabled;
+    }
+    if (item.type === BaseItemType.DIVIDER) {
+        return false;
+    }
+    if (item.type === BaseItemType.SUB_HEADER) {
+        return true;
+    }
+    return false;
+}

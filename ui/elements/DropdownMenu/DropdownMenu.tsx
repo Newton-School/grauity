@@ -21,11 +21,17 @@ import {
     StyledDropdownMenuBody,
     StyledDropdownMenuDivider,
 } from './DropdownMenu.styles';
-import { BaseItemOptionProps, BaseItemType, DropdownMenuProps } from './types';
+import {
+    BaseItemOptionProps,
+    BaseItemProps,
+    BaseItemType,
+    DropdownMenuProps,
+} from './types';
 import {
     defaultSearchMethod,
     getOptionsFromBaseDropdownItems,
     getSelectedValuesForDropdownType,
+    isDropdownMenuItemNavigable,
 } from './utils';
 
 const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
@@ -69,6 +75,13 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
 
         const dropdownMenuRef = useRef<HTMLDivElement>(null);
         const dropdownRef = ref || dropdownMenuRef;
+        const searchRef = useRef<HTMLInputElement>(null);
+        const itemRefs = useRef<(HTMLDivElement | HTMLButtonElement | null)[]>(
+            []
+        );
+        const searchedItemRefs = useRef<
+            (HTMLDivElement | HTMLButtonElement | null)[]
+        >([]);
 
         const handleClearAll = () => {
             setSelectedOptions([]);
@@ -150,6 +163,62 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             [options]
         );
 
+        const handleKeyDown = (
+            event: React.KeyboardEvent<any>,
+            index: number,
+            itemList: BaseItemProps[] = [],
+            refsList: React.MutableRefObject<
+                (HTMLDivElement | HTMLButtonElement)[]
+            >
+        ) => {
+            let indexToFocus = -1;
+            if (
+                (event.key === 'Tab' && !event.shiftKey) ||
+                event.key === 'ArrowDown'
+            ) {
+                event.preventDefault();
+                let nextIndex = index + 1;
+                while (
+                    nextIndex < itemList.length &&
+                    !isDropdownMenuItemNavigable(itemList[nextIndex])
+                ) {
+                    nextIndex += 1;
+                }
+                indexToFocus = nextIndex;
+            } else if (
+                (event.key === 'Tab' && event.shiftKey) ||
+                event.key === 'ArrowUp'
+            ) {
+                event.preventDefault();
+                let prevIndex = index - 1;
+                while (
+                    prevIndex >= 0 &&
+                    !isDropdownMenuItemNavigable(itemList[prevIndex])
+                ) {
+                    prevIndex -= 1;
+                }
+                indexToFocus = prevIndex;
+            } else if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                const item = itemList[index];
+                if (item.type === BaseItemType.OPTION && !item.disabled) {
+                    handleClickOption(item);
+                }
+                return;
+            } else {
+                return;
+            }
+            if (indexToFocus <= -1 || indexToFocus >= itemList.length) {
+                if (searchable) {
+                    searchRef.current?.focus();
+                } else {
+                    itemRefs.current[0]?.focus();
+                }
+            } else {
+                refsList.current[indexToFocus]?.focus();
+            }
+        };
+
         useEffect(() => {
             const filteredOptions = getOptionsFromBaseDropdownItems(items);
             setOptions(filteredOptions);
@@ -179,14 +248,26 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                 />
                 <StyledDropdownMenuBody onScroll={handleMenuBodyScroll}>
                     <DropdownSearchBox
+                        searchRef={searchRef}
                         searchable={searchable}
                         searchPlaceholder={searchPlaceholder}
                         searchIcon={searchIcon}
                         onSearchInputChange={handleDebouncedSearchInputChange}
+                        onKeyDown={(event) =>
+                            handleKeyDown(
+                                event,
+                                -1,
+                                searchedOptions || options,
+                                searchedOptions ? searchedItemRefs : itemRefs
+                            )
+                        }
                     />
                     {Array.isArray(searchedOptions) &&
-                        searchedOptions.map((item) => (
+                        searchedOptions.map((item, index) => (
                             <DropdownMenuOption
+                                optionRef={(el) => {
+                                    searchedItemRefs.current[index] = el;
+                                }}
                                 multiple={multiple}
                                 selected={selectedOptions
                                     .map((option) => option.value)
@@ -199,15 +280,34 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                         )
                                     )
                                 }
+                                onKeyDown={(event) =>
+                                    handleKeyDown(
+                                        event,
+                                        index,
+                                        searchedOptions,
+                                        searchedItemRefs
+                                    )
+                                }
                                 {...item}
                             />
                         ))}
                     {!Array.isArray(searchedOptions) &&
-                        items.map((item) => {
+                        items.map((item, index) => {
                             if (item.type === BaseItemType.SUB_HEADER) {
                                 return (
                                     <DropdownMenuSubHeader
                                         key={`${item.type}-${item.title}`}
+                                        itemRef={(el) => {
+                                            itemRefs.current[index] = el;
+                                        }}
+                                        onKeyDown={(event) =>
+                                            handleKeyDown(
+                                                event,
+                                                index,
+                                                items,
+                                                itemRefs
+                                            )
+                                        }
                                         {...item}
                                     />
                                 );
@@ -223,6 +323,9 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                 return (
                                     <DropdownMenuOption
                                         key={`${item.type}-${item.value}`}
+                                        optionRef={(el) => {
+                                            itemRefs.current[index] = el;
+                                        }}
                                         multiple={multiple}
                                         selected={selectedOptions
                                             .map((option) => option.value)
@@ -234,6 +337,14 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                                         option.value ===
                                                         clickedValue
                                                 )
+                                            )
+                                        }
+                                        onKeyDown={(event) =>
+                                            handleKeyDown(
+                                                event,
+                                                index,
+                                                items,
+                                                itemRefs
                                             )
                                         }
                                         {...item}
