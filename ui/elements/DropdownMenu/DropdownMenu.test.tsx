@@ -233,7 +233,7 @@ describe('DropdownMenu', () => {
         // Should not call onChange on clicking an item
         fireEvent.click(screen.getByText('Item 1'));
         let selectedItems = screen.getAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(1);
         expect(onChange).not.toHaveBeenCalled();
@@ -241,7 +241,7 @@ describe('DropdownMenu', () => {
         // Should add to selected items on clicking another item
         fireEvent.click(screen.getByText('Item 2'));
         selectedItems = screen.getAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(2);
         expect(onChange).not.toHaveBeenCalled();
@@ -267,7 +267,7 @@ describe('DropdownMenu', () => {
         // Should not call onChange on clicking an item
         fireEvent.click(screen.getByText('Item 1'));
         let selectedItems = screen.getAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(1);
         expect(onChange).not.toHaveBeenCalled();
@@ -275,7 +275,7 @@ describe('DropdownMenu', () => {
         // Should add to selected items on clicking another item
         fireEvent.click(screen.getByText('Item 2'));
         selectedItems = screen.getAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(2);
         expect(onChange).not.toHaveBeenCalled();
@@ -287,7 +287,7 @@ describe('DropdownMenu', () => {
         // Should Clear All Selected Items
         fireEvent.click(screen.getByText('Clear All'));
         selectedItems = screen.queryAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(0);
 
@@ -295,16 +295,38 @@ describe('DropdownMenu', () => {
         fireEvent.click(screen.getByText('Item 1'));
         fireEvent.click(screen.getByText('Item 2'));
         selectedItems = screen.getAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(2);
 
         // Should call onChange on clicking Apply
         fireEvent.click(screen.getByText('Apply'));
         selectedItems = screen.getAllByRole('option', {
-            selected: true,
+            checked: true,
         });
         expect(selectedItems).toHaveLength(2);
         expect(onChange).toHaveBeenCalledWith([items[1], items[2]]);
+    });
+
+    // Accessibility
+    it('Should navigate through items using keyboard', () => {
+        const items = getDummyOptions(3);
+        render(<DropdownMenu {...defaultProps} items={items} />);
+
+        // Should go to next item on pressing down arrow key
+        const options = screen.getAllByRole('option');
+        fireEvent.keyDown(options[0], { key: 'ArrowDown' });
+        expect(options[1]).toHaveFocus();
+
+        // Should go to previous item on pressing up arrow key
+        fireEvent.keyDown(options[1], { key: 'ArrowUp' });
+        expect(options[0]).toHaveFocus();
+
+        // Should select the item on pressing enter key
+        fireEvent.keyDown(options[0], { key: 'Enter' });
+        expect(options[0]).toHaveAttribute('aria-selected', 'true');
+        fireEvent.keyDown(options[1], { key: 'Enter' });
+        expect(options[0]).toHaveAttribute('aria-selected', 'false');
+        expect(options[1]).toHaveAttribute('aria-selected', 'true');
     });
 });

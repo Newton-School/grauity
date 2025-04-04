@@ -9,6 +9,7 @@ import React, {
     useState,
 } from 'react';
 
+import { handleKeyboardInteractionInListViews } from '../../../common/utils';
 import { useClickAway } from '../../../hooks';
 import DropdownMenuFooter from './components/DropdownMenuFooter';
 import DropdownMenuHeader from './components/DropdownMenuHeader';
@@ -21,11 +22,17 @@ import {
     StyledDropdownMenuBody,
     StyledDropdownMenuDivider,
 } from './DropdownMenu.styles';
-import { BaseItemOptionProps, BaseItemType, DropdownMenuProps } from './types';
+import {
+    BaseItemOptionProps,
+    BaseItemProps,
+    BaseItemType,
+    DropdownMenuProps,
+} from './types';
 import {
     defaultSearchMethod,
     getOptionsFromBaseDropdownItems,
     getSelectedValuesForDropdownType,
+    isDropdownMenuItemNavigable,
 } from './utils';
 
 const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
@@ -69,6 +76,13 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
 
         const dropdownMenuRef = useRef<HTMLDivElement>(null);
         const dropdownRef = ref || dropdownMenuRef;
+        const searchRef = useRef<HTMLInputElement>(null);
+        const itemRefs = useRef<(HTMLDivElement | HTMLButtonElement | null)[]>(
+            []
+        );
+        const searchedItemRefs = useRef<
+            (HTMLDivElement | HTMLButtonElement | null)[]
+        >([]);
 
         const handleClearAll = () => {
             setSelectedOptions([]);
@@ -150,6 +164,64 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             [options]
         );
 
+        const focusOnGivenIndex = (
+            index: number,
+            itemList: BaseItemProps[] = [],
+            refsList: React.MutableRefObject<
+                (HTMLDivElement | HTMLButtonElement)[]
+            >
+        ) => {
+            if (index <= -1 || index >= itemList.length) {
+                if (searchable) {
+                    searchRef.current?.focus();
+                } else {
+                    itemRefs.current[0]?.focus();
+                }
+            } else {
+                refsList.current[index]?.focus();
+            }
+        };
+
+        const handleKeyDown = (
+            event: React.KeyboardEvent<any>,
+            index: number,
+            itemList: BaseItemProps[] = [],
+            refsList: React.MutableRefObject<
+                (HTMLDivElement | HTMLButtonElement)[]
+            >
+        ) => {
+            handleKeyboardInteractionInListViews(
+                event,
+                () => {
+                    let nextIndex = index + 1;
+                    while (
+                        nextIndex < itemList.length &&
+                        !isDropdownMenuItemNavigable(itemList[nextIndex])
+                    ) {
+                        nextIndex += 1;
+                    }
+                    focusOnGivenIndex(nextIndex, itemList, refsList);
+                },
+                () => {
+                    let prevIndex = index - 1;
+                    while (
+                        prevIndex >= 0 &&
+                        !isDropdownMenuItemNavigable(itemList[prevIndex])
+                    ) {
+                        prevIndex -= 1;
+                    }
+                    focusOnGivenIndex(prevIndex, itemList, refsList);
+                },
+                () => {
+                    const item = itemList[index];
+                    if (item.type === BaseItemType.OPTION && !item.disabled) {
+                        handleClickOption(item);
+                    }
+                },
+                handleApply
+            );
+        };
+
         useEffect(() => {
             const filteredOptions = getOptionsFromBaseDropdownItems(items);
             setOptions(filteredOptions);
@@ -179,14 +251,26 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                 />
                 <StyledDropdownMenuBody onScroll={handleMenuBodyScroll}>
                     <DropdownSearchBox
+                        searchRef={searchRef}
                         searchable={searchable}
                         searchPlaceholder={searchPlaceholder}
                         searchIcon={searchIcon}
                         onSearchInputChange={handleDebouncedSearchInputChange}
+                        onKeyDown={(event) =>
+                            handleKeyDown(
+                                event,
+                                -1,
+                                searchedOptions || options,
+                                searchedOptions ? searchedItemRefs : itemRefs
+                            )
+                        }
                     />
                     {Array.isArray(searchedOptions) &&
-                        searchedOptions.map((item) => (
+                        searchedOptions.map((item, index) => (
                             <DropdownMenuOption
+                                optionRef={(el) => {
+                                    searchedItemRefs.current[index] = el;
+                                }}
                                 multiple={multiple}
                                 selected={selectedOptions
                                     .map((option) => option.value)
@@ -199,15 +283,34 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                         )
                                     )
                                 }
+                                onKeyDown={(event) =>
+                                    handleKeyDown(
+                                        event,
+                                        index,
+                                        searchedOptions,
+                                        searchedItemRefs
+                                    )
+                                }
                                 {...item}
                             />
                         ))}
                     {!Array.isArray(searchedOptions) &&
-                        items.map((item) => {
+                        items.map((item, index) => {
                             if (item.type === BaseItemType.SUB_HEADER) {
                                 return (
                                     <DropdownMenuSubHeader
                                         key={`${item.type}-${item.title}`}
+                                        itemRef={(el) => {
+                                            itemRefs.current[index] = el;
+                                        }}
+                                        onKeyDown={(event) =>
+                                            handleKeyDown(
+                                                event,
+                                                index,
+                                                items,
+                                                itemRefs
+                                            )
+                                        }
                                         {...item}
                                     />
                                 );
@@ -223,6 +326,9 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                 return (
                                     <DropdownMenuOption
                                         key={`${item.type}-${item.value}`}
+                                        optionRef={(el) => {
+                                            itemRefs.current[index] = el;
+                                        }}
                                         multiple={multiple}
                                         selected={selectedOptions
                                             .map((option) => option.value)
@@ -234,6 +340,14 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                                         option.value ===
                                                         clickedValue
                                                 )
+                                            )
+                                        }
+                                        onKeyDown={(event) =>
+                                            handleKeyDown(
+                                                event,
+                                                index,
+                                                items,
+                                                itemRefs
                                             )
                                         }
                                         {...item}

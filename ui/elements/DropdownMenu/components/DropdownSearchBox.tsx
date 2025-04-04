@@ -10,6 +10,8 @@ interface DropdownSearchBoxProps {
     searchPlaceholder: string;
     searchIcon: grauityIconName;
     onSearchInputChange: (value: string) => void;
+    onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+    searchRef: React.RefObject<HTMLInputElement>;
 }
 
 const DropdownSearchBox = ({
@@ -17,6 +19,8 @@ const DropdownSearchBox = ({
     searchPlaceholder,
     searchIcon,
     onSearchInputChange,
+    onKeyDown,
+    searchRef,
 }: DropdownSearchBoxProps) => {
     const [searchValue, setSearchValue] = useState('');
 
@@ -29,8 +33,9 @@ const DropdownSearchBox = ({
     }
 
     return (
-        <StyledDropdownMenuSearchBox role="searchbox">
+        <StyledDropdownMenuSearchBox role="searchbox" onKeyDown={onKeyDown}>
             <TextField
+                ref={searchRef}
                 name="dropdown-search-box"
                 value={searchValue}
                 onChange={(event) => setSearchValue(event.target.value)}

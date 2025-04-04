@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import { Icon } from '../../Icon';
 import {
@@ -13,6 +13,8 @@ interface DropdownMenuOptionProps extends BaseItemOptionProps {
     multiple: boolean;
     selected: boolean;
     onClick: (value: OptionValue) => void;
+    optionRef: (el: HTMLButtonElement) => void;
+    onKeyDown: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
 }
 
 const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
@@ -26,12 +28,19 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
         multiple,
         selected,
         onClick,
+        optionRef,
+        onKeyDown,
     } = props;
+
+    const id = useId();
 
     return (
         <StyledDropdownMenuOption
             role="option"
-            aria-selected={selected}
+            ref={optionRef}
+            aria-labelledby={`option-label-${id}`}
+            aria-selected={!multiple ? selected : undefined}
+            aria-checked={multiple ? selected : undefined}
             disabled={disabled}
             onClick={(e) => {
                 e.preventDefault();
@@ -40,15 +49,23 @@ const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
                 }
                 onClick(value);
             }}
+            onKeyDown={(event) => {
+                if (!disabled) {
+                    onKeyDown(event);
+                }
+            }}
         >
             {leftIcon && (
                 <Icon name={leftIcon} color="currentColor" size="20" />
             )}
             <StyledDropdownMenuOptionContent>
-                <StyledDropdownMenuOptionLabel>
+                <StyledDropdownMenuOptionLabel id={`option-label-${id}`}>
                     {label}
                 </StyledDropdownMenuOptionLabel>
-                <StyledDropdownMenuOptionDescription $disabled={disabled}>
+                <StyledDropdownMenuOptionDescription
+                    $disabled={disabled}
+                    id={`option-description-${id}`}
+                >
                     {description}
                 </StyledDropdownMenuOptionDescription>
             </StyledDropdownMenuOptionContent>
