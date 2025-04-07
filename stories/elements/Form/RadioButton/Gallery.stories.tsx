@@ -1,8 +1,8 @@
 import React from 'react';
+import { ACTION_COLORS } from 'ui/core';
 import RadioButton, { RadioButtonProps } from 'ui/elements/Form/RadioButton';
 import {
     RadioButtonSize,
-    RadioButtonState,
 } from 'ui/elements/Form/RadioButton/types';
 import Table from 'ui/elements/Table';
 
@@ -21,7 +21,7 @@ const generateCodeString = (args: RadioButtonProps) => {
         label,
         isRequired,
         size,
-        state,
+        color,
         helpMessage,
         errorMessage,
         checked,
@@ -34,7 +34,7 @@ const generateCodeString = (args: RadioButtonProps) => {
     label="${label}"
     isRequired={${isRequired}}
     size="${size}"
-    state="${state}"
+    color="${color}"
     helpMessage="${helpMessage}"
     errorMessage="${errorMessage}"
     checked={${checked}}
@@ -50,7 +50,6 @@ const defaultArgs: RadioButtonProps = {
     label: 'Radio button',
     isRequired: false,
     size: 'medium',
-    state: 'default',
     helpMessage: '',
     errorMessage: '',
     onChange: () => {},
@@ -65,18 +64,15 @@ export const Gallery = () => {
         'medium',
         'large',
     ] as any as Array<RadioButtonSize>;
-    const states: Array<RadioButtonState> = [
-        'default',
-        'error',
-        'success',
-    ] as any as Array<RadioButtonState>;
+
+    const colors = Object.values(ACTION_COLORS);
 
     return (
         <Table.Table borderAround={false} borderVertical={false}>
             <Table.TableHead highlightHeaders={false}>
                 <Table.TableRow condensed>
                     <Table.TableHeadingCell align="left">
-                        State
+                        Color
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
                         Size
@@ -90,11 +86,11 @@ export const Gallery = () => {
                 </Table.TableRow>
             </Table.TableHead>
             <Table.TableBody>
-                {states.map((state) =>
+                {colors.map((color) =>
                     sizes.map((size) => (
                         <Table.TableRow condensed>
                             <Table.TableDataCell>
-                                <TokenBlock copy>{state}</TokenBlock>
+                                <TokenBlock copy>{color}</TokenBlock>
                             </Table.TableDataCell>
                             <Table.TableDataCell>
                                 <TokenBlock copy>{size}</TokenBlock>
@@ -103,7 +99,7 @@ export const Gallery = () => {
                                 <Template
                                     {...defaultArgs}
                                     size={size}
-                                    state={state}
+                                    color={color}
                                 />
                             </Table.TableDataCell>
                             <Table.TableDataCell>
@@ -112,7 +108,7 @@ export const Gallery = () => {
                                     contentToCopy={generateCodeString({
                                         ...defaultArgs,
                                         size,
-                                        state,
+                                        color,
                                     })}
                                 >
                                     Copy Code

@@ -9,7 +9,6 @@ export default {
 const Template = (args: RadioButtonProps) => (
     <>
         <RadioButton {...args} value={1} label="Value 1" />
-        <RadioButton {...args} value={2} label="Value 2" />
     </>
 );
 

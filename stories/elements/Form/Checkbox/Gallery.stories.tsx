@@ -1,6 +1,7 @@
 import React from 'react';
+import { ACTION_COLORS } from 'ui/core';
 import Checkbox, { CheckboxProps } from 'ui/elements/Form/Checkbox';
-import { CheckboxSize, CheckboxState } from 'ui/elements/Form/Checkbox/types';
+import { CheckboxSize } from 'ui/elements/Form/Checkbox/types';
 import Table from 'ui/elements/Table';
 
 import TokenBlock from '../../../helper-components/TokenBlock';
@@ -17,7 +18,7 @@ const generateCodeString = (args: CheckboxProps) => {
         label,
         isRequired,
         size,
-        state,
+        color,
         helpMessage,
         errorMessage,
         isChecked,
@@ -30,7 +31,7 @@ const generateCodeString = (args: CheckboxProps) => {
     label="${label}"
     isRequired={${isRequired}}
     size="${size}"
-    state="${state}"
+    color="${color}"
     helpMessage="${helpMessage}"
     errorMessage="${errorMessage}"
     isChecked={${isChecked}}
@@ -46,7 +47,6 @@ const defaultArgs: CheckboxProps = {
     label: 'Checkbox',
     isRequired: false,
     size: 'medium',
-    state: 'default',
     helpMessage: '',
     errorMessage: '',
     onChange: () => {},
@@ -62,12 +62,9 @@ export const Gallery = () => {
         'medium',
         'large',
     ] as any as Array<CheckboxSize>;
-    const states: Array<CheckboxState> = [
-        'default',
-        'error',
-        'success',
-    ] as any as Array<CheckboxState>;
 
+    const colors = Object.values(ACTION_COLORS);
+    
     return (
         <Table.Table borderAround={false} borderVertical={false}>
             <Table.TableHead highlightHeaders={false}>
@@ -88,19 +85,19 @@ export const Gallery = () => {
             </Table.TableHead>
             <Table.TableBody>
                 {sizes.map((size) =>
-                    states.map((state) => (
+                    colors.map((color) => (
                         <Table.TableRow condensed>
                             <Table.TableDataCell>
                                 <TokenBlock copy>{size}</TokenBlock>
                             </Table.TableDataCell>
                             <Table.TableDataCell>
-                                <TokenBlock copy>{state}</TokenBlock>
+                                <TokenBlock copy>{color}</TokenBlock>
                             </Table.TableDataCell>
                             <Table.TableDataCell>
                                 <Template
                                     {...defaultArgs}
                                     size={size}
-                                    state={state}
+                                    color={color}
                                 />
                             </Table.TableDataCell>
                             <Table.TableDataCell>
@@ -109,7 +106,7 @@ export const Gallery = () => {
                                     contentToCopy={generateCodeString({
                                         ...defaultArgs,
                                         size,
-                                        state,
+                                        color,
                                     })}
                                 >
                                     Copy Code
