@@ -69,6 +69,12 @@ export interface RadioButtonProps {
     checked?: boolean;
 
     /**
+     * Indicates if the radio button is checked by default.
+     * @default false
+     */
+    defaultChecked?: boolean;
+
+    /**
      * Indicates if the radio button is disabled.
      * @default false
      */

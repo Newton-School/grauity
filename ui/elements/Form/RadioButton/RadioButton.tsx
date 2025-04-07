@@ -10,6 +10,10 @@ import {
 } from './RadioButton.styles';
 import { RadioButtonProps } from './types';
 
+/**
+ * A radio button is a form element that allows the user to select one option from a set of choices.
+ * Radio buttons are typically used in groups, where only one option can be selected at a time.
+ */
 const RadioButton = (props: RadioButtonProps) => {
     const {
         name,
@@ -21,6 +25,7 @@ const RadioButton = (props: RadioButtonProps) => {
         helpMessage,
         errorMessage,
         onChange = () => {},
+        defaultChecked = false,
         checked = false,
         isDisabled = false,
         className,
@@ -45,7 +50,8 @@ const RadioButton = (props: RadioButtonProps) => {
                         onChange(e);
                     }}
                     disabled={isDisabled}
-                    defaultChecked={checked}
+                    defaultChecked={defaultChecked}
+                    checked={checked}
                     $color={color}
                 />
                 {label && (
