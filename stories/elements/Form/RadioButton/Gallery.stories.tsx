@@ -1,9 +1,7 @@
 import React from 'react';
 import { ACTION_COLORS } from 'ui/core';
 import RadioButton, { RadioButtonProps } from 'ui/elements/Form/RadioButton';
-import {
-    RadioButtonSize,
-} from 'ui/elements/Form/RadioButton/types';
+import { RadioButtonSize } from 'ui/elements/Form/RadioButton/types';
 import Table from 'ui/elements/Table';
 
 import TokenBlock from '../../../helper-components/TokenBlock';
@@ -42,8 +40,6 @@ const generateCodeString = (args: RadioButtonProps) => {
     onChange={() => {}} />`;
 };
 
-const Template = (args: RadioButtonProps) => <RadioButton {...args} />;
-
 const defaultArgs: RadioButtonProps = {
     name: 'radio',
     value: 1,
@@ -67,15 +63,21 @@ export const Gallery = () => {
 
     const colors = Object.values(ACTION_COLORS);
 
+    const [checkedValue, setCheckedValue] = React.useState<string>(null);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCheckedValue(event.target.value);
+    };
+
     return (
         <Table.Table borderAround={false} borderVertical={false}>
             <Table.TableHead highlightHeaders={false}>
                 <Table.TableRow condensed>
                     <Table.TableHeadingCell align="left">
-                        Color
+                        Size
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
-                        Size
+                        Color
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
                         Element
@@ -86,20 +88,23 @@ export const Gallery = () => {
                 </Table.TableRow>
             </Table.TableHead>
             <Table.TableBody>
-                {colors.map((color) =>
-                    sizes.map((size) => (
+                {sizes.map((size, sizeIndex) =>
+                    colors.map((color, colorIndex) => (
                         <Table.TableRow condensed>
-                            <Table.TableDataCell>
-                                <TokenBlock copy>{color}</TokenBlock>
-                            </Table.TableDataCell>
                             <Table.TableDataCell>
                                 <TokenBlock copy>{size}</TokenBlock>
                             </Table.TableDataCell>
                             <Table.TableDataCell>
-                                <Template
+                                <TokenBlock copy>{color}</TokenBlock>
+                            </Table.TableDataCell>
+                            <Table.TableDataCell>
+                                <RadioButton
                                     {...defaultArgs}
                                     size={size}
                                     color={color}
+                                    value={`radio-button-${sizeIndex}-${colorIndex}`}
+                                    checked={checkedValue === `radio-button-${sizeIndex}-${colorIndex}`}
+                                    onChange={handleChange}
                                 />
                             </Table.TableDataCell>
                             <Table.TableDataCell>

@@ -25,7 +25,6 @@ const RadioButton = (props: RadioButtonProps) => {
         helpMessage,
         errorMessage,
         onChange = () => {},
-        defaultChecked = false,
         checked = false,
         isDisabled = false,
         className,
@@ -50,7 +49,6 @@ const RadioButton = (props: RadioButtonProps) => {
                         onChange(e);
                     }}
                     disabled={isDisabled}
-                    defaultChecked={defaultChecked}
                     checked={checked}
                     $color={color}
                 />

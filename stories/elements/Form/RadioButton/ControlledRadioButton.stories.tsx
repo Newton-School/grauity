@@ -5,6 +5,7 @@ import { NSButton, NSTable } from 'ui/index';
 export default {
     title: 'Elements/Form/RadioButton',
     component: RadioButton,
+    tags: ['!autodocs'], 
 };
 
 export const ControlledRadioButton = () => {

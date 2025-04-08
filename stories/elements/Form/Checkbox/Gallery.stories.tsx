@@ -40,8 +40,6 @@ const generateCodeString = (args: CheckboxProps) => {
     onChange={() => {}} />`;
 };
 
-const Template = (args: CheckboxProps) => <Checkbox {...args} />;
-
 const defaultArgs: CheckboxProps = {
     name: 'checkbox',
     label: 'Checkbox',
@@ -64,7 +62,18 @@ export const Gallery = () => {
     ] as any as Array<CheckboxSize>;
 
     const colors = Object.values(ACTION_COLORS);
-    
+
+    const [checkedValues, setCheckedValues] = React.useState<string[]>([]);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value, checked } = event.target;
+        setCheckedValues((prev) =>
+            checked
+                ? [...prev, value]
+                : prev.filter((item) => item !== value),
+        );
+    };
+
     return (
         <Table.Table borderAround={false} borderVertical={false}>
             <Table.TableHead highlightHeaders={false}>
@@ -73,7 +82,7 @@ export const Gallery = () => {
                         Size
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
-                        State
+                        Color
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
                         Element
@@ -84,8 +93,8 @@ export const Gallery = () => {
                 </Table.TableRow>
             </Table.TableHead>
             <Table.TableBody>
-                {sizes.map((size) =>
-                    colors.map((color) => (
+                {sizes.map((size, sizeIndex) =>
+                    colors.map((color, colorIndex) => (
                         <Table.TableRow condensed>
                             <Table.TableDataCell>
                                 <TokenBlock copy>{size}</TokenBlock>
@@ -94,10 +103,15 @@ export const Gallery = () => {
                                 <TokenBlock copy>{color}</TokenBlock>
                             </Table.TableDataCell>
                             <Table.TableDataCell>
-                                <Template
+                                <Checkbox
                                     {...defaultArgs}
                                     size={size}
                                     color={color}
+                                    value={`radio-button-${sizeIndex}-${colorIndex}`}
+                                    isChecked={checkedValues.includes(
+                                        `radio-button-${sizeIndex}-${colorIndex}`,
+                                    )}
+                                    onChange={handleChange}
                                 />
                             </Table.TableDataCell>
                             <Table.TableDataCell>

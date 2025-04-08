@@ -5,6 +5,7 @@ import { NSButton, NSTable } from 'ui/index';
 export default {
     title: 'Elements/Form/Checkbox',
     component: Checkbox,
+    tags: ['!autodocs'], 
 };
 
 export const ControlledCheckbox = () => {
