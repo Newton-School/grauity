@@ -1,6 +1,7 @@
 import React from 'react';
+import { ACTION_COLORS } from 'ui/core';
 import Checkbox, { CheckboxProps } from 'ui/elements/Form/Checkbox';
-import { CheckboxSize, CheckboxState } from 'ui/elements/Form/Checkbox/types';
+import { CheckboxSize } from 'ui/elements/Form/Checkbox/types';
 import Table from 'ui/elements/Table';
 
 import TokenBlock from '../../../helper-components/TokenBlock';
@@ -17,7 +18,7 @@ const generateCodeString = (args: CheckboxProps) => {
         label,
         isRequired,
         size,
-        state,
+        color,
         helpMessage,
         errorMessage,
         isChecked,
@@ -30,7 +31,7 @@ const generateCodeString = (args: CheckboxProps) => {
     label="${label}"
     isRequired={${isRequired}}
     size="${size}"
-    state="${state}"
+    color="${color}"
     helpMessage="${helpMessage}"
     errorMessage="${errorMessage}"
     isChecked={${isChecked}}
@@ -39,14 +40,11 @@ const generateCodeString = (args: CheckboxProps) => {
     onChange={() => {}} />`;
 };
 
-const Template = (args: CheckboxProps) => <Checkbox {...args} />;
-
 const defaultArgs: CheckboxProps = {
     name: 'checkbox',
     label: 'Checkbox',
     isRequired: false,
     size: 'medium',
-    state: 'default',
     helpMessage: '',
     errorMessage: '',
     onChange: () => {},
@@ -62,11 +60,19 @@ export const Gallery = () => {
         'medium',
         'large',
     ] as any as Array<CheckboxSize>;
-    const states: Array<CheckboxState> = [
-        'default',
-        'error',
-        'success',
-    ] as any as Array<CheckboxState>;
+
+    const colors = Object.values(ACTION_COLORS);
+
+    const [checkedValues, setCheckedValues] = React.useState<string[]>([]);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value, checked } = event.target;
+        setCheckedValues((prev) =>
+            checked
+                ? [...prev, value]
+                : prev.filter((item) => item !== value),
+        );
+    };
 
     return (
         <Table.Table borderAround={false} borderVertical={false}>
@@ -76,7 +82,7 @@ export const Gallery = () => {
                         Size
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
-                        State
+                        Color
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
                         Element
@@ -87,20 +93,25 @@ export const Gallery = () => {
                 </Table.TableRow>
             </Table.TableHead>
             <Table.TableBody>
-                {sizes.map((size) =>
-                    states.map((state) => (
+                {sizes.map((size, sizeIndex) =>
+                    colors.map((color, colorIndex) => (
                         <Table.TableRow condensed>
                             <Table.TableDataCell>
                                 <TokenBlock copy>{size}</TokenBlock>
                             </Table.TableDataCell>
                             <Table.TableDataCell>
-                                <TokenBlock copy>{state}</TokenBlock>
+                                <TokenBlock copy>{color}</TokenBlock>
                             </Table.TableDataCell>
                             <Table.TableDataCell>
-                                <Template
+                                <Checkbox
                                     {...defaultArgs}
                                     size={size}
-                                    state={state}
+                                    color={color}
+                                    value={`radio-button-${sizeIndex}-${colorIndex}`}
+                                    isChecked={checkedValues.includes(
+                                        `radio-button-${sizeIndex}-${colorIndex}`,
+                                    )}
+                                    onChange={handleChange}
                                 />
                             </Table.TableDataCell>
                             <Table.TableDataCell>
@@ -109,7 +120,7 @@ export const Gallery = () => {
                                     contentToCopy={generateCodeString({
                                         ...defaultArgs,
                                         size,
-                                        state,
+                                        color,
                                     })}
                                 >
                                     Copy Code

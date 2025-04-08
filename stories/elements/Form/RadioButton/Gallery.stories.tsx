@@ -1,9 +1,7 @@
 import React from 'react';
+import { ACTION_COLORS } from 'ui/core';
 import RadioButton, { RadioButtonProps } from 'ui/elements/Form/RadioButton';
-import {
-    RadioButtonSize,
-    RadioButtonState,
-} from 'ui/elements/Form/RadioButton/types';
+import { RadioButtonSize } from 'ui/elements/Form/RadioButton/types';
 import Table from 'ui/elements/Table';
 
 import TokenBlock from '../../../helper-components/TokenBlock';
@@ -21,7 +19,7 @@ const generateCodeString = (args: RadioButtonProps) => {
         label,
         isRequired,
         size,
-        state,
+        color,
         helpMessage,
         errorMessage,
         checked,
@@ -34,7 +32,7 @@ const generateCodeString = (args: RadioButtonProps) => {
     label="${label}"
     isRequired={${isRequired}}
     size="${size}"
-    state="${state}"
+    color="${color}"
     helpMessage="${helpMessage}"
     errorMessage="${errorMessage}"
     checked={${checked}}
@@ -42,15 +40,12 @@ const generateCodeString = (args: RadioButtonProps) => {
     onChange={() => {}} />`;
 };
 
-const Template = (args: RadioButtonProps) => <RadioButton {...args} />;
-
 const defaultArgs: RadioButtonProps = {
     name: 'radio',
     value: 1,
     label: 'Radio button',
     isRequired: false,
     size: 'medium',
-    state: 'default',
     helpMessage: '',
     errorMessage: '',
     onChange: () => {},
@@ -65,21 +60,24 @@ export const Gallery = () => {
         'medium',
         'large',
     ] as any as Array<RadioButtonSize>;
-    const states: Array<RadioButtonState> = [
-        'default',
-        'error',
-        'success',
-    ] as any as Array<RadioButtonState>;
+
+    const colors = Object.values(ACTION_COLORS);
+
+    const [checkedValue, setCheckedValue] = React.useState<string>(null);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCheckedValue(event.target.value);
+    };
 
     return (
         <Table.Table borderAround={false} borderVertical={false}>
             <Table.TableHead highlightHeaders={false}>
                 <Table.TableRow condensed>
                     <Table.TableHeadingCell align="left">
-                        State
+                        Size
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
-                        Size
+                        Color
                     </Table.TableHeadingCell>
                     <Table.TableHeadingCell align="left">
                         Element
@@ -90,20 +88,23 @@ export const Gallery = () => {
                 </Table.TableRow>
             </Table.TableHead>
             <Table.TableBody>
-                {states.map((state) =>
-                    sizes.map((size) => (
+                {sizes.map((size, sizeIndex) =>
+                    colors.map((color, colorIndex) => (
                         <Table.TableRow condensed>
-                            <Table.TableDataCell>
-                                <TokenBlock copy>{state}</TokenBlock>
-                            </Table.TableDataCell>
                             <Table.TableDataCell>
                                 <TokenBlock copy>{size}</TokenBlock>
                             </Table.TableDataCell>
                             <Table.TableDataCell>
-                                <Template
+                                <TokenBlock copy>{color}</TokenBlock>
+                            </Table.TableDataCell>
+                            <Table.TableDataCell>
+                                <RadioButton
                                     {...defaultArgs}
                                     size={size}
-                                    state={state}
+                                    color={color}
+                                    value={`radio-button-${sizeIndex}-${colorIndex}`}
+                                    checked={checkedValue === `radio-button-${sizeIndex}-${colorIndex}`}
+                                    onChange={handleChange}
                                 />
                             </Table.TableDataCell>
                             <Table.TableDataCell>
@@ -112,7 +113,7 @@ export const Gallery = () => {
                                     contentToCopy={generateCodeString({
                                         ...defaultArgs,
                                         size,
-                                        state,
+                                        color,
                                     })}
                                 >
                                     Copy Code

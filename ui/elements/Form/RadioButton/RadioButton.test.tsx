@@ -1,9 +1,10 @@
 import '@testing-library/jest-dom';
 
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 
 import RadioButton from './RadioButton';
+import { RadioButtonProps } from './types';
 
 describe('RadioButton', () => {
     // Rendering
@@ -44,21 +45,28 @@ describe('RadioButton', () => {
 
     // Functionality
     it('should call the onChange function correctly', async () => {
-        const onChange = jest.fn();
-        render(
-            <RadioButton
-                name="radio"
-                value={1}
-                label="Radio button"
-                onChange={onChange}
-            />
-        );
+        const dummyProps: RadioButtonProps = {
+            name: 'radio',
+            value: 1,
+            label: 'Radio button',
+            onChange: jest.fn(),
+            checked: false,
+        };
+
+        const { rerender } = render(<RadioButton {...dummyProps} />);
         const radioButton = screen.getByRole('radio');
         fireEvent.click(radioButton);
-        await waitFor(() => {
-            expect(onChange).toHaveBeenCalledTimes(1);
-            expect(radioButton).toBeChecked();
-        });
+
+        expect(dummyProps.onChange).toHaveBeenCalledTimes(1);
+
+        const newProps: RadioButtonProps = {
+            ...dummyProps,
+            checked: true,
+        };
+
+        rerender(<RadioButton {...newProps} />);
+
+        expect(radioButton).toBeChecked();
     });
 
     // Checked
@@ -78,7 +86,12 @@ describe('RadioButton', () => {
     // Disabled
     it('should disable the radio button', () => {
         render(
-            <RadioButton name="radio" value={1} label="Radio button" isDisabled />
+            <RadioButton
+                name="radio"
+                value={1}
+                label="Radio button"
+                isDisabled
+            />
         );
         const radioButton = screen.getByRole('radio');
         expect(radioButton).toBeDisabled();

@@ -61,6 +61,8 @@ export const StyledCheckboxButton = styled.button<StyledCheckboxInputProps>`
         `;
     }}
 
+    outline: none;
+
     ${({ $color, $checked, $indeterminate }) =>
         getCheckboxStyles({
             color: $color,

@@ -14,6 +14,7 @@ import { getIconSize } from './utils';
 
 /**
  * A checkbox is a form element that allows the user to select one or more options from a set of choices.
+ * Checkboxes are typically used in groups, where one or multiple options can be selected at a time.
  */
 const Checkbox: React.FC<CheckboxProps> = ({
     name,
