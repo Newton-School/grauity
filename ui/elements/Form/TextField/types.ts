@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLInputTypeAttribute } from 'react';
 import { ACTION_COLORS } from 'ui/core';
 
 import { StyledDivProps, StyledInputProps } from '../../../../common/types';
@@ -45,6 +45,47 @@ export interface TextFieldProps {
      * The placeholder text for the input field.
      */
     placeholder?: string;
+
+    /**
+     * The type of the input field.
+     * @default 'text'
+     */
+    type?: HTMLInputTypeAttribute;
+
+    /**
+     * The input mode for the input field.
+     * @default 'text'
+     */
+    inputMode?:
+        | 'none'
+        | 'text'
+        | 'search'
+        | 'email'
+        | 'tel'
+        | 'url'
+        | 'numeric'
+        | 'decimal'
+        | undefined;
+
+    /**
+     * The pattern for the input field.
+     */
+    pattern?: string;
+
+    /**
+     * The minimum value for the input field.
+     */
+    min?: number;
+
+    /**
+     * The maximum value for the input field.
+     */
+    max?: number;
+
+    /**
+     * The step value for the input field.
+     */
+    step?: number;
 
     /**
      * The validation message to display when the input field is invalid.

@@ -37,6 +37,13 @@ Default.args = {
     color: 'brand',
 };
 
+export const NumberType = Template.bind({});
+NumberType.args = {
+    ...Default.args,
+    placeholder: 'Please enter a number...',
+    type: 'number',
+};
+
 export const WithErrorMessage = Template.bind({});
 WithErrorMessage.args = {
     ...Default.args,
