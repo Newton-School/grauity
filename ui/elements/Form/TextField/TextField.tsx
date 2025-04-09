@@ -24,6 +24,9 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
         value = '',
         label,
         placeholder,
+        type = 'text',
+        inputMode = 'text',
+        pattern,
         validationMessage,
         helpMessage,
         errorMessage,
@@ -39,6 +42,9 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
         size = 'medium',
         adornments,
         color = 'brand',
+        min,
+        max,
+        step,
     } = props;
 
     const inputContainerRef = useRef(null);
@@ -119,7 +125,12 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
                 )}
                 <StyledTextFieldInput
                     ref={ref}
-                    type="text"
+                    type={type}
+                    inputMode={inputMode}
+                    pattern={pattern}
+                    min={min}
+                    max={max}
+                    step={step}
                     id={name}
                     name={name}
                     placeholder={placeholder}
