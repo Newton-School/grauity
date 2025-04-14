@@ -16,7 +16,7 @@
         "type": "git",
         "url": "git+https://github.com/Newton-School/grauity.git"
     },
-    "license": "GPL-3.0-or-later",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/Newton-School/grauity/issues"
     },
