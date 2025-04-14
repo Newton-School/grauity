@@ -1,0 +1,86 @@
+name: Documentation Report
+description: Report issues related to storybook documentation
+title: '[DOCS] '
+labels: documentation
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill out the sections below to help us reproduce and fix the bug.
+        Fill in as much of the template below as you're able. The more you include, the easier it will be to reproduce and fix the bug.
+
+  - type: input
+    id: link
+    attributes:
+      label: Link of the documentation page
+      placeholder: 'https://grauity.newtonschool.co/'
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the issue or suggestion in detail
+      placeholder: Provide a detailed description of the documentation issue or suggestion
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Write step by step instructions to reproduce the bug.
+      placeholder: |
+        Steps to reproduce the behavior:
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+      placeholder: Steps to reproduce the issue
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      description: Please specify the browser you are using with its version (e.g., Chrome, Safari).
+      placeholder: Chrome - Version 132.0.6834.83/84
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Please specify the version of the library you are using (e.g., 1.1.0).
+      placeholder: v1.1.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_environment
+    attributes:
+      label: Additional Environment Information
+      description: Add any other relevant environment information here.
+      render: bash
+      placeholder: |
+        Operating System:
+          Platform: darwin
+          Arch: arm64
+          Version: Darwin Kernel Version 23.6.0
+        Binaries:
+          Node: 20.17.0
+          npm: 10.8.2
+          Yarn: 1.22.22
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: |
+        Add any other context about the problem here.
+        Add screenshots if applicable.
+      placeholder: |
+        Additional context
+        Attaching a screenshot of the issue would be helpful.

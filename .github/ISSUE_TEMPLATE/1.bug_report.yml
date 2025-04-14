@@ -1,0 +1,109 @@
+name: Bug report
+description: Report a bug to help us improve
+title: '[BUG] '
+labels: bug
+type: bug
+
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Fill out the sections below to help us reproduce and fix the bug.
+              Please ensure you are using the latest version of the library before reporting a bug.
+              Fill in as much of the template below as you're able. The more you include, the easier it will be to reproduce and fix the bug.
+
+    - type: input
+      id: link
+      attributes:
+          label: Link to the code that reproduces this issue
+          description: |
+              Please provide a link to a **public** repository on GitHub or CodeSandbox that contains the code that reproduces the issue.
+          placeholder: 'https://github.com/your-username/your-repo'
+
+    - type: textarea
+      id: description
+      attributes:
+          label: Description
+          description: A clear and concise description of what the bug is.
+          placeholder: Describe the bug
+      validations:
+          required: true
+
+    - type: textarea
+      id: steps
+      attributes:
+          label: Steps to Reproduce
+          description: Write step by step instructions to reproduce the bug.
+          placeholder: |
+              Steps to reproduce the behavior:
+              1. Go to '...'
+              2. Click on '....'
+              3. Scroll down to '....'
+              4. See error
+      validations:
+          required: true
+
+    - type: textarea
+      id: expected
+      attributes:
+          label: Expected behavior
+          description: A clear and concise description of what you expected to happen.
+          placeholder: |
+              Expected behavior:
+              - [ ] When I do this, I expect that to happen
+              - [ ] When I did not do this, this should not happen
+
+    - type: textarea
+      id: actual
+      attributes:
+          label: Actual behavior
+          description: A clear and concise description of what actually happened.
+          placeholder: |
+              Actual behavior:
+              - [ ] When I do this, this happened
+              - [ ] When I did not do this, this happened
+
+    - type: input
+      id: browser
+      attributes:
+          label: Browser
+          description: Please specify the browser you are using with its version (e.g., Chrome, Safari).
+          placeholder: Chrome - Version 132.0.6834.83/84
+      validations:
+          required: true
+
+    - type: input
+      id: version
+      attributes:
+          label: Version
+          description: Please specify the version of the library you are using (e.g., 1.1.0).
+          placeholder: v1.1.0
+      validations:
+          required: true
+
+    - type: textarea
+      id: additional_environment
+      attributes:
+          label: Additional Environment Information
+          description: Add any other relevant environment information here.
+          render: bash
+          placeholder: |
+              Operating System:
+                Platform: darwin
+                Arch: arm64
+                Version: Darwin Kernel Version 23.6.0
+              Binaries:
+                Node: 20.17.0
+                npm: 10.8.2
+                Yarn: 1.22.22
+
+    - type: textarea
+      id: additional
+      attributes:
+          label: Additional context
+          description: |
+              Add any other context about the problem here.
+              Add screenshots if applicable.
+          placeholder: |
+              Additional context
+              Attaching a screenshot of the issue would be helpful.
