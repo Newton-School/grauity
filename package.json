@@ -12,28 +12,6 @@
     ],
     "homepage": "https://github.com/Newton-School/grauity#readme",
     "author": "Newton School",
-    "contributors": [
-        {
-            "name": "Praduman Goyal",
-            "email": "goyal.praduman611@gmail.com",
-            "homepage": "https://github.com/pradumangoyal"
-        },
-        {
-            "name": "Mihir Sachdeva",
-            "email": "mihirsachdeva.ms@gmail.com",
-            "homepage": "https://github.com/mihirsachdeva"
-        },
-        {
-            "name": "Saksham Bindal",
-            "email": "saksham.bindal2004@gmail.com",
-            "homepage": "https://github.com/cybersaksham"
-        },
-        {
-            "name": "Shubhaam Tiwary",
-            "email": "shubhaamtiwary@gmail.com",
-            "homepage": "https://github.com/ShubhaamTiwary"
-        }
-    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Newton-School/grauity.git"
