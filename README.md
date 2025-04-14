@@ -18,6 +18,14 @@
   <br />
   <br />
   <img src="https://github.com/Newton-School/grauity/actions/workflows/run-tests.yml/badge.svg" alt="Test status badge" />
+  <img src="https://github.com/Newton-School/grauity/actions/workflows/build-storybook.yml/badge.svg" alt="Build docs badge" />
+  <img src="https://github.com/Newton-School/grauity/actions/workflows/publish-npm-package.yml/badge.svg" alt="Publish to NPM" />
+  <div align="center">
+    <img src="http://img.shields.io/npm/v/@newtonschool/grauity.svg" alt="NPM version badge" />
+    <img src="http://img.shields.io/npm/dm/@newtonschool/grauity.svg" alt="NPM downloads badge" />
+    <img src="http://img.shields.io/bundlephobia/min/@newtonschool/grauity.svg" alt="Bundle size badge" />
+    <img src="http://img.shields.io/npm/l/@newtonschool/grauity.svg" alt="License badge" />
+  </div>
 </p>
 
 ## About gra.UI.ty
@@ -84,6 +92,7 @@ your-app$: npm run dev
 ```
 
 After you have made changes in grauity, build it.
+
 ```bash
 grauity$: npm run build
 ```
@@ -91,6 +100,7 @@ grauity$: npm run build
 If changes are not showing up even after rebuilding, you may
 have to delete `your-app/node_modules/@newtonschool/grauity` folder
 and install `grauity` again:
+
 ```bash
 grauity$: npm run build
 
@@ -120,7 +130,6 @@ export const MyComponent = () => (
 );
 ```
 
-
 # How to's
 
 ## Add new icons from `.svg` files
@@ -135,53 +144,49 @@ grauity$: git submodule update --remote --merge
 
 To add a new font icon, add your `.svg` files for the new icon in the [./iconland/seeds/](iconland/seeds) directory in the [iconland](./iconland) submodule.
 
-
 #### 3. Optimize & Generate new font files
 
 ```bash
 grauity$: npm run build-icons:optimize
 grauity$: npm run build-icons:generate
 ```
-*Alternatively*, run the command
+
+_Alternatively_, run the command
+
 ```bash
 grauity$: npm run build-icons
 ```
 
 Font files will be created in [ui/fonts](ui/fonts) folder.
 
-
 ## Use theming in your React app
 
 Without theming, only foundational (theme agnostic) CSS variables (found here: [constantGlobalStyle](ui/themes/GlobalStyle.ts)) will be provided.
 
 To enable theming, wrap your components with `GrauityThemeProvider`:
+
 ```js
 import { GrauityThemeProvider } from '@newtonschool/grauity';
 
 const App = ({ children, ...props }) => {
-  return (
-    <GrauityThemeProvider>
-      {children}
-    </GrauityThemeProvider>
-  )
+    return <GrauityThemeProvider>{children}</GrauityThemeProvider>;
 };
 
 export default App;
 ```
 
-
 Theming can be controlled by providing different class names to your root/local DOM elements, like the body element.
 
-  - Add class `grauity-theme-light` to use the light theme
-  - Add class `grauity-theme-dark` to use the dark theme
+-   Add class `grauity-theme-light` to use the light theme
+-   Add class `grauity-theme-dark` to use the dark theme
 
 Now, you will be provided with the foundational as well as themed CSS variables, whose
 value will change depending on the theme applied.
 
 These themed CSS variables can be found here:
-  - [Dark theme color mapping](./ui/themes/darkThemeConstants.ts)
-  - [Light theme color mapping](./ui/themes/lightThemeConstants.ts)
 
+-   [Dark theme color mapping](./ui/themes/darkThemeConstants.ts)
+-   [Light theme color mapping](./ui/themes/lightThemeConstants.ts)
 
 ## Use icons in your React app
 
