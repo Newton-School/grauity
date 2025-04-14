@@ -90,7 +90,8 @@
         "extract-typings": "tsc --project tsconfig.types.json",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build -o docs && echo 'grauity.newtonschool.co' > docs/CNAME",
-        "test": "jest"
+        "test": "jest",
+        "test:coverage": "jest --coverage"
     },
     "pre-commit": "lint:staged",
     "lint-staged": {
