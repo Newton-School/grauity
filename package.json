@@ -10,30 +10,8 @@
         "React",
         "CSS"
     ],
-    "homepage": "https://github.com/Newton-School/grauity#readme",
+    "homepage": "https://grauity.newtonschool.co/",
     "author": "Newton School",
-    "contributors": [
-        {
-            "name": "Praduman Goyal",
-            "email": "goyal.praduman611@gmail.com",
-            "homepage": "https://github.com/pradumangoyal"
-        },
-        {
-            "name": "Mihir Sachdeva",
-            "email": "mihirsachdeva.ms@gmail.com",
-            "homepage": "https://github.com/mihirsachdeva"
-        },
-        {
-            "name": "Saksham Bindal",
-            "email": "saksham.bindal2004@gmail.com",
-            "homepage": "https://github.com/cybersaksham"
-        },
-        {
-            "name": "Shubhaam Tiwary",
-            "email": "shubhaamtiwary@gmail.com",
-            "homepage": "https://github.com/ShubhaamTiwary"
-        }
-    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Newton-School/grauity.git"
@@ -90,7 +68,8 @@
         "extract-typings": "tsc --project tsconfig.types.json",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build -o docs && echo 'grauity.newtonschool.co' > docs/CNAME",
-        "test": "jest"
+        "test": "jest",
+        "test:coverage": "jest --coverage"
     },
     "pre-commit": "lint:staged",
     "lint-staged": {
