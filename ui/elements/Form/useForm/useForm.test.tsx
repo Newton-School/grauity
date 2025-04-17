@@ -244,6 +244,27 @@ describe('useForm', () => {
                 consent: [],
             })
         );
+
+        fireEvent.click(hobbiesDropdown);
+        fireEvent.click(screen.getByText('Reading'));
+        fireEvent.click(screen.getByText('Drawing'));
+        fireEvent.mouseDown(document.body);
+
+        fireEvent.click(professionDropdown);
+        fireEvent.click(screen.getByText('Manager'));
+
+        expect(screen.getByTestId('form-data')).toHaveTextContent(
+            JSON.stringify({
+                first_name: '',
+                last_name: '',
+                hobbies: [
+                    formFields.hobbies.rendererProps.items[1],
+                    formFields.hobbies.rendererProps.items[2],
+                ],
+                profession: formFields.profession.rendererProps.items[2],
+                consent: [],
+            })
+        );
     });
     it('Should change checkbox fields', () => {
         render(<TestForm formConfig={formConfig} />);

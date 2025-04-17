@@ -111,13 +111,14 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
 
         const handleClickOption = (clickedValue: BaseItemOptionProps) => {
             if (multiple) {
-                const newSelectedOptions = selectedOptions.includes(
-                    clickedValue
-                )
-                    ? selectedOptions.filter(
-                          (option) => option !== clickedValue
-                      )
-                    : [...selectedOptions, clickedValue];
+                const newSelectedOptions =
+                    selectedOptions.findIndex(
+                        (option) => option.value === clickedValue.value
+                    ) !== -1
+                        ? selectedOptions.filter(
+                              (option) => option.value !== clickedValue.value
+                          )
+                        : [...selectedOptions, clickedValue];
                 setSelectedOptions(newSelectedOptions);
             } else {
                 setSelectedOptions([clickedValue]);
