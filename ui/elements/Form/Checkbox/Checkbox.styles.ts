@@ -41,6 +41,7 @@ export const StyledCheckboxButton = styled.button<StyledCheckboxInputProps>`
         if ($size === 'small') {
             return css`
                 width: 12px;
+                min-width: 12px;
                 height: 12px;
                 border-width: 1.25px;
                 border-radius: 3px;
@@ -49,12 +50,14 @@ export const StyledCheckboxButton = styled.button<StyledCheckboxInputProps>`
         if ($size === 'large') {
             return css`
                 width: 20px;
+                min-width: 20px;
                 height: 20px;
                 border-width: 1.5px;
             `;
         }
         return css`
             width: 16px;
+            min-width: 16px;
             height: 16px;
             border-width: 1.4px;
             border-radius: 4px;
