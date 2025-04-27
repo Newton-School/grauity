@@ -12,4 +12,8 @@ export const StyledFormRow = styled.div<StyledFormRowProps>`
         display: flex;
         flex-direction: column;
     `}
+
+    ${({ $width }) => $width && css`
+        width: ${$width};
+    `}
 `;

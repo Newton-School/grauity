@@ -20,9 +20,16 @@ export interface FormRowProps {
      * @default false
      */
     column?: boolean;
+
+    /**
+     * The width of the form row.
+     * @default '100%'
+     */
+    width?: string;
 }
 
 export interface StyledFormRowProps extends StyledDivProps {
     $gridTemplateColumns: string;
     $column: boolean;
+    $width: string;
 }
