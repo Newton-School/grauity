@@ -293,4 +293,42 @@ describe('Dropdown', () => {
 
         expect(onChange).toHaveBeenCalledWith(items[0]);
     });
+
+    it('When disabled, it should not show the dropdown when DEFAULT trigger is clicked', () => {
+        const onChange = jest.fn();
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                placeholder="Select"
+                items={items}
+                onChange={onChange}
+                isDisabled
+            />
+        );
+
+        // Should not show the dropdown menu
+        fireEvent.click(screen.getByText('Select'));
+        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+    });
+
+    it('When disabled, it should not show the dropdown menu when CUSTOM trigger is clicked', () => {
+        const onChange = jest.fn();
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                items={items}
+                trigger={<button type="button">Custom Trigger</button>}
+                onChange={onChange}
+                isDisabled
+            />
+        );
+
+        // Should not show the dropdown menu
+        fireEvent.click(screen.getByText('Custom Trigger'));
+        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+    });
 });
