@@ -55,7 +55,11 @@ const DropdownTrigger = forwardRef<
         return (
             <StyledCustomTrigger
                 ref={ref as React.Ref<HTMLDivElement>}
-                onClick={() => onTriggerClick()}
+                onClick={() => {
+                    if (!isDisabled) {
+                        onTriggerClick();
+                    }
+                }}
             >
                 {trigger}
             </StyledCustomTrigger>
@@ -83,6 +87,7 @@ const DropdownTrigger = forwardRef<
                 fullWidth
                 onClick={() => onTriggerClick()}
                 showAnimationOnClick={false}
+                disabled={isDisabled}
             >
                 <span>{getCurrentValue()}</span>
                 <Icon name="chevron-down" color="currentColor" />
