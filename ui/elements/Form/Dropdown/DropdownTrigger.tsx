@@ -83,6 +83,7 @@ const DropdownTrigger = forwardRef<
                 fullWidth
                 onClick={() => onTriggerClick()}
                 showAnimationOnClick={false}
+                disabled={isDisabled}
             >
                 <span>{getCurrentValue()}</span>
                 <Icon name="chevron-down" color="currentColor" />
