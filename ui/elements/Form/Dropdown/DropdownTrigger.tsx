@@ -55,7 +55,11 @@ const DropdownTrigger = forwardRef<
         return (
             <StyledCustomTrigger
                 ref={ref as React.Ref<HTMLDivElement>}
-                onClick={() => onTriggerClick()}
+                onClick={() => {
+                    if (!isDisabled) {
+                        onTriggerClick();
+                    }
+                }}
             >
                 {trigger}
             </StyledCustomTrigger>
