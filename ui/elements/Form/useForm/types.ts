@@ -186,10 +186,7 @@ export interface UseFormProps {
      */
     onSubmit?: (data: FormState) => void;
 
-    renderCustomComponent?: (
-        type: string,
-        props: FormFieldProps
-    ) => React.ReactNode;
+    renderCustomComponent?: Record<string, React.ComponentType<FormFieldProps>>;
 }
 
 export interface UseFormReturnProps {
@@ -248,10 +245,7 @@ export interface FormRendererProps {
     shouldShowSubmitButton?: boolean;
     submitButtonProps?: ButtonProps;
     setFormFieldRef?: (name: FieldName, element: any) => void;
-    renderCustomComponent?: (
-        type: string,
-        props: FormFieldProps
-    ) => React.ReactNode;
+    renderCustomComponent?: Record<string, React.ComponentType<FormFieldProps>>;
 }
 
 // FormField
@@ -262,10 +256,7 @@ export interface FormFieldProps {
     handleChange: (props: HandleFormFieldChangeProps) => void;
     whenToValidate?: FormValidationType;
     handleValidate: (props: HandleFormFieldChangeProps) => void;
-    renderCustomComponent?: (
-        type: string,
-        props: FormFieldProps
-    ) => React.ReactNode;
+    renderCustomComponent?: Record<string, React.ComponentType<FormFieldProps>>;
 }
 
 // Utility Functions

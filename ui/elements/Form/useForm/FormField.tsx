@@ -40,11 +40,9 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
     let rendererComponent = null;
 
     if (formField.renderer && formField.renderer !== '') {
-        if (typeof renderCustomComponent === 'function') {
-            rendererComponent = renderCustomComponent(
-                formField.renderer,
-                props
-            );
+        const Component = renderCustomComponent?.[formField.renderer];
+        if (Component) {
+            rendererComponent = <Component {...rendererProps} />;
         }
     } else {
         switch (formField.type) {
