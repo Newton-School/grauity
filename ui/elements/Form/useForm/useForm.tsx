@@ -50,6 +50,7 @@ const useForm = ({
     shouldShowSubmitButton = true,
     submitButtonProps = {},
     onSubmit = () => {},
+    renderCustomComponent,
 }: UseFormProps): UseFormReturnProps => {
     const {
         fieldNames = [],
@@ -145,6 +146,7 @@ const useForm = ({
             shouldShowSubmitButton={shouldShowSubmitButton}
             submitButtonProps={submitButtonProps}
             setFormFieldRef={setFormFieldRef}
+            renderCustomComponent={renderCustomComponent}
         />
     );
 

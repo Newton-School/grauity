@@ -37,7 +37,7 @@ export interface ConditionalProp {
 
 export interface FormFieldBaseProps {
     type: FormFieldType;
-    renderer?: React.ComponentType<FormFieldProps>;
+    renderer?: string;
     rendererProps?: any;
     conditionalProps?: ConditionalProp[];
     configProps?: any;
@@ -185,6 +185,11 @@ export interface UseFormProps {
      * @param data - The form data to be submitted.
      */
     onSubmit?: (data: FormState) => void;
+
+    renderCustomComponent?: (
+        type: string,
+        props: FormFieldProps
+    ) => React.ReactNode;
 }
 
 export interface UseFormReturnProps {
@@ -243,6 +248,10 @@ export interface FormRendererProps {
     shouldShowSubmitButton?: boolean;
     submitButtonProps?: ButtonProps;
     setFormFieldRef?: (name: FieldName, element: any) => void;
+    renderCustomComponent?: (
+        type: string,
+        props: FormFieldProps
+    ) => React.ReactNode;
 }
 
 // FormField
@@ -253,6 +262,10 @@ export interface FormFieldProps {
     handleChange: (props: HandleFormFieldChangeProps) => void;
     whenToValidate?: FormValidationType;
     handleValidate: (props: HandleFormFieldChangeProps) => void;
+    renderCustomComponent?: (
+        type: string,
+        props: FormFieldProps
+    ) => React.ReactNode;
 }
 
 // Utility Functions
