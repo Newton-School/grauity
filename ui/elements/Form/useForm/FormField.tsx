@@ -39,7 +39,8 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
     let rendererComponent = null;
 
     if (typeof formField.renderer === 'function') {
-        rendererComponent = formField.renderer(props);
+        const RendererComponent = formField.renderer;
+        rendererComponent = <RendererComponent {...props} />;
     } else {
         switch (formField.type) {
             case FormFieldType.TEXTFIELD:

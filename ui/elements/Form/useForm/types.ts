@@ -37,7 +37,7 @@ export interface ConditionalProp {
 
 export interface FormFieldBaseProps {
     type: FormFieldType;
-    renderer?: (props: FormFieldProps) => React.ReactNode;
+    renderer?: React.ComponentType<FormFieldProps>;
     rendererProps?: any;
     conditionalProps?: ConditionalProp[];
     configProps?: any;
