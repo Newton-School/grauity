@@ -21,6 +21,7 @@ const FormRenderer = (props: FormRendererProps) => {
         shouldShowSubmitButton = true,
         submitButtonProps = {},
         setFormFieldRef = () => {},
+        renderCustomComponent,
     } = props;
 
     return (
@@ -55,6 +56,7 @@ const FormRenderer = (props: FormRendererProps) => {
                                 handleChange={handleChange}
                                 whenToValidate={whenToValidate}
                                 handleValidate={handleValidate}
+                                renderCustomComponent={renderCustomComponent}
                             />
                         ))}
                     </FormRow>
