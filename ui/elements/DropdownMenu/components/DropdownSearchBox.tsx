@@ -32,6 +32,7 @@ const DropdownSearchBox = ({
         return null;
     }
 
+    // Handle only navigation keys at the container level
     const handleContainerKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
         if (['ArrowUp', 'ArrowDown', 'Enter', 'Escape', 'Tab'].includes(event.key)) {
             onKeyDown(event as unknown as React.KeyboardEvent<HTMLInputElement>);
