@@ -124,4 +124,18 @@ describe('Modal', () => {
         fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
         expect(onCloseFn).toHaveBeenCalledTimes(0);
     });
+
+    it('attaches class when class is passed in className prop', () => {
+        render(
+            <Modal
+                {...defaultProps}
+                isOpen
+                className="jest-test-modal-wrapper"
+                showCloseButton
+            />
+        );
+        expect(screen.getByTestId('testid-modalwrapper')).toHaveClass(
+            'jest-test-modal-wrapper'
+        );
+    });
 });
