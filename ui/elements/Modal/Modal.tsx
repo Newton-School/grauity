@@ -57,6 +57,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         shouldFocusOnFirstElement = true,
         shouldDisableScroll = true,
         overflow = 'visible',
+        className,
     } = props;
 
     const modalRef = useRef<HTMLDivElement>(null);
@@ -115,6 +116,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                     shouldBlurOverlay={blurBackground}
                     shouldCenterContent
                     data-testid="testid-modalwrapper"
+                    className={className}
                     animationDuration={0.3}
                     shouldFocusOnFirstElement={shouldFocusOnFirstElement}
                 >
