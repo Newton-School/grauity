@@ -232,6 +232,11 @@ export interface ModalProps {
      * Border for the modal. By default, it is `1px solid var(--border, #e1e5ea)`
      * */
     border?: string;
+
+    /**
+     * Additional class name to be passed to the Modal.
+     */
+    className?: string;
 }
 
 export interface MultiStepModalProps {
