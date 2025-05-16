@@ -123,17 +123,17 @@ export interface AlertProps {
 }
 
 export interface AlertContainerProps {
-    position: string;
-    top: string;
-    bottom: string;
-    left: string;
-    right: string;
-    backgroundColor: string;
-    borderColor: string;
+    $position: string;
+    $top: string;
+    $bottom: string;
+    $left: string;
+    $right: string;
+    $backgroundColor: string;
+    $borderColor: string;
     ref: React.Ref<HTMLDivElement>;
     role: string;
     children: React.ReactNode;
-    maxWidth: string;
+    $maxWidth: string;
 }
 
 export interface AlertBodyProps {

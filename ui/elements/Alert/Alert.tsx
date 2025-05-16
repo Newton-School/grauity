@@ -48,18 +48,18 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(({
 
     return (
         <StyledAlertContainer
-            position={position}
-            top={top}
-            bottom={bottom}
-            left={left}
-            right={right}
-            backgroundColor={backgroundColor}
-            borderColor={borderColor}
+            $position={position}
+            $top={top}
+            $bottom={bottom}
+            $left={left}
+            $right={right}
+            $backgroundColor={backgroundColor}
+            $borderColor={borderColor}
             ref={ref}
             role="alert"
             aria-labelledby={`alert-title-${id}`}
             aria-describedby={`alert-description-${id}`}
-            maxWidth={maxWidth}
+            $maxWidth={maxWidth}
         >
             {iconName && (
                 <Icon
