@@ -10,14 +10,19 @@ import {
 export const StyledAlertContainer = styled.div<AlertContainerProps>`
     display: flex;
     width: 100%;
-    ${({ maxWidth }) => maxWidth && `max-width: ${maxWidth};`}
+    ${({ $maxWidth }) => $maxWidth && `max-width: ${$maxWidth};`}
     min-height: var(--spacing-48px, 48px);
     align-items: flex-start;
     border-radius: var(--spacing-8px, 8px);
-    border: var(--spacing-1px, 1px) solid ${({ borderColor }) => borderColor};
-    background: ${({ backgroundColor }) => backgroundColor};
+    border: var(--spacing-1px, 1px) solid ${({ $borderColor }) => $borderColor};
+    background: ${({ $backgroundColor }) => $backgroundColor};
     padding: var(--spacing-12px, 12px);
     gap: var(--spacing-20px, 20px);
+    ${({ $position }) => $position && `position: ${$position};`}
+    ${({ $top }) => $top && `top: ${$top};`}
+    ${({ $bottom }) => $bottom && `bottom: ${$bottom};`}
+    ${({ $left }) => $left && `left: ${$left};`}
+    ${({ $right }) => $right && `right: ${$right};`}
 `;
 
 export const StyledAlertBody = styled.div<AlertBodyProps>`
