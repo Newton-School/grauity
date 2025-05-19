@@ -157,10 +157,11 @@ const formConfig: NSFormConfig = {
 - `validate` is a function to validate the form.
 - `submit` is a function to submit the form externally if `shouldShowSubmitButton` is `false`.
 - `changeFormData` is a function to change current state of the form externally.
+- `error` is an object containing error messages for each field. Keys will be field names and value will error message.
 
 ```typescript
 const MyForm = () => {
-    const { formData, formRenderer, validate, submit, changeFormData } = useNSForm({
+    const { formData, formRenderer, validate, submit, changeFormData, error } = useNSForm({
         formConfig,
         rowStyles = {},
         whenToValidate = null,

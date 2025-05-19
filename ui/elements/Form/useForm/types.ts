@@ -221,6 +221,12 @@ export interface UseFormReturnProps {
      * @param newData - The new form data to update.
      */
     changeFormData: (newData: FormState) => void;
+
+    /**
+     * The current validation errors for the form fields.
+     * - This object contains the field names as keys and the error messages as values.
+     */
+    errors: FormErrors;
 }
 
 export interface HandleFormFieldChangeProps {
