@@ -11,6 +11,8 @@ import {
 } from './Carousel.styles';
 import { CarouselProps } from './types';
 
+const SWIPE_THRESHOLD = 50; 
+
 const Carousel = (props: CarouselProps) => {
     const {
         items = [],
@@ -78,10 +80,9 @@ const Carousel = (props: CarouselProps) => {
     };
 
     const handleSwipe = () => {
-        const swipeThreshold = 50; // Minimum distance required for a swipe
         const swipeDistance = touchEndX.current - touchStartX.current;
 
-        if (Math.abs(swipeDistance) < swipeThreshold) return;
+        if (Math.abs(swipeDistance) < SWIPE_THRESHOLD) return;
 
         if (swipeDistance > 0 && !leftButtonDisabled) {
             // Swipe right - show previous
@@ -173,11 +174,21 @@ const Carousel = (props: CarouselProps) => {
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
             >
-                {items.map((item, index) => (
-                    <StyledCarouselItem key={index} $fullWidth={fullWidthItems}>
-                        {item}
-                    </StyledCarouselItem>
-                ))}
+                {items.map((item, index) => {
+                    // Generate a unique key based on item content and index
+                    const itemKey = React.isValidElement(item) && item.key 
+                        ? item.key 
+                        : `carousel-item-${index}`;
+                    
+                    return (
+                        <StyledCarouselItem 
+                            key={itemKey} 
+                            $fullWidth={fullWidthItems}
+                        >
+                            {item}
+                        </StyledCarouselItem>
+                    );
+                })}
             </StyledCarouselItemsContainer>
         </StyledCarouselContainer>
     );
