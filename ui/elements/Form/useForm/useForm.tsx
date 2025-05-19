@@ -32,6 +32,7 @@ import { checkFieldValidation, focusOnFirstErrorField } from './utils';
  * - `validate`: Function to validate form fields.
  * - `submit`: Function to submit the form.
  * - `changeFormData`: Function to update form data externally.
+ * - `errors`: The current validation errors for the form fields.
  *
  * @description
  * This hook provides the following functionalities:
@@ -154,6 +155,7 @@ const useForm = ({
         validate,
         submit,
         changeFormData,
+        errors,
     };
 };
 
