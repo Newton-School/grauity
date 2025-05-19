@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { StyledDivProps } from '../../../common/types';
 import { IconProps } from '../Icon/types';
 
 /**
@@ -25,7 +26,7 @@ export interface IconGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 /**
  * Props for the styled IconGroup container.
  */
-export interface StyledIconGroupProps {
+export interface StyledIconGroupProps extends StyledDivProps {
     /** Whether the icons are laid out horizontally */
     horizontal: boolean;
     /** Spacing between icons */
