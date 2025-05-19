@@ -6,7 +6,12 @@ import React from 'react';
 import UnifiedCalendar, { UnifiedCalendarProps } from './UnifiedCalendar';
 
 const renderEvent = (event: any) => <div>{event.title}</div>;
-
+beforeAll(() => {
+    window.scrollTo = jest.fn();
+  
+    // Also mock scrollTo for any HTML elements
+    Element.prototype.scrollTo = jest.fn();
+});
 const defaultProps: UnifiedCalendarProps<any> = {
     events: [],
     eventRenderer: renderEvent,
@@ -16,6 +21,7 @@ const defaultProps: UnifiedCalendarProps<any> = {
     loading: false,
     onViewChange: jest.fn(),
 };
+
 
 describe('UnifiedCalendar', () => {
     it('renders UnifiedCalendar without crashing', async () => {

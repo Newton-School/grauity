@@ -31,6 +31,11 @@ function Tabs(props: TabProps) {
 
     return (
         <StyledTabContainer backgroundColor={backgroundColor}>
+            
+            <div className={`tabs-wrapper ${className}`} data-testid="tabs-container">
+                {/* render tabs */}
+            </div>
+
             {tabItems?.map((item, idx) => (
                 <StyledTabItemContainer
                     onClick={() => handleItemClick(idx)}

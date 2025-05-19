@@ -353,8 +353,18 @@ describe('DropdownMenu', () => {
     });
       
     it('applies custom className to DropdownMenuHeader', () => {
-        render(<DropdownMenuHeader title="Header" className="test-header" showHeader={false} overline='' subtext='' customHeader='' />);
-        const header = screen.getByText('Header');
+        render(
+            <DropdownMenuHeader
+                data-testid="dropdown-header"
+                title="Header"
+                className="test-header"
+                showHeader
+                overline=""
+                subtext=""
+                customHeader={undefined}
+            />
+        );
+        const header = screen.getByTestId('dropdown-header');
         expect(header).toHaveClass('test-header');
     });
       
@@ -372,8 +382,9 @@ describe('DropdownMenu', () => {
             />
         );
       
-        const footer = screen.getByText('Clear All').parentElement;
-        expect(footer).toHaveClass('test-footer');
+        const footerButton = screen.getByText('Clear All');
+        const wrapper = footerButton.closest('.test-footer');
+        expect(wrapper).toBeInTheDocument();
     });
       
     it('applies custom className to DropdownMenuSubHeader', () => {

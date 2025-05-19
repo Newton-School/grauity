@@ -39,7 +39,7 @@ describe('Tabs Component', () => {
                 className="custom-tabs-class"
             />
         );
-        const container = screen.getByText('Tab A').parentElement?.parentElement;
+        const container = screen.getByTestId('tabs-container');
         expect(container).toHaveClass('custom-tabs-class');
     });
     

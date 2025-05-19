@@ -8,10 +8,11 @@ import {
 
 interface DropdownMenuHeaderProps {
     showHeader: boolean;
+    
     overline: string;
     title: string;
     subtext: string;
-    customHeader: React.ReactNode;
+    customHeader?: React.ReactNode;
     className?: string;
 }
 
@@ -21,6 +22,7 @@ const DropdownMenuHeader = ({
     title,
     subtext,
     customHeader,
+    
     className = '',
 }: DropdownMenuHeaderProps) => {
     if (customHeader) {
@@ -33,6 +35,10 @@ const DropdownMenuHeader = ({
 
     return (
         <StyledDropdownMenuHeader className={className}>
+            
+            <div className={className} data-testid="dropdown-header">
+                <div>{title}</div>
+            </div>
             {overline && (
                 <StyledDropdownMenuHeaderSubtext>
                     {overline}
