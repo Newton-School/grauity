@@ -23,7 +23,7 @@ const IconGroup: React.FC<IconGroupProps> = ({
     const renderIcons = () => {
         if (icons && icons.length > 0) {
             return icons.map((iconProps: IconGroupProps['icons'][0], index: number) => {
-                const { key, ...restProps } = iconProps as any;
+                const { key, ...restProps } = iconProps;
                 return (
                     <Icon
                         key={key || index}
