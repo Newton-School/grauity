@@ -33,6 +33,8 @@ const Carousel = (props: CarouselProps) => {
 
     const headerRef = useRef<HTMLDivElement | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
+    const touchStartX = useRef<number>(0);
+    const touchEndX = useRef<number>(0);
 
     const [translateX, setTranslateX] = useState(0);
     const [leftButtonDisabled, setLeftButtonDisabled] = useState(false);
@@ -63,6 +65,30 @@ const Carousel = (props: CarouselProps) => {
             );
             setTranslateX(newLeft);
             onRightClick();
+        }
+    };
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        touchEndX.current = e.changedTouches[0].clientX;
+        handleSwipe();
+    };
+
+    const handleSwipe = () => {
+        const swipeThreshold = 50; // Minimum distance required for a swipe
+        const swipeDistance = touchEndX.current - touchStartX.current;
+
+        if (Math.abs(swipeDistance) < swipeThreshold) return;
+
+        if (swipeDistance > 0 && !leftButtonDisabled) {
+            // Swipe right - show previous
+            handleControlClick('left');
+        } else if (swipeDistance < 0 && !rightButtonDisabled) {
+            // Swipe left - show next
+            handleControlClick('right');
         }
     };
 
@@ -144,9 +170,11 @@ const Carousel = (props: CarouselProps) => {
                 ref={containerRef}
                 $gap={gap}
                 $translateX={translateX}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
             >
-                {items.map((item) => (
-                    <StyledCarouselItem $fullWidth={fullWidthItems}>
+                {items.map((item, index) => (
+                    <StyledCarouselItem key={index} $fullWidth={fullWidthItems}>
                         {item}
                     </StyledCarouselItem>
                 ))}
