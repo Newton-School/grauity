@@ -28,6 +28,7 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             className,
             shouldDisableScroll = true,
             shouldFocusOnFirstElement = true,
+
         } = props;
 
         const [startY, setStartY] = useState<number | null>(null);
@@ -106,6 +107,7 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
                             $fullScreen={fullScreen}
                             $translateY={translateY}
                             role="dialog"
+                            className={className}
                             {...motionProps}
                         >
                             {(showDragHandle || closeOnPullDown) && (

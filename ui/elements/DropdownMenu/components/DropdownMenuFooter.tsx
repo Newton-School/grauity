@@ -11,6 +11,7 @@ interface DropdownMenuFooterProps {
     applyButtonText: string;
     handleClearAll: () => void;
     handleApply: () => void;
+    className?: string;
 }
 
 const DropdownMenuFooter = ({
@@ -21,13 +22,14 @@ const DropdownMenuFooter = ({
     applyButtonText,
     handleClearAll,
     handleApply,
+    className = '',
 }: DropdownMenuFooterProps) => {
     if (!showActionButtons) {
         return null;
     }
 
     return (
-        <StyledDropdownMenuFooter>
+        <StyledDropdownMenuFooter className={className}>
             <Button
                 size="small"
                 variant="primary"

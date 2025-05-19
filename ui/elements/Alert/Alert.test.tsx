@@ -78,4 +78,13 @@ describe('Alert', () => {
         fireEvent.click(screen.getByText('Button 1'));
         expect(actionButtons[0].onClick).toHaveBeenCalledTimes(1);
     });
+
+    it('applies custom className to the container', () => {
+        render(<Alert {...defaultProps} className="test-alert-class" />);
+        const alertElement = screen.getByRole('alert');
+        expect(alertElement).toHaveClass('test-alert-class');
+    });
+    
 });
+
+

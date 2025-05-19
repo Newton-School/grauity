@@ -8,6 +8,11 @@ import DropdownMenu, {
     BaseItemType,
     DropdownMenuProps,
 } from '.';
+import DropdownMenuFooter from './components/DropdownMenuFooter';
+import DropdownMenuHeader from './components/DropdownMenuHeader';
+import DropdownMenuOption from './components/DropdownMenuOption';
+import DropdownMenuSubHeader from './components/DropdownMenuSubHeader';
+import DropdownSearchBox from './components/DropdownSearchBox';
 
 const getDummyOptions = (count: number): BaseItemOptionProps[] => {
     return Array.from({ length: count }, (_, i) => ({
@@ -328,5 +333,76 @@ describe('DropdownMenu', () => {
         fireEvent.keyDown(options[1], { key: 'Enter' });
         expect(options[0]).toHaveAttribute('aria-selected', 'false');
         expect(options[1]).toHaveAttribute('aria-selected', 'true');
+    });
+
+    it('applies custom className to DropdownMenuOption', () => {
+        render(
+            <DropdownMenuOption
+                label="Option"
+                value="value"
+                multiple={false}
+                selected={false}
+                disabled={false}
+                onClick={() => { } }
+                onKeyDown={() => { } }
+                optionRef={() => { } }
+                className="test-option" type={BaseItemType.OPTION}            />
+        );
+        const option = screen.getByRole('option');
+        expect(option).toHaveClass('test-option');
+    });
+      
+    it('applies custom className to DropdownMenuHeader', () => {
+        render(<DropdownMenuHeader title="Header" className="test-header" showHeader={false} overline='' subtext='' customHeader='' />);
+        const header = screen.getByText('Header');
+        expect(header).toHaveClass('test-header');
+    });
+      
+    it('applies custom className to DropdownMenuFooter', () => {
+        render(
+            <DropdownMenuFooter
+                multiple
+                showActionButtons
+                showClearAllButton
+                clearAllButtonText="Clear All"
+                applyButtonText="Apply"
+                handleApply={() => {}}
+                handleClearAll={() => {}}
+                className="test-footer"
+            />
+        );
+      
+        const footer = screen.getByText('Clear All').parentElement;
+        expect(footer).toHaveClass('test-footer');
+    });
+      
+    it('applies custom className to DropdownMenuSubHeader', () => {
+        render(
+            <DropdownMenuSubHeader
+                type={BaseItemType.SUB_HEADER} 
+                title="SubHeader"
+                className="test-subheader"
+                itemRef={() => {}}
+                onKeyDown={() => {}}
+            />
+        );
+        const subheader = screen.getByText('SubHeader');
+        expect(subheader).toHaveClass('test-subheader');
+    });
+      
+    it('applies custom className to DropdownSearchBox', () => {
+        render(
+            <DropdownSearchBox
+                searchable
+                searchPlaceholder="Search..."
+                searchIcon="search"
+                onSearchInputChange={() => {}}
+                onKeyDown={() => {}}
+                searchRef={React.createRef()}
+                className="test-searchbox"
+            />
+        );
+        const searchbox = screen.getByRole('searchbox');
+        expect(searchbox).toHaveClass('test-searchbox');
     });
 });

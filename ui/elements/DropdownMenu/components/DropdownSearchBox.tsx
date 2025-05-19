@@ -12,6 +12,7 @@ interface DropdownSearchBoxProps {
     onSearchInputChange: (value: string) => void;
     onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     searchRef: React.RefObject<HTMLInputElement>;
+    className?: string;
 }
 
 const DropdownSearchBox = ({
@@ -21,6 +22,7 @@ const DropdownSearchBox = ({
     onSearchInputChange,
     onKeyDown,
     searchRef,
+    className = '',
 }: DropdownSearchBoxProps) => {
     const [searchValue, setSearchValue] = useState('');
 
@@ -40,13 +42,14 @@ const DropdownSearchBox = ({
     };
 
     return (
-        <StyledDropdownMenuSearchBox role="searchbox" onKeyDown={handleContainerKeyDown}>
+        <StyledDropdownMenuSearchBox role="searchbox" onKeyDown={handleContainerKeyDown} className={className}>
             <TextField
                 ref={searchRef}
                 name="dropdown-search-box"
                 value={searchValue}
                 onChange={(event) => setSearchValue(event.target.value)}
                 placeholder={searchPlaceholder}
+                
                 adornments={{
                     start: <Icon name={searchIcon} />,
                 }}

@@ -38,6 +38,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(({
     actionButtons = [],
     inlineButtons = false,
     maxWidth = '440px',
+    className = '',
 }, ref) => {
     const id = useId();
     const iconName = getAlertIconName(icon, variant);
@@ -60,6 +61,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(({
             aria-labelledby={`alert-title-${id}`}
             aria-describedby={`alert-description-${id}`}
             $maxWidth={maxWidth}
+            className={className}
         >
             {iconName && (
                 <Icon

@@ -35,4 +35,10 @@ describe('BottomSheet Component', () => {
         fireEvent.click(screen.getByText('Open BottomSheet'));
         expect(screen.getByRole('dialog')).toBeInTheDocument();
     });
+
+    it('applies custom className to the bottom sheet', () => {
+        render(<BottomSheet isOpen className="my-bottomsheet" />);
+        const sheet = screen.getByRole('dialog');
+        expect(sheet).toHaveClass('my-bottomsheet');
+    });
 });
