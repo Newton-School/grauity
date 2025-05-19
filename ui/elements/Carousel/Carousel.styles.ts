@@ -49,9 +49,13 @@ export const StyledCarouselItemsContainer = styled.div<StyledCarouselItemsContai
     width: 100%;
     display: flex;
     gap: ${(props) => props.$gap}px;
+    overflow-x: auto;
     scroll-behavior: smooth;
-    transform: translateX(${(props) => props.$translateX}px);
-    transition: transform 0.5s ease-in-out;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 export const StyledCarouselItem = styled.div<StyledCarouselItemProps>`
     flex: 0 0 auto;

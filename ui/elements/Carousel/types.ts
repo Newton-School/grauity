@@ -117,7 +117,7 @@ export interface StyledCarouselControlsProps extends StyledDivProps {
 
 export interface StyledCarouselItemsContainerProps extends StyledDivProps {
     $gap: number;
-    $translateX: number;
+    // $translateX: number;
 }
 
 export interface StyledCarouselItemProps extends StyledDivProps {
