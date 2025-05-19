@@ -5,6 +5,7 @@ import React, {
     useImperativeHandle,
     useMemo,
     useRef,
+    useEffect,
 } from 'react';
 
 import { useDisableBodyScroll, useKeyboardEvent } from '../../../hooks';
@@ -84,6 +85,52 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         keyCodes: ['Escape'],
         config: { shouldDetect: isOpen },
     });
+
+    // Focus trap implementation
+    useEffect(() => {
+        if (!isOpen || !modalRef.current) return;
+
+        const modalNode = modalRef.current;
+        const focusableSelectors =
+            'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable]';
+        const focusableElements = Array.from(
+            modalNode.querySelectorAll<HTMLElement>(focusableSelectors)
+        ).filter((el) => el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement);
+
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    // Shift + Tab
+                    if (document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    }
+                } else {
+                    // Tab
+                    if (document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
+        };
+
+        modalNode.addEventListener('keydown', handleKeyDown);
+
+        // Focus the first element if shouldFocusOnFirstElement is true
+        if (shouldFocusOnFirstElement) {
+            firstElement.focus();
+        }
+
+        return () => {
+            modalNode.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isOpen, shouldFocusOnFirstElement]);
 
     const id = useId();
 
