@@ -1,12 +1,29 @@
 import '@testing-library/jest-dom';
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor  } from '@testing-library/react';
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 
 import SelectDropdown from './SelectDropdown';
 
+beforeAll(() => {
+    // Prevents getBoundingClientRect from throwing
+    Element.prototype.getBoundingClientRect = jest.fn(() => ({
+        width: 100,
+        height: 40,
+        top: 0,
+        left: 0,
+        bottom: 40,
+        right: 100,
+        x: 0,
+        y: 0,
+        toJSON: () => {},
+    }));
+});
 const openDropdown = () => {
-    fireEvent.click(screen.getByRole('button'));
+    act(() => {
+        fireEvent.click(screen.getByRole('button'));
+    });
 };
 
 describe('SelectDropdown Component', () => {
@@ -24,9 +41,10 @@ describe('SelectDropdown Component', () => {
     it('displays all options when clicked', () => {
         render(<SelectDropdown options={options} />);
         openDropdown();
-        options.forEach((option) => {
+        [...options].forEach((option) => {
             expect(screen.getByText(option.label)).toBeInTheDocument();
         });
+          
     });
 
     // Trigger Component
@@ -46,7 +64,7 @@ describe('SelectDropdown Component', () => {
             />
         );
         fireEvent.click(screen.getByText('Trigger Button'));
-        options.forEach((option) => {
+        [...options].forEach((option) => {
             expect(screen.getByText(option.label)).toBeInTheDocument();
         });
     });
@@ -97,14 +115,18 @@ describe('SelectDropdown Component', () => {
         render(<SelectDropdown options={options} />);
         openDropdown();
         fireEvent.click(screen.getByText('Option 1'));
-        await new Promise((r) => setTimeout(r, 3000));
+        await waitFor(() => {
+            expect(screen.queryAllByRole('option')).toHaveLength(0);
+        });
         expect(screen.queryAllByRole('option')).toHaveLength(0);
     }, 5000);
     it('closes the dropdown when clicked outside', async () => {
         render(<SelectDropdown options={options} />);
         openDropdown();
         fireEvent.click(screen.getByTestId('testid-pop-over-wrapper'));
-        await new Promise((r) => setTimeout(r, 3000));
+        await waitFor(() => {
+            expect(screen.queryAllByRole('option')).toHaveLength(0);
+        });
         expect(screen.queryAllByRole('option')).toHaveLength(0);
     }, 5000);
 });

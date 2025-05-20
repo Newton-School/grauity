@@ -34,6 +34,10 @@ export default function PopOver(props: PopOverProps) {
     const calculateOffset = (
         popOverDirection: PopOverDirection
     ): PopOverOffset => {
+        if (!triggerRef.current || !popOverRef.current) {
+            return { top: 0, left: 0 };
+        }
+    
         const triggerRect = triggerRef.current.getBoundingClientRect();
         const popOverRect = popOverRef.current.getBoundingClientRect();
 
@@ -98,6 +102,9 @@ export default function PopOver(props: PopOverProps) {
     };
 
     const handlePositionAdjust = (popOverDirection: PopOverDirection) => {
+
+        if (!triggerRef.current || !popOverRef.current) return;
+        
         const documentRect = document.body.getBoundingClientRect();
         const parent = parentRef?.current || document.body;
         const parentRect = parent.getBoundingClientRect();
