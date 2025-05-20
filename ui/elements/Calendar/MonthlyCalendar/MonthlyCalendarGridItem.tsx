@@ -65,9 +65,17 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
         >
             <DateCircle date={cellDate} />
             {eventsToRender.map((event) => (
-                <React.Fragment key={event?.id}>
+                <div
+                    key={event?.id}
+                    className="truncate max-w-full overflow-hidden whitespace-nowrap text-xs font-medium cursor-pointer"
+                    style={{
+                        lineHeight: '1.2',
+                        position: 'relative',
+                        zIndex: 10,
+                    }}
+                >
                     {eventRenderer(event)}
-                </React.Fragment>
+                </div>
             ))}
             {numberOfEventsToRemove ? (
                 <OverflowIndicator

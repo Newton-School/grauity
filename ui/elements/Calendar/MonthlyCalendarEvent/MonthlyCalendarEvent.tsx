@@ -20,7 +20,10 @@ const MonthlyCalendarEvent = forwardRef<
             <StyledMonthlyCalendarEventText color={eventTimeColor}>
                 {eventTimeString}
             </StyledMonthlyCalendarEventText>
-            <StyledMonthlyCalendarEventTitleText color={eventTitleColor}>
+            <StyledMonthlyCalendarEventTitleText
+                color={eventTitleColor}
+                title={eventTitle}
+            >
                 {eventTitle}
             </StyledMonthlyCalendarEventTitleText>
         </StyledMonthlyCalendarEvent>

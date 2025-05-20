@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 import React, { useEffect, useState } from 'react';
 
+import Tooltip from '../../Tooltip/Tooltip';
 import MonthlyCalendar from '../MonthlyCalendar';
 import { getMonthLabel } from '../utils';
 import WeeklyCalendar from '../WeeklyCalendar';
@@ -49,7 +50,13 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
             return (
                 <MonthlyCalendar
                     events={events}
-                    eventRenderer={(item) => eventRenderer(item, 'monthly')}
+                    eventRenderer={(item) => (
+                        <Tooltip content={(item as unknown as { name: string }).name}>
+                            <div className="truncate text-xs font-medium cursor-pointer">
+                                {eventRenderer(item, 'monthly')}
+                            </div>
+                        </Tooltip>
+                      )}
                     shouldShowMonthControls={false}
                     header={
                         <>
@@ -79,14 +86,15 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
                     loading={loading}
                     {...monthlyCalendarProps}
                     renderDayItem={
-                        typeof monthlyCalendarProps?.renderDayItem ===
-                        'function'
-                            ? (item) =>
-                                  monthlyCalendarProps?.renderDayItem(
-                                      item,
-                                      'monthly'
-                                  )
-                            : null
+                        typeof monthlyCalendarProps?.renderDayItem === 'function'
+                          ? (item) => (
+                              <Tooltip content={(item as unknown as { name: string }).name}>
+                                  <div className="truncate text-xs font-medium cursor-pointer">
+                                      {monthlyCalendarProps.renderDayItem(item, 'monthly')}
+                                  </div>
+                              </Tooltip>
+                            )
+                          : null
                     }
                 />
             );
@@ -94,7 +102,14 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
             return (
                 <WeeklyCalendar
                     events={events}
-                    eventRenderer={(item) => eventRenderer(item, 'weekly')}
+                    eventRenderer={(item) => (
+                        <Tooltip content={(item as unknown as { name: string }).name}>
+                            <div className="truncate text-xs font-medium cursor-pointer">
+                                {eventRenderer(item, 'weekly')}
+                            </div>
+                        </Tooltip>
+                      )}
+                    
                     shouldShowWeekControls={false}
                     header={
                         <>
