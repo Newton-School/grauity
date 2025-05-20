@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 
 import { MultiStepModalProps } from '../types';
@@ -53,31 +53,44 @@ describe('MultiStepModal', () => {
         expect(screen.getByAltText('Banner')).toBeInTheDocument();
     });
 
-    it('navigates to the next step when the next button is clicked', () => {
+    it('navigates to the next step when the next button is clicked', async () => {
         render(<MultiStepModal {...defaultProps} />);
         fireEvent.click(screen.getByText('Next'));
-        expect(screen.getByText('Step 2')).toBeInTheDocument();
-        expect(screen.getByText('Description for step 2')).toBeInTheDocument();
-        expect(screen.getByText('Body for step 2')).toBeInTheDocument();
+        await waitFor(()=>{
+            expect(screen.getByText('Step 2')).toBeInTheDocument();
+            expect(screen.getByText('Description for step 2')).toBeInTheDocument();
+            expect(screen.getByText('Body for step 2')).toBeInTheDocument();
+        });
     });
 
-    it('navigates to the previous step when the back button is clicked', () => {
+    it('navigates to the previous step when the back button is clicked', async () => {
         render(<MultiStepModal {...defaultProps} />);
         fireEvent.click(screen.getByText('Next'));
+
+        await waitFor(()=>{
+            expect(screen.getByText('Step 2')).toBeInTheDocument();
+        });
+
         fireEvent.click(screen.getByText('Back'));
-        expect(screen.getByText('Step 1')).toBeInTheDocument();
-        expect(screen.getByText('Description for step 1')).toBeInTheDocument();
-        expect(screen.getByAltText('Banner')).toBeInTheDocument();
+
+        await waitFor(()=>{
+            expect(screen.getByText('Step 1')).toBeInTheDocument();
+            expect(screen.getByText('Description for step 1')).toBeInTheDocument();
+            expect(screen.getByAltText('Banner')).toBeInTheDocument();
+        });
     });
 
-    it('calls onStepChange when the step changes', () => {
+    it('calls onStepChange when the step changes', async () => {
         const onStepChange = jest.fn();
         render(<MultiStepModal {...defaultProps} onStepChange={onStepChange} />);
         fireEvent.click(screen.getByText('Next'));
-        expect(onStepChange).toHaveBeenCalledTimes(1);
+
+        await waitFor(()=>{
+            expect(onStepChange).toHaveBeenCalledTimes(1);
+        });
     });
 
-    it('calls onFinalStep and onClose when the final step button is clicked', () => {
+    it('calls onFinalStep and onClose when the final step button is clicked', async () => {
         const onFinalStep = jest.fn();
         const onClose = jest.fn();
         render(
@@ -88,9 +101,17 @@ describe('MultiStepModal', () => {
             />
         );
         fireEvent.click(screen.getByText('Next'));
+
+        await waitFor(()=>{
+            expect(screen.getByText('Finish')).toBeInTheDocument();
+        });
+
         fireEvent.click(screen.getByText('Finish'));
-        expect(onFinalStep).toHaveBeenCalledTimes(1);
-        expect(onClose).toHaveBeenCalledTimes(1);
+
+        await waitFor(()=>{
+            expect(onFinalStep).toHaveBeenCalledTimes(1);
+            expect(onClose).toHaveBeenCalledTimes(1);
+        });
     });
 
     it('renders the close button when stated', () => {

@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 
 import Accordion from './Accordion';
@@ -19,19 +19,25 @@ describe('Accordion Component', () => {
         );
         expect(screen.getByText('Test Content')).toBeInTheDocument();
     });
-    it('renders the correct children when expanded is false', () => {
+    it('renders the correct children when expanded is false', async () => {
         render(<Accordion title="Test Title">Test Content</Accordion>);
-        expect(screen.queryByText('Test Content')).not.toBeInTheDocument();
+        await waitFor(()=>{
+            expect(screen.queryByText('Test Content')).not.toBeInTheDocument();
+        });
     });
 
     it('toggles expanded state when clicked', async () => {
         render(<Accordion title="Test Title">Test Content</Accordion>);
         const titleElement = screen.getByText('Test Title');
         fireEvent.click(titleElement);
-        expect(screen.getByText('Test Content')).toBeInTheDocument();
+        await waitFor(()=>{
+            expect(screen.getByText('Test Content')).toBeInTheDocument();
+        });
         fireEvent.click(titleElement);
-        await new Promise((r) => setTimeout(r, 3000));
-        expect(screen.queryByText('Test Content')).not.toBeInTheDocument();
+        // await new Promise((r) => setTimeout(r, 3000));
+        await waitFor(()=>{
+            expect(screen.queryByText('Test Content')).not.toBeInTheDocument();
+        });
     }, 5000);
 
     it('calls onToggle when expanded state changes', () => {
