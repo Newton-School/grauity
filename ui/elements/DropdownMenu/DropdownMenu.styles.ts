@@ -70,6 +70,14 @@ export const StyledDropdownMenuBody = styled.div`
     gap: 4px;
 `;
 
+export const StyledDropdownOptionsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow-y: auto;
+    width: 100%;
+`;
+
 export const StyledDropdownMenuSearchBox = styled.div`
     display: flex;
     padding: var(--spacing-sp-5, 8px) 0px var(--spacing-sp-3, 4px) 0px;
