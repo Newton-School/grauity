@@ -5,8 +5,8 @@ import React, {
     useImperativeHandle,
     useMemo,
     useRef,
-    useEffect,
 } from 'react';
+import { FocusTrap } from 'focus-trap-react';
 
 import { useDisableBodyScroll, useKeyboardEvent } from '../../../hooks';
 import { IconButton } from '../Button';
@@ -24,11 +24,6 @@ import {
 import { ModalProps } from './types';
 import { getModalAnimationProps, getShouldRender } from './utils';
 
-/**
- * A modal is used to display content that temporarily blocks
- * interactions with the main view of a site or to get user attention
- * on a specific action or information.
- */
 const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     const {
         isOpen = true,
@@ -86,52 +81,6 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         config: { shouldDetect: isOpen },
     });
 
-    // Focus trap implementation
-    useEffect(() => {
-        if (!isOpen || !modalRef.current) return;
-
-        const modalNode = modalRef.current;
-        const focusableSelectors =
-            'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable]';
-        const focusableElements = Array.from(
-            modalNode.querySelectorAll<HTMLElement>(focusableSelectors)
-        ).filter((el) => el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement);
-
-        if (focusableElements.length === 0) return;
-
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === 'Tab') {
-                if (e.shiftKey) {
-                    // Shift + Tab
-                    if (document.activeElement === firstElement) {
-                        e.preventDefault();
-                        lastElement.focus();
-                    }
-                } else {
-                    // Tab
-                    if (document.activeElement === lastElement) {
-                        e.preventDefault();
-                        firstElement.focus();
-                    }
-                }
-            }
-        };
-
-        modalNode.addEventListener('keydown', handleKeyDown);
-
-        // Focus the first element if shouldFocusOnFirstElement is true
-        if (shouldFocusOnFirstElement) {
-            firstElement.focus();
-        }
-
-        return () => {
-            modalNode.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [isOpen, shouldFocusOnFirstElement]);
-
     const id = useId();
 
     const motionProps = useMemo(
@@ -167,81 +116,89 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                     animationDuration={0.3}
                     shouldFocusOnFirstElement={shouldFocusOnFirstElement}
                 >
-                    <StyledModal
-                        onClick={(e: React.MouseEvent<HTMLDivElement>) =>
-                            e.stopPropagation()
-                        }
-                        ref={modalRef}
-                        width={width}
-                        height={height}
-                        minHeight={minHeight}
-                        minWidth={minWidth}
-                        maxHeight={maxHeight}
-                        maxWidth={maxWidth}
-                        mobileBottomFullWidth={mobileBottomFullWidth}
-                        modalPadding={modalPadding}
-                        $border={border}
-                        aria-labelledby={`modal-title-${id}`}
-                        aria-describedby={`modal-description-${id}`}
-                        aria-modal="true"
-                        role="dialog"
-                        data-testid="testid-modal"
-                        {...motionProps}
+                    <FocusTrap
+                        active={isOpen}
+                        focusTrapOptions={{
+                            initialFocus: shouldFocusOnFirstElement ? undefined : false,
+                            returnFocusOnDeactivate: true,
+                        }}
                     >
-                        <StyledModalMain $overflow={overflow}>
-                            {showCloseButton && (
-                                <StyledModalAction justifyContent="end">
-                                    <IconButton
-                                        onClick={handleClose}
-                                        size="small"
-                                        variant="tertiary"
-                                        color="neutral"
-                                        icon="close"
-                                        ariaLabel="Close"
-                                        buttonProps={{ autoFocus: true }}
-                                    />
-                                </StyledModalAction>
-                            )}
+                        <StyledModal
+                            onClick={(e: React.MouseEvent<HTMLDivElement>) =>
+                                e.stopPropagation()
+                            }
+                            ref={modalRef}
+                            width={width}
+                            height={height}
+                            minHeight={minHeight}
+                            minWidth={minWidth}
+                            maxHeight={maxHeight}
+                            maxWidth={maxWidth}
+                            mobileBottomFullWidth={mobileBottomFullWidth}
+                            modalPadding={modalPadding}
+                            $border={border}
+                            aria-labelledby={`modal-title-${id}`}
+                            aria-describedby={`modal-description-${id}`}
+                            aria-modal="true"
+                            role="dialog"
+                            data-testid="testid-modal"
+                            {...motionProps}
+                        >
+                            <StyledModalMain $overflow={overflow}>
+                                {showCloseButton && (
+                                    <StyledModalAction justifyContent="end">
+                                        <IconButton
+                                            onClick={handleClose}
+                                            size="small"
+                                            variant="tertiary"
+                                            color="neutral"
+                                            icon="close"
+                                            ariaLabel="Close"
+                                            buttonProps={{ autoFocus: true }}
+                                        />
+                                    </StyledModalAction>
+                                )}
 
-                            {banner && (
-                                <StyledModalBanner>{banner}</StyledModalBanner>
-                            )}
+                                {banner && (
+                                    <StyledModalBanner>{banner}</StyledModalBanner>
+                                )}
 
-                            {title && (
-                                <StyledModalTitle id={`modal-title-${id}`}>
-                                    {title}
-                                </StyledModalTitle>
-                            )}
+                                {title && (
+                                    <StyledModalTitle id={`modal-title-${id}`}>
+                                        {title}
+                                    </StyledModalTitle>
+                                )}
 
-                            {description && (
-                                <StyledModalDescription
-                                    id={`modal-description-${id}`}
-                                >
-                                    {description}
-                                </StyledModalDescription>
-                            )}
+                                {description && (
+                                    <StyledModalDescription
+                                        id={`modal-description-${id}`}
+                                    >
+                                        {description}
+                                    </StyledModalDescription>
+                                )}
 
-                            {body && (
-                                <StyledModalBody
-                                    modalBodyMargin={modalBodyMargin}
-                                >
-                                    {body}
-                                </StyledModalBody>
-                            )}
+                                {body && (
+                                    <StyledModalBody
+                                        modalBodyMargin={modalBodyMargin}
+                                    >
+                                        {body}
+                                    </StyledModalBody>
+                                )}
 
-                            {children && (
-                                <StyledModalBody
-                                    modalBodyMargin={modalBodyMargin}
-                                >
-                                    {children}
-                                </StyledModalBody>
-                            )}
-                        </StyledModalMain>
+                                {children && (
+                                    <StyledModalBody
+                                        modalBodyMargin={modalBodyMargin}
+                                    >
+                                        {children}
+                                    </StyledModalBody>
+                                )}
+                            </StyledModalMain>
 
-                        {action && (
-                            <StyledModalAction>{action}</StyledModalAction>
-                        )}
-                    </StyledModal>
+                            {action && (
+                                <StyledModalAction>{action}</StyledModalAction>
+                            )}
+                        </StyledModal>
+                    </FocusTrap>
                 </Overlay>
             )}
         </AnimatePresence>
@@ -269,5 +226,4 @@ Modal.Action = StyledModalAction;
 Modal.Divider = StyledModalDivider;
 
 export { type ModalProps };
-
 export default Modal;
