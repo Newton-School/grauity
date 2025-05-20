@@ -62,7 +62,7 @@ export const StyledDropdownMenuHeaderSubtext = styled.div`
 
 export const StyledDropdownMenuBody = styled.div`
     display: flex;
-
+    padding: 4px 12px;
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
@@ -96,7 +96,7 @@ export const StyledDropdownMenuSearchBox = styled.div`
 
 export const StyledDropdownMenuSubHeader = styled.div`
     display: flex;
-    padding: 0px 4px;
+    padding: 8px 4px;
     align-items: center;
     gap: 4px;
     align-self: stretch;
@@ -198,7 +198,7 @@ export const StyledDropdownMenuOptionDescription = styled.div<StyledDropdownMenu
 `;
 
 export const StyledDropdownMenuFooter = styled.div`
-    padding: 50px 16px 6px 16px;
+    padding: 14px 16px 6px 16px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
