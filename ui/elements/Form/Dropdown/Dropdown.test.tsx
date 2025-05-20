@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 
 import { BaseItemOptionProps, BaseItemType } from '../../DropdownMenu';
@@ -64,7 +64,7 @@ describe('Dropdown', () => {
     });
 
     // Single Select Mode Flow
-    it('Should run entire flow correctly in single select mode if no action buttons', () => {
+    it('Should run entire flow correctly in single select mode if no action buttons', async () => {
         const onChange = jest.fn();
         const items = getDummyOptions(3);
 
@@ -86,7 +86,10 @@ describe('Dropdown', () => {
         expect(onChange).toHaveBeenCalledWith(items[0]);
 
         // Should close the dropdown
-        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        await waitFor(()=>{
+            expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        });
+        
 
         // Should call onChange on selecting another item
         fireEvent.click(screen.getByText('Select'));
@@ -94,7 +97,7 @@ describe('Dropdown', () => {
         expect(onChange).toHaveBeenCalledWith(items[1]);
         expect(screen.queryByText('Item 1')).not.toBeInTheDocument();
     });
-    it('Should run entire flow correctly in single select mode if action buttons are present', () => {
+    it('Should run entire flow correctly in single select mode if action buttons are present', async () => {
         const onChange = jest.fn();
         const items = getDummyOptions(3);
 
@@ -119,13 +122,16 @@ describe('Dropdown', () => {
         // Should call onChange on clicking apply button
         fireEvent.click(screen.getByText('Apply'));
         expect(onChange).toHaveBeenCalledWith(items[0]);
-
+        
         // Should close the dropdown
-        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        await waitFor(()=>{
+            expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        });
+        
     });
 
     // Multi Select Mode Flow
-    it('Should run entire flow correctly in multi select mode if no action buttons', () => {
+    it('Should run entire flow correctly in multi select mode if no action buttons', async () => {
         const onChange = jest.fn();
         const items = getDummyOptions(3);
 
@@ -159,12 +165,18 @@ describe('Dropdown', () => {
 
         // Should call onChange on clicking outside the dropdown
         fireEvent.mouseDown(document.body);
-        expect(onChange).toHaveBeenCalledWith([items[0], items[1]]);
+        await waitFor(()=>{
+            expect(onChange).toHaveBeenCalledWith([items[0], items[1]]);
+        });
+        
 
         // Should close the dropdown
-        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        await waitFor(()=>{
+            expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        });
+        
     });
-    it('Should run entire flow correctly in multi select mode if action buttons are present', () => {
+    it('Should run entire flow correctly in multi select mode if action buttons are present', async () => {
         const onChange = jest.fn();
         const items = getDummyOptions(3);
 
@@ -196,15 +208,18 @@ describe('Dropdown', () => {
         });
         expect(selectedItems).toHaveLength(2);
         expect(onChange).not.toHaveBeenCalled();
-
+        
         // Should not call onChange on clicking outside the dropdown
         fireEvent.mouseDown(document.body);
         expect(onChange).not.toHaveBeenCalled();
 
         // Should call onChange on clicking apply button
         fireEvent.click(screen.getByText('Apply'));
-        expect(onChange).toHaveBeenCalledWith([items[0], items[1]]);
-        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        await waitFor(()=>{
+            expect(onChange).toHaveBeenCalledWith([items[0], items[1]]);
+            expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        });
+        
 
         // Should clear the selected items on clicking clear button
         fireEvent.click(screen.getByText('Select'));
@@ -220,8 +235,11 @@ describe('Dropdown', () => {
         });
         expect(selectedItems).toHaveLength(0);
         fireEvent.click(screen.getByText('Apply'));
-        expect(onChange).toHaveBeenCalledWith([]);
-        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        await waitFor(()=>{
+            expect(onChange).toHaveBeenCalledWith([]);
+            expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        });
+        
     });
 
     // Show Selected Value
@@ -245,7 +263,7 @@ describe('Dropdown', () => {
         expect(screen.queryByText('Item 0')).toBeInTheDocument();
         expect(screen.queryByText('Select')).not.toBeInTheDocument();
     });
-    it('Should show selected value on trigger in multi select mode', () => {
+    it('Should show selected value on trigger in multi select mode', async () => {
         const items = getDummyOptions(3);
 
         render(
@@ -265,8 +283,11 @@ describe('Dropdown', () => {
         fireEvent.mouseDown(document.body);
 
         // Should show the selected value and not placeholder
-        expect(screen.queryByText('Select')).not.toBeInTheDocument();
-        expect(screen.queryByText('2 selected')).toBeInTheDocument();
+        await waitFor(()=>{
+            expect(screen.queryByText('Select')).not.toBeInTheDocument();
+            expect(screen.queryByText('2 selected')).toBeInTheDocument();
+        });
+        
     });
 
     // Custom Trigger

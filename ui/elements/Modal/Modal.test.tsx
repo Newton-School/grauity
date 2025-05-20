@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 
 import Button from '../Button';
@@ -36,68 +36,84 @@ describe('Modal', () => {
         showCloseButton: true,
     };
 
-    it('renders the modal correctly when isOpen is true', () => {
+    it('renders the modal correctly when isOpen is true', async () => {
         render(<Modal {...defaultProps} isOpen showCloseButton />);
-        expect(screen.getByTestId('testid-modalwrapper')).toBeInTheDocument();
-        expect(screen.getByText('Modal banner')).toBeInTheDocument();
-        expect(screen.getByText('Modal title')).toBeInTheDocument();
-        expect(screen.getByText('Modal description')).toBeInTheDocument();
-        expect(screen.getByText('Modal body')).toBeInTheDocument();
-        expect(screen.getByText('Primary Button')).toBeInTheDocument();
-        expect(screen.getByText('Secondary Button')).toBeInTheDocument();
-        expect(screen.getByTestId('testid-iconbutton')).toBeInTheDocument();
+        await waitFor(()=>{
+            expect(screen.getByTestId('testid-modalwrapper')).toBeInTheDocument();
+            expect(screen.getByText('Modal banner')).toBeInTheDocument();
+            expect(screen.getByText('Modal title')).toBeInTheDocument();
+            expect(screen.getByText('Modal description')).toBeInTheDocument();
+            expect(screen.getByText('Modal body')).toBeInTheDocument();
+            expect(screen.getByText('Primary Button')).toBeInTheDocument();
+            expect(screen.getByText('Secondary Button')).toBeInTheDocument();
+            expect(screen.getByTestId('testid-iconbutton')).toBeInTheDocument();
+        }); 
     });
 
-    it('does not render the modal when isOpen is false', () => {
+    it('does not render the modal when isOpen is false', async () => {
         render(<Modal {...defaultProps} isOpen={false} />);
-        expect(
-            screen.queryByTestId('testid-modalwrapper')
-        ).not.toBeInTheDocument();
+        await waitFor(()=>{
+            expect(
+                screen.queryByTestId('testid-modalwrapper')
+            ).not.toBeInTheDocument();
+        });
     });
 
-    it('does not render the close button when showCloseButton is false', () => {
+    it('does not render the close button when showCloseButton is false', async () => {
         render(<Modal {...defaultProps} isOpen showCloseButton={false} />);
-        expect(
-            screen.queryByTestId('testid-iconbutton')
-        ).not.toBeInTheDocument();
+        await waitFor(()=>{
+            expect(
+                screen.queryByTestId('testid-iconbutton')
+            ).not.toBeInTheDocument();
+        });
     });
 
-    it('calls onClose when close button is clicked', () => {
+    it('calls onClose when close button is clicked', async () => {
         const onCloseFn = jest.fn();
         render(<Modal {...defaultProps} isOpen onClose={onCloseFn} />);
         fireEvent.click(screen.getByTestId('testid-iconbutton'));
-        expect(onCloseFn).toHaveBeenCalledTimes(1);
+        await waitFor(()=>{
+            expect(onCloseFn).toHaveBeenCalledTimes(1);
+        });
     });
 
-    it('calls onClose when Escape key is pressed', () => {
+    it('calls onClose when Escape key is pressed', async () => {
         const onCloseFn = jest.fn();
         render(<Modal {...defaultProps} isOpen onClose={onCloseFn} />);
         fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
-        expect(onCloseFn).toHaveBeenCalledTimes(1);
+        await waitFor(()=>{
+            expect(onCloseFn).toHaveBeenCalledTimes(1);
+        });
     });
 
-    it('does not call onClose when Escape key is pressed if isOpen is false', () => {
+    it('does not call onClose when Escape key is pressed if isOpen is false', async () => {
         const onCloseFn = jest.fn();
         render(<Modal {...defaultProps} isOpen={false} onClose={onCloseFn} />);
         fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
-        expect(onCloseFn).toHaveBeenCalledTimes(0);
+        await waitFor(()=>{
+            expect(onCloseFn).toHaveBeenCalledTimes(0);
+        });
     });
 
-    it('calls onClose when clicked outside the modal', () => {
+    it('calls onClose when clicked outside the modal', async () => {
         const onCloseFn = jest.fn();
         render(<Modal {...defaultProps} isOpen onClose={onCloseFn} />);
         fireEvent.click(screen.getByTestId('testid-modalwrapper'));
-        expect(onCloseFn).toHaveBeenCalledTimes(1);
+        await waitFor(()=>{
+            expect(onCloseFn).toHaveBeenCalledTimes(1);
+        });
     });
 
-    it('does not call onClose when clicked inside the modal', () => {
+    it('does not call onClose when clicked inside the modal', async () => {
         const onCloseFn = jest.fn();
         render(<Modal {...defaultProps} isOpen onClose={onCloseFn} />);
         fireEvent.click(screen.getByTestId('testid-modal'));
-        expect(onCloseFn).toHaveBeenCalledTimes(0);
+        await waitFor(()=>{
+            expect(onCloseFn).toHaveBeenCalledTimes(0);
+        });
     });
 
-    it('does not call onClose on outside click when hideOnClickAway is false', () => {
+    it('does not call onClose on outside click when hideOnClickAway is false', async () => {
         const onCloseFn = jest.fn();
         render(
             <Modal
@@ -108,10 +124,12 @@ describe('Modal', () => {
             />
         );
         fireEvent.click(screen.getByTestId('testid-modalwrapper'));
-        expect(onCloseFn).toHaveBeenCalledTimes(0);
+        await waitFor(()=>{
+            expect(onCloseFn).toHaveBeenCalledTimes(0);
+        });
     });
 
-    it('does not call onClose on Escape key press when hideOnClickAway is false', () => {
+    it('does not call onClose on Escape key press when hideOnClickAway is false', async () => {
         const onCloseFn = jest.fn();
         render(
             <Modal
@@ -122,10 +140,12 @@ describe('Modal', () => {
             />
         );
         fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
-        expect(onCloseFn).toHaveBeenCalledTimes(0);
+        await waitFor(()=>{
+            expect(onCloseFn).toHaveBeenCalledTimes(0);
+        });        
     });
 
-    it('attaches class when class is passed in className prop', () => {
+    it('attaches class when class is passed in className prop', async () => {
         render(
             <Modal
                 {...defaultProps}
@@ -134,8 +154,10 @@ describe('Modal', () => {
                 showCloseButton
             />
         );
-        expect(screen.getByTestId('testid-modalwrapper')).toHaveClass(
-            'jest-test-modal-wrapper'
-        );
+        await waitFor(()=>{
+            expect(screen.getByTestId('testid-modalwrapper')).toHaveClass(
+                'jest-test-modal-wrapper'
+            );
+        });
     });
 });

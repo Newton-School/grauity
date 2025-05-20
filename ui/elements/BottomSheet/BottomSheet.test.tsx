@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 
 import Button from '../Button';
@@ -26,13 +26,18 @@ const TestBottomSheet = (props: BottomSheetProps) => {
 
 describe('BottomSheet Component', () => {
     // Rendering
-    it('does not render initially', () => {
+    it('does not render initially', async () => {
         render(<TestBottomSheet />);
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        await waitFor(()=>{
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        });
     });
-    it('renders on pressing the button', () => {
+
+    it('renders on pressing the button', async () => {
         render(<TestBottomSheet />);
         fireEvent.click(screen.getByText('Open BottomSheet'));
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        await waitFor(()=>{
+            expect(screen.getByRole('dialog')).toBeInTheDocument();
+        });
     });
 });
