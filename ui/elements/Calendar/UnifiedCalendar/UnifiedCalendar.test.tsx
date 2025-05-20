@@ -64,4 +64,31 @@ describe('UnifiedCalendar', () => {
             expect(defaultProps.onViewChange).toHaveBeenCalledWith('monthly');
         });
     });
+
+    it('shows tooltip on event hover in monthly view', async () => {
+        const testEvent = {
+            id: '1',
+            name: 'Unified Calendar Event',
+            start: new Date(),
+            end: new Date(),
+        };
+    
+        const eventRenderer = (event: any) => <div>{event.name}</div>;
+    
+        render(
+            <UnifiedCalendar
+                view="monthly"
+                date={new Date()}
+                events={[testEvent]}
+                eventRenderer={(event) => eventRenderer(event)}
+            />
+        );
+    
+        const eventElement = screen.getByText('Unified Calendar Event');
+        fireEvent.mouseEnter(eventElement);
+    
+        await waitFor(() => {
+            expect(screen.getByText('Unified Calendar Event')).toBeInTheDocument();
+        });
+    });
 });

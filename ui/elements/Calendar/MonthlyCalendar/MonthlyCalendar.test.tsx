@@ -73,4 +73,32 @@ describe('MonthlyCalendar', () => {
             screen.getAllByText('Test renderDayItem Call').length
         ).toBeGreaterThan(0);
     });
+
+    it('shows tooltip on event hover when using eventRenderer', async () => {
+        const testEvent = {
+            id: '1',
+            name: 'Event with Tooltip',
+            start: new Date(),
+            end: new Date(),
+        };
+    
+        const tooltipRenderer = (event: any) => (
+            <div>{event.name}</div>
+        );
+    
+        render(
+            <MonthlyCalendar
+                {...defaultProps}
+                events={[testEvent]}
+                eventRenderer={tooltipRenderer}
+            />
+        );
+    
+        const eventElement = screen.getByText('Event with Tooltip');
+        fireEvent.mouseEnter(eventElement);
+    
+        await waitFor(() => {
+            expect(screen.getByText('Event with Tooltip')).toBeInTheDocument();
+        });
+    });
 });

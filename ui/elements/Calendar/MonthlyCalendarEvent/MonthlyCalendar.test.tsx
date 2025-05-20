@@ -17,4 +17,6 @@ describe('MonthlyCalendarEvent Component', () => {
         expect(screen.getByText('Event Title')).toBeInTheDocument();
         expect(screen.getByText('10:00 AM')).toBeInTheDocument();
     });
+
+    
 });
