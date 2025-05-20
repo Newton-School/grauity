@@ -23,8 +23,6 @@ export const StyledDropdownMenu = styled(motion.div)<StyledDropdownMenuProps>`
     border: 1px solid var(--border-subtle-primary-default, #e1e5ea);
     background: var(--bg-subtle-primary-default, #fff);
     overflow: hidden;
-    position: relative;
-    z-index: 1;
 
     * {
         box-sizing: border-box;
@@ -77,7 +75,6 @@ export const StyledDropdownOptionsContainer = styled.div`
     flex-direction: column;
     gap: 4px;
     overflow-y: auto;
-    max-height: 200px;
     width: 100%;
 `;
 
