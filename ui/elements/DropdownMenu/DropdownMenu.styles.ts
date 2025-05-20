@@ -23,6 +23,8 @@ export const StyledDropdownMenu = styled(motion.div)<StyledDropdownMenuProps>`
     border: 1px solid var(--border-subtle-primary-default, #e1e5ea);
     background: var(--bg-subtle-primary-default, #fff);
     overflow: hidden;
+    position: relative;
+    z-index: 1;
 
     * {
         box-sizing: border-box;
@@ -60,7 +62,7 @@ export const StyledDropdownMenuHeaderSubtext = styled.div`
 
 export const StyledDropdownMenuBody = styled.div`
     display: flex;
-    padding: 4px 12px;
+
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
@@ -68,6 +70,15 @@ export const StyledDropdownMenuBody = styled.div`
     overflow: auto;
     position: relative;
     gap: 4px;
+`;
+
+export const StyledDropdownOptionsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow-y: auto;
+    max-height: 200px;
+    width: 100%;
 `;
 
 export const StyledDropdownMenuSearchBox = styled.div`
@@ -85,7 +96,7 @@ export const StyledDropdownMenuSearchBox = styled.div`
 
 export const StyledDropdownMenuSubHeader = styled.div`
     display: flex;
-    padding: 8px 4px;
+    padding: 0px 4px;
     align-items: center;
     gap: 4px;
     align-self: stretch;
@@ -187,7 +198,7 @@ export const StyledDropdownMenuOptionDescription = styled.div<StyledDropdownMenu
 `;
 
 export const StyledDropdownMenuFooter = styled.div`
-    padding: 14px 16px 6px 16px;
+    padding: 50px 16px 6px 16px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
