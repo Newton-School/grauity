@@ -10,8 +10,7 @@ import {
     StyledCarouselTitle,
 } from './Carousel.styles';
 import { CarouselProps } from './types';
-
-const SWIPE_THRESHOLD = 50; 
+import { SWIPE_THRESHOLD } from './constants';
 
 const Carousel = (props: CarouselProps) => {
     const {
