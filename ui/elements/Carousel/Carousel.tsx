@@ -85,7 +85,7 @@ const Carousel = (props: CarouselProps) => {
             // Swipe left - show next
             handleControlClick('right');
         }
-    }, [leftButtonDisabled, rightButtonDisabled]);
+    }, [leftButtonDisabled, rightButtonDisabled, handleControlClick]);
 
     const handleTouchEnd = useCallback((e: React.TouchEvent) => {
         touchEndX.current = e.changedTouches[0].clientX;
