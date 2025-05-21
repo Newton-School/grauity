@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 import { IconButton } from '../Button';
 import {
@@ -69,16 +69,11 @@ const Carousel = (props: CarouselProps) => {
         }
     };
 
-    const handleTouchStart = (e: React.TouchEvent) => {
+    const handleTouchStart = useCallback((e: React.TouchEvent) => {
         touchStartX.current = e.touches[0].clientX;
-    };
+    }, []);
 
-    const handleTouchEnd = (e: React.TouchEvent) => {
-        touchEndX.current = e.changedTouches[0].clientX;
-        handleSwipe();
-    };
-
-    const handleSwipe = () => {
+    const handleSwipe = useCallback(() => {
         const swipeDistance = touchEndX.current - touchStartX.current;
 
         if (Math.abs(swipeDistance) < SWIPE_THRESHOLD) return;
@@ -90,7 +85,12 @@ const Carousel = (props: CarouselProps) => {
             // Swipe left - show next
             handleControlClick('right');
         }
-    };
+    }, [leftButtonDisabled, rightButtonDisabled]);
+
+    const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+        touchEndX.current = e.changedTouches[0].clientX;
+        handleSwipe();
+    }, [handleSwipe]);
 
     useEffect(() => {
         setLeftButtonDisabled(translateX === 0);
@@ -172,6 +172,8 @@ const Carousel = (props: CarouselProps) => {
                 $translateX={translateX}
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
+                role="list"
+                aria-label="Carousel items"
             >
                 {items.map((item, index) => {
                     // Generate a unique key based on item content and index
@@ -183,6 +185,7 @@ const Carousel = (props: CarouselProps) => {
                         <StyledCarouselItem 
                             key={itemKey} 
                             $fullWidth={fullWidthItems}
+                            role="listitem"
                         >
                             {item}
                         </StyledCarouselItem>
