@@ -1,13 +1,14 @@
 import { addons } from '@storybook/manager-api';
 import STORYBOOK_THEME from './theme';
 
-// Function to set the theme based on user preference
-const setTheme = (theme) => {
+const setTheme = (themeKey) => {
+    const key = (themeKey || 'DARK').toUpperCase();
+    const theme = STORYBOOK_THEME[key] || STORYBOOK_THEME.DARK;
+
     addons.setConfig({
-        theme: STORYBOOK_THEME[theme],
+        theme,
     });
 };
 
-// Get the saved theme from localStorage or default to DARK
 const savedTheme = localStorage.getItem('storybook-theme');
 setTheme(savedTheme);
