@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 import { IconButton } from '../Button';
 import {
@@ -10,6 +10,7 @@ import {
     StyledCarouselTitle,
 } from './Carousel.styles';
 import { CarouselProps } from './types';
+import { SWIPE_THRESHOLD } from './constants';
 
 const Carousel = (props: CarouselProps) => {
     const {
@@ -33,6 +34,8 @@ const Carousel = (props: CarouselProps) => {
 
     const headerRef = useRef<HTMLDivElement | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
+    const touchStartX = useRef<number>(0);
+    const touchEndX = useRef<number>(0);
 
     const [translateX, setTranslateX] = useState(0);
     const [leftButtonDisabled, setLeftButtonDisabled] = useState(false);
@@ -65,6 +68,29 @@ const Carousel = (props: CarouselProps) => {
             onRightClick();
         }
     };
+
+    const handleTouchStart = useCallback((e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+    }, []);
+
+    const handleSwipe = useCallback(() => {
+        const swipeDistance = touchEndX.current - touchStartX.current;
+
+        if (Math.abs(swipeDistance) < SWIPE_THRESHOLD) return;
+
+        if (swipeDistance > 0 && !leftButtonDisabled) {
+            // Swipe right - show previous
+            handleControlClick('left');
+        } else if (swipeDistance < 0 && !rightButtonDisabled) {
+            // Swipe left - show next
+            handleControlClick('right');
+        }
+    }, [leftButtonDisabled, rightButtonDisabled, handleControlClick]);
+
+    const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+        touchEndX.current = e.changedTouches[0].clientX;
+        handleSwipe();
+    }, [handleSwipe]);
 
     useEffect(() => {
         setLeftButtonDisabled(translateX === 0);
@@ -144,9 +170,16 @@ const Carousel = (props: CarouselProps) => {
                 ref={containerRef}
                 $gap={gap}
                 $translateX={translateX}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                role="list"
+                aria-label="Carousel items"
             >
                 {items.map((item) => (
-                    <StyledCarouselItem $fullWidth={fullWidthItems}>
+                    <StyledCarouselItem 
+                        $fullWidth={fullWidthItems}
+                        role="listitem"
+                    >
                         {item}
                     </StyledCarouselItem>
                 ))}

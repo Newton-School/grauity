@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 
 import Carousel from './Carousel';
@@ -69,5 +69,136 @@ describe('Carousel Component', () => {
         const rightIcon = screen.queryByLabelText('chevron-right');
         expect(leftIcon).not.toBeInTheDocument();
         expect(rightIcon).not.toBeInTheDocument();
+    });
+
+    // Touch Gesture Support
+    describe('Touch Gesture Support', () => {
+        it('should handle swipe left gesture', () => {
+            const onRightClick = jest.fn();
+            render(
+                <Carousel
+                    items={[
+                        <DummyItem>Item 1</DummyItem>,
+                        <DummyItem>Item 2</DummyItem>,
+                        <DummyItem>Item 3</DummyItem>,
+                    ]}
+                    onRightClick={onRightClick}
+                />
+            );
+
+            const container = screen.getByRole('list');
+            
+            // Simulate touch start
+            fireEvent.touchStart(container, {
+                touches: [{ clientX: 100 }],
+            });
+
+            // Simulate touch end with swipe left
+            fireEvent.touchEnd(container, {
+                changedTouches: [{ clientX: 0 }],
+            });
+
+            // Wait for any state updates
+            setTimeout(() => {
+                expect(onRightClick).toHaveBeenCalled();
+            }, 0);
+        });
+
+        it('should handle swipe right gesture', () => {
+            const onLeftClick = jest.fn();
+            render(
+                <Carousel
+                    items={[
+                        <DummyItem>Item 1</DummyItem>,
+                        <DummyItem>Item 2</DummyItem>,
+                        <DummyItem>Item 3</DummyItem>,
+                    ]}
+                    onLeftClick={onLeftClick}
+                />
+            );
+
+            const container = screen.getByRole('list');
+            
+            // Simulate touch start
+            fireEvent.touchStart(container, {
+                touches: [{ clientX: 0 }],
+            });
+
+            // Simulate touch end with swipe right
+            fireEvent.touchEnd(container, {
+                changedTouches: [{ clientX: 100 }],
+            });
+
+            // Wait for any state updates
+            setTimeout(() => {
+                expect(onLeftClick).toHaveBeenCalled();
+            }, 0);
+        });
+
+        it('should not trigger swipe for small movements', () => {
+            const onLeftClick = jest.fn();
+            const onRightClick = jest.fn();
+            render(
+                <Carousel
+                    items={[
+                        <DummyItem>Item 1</DummyItem>,
+                        <DummyItem>Item 2</DummyItem>,
+                        <DummyItem>Item 3</DummyItem>,
+                    ]}
+                    onLeftClick={onLeftClick}
+                    onRightClick={onRightClick}
+                />
+            );
+
+            const container = screen.getByRole('list');
+            
+            // Simulate touch start
+            fireEvent.touchStart(container, {
+                touches: [{ clientX: 50 }],
+            });
+
+            // Simulate touch end with small movement
+            fireEvent.touchEnd(container, {
+                changedTouches: [{ clientX: 45 }],
+            });
+
+            // Wait for any state updates
+            setTimeout(() => {
+                expect(onLeftClick).not.toHaveBeenCalled();
+                expect(onRightClick).not.toHaveBeenCalled();
+            }, 0);
+        });
+
+        it('should respect disabled state for swipe gestures', () => {
+            const onLeftClick = jest.fn();
+            render(
+                <Carousel
+                    items={[
+                        <DummyItem>Item 1</DummyItem>,
+                        <DummyItem>Item 2</DummyItem>,
+                        <DummyItem>Item 3</DummyItem>,
+                    ]}
+                    onLeftClick={onLeftClick}
+                />
+            );
+
+            const container = screen.getByRole('list');
+            
+            // Simulate touch start
+            fireEvent.touchStart(container, {
+                touches: [{ clientX: 0 }],
+            });
+
+            // Simulate touch end with swipe right when at the start
+            fireEvent.touchEnd(container, {
+                changedTouches: [{ clientX: 100 }],
+            });
+
+            // Wait for any state updates
+            setTimeout(() => {
+                // Should not trigger left click when at the start
+                expect(onLeftClick).not.toHaveBeenCalled();
+            }, 0);
+        });
     });
 });
