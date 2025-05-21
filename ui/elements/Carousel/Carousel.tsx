@@ -175,22 +175,14 @@ const Carousel = (props: CarouselProps) => {
                 role="list"
                 aria-label="Carousel items"
             >
-                {items.map((item, index) => {
-                    // Generate a unique key based on item content and index
-                    const itemKey = React.isValidElement(item) && item.key 
-                        ? item.key 
-                        : `carousel-item-${index}`;
-                    
-                    return (
-                        <StyledCarouselItem 
-                            key={itemKey} 
-                            $fullWidth={fullWidthItems}
-                            role="listitem"
-                        >
-                            {item}
-                        </StyledCarouselItem>
-                    );
-                })}
+                {items.map((item) => (
+                    <StyledCarouselItem 
+                        $fullWidth={fullWidthItems}
+                        role="listitem"
+                    >
+                        {item}
+                    </StyledCarouselItem>
+                ))}
             </StyledCarouselItemsContainer>
         </StyledCarouselContainer>
     );
