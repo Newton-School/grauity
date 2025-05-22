@@ -214,3 +214,4 @@ Alternatively, you can add the following snippet to your `settings.json` file:
 {
   "editor.formatOnSave": true
 }
+```
