@@ -1,31 +1,31 @@
 <h1 align="center">gra.UI.ty</h1>
 
 <p align="center">
-  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/cc6c8f01c5fa4ca481de8f9180eb937a.png" alt="gra.UI.ty Logo 1" width="120" height="120" />
-  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/92ae68a3bf55431d8120e92041951482.png" alt="gra.UI.ty Logo 2" width="120" height="120" />
-  <img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/c1dd6d6367b34e01a19c458e1656c3c1.png" alt="gra.UI.ty Logo 3" width="120" height="120" />
+<img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/cc6c8f01c5fa4ca481de8f9180eb937a.png" alt="gra.UI.ty Logo 1" width="120" height="120" />
+<img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/92ae68a3bf55431d8120e92041951482.png" alt="gra.UI.ty Logo 2" width="120" height="120" />
+<img src="https://d3dyfaf3iutrxo.cloudfront.net/general/upload/c1dd6d6367b34e01a19c458e1656c3c1.png" alt="gra.UI.ty Logo 3" width="120" height="120" />
 </p>
 
 <h3 align="center">Discovering the most elegant UI components for your next project</h3>
 
 <p align="center">
-  A meticulously crafted UI component library, bringing the simplicity and elegance of nature to your digital interfaces.
-  <br />
-  Explore the components and start building beautiful, efficient, and user-friendly interfaces with ease.
-  <br />
-  <br />
-  <a href="https://grauity.newtonschool.co"><strong>Explore gra.UI.ty docs »</strong></a>
-  <br />
-  <br />
-  <img src="https://github.com/Newton-School/grauity/actions/workflows/run-tests.yml/badge.svg" alt="Test status badge" />
-  <img src="https://github.com/Newton-School/grauity/actions/workflows/build-storybook.yml/badge.svg" alt="Build docs badge" />
-  <img src="https://github.com/Newton-School/grauity/actions/workflows/publish-npm-package.yml/badge.svg" alt="Publish to NPM" />
-  <div align="center">
-    <img src="http://img.shields.io/npm/v/@newtonschool/grauity.svg" alt="NPM version badge" />
-    <img src="http://img.shields.io/npm/dm/@newtonschool/grauity.svg" alt="NPM downloads badge" />
-    <img src="http://img.shields.io/bundlephobia/min/@newtonschool/grauity.svg" alt="Bundle size badge" />
-    <img src="http://img.shields.io/npm/l/@newtonschool/grauity.svg" alt="License badge" />
-  </div>
+A meticulously crafted UI component library, bringing the simplicity and elegance of nature to your digital interfaces.
+<br />
+Explore the components and start building beautiful, efficient, and user-friendly interfaces with ease.
+<br />
+<br />
+<a href="https://grauity.newtonschool.co"><strong>Explore gra.UI.ty docs »</strong></a>
+<br />
+<br />
+<img src="https://github.com/Newton-School/grauity/actions/workflows/run-tests.yml/badge.svg" alt="Test status badge" />
+<img src="https://github.com/Newton-School/grauity/actions/workflows/build-storybook.yml/badge.svg" alt="Build docs badge" />
+<img src="https://github.com/Newton-School/grauity/actions/workflows/publish-npm-package.yml/badge.svg" alt="Publish to NPM" />
+<div align="center">
+<img src="http://img.shields.io/npm/v/@newtonschool/grauity.svg" alt="NPM version badge" />
+<img src="http://img.shields.io/npm/dm/@newtonschool/grauity.svg" alt="NPM downloads badge" />
+<img src="http://img.shields.io/bundlephobia/min/@newtonschool/grauity.svg" alt="Bundle size badge" />
+<img src="http://img.shields.io/npm/l/@newtonschool/grauity.svg" alt="License badge" />
+</div>
 </p>
 
 ## About gra.UI.ty
@@ -119,14 +119,14 @@ And use it as you wish
 import { NSButton } from '@newtonschool/grauity';
 
 export const MyComponent = () => (
-    <NSButton
-        variant="primary"
-        onClick={() => {
-            setShowFormErrors(true);
-        }}
-    >
-        Click me!
-    </NSButton>
+<NSButton
+    variant="primary"
+    onClick={() => {
+        setShowFormErrors(true);
+    }}
+>
+    Click me!
+</NSButton>
 );
 ```
 
@@ -169,7 +169,7 @@ To enable theming, wrap your components with `GrauityThemeProvider`:
 import { GrauityThemeProvider } from '@newtonschool/grauity';
 
 const App = ({ children, ...props }) => {
-    return <GrauityThemeProvider>{children}</GrauityThemeProvider>;
+return <GrauityThemeProvider>{children}</GrauityThemeProvider>;
 };
 
 export default App;
@@ -195,3 +195,15 @@ To use grauity icons, add the following import in `global-styles.scss` or any ro
 ```js
 @import '~@newtonschool/grauity/dist/css/index.scss';
 ```
+
+## Recommended IDE Setup
+
+1. Visual Studio Code (VSCode) is our recommended Integrated Development Environment of choice.
+2. Required Extensions:
+- [ESLint (by Microsoft)](https://marketplace.visualstudio.com/items/?itemName=dbaeumer.vscode-eslint) - For JavaScript/TypeScript code linting
+- [Prettier - Code formatter (by Prettier)](https://marketplace.visualstudio.com/items/?itemName=esbenp.prettier-vscode)
+- [Prettier ESLint (by Rebecca Vest)](https://marketplace.visualstudio.com/items/?itemName=rvest.vs-code-prettier-eslint) - For code formatting and ESLint integration
+3. Enable format on save:
+- Mac: Code > Preferences > Settings (`cmd` + `,`)
+- Search for "format on save"
+- Check the box for "Editor: Format On Save"
