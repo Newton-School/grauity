@@ -200,14 +200,14 @@ To use grauity icons, add the following import in `global-styles.scss` or any ro
 
 1. Visual Studio Code (VS Code) is our recommended Integrated Development Environment of choice.
 2. Required Extensions:
-- [ESLint (by Microsoft)](https://marketplace.visualstudio.com/items/?itemName=dbaeumer.vscode-eslint) - For JavaScript/TypeScript code linting
-- [Prettier - Code formatter (by Prettier)](https://marketplace.visualstudio.com/items/?itemName=esbenp.prettier-vscode)
-- [Prettier ESLint (by Rebecca Vest)](https://marketplace.visualstudio.com/items/?itemName=rvest.vs-code-prettier-eslint) - For code formatting and ESLint integration
+  - [ESLint (by Microsoft)](https://marketplace.visualstudio.com/items/?itemName=dbaeumer.vscode-eslint) - For JavaScript/TypeScript code linting
+  - [Prettier - Code formatter (by Prettier)](https://marketplace.visualstudio.com/items/?itemName=esbenp.prettier-vscode)
+  - [Prettier ESLint (by Rebecca Vest)](https://marketplace.visualstudio.com/items/?itemName=rvest.vs-code-prettier-eslint) - For code formatting and ESLint integration
 3. Enable format on save:
-- Mac: Code > Preferences > Settings (`cmd` + `,`)
-- Windows/Linux: File > Preferences > Settings (`Ctrl` + `,`)
-- Search for "format on save"
-- Check the box for "Editor: Format On Save"
+  - Mac: Code > Preferences > Settings (`cmd` + `,`)
+  - Windows/Linux: File > Preferences > Settings (`Ctrl` + `,`)
+  - Search for "format on save"
+  - Check the box for "Editor: Format On Save"
 
 Alternatively, you can add the following snippet to your `settings.json` file:
 ```json
