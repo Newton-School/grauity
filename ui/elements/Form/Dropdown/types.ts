@@ -94,3 +94,8 @@ export interface DropdownProps extends DropdownTriggerProps, DropdownMenuProps {
         fullWidth?: boolean;
     };
 }
+export enum BaseItemType {
+    OPTION = 'option',
+    SUBHEADER = 'subheader',
+    DIVIDER = 'divider',
+}
