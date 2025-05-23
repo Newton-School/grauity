@@ -1,9 +1,10 @@
 {
     "testEnvironment": "jsdom",
     "transform": {
-        "\\.(js|jsx|ts|tsx)$": [
+        "\\.(ts|tsx|js|jsx)$": [
             "ts-jest",
             {
+                "tsconfig": "tsconfig.json",
                 "babelConfig": {
                     "presets": [
                         "@babel/preset-env",
@@ -15,8 +16,14 @@
             }
         ]
     },
+    "transformIgnorePatterns": ["/node_modules/", "/dist/"],
+    "testPathIgnorePatterns": ["/node_modules/", "/dist/"],
     "moduleNameMapper": {
         "^ui/(.*)$": "<rootDir>/ui/$1",
+        "^elements/(.*)$": "<rootDir>/ui/elements/$1",
         "framer-motion": "<rootDir>/__mocks__/framer-motion.js"
-    }
+    },
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx"],
+    "testMatch": ["**/?(*.)+(test).[tj]s?(x)"],
+    "collectCoverage": false
 }

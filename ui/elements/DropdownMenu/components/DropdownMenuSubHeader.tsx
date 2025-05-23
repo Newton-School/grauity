@@ -6,11 +6,15 @@ import { BaseItemSubHeaderProps } from '../types';
 interface DropdownMenuSubHeaderProps extends BaseItemSubHeaderProps {
     itemRef: (el: HTMLDivElement) => void;
     onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void;
+    className?: string;
 }
 
-const DropdownMenuSubHeader = (props: DropdownMenuSubHeaderProps) => {
-    const { title, itemRef, onKeyDown } = props;
-
+const DropdownMenuSubHeader = ({
+    title,
+    itemRef,
+    onKeyDown,
+    className = '',
+}: DropdownMenuSubHeaderProps) => {
     if (!title) {
         return null;
     }
@@ -21,6 +25,7 @@ const DropdownMenuSubHeader = (props: DropdownMenuSubHeaderProps) => {
             tabIndex={0}
             aria-label={title}
             onKeyDown={onKeyDown}
+            className={className}
         >
             {title}
         </StyledDropdownMenuSubHeader>
