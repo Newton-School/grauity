@@ -59,4 +59,12 @@ describe('PopOver', () => {
         await new Promise((r) => setTimeout(r, 3000));
         expect(screen.queryByText('PopOver Content')).not.toBeInTheDocument();
     }, 5000);
+
+    it('should apply dynamic popOverTranslation offset', () => {
+        render(
+            <TestPopOverComponent popOverTranslation={{ x: 300, y: 500 }} />
+        );
+        fireEvent.click(screen.getByText('Trigger'));
+        expect(screen.getByText('PopOver Content')).toBeInTheDocument();
+    });
 });

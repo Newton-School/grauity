@@ -22,6 +22,7 @@ export default function PopOver(props: PopOverProps) {
         height,
         position,
         shouldFocusOnFirstElement = true,
+        popOverTranslation,
     } = props;
 
     const [adjustedOffset, setAdjustedOffset] = useState<PopOverOffset | null>(
@@ -199,8 +200,9 @@ export default function PopOver(props: PopOverProps) {
             !firstOffsetSet
         ) {
             const offset = calculateOffset(direction);
+
             setAdjustedOffset(offset);
-            setFirstOffsetSet(true);
+            setFirstOffsetSet(true); 
         }
     }, [isOpen, direction, firstOffsetSet]);
 
@@ -210,6 +212,25 @@ export default function PopOver(props: PopOverProps) {
         }
         return () => {};
     }, [isOpen, autoAdjust, direction, firstOffsetSet]);
+
+    useEffect(() => {
+        if (!shouldCloseOnOutsideClick || !isOpen) {return undefined;}
+    
+        const handleGlobalClick = (event: MouseEvent) => {
+            const popOverEl = popOverRef.current;
+            const triggerEl = triggerRef?.current;
+    
+            const clickedInsidePopover = popOverEl?.contains(event.target as Node);
+            const clickedTrigger = triggerEl?.contains(event.target as Node);
+    
+            if (!clickedInsidePopover && !clickedTrigger) {
+                onClose();
+            }
+        };
+    
+        document.addEventListener('mousedown', handleGlobalClick);
+        return () => document.removeEventListener('mousedown', handleGlobalClick);
+    }, [isOpen, shouldCloseOnOutsideClick]);
 
     const handleCloseOnOutsideClick = () => {
         if (shouldCloseOnOutsideClick) {
@@ -278,11 +299,15 @@ export default function PopOver(props: PopOverProps) {
                         $offset={adjustedOffset}
                         {...motionProps}
                         variants={getMotionVariants(direction)}
+                        style={{
+                            transform: `translate(${popOverTranslation?.x || 0}px, ${popOverTranslation?.y || 0}px)`
+                        }}
                     >
                         <div
                             style={{
                                 width: width || 'fit-content',
                                 height: height || 'fit-content',
+                                
                             }}
                         >
                             {children}
@@ -293,3 +318,5 @@ export default function PopOver(props: PopOverProps) {
         </AnimatePresence>
     );
 }
+
+

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyledDivProps } from '../../../common/types';
+// import { StyledDivProps } from '../../../common/types';
 
 export type PopOverDirection = 'top' | 'right' | 'bottom' | 'left';
 
@@ -96,8 +96,18 @@ export interface PopOverProps {
      * @default true
      */
     shouldFocusOnFirstElement?: boolean;
+
+    /**
+     * Optional translation offsets applied via CSS transform.
+     * Useful when you want to visually shift the PopOver content.
+     * @default { x: 0, y: 0 }
+     */
+    popOverTranslation?: {
+        x?: number;
+        y?: number;
+    };
 }
 
-export interface StyledPopOverContainerProps extends StyledDivProps {
-    $offset?: PopOverOffset;
+export interface StyledPopOverContainerProps {
+    $offset?: PopOverOffset | null;
 }
