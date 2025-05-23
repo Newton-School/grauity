@@ -201,11 +201,8 @@ export default function PopOver(props: PopOverProps) {
         ) {
             const offset = calculateOffset(direction);
 
-            // Simulate a transform by modifying top and left
-            setAdjustedOffset({
-                top: offset.top + (popOverTranslation?.y || 0), // ✅ now uses destructured prop
-                left: offset.left + (popOverTranslation?.x || 0),
-            });
+            setAdjustedOffset(offset);
+            setFirstOffsetSet(true); 
         }
     }, [isOpen, direction, firstOffsetSet]);
 

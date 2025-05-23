@@ -97,6 +97,11 @@ export interface PopOverProps {
      */
     shouldFocusOnFirstElement?: boolean;
 
+    /**
+     * Optional translation offsets applied via CSS transform.
+     * Useful when you want to visually shift the PopOver content.
+     * @default { x: 0, y: 0 }
+     */
     popOverTranslation?: {
         x?: number;
         y?: number;
