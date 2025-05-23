@@ -85,16 +85,16 @@ export interface UnifiedCalendarProps<T> {
          * @param item - The event item to render
          * @default null
          */
-        renderDayItem?: (
-            item: CalendarEvent<T>,
-            view: CalendarView
-        ) => React.ReactNode;
 
         /**
          * Callback to run when popover closes
          * @default null
          */
         onPopOverClose?: () => void;
+        renderDayItem?: (
+            item: CalendarEvent<T>,
+            view: CalendarView
+        ) => React.ReactNode; // ✅ ADD THIS
     };
 }
 

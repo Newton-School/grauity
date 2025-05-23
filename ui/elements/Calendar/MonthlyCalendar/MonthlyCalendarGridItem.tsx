@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
 
 import { getDateFullLabel } from '../utils';
 import DateCircle from './DateCircle';
@@ -6,6 +7,18 @@ import { StyledMonthlyCalendarGridItem } from './MonthlyCalendar.styles';
 import OverflowIndicator from './OverflowIndicator';
 import { MonthlyCalendarGridItemProps } from './types';
 import { numberOfElementsOverflowing } from './utils';
+
+const StyledEventItem = styled.div`
+  line-height: 1.2;
+  position: relative;
+  z-index: 10;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 500;   /* font-medium */
+  cursor: pointer;
+`;
 
 function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
     const {
@@ -65,17 +78,9 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
         >
             <DateCircle date={cellDate} />
             {eventsToRender.map((event) => (
-                <div
-                    key={event?.id}
-                    className="truncate max-w-full overflow-hidden whitespace-nowrap text-xs font-medium cursor-pointer"
-                    style={{
-                        lineHeight: '1.2',
-                        position: 'relative',
-                        zIndex: 10,
-                    }}
-                >
+                <StyledEventItem key={event?.id}>
                     {eventRenderer(event)}
-                </div>
+                </StyledEventItem>
             ))}
             {numberOfEventsToRemove ? (
                 <OverflowIndicator

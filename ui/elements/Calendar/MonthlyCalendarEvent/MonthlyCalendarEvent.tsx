@@ -23,6 +23,8 @@ const MonthlyCalendarEvent = forwardRef<
             <StyledMonthlyCalendarEventTitleText
                 color={eventTitleColor}
                 title={eventTitle}
+                aria-label={eventTitle}
+
             >
                 {eventTitle}
             </StyledMonthlyCalendarEventTitleText>
