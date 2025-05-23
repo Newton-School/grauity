@@ -1,7 +1,9 @@
 /* eslint-disable indent */
 import React, { useEffect, useState } from 'react';
 
+import { withTooltip } from '../../Tooltip/utils/withTooltip';
 import MonthlyCalendar from '../MonthlyCalendar';
+import { CalendarEvent } from '../types';
 import { getMonthLabel } from '../utils';
 import WeeklyCalendar from '../WeeklyCalendar';
 import Header from './Header';
@@ -22,6 +24,12 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
         weeklyCalendarProps = {},
         monthlyCalendarProps = {},
     } = props;
+
+    const rawRenderDayItem = monthlyCalendarProps?.renderDayItem;
+    const adaptedRenderDayItem = rawRenderDayItem
+        ? (item: CalendarEvent<any>) =>
+              withTooltip(item, () => rawRenderDayItem(item, 'monthly'))
+        : undefined;
 
     const [viewType, setViewType] = useState(view);
     const [currentDate, setCurrentDate] = useState(date);
@@ -49,7 +57,9 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
             return (
                 <MonthlyCalendar
                     events={events}
-                    eventRenderer={(item) => eventRenderer(item, 'monthly')}
+                    eventRenderer={(item) =>
+                        withTooltip(item, (i) => eventRenderer(i, 'monthly'))
+                    }
                     shouldShowMonthControls={false}
                     header={
                         <>
@@ -78,23 +88,16 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
                     onDateChange={setCurrentDate}
                     loading={loading}
                     {...monthlyCalendarProps}
-                    renderDayItem={
-                        typeof monthlyCalendarProps?.renderDayItem ===
-                        'function'
-                            ? (item) =>
-                                  monthlyCalendarProps?.renderDayItem(
-                                      item,
-                                      'monthly'
-                                  )
-                            : null
-                    }
+                    renderDayItem={adaptedRenderDayItem}
                 />
             );
         case 'weekly':
             return (
                 <WeeklyCalendar
                     events={events}
-                    eventRenderer={(item) => eventRenderer(item, 'weekly')}
+                    eventRenderer={(item) =>
+                        withTooltip(item, (i) => eventRenderer(i, 'weekly'))
+                    }
                     shouldShowWeekControls={false}
                     header={
                         <>
