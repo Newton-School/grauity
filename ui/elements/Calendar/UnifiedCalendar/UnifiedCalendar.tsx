@@ -1,7 +1,6 @@
 /* eslint-disable indent */
 import React, { useEffect, useState } from 'react';
 
-import Tooltip from '../../Tooltip/Tooltip';
 import { withTooltip } from '../../Tooltip/utils/withTooltip';
 import MonthlyCalendar from '../MonthlyCalendar';
 import { CalendarEvent } from '../types';

@@ -5,6 +5,10 @@ import React from 'react';
 
 import UnifiedCalendar, { UnifiedCalendarProps } from './UnifiedCalendar';
 
+beforeAll(() => {
+    window.scrollTo = jest.fn();
+});
+
 const renderEvent = (event: any) => <div>{event.title}</div>;
 
 const defaultProps: UnifiedCalendarProps<any> = {
@@ -73,7 +77,11 @@ describe('UnifiedCalendar', () => {
             end: new Date(),
         };
     
-        const eventRenderer = (event: any) => <div>{event.name}</div>;
+        const eventRenderer = (event: any) => (
+            <div title={event.name} data-testid="event-title">
+                {event.name}
+            </div>
+        );
     
         render(
             <UnifiedCalendar
@@ -84,11 +92,8 @@ describe('UnifiedCalendar', () => {
             />
         );
     
-        const eventElement = screen.getByText('Unified Calendar Event');
-        fireEvent.mouseEnter(eventElement);
-    
-        await waitFor(() => {
-            expect(screen.getByText('Unified Calendar Event')).toBeInTheDocument();
-        });
+        const eventElement = await screen.findByTestId('event-title');
+        expect(eventElement).toBeInTheDocument();
+        expect(eventElement).toHaveAttribute('title', 'Unified Calendar Event');
     });
 });

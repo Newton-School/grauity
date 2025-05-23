@@ -70,6 +70,14 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
     if (typeof renderDayItem === 'function') {
         return <>{eventsToRender.map((event) => renderDayItem(event))}</>;
     }
+          
+    if (eventRenderer && typeof eventRenderer === 'function') {
+        return <>{eventsToRender.map((event) => (
+            <div key={event.id || event.title}>
+                {eventRenderer(event)}
+            </div>
+        ))}</>;
+    }
 
     return (
         <StyledMonthlyCalendarGridItem
