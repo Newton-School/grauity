@@ -54,9 +54,24 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         shouldDisableScroll = true,
         overflow = 'visible',
         className,
+        initialFocus = undefined,
+        returnFocusOnDeactivate = true,
     } = props;
 
     const modalRef = useRef<HTMLDivElement>(null);
+
+    const resolvedInitialFocus = useMemo(() => {
+        if (typeof initialFocus === 'string') {
+            return document.querySelector(initialFocus) as HTMLElement | null;
+        }
+        if (initialFocus === true) {
+            // explicitly forbid true, fallback to undefined or throw error
+            // or simply return undefined so focus-trap default is used
+            return undefined;
+        }
+        return initialFocus;
+    }, [initialFocus]);
+    
 
     const handleClose = () => {
         if (typeof onHide === 'function') {
@@ -119,8 +134,9 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                     <FocusTrap
                         active={isOpen}
                         focusTrapOptions={{
-                            initialFocus: shouldFocusOnFirstElement ? undefined : false,
-                            returnFocusOnDeactivate: true,
+                            initialFocus:
+                                resolvedInitialFocus ?? (shouldFocusOnFirstElement ? undefined : false),
+                            returnFocusOnDeactivate,
                         }}
                     >
                         <StyledModal
@@ -154,7 +170,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                                             color="neutral"
                                             icon="close"
                                             ariaLabel="Close"
-                                            buttonProps={{ autoFocus: true }}
+                                            buttonProps={{}}
                                         />
                                     </StyledModalAction>
                                 )}
@@ -178,17 +194,13 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                                 )}
 
                                 {body && (
-                                    <StyledModalBody
-                                        modalBodyMargin={modalBodyMargin}
-                                    >
+                                    <StyledModalBody modalBodyMargin={modalBodyMargin}>
                                         {body}
                                     </StyledModalBody>
                                 )}
 
                                 {children && (
-                                    <StyledModalBody
-                                        modalBodyMargin={modalBodyMargin}
-                                    >
+                                    <StyledModalBody modalBodyMargin={modalBodyMargin}>
                                         {children}
                                     </StyledModalBody>
                                 )}

@@ -5,6 +5,18 @@ import { ButtonColors, ButtonVariants } from '../Button/types';
 
 type ModalContentType = React.ReactNode;
 
+export type FocusTrapConfig = {
+    /**
+     * Element or selector to be focused when modal opens
+     */
+    initialFocus?: boolean | string | (() => HTMLElement | SVGElement | null);
+
+    /**
+     * Whether to return focus to the previously focused element on modal close
+     */
+    returnFocusOnDeactivate?: boolean;
+};
+
 export type ModalAnimationType =
     | false
     | 'slide'
@@ -57,7 +69,7 @@ interface ModalStep {
     buttonColor?: ButtonColors | null;
 }
 
-export interface ModalProps {
+export interface ModalProps extends FocusTrapConfig {
     /**
      * Determines if the modal is open.
      * Available choices: `true`, `false`. Default is `false`
