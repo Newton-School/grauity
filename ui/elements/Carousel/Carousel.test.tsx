@@ -4,6 +4,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 
 import Carousel from './Carousel';
+import { CLASSNAMES } from './constants';
 
 const DummyItem = ({ children }: { children: React.ReactNode }) => (
     <div style={{ width: '200px' }}>{children}</div>
@@ -50,6 +51,32 @@ describe('Carousel Component', () => {
         expect(item1).toBeInTheDocument();
         expect(item2).toBeInTheDocument();
         expect(item3).toBeInTheDocument();
+    });
+
+    // ClassName Application
+    it('should apply internal classnames correctly', () => {
+        const { container } = render(
+            <Carousel
+                title="Custom Title"
+                items={[<DummyItem>Item 1</DummyItem>]}
+            />
+        );
+
+        expect(
+            container.querySelector(`.${CLASSNAMES.NS_CAROUSEL_HEADER_ROW}`)
+        ).toBeInTheDocument();
+        expect(
+            container.querySelector(`.${CLASSNAMES.NS_CAROUSEL_TITLE}`)
+        ).toBeInTheDocument();
+        expect(
+            container.querySelector(`.${CLASSNAMES.NS_CAROUSEL_CONTROLS}`)
+        ).toBeInTheDocument();
+        expect(
+            container.querySelector(`.${CLASSNAMES.NS_CAROUSEL_ITEMS_CONTAINER}`)
+        ).toBeInTheDocument();
+        expect(
+            container.querySelector(`.${CLASSNAMES.NS_CAROUSEL_ITEM}`)
+        ).toBeInTheDocument();
     });
 
     // Less items
