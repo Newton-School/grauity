@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 
 import Carousel from './Carousel';
@@ -69,14 +69,18 @@ describe('Carousel Component', () => {
         const headerRow = container.querySelector(
             `.${CLASSNAMES.NS_CAROUSEL_HEADER_ROW}`
         );
-        const title = container.querySelector(`.${CLASSNAMES.NS_CAROUSEL_TITLE}`);
+        const title = container.querySelector(
+            `.${CLASSNAMES.NS_CAROUSEL_TITLE}`
+        );
         const controls = container.querySelector(
             `.${CLASSNAMES.NS_CAROUSEL_CONTROLS}`
         );
         const itemsContainer = container.querySelector(
             `.${CLASSNAMES.NS_CAROUSEL_ITEMS_CONTAINER}`
         );
-        const items = container.querySelectorAll(`.${CLASSNAMES.NS_CAROUSEL_ITEM}`);
+        const items = container.querySelectorAll(
+            `.${CLASSNAMES.NS_CAROUSEL_ITEM}`
+        );
 
         expect(headerRow).toBeInTheDocument();
         expect(title).toBeInTheDocument();
@@ -124,7 +128,7 @@ describe('Carousel Component', () => {
             );
 
             const container = screen.getByRole('list');
-            
+
             // Simulate touch start
             fireEvent.touchStart(container, {
                 touches: [{ clientX: 100 }],
@@ -155,7 +159,7 @@ describe('Carousel Component', () => {
             );
 
             const container = screen.getByRole('list');
-            
+
             // Simulate touch start
             fireEvent.touchStart(container, {
                 touches: [{ clientX: 0 }],
@@ -188,7 +192,7 @@ describe('Carousel Component', () => {
             );
 
             const container = screen.getByRole('list');
-            
+
             // Simulate touch start
             fireEvent.touchStart(container, {
                 touches: [{ clientX: 50 }],
@@ -220,7 +224,7 @@ describe('Carousel Component', () => {
             );
 
             const container = screen.getByRole('list');
-            
+
             // Simulate touch start
             fireEvent.touchStart(container, {
                 touches: [{ clientX: 0 }],
