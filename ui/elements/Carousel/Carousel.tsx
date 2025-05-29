@@ -9,7 +9,7 @@ import {
     StyledCarouselItemsContainer,
     StyledCarouselTitle,
 } from './Carousel.styles';
-import { SWIPE_THRESHOLD } from './constants';
+import { CLASSNAMES, SWIPE_THRESHOLD } from './constants';
 import { CarouselProps } from './types';
 
 const Carousel = (props: CarouselProps) => {
@@ -142,10 +142,16 @@ const Carousel = (props: CarouselProps) => {
             <StyledCarouselHeaderRow
                 ref={headerRef}
                 $iconPosition={iconPosition}
+                className={CLASSNAMES.NS_CAROUSEL_HEADER_ROW}
             >
-                <StyledCarouselTitle>{title}</StyledCarouselTitle>
+                <StyledCarouselTitle className={CLASSNAMES.NS_CAROUSEL_TITLE}>
+                    {title}
+                </StyledCarouselTitle>
                 {showIcons && (
-                    <StyledCarouselControls $iconGap={iconGap}>
+                    <StyledCarouselControls
+                        className={CLASSNAMES.NS_CAROUSEL_CONTROLS}
+                        $iconGap={iconGap}
+                    >
                         <IconButton
                             size="small"
                             icon={leftIcon}
@@ -175,6 +181,7 @@ const Carousel = (props: CarouselProps) => {
             </StyledCarouselHeaderRow>
             <StyledCarouselItemsContainer
                 ref={containerRef}
+                className={CLASSNAMES.NS_CAROUSEL_ITEMS_CONTAINER}
                 $gap={gap}
                 $translateX={translateX}
                 onTouchStart={handleTouchStart}
@@ -184,6 +191,7 @@ const Carousel = (props: CarouselProps) => {
             >
                 {items.map((item) => (
                     <StyledCarouselItem
+                        className={CLASSNAMES.NS_CAROUSEL_ITEM}
                         $fullWidth={fullWidthItems}
                         role="listitem"
                     >
