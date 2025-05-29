@@ -1,9 +1,10 @@
+import type { Meta } from '@storybook/react';
 import React from 'react';
 import Carousel, { CarouselProps } from 'ui/elements/Carousel';
 
 import { getRandomPastelColor } from '../../utils/getRandomPastelColor';
 
-export default {
+const meta: Meta<CarouselProps> = {
     title: 'Elements/Carousel',
     component: Carousel,
     decorators: [
@@ -13,31 +14,9 @@ export default {
             </div>
         ),
     ],
-    parameters: {
-        docs: {
-            source: {
-                code: `
-<Carousel
-  fullWidthItems={false}
-  hideIconsOnLessItems
-  headerGap={30}
-  gap={12}
-  iconGap={12}
-  iconPosition="right"
-  items={[]}
-  leftIcon="chevron-left"
-  onLeftClick={() => {}}
-  onRightClick={() => {}}
-  onScrollEnd={() => {}}
-  rightIcon="chevron-right"
-  scrollAmount={100}
-  style={{}}
-  title="Slide to see"
-/>`,
-            },
-        },
-    },
 };
+
+export default meta;
 
 const Template = (args: CarouselProps) => <Carousel {...args} />;
 
@@ -66,6 +45,8 @@ const defaultArgs: CarouselProps = {
     leftIcon: 'chevron-left',
     rightIcon: 'chevron-right',
     iconGap: 12,
+    iconButtonVariant: 'secondary',
+    iconButtonColor: 'neutral',
     onLeftClick: () => {},
     onRightClick: () => {},
     onScrollEnd: () => {},

@@ -1,9 +1,10 @@
 import '@testing-library/jest-dom';
 
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 
 import Carousel from './Carousel';
+import { CLASSNAMES } from './constants';
 
 const DummyItem = ({ children }: { children: React.ReactNode }) => (
     <div style={{ width: '200px' }}>{children}</div>
@@ -52,6 +53,46 @@ describe('Carousel Component', () => {
         expect(item3).toBeInTheDocument();
     });
 
+    // ClassName Application
+    it('should apply internal classnames correctly', () => {
+        const { container } = render(
+            <Carousel
+                title="Custom Title"
+                items={[
+                    <DummyItem key="1">Item 1</DummyItem>,
+                    <DummyItem key="2">Item 2</DummyItem>,
+                    <DummyItem key="3">Item 3</DummyItem>,
+                ]}
+            />
+        );
+
+        const headerRow = container.querySelector(
+            `.${CLASSNAMES.NS_CAROUSEL_HEADER_ROW}`
+        );
+        const title = container.querySelector(
+            `.${CLASSNAMES.NS_CAROUSEL_TITLE}`
+        );
+        const controls = container.querySelector(
+            `.${CLASSNAMES.NS_CAROUSEL_CONTROLS}`
+        );
+        const itemsContainer = container.querySelector(
+            `.${CLASSNAMES.NS_CAROUSEL_ITEMS_CONTAINER}`
+        );
+        const items = container.querySelectorAll(
+            `.${CLASSNAMES.NS_CAROUSEL_ITEM}`
+        );
+
+        expect(headerRow).toBeInTheDocument();
+        expect(title).toBeInTheDocument();
+        expect(controls).toBeInTheDocument();
+        expect(itemsContainer).toBeInTheDocument();
+        expect(items.length).toBe(3);
+        items.forEach((item) => {
+            expect(item).toBeInTheDocument();
+            expect(item).toHaveClass(CLASSNAMES.NS_CAROUSEL_ITEM);
+        });
+    });
+
     // Less items
     it('should hide the icons when there are less items and hideIconsOnLessItems is true', () => {
         render(
@@ -87,7 +128,7 @@ describe('Carousel Component', () => {
             );
 
             const container = screen.getByRole('list');
-            
+
             // Simulate touch start
             fireEvent.touchStart(container, {
                 touches: [{ clientX: 100 }],
@@ -118,7 +159,7 @@ describe('Carousel Component', () => {
             );
 
             const container = screen.getByRole('list');
-            
+
             // Simulate touch start
             fireEvent.touchStart(container, {
                 touches: [{ clientX: 0 }],
@@ -151,7 +192,7 @@ describe('Carousel Component', () => {
             );
 
             const container = screen.getByRole('list');
-            
+
             // Simulate touch start
             fireEvent.touchStart(container, {
                 touches: [{ clientX: 50 }],
@@ -183,7 +224,7 @@ describe('Carousel Component', () => {
             );
 
             const container = screen.getByRole('list');
-            
+
             // Simulate touch start
             fireEvent.touchStart(container, {
                 touches: [{ clientX: 0 }],

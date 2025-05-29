@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { IconButton } from '../Button';
 import {
@@ -9,8 +9,8 @@ import {
     StyledCarouselItemsContainer,
     StyledCarouselTitle,
 } from './Carousel.styles';
+import { CLASSNAMES, SWIPE_THRESHOLD } from './constants';
 import { CarouselProps } from './types';
-import { SWIPE_THRESHOLD } from './constants';
 
 const Carousel = (props: CarouselProps) => {
     const {
@@ -23,6 +23,8 @@ const Carousel = (props: CarouselProps) => {
         leftIcon = 'chevron-left',
         rightIcon = 'chevron-right',
         iconGap = 12,
+        iconButtonVariant = 'secondary',
+        iconButtonColor = 'neutral',
         onLeftClick = () => {},
         onRightClick = () => {},
         onScrollEnd = () => {},
@@ -76,7 +78,9 @@ const Carousel = (props: CarouselProps) => {
     const handleSwipe = useCallback(() => {
         const swipeDistance = touchEndX.current - touchStartX.current;
 
-        if (Math.abs(swipeDistance) < SWIPE_THRESHOLD) return;
+        if (Math.abs(swipeDistance) < SWIPE_THRESHOLD) {
+            return;
+        }
 
         if (swipeDistance > 0 && !leftButtonDisabled) {
             // Swipe right - show previous
@@ -87,10 +91,13 @@ const Carousel = (props: CarouselProps) => {
         }
     }, [leftButtonDisabled, rightButtonDisabled, handleControlClick]);
 
-    const handleTouchEnd = useCallback((e: React.TouchEvent) => {
-        touchEndX.current = e.changedTouches[0].clientX;
-        handleSwipe();
-    }, [handleSwipe]);
+    const handleTouchEnd = useCallback(
+        (e: React.TouchEvent) => {
+            touchEndX.current = e.changedTouches[0].clientX;
+            handleSwipe();
+        },
+        [handleSwipe]
+    );
 
     useEffect(() => {
         setLeftButtonDisabled(translateX === 0);
@@ -135,15 +142,21 @@ const Carousel = (props: CarouselProps) => {
             <StyledCarouselHeaderRow
                 ref={headerRef}
                 $iconPosition={iconPosition}
+                className={CLASSNAMES.NS_CAROUSEL_HEADER_ROW}
             >
-                <StyledCarouselTitle>{title}</StyledCarouselTitle>
+                <StyledCarouselTitle className={CLASSNAMES.NS_CAROUSEL_TITLE}>
+                    {title}
+                </StyledCarouselTitle>
                 {showIcons && (
-                    <StyledCarouselControls $iconGap={iconGap}>
+                    <StyledCarouselControls
+                        className={CLASSNAMES.NS_CAROUSEL_CONTROLS}
+                        $iconGap={iconGap}
+                    >
                         <IconButton
                             size="small"
                             icon={leftIcon}
-                            variant="secondary"
-                            color="neutral"
+                            variant={iconButtonVariant}
+                            color={iconButtonColor}
                             style={{
                                 width: '10px',
                                 borderRadius: '50%',
@@ -154,8 +167,8 @@ const Carousel = (props: CarouselProps) => {
                         <IconButton
                             size="small"
                             icon={rightIcon}
-                            variant="secondary"
-                            color="neutral"
+                            variant={iconButtonVariant}
+                            color={iconButtonColor}
                             style={{
                                 width: '10px',
                                 borderRadius: '50%',
@@ -168,6 +181,7 @@ const Carousel = (props: CarouselProps) => {
             </StyledCarouselHeaderRow>
             <StyledCarouselItemsContainer
                 ref={containerRef}
+                className={CLASSNAMES.NS_CAROUSEL_ITEMS_CONTAINER}
                 $gap={gap}
                 $translateX={translateX}
                 onTouchStart={handleTouchStart}
@@ -176,7 +190,8 @@ const Carousel = (props: CarouselProps) => {
                 aria-label="Carousel items"
             >
                 {items.map((item) => (
-                    <StyledCarouselItem 
+                    <StyledCarouselItem
+                        className={CLASSNAMES.NS_CAROUSEL_ITEM}
                         $fullWidth={fullWidthItems}
                         role="listitem"
                     >
