@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { IconButton } from '../Button';
 import {
@@ -9,8 +9,8 @@ import {
     StyledCarouselItemsContainer,
     StyledCarouselTitle,
 } from './Carousel.styles';
-import { CarouselProps } from './types';
 import { SWIPE_THRESHOLD } from './constants';
+import { CarouselProps } from './types';
 
 const Carousel = (props: CarouselProps) => {
     const {
@@ -23,6 +23,8 @@ const Carousel = (props: CarouselProps) => {
         leftIcon = 'chevron-left',
         rightIcon = 'chevron-right',
         iconGap = 12,
+        iconButtonVariant = 'secondary',
+        iconButtonColor = 'neutral',
         onLeftClick = () => {},
         onRightClick = () => {},
         onScrollEnd = () => {},
@@ -76,7 +78,9 @@ const Carousel = (props: CarouselProps) => {
     const handleSwipe = useCallback(() => {
         const swipeDistance = touchEndX.current - touchStartX.current;
 
-        if (Math.abs(swipeDistance) < SWIPE_THRESHOLD) return;
+        if (Math.abs(swipeDistance) < SWIPE_THRESHOLD) {
+            return;
+        }
 
         if (swipeDistance > 0 && !leftButtonDisabled) {
             // Swipe right - show previous
@@ -87,10 +91,13 @@ const Carousel = (props: CarouselProps) => {
         }
     }, [leftButtonDisabled, rightButtonDisabled, handleControlClick]);
 
-    const handleTouchEnd = useCallback((e: React.TouchEvent) => {
-        touchEndX.current = e.changedTouches[0].clientX;
-        handleSwipe();
-    }, [handleSwipe]);
+    const handleTouchEnd = useCallback(
+        (e: React.TouchEvent) => {
+            touchEndX.current = e.changedTouches[0].clientX;
+            handleSwipe();
+        },
+        [handleSwipe]
+    );
 
     useEffect(() => {
         setLeftButtonDisabled(translateX === 0);
@@ -142,8 +149,8 @@ const Carousel = (props: CarouselProps) => {
                         <IconButton
                             size="small"
                             icon={leftIcon}
-                            variant="secondary"
-                            color="neutral"
+                            variant={iconButtonVariant}
+                            color={iconButtonColor}
                             style={{
                                 width: '10px',
                                 borderRadius: '50%',
@@ -154,8 +161,8 @@ const Carousel = (props: CarouselProps) => {
                         <IconButton
                             size="small"
                             icon={rightIcon}
-                            variant="secondary"
-                            color="neutral"
+                            variant={iconButtonVariant}
+                            color={iconButtonColor}
                             style={{
                                 width: '10px',
                                 borderRadius: '50%',
@@ -176,7 +183,7 @@ const Carousel = (props: CarouselProps) => {
                 aria-label="Carousel items"
             >
                 {items.map((item) => (
-                    <StyledCarouselItem 
+                    <StyledCarouselItem
                         $fullWidth={fullWidthItems}
                         role="listitem"
                     >

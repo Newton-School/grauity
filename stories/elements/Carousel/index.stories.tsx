@@ -66,6 +66,8 @@ const defaultArgs: CarouselProps = {
     leftIcon: 'chevron-left',
     rightIcon: 'chevron-right',
     iconGap: 12,
+    iconButtonVariant: 'secondary',
+    iconButtonColor: 'neutral',
     onLeftClick: () => {},
     onRightClick: () => {},
     onScrollEnd: () => {},

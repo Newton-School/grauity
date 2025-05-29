@@ -2,6 +2,7 @@ import React from 'react';
 import { grauityIconName } from 'ui/core';
 
 import { StyledDivProps } from '../../../common/types';
+import { ButtonColors, ButtonVariants } from '../Button/types';
 
 export type IconPosition = 'left' | 'right';
 
@@ -59,6 +60,18 @@ export interface CarouselProps {
      * @default 12
      */
     iconGap?: number;
+
+    /**
+     * The variant of the navigation icon buttons.
+     * @default secondary
+     */
+    iconButtonVariant?: ButtonVariants;
+
+    /**
+     * The color of the navigation icon buttons.
+     * @default neutral
+     */
+    iconButtonColor?: ButtonColors;
 
     /**
      * Callback function to be called when the left navigation button is clicked.
