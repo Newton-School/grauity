@@ -8,7 +8,8 @@ import {
     StyledTableHeadingCell,
     StyledTableRow,
 } from './Table.styles';
-import { TableProps } from './types';
+import { TableColumn, TableProps } from './types';
+import { getColumnProperty } from './utils';
 
 /**
  * A table is a component that is used to display data in a tabular format.
@@ -65,23 +66,27 @@ const Table = ({
                     condensed={condensed}
                     hoverable={hoverable}
                 >
-                    {columns?.map((column) => (
+                    {Object.entries(row)?.map(([columnKey, tableCellData]) => (
                         <StyledTableDataCell
-                            key={`table--column-${column.key}--row-${
+                            key={`table--column-${columnKey}--row-${
                                 rowIndex + 1
                             }`}
                             align={
-                                row[column.key]?.align ||
-                                column?.align ||
+                                tableCellData?.align ||
+                                (getColumnProperty({
+                                    columns,
+                                    columnKey,
+                                    property: 'align',
+                                }) as TableColumn['align']) ||
                                 'center'
                             }
-                            colSpan={row[column.key]?.colSpan || 1}
-                            rowSpan={row[column.key]?.rowSpan || 1}
-                            vAlign={row[column.key]?.vAlign || 'middle'}
+                            colSpan={tableCellData?.colSpan || 1}
+                            rowSpan={tableCellData?.rowSpan || 1}
+                            vAlign={tableCellData?.vAlign || 'middle'}
                         >
-                            {row[column.key]?.render
-                                ? row[column.key].render(row[column.key])
-                                : row[column.key]?.display}
+                            {tableCellData?.render
+                                ? tableCellData.render(tableCellData)
+                                : tableCellData?.display}
                         </StyledTableDataCell>
                     ))}
                 </StyledTableRow>
