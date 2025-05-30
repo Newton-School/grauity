@@ -6,7 +6,9 @@ import React from 'react';
 import MonthlyCalendar from './MonthlyCalendar';
 import { MonthlyCalendarProps } from './types';
 
-const renderEvent = (event: any) => <div>{event.title}</div>;
+const renderEvent = (event: any) => (
+    <div title={event.title} data-testid="event-title">{event.title}</div>
+);
 
 const defaultProps: MonthlyCalendarProps<any> = {
     events: [],
@@ -26,32 +28,28 @@ describe('MonthlyCalendar', () => {
         });
     });
 
-    it('renders controls disabled when loading is true', async () => {
-        render(
-            <MonthlyCalendar
-                {...defaultProps}
-                loading
-                shouldShowMonthControls
-            />
-        );
+    it('renders controls disabled when loading is true', () => {
+        render(<MonthlyCalendar {...defaultProps} loading />);
         expect(screen.getByText('Today').parentElement).toBeDisabled();
     });
 
-    it('should call onDateChange when clicking on the next month button', async () => {
+    it('calls onDateChange when clicking next month', async () => {
         render(<MonthlyCalendar {...defaultProps} />);
         fireEvent.click(screen.getAllByLabelText(/Go to month/i)[0]);
         await waitFor(() => {
             expect(defaultProps.onDateChange).toHaveBeenCalled();
         });
     });
-    it('should call onDateChange when clicking on the previous month button', async () => {
+
+    it('calls onDateChange when clicking previous month', async () => {
         render(<MonthlyCalendar {...defaultProps} />);
         fireEvent.click(screen.getAllByLabelText(/Go to month/i)[1]);
         await waitFor(() => {
             expect(defaultProps.onDateChange).toHaveBeenCalled();
         });
     });
-    it('should call onDateChange when clicking on the today button', async () => {
+
+    it('calls onDateChange when clicking today', async () => {
         render(<MonthlyCalendar {...defaultProps} />);
         fireEvent.click(screen.getByText('Today'));
         await waitFor(() => {
@@ -59,18 +57,37 @@ describe('MonthlyCalendar', () => {
         });
     });
 
-    it('renders correctly with renderDayItem', async () => {
+    it('renders correctly with renderDayItem', () => {
         render(
             <MonthlyCalendar
                 {...defaultProps}
                 renderDayItem={() => <div>Test renderDayItem Call</div>}
-                events={[
-                    { title: 'Test Event', start: new Date(), end: new Date() },
-                ]}
+                events={[{ title: 'Test Event', start: new Date(), end: new Date() }]}
             />
         );
-        expect(
-            screen.getAllByText('Test renderDayItem Call').length
-        ).toBeGreaterThan(0);
+        expect(screen.getAllByText('Test renderDayItem Call').length).toBeGreaterThan(0);
+    });
+
+    it('renders event with title as tooltip when using eventRenderer', async () => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const testEvent = {
+            id: '1',
+            title: 'Event with Tooltip',
+            start: today,
+            end: today,
+        };
+
+        render(
+            <MonthlyCalendar
+                {...defaultProps}
+                events={[testEvent]}
+                eventRenderer={renderEvent}
+            />
+        );
+
+        const tooltipElement = await screen.findByTestId('event-title');
+        expect(tooltipElement).toBeInTheDocument();
+        expect(tooltipElement).toHaveAttribute('title', 'Event with Tooltip');
     });
 });
