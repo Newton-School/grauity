@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import {
     StyledTable,
@@ -29,7 +29,10 @@ const Table = ({
     highlightHeaders = true,
     hoverable = false,
 }: TableProps) => {
-    const columnMap = Object.fromEntries(columns.map((c) => [c.key, c]));
+    const columnMap = useMemo(
+        () => Object.fromEntries(columns.map((c) => [c.key, c])),
+        [columns]
+    );
 
     return (
         <StyledTable
