@@ -22,7 +22,6 @@ export const StyledPopOverContainer = styled(
         css`
             left: ${$offset?.left}px;
         `}
-
     ${({ $offset }) =>
         !$offset &&
         css`
