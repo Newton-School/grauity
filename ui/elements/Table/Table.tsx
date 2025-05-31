@@ -8,8 +8,7 @@ import {
     StyledTableHeadingCell,
     StyledTableRow,
 } from './Table.styles';
-import { TableColumn, TableProps } from './types';
-import { getColumnProperty } from './utils';
+import { TableProps } from './types';
 
 /**
  * A table is a component that is used to display data in a tabular format.
@@ -29,71 +28,80 @@ const Table = ({
     capitalizeHeaders = false,
     highlightHeaders = true,
     hoverable = false,
-}: TableProps) => (
-    <StyledTable
-        borderAround={borderAround}
-        borderWithin={borderWithin}
-        borderHorizontal={borderHorizontal}
-        borderVertical={borderVertical}
-        striped={striped}
-        className={className}
-        style={style}
-        role="table"
-    >
-        <StyledTableHead
-            capitalizeHeaders={capitalizeHeaders}
-            highlightHeaders={highlightHeaders}
-        >
-            <StyledTableRow condensed={condensed}>
-                {columns?.map((column, columnIndex) => (
-                    <StyledTableHeadingCell
-                        key={column?.key || `table--column-${columnIndex + 1}`}
-                        align={column?.align || 'center'}
-                        width={column?.width || 'auto'}
-                        colSpan={column?.colSpan || 1}
-                        rowSpan={column?.rowSpan || 1}
-                    >
-                        {column.display}
-                    </StyledTableHeadingCell>
-                ))}
-            </StyledTableRow>
-        </StyledTableHead>
+}: TableProps) => {
+    const columnMap = Object.fromEntries(columns.map((c) => [c.key, c]));
 
-        <StyledTableBody>
-            {rows?.map((row, rowIndex) => (
-                <StyledTableRow
-                    key={`table--row-${rowIndex + 1}`}
-                    condensed={condensed}
-                    hoverable={hoverable}
-                >
-                    {Object.entries(row)?.map(([columnKey, tableCellData]) => (
-                        <StyledTableDataCell
-                            key={`table--column-${columnKey}--row-${
-                                rowIndex + 1
-                            }`}
-                            align={
-                                tableCellData?.align ||
-                                (getColumnProperty({
-                                    columns,
-                                    columnKey,
-                                    property: 'align',
-                                }) as TableColumn['align']) ||
-                                'center'
+    return (
+        <StyledTable
+            borderAround={borderAround}
+            borderWithin={borderWithin}
+            borderHorizontal={borderHorizontal}
+            borderVertical={borderVertical}
+            striped={striped}
+            className={className}
+            style={style}
+            role="table"
+        >
+            <StyledTableHead
+                capitalizeHeaders={capitalizeHeaders}
+                highlightHeaders={highlightHeaders}
+            >
+                <StyledTableRow condensed={condensed}>
+                    {columns?.map((column, columnIndex) => (
+                        <StyledTableHeadingCell
+                            key={
+                                column?.key ||
+                                `table--column-${columnIndex + 1}`
                             }
-                            colSpan={tableCellData?.colSpan || 1}
-                            rowSpan={tableCellData?.rowSpan || 1}
-                            vAlign={tableCellData?.vAlign || 'middle'}
+                            align={column?.align || 'center'}
+                            width={column?.width || 'auto'}
+                            colSpan={column?.colSpan || 1}
+                            rowSpan={column?.rowSpan || 1}
                         >
-                            {tableCellData?.render
-                                ? tableCellData.render(tableCellData)
-                                : tableCellData?.display}
-                        </StyledTableDataCell>
+                            {column.display}
+                        </StyledTableHeadingCell>
                     ))}
                 </StyledTableRow>
-            ))}
-        </StyledTableBody>
-    </StyledTable>
-);
+            </StyledTableHead>
+
+            <StyledTableBody>
+                {rows?.map((row, rowIndex) => (
+                    <StyledTableRow
+                        key={`table--row-${rowIndex + 1}`}
+                        condensed={condensed}
+                        hoverable={hoverable}
+                    >
+                        {columns?.map((column) => {
+                            const tableCellData = row[column.key];
+                            if (!tableCellData) {
+                                return null;
+                            }
+                            return (
+                                <StyledTableDataCell
+                                    key={`table--column-${column.key}--row-${
+                                        rowIndex + 1
+                                    }`}
+                                    align={
+                                        tableCellData?.align ||
+                                        columnMap?.[column.key]?.align ||
+                                        'center'
+                                    }
+                                    colSpan={tableCellData?.colSpan || 1}
+                                    rowSpan={tableCellData?.rowSpan || 1}
+                                    vAlign={tableCellData?.vAlign || 'middle'}
+                                >
+                                    {tableCellData?.render
+                                        ? tableCellData.render(tableCellData)
+                                        : tableCellData?.display}
+                                </StyledTableDataCell>
+                            );
+                        })}
+                    </StyledTableRow>
+                ))}
+            </StyledTableBody>
+        </StyledTable>
+    );
+};
 
 Table.Table = StyledTable;
 Table.TableBody = StyledTableBody;
