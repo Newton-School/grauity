@@ -1,5 +1,5 @@
 import React from 'react';
-import ThemeScope from 'ui/elements/ThemeScope';
+import ThemeScope from 'ui/elements/ThemeScope/ThemeScope';
 
 import { StyledCard } from './index.styles';
 
