@@ -1,6 +1,5 @@
 import React from 'react';
 
-import THEMES from '../../ui/themes/constants';
 import TokenBlock from '../helper-components/TokenBlock';
 import { CategoryToken } from '../types';
 import { createCategoryTokens } from './createCategoryTokens';
@@ -24,7 +23,7 @@ import { createCategoryTokens } from './createCategoryTokens';
  */
 export const extractTokensFromTheme = ({
     categories = [],
-    currentTheme = THEMES.LIGHT,
+    currentTheme,
     type,
     render = () => null,
 }: {
@@ -38,17 +37,6 @@ export const extractTokensFromTheme = ({
     return colorTokens.map((token) => ({
         token: {
             render: () => <TokenBlock copy>{token.token}</TokenBlock>,
-        },
-        value: {
-            render: () => (
-                <TokenBlock
-                    copy
-                    color={`var(${token.token})`}
-                    background={type === 'colors' ? 'var(--bg-primary)' : ''}
-                >
-                    {token[currentTheme as keyof CategoryToken]}
-                </TokenBlock>
-            ),
         },
         light: {
             render: () => (
@@ -84,6 +72,21 @@ export const extractTokensFromTheme = ({
             typeof render === 'function' && {
             [type]: {
                 render: () => render(token),
+            },
+        }),
+        ...(token?.[currentTheme as keyof CategoryToken] && {
+            value: {
+                render: () => (
+                    <TokenBlock
+                        copy
+                        color={`var(${token.token})`}
+                        background={
+                            type === 'colors' ? 'var(--bg-primary)' : ''
+                        }
+                    >
+                        {token[currentTheme as keyof CategoryToken]}
+                    </TokenBlock>
+                ),
             },
         }),
     }));

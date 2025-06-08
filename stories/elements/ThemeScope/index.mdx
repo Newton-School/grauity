@@ -1,0 +1,19 @@
+import { Meta, DocsPage } from '@storybook/blocks';
+import * as ThemeScopeStory  from './index.stories';
+import ThemeScope from 'ui/elements/ThemeScope';
+import { StyledCard } from './index.styles';
+
+# Theming with ThemeScope
+
+To use theming in your app, simply wrap your components with the `ThemeScope` component.
+- To maintain the theme of the parent component, no need of `ThemeScope` as this is the default behavior.
+- To change the theme, use the `applyTheme` prop of `ThemeScope`. Available themes are:
+  - `light`
+  - `dark`
+- To invert the theme of the parent component, use the `invert` prop of `ThemeScope`.
+
+<br />
+
+<Meta of={ThemeScopeStory} />
+
+<DocsPage of={ThemeScopeStory} />

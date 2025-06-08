@@ -10,7 +10,10 @@ const withTheme = (Story, context) => {
     const { globals } = context;
 
     return (
-        <NSThemeWrapper defaultTheme={globals.theme}>
+        <NSThemeWrapper
+            defaultTheme={globals.theme}
+            usePreferredColorScheme={globals.theme === 'system'}
+        >
             <Story />
         </NSThemeWrapper>
     );
