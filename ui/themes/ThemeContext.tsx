@@ -101,7 +101,7 @@ const ThemeWrapper = ({
                 );
             }
         };
-    }, []);
+    }, [usePreferredColorScheme]);
 
     useEffect(() => {
         if (isThemeEnabled) {
@@ -117,9 +117,11 @@ const ThemeWrapper = ({
         }
     }, [isThemeEnabled, value?.theme?.themeName]);
 
+    const currentTheme = isThemeEnabled ? value : defaultValue;
+
     return (
-        <ThemeContext.Provider value={isThemeEnabled ? value : defaultValue}>
-            <GrauityThemeProvider>
+        <ThemeContext.Provider value={currentTheme}>
+            <GrauityThemeProvider applyTheme={currentTheme?.theme?.themeName}>
                 {children}
             </GrauityThemeProvider>
         </ThemeContext.Provider>

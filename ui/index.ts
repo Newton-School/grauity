@@ -276,3 +276,16 @@ export {
     type UseFormReturnProps as NSUseFormReturnProps,
     useForm as useNSForm,
 } from './elements/Form/useForm';
+
+// GrauityThemeScope
+export {
+    default as GrauityThemeScope,
+    ThemeScopeContext as GrauityThemeScopeContext,
+    type ThemeScopeProps as GrauityThemeScopeProps,
+    ThemeScopeProvider as GrauityThemeScopeProvider,
+} from './elements/ThemeScope';
+export type {
+    Theme as GrauityTheme,
+    ThemeType as GrauityThemeType,
+} from './elements/ThemeScope/types';
+export { getThemeAndThemeClassName as getGrauityThemeAndThemeClassName } from './elements/ThemeScope/utils';

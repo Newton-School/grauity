@@ -9,10 +9,8 @@ export default {
 };
 
 export const Text = {
-    render: (args: any, { globals }: any) => {
-        const { theme } = globals;
+    render: () => {
         const rows = extractTokensFromTheme({
-            currentTheme: theme,
             type: 'colors',
             categories: ['text'],
         });
@@ -35,10 +33,8 @@ export const Text = {
 };
 
 export const Background = {
-    render: (args: any, { globals }: any) => {
-        const { theme } = globals;
+    render: () => {
         const rows = extractTokensFromTheme({
-            currentTheme: theme,
             type: 'colors',
             categories: ['bg'],
         });
@@ -61,10 +57,8 @@ export const Background = {
 };
 
 export const Border = {
-    render: (args: any, { globals }: any) => {
-        const { theme } = globals;
+    render: () => {
         const rows = extractTokensFromTheme({
-            currentTheme: theme,
             type: 'colors',
             categories: ['border'],
         });
