@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
-import { ThemeScopeProvider } from 'ui/elements/ThemeScope';
-import { Theme } from 'ui/elements/ThemeScope/types';
 
+import { ThemeScopeProvider } from '../elements/ThemeScope';
+import { Theme } from '../elements/ThemeScope/types';
 import DARK_THEME_OBJ from './darkThemeConstants';
 import GlobalStyle from './GlobalStyle';
 import LIGHT_THEME_OBJ from './lightThemeConstants';
