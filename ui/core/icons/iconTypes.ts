@@ -321,6 +321,8 @@ export type grauityIconName =
     | 'map-pin'
     | 'maximize-filled'
     | 'maximize'
+    | 'meeting-room-filled'
+    | 'meeting-room'
     | 'menu-alt2-filled'
     | 'menu-alt2'
     | 'menu-filled'
@@ -767,6 +769,8 @@ export type grauityIconKey =
     | 'MapPin'
     | 'MaximizeFilled'
     | 'Maximize'
+    | 'MeetingRoomFilled'
+    | 'MeetingRoom'
     | 'MenuAlt2Filled'
     | 'MenuAlt2'
     | 'MenuFilled'
@@ -1213,6 +1217,8 @@ export enum GRAUITY_ICONS {
     MapPin = 'map-pin',
     MaximizeFilled = 'maximize-filled',
     Maximize = 'maximize',
+    MeetingRoomFilled = 'meeting-room-filled',
+    MeetingRoom = 'meeting-room',
     MenuAlt2Filled = 'menu-alt2-filled',
     MenuAlt2 = 'menu-alt2',
     MenuFilled = 'menu-filled',
