@@ -79,7 +79,9 @@ export const StyledMonthlyCalendarGridItem = styled.div<StyledMonthlyCalendarGri
     width: 100%;
     height: 100%;
 
-    overflow: hidden;
+    overflow: visible;
+    position: relative;
+    z-index: 0;
 `;
 
 export const StyledMonthlyCalendarGrid = styled.div<GridContainerRows>`

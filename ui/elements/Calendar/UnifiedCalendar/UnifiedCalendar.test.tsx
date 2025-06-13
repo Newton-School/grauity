@@ -5,6 +5,10 @@ import React from 'react';
 
 import UnifiedCalendar, { UnifiedCalendarProps } from './UnifiedCalendar';
 
+beforeAll(() => {
+    window.scrollTo = jest.fn();
+});
+
 const renderEvent = (event: any) => <div>{event.title}</div>;
 
 const defaultProps: UnifiedCalendarProps<any> = {
@@ -63,5 +67,33 @@ describe('UnifiedCalendar', () => {
             fireEvent.click(weeklyButton);
             expect(defaultProps.onViewChange).toHaveBeenCalledWith('monthly');
         });
+    });
+
+    it('shows tooltip on event hover in monthly view', async () => {
+        const testEvent = {
+            id: '1',
+            name: 'Unified Calendar Event',
+            start: new Date(),
+            end: new Date(),
+        };
+    
+        const eventRenderer = (event: any) => (
+            <div title={event.name} data-testid="event-title">
+                {event.name}
+            </div>
+        );
+    
+        render(
+            <UnifiedCalendar
+                view="monthly"
+                date={new Date()}
+                events={[testEvent]}
+                eventRenderer={(event) => eventRenderer(event)}
+            />
+        );
+    
+        const eventElement = await screen.findByTestId('event-title');
+        expect(eventElement).toBeInTheDocument();
+        expect(eventElement).toHaveAttribute('title', 'Unified Calendar Event');
     });
 });
