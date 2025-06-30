@@ -85,10 +85,7 @@ export default {
             ],
             mapping: {
                 'Simple example using Typography': (
-                    <Typography
-                        variant="paragraph-semibold-label"
-                        color="inherit"
-                    >
+                    <Typography variant="paragraph-sb-l1" color="inherit">
                         {TEXT}
                     </Typography>
                 ),
@@ -166,7 +163,7 @@ Gallery.args = {
         },
     ],
     children: (
-        <Typography variant="paragraph-semibold-label" color="inherit">
+        <Typography variant="paragraph-sb-l1" color="inherit">
             {TEXT}
         </Typography>
     ),

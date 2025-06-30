@@ -271,8 +271,8 @@ const Template = () => {
                 </NSFormRow>
                 <br />
                 <br />
-                <Typography>Form State:</Typography>
-                <Typography>
+                <Typography variant="paragraph-md-p1">Form State:</Typography>
+                <Typography variant="paragraph-md-p1">
                     <pre>{JSON.stringify(formData, null, 2)}</pre>
                 </Typography>
             </div>
