@@ -162,10 +162,10 @@ export const TYPOGRAPHY_VARIANT_STYLES_MAPPING = {
     `,
     // Paragraph Medium
     [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_P1]: css`
-        font-size: var(--font-size-fs-10, 12px);
-        font-weight: var(--font-weight-fw-20, 550);
-        line-height: var(--line-height-lh-10, 14px);
-        letter-spacing: var(--letter-spacing-ls-40, 0.25px);
+        font-size: var(--font-size-fs-40, 18px);
+        font-weight: var(--font-weight-fw-10, 500);
+        line-height: var(--line-height-lh-80, 28px);
+        letter-spacing: var(--letter-spacing-ls-30, 0.1px);
     `,
     [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_P2]: css`
         font-size: var(--font-size-fs-30, 16px);
