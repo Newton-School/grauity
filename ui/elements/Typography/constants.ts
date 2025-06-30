@@ -1,43 +1,42 @@
+import { css } from 'styled-components';
+
 import { TypographyAsType, TypographyVariantType } from './types';
 
 export const TYPOGRAPHY_VARIANTS_ENUM: { [x: string]: TypographyVariantType } =
     {
-        HEADING_SEMIBOLD_H40: 'heading-semibold-h40',
-        HEADING_SEMIBOLD_H36: 'heading-semibold-h36',
-        HEADING_SEMIBOLD_H28: 'heading-semibold-h28',
-        HEADING_SEMIBOLD_H24: 'heading-semibold-h24',
-        HEADING_SEMIBOLD_H20: 'heading-semibold-h20',
-        HEADING_SEMIBOLD_H16: 'heading-semibold-h16',
-
-        PARAGRAPH_SEMIBOLD_BODY1: 'paragraph-semibold-body1',
-        PARAGRAPH_SEMIBOLD_BODY2: 'paragraph-semibold-body2',
-        PARAGRAPH_SEMIBOLD_BODY3: 'paragraph-semibold-body3',
-        PARAGRAPH_SEMIBOLD_BODY4: 'paragraph-semibold-body4',
-        PARAGRAPH_SEMIBOLD_LABEL: 'paragraph-semibold-label',
-        PARAGRAPH_SEMIBOLD_LABEL2: 'paragraph-semibold-label2',
-        PARAGRAPH_SEMIBOLD_CALLOUT: 'paragraph-semibold-callout',
-
-        PARAGRAPH_MEDIUM_BODY1: 'paragraph-medium-body1',
-        PARAGRAPH_MEDIUM_BODY2: 'paragraph-medium-body2',
-        PARAGRAPH_MEDIUM_BODY3: 'paragraph-medium-body3',
-        PARAGRAPH_MEDIUM_BODY4: 'paragraph-medium-body4',
-
-        PARAGRAPH_MEDIUM_LABEL: 'paragraph-medium-label',
-        PARAGRAPH_MEDIUM_LABEL2: 'paragraph-medium-label2',
-        PARAGRAPH_MEDIUM_CALLOUT: 'paragraph-medium-callout',
-
-        PARAGRAPH_MEDIUM_CODE: 'paragraph-medium-code',
-
-        HEADING_SEMIBOLD_OVERLINE1: 'heading-semibold-overline1',
-        HEADING_SEMIBOLD_OVERLINE2: 'heading-semibold-overline2',
-
-        ACTION_SEMIBOLD_PRIMARY: 'action-semibold-primary',
-        ACTION_SEMIBOLD_LINK: 'action-semibold-link',
-
-        BLOG_SEMIBOLD_TITLE: 'blog-semibold-title',
-        BLOG_MEDIUM_REGULAR: 'blog-medium-regular',
-        BLOG_MEDIUM_BOLD: 'blog-medium-bold',
-        BLOG_MEDIUM_ITALIC: 'blog-medium-italic',
+        // Display
+        DISPLAY_BD_D1: 'display-bd-d1',
+        DISPLAY_BD_D2: 'display-bd-d2',
+        DISPLAY_BD_D3: 'display-bd-d3',
+        // Heading
+        HEADING_SB_H1: 'heading-sb-h1',
+        HEADING_SB_H2: 'heading-sb-h2',
+        HEADING_SB_H3: 'heading-sb-h3',
+        HEADING_SB_H4: 'heading-sb-h4',
+        HEADING_SB_H5: 'heading-sb-h5',
+        HEADING_SB_H6: 'heading-sb-h6',
+        // Pragraph Semibold
+        PARAGRAPH_SB_P1: 'paragraph-sb-p1',
+        PARAGRAPH_SB_P2: 'paragraph-sb-p2',
+        PARAGRAPH_SB_P3: 'paragraph-sb-p3',
+        PARAGRAPH_SB_P4: 'paragraph-sb-p4',
+        PARAGRAPH_SB_L1: 'paragraph-sb-l1',
+        PARAGRAPH_SB_L2: 'paragraph-sb-l2',
+        // Paragraph Medium
+        PARAGRAPH_MD_P1: 'paragraph-md-p1',
+        PARAGRAPH_MD_P2: 'paragraph-md-p2',
+        PARAGRAPH_MD_P3: 'paragraph-md-p3',
+        PARAGRAPH_MD_P4: 'paragraph-md-p4',
+        PARAGRAPH_MD_C1: 'paragraph-md-c1',
+        PARAGRAPH_MD_L1: 'paragraph-md-l1',
+        PARAGRAPH_MD_L2: 'paragraph-md-l2',
+        // Overline
+        OVERLINE_SB_OL1: 'overline-sb-ol1',
+        OVERLINE_SB_OL2: 'overline-sb-ol2',
+        // Action
+        ACTION_SB_P1: 'action-sb-p1',
+        ACTION_SB_P2: 'action-sb-p2',
+        ACTION_SB_LK1: 'action-sb-lk1',
     };
 
 export const TYPOGRAPHY_VARIANTS = Object.freeze(
@@ -68,179 +67,177 @@ export const TYPOGRAPHY_AS_LIST = Object.freeze(
  * Mapping of Typography `variant` to CSS styles.
  */
 export const TYPOGRAPHY_VARIANT_STYLES_MAPPING = {
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H40]: `
-        font-size: var(--font-size-40px, 40px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 120%;
+    // Display
+    [TYPOGRAPHY_VARIANTS_ENUM.DISPLAY_BD_D1]: css`
+        font-size: var(--font-size-fs-120, 76px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-140, 92px);
+        letter-spacing: var(--letter-spacing-ls-00, 0px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H36]: `
-        font-size: var(--font-size-36px, 36px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 120%;
+    [TYPOGRAPHY_VARIANTS_ENUM.DISPLAY_BD_D2]: css`
+        font-size: var(--font-size-fs-110, 64px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-130, 76px);
+        letter-spacing: var(--letter-spacing-ls-00, 0px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H28]: `
-        font-size: var(--font-size-28px, 28px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 120%;
+    [TYPOGRAPHY_VARIANTS_ENUM.DISPLAY_BD_D3]: css`
+        font-size: var(--font-size-fs-100, 52px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-120, 64px);
+        letter-spacing: var(--letter-spacing-ls-00, 0px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H24]: `
-        font-size: var(--font-size-24px, 24px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 120%;
+    // Heading
+    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SB_H1]: css`
+        font-size: var(--font-size-fs-90, 40px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-110, 48px);
+        letter-spacing: var(--letter-spacing-ls-00, 0px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H20]: `
-        font-size: var(--font-size-20px, 20px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 120%;
-        letter-spacing: 0.25px;
+    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SB_H2]: css`
+        font-size: var(--font-size-fs-80, 36px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-100, 42px);
+        letter-spacing: var(--letter-spacing-ls-00, 0px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H16]: `
-        font-size: var(--font-size-16px, 16px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 120%;
-        letter-spacing: 0.25px;
+    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SB_H3]: css`
+        font-size: var(--font-size-fs-70, 28px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-90, 32px);
+        letter-spacing: var(--letter-spacing-ls-00, 0px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_BODY1]: `
-        font-size: var(--font-size-18px, 18px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 160%;
-        letter-spacing: 0.1px;
+    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SB_H4]: css`
+        font-size: var(--font-size-fs-60, 24px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-80, 28px);
+        letter-spacing: var(--letter-spacing-ls-00, 0px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_BODY2]: `
-        font-size: var(--font-size-16px, 16px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 160%;
-        letter-spacing: 0.1px;
+    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SB_H5]: css`
+        font-size: var(--font-size-fs-50, 20px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-60, 24px);
+        letter-spacing: var(--letter-spacing-ls-30, 0.1px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_BODY3]: `
-        font-size: var(--font-size-14px, 14px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 160%;
-        letter-spacing: 0.1px;
+    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SB_H6]: css`
+        font-size: var(--font-size-fs-30, 16px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-40, 20px);
+        letter-spacing: var(--letter-spacing-ls-30, 0.1px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_BODY4]: `
-        font-size: var(--font-size-12px, 12px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 160%;
-        letter-spacing: 0.1px;
+    // Pragraph Semibold
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SB_P1]: css`
+        font-size: var(--font-size-fs-40, 18px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-80, 28px);
+        letter-spacing: var(--letter-spacing-ls-20, 0.06px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_LABEL]: `
-        font-size: var(--font-size-14px, 14px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 120%;
-        letter-spacing: 0.5px;
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SB_P2]: css`
+        font-size: var(--font-size-fs-30, 16px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-70, 26px);
+        letter-spacing: var(--letter-spacing-ls-20, 0.06px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_LABEL2]: `
-        font-size: var(--font-size-12px, 12px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 120%;
-        letter-spacing: 0.4px;
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SB_P3]: css`
+        font-size: var(--font-size-fs-20, 14px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-50, 22px);
+        letter-spacing: var(--letter-spacing-ls-10, 0.016px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_CALLOUT]: `
-        font-size: var(--font-size-14px, 14px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 120%;
-        letter-spacing: 0.15px;
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SB_P4]: css`
+        font-size: var(--font-size-fs-10, 12px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-30, 18px);
+        letter-spacing: var(--letter-spacing-ls-20, 0.06px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_BODY1]: `
-        font-size: var(--font-size-18px, 18px);
-        font-weight: var(--font-weight-medium, 500);
-        line-height: 160%;
-        letter-spacing: 0.1px;
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SB_L1]: css`
+        font-size: var(--font-size-fs-20, 14px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-20, 16px);
+        letter-spacing: var(--letter-spacing-ls-50, 0.4px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_BODY2]: `
-        font-size: var(--font-size-16px, 16px);
-        font-weight: var(--font-weight-medium, 500);
-        line-height: 160%;
-        letter-spacing: 0.1px;
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SB_L2]: css`
+        font-size: var(--font-size-fs-10, 12px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-10, 14px);
+        letter-spacing: var(--letter-spacing-ls-40, 0.25px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_BODY3]: `
-        font-size: var(--font-size-14px, 14px);
-        font-weight: var(--font-weight-medium, 500);
-        line-height: 160%;
-        letter-spacing: 0.1px;
+    // Paragraph Medium
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_P1]: css`
+        font-size: var(--font-size-fs-10, 12px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-10, 14px);
+        letter-spacing: var(--letter-spacing-ls-40, 0.25px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_BODY4]: `
-        font-size: var(--font-size-12px, 12px);
-        font-weight: var(--font-weight-medium, 500);
-        line-height: 160%;
-        letter-spacing: 0.1px;
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_P2]: css`
+        font-size: var(--font-size-fs-30, 16px);
+        font-weight: var(--font-weight-fw-10, 450);
+        line-height: var(--line-height-lh-70, 26px);
+        letter-spacing: var(--letter-spacing-ls-30, 0.1px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_LABEL]: `
-        font-size: var(--font-size-14px, 14px);
-        font-weight: var(--font-weight-medium, 500);
-        line-height: 120%;
-        letter-spacing: 0.5px;
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_P3]: css`
+        font-size: var(--font-size-fs-20, 14px);
+        font-weight: var(--font-weight-fw-10, 450);
+        line-height: var(--line-height-lh-50, 22px);
+        letter-spacing: var(--letter-spacing-ls-30, 0.1px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_LABEL2]: `
-        font-size: var(--font-size-12px, 12px);
-        font-weight: var(--font-weight-medium, 500);
-        line-height: 120%;
-        letter-spacing: 0.4px;
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_P4]: css`
+        font-size: var(--font-size-fs-10, 12px);
+        font-weight: var(--font-weight-fw-10, 450);
+        line-height: var(--line-height-lh-30, 18px);
+        letter-spacing: var(--letter-spacing-ls-30, 0.1px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_CALLOUT]: `
-        font-size: var(--font-size-14px, 14px);
-        font-weight: var(--font-weight-medium, 500);
-        line-height: 120%;
-        letter-spacing: 0.15px;
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_C1]: css`
+        font-family: 'Fira Code';
+        font-size: var(--font-size-fs-20, 14px);
+        font-weight: var(--font-weight-fw-00, 450);
+        line-height: var(--line-height-lh-40, 20px);
+        letter-spacing: var(--letter-spacing-ls-00, 0px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_CODE]: `
-        font-family: var(--font-family-code, 'Fira Code');
-        font-size: var(--font-size-14px, 14px);
-        font-weight: var(--font-weight-medium, 500);
-        line-height: 16px;
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_L1]: css`
+        font-size: var(--font-size-fs-20, 14px);
+        font-weight: var(--font-weight-fw-10, 450);
+        line-height: var(--line-height-lh-20, 16px);
+        letter-spacing: var(--letter-spacing-ls-60, 0.5px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_OVERLINE1]: `
-        font-size: var(--font-size-14px, 14px);
-        font-weight: var(--font-weight-650, 650);
-        line-height: 120%;
-        letter-spacing: 1.6px;
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_L2]: css`
+        font-size: var(--font-size-fs-10, 12px);
+        font-weight: var(--font-weight-fw-10, 450);
+        line-height: var(--line-height-lh-10, 14px);
+        letter-spacing: var(--letter-spacing-ls-50, 0.4px);
+    `,
+    // Overline
+    [TYPOGRAPHY_VARIANTS_ENUM.OVERLINE_SB_OL1]: css`
+        font-size: var(--font-size-fs-20, 14px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-20, 16px);
+        letter-spacing: var(--letter-spacing-ls-70, 1.6px);
         text-transform: uppercase;
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_OVERLINE2]: `
-        font-size: var(--font-size-11px, 11px);
-        font-weight: var(--font-weight-650, 650);
-        line-height: 120%;
-        letter-spacing: 2px;
+    [TYPOGRAPHY_VARIANTS_ENUM.OVERLINE_SB_OL2]: css`
+        font-size: var(--font-size-fs-00, 11px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-00, 12px);
+        letter-spacing: var(--letter-spacing-ls-80, 2px);
         text-transform: uppercase;
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.ACTION_SEMIBOLD_PRIMARY]: `
-        font-size: var(--font-size-14px, 14px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 160%;
-        letter-spacing: 0.4px;
+    // Action
+    [TYPOGRAPHY_VARIANTS_ENUM.ACTION_SB_P1]: css`
+        font-size: var(--font-size-fs-30, 16px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-70, 26px);
+        letter-spacing: var(--letter-spacing-ls-20, 0.06px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.ACTION_SEMIBOLD_LINK]: `
-        font-size: var(--font-size-14px, 14px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 120%;
-        letter-spacing: 2px;
-        text-decoration: underline;
+    [TYPOGRAPHY_VARIANTS_ENUM.ACTION_SB_P2]: css`
+        font-size: var(--font-size-fs-20, 14px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-50, 22px);
+        letter-spacing: var(--letter-spacing-ls-50, 0.4px);
     `,
-    [TYPOGRAPHY_VARIANTS_ENUM.BLOG_SEMIBOLD_TITLE]: `
-        font-size: var(--font-size-48px, 48px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 120%;
-        letter-spacing: 0.4px;
-    `,
-    [TYPOGRAPHY_VARIANTS_ENUM.BLOG_MEDIUM_REGULAR]: `
-        font-size: var(--font-size-18px, 18px);
-        font-weight: var(--font-weight-medium, 500);
-        line-height: 32px;
-        letter-spacing: 0.2px;
-    `,
-    [TYPOGRAPHY_VARIANTS_ENUM.BLOG_MEDIUM_BOLD]: `
-        font-size: var(--font-size-18px, 18px);
-        font-weight: var(--font-weight-semibold, 600);
-        line-height: 32px;
-        letter-spacing: 0.2px;
-    `,
-    [TYPOGRAPHY_VARIANTS_ENUM.BLOG_MEDIUM_ITALIC]: `
-        font-size: var(--font-size-18px, 18px);
-        font-weight: var(--font-weight-medium, 500);
-        line-height: 32px;
-        letter-spacing: 0.2px;
-        font-style: italic;
+    [TYPOGRAPHY_VARIANTS_ENUM.ACTION_SB_LK1]: css`
+        font-size: var(--font-size-fs-20, 14px);
+        font-weight: var(--font-weight-fw-20, 550);
+        line-height: var(--line-height-lh-20, 16px);
+        letter-spacing: var(--letter-spacing-ls-80, 2px);
+        text-transform: uppercase;
     `,
 };
 
@@ -248,45 +245,37 @@ export const TYPOGRAPHY_VARIANT_STYLES_MAPPING = {
  * Mapping of typography `variant` to `as` type, will be useful when Typography `as` is set to `auto`.
  */
 export const TYPOGRAPHY_VARIANT_AS_MAPPING = {
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H40]: TYPOGRAPHY_AS_ENUM.H1,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H36]: TYPOGRAPHY_AS_ENUM.H2,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H28]: TYPOGRAPHY_AS_ENUM.H3,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H24]: TYPOGRAPHY_AS_ENUM.H4,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H20]: TYPOGRAPHY_AS_ENUM.H5,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H16]: TYPOGRAPHY_AS_ENUM.H6,
-
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_BODY1]: TYPOGRAPHY_AS_ENUM.P,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_BODY2]: TYPOGRAPHY_AS_ENUM.P,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_BODY3]: TYPOGRAPHY_AS_ENUM.P,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_BODY4]: TYPOGRAPHY_AS_ENUM.P,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_LABEL]:
-        TYPOGRAPHY_AS_ENUM.LABEL,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_LABEL2]:
-        TYPOGRAPHY_AS_ENUM.LABEL,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SEMIBOLD_CALLOUT]: TYPOGRAPHY_AS_ENUM.P,
-
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_BODY1]: TYPOGRAPHY_AS_ENUM.P,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_BODY2]: TYPOGRAPHY_AS_ENUM.P,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_BODY3]: TYPOGRAPHY_AS_ENUM.P,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_BODY4]: TYPOGRAPHY_AS_ENUM.P,
-
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_LABEL]: TYPOGRAPHY_AS_ENUM.LABEL,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_LABEL2]:
-        TYPOGRAPHY_AS_ENUM.LABEL,
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_CALLOUT]: TYPOGRAPHY_AS_ENUM.P,
-
-    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MEDIUM_CODE]: TYPOGRAPHY_AS_ENUM.CODE,
-
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_OVERLINE1]:
-        TYPOGRAPHY_AS_ENUM.H6,
-    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_OVERLINE2]:
-        TYPOGRAPHY_AS_ENUM.H6,
-
-    [TYPOGRAPHY_VARIANTS_ENUM.ACTION_SEMIBOLD_PRIMARY]: TYPOGRAPHY_AS_ENUM.SPAN,
-    [TYPOGRAPHY_VARIANTS_ENUM.ACTION_SEMIBOLD_LINK]: TYPOGRAPHY_AS_ENUM.SPAN,
-
-    [TYPOGRAPHY_VARIANTS_ENUM.BLOG_SEMIBOLD_TITLE]: TYPOGRAPHY_AS_ENUM.H1,
-    [TYPOGRAPHY_VARIANTS_ENUM.BLOG_MEDIUM_REGULAR]: TYPOGRAPHY_AS_ENUM.P,
-    [TYPOGRAPHY_VARIANTS_ENUM.BLOG_MEDIUM_BOLD]: TYPOGRAPHY_AS_ENUM.P,
-    [TYPOGRAPHY_VARIANTS_ENUM.BLOG_MEDIUM_ITALIC]: TYPOGRAPHY_AS_ENUM.P,
+    // Display
+    [TYPOGRAPHY_VARIANTS_ENUM.DISPLAY_BD_D1]: TYPOGRAPHY_AS_ENUM.H1,
+    [TYPOGRAPHY_VARIANTS_ENUM.DISPLAY_BD_D2]: TYPOGRAPHY_AS_ENUM.H2,
+    [TYPOGRAPHY_VARIANTS_ENUM.DISPLAY_BD_D3]: TYPOGRAPHY_AS_ENUM.H3,
+    // Heading
+    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SB_H1]: TYPOGRAPHY_AS_ENUM.H1,
+    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SB_H2]: TYPOGRAPHY_AS_ENUM.H2,
+    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SB_H3]: TYPOGRAPHY_AS_ENUM.H3,
+    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SB_H4]: TYPOGRAPHY_AS_ENUM.H4,
+    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SB_H5]: TYPOGRAPHY_AS_ENUM.H5,
+    [TYPOGRAPHY_VARIANTS_ENUM.HEADING_SB_H6]: TYPOGRAPHY_AS_ENUM.H6,
+    // Pragraph Semibold
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SB_P1]: TYPOGRAPHY_AS_ENUM.P,
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SB_P2]: TYPOGRAPHY_AS_ENUM.P,
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SB_P3]: TYPOGRAPHY_AS_ENUM.P,
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SB_P4]: TYPOGRAPHY_AS_ENUM.P,
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SB_L1]: TYPOGRAPHY_AS_ENUM.LABEL,
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_SB_L2]: TYPOGRAPHY_AS_ENUM.LABEL,
+    // Paragraph Medium
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_P1]: TYPOGRAPHY_AS_ENUM.P,
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_P2]: TYPOGRAPHY_AS_ENUM.P,
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_P3]: TYPOGRAPHY_AS_ENUM.P,
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_P4]: TYPOGRAPHY_AS_ENUM.P,
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_C1]: TYPOGRAPHY_AS_ENUM.CODE,
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_L1]: TYPOGRAPHY_AS_ENUM.LABEL,
+    [TYPOGRAPHY_VARIANTS_ENUM.PARAGRAPH_MD_L2]: TYPOGRAPHY_AS_ENUM.LABEL,
+    // Overline
+    [TYPOGRAPHY_VARIANTS_ENUM.OVERLINE_SB_OL1]: TYPOGRAPHY_AS_ENUM.P,
+    [TYPOGRAPHY_VARIANTS_ENUM.OVERLINE_SB_OL2]: TYPOGRAPHY_AS_ENUM.P,
+    // Action
+    [TYPOGRAPHY_VARIANTS_ENUM.ACTION_SB_P1]: TYPOGRAPHY_AS_ENUM.SPAN,
+    [TYPOGRAPHY_VARIANTS_ENUM.ACTION_SB_P2]: TYPOGRAPHY_AS_ENUM.SPAN,
+    [TYPOGRAPHY_VARIANTS_ENUM.ACTION_SB_LK1]: TYPOGRAPHY_AS_ENUM.SPAN,
 };
