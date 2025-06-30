@@ -21,10 +21,7 @@ export default {
             ],
             mapping: {
                 'Simple example using Typography': (
-                    <Typography
-                        variant="paragraph-semibold-label"
-                        color="inherit"
-                    >
+                    <Typography variant="paragraph-sb-l1" color="inherit">
                         An Alert using Typography
                     </Typography>
                 ),
@@ -135,7 +132,7 @@ Gallery.args = {
     ],
     inlineButtons: false,
     title: (
-        <Typography variant="paragraph-semibold-label" color="inherit">
+        <Typography variant="paragraph-sb-l1" color="inherit">
             This is an alert banner with buttons
         </Typography>
     ),

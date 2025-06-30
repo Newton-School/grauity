@@ -1,7 +1,6 @@
 import React from 'react';
 import Table from 'ui/elements/Table';
 import Typography, {
-    TYPOGRAPHY_AS_ENUM,
     TYPOGRAPHY_VARIANT_AS_MAPPING,
     TYPOGRAPHY_VARIANTS,
     TypographyProps,
@@ -40,7 +39,7 @@ const Template = (args: TypographyProps) => (
                     <Table.TableDataCell>
                         <Typography
                             variant={variant}
-                            as={TYPOGRAPHY_AS_ENUM.AUTO}
+                            as="auto"
                             color={args?.color}
                         >
                             {args?.children}
@@ -55,7 +54,7 @@ const Template = (args: TypographyProps) => (
 const defaultArgs: TypographyProps = {
     children: 'The quick brown fox jumps over the lazy dog!',
     variant: 'paragraph-md-p1',
-    as: TYPOGRAPHY_AS_ENUM.AUTO,
+    as: 'auto',
     color: 'var(--text-emphasis-primary-default, #16191d)',
 };
 

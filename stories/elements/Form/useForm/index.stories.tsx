@@ -214,7 +214,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
                     borderRadius: '4px',
                 }}
             >
-                <Typography>
+                <Typography variant="paragraph-md-p1">
                     <pre>{JSON.stringify(formData, null, 2)}</pre>
                 </Typography>
             </div>
