@@ -10,7 +10,7 @@ export const StyledTypography = styled.p.attrs((props: any) => ({
     padding: 0;
 
     font-family: var(--font-family, 'Mona Sans');
-    color: var(--text-primary, #16191d);
+    color: var(--text-emphasis-primary-default, #16191d);
 
     ${({ variant }) =>
         css`

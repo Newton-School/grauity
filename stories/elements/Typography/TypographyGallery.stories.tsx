@@ -4,7 +4,6 @@ import Typography, {
     TYPOGRAPHY_AS_ENUM,
     TYPOGRAPHY_VARIANT_AS_MAPPING,
     TYPOGRAPHY_VARIANTS,
-    TYPOGRAPHY_VARIANTS_ENUM,
     TypographyProps,
 } from 'ui/elements/Typography';
 
@@ -53,11 +52,11 @@ const Template = (args: TypographyProps) => (
     </Table.Table>
 );
 
-const defaultArgs = {
+const defaultArgs: TypographyProps = {
     children: 'The quick brown fox jumps over the lazy dog!',
-    variant: TYPOGRAPHY_VARIANTS_ENUM.HEADING_SEMIBOLD_H40,
-    color: 'var(--text-primary, #16191d)',
+    variant: 'paragraph-md-p1',
     as: TYPOGRAPHY_AS_ENUM.AUTO,
+    color: 'var(--text-emphasis-primary-default, #16191d)',
 };
 
 export const Gallery = Template.bind({});

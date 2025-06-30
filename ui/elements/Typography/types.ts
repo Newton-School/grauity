@@ -16,50 +16,44 @@ export type TypographyAsType =
     | 'auto';
 
 export type TypographyVariantType =
-    // <h1> through <h6>
-    | 'heading-semibold-h40'
-    | 'heading-semibold-h36'
-    | 'heading-semibold-h28'
-    | 'heading-semibold-h24'
-    | 'heading-semibold-h20'
-    | 'heading-semibold-h16'
+    // Display
+    | 'display-bd-d1'
+    | 'display-bd-d2'
+    | 'display-bd-d3'
 
-    // <p>
-    | 'paragraph-semibold-body1'
-    | 'paragraph-semibold-body2'
-    | 'paragraph-semibold-body3'
-    | 'paragraph-semibold-body4'
-    | 'paragraph-semibold-label'
-    | 'paragraph-semibold-label2'
-    | 'paragraph-semibold-callout'
+    // Heading
+    | 'heading-sb-h1'
+    | 'heading-sb-h2'
+    | 'heading-sb-h3'
+    | 'heading-sb-h4'
+    | 'heading-sb-h5'
+    | 'heading-sb-h6'
 
-    // <p>
-    | 'paragraph-medium-body1'
-    | 'paragraph-medium-body2'
-    | 'paragraph-medium-body3'
-    | 'paragraph-medium-body4'
+    // Paragraph Semibold
+    | 'paragraph-sb-p1'
+    | 'paragraph-sb-p2'
+    | 'paragraph-sb-p3'
+    | 'paragraph-sb-p4'
+    | 'paragraph-sb-l1'
+    | 'paragraph-sb-l2'
 
-    // <label>
-    | 'paragraph-medium-label'
-    | 'paragraph-medium-label2'
-    | 'paragraph-medium-callout'
+    // Paragraph Medium
+    | 'paragraph-md-p1'
+    | 'paragraph-md-p2'
+    | 'paragraph-md-p3'
+    | 'paragraph-md-p4'
+    | 'paragraph-md-c1'
+    | 'paragraph-md-l1'
+    | 'paragraph-md-l2'
 
-    // <code>
-    | 'paragraph-medium-code'
+    // Overline
+    | 'overline-sb-ol1'
+    | 'overline-sb-ol2'
 
-    // <h6>
-    | 'heading-semibold-overline1'
-    | 'heading-semibold-overline2'
-
-    // <span>
-    | 'action-semibold-primary'
-    | 'action-semibold-link'
-
-    // <p>
-    | 'blog-semibold-title'
-    | 'blog-medium-regular'
-    | 'blog-medium-bold'
-    | 'blog-medium-italic';
+    // Action
+    | 'action-sb-p1'
+    | 'action-sb-p2'
+    | 'action-sb-lk1';
 
 export interface StyledTypographyInterface {
     variant?: TypographyVariantType;
@@ -75,14 +69,16 @@ export interface TypographyProps {
     /**
      * Variant of the Typography element
      *
-     * Available choices:
+     * Default: 'paragraph-md-p1'
      *
-     * Default: `paragraph-medium-body1`
+     * Available choices:
      * */
-    variant?: TypographyVariantType;
+    variant: TypographyVariantType;
 
     /**
      * Color of the Typography element
+     *
+     * Default: 'var(--text-emphasis-primary-default, #16191d)'
      * */
     color?: string;
 
