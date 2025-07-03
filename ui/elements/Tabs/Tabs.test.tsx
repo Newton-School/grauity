@@ -31,4 +31,16 @@ describe('Tabs Component', () => {
         expect(screen.getByText('Text 1')).toBeInTheDocument();
         expect(screen.getByText('Text 2')).toBeInTheDocument();
     });
+
+    it('applies custom className to Tabs container', () => {
+        render(
+            <Tabs
+                tabItems={['Tab A', 'Tab B']}
+                className="custom-tabs-class"
+            />
+        );
+        const container = screen.getByTestId('tabs-container');
+        expect(container).toHaveClass('custom-tabs-class');
+    });
+    
 });

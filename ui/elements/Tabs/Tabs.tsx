@@ -16,6 +16,7 @@ function Tabs(props: TabProps) {
         focusBackgroundColor = null,
         focusColor = null,
         color = null,
+        className = '',
     } = props;
 
     const [activeTab, setActiveTab] = useState(initialActiveTab);
@@ -30,6 +31,11 @@ function Tabs(props: TabProps) {
 
     return (
         <StyledTabContainer backgroundColor={backgroundColor}>
+            
+            <div className={`tabs-wrapper ${className}`} data-testid="tabs-container">
+                {/* render tabs */}
+            </div>
+
             {tabItems?.map((item, idx) => (
                 <StyledTabItemContainer
                     onClick={() => handleItemClick(idx)}
@@ -37,6 +43,7 @@ function Tabs(props: TabProps) {
                     color={color}
                     focusBackgroundColor={focusBackgroundColor}
                     focusColor={focusColor}
+                    className={className}
                     key={typeof item === 'string' ? item : String(item) + idx}
                 >
                     {typeof item === 'string' ? (

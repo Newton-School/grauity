@@ -112,6 +112,8 @@ export interface AlertBannerProps {
      * Type: ButtonProps[]
      * */
     actionButtons?: ButtonProps[];
+
+    className?: string;
 }
 
 export interface AlertBannerContainerProps {

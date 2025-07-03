@@ -174,5 +174,5 @@ describe('Tooltip Component', () => {
         expect(
             screen.getByText(defaultProps.content as string)
         ).toBeInTheDocument();
-    });
+    }); 
 });

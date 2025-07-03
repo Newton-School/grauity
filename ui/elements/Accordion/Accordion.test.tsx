@@ -47,4 +47,15 @@ describe('Accordion Component', () => {
         fireEvent.click(titleElement);
         expect(handleToggle).toHaveBeenCalledWith(false);
     });
+
+    it('applies custom className to Accordion wrapper', () => {
+        render(
+            <Accordion title="Custom Class Test" className="test-accordion">
+                Accordion Content
+            </Accordion>
+        );
+        const wrapper = screen.getByText('Custom Class Test').parentElement;
+        expect(wrapper).toHaveClass('test-accordion');
+    });
+    
 });
