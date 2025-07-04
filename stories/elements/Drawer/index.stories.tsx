@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Drawer, { DrawerProps } from 'ui/elements/Drawer';
 import Button from 'ui/elements/Button';
+import Drawer, { DrawerProps } from 'ui/elements/Drawer';
 
 export default {
     title: 'Elements/Drawer',
@@ -17,6 +17,8 @@ export default {
         side={'right'}
         fullScreen={false}
         closeOnBackdropClick={true}
+        title={'Drawer Title'}
+        subtitle={'Drawer Subtitle'}
     >
         Drawer Content Here!!!
     </Drawer>
@@ -51,6 +53,8 @@ const defaultArgs: DrawerProps = {
     showCloseButton: true,
     shouldDisableScroll: true,
     shouldFocusOnFirstElement: true,
+    title: 'Drawer Title',
+    subtitle: 'Drawer Subtitle',
     className: 'drawer',
 };
 

@@ -31,4 +31,13 @@ describe('Drawer Component', () => {
         fireEvent.click(screen.getByText('Open Drawer'));
         expect(screen.getByRole('dialog')).toBeInTheDocument();
     });
+
+    it('closes when the close button is clicked', () => {
+        render(<TestDrawer showCloseButton />);
+        fireEvent.click(screen.getByText('Open Drawer'));
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        // button has aria-label "Close"
+        fireEvent.click(screen.getByLabelText('Close'));
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    });
 });

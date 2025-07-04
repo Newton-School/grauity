@@ -4,15 +4,15 @@ import React, { forwardRef } from 'react';
 import { IconButton } from '../Button';
 import Overlay from '../Overlay';
 import {
+    DRAWER_ANIMATION_DURATION_IN_MILLISECONDS,
+} from './constants';
+import {
     StyledDrawer,
     StyledDrawerContent,
     StyledDrawerHeader,
     StyledDrawerSubtitle,
     StyledDrawerTitle,
 } from './Drawer.styles';
-import {
-    DRAWER_ANIMATION_DURATION_IN_MILLISECONDS,
-} from './constants';
 import { DrawerProps } from './types';
 
 const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
