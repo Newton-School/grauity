@@ -100,6 +100,12 @@ export {
     type BottomSheetProps,
     default as NSBottomSheet,
 } from './elements/BottomSheet';
+// NSDrawer
+export {
+    type DrawerProps,
+    default as NSDrawer,
+} from './elements/Drawer';
+
 
 // NSCalendarEvent
 export {
