@@ -64,7 +64,6 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
                         DRAWER_ANIMATION_DURATION_IN_MILLISECONDS / 1000
                     }
                     data-testid="testid-drawer-wrapper"
-                    className={className}
                 >
                     <StyledDrawer
                         ref={ref}
@@ -73,6 +72,7 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
                         $width={width}
                         $height={height}
                         role="dialog"
+                        className={className}
                         {...motionProps}
                     >
                         {(title || subtitle || showCloseButton) && (
