@@ -83,6 +83,12 @@ export {
     default as NSMultiSelectDropdown,
 } from './elements/MultiSelectDropdown';
 
+// NSCombobox
+export {
+    default as NSCombobox,
+    type ComboboxProps,
+} from './elements/Combobox';
+
 // NSChip
 export { type ChipProps, default as NSChip } from './elements/Chip';
 
