@@ -65,7 +65,8 @@ export interface TabProps {
     color?: string;
 
     /**
-     *  Default Color
+     * Additional class name for the tabs container
+     * @default ''
      */
     className?: string;
 }
