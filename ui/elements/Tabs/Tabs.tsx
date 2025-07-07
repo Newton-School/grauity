@@ -33,6 +33,7 @@ function Tabs(props: TabProps) {
         <StyledTabContainer
             backgroundColor={backgroundColor}
             className={className}
+            role="tablist"
         >
             {tabItems?.map((item, idx) => (
                 <StyledTabItemContainer

@@ -67,12 +67,18 @@ describe('UnifiedCalendar', () => {
 
     it('applies custom class name', async () => {
         render(
-            <UnifiedCalendar {...defaultProps} className="custom-class" />
+            <UnifiedCalendar
+                {...defaultProps}
+                view="weekly"
+                className="custom-class"
+            />
         );
         await waitFor(() => {
-            expect(screen.getByText('Today').parentElement).toHaveClass(
-                'custom-class'
-            );
+            expect(
+                screen.getByLabelText(
+                    /Weekly Calendar for the week starting from/i
+                )
+            ).toHaveClass('custom-class');
         });
     });
 });
