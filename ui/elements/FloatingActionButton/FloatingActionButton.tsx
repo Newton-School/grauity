@@ -11,6 +11,7 @@ const FloatingActionButton = (props: FloatingActionButtonProps) => {
         onClick = () => {},
         sideOffset = '10px',
         bottomOffset = '10px',
+        className = '',
     } = props;
 
     const triggerRef = useRef<HTMLDivElement>(null);
@@ -22,6 +23,7 @@ const FloatingActionButton = (props: FloatingActionButtonProps) => {
             $position={position}
             $sideOffset={sideOffset}
             $bottomOffset={bottomOffset}
+            className={className}
             data-testid="floating-button"
         >
             {children}

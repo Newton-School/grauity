@@ -59,6 +59,12 @@ export interface MonthlyCalendarProps<T = {}> {
      * @default () => {}
      */
     onPopOverClose?: () => void;
+
+    /**
+     * Additional class name for the calendar container
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface DateCircleProps {

@@ -36,6 +36,12 @@ export interface PlaceholderProps {
      * @default 'var(--bg-tertiary, #EDEFF3)'
      */
     backgroundColor?: string;
+
+    /**
+     * Additional class name for the placeholder
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface StyledPlaceholderProps extends StyledDivProps {

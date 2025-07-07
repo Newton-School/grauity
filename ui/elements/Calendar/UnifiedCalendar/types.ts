@@ -96,6 +96,12 @@ export interface UnifiedCalendarProps<T> {
          */
         onPopOverClose?: () => void;
     };
+
+    /**
+     * Additional class name for the calendar wrapper
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface UnifiedCalendarHeaderProps {

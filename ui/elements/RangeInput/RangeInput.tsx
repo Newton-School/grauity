@@ -16,6 +16,7 @@ const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>((props, ref) => {
         value = { min: 0, max: 100 },
         onChange = () => {},
         width = '100%',
+        className = '',
     } = props;
 
     const [minInput, setMinInput] = useState(value.min || minValue);
@@ -41,7 +42,12 @@ const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>((props, ref) => {
     }, [finalMinInput, finalMaxInput]);
 
     return (
-        <StyledRangeInputContainer ref={ref} $width={width} role="form">
+        <StyledRangeInputContainer
+            ref={ref}
+            $width={width}
+            role="form"
+            className={className}
+        >
             <StyledValuesContainer>
                 <div>{finalMinInput}</div>
                 <div>{finalMaxInput}</div>

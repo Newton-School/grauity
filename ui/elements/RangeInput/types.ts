@@ -41,6 +41,12 @@ export interface RangeInputProps {
      * @default '100%'
      */
     width?: string;
+
+    /**
+     * Additional class name for the range input container
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface StyledRangeInputContainerProps extends StyledDivProps {

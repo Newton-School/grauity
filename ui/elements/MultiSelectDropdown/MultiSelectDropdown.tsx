@@ -45,6 +45,7 @@ const MultiSelectDropdown = forwardRef<
         allOptionText = 'All',
         onOptionsChange = () => {},
         triggerComponent,
+        className = '',
     } = props;
 
     const [isOpened, setIsOpened] = useState(false);
@@ -124,6 +125,7 @@ const MultiSelectDropdown = forwardRef<
         <StyledDropdownWrapper
             ref={ref}
             data-testid="testid-multiselectdropdown-wrapper"
+            className={className}
         >
             {triggerComponent && (
                 <StyledDropdownTriggerWrapper

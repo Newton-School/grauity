@@ -34,6 +34,12 @@ export interface FloatingActionButtonProps {
      * @default '10px'
      */
     bottomOffset?: string;
+
+    /**
+     * Additional class name for the floating button
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface StyledFloatingButtonProps extends StyledDivProps {

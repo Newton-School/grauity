@@ -8,6 +8,12 @@ export interface StyledTabContainerProps extends StyledDivProps {
 
 export interface StyledTextProps extends StyledDivProps {
     color?: string;
+
+    /**
+     * Additional class name for the tabs container
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface StyledTabItemContainerProps
