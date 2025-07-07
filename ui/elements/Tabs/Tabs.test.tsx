@@ -31,4 +31,12 @@ describe('Tabs Component', () => {
         expect(screen.getByText('Text 1')).toBeInTheDocument();
         expect(screen.getByText('Text 2')).toBeInTheDocument();
     });
+
+    it('applies custom class name', () => {
+        render(
+            <Tabs tabItems={['Item1', 'Item2']} className="custom-class" />
+        );
+        const tablist = screen.getByRole('tablist');
+        expect(tablist).toHaveClass('custom-class');
+    });
 });

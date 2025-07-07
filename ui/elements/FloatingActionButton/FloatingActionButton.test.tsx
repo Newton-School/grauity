@@ -61,4 +61,11 @@ describe('FloatingActionButton Component', () => {
             'bottom: 10px'
         );
     });
+
+    it('applies custom class name', () => {
+        render(
+            <FloatingActionButton className="custom-class">+</FloatingActionButton>
+        );
+        expect(screen.getByTestId('floating-button')).toHaveClass('custom-class');
+    });
 });

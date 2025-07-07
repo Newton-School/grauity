@@ -64,4 +64,15 @@ describe('UnifiedCalendar', () => {
             expect(defaultProps.onViewChange).toHaveBeenCalledWith('monthly');
         });
     });
+
+    it('applies custom class name', async () => {
+        render(
+            <UnifiedCalendar {...defaultProps} className="custom-class" />
+        );
+        await waitFor(() => {
+            expect(screen.getByText('Today').parentElement).toHaveClass(
+                'custom-class'
+            );
+        });
+    });
 });

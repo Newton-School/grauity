@@ -73,4 +73,15 @@ describe('MonthlyCalendar', () => {
             screen.getAllByText('Test renderDayItem Call').length
         ).toBeGreaterThan(0);
     });
+
+    it('applies custom class name', async () => {
+        render(
+            <MonthlyCalendar {...defaultProps} className="custom-class" />
+        );
+        await waitFor(() => {
+            expect(
+                screen.getByLabelText(/Monthly Calendar for the month/i)
+            ).toHaveClass('custom-class');
+        });
+    });
 });
