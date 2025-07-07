@@ -30,4 +30,10 @@ describe('Placeholder Component', () => {
         expect(placeholder).toHaveStyle('margin: 10px');
         expect(placeholder).toHaveStyle('background-color: red');
     });
+
+    it('applies custom class name', () => {
+        render(<Placeholder className="custom-class" />);
+        const placeholder = screen.getByTestId('data-testid-placeholder');
+        expect(placeholder).toHaveClass('custom-class');
+    });
 });

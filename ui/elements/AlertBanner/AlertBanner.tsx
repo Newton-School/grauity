@@ -37,6 +37,7 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
             onClose,
             showCloseButton = false,
             actionButtons = [],
+            className = '',
         },
         ref
     ) => {
@@ -61,6 +62,7 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
                 right={right}
                 position={position}
                 ref={ref}
+                className={className}
                 textColor={textColor}
                 backgroundColor={backgroundColor}
                 borderColor={borderColor}

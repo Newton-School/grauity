@@ -26,6 +26,7 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
         events = [],
         renderDayItem,
         onPopOverClose = () => {},
+        className = '',
     } = props;
     const [currentDate, setCurrentDate] = useState(date);
     const monthOffset = getMonthOffsetByDate(currentDate);
@@ -89,6 +90,7 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
             aria-label={`Monthly Calendar for the month ${getMonthLabel(
                 new Date(currentYear, currentMonth)
             )}`}
+            className={className}
         >
             <StyledCalendarHeader>
                 {header}

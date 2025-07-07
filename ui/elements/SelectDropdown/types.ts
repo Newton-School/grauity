@@ -77,6 +77,12 @@ export interface SelectDropdownProps {
      * @default max-content
      */
     width?: string | null;
+
+    /**
+     * Additional class name for the dropdown wrapper
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface StyledSelectDropdownWrapperProps extends StyledSelectProps {}

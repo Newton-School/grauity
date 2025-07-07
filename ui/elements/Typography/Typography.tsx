@@ -23,6 +23,7 @@ const Typography = ({
     textTransform = null,
     fontSize = null,
     children = '',
+    className = '',
 }: TypographyProps) => {
     const asType =
         as === TYPOGRAPHY_AS_ENUM.AUTO
@@ -36,6 +37,7 @@ const Typography = ({
             textAlign={textAlign}
             textTransform={textTransform}
             fontSize={fontSize}
+            className={className}
         >
             {children}
         </StyledTypography>

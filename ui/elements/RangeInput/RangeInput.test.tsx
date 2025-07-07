@@ -76,4 +76,9 @@ describe('RangeInput Component', () => {
         expect(screen.getByText('0')).toBeInTheDocument();
         expect(screen.getByText('90')).toBeInTheDocument();
     });
+
+    it('applies custom class name', () => {
+        render(<RangeInput className="custom-class" />);
+        expect(screen.getByRole('form')).toHaveClass('custom-class');
+    });
 });

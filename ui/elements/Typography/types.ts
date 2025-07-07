@@ -62,6 +62,12 @@ export interface StyledTypographyInterface {
     textAlign?: string;
     textTransform?: string;
     fontSize?: string;
+
+    /**
+     * Additional class name for the typography element
+     * @default ''
+     */
+    className?: string;
     children: React.ReactNode;
 }
 
@@ -104,6 +110,12 @@ export interface TypographyProps {
      * Font size of the Typography element
      * */
     fontSize?: string;
+
+    /**
+     * Additional class name for the typography element
+     * @default ''
+     */
+    className?: string;
 
     /**
      * Children of the component

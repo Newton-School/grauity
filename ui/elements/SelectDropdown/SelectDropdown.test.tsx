@@ -107,4 +107,10 @@ describe('SelectDropdown Component', () => {
         await new Promise((r) => setTimeout(r, 3000));
         expect(screen.queryAllByRole('option')).toHaveLength(0);
     }, 5000);
+
+    it('applies custom class name', () => {
+        render(<SelectDropdown options={options} className="custom-class" />);
+        const wrapper = screen.getByRole('combobox');
+        expect(wrapper).toHaveClass('custom-class');
+    });
 });

@@ -120,6 +120,12 @@ export interface AlertProps {
      * Default: `'440px'`
      * */
     maxWidth?: string;
+
+    /**
+     * Additional class name for the alert container
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface AlertContainerProps {

@@ -52,6 +52,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
         loading = false,
         defaultScrollHour = 8.5,
         shouldScrollToFirstEvent = true,
+        className = '',
     } = props;
 
     const [weekOffset, setWeekOffset] = useState(
@@ -209,6 +210,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
             aria-label={`Weekly Calendar for the week starting from ${getDateFullLabel(
                 currentWeek[0]
             )}`}
+            className={className}
         >
             <StyledCalendarHeader>
                 <StyledCalendarExternalHeaderContainer>

@@ -112,6 +112,12 @@ export interface AlertBannerProps {
      * Type: ButtonProps[]
      * */
     actionButtons?: ButtonProps[];
+
+    /**
+     * Additional class name for the alert banner container
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface AlertBannerContainerProps {

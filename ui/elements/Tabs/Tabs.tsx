@@ -16,6 +16,7 @@ function Tabs(props: TabProps) {
         focusBackgroundColor = null,
         focusColor = null,
         color = null,
+        className = '',
     } = props;
 
     const [activeTab, setActiveTab] = useState(initialActiveTab);
@@ -29,7 +30,11 @@ function Tabs(props: TabProps) {
     }, [activeTab]);
 
     return (
-        <StyledTabContainer backgroundColor={backgroundColor}>
+        <StyledTabContainer
+            backgroundColor={backgroundColor}
+            className={className}
+            role="tablist"
+        >
             {tabItems?.map((item, idx) => (
                 <StyledTabItemContainer
                     onClick={() => handleItemClick(idx)}

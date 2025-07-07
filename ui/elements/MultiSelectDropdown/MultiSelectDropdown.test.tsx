@@ -261,4 +261,12 @@ describe('multi-select-dropdown', () => {
         const header = screen.getAllByRole('combobox')[0];
         expect(header).toHaveTextContent('All');
     });
+
+    it('applies custom class name', () => {
+        render(
+            <MultiSelectDropdown className="custom-class" options={options} />
+        );
+        const wrapper = screen.getByTestId('testid-multiselectdropdown-wrapper');
+        expect(wrapper).toHaveClass('custom-class');
+    });
 });

@@ -64,4 +64,15 @@ describe('WeeklyCalendar', () => {
             expect(defaultProps.onWeekChange).toHaveBeenCalledWith(0);
         });
     });
+
+    it('applies custom class name', async () => {
+        render(
+            <WeeklyCalendar {...defaultProps} className="custom-class" />
+        );
+        await waitFor(() => {
+            expect(
+                screen.getByLabelText(/Weekly Calendar for the week starting from/i)
+            ).toHaveClass('custom-class');
+        });
+    });
 });

@@ -78,4 +78,9 @@ describe('Alert', () => {
         fireEvent.click(screen.getByText('Button 1'));
         expect(actionButtons[0].onClick).toHaveBeenCalledTimes(1);
     });
+
+    it('applies custom class name', () => {
+        render(<Alert {...defaultProps} className="custom-class" />);
+        expect(screen.getByRole('alert')).toHaveClass('custom-class');
+    });
 });

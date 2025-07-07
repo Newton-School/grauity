@@ -77,6 +77,12 @@ export interface MultiSelectDropdownProps {
      * If not provided, the default trigger button will be rendered.
      */
     triggerComponent?: React.ReactNode;
+
+    /**
+     * Additional class name for the dropdown wrapper
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface DropdownListItemProps {

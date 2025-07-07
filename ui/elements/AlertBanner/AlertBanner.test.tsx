@@ -67,4 +67,9 @@ describe('AlertBanner', () => {
         fireEvent.click(screen.getByRole('button'));
         expect(onClose).toHaveBeenCalledTimes(1);
     });
+
+    it('applies custom class name', () => {
+        render(<AlertBanner className="custom-class">Banner</AlertBanner>);
+        expect(screen.getByRole('alert')).toHaveClass('custom-class');
+    });
 });
