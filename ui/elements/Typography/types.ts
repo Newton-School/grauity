@@ -112,6 +112,12 @@ export interface TypographyProps {
     fontSize?: string;
 
     /**
+     * Additional class name for the typography element
+     * @default ''
+     */
+    className?: string;
+
+    /**
      * Children of the component
      * */
     children: React.ReactNode;
