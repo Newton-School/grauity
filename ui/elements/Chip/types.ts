@@ -73,7 +73,7 @@ export interface ChipProps {
     children?: React.ReactNode;
 
     /**
-     * Icon to be displayed in the button.
+     * Icon to be displayed in the Chip
      * @default null
      * */
     icon?: grauityIconName;
@@ -91,6 +91,28 @@ export interface ChipProps {
     iconPosition?: ButtonIconPositions;
 
     /**
+     * Color of the icon
+     * @default 'inherit'
+     * */
+    iconColor?: string;
+
+    /**
+     * Callback function when the button inside the chip is clicked.
+     * @default null
+     */
+    onButtonClick?:
+        | ((event: React.MouseEventHandler<HTMLButtonElement>) => void)
+        | null;
+
+    /**
+     * Icon to be displayed in the button inside the chip.
+     *
+     * Note: To show the button, `onButtonClick` must be provided.
+     * @default 'close'
+     */
+    buttonIcon?: grauityIconName;
+
+    /**
      * Additional styles to be used over the element
      * @default {}
      * */
@@ -101,6 +123,14 @@ export interface ChipProps {
      * @default ''
      */
     className?: string;
+
+    /**
+     * Whether the text inside the chip should be truncated,
+     * with an ellipsis if it overflows. (Max width is set to 200px)
+     *
+     * @default true
+     */
+    shouldTruncateText?: boolean;
 }
 
 export interface StyledChip extends StyledDivProps {
@@ -113,4 +143,8 @@ export interface StyledChip extends StyledDivProps {
     rounded?: boolean;
     ref?: React.Ref<HTMLDivElement>;
     iconPosition?: ButtonIconPositions;
+}
+
+export interface StyledChipTextProps extends StyledDivProps {
+    $shouldTruncateText?: boolean;
 }

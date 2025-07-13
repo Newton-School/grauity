@@ -4,7 +4,7 @@ import {
     CHIP_FONT_SIZE_MAPPING,
     CHIP_VARIANT_STYLES_MAPPING,
 } from './constants';
-import { StyledChip } from './types';
+import { StyledChip, StyledChipTextProps } from './types';
 
 export const StyledChipDiv = styled.div<StyledChip>`
     display: flex;
@@ -59,9 +59,17 @@ export const StyledChipDiv = styled.div<StyledChip>`
         `}
 `;
 
-export const StyledChipText = styled.span`
+export const StyledChipText = styled.span<StyledChipTextProps>`
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
+
+    ${({ $shouldTruncateText }) =>
+        $shouldTruncateText &&
+        css`
+            max-width: 200px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        `}
 `;

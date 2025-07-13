@@ -20,6 +20,9 @@ const defaultArgs: ChipProps = {
     icon: null,
     iconSize: '12',
     iconPosition: 'left',
+    iconColor: 'inherit',
+    buttonIcon: 'close',
+    onButtonClick: null,
     style: {},
 };
 

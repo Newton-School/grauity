@@ -1,3 +1,4 @@
+import { ButtonColors, ButtonVariants } from '../Button/types';
 import { ChipSizes, ChipVariants } from './types';
 
 export enum CHIP_VARIANTS_ENUM {
@@ -116,4 +117,34 @@ export const CHIP_FONT_SIZE_MAPPING: {
     [CHIP_SIZES_ENUM.MEDIUM]: { fontSize: '12px', maxHeight: '24px' },
     [CHIP_SIZES_ENUM.LARGE]: { fontSize: '14px', maxHeight: '28px' },
     [CHIP_SIZES_ENUM.EXTRA_LARGE]: { fontSize: '16px', maxHeight: '32px' },
+};
+
+export const CHIP_VARIANT_TO_BUTTON_VARIANT_AND_COLOR_MAPPING: {
+    [variant in ChipVariants]: { variant: ButtonVariants; color: ButtonColors };
+} = {
+    [CHIP_VARIANTS_ENUM.BRAND]: { variant: 'tertiary', color: 'brand' },
+    [CHIP_VARIANTS_ENUM.SUCCESS]: { variant: 'tertiary', color: 'success' },
+    [CHIP_VARIANTS_ENUM.ERROR]: { variant: 'tertiary', color: 'error' },
+    [CHIP_VARIANTS_ENUM.WARNING]: { variant: 'tertiary', color: 'warning' },
+    [CHIP_VARIANTS_ENUM.YELLOW]: { variant: 'tertiary', color: 'warning' },
+    [CHIP_VARIANTS_ENUM.PURPLE]: { variant: 'tertiary', color: 'neutral' },
+    [CHIP_VARIANTS_ENUM.DISABLED]: { variant: 'tertiary', color: 'neutral' },
+    [CHIP_VARIANTS_ENUM.ACTION_BRAND]: { variant: 'primary', color: 'brand' },
+    [CHIP_VARIANTS_ENUM.ACTION_SUCCESS]: {
+        variant: 'primary',
+        color: 'success',
+    },
+    [CHIP_VARIANTS_ENUM.ACTION_ERROR]: { variant: 'primary', color: 'error' },
+    [CHIP_VARIANTS_ENUM.ACTION_WARNING]: {
+        variant: 'primary',
+        color: 'warning',
+    },
+    [CHIP_VARIANTS_ENUM.ACTION_YELLOW]: {
+        variant: 'primary',
+        color: 'warning',
+    },
+    [CHIP_VARIANTS_ENUM.ACTION_PURPLE]: {
+        variant: 'primary',
+        color: 'neutral',
+    },
 };
