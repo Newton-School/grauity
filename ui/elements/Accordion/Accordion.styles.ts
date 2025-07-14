@@ -33,7 +33,7 @@ export const StyledAccordionContent = styled(
 )<StyledAccordionContentProps>`
     overflow: hidden;
     background-color: ${(props) => props.$contentBackgroundColor};
-    padding: 0px 8px;
+    padding: var(--accordion-content-padding, 0px 8px);
     font-size: 12px;
     color: var(--text-primary);
     font-family: var(--font-family, 'Mona Sans');
