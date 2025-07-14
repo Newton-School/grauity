@@ -1,7 +1,7 @@
 import React from 'react';
 import { grauityIconName } from 'ui/core';
 
-import { ChipVariants } from '../Chip/types';
+import { StyledDivProps } from '../../../common/types';
 
 export interface TagProps {
     /**
@@ -10,9 +10,23 @@ export interface TagProps {
     children: React.ReactNode;
 
     /**
-     * Function to be called when the close button is clicked.
+     * Icon to be displayed in the Tag button.
+     *
+     * Default: `close`
      * */
-    onCloseClick?: (e: React.MouseEventHandler<HTMLButtonElement>) => void;
+    buttonIcon?: grauityIconName;
+
+    /**
+     * Function to be called when the Tag button is clicked.
+     * */
+    onButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+
+    /**
+     * Used to make the Tag button disabled.
+     *
+     * Default: `false`
+     * */
+    isDisabled?: boolean;
 
     /**
      * Icon to be displayed in the Tag.
@@ -21,13 +35,6 @@ export interface TagProps {
      * Default: `null`
      * */
     icon?: grauityIconName;
-
-    /**
-     * Variant of the Tag. This is the same as Chip variant.
-     *
-     * Default: `brand`
-     * */
-    variant?: ChipVariants;
 
     /**
      * Additional CSS class for the Tag.
@@ -41,4 +48,8 @@ export interface TagProps {
      * Default: `true`
      * */
     shouldTruncateText?: boolean;
+}
+
+export interface StyledTagLabelProps extends StyledDivProps {
+    $shouldTruncateText?: boolean;
 }

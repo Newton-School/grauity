@@ -49,8 +49,6 @@ const defaultArgs: ChipProps = {
     backgroundColor: null,
     borderColor: null,
     rounded: false,
-    buttonIcon: 'close',
-    onButtonClick: null,
 };
 
 export const Gallery = Template.bind({});

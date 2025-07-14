@@ -1,9 +1,7 @@
 import React, { forwardRef } from 'react';
 
-import { IconButton } from '../Button';
 import { Icon } from '../Icon';
 import { StyledChipDiv, StyledChipText } from './Chip.styles';
-import { CHIP_VARIANT_TO_BUTTON_VARIANT_AND_COLOR_MAPPING } from './constants';
 import { ChipProps } from './types';
 
 const Chip = forwardRef<HTMLDivElement, ChipProps>(
@@ -20,11 +18,8 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             backgroundColor = null,
             borderColor = null,
             rounded = false,
-            onButtonClick = null,
-            buttonIcon = 'close',
             style = {},
             className = '',
-            shouldTruncateText = true,
             children,
         },
         ref
@@ -46,20 +41,9 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             <StyledChipText
                 title={typeof children === 'string' ? children : ''}
                 className="ns-chip-text"
-                $shouldTruncateText={shouldTruncateText}
             >
                 {children}
             </StyledChipText>
-            {onButtonClick && (
-                <IconButton
-                    icon={buttonIcon}
-                    size="extra-small"
-                    onClick={onButtonClick}
-                    {...CHIP_VARIANT_TO_BUTTON_VARIANT_AND_COLOR_MAPPING[
-                        variant
-                    ]}
-                />
-            )}
         </StyledChipDiv>
     )
 );

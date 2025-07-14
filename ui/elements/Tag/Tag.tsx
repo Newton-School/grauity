@@ -1,6 +1,8 @@
 import React from 'react';
 
+import { IconButton } from '../Button';
 import Chip from '../Chip';
+import { StyledTagContent, StyledTagLabel } from './index.styles';
 import { TagProps } from './types';
 
 /**
@@ -9,8 +11,9 @@ import { TagProps } from './types';
  */
 const Tag = (props: TagProps) => {
     const {
-        onCloseClick = () => {},
-        variant = 'brand',
+        onButtonClick = () => {},
+        buttonIcon = 'close',
+        isDisabled = false,
         icon = null,
         shouldTruncateText = true,
         className,
@@ -19,18 +22,30 @@ const Tag = (props: TagProps) => {
 
     return (
         <Chip
-            variant={variant}
+            variant={isDisabled ? 'disabled' : 'brand'}
             size="medium"
-            hasBorder={false}
-            onButtonClick={onCloseClick}
-            buttonIcon="close"
             icon={icon}
             iconSize="16"
-            iconPosition="left"
             className={className}
-            shouldTruncateText={shouldTruncateText}
         >
-            {children}
+            <StyledTagContent>
+                <StyledTagLabel
+                    $shouldTruncateText={shouldTruncateText}
+                    title={typeof children === 'string' ? children : ''}
+                >
+                    {children}
+                </StyledTagLabel>
+                {typeof onButtonClick === 'function' && (
+                    <IconButton
+                        icon={buttonIcon}
+                        onClick={onButtonClick}
+                        disabled={isDisabled}
+                        size="extra-small"
+                        variant="tertiary"
+                        color={isDisabled ? 'neutral' : 'brand'}
+                    />
+                )}
+            </StyledTagContent>
         </Chip>
     );
 };

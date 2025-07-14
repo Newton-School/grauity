@@ -11,12 +11,14 @@ const Template = (args: TagProps) => <Tag {...args} />;
 
 const defaultArgs: TagProps = {
     children: 'This is a tag This is a tag This is a tag This is a tag This is a tag',
-    onCloseClick: () => {
+    onButtonClick: () => {
         alert('Tag close clicked!');
     },
-    variant: 'brand',
+    isDisabled: false,
+    shouldTruncateText: true,
     className: 'custom-tag-class-name',
-    icon: 'filter-filled'
+    icon: 'filter-filled',
+    buttonIcon: 'close',
 };
 
 export const Component = Template.bind({});
