@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import { StyledDivProps } from '../../../common/types';
@@ -28,12 +27,10 @@ export const StyledAccordionHeaderSuffix = styled.div`
     align-items: center;
 `;
 
-export const StyledAccordionContent = styled(
-    motion.div
-)<StyledAccordionContentProps>`
+export const StyledAccordionContent = styled.div<StyledAccordionContentProps>`
     overflow: hidden;
     background-color: ${(props) => props.$contentBackgroundColor};
-    padding: var(--accordion-content-padding, 0px 8px);
+    padding: 0px 8px;
     font-size: 12px;
     color: var(--text-primary);
     font-family: var(--font-family, 'Mona Sans');

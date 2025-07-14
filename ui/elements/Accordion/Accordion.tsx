@@ -1,4 +1,4 @@
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { forwardRef, useEffect, useState } from 'react';
 
 import { Icon } from '../Icon';
@@ -75,14 +75,15 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
                 </StyledAccordionHeader>
                 <AnimatePresence>
                     {isExpanded && (
-                        <StyledAccordionContent
-                            $contentBackgroundColor={contentBackgroundColor}
-                            {...motionProps}
-                            className="ns-accordion-content"
-                        >
-                            {showSeparator && <StyledLine />}
-                            {children}
-                        </StyledAccordionContent>
+                        <motion.div {...motionProps}>
+                            <StyledAccordionContent
+                                $contentBackgroundColor={contentBackgroundColor}
+                                className="ns-accordion-content"
+                            >
+                                {showSeparator && <StyledLine />}
+                                {children}
+                            </StyledAccordionContent>
+                        </motion.div>
                     )}
                 </AnimatePresence>
             </StyledAccordionWrapper>
