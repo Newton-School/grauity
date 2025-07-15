@@ -83,7 +83,7 @@ const ComboboxTrigger = forwardRef<
                 id={name}
                 name={name}
                 variant="secondary"
-                color={color === 'brand' ? 'neutral' : color}
+                color={color}
                 fullWidth
                 onClick={() => {
                     onTriggerClick();

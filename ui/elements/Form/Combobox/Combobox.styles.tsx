@@ -17,6 +17,28 @@ export const StyledComboboxTrigger = styled(Button)`
     justify-content: space-between;
     height: auto;
     max-height: unset;
+
+    border: 1px solid var(--border-moderate-primary-default, #c9cfd9);
+
+    ${({ color }) => css`
+        ${color !== 'brand' &&
+        css`
+            border: 1px solid var(--border-emphasis-${color}-default, #d9d9d9);
+        `}
+
+        ${color === 'brand' &&
+        css`
+            &:hover:not([disabled]) {
+                background: var(--bg-subtle-primary-hover, #f6f7f9);
+            }
+        `}
+
+        &:focus-within {
+            border: 1px solid var(--border-emphasis-${color}-default, #0673f9);
+            outline: 2px solid var(--border-subtle-${color}-default, #61a8ff);
+            background: var(--bg-subtle-primary-default, #ffffff);
+        }
+    `}
 `;
 
 export const StyledComboboxTagsContainer = styled.div`
@@ -44,10 +66,11 @@ export const StyledComboboxTextInput = styled.input`
     color: inherit;
     font-size: inherit;
 
+    color: var(--text-emphasis-primary-default, #16191D);
     ${comboboxTextInputStyles}
 
     &::placeholder {
-        color: var(--text-emphasis-primary-disabled, #8C95A6);
+        color: var(--text-emphasis-primary-disabled, #8c95a6);
         ${comboboxTextInputStyles}
     }
 `;
