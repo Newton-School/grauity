@@ -26,6 +26,7 @@ const Combobox = (props: ComboboxProps) => {
         onChange = () => {},
         onClose = () => {},
         onTextInputChange,
+        applyOnOptionSelectInMultipleMode = true,
     } = props;
 
     let width;
@@ -147,10 +148,11 @@ const Combobox = (props: ComboboxProps) => {
                 >
                     <DropdownMenu
                         {...props}
+                        applyOnOptionSelectInMultipleMode={applyOnOptionSelectInMultipleMode}
                         items={
                             Array.isArray(searchedOptions)
                                 ? searchedOptions
-                                : options
+                                : items
                         }
                         searchable={false}
                         width={
@@ -165,7 +167,9 @@ const Combobox = (props: ComboboxProps) => {
                         onChange={(values) => {
                             setSelectedOptions(values);
                             onChange(values);
-                            handleDropdownMenuClose(values);
+                            if (!multiple) {
+                                handleDropdownMenuClose(values);
+                            }
                         }}
                     />
                 </Overlay>

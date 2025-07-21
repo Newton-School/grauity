@@ -33,7 +33,6 @@ const defaultArgs: ComboboxProps = {
     overline: '',
     subtext: '',
     customHeader: null,
-    searchable: false,
     searchPlaceholder: 'Search',
     searchIcon: 'search',
     onSearchInputChange: null,
@@ -168,7 +167,6 @@ const singleSelectArgs: ComboboxProps = {
     title: 'Select',
     subtext: 'Click an option to select',
     multiple: false,
-    searchable: true,
     items: comboboxOptions,
 };
 
@@ -220,7 +218,6 @@ const multipleSelectArgs: ComboboxProps = {
     title: 'Select',
     subtext: 'Click an option to select',
     multiple: true,
-    searchable: true,
     items: comboboxOptions,
     value: [],
 };
