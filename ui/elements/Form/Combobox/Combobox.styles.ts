@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import Button from 'ui/elements/Button';
+
+import Button from '../../Button';
 
 export const StyledComboboxTriggerContainer = styled.div`
     display: flex;
@@ -66,7 +67,7 @@ export const StyledComboboxTextInput = styled.input`
     color: inherit;
     font-size: inherit;
 
-    color: var(--text-emphasis-primary-default, #16191D);
+    color: var(--text-emphasis-primary-default, #16191d);
     ${comboboxTextInputStyles}
 
     &::placeholder {

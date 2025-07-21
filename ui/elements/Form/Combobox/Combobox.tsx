@@ -71,6 +71,7 @@ const Combobox = (props: ComboboxProps) => {
     );
 
     const triggerRef = useRef<HTMLButtonElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
     const dropdownMenuRef = useRef<HTMLDivElement>(null);
 
     const handleDropdownMenuClose = (
@@ -78,7 +79,7 @@ const Combobox = (props: ComboboxProps) => {
     ) => {
         setIsOpen(false);
         onClose(values);
-        triggerRef?.current?.focus();
+        inputRef?.current?.focus();
     };
 
     const onItemDismissClick = (item: BaseItemOptionProps) => {
@@ -123,6 +124,7 @@ const Combobox = (props: ComboboxProps) => {
             <ComboboxTrigger
                 {...props}
                 ref={triggerRef}
+                inputRef={inputRef}
                 onTriggerClick={() => {
                     setIsOpen(!isOpen);
                 }}

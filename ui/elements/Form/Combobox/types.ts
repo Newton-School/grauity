@@ -1,3 +1,4 @@
+import React from 'react';
 import { ACTION_COLORS } from 'ui/core';
 import {
     BaseItemOptionProps,
@@ -64,6 +65,7 @@ export interface ComboboxTriggerInternalProps extends ComboboxTriggerProps {
     selectedItems?: BaseItemOptionProps | BaseItemOptionProps[];
     onItemDismissClick?: (item: BaseItemOptionProps) => void;
     inputText?: string;
+    inputRef?: React.MutableRefObject<HTMLInputElement>;
 }
 
 export interface ComboboxProps

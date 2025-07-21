@@ -31,9 +31,8 @@ const ComboboxTrigger = forwardRef<
         onItemDismissClick = () => {},
         inputText = '',
         onTextInputChange = () => {},
+        inputRef = null,
     } = props;
-
-    const inputRef = React.useRef<HTMLInputElement>(null);
 
     const hasSelectedItems = Array.isArray(selectedItems)
         ? selectedItems.length > 0
@@ -87,7 +86,7 @@ const ComboboxTrigger = forwardRef<
                 fullWidth
                 onClick={() => {
                     onTriggerClick();
-                    inputRef.current?.focus();
+                    inputRef?.current?.focus();
                 }}
                 showAnimationOnClick={false}
                 disabled={isDisabled}
