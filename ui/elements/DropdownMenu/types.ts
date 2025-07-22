@@ -120,7 +120,9 @@ export interface DropdownMenuProps {
 
     /**
      * Whether to show action buttons (e.g., Apply, Clear All).
-     * @default false in single select mode, true in multiple select mode
+     * If `true`, then the `onChange` callback will NOT be called on option click,
+     * and would only be called if the user clicks on the "Apply" button
+     * @default false
      */
     showActionButtons?: boolean;
 
@@ -152,9 +154,14 @@ export interface DropdownMenuProps {
 
     /**
      * Callback function called to apply the selected items.
-     * - In single select mode, if `showActionButtons` is false, `onChange` will be called when an option is clicked.
-     * - In multiple select mode, if `showActionButtons` is false, `onChange` will be called when clicked outside the dropdown menu.
-     * - If `showActionButtons` is true, `onChange` will be called when the "Apply" button is clicked.
+     *
+     * NOTE:
+     * - If `showActionButtons` is true, `onChange` will be called only when the "Apply" button is clicked.
+     * - In single select mode, if `showActionButtons` is false, `onChange` will be called when:
+     *      - an option is clicked
+     * - In multiple select mode, if `showActionButtons` is false, `onChange` will be called when:
+     *      - an option is clicked and `applyOnOptionSelectInMultipleMode` is true, or
+     *      - user clicks outside the dropdown menu
      * @param items - The selected items.
      * - If `multiple` is false, `items` will be a single object.
      * - If `multiple` is true, `items` will be an array of objects.
@@ -193,6 +200,16 @@ export interface DropdownMenuProps {
      * @default '300px'
      */
     width?: string;
+
+    /**
+     * Whether the dropdown should call the onChange callback on selecting an
+     * option in multiple mode
+     *
+     * NOTE: If `showActionButtons` is true then onChange will NOT be called
+     * on clicking an option, irrespective of the value of `applyOnOptionSelectInMultipleMode` prop
+     * @default false
+     */
+    applyOnOptionSelectInMultipleMode?: boolean;
 }
 
 export interface StyledDropdownMenuProps extends StyledDivProps {
