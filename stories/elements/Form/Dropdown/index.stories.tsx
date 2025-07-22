@@ -40,6 +40,7 @@ const defaultArgs: DropdownProps = {
     searchIcon: 'search',
     onSearchInputChange: null,
     multiple: false,
+    applyOnOptionSelectInMultipleMode: false,
     items: [
         {
             type: NSDropdownMenuBaseItemType.SUB_HEADER,

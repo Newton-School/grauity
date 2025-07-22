@@ -100,6 +100,7 @@ const ComboboxTrigger = forwardRef<
                         onChange={(e) => {
                             onTextInputChange(e.target.value);
                         }}
+                        role="textbox"
                     />
                 </StyledComboboxTagsContainer>
             </StyledComboboxTrigger>

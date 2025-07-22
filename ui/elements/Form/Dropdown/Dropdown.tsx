@@ -21,6 +21,7 @@ const Dropdown = (props: DropdownProps) => {
         value = null,
         onChange = () => {},
         onClose = () => {},
+        showActionButtons = false,
     } = props;
 
     let width;
@@ -113,7 +114,9 @@ const Dropdown = (props: DropdownProps) => {
                         onChange={(values) => {
                             setSelectedOptions(values);
                             onChange(values);
-                            handleDropdownMenuClose(values);
+                            if (!multiple || showActionButtons) {
+                                handleDropdownMenuClose(values);
+                            }
                         }}
                     />
                 </Overlay>
