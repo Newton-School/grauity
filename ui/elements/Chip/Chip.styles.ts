@@ -11,7 +11,7 @@ export const StyledChipDiv = styled.div<StyledChip>`
     padding: 4px 8px;
     justify-content: center;
     align-items: center;
-    gap: 3px;
+    gap: 4px;
     height: fit-content;
     width: fit-content;
     border-radius: 4px;
