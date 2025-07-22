@@ -196,7 +196,7 @@ describe('Combobox', () => {
     });
 
     // In multi-select mode, if showActionButtons is true, it should only call onChange on when clicking on "Apply" button and not on item click or clicking outside
-    it('Should not call onChange on item click in single select mode with showActionButtons', () => {
+    it('Should not call onChange on item click in multiple select mode with showActionButtons', () => {
         const onChange = jest.fn();
         const onClose = jest.fn();
         const items = getDummyOptions(3);
