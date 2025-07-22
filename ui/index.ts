@@ -86,6 +86,9 @@ export {
 // NSChip
 export { type ChipProps, default as NSChip } from './elements/Chip';
 
+// NSTag
+export { default as NSTag, type TagProps } from './elements/Tag';
+
 // NSAccordion
 export {
     type AccordionProps,

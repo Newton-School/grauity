@@ -73,7 +73,7 @@ export interface ChipProps {
     children?: React.ReactNode;
 
     /**
-     * Icon to be displayed in the button.
+     * Icon to be displayed in the Chip.
      * @default null
      * */
     icon?: grauityIconName;
@@ -89,6 +89,12 @@ export interface ChipProps {
      * @default 'left'
      * */
     iconPosition?: ButtonIconPositions;
+
+    /**
+     * Color of the icon
+     * @default 'inherit'
+     * */
+    iconColor?: string;
 
     /**
      * Additional styles to be used over the element
