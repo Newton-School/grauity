@@ -61,6 +61,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             styles = {},
             value = null,
             width = '300px',
+            applyOnOptionSelectInMultipleMode = false,
         } = props;
 
         const selectedValues = getSelectedValuesForDropdownType(
@@ -95,12 +96,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             if (Array.isArray(customValues)) {
                 finalValues = customValues;
             } else {
-                finalValues = options.filter((option) =>
-                    selectedOptions.find(
-                        (selectedOption) =>
-                            selectedOption.value === option.value
-                    )
-                );
+                finalValues = selectedOptions;
             }
 
             if (multiple) {
@@ -121,6 +117,9 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                           )
                         : [...selectedOptions, clickedValue];
                 setSelectedOptions(newSelectedOptions);
+                if (!showActionButtons && applyOnOptionSelectInMultipleMode) {
+                    handleApply(newSelectedOptions);
+                }
             } else {
                 setSelectedOptions([clickedValue]);
                 if (!showActionButtons) {

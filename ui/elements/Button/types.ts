@@ -181,7 +181,7 @@ export interface IconButtonProps {
     icon?: grauityIconName;
 
     /**
-     * Size of the icon
+     * Size of the icon.
      * */
     iconSize?: grauityIconSizeName;
 

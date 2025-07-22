@@ -1,46 +1,42 @@
 import React, { useState } from 'react';
-import { DropdownTriggerProps } from 'ui/elements/Form/Dropdown/types';
+import { BaseItemProps } from 'ui/elements/DropdownMenu';
+import { ComboboxTriggerInternalProps } from 'ui/elements/Form/Combobox/types';
 import {
-    DropdownProps,
-    NSButton,
-    NSDropdown,
+    ComboboxProps,
+    NSCombobox,
     NSDropdownMenuBaseItemOptionProps,
     NSDropdownMenuBaseItemType,
 } from 'ui/index';
 
 export default {
-    title: 'Elements/Form/Dropdown',
-    component: NSDropdown,
+    title: 'Elements/Form/Combobox',
+    component: NSCombobox,
 };
 
-const Template = (args: DropdownProps) => <NSDropdown {...args} />;
+const Template = (args: ComboboxProps) => <NSCombobox {...args} />;
 
-const triggerProps: DropdownTriggerProps = {
+const triggerProps: ComboboxTriggerInternalProps = {
     name: 'dropdown',
-    label: 'Dropdown',
-    placeholder: 'Select',
+    label: 'Combobox',
+    placeholder: 'Type to search...',
     isRequired: false,
     isDisabled: false,
     helpMessage: '',
     errorMessage: '',
     color: 'brand',
-    showSelectedValueOnTrigger: true,
-    onClose: () => {},
 };
 
-const defaultArgs: DropdownProps = {
+const defaultArgs: ComboboxProps = {
     ...triggerProps,
     showHeader: true,
     title: 'Select',
     overline: '',
     subtext: '',
     customHeader: null,
-    searchable: false,
     searchPlaceholder: 'Search',
     searchIcon: 'search',
     onSearchInputChange: null,
     multiple: false,
-    applyOnOptionSelectInMultipleMode: false,
     items: [
         {
             type: NSDropdownMenuBaseItemType.SUB_HEADER,
@@ -88,25 +84,25 @@ const defaultArgs: DropdownProps = {
         },
         {
             type: NSDropdownMenuBaseItemType.OPTION,
-            label: 'Option 1',
+            label: 'Avatar',
             value: 'option1',
             leftIcon: 'check-circle',
         },
         {
             type: NSDropdownMenuBaseItemType.OPTION,
-            label: 'Option 2',
+            label: 'Avengers: Endgame',
             value: 'option2',
             leftIcon: 'check-circle',
         },
         {
             type: NSDropdownMenuBaseItemType.OPTION,
-            label: 'Option 3',
+            label: 'Avatar: The Way of Water',
             value: 'option3',
             leftIcon: 'check-circle',
         },
         {
             type: NSDropdownMenuBaseItemType.OPTION,
-            label: 'Option 4',
+            label: 'Star Wars: The Force Awakens',
             value: 'option4',
             leftIcon: 'check-circle',
         },
@@ -133,14 +129,14 @@ Component.args = {
     ...defaultArgs,
 };
 
-// Single Select Dropdown Menu
-const ExampleSingleSelectTemplate = (args: DropdownProps) => {
+// Single Select Combobox Menu
+const ExampleSingleSelectTemplate = (args: ComboboxProps) => {
     const [selectedValue, setSelectedValue] =
         useState<NSDropdownMenuBaseItemOptionProps>();
 
     return (
         <>
-            <NSDropdown
+            <NSCombobox
                 {...args}
                 multiple={false}
                 value={selectedValue}
@@ -157,19 +153,21 @@ const ExampleSingleSelectTemplate = (args: DropdownProps) => {
         </>
     );
 };
-const singleSelectArgs: DropdownProps = {
+
+const comboboxOptions: BaseItemProps[] = Array.from({ length: 20 }, (_, i) => ({
+    type: NSDropdownMenuBaseItemType.OPTION,
+    label: `Option ${i + 1} with some really looong text`,
+    value: `option${i + 1}`,
+}));
+
+const singleSelectArgs: ComboboxProps = {
     ...triggerProps,
     ...defaultArgs,
     showHeader: true,
     title: 'Select',
     subtext: 'Click an option to select',
     multiple: false,
-    searchable: true,
-    items: Array.from({ length: 20 }, (_, i) => ({
-        type: NSDropdownMenuBaseItemType.OPTION,
-        label: `Option ${i + 1}`,
-        value: `option${i + 1}`,
-    })),
+    items: comboboxOptions,
 };
 
 export const SingleSelect = ExampleSingleSelectTemplate.bind({});
@@ -183,15 +181,15 @@ SingleSelectWithApplyButton.args = {
     showActionButtons: true,
 };
 
-// Multiple Select Dropdown Menu
-const ExampleMultiSelectTemplate = (args: DropdownProps) => {
+// Multiple Select Combobox Menu
+const ExampleMultiSelectTemplate = (args: ComboboxProps) => {
     const [selectedValues, setSelectedValues] = useState<
         NSDropdownMenuBaseItemOptionProps[]
     >([]);
 
     return (
         <>
-            <NSDropdown
+            <NSCombobox
                 {...args}
                 multiple
                 value={selectedValues}
@@ -212,19 +210,15 @@ const ExampleMultiSelectTemplate = (args: DropdownProps) => {
         </>
     );
 };
-const multipleSelectArgs: DropdownProps = {
+
+const multipleSelectArgs: ComboboxProps = {
     ...triggerProps,
     ...defaultArgs,
     showHeader: true,
     title: 'Select',
     subtext: 'Click an option to select',
     multiple: true,
-    searchable: true,
-    items: Array.from({ length: 20 }, (_, i) => ({
-        type: NSDropdownMenuBaseItemType.OPTION,
-        label: `Option ${i + 1}`,
-        value: `option${i + 1}`,
-    })),
+    items: comboboxOptions,
     value: [],
 };
 
@@ -239,15 +233,4 @@ export const MultipleSelectWithApplyButton = ExampleMultiSelectTemplate.bind(
 MultipleSelectWithApplyButton.args = {
     ...multipleSelectArgs,
     showActionButtons: true,
-};
-
-// Dropdown With Custom Trigger
-export const CustomTrigger = ExampleSingleSelectTemplate.bind({});
-CustomTrigger.args = {
-    ...singleSelectArgs,
-    menuProps: {
-        width: '300px',
-        fullWidth: false,
-    },
-    trigger: <NSButton>Custom Trigger</NSButton>,
 };

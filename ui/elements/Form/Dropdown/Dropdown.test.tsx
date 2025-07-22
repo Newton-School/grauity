@@ -132,7 +132,7 @@ describe('Dropdown', () => {
         render(
             <Dropdown
                 {...defaultProps}
-                placeholder="Select"
+                placeholder="Select items"
                 items={items}
                 onChange={onChange}
                 multiple
@@ -140,7 +140,7 @@ describe('Dropdown', () => {
         );
 
         // Should open the dropdown
-        fireEvent.click(screen.getByText('Select'));
+        fireEvent.click(screen.getByText('Select items'));
         expect(screen.getByText('Item 0')).toBeInTheDocument();
 
         // Should not call onChange on selecting an item
@@ -159,6 +159,7 @@ describe('Dropdown', () => {
 
         // Should call onChange on clicking outside the dropdown
         fireEvent.mouseDown(document.body);
+        fireEvent.click(screen.getByText('Select items'));
         expect(onChange).toHaveBeenCalledWith([items[0], items[1]]);
 
         // Should close the dropdown
@@ -224,6 +225,40 @@ describe('Dropdown', () => {
         expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
     });
 
+    // Multi Select Mode Flow with applyOnOptionSelectInMultipleMode
+    it('Should call onChange immediately on option click when applyOnOptionSelectInMultipleMode is true', () => {
+        const onChange = jest.fn();
+        const items = getDummyOptions(3);
+
+        render(
+            <Dropdown
+                {...defaultProps}
+                placeholder="Select items"
+                items={items}
+                onChange={onChange}
+                multiple
+                applyOnOptionSelectInMultipleMode
+            />
+        );
+
+        // Should open the dropdown
+        fireEvent.click(screen.getByText('Select items'));
+        expect(screen.getByText('Item 0')).toBeInTheDocument();
+
+        // Should call onChange immediately on selecting an item
+        fireEvent.click(screen.getByText('Item 0'));
+        expect(onChange).toHaveBeenCalledWith([items[0]]);
+
+        // Should call onChange immediately on selecting an item
+        fireEvent.click(screen.getByText('Item 1'));
+        expect(onChange).toHaveBeenCalledWith([items[0], items[1]]);
+
+        // Should close the dropdown on clicking outside
+        fireEvent.click(screen.getByText('Select items'));
+        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        expect(onChange).toHaveBeenCalledWith([items[0], items[1]]);
+    });
+
     // Show Selected Value
     it('Should show selected value on trigger in single select mode', () => {
         const items = getDummyOptions(3);
@@ -251,7 +286,7 @@ describe('Dropdown', () => {
         render(
             <Dropdown
                 {...defaultProps}
-                placeholder="Select"
+                placeholder="Select items"
                 items={items}
                 multiple
                 showSelectedValueOnTrigger
@@ -259,13 +294,13 @@ describe('Dropdown', () => {
         );
 
         // Opening the dropdown and selecting option
-        fireEvent.click(screen.getByText('Select'));
+        fireEvent.click(screen.getByText('Select items'));
         fireEvent.click(screen.getByText('Item 0'));
         fireEvent.click(screen.getByText('Item 1'));
         fireEvent.mouseDown(document.body);
 
         // Should show the selected value and not placeholder
-        expect(screen.queryByText('Select')).not.toBeInTheDocument();
+        expect(screen.queryByText('Select items')).not.toBeInTheDocument();
         expect(screen.queryByText('2 selected')).toBeInTheDocument();
     });
 
