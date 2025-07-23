@@ -16,6 +16,7 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
         isDisabled = false,
         icon = null,
         shouldTruncateText = true,
+        truncateLength = '200px',
         className,
         children,
     } = props;
@@ -32,6 +33,7 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
             <StyledTagContent>
                 <StyledTagLabel
                     $shouldTruncateText={shouldTruncateText}
+                    $truncateLength={truncateLength}
                     title={typeof children === 'string' ? children : ''}
                 >
                     {children}

@@ -3,6 +3,7 @@ import { ACTION_COLORS } from 'ui/core';
 
 import { StyledDivProps } from '../../../../common/types';
 import { BaseItemOptionProps, DropdownMenuProps } from '../../DropdownMenu';
+import { TagProps } from '../../Tag';
 
 export interface ComboboxTriggerProps {
     /**
@@ -57,6 +58,13 @@ export interface ComboboxTriggerProps {
      * @default () => {}
      */
     onTextInputChange?: (text: string) => void;
+
+    /**
+     * Additional props for the Tag element.
+     *
+     * Default: `{}`
+     */
+    tagProps?: Omit<TagProps, 'children'>;
 }
 
 export interface ComboboxTriggerInternalProps extends ComboboxTriggerProps {

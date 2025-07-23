@@ -1,16 +1,18 @@
 import React from 'react';
 
 import { BaseItemOptionProps } from '../../DropdownMenu';
-import Tag from '../../Tag';
+import Tag, { TagProps } from '../../Tag';
 
 export const ComboboxTags = ({
     selectedItems,
     onItemDismissClick,
     isDisabled,
+    tagProps = {},
 }: {
     selectedItems: BaseItemOptionProps[] | BaseItemOptionProps;
     isDisabled?: boolean;
     onItemDismissClick?: (item: BaseItemOptionProps) => void;
+    tagProps?: Omit<TagProps, 'children'>;
 }) => {
     let selectedItemsList: BaseItemOptionProps[] = [];
     if (Array.isArray(selectedItems)) {
@@ -23,6 +25,7 @@ export const ComboboxTags = ({
         <>
             {selectedItemsList.map((item: BaseItemOptionProps) => (
                 <Tag
+                    {...tagProps}
                     onButtonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                         e.stopPropagation();
                         onItemDismissClick(item);
