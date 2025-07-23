@@ -1,7 +1,5 @@
 import React, { forwardRef } from 'react';
 
-import { BaseItemOptionProps } from '../../DropdownMenu';
-import Tag from '../../Tag';
 import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
 import { Label } from '../Label';
@@ -11,10 +9,11 @@ import {
     StyledComboboxTrigger,
     StyledComboboxTriggerContainer,
 } from './Combobox.styles';
+import { ComboboxTags } from './ComboboxTags';
 import { ComboboxTriggerInternalProps } from './types';
 
 const ComboboxTrigger = forwardRef<
-    HTMLButtonElement,
+    HTMLDivElement,
     ComboboxTriggerInternalProps
 >((props, ref) => {
     const {
@@ -32,38 +31,15 @@ const ComboboxTrigger = forwardRef<
         inputText = '',
         onTextInputChange = () => {},
         inputRef = null,
+        inputProps = {},
+        isOpen,
+        dropdownMenuId,
+        multiple,
     } = props;
 
     const hasSelectedItems = Array.isArray(selectedItems)
         ? selectedItems.length > 0
         : !!selectedItems;
-
-    const getCurrentValue = (): React.ReactNode => {
-        let selectedItemsList: BaseItemOptionProps[] = [];
-        if (Array.isArray(selectedItems)) {
-            selectedItemsList = selectedItems;
-        } else if (selectedItems) {
-            selectedItemsList = [selectedItems];
-        }
-        return (
-            <>
-                {selectedItemsList.map((item: BaseItemOptionProps) => (
-                    <Tag
-                        onButtonClick={(
-                            e: React.MouseEvent<HTMLButtonElement>
-                        ) => {
-                            e.stopPropagation();
-                            onItemDismissClick(item);
-                        }}
-                        isDisabled={isDisabled}
-                        key={item.value}
-                    >
-                        {item.label}
-                    </Tag>
-                ))}
-            </>
-        );
-    };
 
     return (
         <StyledComboboxTriggerContainer>
@@ -78,25 +54,39 @@ const ComboboxTrigger = forwardRef<
                 </Label>
             )}
             <StyledComboboxTrigger
-                ref={ref as React.Ref<HTMLButtonElement>}
-                id={name}
-                name={name}
-                variant="secondary"
-                color={color}
-                fullWidth
+                ref={ref as React.Ref<HTMLDivElement>}
                 onClick={() => {
-                    onTriggerClick();
-                    inputRef?.current?.focus();
+                    if (!isDisabled) {
+                        onTriggerClick();
+                        inputRef?.current?.focus();
+                    }
                 }}
-                showAnimationOnClick={false}
-                disabled={isDisabled}
+                $color={color}
+                $isDisabled={isDisabled}
+                $isFocused={isOpen}
+                role="combobox"
+                aria-expanded={isOpen}
+                aria-controls={dropdownMenuId}
             >
                 <StyledComboboxTagsContainer>
-                    {getCurrentValue()}
+                    <ComboboxTags
+                        selectedItems={selectedItems}
+                        onItemDismissClick={onItemDismissClick}
+                        isDisabled={isDisabled}
+                    />
                     <StyledComboboxTextInput
+                        {...inputProps}
+                        id={name}
                         value={inputText}
                         ref={inputRef}
-                        placeholder={hasSelectedItems ? '' : placeholder}
+                        placeholder={
+                            hasSelectedItems && !multiple ? '' : placeholder
+                        }
+                        disabled={isDisabled}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        autoCapitalize="off"
+                        spellCheck="false"
                         onChange={(e) => {
                             onTextInputChange(e.target.value);
                         }}

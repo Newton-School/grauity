@@ -5,6 +5,8 @@ import {
     DropdownMenuProps,
 } from 'ui/elements/DropdownMenu';
 
+import { StyledDivProps } from '../../../../common/types';
+
 export interface ComboboxTriggerProps {
     /**
      * Whether to disable the combobox trigger
@@ -66,6 +68,10 @@ export interface ComboboxTriggerInternalProps extends ComboboxTriggerProps {
     onItemDismissClick?: (item: BaseItemOptionProps) => void;
     inputText?: string;
     inputRef?: React.MutableRefObject<HTMLInputElement>;
+    inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+    isOpen?: boolean;
+    dropdownMenuId?: string;
+    multiple?: boolean;
 }
 
 export interface ComboboxProps
@@ -93,10 +99,24 @@ export interface ComboboxProps
      * on clicking an option, irrespective of the value of `applyOnOptionSelectInMultipleMode` prop
      * @default true
      */
-    applyOnOptionSelectInMultipleMode: DropdownMenuProps['applyOnOptionSelectInMultipleMode'];
+    applyOnOptionSelectInMultipleMode?: DropdownMenuProps['applyOnOptionSelectInMultipleMode'];
+
+    /**
+     * useSearchMethod is used to determine whether the default search method should be applied on
+     * the elements, which is a case-insensitive search on the `label` and `description` properties
+     * of each option, to check if they include the searched value.
+     * @default true
+     */
+    useDefaultSearchMethod?: boolean;
 
     /**
      * Callback function to be called when the combobox menu is closed.
      */
     onClose?: (value: BaseItemOptionProps | BaseItemOptionProps[]) => void;
+}
+
+export interface StyledComboboxTriggerProps extends StyledDivProps {
+    $isDisabled?: boolean;
+    $color?: `${ACTION_COLORS}`;
+    $isFocused?: boolean;
 }

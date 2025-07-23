@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import { AnimatePresence } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 
 import DropdownMenu, {
     BaseItemOptionProps,
@@ -27,6 +27,7 @@ const Combobox = (props: ComboboxProps) => {
         onClose = () => {},
         onTextInputChange,
         applyOnOptionSelectInMultipleMode = true,
+        useDefaultSearchMethod = true,
     } = props;
 
     let width;
@@ -40,6 +41,9 @@ const Combobox = (props: ComboboxProps) => {
     }
 
     const selectedValues = getSelectedValuesForDropdownType(multiple, value);
+
+    const id = useId();
+    const dropdownMenuId = `dropdown-menu-${id}`;
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [options, setOptions] = useState<BaseItemOptionProps[]>([]);
@@ -70,7 +74,7 @@ const Combobox = (props: ComboboxProps) => {
               ) as BaseItemOptionProps)
     );
 
-    const triggerRef = useRef<HTMLButtonElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const dropdownMenuRef = useRef<HTMLDivElement>(null);
 
@@ -96,9 +100,10 @@ const Combobox = (props: ComboboxProps) => {
     };
 
     const handleSearchInputChange = (text: string) => {
+        setInputText(text);
         if (typeof onTextInputChange === 'function') {
             onTextInputChange(text);
-        } else {
+        } else if (useDefaultSearchMethod) {
             const filteredOptions = defaultSearchMethod(text, options);
             if (filteredOptions.length > 0 || text) {
                 setSearchedOptions(filteredOptions);
@@ -107,6 +112,16 @@ const Combobox = (props: ComboboxProps) => {
             }
         }
     };
+
+    const [dropdownMenuPosition, setDropdownMenuPosition] = useState(
+        calculateDropdownMenuPosition(triggerRef, dropdownMenuHeight)
+    );
+
+    useEffect(() => {
+        setDropdownMenuPosition(
+            calculateDropdownMenuPosition(triggerRef, dropdownMenuHeight)
+        );
+    }, [selectedOptions, dropdownMenuHeight]);
 
     useEffect(() => {
         const filteredOptions = getOptionsFromBaseDropdownItems(items);
@@ -134,14 +149,14 @@ const Combobox = (props: ComboboxProps) => {
                 onTextInputChange={(text) => {
                     setInputText(text);
                     handleSearchInputChange(text);
+                    setIsOpen(true);
                 }}
+                isOpen={isOpen}
+                dropdownMenuId={dropdownMenuId}
             />
             {isOpen && (
                 <Overlay
-                    position={calculateDropdownMenuPosition(
-                        triggerRef,
-                        dropdownMenuHeight
-                    )}
+                    position={dropdownMenuPosition}
                     shouldFocusOnFirstElement={false}
                     shouldDisableScroll={isOpen}
                     onOverlayClick={() => {
@@ -150,7 +165,10 @@ const Combobox = (props: ComboboxProps) => {
                 >
                     <DropdownMenu
                         {...props}
-                        applyOnOptionSelectInMultipleMode={applyOnOptionSelectInMultipleMode}
+                        id={dropdownMenuId}
+                        applyOnOptionSelectInMultipleMode={
+                            applyOnOptionSelectInMultipleMode
+                        }
                         items={
                             Array.isArray(searchedOptions)
                                 ? searchedOptions
@@ -169,9 +187,12 @@ const Combobox = (props: ComboboxProps) => {
                         onChange={(values) => {
                             setSelectedOptions(values);
                             onChange(values);
-                            if (!multiple) {
+                            if (multiple) {
+                                inputRef?.current?.focus();
+                            } else {
                                 handleDropdownMenuClose(values);
                             }
+                            handleSearchInputChange('');
                         }}
                     />
                 </Overlay>

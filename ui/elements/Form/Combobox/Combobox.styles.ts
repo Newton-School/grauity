@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
+import { ACTION_COLORS } from 'ui/core';
 
-import Button from '../../Button';
+import { StyledComboboxTriggerProps } from './types';
 
 export const StyledComboboxTriggerContainer = styled.div`
     display: flex;
@@ -10,7 +11,13 @@ export const StyledComboboxTriggerContainer = styled.div`
     font-family: var(--font-family);
 `;
 
-export const StyledComboboxTrigger = styled(Button)`
+const focusStyles = ($color: `${ACTION_COLORS}`) => css`
+    border: 1px solid var(--border-emphasis-${$color}-default, #0673f9);
+    outline: 2px solid var(--border-subtle-${$color}-default, #61a8ff);
+    background: var(--bg-subtle-primary-default, #ffffff);
+`;
+
+export const StyledComboboxTrigger = styled.div<StyledComboboxTriggerProps>`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -18,27 +25,33 @@ export const StyledComboboxTrigger = styled(Button)`
     justify-content: space-between;
     height: auto;
     max-height: unset;
+    padding: var(--spacing-8px, 8px) var(--spacing-12px, 12px);
+    border-radius: var(--corner-radius-8px, 8px);
+    background: var(--bg-subtle-primary-default, #ffffff);
+    width: 100%;
+    box-sizing: border-box;
 
     border: 1px solid var(--border-moderate-primary-default, #c9cfd9);
 
-    ${({ color }) => css`
-        ${color !== 'brand' &&
+    ${({ $color, $isFocused, $isDisabled }) => css`
+        ${$color !== 'brand' &&
         css`
-            border: 1px solid var(--border-emphasis-${color}-default, #d9d9d9);
+            border: 1px solid var(--border-emphasis-${$color}-default, #d9d9d9);
         `}
 
-        ${color === 'brand' &&
+        ${!$isDisabled &&
+        $color === 'brand' &&
         css`
             &:hover:not([disabled]) {
                 background: var(--bg-subtle-primary-hover, #f6f7f9);
             }
         `}
-
+        
         &:focus-within {
-            border: 1px solid var(--border-emphasis-${color}-default, #0673f9);
-            outline: 2px solid var(--border-subtle-${color}-default, #61a8ff);
-            background: var(--bg-subtle-primary-default, #ffffff);
+            ${focusStyles($color)}
         }
+
+        ${$isFocused && focusStyles($color)}
     `}
 `;
 
@@ -61,6 +74,7 @@ const comboboxTextInputStyles = css`
 export const StyledComboboxTextInput = styled.input`
     flex: 1;
     min-width: 100px;
+    width: fill-available;
     border: none;
     outline: none;
     background: transparent;

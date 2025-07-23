@@ -28,7 +28,7 @@ describe('Combobox', () => {
     // Rendering trigger
     it('Should render the combobox trigger', () => {
         const { getByRole } = render(<Combobox {...defaultProps} />);
-        expect(getByRole('button')).toBeInTheDocument();
+        expect(getByRole('combobox')).toBeInTheDocument();
         expect(getByRole('textbox')).toBeInTheDocument();
     });
 
@@ -101,7 +101,7 @@ describe('Combobox', () => {
             />
         );
 
-        fireEvent.click(screen.getByRole('textbox'));
+        fireEvent.click(screen.getByRole('combobox'));
         fireEvent.click(screen.getByText('Item 0'));
         expect(onChange).toHaveBeenCalledWith(items[0]);
 
