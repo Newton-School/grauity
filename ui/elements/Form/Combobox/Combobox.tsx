@@ -121,7 +121,7 @@ const Combobox = (props: ComboboxProps) => {
         setDropdownMenuPosition(
             calculateDropdownMenuPosition(triggerRef, dropdownMenuHeight)
         );
-    }, [selectedOptions, dropdownMenuHeight]);
+    }, [selectedOptions, dropdownMenuHeight, isOpen]);
 
     useEffect(() => {
         const filteredOptions = getOptionsFromBaseDropdownItems(items);
