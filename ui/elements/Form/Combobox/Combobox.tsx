@@ -4,16 +4,17 @@ import React, { useEffect, useId, useRef, useState } from 'react';
 
 import DropdownMenu, {
     BaseItemOptionProps,
-    BaseItemType,
 } from '../../DropdownMenu';
 import { DROPDOWN_MENU_MAX_HEIGHT } from '../../DropdownMenu/constants';
 import {
     defaultSearchMethod,
     getOptionsFromBaseDropdownItems,
-    getSelectedValuesForDropdownType,
 } from '../../DropdownMenu/utils';
 import Overlay from '../../Overlay';
-import { calculateDropdownMenuPosition } from '../Dropdown/utils';
+import {
+    calculateDropdownMenuPosition,
+    getSelectedOptionsFromValues,
+} from '../Dropdown/utils';
 import ComboboxTrigger from './ComboboxTrigger';
 import { ComboboxProps } from './types';
 
@@ -40,8 +41,6 @@ const Combobox = (props: ComboboxProps) => {
         fullWidth = true;
     }
 
-    const selectedValues = getSelectedValuesForDropdownType(multiple, value);
-
     const id = useId();
     const dropdownMenuId = `dropdown-menu-${id}`;
 
@@ -56,23 +55,7 @@ const Combobox = (props: ComboboxProps) => {
     >(null);
     const [selectedOptions, setSelectedOptions] = useState<
         BaseItemOptionProps | BaseItemOptionProps[]
-    >(
-        multiple
-            ? (items.filter(
-                  (item) =>
-                      item.type === BaseItemType.OPTION &&
-                      selectedValues
-                          .map((option) => option.value)
-                          .includes(item.value)
-              ) as BaseItemOptionProps[])
-            : (items.find(
-                  (item) =>
-                      item.type === BaseItemType.OPTION &&
-                      selectedValues
-                          .map((option) => option.value)
-                          .includes(item.value)
-              ) as BaseItemOptionProps)
-    );
+    >(getSelectedOptionsFromValues({ value, items, multiple }));
 
     const triggerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -118,15 +101,21 @@ const Combobox = (props: ComboboxProps) => {
     );
 
     useEffect(() => {
-        setDropdownMenuPosition(
-            calculateDropdownMenuPosition(triggerRef, dropdownMenuHeight)
+        setSelectedOptions(
+            getSelectedOptionsFromValues({ value, items, multiple })
         );
-    }, [selectedOptions, dropdownMenuHeight, isOpen]);
+    }, [value, items, multiple]);
 
     useEffect(() => {
         const filteredOptions = getOptionsFromBaseDropdownItems(items);
         setOptions(filteredOptions);
     }, [items]);
+
+    useEffect(() => {
+        setDropdownMenuPosition(
+            calculateDropdownMenuPosition(triggerRef, dropdownMenuHeight)
+        );
+    }, [selectedOptions, dropdownMenuHeight, isOpen]);
 
     useEffect(() => {
         if (isOpen && dropdownMenuRef.current) {

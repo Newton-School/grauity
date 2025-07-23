@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+    BaseItemOptionProps,
+    BaseItemProps,
+    BaseItemType,
+} from 'ui/elements/DropdownMenu';
+import { getSelectedValuesForDropdownType } from 'ui/elements/DropdownMenu/utils';
 
 /**
  * Calculates the position for a dropdown menu based on the position of a trigger element.
@@ -19,3 +25,35 @@ export function calculateDropdownMenuPosition(
         left: triggerRef.current?.getBoundingClientRect().left,
     };
 }
+
+/**
+ * Retrieves selected options from the provided items and current value
+ * based on whether the field is in multiple select mode or not.
+ */
+export const getSelectedOptionsFromValues = ({
+    value,
+    multiple,
+    items,
+}: {
+    value: BaseItemOptionProps | BaseItemOptionProps[];
+    items: BaseItemProps[];
+    multiple: boolean;
+}) => {
+    const selectedValues = getSelectedValuesForDropdownType(multiple, value);
+
+    if (multiple) {
+        return items.filter(
+            (item) =>
+                item.type === BaseItemType.OPTION &&
+                selectedValues
+                    .map((option) => option.value)
+                    .includes(item.value)
+        ) as BaseItemOptionProps[];
+    }
+
+    return items.find(
+        (item) =>
+            item.type === BaseItemType.OPTION &&
+            selectedValues.map((option) => option.value).includes(item.value)
+    ) as BaseItemOptionProps;
+};
