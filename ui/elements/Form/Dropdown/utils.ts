@@ -4,7 +4,8 @@ import {
     BaseItemProps,
     BaseItemType,
 } from 'ui/elements/DropdownMenu';
-import { getSelectedValuesForDropdownType } from 'ui/elements/DropdownMenu/utils';
+
+import { getSelectedValuesForDropdownType } from '../../DropdownMenu/utils';
 
 /**
  * Calculates the position for a dropdown menu based on the position of a trigger element.
