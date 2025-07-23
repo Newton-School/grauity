@@ -15,10 +15,10 @@ export const StyledTagLabel = styled.span<StyledTagLabelProps>`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
 
-    ${({ $shouldTruncateText }) =>
-        $shouldTruncateText &&
+    ${({ $shouldTruncateText, $truncateLength }) =>
+        $shouldTruncateText && $truncateLength &&
         css`
-            max-width: 200px;
+            max-width: ${$truncateLength};
             text-overflow: ellipsis;
             white-space: nowrap;
         `}

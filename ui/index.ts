@@ -244,6 +244,12 @@ export {
     default as NSDropdown,
 } from './elements/Form/Dropdown';
 
+// NSCombobox
+export {
+    type ComboboxProps,
+    default as NSCombobox,
+} from './elements/Form/Combobox';
+
 // NSCheckboxGroup
 export {
     type CheckboxGroupProps,

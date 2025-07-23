@@ -48,8 +48,16 @@ export interface TagProps {
      * Default: `true`
      * */
     shouldTruncateText?: boolean;
+
+    /**
+     * The length of the text over which it should be truncated.
+     *
+     * Default: '200px'
+     * */
+    truncateLength?: string | number;
 }
 
 export interface StyledTagLabelProps extends StyledDivProps {
     $shouldTruncateText?: boolean;
+    $truncateLength?: string | number;
 }
