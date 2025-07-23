@@ -1,10 +1,10 @@
 import React from 'react';
+
 import {
     BaseItemOptionProps,
     BaseItemProps,
     BaseItemType,
-} from 'ui/elements/DropdownMenu';
-
+} from '../../DropdownMenu';
 import { getSelectedValuesForDropdownType } from '../../DropdownMenu/utils';
 
 /**
