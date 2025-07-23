@@ -62,6 +62,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             value = null,
             width = '300px',
             applyOnOptionSelectInMultipleMode = false,
+            id,
         } = props;
 
         const selectedValues = getSelectedValuesForDropdownType(
@@ -241,6 +242,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                 ref={dropdownRef}
                 $width={width}
                 role="menu"
+                id={id}
                 {...FRAMER_MOTION_PROPS}
             >
                 <DropdownMenuHeader

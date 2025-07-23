@@ -210,6 +210,11 @@ export interface DropdownMenuProps {
      * @default false
      */
     applyOnOptionSelectInMultipleMode?: boolean;
+
+    /**
+     * The id for the Dropdown Menu.
+     */
+    id?: string;
 }
 
 export interface StyledDropdownMenuProps extends StyledDivProps {
