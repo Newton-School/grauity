@@ -1,6 +1,7 @@
 import React from 'react';
-import { BaseItemOptionProps } from 'ui/elements/DropdownMenu';
-import Tag from 'ui/elements/Tag';
+
+import { BaseItemOptionProps } from '../../DropdownMenu';
+import Tag from '../../Tag';
 
 export const ComboboxTags = ({
     selectedItems,

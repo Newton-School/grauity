@@ -2,8 +2,8 @@ import '@testing-library/jest-dom';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { BaseItemOptionProps, BaseItemType } from 'ui/elements/DropdownMenu';
 
+import { BaseItemOptionProps, BaseItemType } from '../../DropdownMenu';
 import Combobox from './Combobox';
 import { ComboboxProps } from './types';
 

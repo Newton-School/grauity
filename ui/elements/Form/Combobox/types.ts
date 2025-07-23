@@ -1,11 +1,8 @@
 import React from 'react';
 import { ACTION_COLORS } from 'ui/core';
-import {
-    BaseItemOptionProps,
-    DropdownMenuProps,
-} from 'ui/elements/DropdownMenu';
 
 import { StyledDivProps } from '../../../../common/types';
+import { BaseItemOptionProps, DropdownMenuProps } from '../../DropdownMenu';
 
 export interface ComboboxTriggerProps {
     /**
