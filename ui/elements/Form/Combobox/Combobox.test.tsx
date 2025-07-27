@@ -239,11 +239,9 @@ describe('Combobox', () => {
         });
         expect(selectedItems).toHaveLength(2);
 
+        // Clicking on Apply button should call onChange and close the dropdown
         fireEvent.click(screen.getByText('Apply'));
         expect(onChange).toHaveBeenCalledWith([items[0], items[1]]);
-
-        // Clicking outside should close the dropdown
-        fireEvent.click(screen.getByRole('textbox'));
 
         // Selected item should be visible as tag, and dropdown should close
         expect(screen.queryByText('Item 0')).toBeInTheDocument();
