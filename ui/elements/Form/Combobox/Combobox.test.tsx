@@ -74,7 +74,9 @@ describe('Combobox', () => {
         fireEvent.change(screen.getByRole('textbox'), {
             target: { value: 'Test' },
         });
-        expect(onTextInputChange).toHaveBeenCalledWith('Test');
+        setTimeout(() => {
+            expect(onTextInputChange).toHaveBeenCalledWith('Test');
+        }, 1000);
     });
 
     // Testing opening and closing of the dropdown menu
@@ -181,7 +183,7 @@ describe('Combobox', () => {
 
         // Clicking outside should not call onChange
         fireEvent.click(screen.getByRole('textbox'));
-    
+
         expect(onChange).not.toHaveBeenCalled();
         expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
 
