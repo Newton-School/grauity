@@ -3,6 +3,7 @@ import { BaseItemProps } from 'ui/elements/DropdownMenu';
 import { ComboboxTriggerInternalProps } from 'ui/elements/Form/Combobox/types';
 import {
     ComboboxProps,
+    NSCheckbox,
     NSCombobox,
     NSDropdownMenuBaseItemOptionProps,
     NSDropdownMenuBaseItemType,
@@ -35,7 +36,6 @@ const defaultArgs: ComboboxProps = {
     customHeader: null,
     searchPlaceholder: 'Search',
     searchIcon: 'search',
-    onSearchInputChange: null,
     multiple: false,
     items: [
         {
@@ -116,7 +116,7 @@ const defaultArgs: ComboboxProps = {
     onScrollToBottom: () => {},
     className: '',
     styles: {},
-    value: [],
+    value: null,
     menuProps: {
         width: '300px',
         fullWidth: true,
@@ -186,19 +186,52 @@ const ExampleMultiSelectTemplate = (args: ComboboxProps) => {
     const [selectedValues, setSelectedValues] = useState<
         NSDropdownMenuBaseItemOptionProps[]
     >([]);
+    const [options, setOptions] = useState<BaseItemProps[]>(comboboxOptions);
+    const [emulateSearch, setEmulateSearch] = useState(false);
+
+    const handleTextInputChange = (text: string) => {
+        if (!emulateSearch) {
+            return;
+        }
+
+        if (!text) {
+            setTimeout(() => {
+                setOptions(comboboxOptions);
+            }, 1000);
+            return;
+        }
+
+        const newOptions = Array.from({ length: 20 }, (_, i) => ({
+            type: NSDropdownMenuBaseItemType.OPTION,
+            label: `Searched ${text} ${i + 1} with some really looong text`,
+            value: `option${i + 1}-${text}`,
+        })) as BaseItemProps[];
+
+        setTimeout(() => {
+            setOptions(newOptions);
+        }, 1000);
+    };
 
     return (
         <>
             <NSCombobox
                 {...args}
+                items={options}
                 multiple
                 value={selectedValues}
+                showHeader={false}
                 onChange={(value) =>
                     setSelectedValues(
                         value as NSDropdownMenuBaseItemOptionProps[]
                     )
                 }
+                onTextInputChange={handleTextInputChange}
+                // useDefaultSearchMethod={false}
             />
+            <br />
+            <NSCheckbox name="emulate-search" isChecked={emulateSearch} onChange={e => {
+                setEmulateSearch(e.target.checked);
+            }} label="Should emulate search" />
             <div>
                 <h2>Selected Values</h2>
                 <ul>
