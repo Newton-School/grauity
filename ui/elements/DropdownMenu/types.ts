@@ -202,6 +202,13 @@ export interface DropdownMenuProps {
     width?: string;
 
     /**
+     * The maximum height of the dropdown menu. By default, the dropdown menu will have a
+     * maximum height of 500px.
+     * @default '500px'
+     */
+    maxHeight?: string;
+
+    /**
      * Whether the dropdown should call the onChange callback on selecting an
      * option in multiple mode
      *
@@ -215,10 +222,17 @@ export interface DropdownMenuProps {
      * The id for the Dropdown Menu.
      */
     id?: string;
+
+    /**
+     * Message to be displayed when there are no options available in the dropdown menu.
+     * @default 'No options available'
+     */
+    emptyStateMessage?: string;
 }
 
 export interface StyledDropdownMenuProps extends StyledDivProps {
     $width: string;
+    $maxHeight?: string;
 }
 
 export interface StyledDropdownMenuOptionDescriptionProps

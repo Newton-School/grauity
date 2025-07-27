@@ -16,11 +16,13 @@ import DropdownMenuHeader from './components/DropdownMenuHeader';
 import DropdownMenuOption from './components/DropdownMenuOption';
 import DropdownMenuSubHeader from './components/DropdownMenuSubHeader';
 import DropdownSearchBox from './components/DropdownSearchBox';
-import { FRAMER_MOTION_PROPS } from './constants';
+import { DROPDOWN_MENU_MAX_HEIGHT, FRAMER_MOTION_PROPS } from './constants';
 import {
     StyledDropdownMenu,
     StyledDropdownMenuBody,
     StyledDropdownMenuDivider,
+    StyledDropdownMenuEmptyState,
+    StyledDropdownMenuHeaderSubtext,
     StyledDropdownOptionsContainer,
 } from './DropdownMenu.styles';
 import {
@@ -61,8 +63,10 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             styles = {},
             value = null,
             width = '300px',
+            maxHeight = `${DROPDOWN_MENU_MAX_HEIGHT}px`,
             applyOnOptionSelectInMultipleMode = false,
             id,
+            emptyStateMessage = 'No options available',
         } = props;
 
         const selectedValues = getSelectedValuesForDropdownType(
@@ -241,6 +245,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                 style={styles}
                 ref={dropdownRef}
                 $width={width}
+                $maxHeight={maxHeight}
                 role="menu"
                 id={id}
                 {...FRAMER_MOTION_PROPS}
@@ -299,7 +304,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                 />
                             ))}
 
-                        {!Array.isArray(searchedOptions) &&
+                        {!Array.isArray(searchedOptions) && items.length > 0 &&
                             items.map((item, index) => {
                                 if (item.type === BaseItemType.SUB_HEADER) {
                                     return (
@@ -360,6 +365,14 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                 }
                                 return null;
                             })}
+
+                        {!Array.isArray(searchedOptions) && items.length === 0 && (
+                            <StyledDropdownMenuEmptyState>
+                                <StyledDropdownMenuHeaderSubtext>
+                                    {emptyStateMessage}
+                                </StyledDropdownMenuHeaderSubtext>
+                            </StyledDropdownMenuEmptyState>
+                        )}
                     </StyledDropdownOptionsContainer>
                 </StyledDropdownMenuBody>
                 <DropdownMenuFooter
