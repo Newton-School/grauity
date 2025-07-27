@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 import { AnimatePresence } from 'framer-motion';
-import React, { useEffect, useId, useRef, useState } from 'react';
+import debounce from 'lodash/debounce';
+import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 
 import DropdownMenu, { BaseItemOptionProps } from '../../DropdownMenu';
 import { DROPDOWN_MENU_MAX_HEIGHT } from '../../DropdownMenu/constants';
@@ -90,6 +91,7 @@ const Combobox = (props: ComboboxProps) => {
 
     const handleSearchInputChange = (text: string) => {
         setInputText(text);
+
         if (useDefaultSearchMethod) {
             const filteredOptions = defaultSearchMethod(text, options);
             if (filteredOptions.length > 0 || text) {
@@ -103,6 +105,11 @@ const Combobox = (props: ComboboxProps) => {
             onTextInputChange(text);
         }
     };
+
+    const handleDebouncedSearchInputChange = useCallback(
+        debounce((text: string) => handleSearchInputChange(text), 500),
+        [options, useDefaultSearchMethod]
+    );
 
     const [dropdownMenuPosition, setDropdownMenuPosition] = useState(
         calculateDropdownMenuPositionForCombobox(triggerRef).position
@@ -139,8 +146,7 @@ const Combobox = (props: ComboboxProps) => {
                 onItemDismissClick={onItemDismissClick}
                 inputText={inputText}
                 onTextInputChange={(text) => {
-                    setInputText(text);
-                    handleSearchInputChange(text);
+                    handleDebouncedSearchInputChange(text);
                     setIsOpen(true);
                 }}
                 isOpen={isOpen}
@@ -154,6 +160,7 @@ const Combobox = (props: ComboboxProps) => {
                     shouldDisableScroll={isOpen}
                     onOverlayClick={() => {
                         handleDropdownMenuClose(selectedOptions);
+                        handleSearchInputChange('');
                     }}
                     style={overlayStyles}
                 >

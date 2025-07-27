@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import React, {
     forwardRef,
     RefObject,
