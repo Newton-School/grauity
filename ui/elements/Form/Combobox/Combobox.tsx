@@ -2,18 +2,16 @@
 import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useId, useRef, useState } from 'react';
 
-import DropdownMenu, {
-    BaseItemOptionProps,
-} from '../../DropdownMenu';
+import DropdownMenu, { BaseItemOptionProps } from '../../DropdownMenu';
 import { DROPDOWN_MENU_MAX_HEIGHT } from '../../DropdownMenu/constants';
 import {
     defaultSearchMethod,
     getOptionsFromBaseDropdownItems,
+    getSelectedValuesForDropdownType,
 } from '../../DropdownMenu/utils';
 import Overlay from '../../Overlay';
 import {
     calculateDropdownMenuPosition,
-    getSelectedOptionsFromValues,
 } from '../Dropdown/utils';
 import ComboboxTrigger from './ComboboxTrigger';
 import { ComboboxProps } from './types';
@@ -56,7 +54,7 @@ const Combobox = (props: ComboboxProps) => {
     >(null);
     const [selectedOptions, setSelectedOptions] = useState<
         BaseItemOptionProps | BaseItemOptionProps[]
-    >(getSelectedOptionsFromValues({ value, items, multiple }));
+    >(getSelectedValuesForDropdownType(multiple, value));
 
     const triggerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -87,7 +85,8 @@ const Combobox = (props: ComboboxProps) => {
         setInputText(text);
         if (typeof onTextInputChange === 'function') {
             onTextInputChange(text);
-        } else if (useDefaultSearchMethod) {
+        }
+        if (useDefaultSearchMethod) {
             const filteredOptions = defaultSearchMethod(text, options);
             if (filteredOptions.length > 0 || text) {
                 setSearchedOptions(filteredOptions);
@@ -103,7 +102,7 @@ const Combobox = (props: ComboboxProps) => {
 
     useEffect(() => {
         setSelectedOptions(
-            getSelectedOptionsFromValues({ value, items, multiple })
+            getSelectedValuesForDropdownType(multiple, value)
         );
     }, [value, items, multiple]);
 

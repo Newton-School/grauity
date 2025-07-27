@@ -1,18 +1,14 @@
 /* eslint-disable indent */
 import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
+import { getSelectedValuesForDropdownType } from 'ui/elements/DropdownMenu/utils';
 
-import DropdownMenu, {
-    BaseItemOptionProps,
-} from '../../DropdownMenu';
+import DropdownMenu, { BaseItemOptionProps } from '../../DropdownMenu';
 import { DROPDOWN_MENU_MAX_HEIGHT } from '../../DropdownMenu/constants';
 import Overlay from '../../Overlay';
 import DropdownTrigger from './DropdownTrigger';
 import { DropdownProps } from './types';
-import {
-    calculateDropdownMenuPosition,
-    getSelectedOptionsFromValues,
-} from './utils';
+import { calculateDropdownMenuPosition } from './utils';
 
 const Dropdown = (props: DropdownProps) => {
     const {
@@ -41,7 +37,7 @@ const Dropdown = (props: DropdownProps) => {
     );
     const [selectedOptions, setSelectedOptions] = useState<
         BaseItemOptionProps | BaseItemOptionProps[]
-    >(getSelectedOptionsFromValues({ value, items, multiple }));
+    >(getSelectedValuesForDropdownType(multiple, value));
 
     const triggerRef = useRef<HTMLButtonElement>(null);
     const dropdownMenuRef = useRef<HTMLDivElement>(null);
@@ -55,7 +51,7 @@ const Dropdown = (props: DropdownProps) => {
     };
 
     useEffect(() => {
-        setSelectedOptions(getSelectedOptionsFromValues({ value, items, multiple }));
+        setSelectedOptions(getSelectedValuesForDropdownType(multiple, value));
     }, [value, items, multiple]);
 
     useEffect(() => {
