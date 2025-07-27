@@ -22,6 +22,7 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
         className,
         position = { top: 0, left: 0 },
         shouldFocusOnFirstElement = true,
+        style = {},
         ...rest
     } = props;
 
@@ -80,7 +81,9 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
             <StyledOverlayContent
                 $top={position.top}
                 $left={position.left}
+                $bottom={position.bottom}
                 $shouldCenterContent={shouldCenterContent}
+                style={style}
             >
                 <StyledOverlayContentChildren ref={childrenRef}>
                     {children}

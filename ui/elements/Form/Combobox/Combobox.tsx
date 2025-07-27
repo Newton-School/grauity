@@ -10,12 +10,17 @@ import {
     getSelectedValuesForDropdownType,
 } from '../../DropdownMenu/utils';
 import Overlay from '../../Overlay';
-import {
-    calculateDropdownMenuPosition,
-} from '../Dropdown/utils';
 import ComboboxTrigger from './ComboboxTrigger';
 import { ComboboxProps } from './types';
+import { calculateDropdownMenuPositionForCombobox } from './utils';
 
+/**
+ * Comobobox component allows users to select single or multiple items
+ * from a filtered list of options, where the list is dynamically updated
+ * based on user input.
+ *
+ * The selected items are displayed as Tag components, and are dismissible.
+ */
 const Combobox = (props: ComboboxProps) => {
     const {
         menuProps,
@@ -49,6 +54,7 @@ const Combobox = (props: ComboboxProps) => {
     const [dropdownMenuHeight, setDropdownMenuHeight] = useState(
         DROPDOWN_MENU_MAX_HEIGHT
     );
+    const [overlayStyles, setOverlayStyles] = useState<React.CSSProperties>({});
     const [searchedOptions, setSearchedOptions] = useState<
         BaseItemOptionProps[] | null
     >(null);
@@ -83,9 +89,6 @@ const Combobox = (props: ComboboxProps) => {
 
     const handleSearchInputChange = (text: string) => {
         setInputText(text);
-        if (typeof onTextInputChange === 'function') {
-            onTextInputChange(text);
-        }
         if (useDefaultSearchMethod) {
             const filteredOptions = defaultSearchMethod(text, options);
             if (filteredOptions.length > 0 || text) {
@@ -94,34 +97,33 @@ const Combobox = (props: ComboboxProps) => {
                 setSearchedOptions([]);
             }
         }
+
+        if (typeof onTextInputChange === 'function') {
+            onTextInputChange(text);
+        }
     };
 
     const [dropdownMenuPosition, setDropdownMenuPosition] = useState(
-        calculateDropdownMenuPosition(triggerRef, dropdownMenuHeight)
+        calculateDropdownMenuPositionForCombobox(triggerRef).position
     );
 
     useEffect(() => {
-        setSelectedOptions(
-            getSelectedValuesForDropdownType(multiple, value)
-        );
+        setSelectedOptions(getSelectedValuesForDropdownType(multiple, value));
     }, [value, items, multiple]);
 
     useEffect(() => {
         const filteredOptions = getOptionsFromBaseDropdownItems(items);
         setOptions(filteredOptions);
+        setSearchedOptions(null);
     }, [items]);
 
     useEffect(() => {
-        setDropdownMenuPosition(
-            calculateDropdownMenuPosition(triggerRef, dropdownMenuHeight)
-        );
-    }, [selectedOptions, dropdownMenuHeight, isOpen]);
-
-    useEffect(() => {
-        if (isOpen && dropdownMenuRef.current) {
-            setDropdownMenuHeight(dropdownMenuRef.current.clientHeight);
-        }
-    }, [isOpen]);
+        const { position, maxHeight, style } =
+            calculateDropdownMenuPositionForCombobox(triggerRef);
+        setDropdownMenuHeight(maxHeight);
+        setDropdownMenuPosition(position);
+        setOverlayStyles(style);
+    }, [selectedOptions, isOpen]);
 
     return (
         <AnimatePresence>
@@ -152,6 +154,7 @@ const Combobox = (props: ComboboxProps) => {
                     onOverlayClick={() => {
                         handleDropdownMenuClose(selectedOptions);
                     }}
+                    style={overlayStyles}
                 >
                     <DropdownMenu
                         {...props}
@@ -173,6 +176,7 @@ const Combobox = (props: ComboboxProps) => {
                                   }px`
                                 : width
                         }
+                        maxHeight={`${dropdownMenuHeight}px`}
                         ref={dropdownMenuRef}
                         onChange={(values) => {
                             setSelectedOptions(values);

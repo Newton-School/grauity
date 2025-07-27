@@ -81,7 +81,7 @@ export interface ComboboxTriggerInternalProps extends ComboboxTriggerProps {
 
 export interface ComboboxProps
     extends ComboboxTriggerProps,
-        Omit<DropdownMenuProps, 'searchable'> {
+        Omit<DropdownMenuProps, 'searchable' | 'onSearchInputChange'> {
     menuProps?: {
         /**
          * The width of the dropdown menu.

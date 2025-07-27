@@ -1,10 +1,10 @@
 /* eslint-disable indent */
 import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
-import { getSelectedValuesForDropdownType } from 'ui/elements/DropdownMenu/utils';
 
 import DropdownMenu, { BaseItemOptionProps } from '../../DropdownMenu';
 import { DROPDOWN_MENU_MAX_HEIGHT } from '../../DropdownMenu/constants';
+import { getSelectedValuesForDropdownType } from '../../DropdownMenu/utils';
 import Overlay from '../../Overlay';
 import DropdownTrigger from './DropdownTrigger';
 import { DropdownProps } from './types';

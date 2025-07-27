@@ -37,6 +37,11 @@ export const StyledOverlayContent = styled.div<StyledOverlayContentProps>`
     position: relative;
     top: ${({ $top }) => $top}px;
     left: ${({ $left }) => $left}px;
+    ${({ $bottom }) =>
+        $bottom &&
+        css`
+            bottom: ${$bottom}px;
+        `}
 
     ${({ $shouldCenterContent }) =>
         $shouldCenterContent &&
