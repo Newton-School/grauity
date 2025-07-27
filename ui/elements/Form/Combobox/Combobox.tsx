@@ -33,6 +33,7 @@ const Combobox = (props: ComboboxProps) => {
         applyOnOptionSelectInMultipleMode = true,
         useDefaultSearchMethod = true,
         tagProps = {},
+        showActionButtons,
     } = props;
 
     let width;
@@ -181,7 +182,7 @@ const Combobox = (props: ComboboxProps) => {
                         onChange={(values) => {
                             setSelectedOptions(values);
                             onChange(values);
-                            if (multiple) {
+                            if (multiple && !showActionButtons) {
                                 inputRef?.current?.focus();
                             } else {
                                 handleDropdownMenuClose(values);
