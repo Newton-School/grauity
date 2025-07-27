@@ -116,6 +116,7 @@ describe('Combobox', () => {
         expect(onChange).toHaveBeenCalledWith(items[1]);
 
         // Closes the dropdown after selection
+        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
         expect(screen.queryByText('Item 2')).not.toBeInTheDocument();
 
         // Tag is visible with selected item
