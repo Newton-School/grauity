@@ -16,7 +16,6 @@ export interface ComboboxTriggerProps {
      * The name of the combobox field
      * @required
      */
-
     name: string;
 
     /**
