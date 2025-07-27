@@ -3,7 +3,6 @@ import { BaseItemProps } from 'ui/elements/DropdownMenu';
 import { ComboboxTriggerInternalProps } from 'ui/elements/Form/Combobox/types';
 import {
     ComboboxProps,
-    NSCheckbox,
     NSCombobox,
     NSDropdownMenuBaseItemOptionProps,
     NSDropdownMenuBaseItemType,
@@ -186,37 +185,11 @@ const ExampleMultiSelectTemplate = (args: ComboboxProps) => {
     const [selectedValues, setSelectedValues] = useState<
         NSDropdownMenuBaseItemOptionProps[]
     >([]);
-    const [options, setOptions] = useState<BaseItemProps[]>(comboboxOptions);
-    const [emulateSearch, setEmulateSearch] = useState(false);
-
-    const handleTextInputChange = (text: string) => {
-        if (!emulateSearch) {
-            return;
-        }
-
-        if (!text) {
-            setTimeout(() => {
-                setOptions(comboboxOptions);
-            }, 1000);
-            return;
-        }
-
-        const newOptions = Array.from({ length: 20 }, (_, i) => ({
-            type: NSDropdownMenuBaseItemType.OPTION,
-            label: `Searched ${text} ${i + 1} with some really looong text`,
-            value: `option${i + 1}-${text}`,
-        })) as BaseItemProps[];
-
-        setTimeout(() => {
-            setOptions(newOptions);
-        }, 1000);
-    };
 
     return (
         <>
             <NSCombobox
                 {...args}
-                items={options}
                 multiple
                 value={selectedValues}
                 showHeader={false}
@@ -225,13 +198,7 @@ const ExampleMultiSelectTemplate = (args: ComboboxProps) => {
                         value as NSDropdownMenuBaseItemOptionProps[]
                     )
                 }
-                onTextInputChange={handleTextInputChange}
-                // useDefaultSearchMethod={false}
             />
-            <br />
-            <NSCheckbox name="emulate-search" isChecked={emulateSearch} onChange={e => {
-                setEmulateSearch(e.target.checked);
-            }} label="Should emulate search" />
             <div>
                 <h2>Selected Values</h2>
                 <ul>
@@ -266,4 +233,75 @@ export const MultipleSelectWithApplyButton = ExampleMultiSelectTemplate.bind(
 MultipleSelectWithApplyButton.args = {
     ...multipleSelectArgs,
     showActionButtons: true,
+};
+
+// Combobox with emulated Search
+const ExampleTemplateWithEmulatedSearch = (args: ComboboxProps) => {
+    const { value } = args;
+
+    const [selectedValues, setSelectedValues] = useState<
+        NSDropdownMenuBaseItemOptionProps | NSDropdownMenuBaseItemOptionProps[]
+    >(value);
+    const [options, setOptions] = useState<BaseItemProps[]>(comboboxOptions);
+
+    const handleTextInputChange = (text: string) => {
+        if (!text) {
+            setTimeout(() => {
+                setOptions(comboboxOptions);
+            }, 1000);
+            return;
+        }
+
+        const newOptions = Array.from({ length: 20 }, (_, i) => ({
+            type: NSDropdownMenuBaseItemType.OPTION,
+            label: `Searched ${text} ${i + 1} with some really looong text`,
+            value: `option${i + 1}-${text}`,
+        })) as BaseItemProps[];
+
+        setTimeout(() => {
+            setOptions(newOptions);
+        }, 1000);
+    };
+
+    return (
+        <>
+            <NSCombobox
+                {...args}
+                label="Combobox with emulated search"
+                items={options}
+                value={selectedValues}
+                showHeader={false}
+                onChange={(newValue) =>
+                    setSelectedValues(
+                        newValue as NSDropdownMenuBaseItemOptionProps[]
+                    )
+                }
+                onTextInputChange={handleTextInputChange}
+            />
+            <div>
+                <h2>Selected Values</h2>
+                <ul>
+                    {Array.isArray(selectedValues)
+                        ? selectedValues.map((selectedValue) => (
+                            <li key={selectedValue.value}>
+                                {selectedValue.label}
+                            </li>
+                        ))
+                        : selectedValues?.label || ''}
+                </ul>
+            </div>
+        </>
+    );
+};
+
+export const SingleSelectWithEmulatedSearch =
+    ExampleTemplateWithEmulatedSearch.bind({});
+SingleSelectWithEmulatedSearch.args = {
+    ...singleSelectArgs,
+};
+
+export const MultipleSelectWithEmulatedSearch =
+    ExampleTemplateWithEmulatedSearch.bind({});
+MultipleSelectWithEmulatedSearch.args = {
+    ...multipleSelectArgs,
 };
