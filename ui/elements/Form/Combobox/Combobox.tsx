@@ -13,7 +13,7 @@ import {
 import Overlay from '../../Overlay';
 import ComboboxTrigger from './ComboboxTrigger';
 import { ComboboxProps } from './types';
-import { calculateDropdownMenuPositionForCombobox } from './utils';
+import { calculateDropdownMenuLayoutForCombobox } from './utils';
 
 /**
  * Comobobox component allows users to select single or multiple items
@@ -110,7 +110,7 @@ const Combobox = (props: ComboboxProps) => {
     );
 
     const [dropdownMenuPosition, setDropdownMenuPosition] = useState(
-        calculateDropdownMenuPositionForCombobox(triggerRef).position
+        calculateDropdownMenuLayoutForCombobox(triggerRef).position
     );
 
     useEffect(() => {
@@ -125,7 +125,7 @@ const Combobox = (props: ComboboxProps) => {
 
     useEffect(() => {
         const { position, maxHeight, style } =
-            calculateDropdownMenuPositionForCombobox(triggerRef);
+            calculateDropdownMenuLayoutForCombobox(triggerRef);
         setDropdownMenuHeight(maxHeight);
         setDropdownMenuPosition(position);
         setOverlayStyles(style);

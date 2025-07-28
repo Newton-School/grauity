@@ -3,14 +3,14 @@ import React from 'react';
 import { DROPDOWN_MENU_MAX_HEIGHT } from '../../DropdownMenu/constants';
 
 /**
- * Calculates the position and height for a Combobox menu (DropdownMenu) based on the
- * position of a trigger element.
+ * Calculates the layout: position, height and other styles for a Combobox menu (DropdownMenu)
+ * based on the position of the trigger element, and the space available in the viewport.
  *
- * @param triggerRef - A reference to the HTMLDivElement that triggers the dropdown menu.
- * @param menuHeight - The maximum height of the dropdown menu.
- * @returns An object containing the position object and height for the dropdown menu.
+ * @param triggerRef - A ref to the HTMLDivElement or HTMLButtonElement that triggers the dropdown menu.
+ * @param maximumMenuHeight - The maximum height of the dropdown menu, defaults to '500px'.
+ * @returns An object containing the position object, height and styles for the dropdown menu.
  */
-export function calculateDropdownMenuPositionForCombobox(
+export function calculateDropdownMenuLayoutForCombobox(
     triggerRef: React.RefObject<HTMLButtonElement | HTMLDivElement>,
     maximumMenuHeight: number = DROPDOWN_MENU_MAX_HEIGHT
 ) {
@@ -18,7 +18,11 @@ export function calculateDropdownMenuPositionForCombobox(
     const windowHeight = window.innerHeight;
 
     if (!triggerRect) {
-        return { position: { top: 0, left: 0 }, maxHeight: maximumMenuHeight };
+        return {
+            position: { top: 0, left: 0 },
+            maxHeight: maximumMenuHeight,
+            style: {},
+        };
     }
 
     const spaceBelow = windowHeight - triggerRect.bottom;
