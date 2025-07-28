@@ -90,8 +90,6 @@ const Combobox = (props: ComboboxProps) => {
     };
 
     const handleSearchInputChange = (text: string) => {
-        setInputText(text);
-
         if (useDefaultSearchMethod) {
             const filteredOptions = defaultSearchMethod(text, options);
             if (filteredOptions.length > 0 || text) {
@@ -146,6 +144,7 @@ const Combobox = (props: ComboboxProps) => {
                 onItemDismissClick={onItemDismissClick}
                 inputText={inputText}
                 onTextInputChange={(text) => {
+                    setInputText(text);
                     handleDebouncedSearchInputChange(text);
                     setIsOpen(true);
                 }}
@@ -160,6 +159,7 @@ const Combobox = (props: ComboboxProps) => {
                     shouldDisableScroll={isOpen}
                     onOverlayClick={() => {
                         handleDropdownMenuClose(selectedOptions);
+                        setInputText('');
                         handleSearchInputChange('');
                     }}
                     style={overlayStyles}
@@ -194,6 +194,7 @@ const Combobox = (props: ComboboxProps) => {
                             } else {
                                 handleDropdownMenuClose(values);
                             }
+                            setInputText('');
                             handleSearchInputChange('');
                         }}
                     />
