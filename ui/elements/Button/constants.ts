@@ -17,6 +17,7 @@ export enum BUTTON_COLORS_ENUM {
 }
 
 export enum BUTTON_SIZES_ENUM {
+    EXTRA_SMALL = 'extra-small',
     SMALL = 'small',
     MEDIUM = 'medium',
     LARGE = 'large',
@@ -43,6 +44,7 @@ export const BUTTON_COLORS = [
 ];
 
 export const BUTTON_SIZES = [
+    BUTTON_SIZES_ENUM.EXTRA_SMALL,
     BUTTON_SIZES_ENUM.SMALL,
     BUTTON_SIZES_ENUM.MEDIUM,
     BUTTON_SIZES_ENUM.LARGE,
@@ -57,6 +59,12 @@ export const BUTTON_ICON_POSITIONS = [
 export const BUTTON_SIZE_STYLES_MAPPING: {
     [variant in ButtonSizes]: { [cssSelector: string]: any };
 } = {
+    [BUTTON_SIZES_ENUM.EXTRA_SMALL]: {
+        padding: 'var(--spacing-2px, 2px) var(--spacing-4px, 4px)',
+        height: 'var(--spacing-24px, 24px)',
+        minHeight: 'var(--spacing-24px, 24px)',
+        gap: 'var(--spacing-2px, 2px)',
+    },
     [BUTTON_SIZES_ENUM.SMALL]: {
         padding: 'var(--spacing-4px, 4px) var(--spacing-8px, 8px)',
         height: 'var(--spacing-32px, 32px)',
@@ -83,6 +91,15 @@ export const BUTTON_SIZE_STYLES_MAPPING: {
 export const ICON_BUTTON_SIZE_STYLES_MAPPING: {
     [variant in ButtonSizes]: { [cssSelector: string]: any };
 } = {
+    [BUTTON_SIZES_ENUM.EXTRA_SMALL]: {
+        height: 'var(--spacing-16px, 16px)',
+        minHeight: 'var(--spacing-16px, 16px)',
+        gap: 'var(--spacing-2px, 2px)',
+        padding: 'var(--spacing-0px, 0px)',
+        width: 'var(--spacing-16px, 16px)',
+        minWidth: 'var(--spacing-16px, 16px)',
+        borderRadius: 'var(--corner-radius-4px, 4px)',
+    },
     [BUTTON_SIZES_ENUM.SMALL]: {
         height: 'var(--spacing-32px, 32px)',
         minHeight: 'var(--spacing-32px, 32px)',
@@ -117,7 +134,8 @@ export const ICON_BUTTON_SIZE_STYLES_MAPPING: {
 export const ICON_BUTTON_SIZE_TO_ICON_SIZE_MAPPING: {
     [variant in ButtonSizes]: grauityIconSizeName;
 } = {
-    [BUTTON_SIZES_ENUM.SMALL]: '16',
+    [BUTTON_SIZES_ENUM.EXTRA_SMALL]: '16',
+    [BUTTON_SIZES_ENUM.SMALL]: '24',
     [BUTTON_SIZES_ENUM.MEDIUM]: '24',
     [BUTTON_SIZES_ENUM.LARGE]: '32',
     [BUTTON_SIZES_ENUM.EXTRA_LARGE]: '40',
