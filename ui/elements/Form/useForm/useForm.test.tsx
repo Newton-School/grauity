@@ -228,6 +228,7 @@ describe('useForm', () => {
         fireEvent.click(screen.getByText('Reading'));
         fireEvent.click(screen.getByText('Writing'));
         fireEvent.mouseDown(document.body);
+        fireEvent.click(screen.getByTestId('testid-overlay'));
 
         fireEvent.click(professionDropdown);
         fireEvent.click(screen.getByText('Developer'));

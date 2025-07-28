@@ -159,7 +159,7 @@ describe('Dropdown', () => {
 
         // Should call onChange on clicking outside the dropdown
         fireEvent.mouseDown(document.body);
-        fireEvent.click(screen.getByText('Select items'));
+        fireEvent.click(screen.getByTestId('testid-overlay'));
         expect(onChange).toHaveBeenCalledWith([items[0], items[1]]);
 
         // Should close the dropdown
