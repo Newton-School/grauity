@@ -14,7 +14,8 @@ export const StyledDropdownMenu = styled(motion.div)<StyledDropdownMenuProps>`
     box-sizing: border-box;
     display: flex;
     width: ${({ $width }) => $width};
-    max-height: ${DROPDOWN_MENU_MAX_HEIGHT}px;
+    max-height: ${({ $maxHeight }) =>
+        $maxHeight ?? `${DROPDOWN_MENU_MAX_HEIGHT}px`};
     padding: 8px 0;
     font-family: var(--font-family);
     flex-direction: column;
@@ -117,6 +118,13 @@ export const StyledDropdownMenuDivider = styled.div`
     align-self: stretch;
     border-radius: 8px;
     background: var(--border-subtle-primary-default, #e1e5ea);
+`;
+
+export const StyledDropdownMenuEmptyState = styled.div`
+    display: flex;
+    padding: 8px 16px;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const StyledDropdownMenuOption = styled.button`

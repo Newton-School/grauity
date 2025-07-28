@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import { IconButton } from '../Button';
 import Chip from '../Chip';
@@ -9,13 +9,14 @@ import { TagProps } from './types';
  * Tag can be used to categorize items and is used in components like Combobox.
  * Tag component extends the Chip component and adds a close button.
  */
-const Tag = (props: TagProps) => {
+const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     const {
         onButtonClick = () => {},
         buttonIcon = 'close',
         isDisabled = false,
         icon = null,
         shouldTruncateText = true,
+        truncateLength = '200px',
         className,
         children,
     } = props;
@@ -27,10 +28,12 @@ const Tag = (props: TagProps) => {
             icon={icon}
             iconSize="16"
             className={className}
+            ref={ref}
         >
             <StyledTagContent>
                 <StyledTagLabel
                     $shouldTruncateText={shouldTruncateText}
+                    $truncateLength={truncateLength}
                     title={typeof children === 'string' ? children : ''}
                 >
                     {children}
@@ -48,6 +51,6 @@ const Tag = (props: TagProps) => {
             </StyledTagContent>
         </Chip>
     );
-};
+});
 
 export default Tag;

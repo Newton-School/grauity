@@ -308,6 +308,38 @@ describe('DropdownMenu', () => {
         expect(onChange).toHaveBeenCalledWith([items[1], items[2]]);
     });
 
+    // Multiple Select Mode Flow with applyOnOptionSelectInMultipleMode
+    it('Should call onChange immediately when in multiple select mode, if applyOnOptionSelectInMultipleMode is true', () => {
+        const onChange = jest.fn();
+        const items = getDummyOptions(3);
+
+        render(
+            <DropdownMenu
+                {...defaultProps}
+                items={items}
+                onChange={onChange}
+                multiple
+                applyOnOptionSelectInMultipleMode
+            />
+        );
+
+        // Should call onChange immediately on clicking an item
+        fireEvent.click(screen.getByText('Item 1'));
+        let selectedItems = screen.getAllByRole('option', {
+            checked: true,
+        });
+        expect(selectedItems).toHaveLength(1);
+        expect(onChange).toHaveBeenCalledWith([items[1]]);
+
+        // Should add to selected items on clicking another item
+        fireEvent.click(screen.getByText('Item 2'));
+        selectedItems = screen.getAllByRole('option', {
+            checked: true,
+        });
+        expect(selectedItems).toHaveLength(2);
+        expect(onChange).toHaveBeenCalledWith([items[1], items[2]]);
+    });
+
     // Accessibility
     it('Should navigate through items using keyboard', () => {
         const items = getDummyOptions(3);

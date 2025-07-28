@@ -60,7 +60,14 @@ export interface OverlayProps {
     position?: {
         top?: number;
         left?: number;
+        bottom?: number;
     };
+
+    /**
+     * Additional styles to be passed to the overlay
+     * @default {}
+     */
+    style?: React.CSSProperties;
 
     /**
      * Should focus on the first element in the overlay
@@ -77,6 +84,7 @@ export interface StyledOverlayProps extends StyledDivProps {
 
 export interface StyledOverlayContentProps extends StyledDivProps {
     $top: number;
+    $bottom: number;
     $left: number;
     $shouldCenterContent?: boolean;
 }

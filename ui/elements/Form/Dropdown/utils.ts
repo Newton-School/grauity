@@ -8,7 +8,7 @@ import React from 'react';
  * @returns An object containing the top and left positions for the dropdown menu.
  */
 export function calculateDropdownMenuPosition(
-    triggerRef: React.RefObject<HTMLButtonElement>,
+    triggerRef: React.RefObject<HTMLButtonElement | HTMLDivElement>,
     menuHeight: number
 ) {
     return {
