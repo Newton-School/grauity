@@ -10,7 +10,7 @@ export default {
 const Template = (args: TagProps) => <Tag {...args} />;
 
 const defaultArgs: TagProps = {
-    children: 'This is a tag This is a tag This is a tag This is a tag This is a tag',
+    children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     onButtonClick: () => {
         alert('Tag close clicked!');
     },
