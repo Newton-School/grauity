@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BaseItemProps } from 'ui/elements/DropdownMenu';
-import { ComboboxTriggerInternalProps } from 'ui/elements/Form/Combobox/types';
+import { ComboboxTriggerProps } from 'ui/elements/Form/Combobox/types';
 import {
     ComboboxProps,
     NSCombobox,
@@ -15,7 +15,7 @@ export default {
 
 const Template = (args: ComboboxProps) => <NSCombobox {...args} />;
 
-const triggerProps: ComboboxTriggerInternalProps = {
+const triggerProps: ComboboxTriggerProps = {
     name: 'dropdown',
     label: 'Combobox',
     placeholder: 'Type to search...',
