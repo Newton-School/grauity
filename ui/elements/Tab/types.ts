@@ -24,7 +24,7 @@ export interface TabProps {
      * @default ''
      * @type {string}
      */
-    id?: string;
+    id: string;
     /**
      * Size of the tab, can be 'small', 'medium', 'large' or 'extra-large'.
      * @default 'medium'

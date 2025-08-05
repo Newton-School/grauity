@@ -2,6 +2,8 @@
 import React from 'react';
 import Tab from 'ui/elements/Tab';
 
+import { ExampleTab } from './Example';
+
 export default {
     title: 'Elements/Tab',
     component: Tab,
@@ -39,5 +41,6 @@ const args = {
 };
 
 export const Component = Template.bind({});
-
 Component.args = { ...args };
+
+export const Example = ExampleTab.bind({});

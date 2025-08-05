@@ -15,11 +15,11 @@ import {
 
 export const StyledTab = styled.button<TabComponentProps>`
     display: flex;
-    font-weight: var(--font-weight-fw-20, 600);
+    font-weight: var(--font-weight-semibold);
     color: var(--text-emphasis-secondary-default, #5b6271);
     background: transparent;
     border: none;
-    border-bottom: 1px solid var(--border-subtle-primary-default, #e1e5ea);
+    border-bottom: 2px solid transparent;
     cursor: pointer;
 
     ${({ $iconPosition }) =>
@@ -40,8 +40,6 @@ export const StyledTab = styled.button<TabComponentProps>`
         $disabled &&
         css`
             color: var(--text-emphasis-secondary-disabled, #c9cfd9);
-            border-bottom: 1px solid
-                var(--border-subtle-primary-default, #e1e5ea);
             cursor: not-allowed;
         `};
 
@@ -63,7 +61,7 @@ export const StyledTabContainer = styled.div<TabContainerProps>`
 export const StyledTabContent = styled.div<TabContentProps>`
     font-size: var(--font-size-fs-30, 16px);
     font-style: normal;
-    font-weight: var(--font-weight-fw-20, 600);
+    font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-lh-70, 26px);
     letter-spacing: var(--letter-spacing-ls-20, 0.06px);
 
@@ -81,7 +79,7 @@ export const StyledSubtext = styled.span<TabSubtextProps>`
     height: fit-content;
 
     font-size: var(--font-size-fs-10, 12px);
-    font-weight: var(--font-weight-fw-20, 600);
+    font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-lh-10, 14px);
     letter-spacing: var(--letter-spacing-ls-40, 0.25px);
 
