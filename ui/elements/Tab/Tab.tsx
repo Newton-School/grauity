@@ -56,7 +56,7 @@ function Tab(props: TabProps) {
             {(children || subText) && (
                 <StyledTabContainer>
                     {children && (
-                        <StyledTabContent id={`tab-content-${id}`} $size={size}>
+                        <StyledTabContent $size={size}>
                             {children}
                         </StyledTabContent>
                     )}

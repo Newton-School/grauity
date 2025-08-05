@@ -29,7 +29,7 @@ export interface TabProps {
      * Size of the tab, can be 'small', 'medium', 'large' or 'extra-large'.
      * @default 'medium'
      */
-    size: TabSize;
+    size?: TabSize;
     /**
      * Additional CSS class names to apply to the tab.
      * @default ''
@@ -62,12 +62,12 @@ export interface TabProps {
      * Size of the icon
      * @default '20'
      */
-    iconSize: grauityIconSizeName;
+    iconSize?: grauityIconSizeName;
     /**
      * Position of the icon relative to the text, can be 'left', 'right', 'top', or 'bottom'.
      * @default 'left'
      */
-    iconPosition: TabIconPosition;
+    iconPosition?: TabIconPosition;
     /**
      * Variant of the tab, can be 'rounded', 'default', or 'bordered'.
      * @default 'rounded'

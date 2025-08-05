@@ -23,8 +23,7 @@ export default {
 
 const Template = (args: any) => <Tab {...args} />;
 
-export const Component = Template.bind({});
-Component.args = {
+const args = {
     id: 'tab1',
     icon: 'label-filled',
     iconPosition: 'left',
@@ -38,3 +37,7 @@ Component.args = {
         console.log('tab Clicked::', id);
     },
 };
+
+export const Component = Template.bind({});
+
+Component.args = { ...args };
