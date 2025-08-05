@@ -15,7 +15,6 @@ import {
 
 export const StyledTab = styled.button<TabComponentProps>`
     display: flex;
-    gap: var(--spacing-sp-8, 8px);
     font-weight: var(--font-weight-fw-20, 600);
     color: var(--text-emphasis-secondary-default, #5b6271);
     background: transparent;
@@ -58,7 +57,6 @@ export const StyledTab = styled.button<TabComponentProps>`
 export const StyledTabContainer = styled.div<TabContainerProps>`
     color: inherit;
     display: flex;
-    gap: var(--spacing-sp-8, 8px);
     align-items: center;
 `;
 
@@ -68,6 +66,8 @@ export const StyledTabContent = styled.div<TabContentProps>`
     font-weight: var(--font-weight-fw-20, 600);
     line-height: var(--line-height-lh-70, 26px);
     letter-spacing: var(--letter-spacing-ls-20, 0.06px);
+
+    margin: 0 4px;
 
     ${({ $size }) => css`
         ${TAB_SIZE_STYLES_MAPPING[$size]}
@@ -84,6 +84,8 @@ export const StyledSubtext = styled.span<TabSubtextProps>`
     font-weight: var(--font-weight-fw-20, 600);
     line-height: var(--line-height-lh-10, 14px);
     letter-spacing: var(--letter-spacing-ls-40, 0.25px);
+
+    margin: 0 4px 0 0;
 
     ${({ $isActive }) =>
         $isActive &&
