@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Tab from 'ui/elements/Tab';
 
 export const ExampleTab = () => {
-    const [activeTab, setActiveTab] = useState('tab1');
+    const [activeTab, setActiveTab] = useState<string>('tab1');
+
     return (
         <div style={{ display: 'flex' }}>
             <Tab
