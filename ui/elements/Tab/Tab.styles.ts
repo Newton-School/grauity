@@ -19,7 +19,7 @@ export const StyledTab = styled.button<TabComponentProps>`
     color: var(--text-emphasis-secondary-default, #5b6271);
     background: transparent;
     border: none;
-    border-bottom: 2px solid transparent;
+    border-bottom: var(--spacing-2px, 2px) solid transparent;
     cursor: pointer;
 
     ${({ $iconPosition }) =>
@@ -29,12 +29,18 @@ export const StyledTab = styled.button<TabComponentProps>`
         `}
 
     ${({ $isActive }) =>
-        $isActive &&
-        css`
-            background: var(--bg-subtle-primary-default, #fff);
-            color: var(--text-emphasis-brand-default, #0673f9);
-            border-bottom: 2px solid var(--text-emphasis-brand-default, #0673f9);
-        `};
+        $isActive
+            ? css`
+                  background: var(--bg-subtle-primary-default, #fff);
+                  color: var(--text-emphasis-brand-default, #0673f9);
+                  border-bottom: var(--spacing-2px, 2px) solid
+                      var(--text-emphasis-brand-default, #0673f9);
+              `
+            : css`
+                  &:hover {
+                      color: var(--text-emphasis-primary-default, #16191d);
+                  }
+              `};
 
     ${({ $disabled }) =>
         $disabled &&
@@ -50,6 +56,10 @@ export const StyledTab = styled.button<TabComponentProps>`
     ${({ $variant }) => css`
         ${TAB_VARIANT_STYLES_MAPPING[$variant]}
     `};
+
+    &:focus-visible {
+        outline: 3px solid var(--border-subtle-brand-default);
+    }
 `;
 
 export const StyledTabContainer = styled.div<TabContainerProps>`
@@ -59,13 +69,14 @@ export const StyledTabContainer = styled.div<TabContainerProps>`
 `;
 
 export const StyledTabContent = styled.div<TabContentProps>`
+    display: flex;
+    gap: var(--spacing-4px, 4px);
     font-size: var(--font-size-fs-30, 16px);
-    font-style: normal;
     font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-lh-70, 26px);
     letter-spacing: var(--letter-spacing-ls-20, 0.06px);
 
-    margin: 0 4px;
+    margin: 0 var(--spacing-4px, 4px);
 
     ${({ $size }) => css`
         ${TAB_SIZE_STYLES_MAPPING[$size]}
@@ -73,8 +84,8 @@ export const StyledTabContent = styled.div<TabContentProps>`
 `;
 
 export const StyledSubtext = styled.span<TabSubtextProps>`
-    padding: 0 4px;
-    border-radius: 4px;
+    padding: var(--spacing-0px, 0) var(--spacing-4px, 4px);
+    border-radius: var(--spacing-4px, 4px);
     background: inherit;
     height: fit-content;
 
@@ -83,11 +94,15 @@ export const StyledSubtext = styled.span<TabSubtextProps>`
     line-height: var(--line-height-lh-10, 14px);
     letter-spacing: var(--letter-spacing-ls-40, 0.25px);
 
-    margin: 0 4px 0 0;
+    margin: var(--spacing-0px, 0) var(--spacing-4px, 4px) var(--spacing-0px, 0)
+        var(--spacing-0px, 0);
 
     ${({ $isActive }) =>
-        $isActive &&
-        css`
-            background: var(--bg-subtle-brand-default, #e5f1ff);
-        `}
+        $isActive
+            ? css`
+                  background: var(--bg-subtle-brand-default, #e5f1ff);
+              `
+            : css`
+                  background: var(--bg-subtle-secondary-default, #f6f7f9);
+              `}
 `;

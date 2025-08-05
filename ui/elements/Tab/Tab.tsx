@@ -26,11 +26,6 @@ function Tab(props: TabProps) {
         onClick = () => {},
     } = props;
 
-    let tabIndexValue = -1;
-    if (!disabled) {
-        tabIndexValue = isActive ? 0 : -1;
-    }
-
     return (
         <StyledTab
             className={className}
@@ -49,7 +44,6 @@ function Tab(props: TabProps) {
             aria-selected={isActive}
             aria-controls={`tabpanel-${id}`}
             id={`tab-${id}`}
-            tabIndex={tabIndexValue}
             disabled={disabled}
         >
             {icon && <Icon name={icon} size={iconSize} color="inherit" />}
