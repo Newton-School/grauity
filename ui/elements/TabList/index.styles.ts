@@ -5,8 +5,18 @@ import { StyledTabListProps } from './types';
 
 export const StyledTabList = styled.div<StyledTabListProps>`
     display: flex;
-
+    position: relative;
+    border-bottom: 1px solid var(--border-subtle-primary-default, #e0e3e8);
     ${({ $variant }) => css`
         ${TAB_LIST_VARIANT_STYLES_MAPPING[$variant]}
     `};
+`;
+
+export const StyledTabListIndicator = styled.span`
+    position: absolute;
+    bottom: -1px;
+    height: 2px;
+    background-color: var(--text-emphasis-brand-default, #0673f9);
+    transition: left 0.3s ease, width 0.3s ease;
+    z-index: 1;
 `;

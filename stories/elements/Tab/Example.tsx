@@ -11,8 +11,7 @@ export const ExampleTab = () => {
                 variant="border"
                 icon="label-filled"
                 isActive={activeTab === 'tab1'}
-                onClick={(id) => setActiveTab(id)}
-                subText="1"
+                onClick={() => setActiveTab('tab1')}
             >
                 Tab1
             </Tab>
@@ -21,7 +20,7 @@ export const ExampleTab = () => {
                 variant="border"
                 icon="label-filled"
                 isActive={activeTab === 'tab2'}
-                onClick={(id) => setActiveTab(id)}
+                onClick={() => setActiveTab('tab2')}
                 subText="new"
             >
                 Tab2
@@ -31,7 +30,7 @@ export const ExampleTab = () => {
                 variant="border"
                 icon="label-filled"
                 isActive={activeTab === 'tab3'}
-                onClick={(id) => setActiveTab(id)}
+                onClick={() => setActiveTab('tab3')}
                 subText="1"
             >
                 Tab3

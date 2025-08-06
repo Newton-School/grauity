@@ -19,7 +19,6 @@ export const StyledTab = styled.button<TabComponentProps>`
     color: var(--text-emphasis-secondary-default, #5b6271);
     background: transparent;
     border: none;
-    border-bottom: var(--spacing-2px, 2px) solid transparent;
     cursor: pointer;
 
     ${({ $iconPosition }) =>
@@ -33,8 +32,6 @@ export const StyledTab = styled.button<TabComponentProps>`
             ? css`
                   background: var(--bg-subtle-primary-default, #fff);
                   color: var(--text-emphasis-brand-default, #0673f9);
-                  border-bottom: var(--spacing-2px, 2px) solid
-                      var(--text-emphasis-brand-default, #0673f9);
               `
             : css`
                   &:hover {
@@ -60,6 +57,8 @@ export const StyledTab = styled.button<TabComponentProps>`
     &:focus-visible {
         outline: 3px solid var(--border-subtle-brand-default);
     }
+
+    transition: background 0.3s ease, color 0.3s ease;
 `;
 
 export const StyledTabContainer = styled.div<TabContainerProps>`
@@ -74,7 +73,7 @@ export const StyledTabContent = styled.div<TabContentProps>`
     font-size: var(--font-size-fs-30, 16px);
     font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-lh-70, 26px);
-    letter-spacing: var(--letter-spacing-ls-20, 0.06px);
+    letter-spacing: 1px;
 
     margin: 0 var(--spacing-4px, 4px);
 

@@ -56,22 +56,18 @@ export const TAB_SIZE_STYLES_MAPPING: {
     [TAB_SIZES_ENUM.SMALL]: {
         fontSize: 'var(--font-size-fs-20, 14px)',
         lineHeight: 'var(--line-height-lh-50, 22px)',
-        letterSpacing: 'var(--letter-spacing-ls-10, 0.016px)',
     },
     [TAB_SIZES_ENUM.MEDIUM]: {
         fontSize: 'var(--font-size-fs-20, 14px)',
         lineHeight: 'var(--line-height-lh-50, 22px)',
-        letterSpacing: 'var(--letter-spacing-ls-10, 0.016px)',
     },
     [TAB_SIZES_ENUM.LARGE]: {
         fontSize: 'var(--font-size-fs-30, 16px)',
         lineHeight: 'var(--line-height-lh-70, 26px)',
-        letterSpacing: 'var(--letter-spacing-ls-20, 0.06px)',
     },
     [TAB_SIZES_ENUM.EXTRA_LARGE]: {
         fontSize: 'var(--font-size-fs-30, 16px)',
         lineHeight: 'var(--line-height-lh-70, 26px)',
-        letterSpacing: 'var(--letter-spacing-ls-20, 0.06px)',
     },
 };
 
@@ -104,6 +100,5 @@ export const TAB_VARIANT_STYLES_MAPPING: {
     },
     [TAB_VARIANT_ENUM.ROUNDED]: {
         borderRadius: 'var(--corner-radius-cr-3, 4px)',
-        borderBottom: 'none',
     },
 };

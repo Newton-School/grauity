@@ -1,6 +1,6 @@
-import React, { KeyboardEvent } from 'react';
+import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
 
-import { StyledTabList } from './index.styles';
+import { StyledTabList, StyledTabListIndicator } from './index.styles';
 import { TabListProps } from './types';
 
 function TabList(props: TabListProps) {
@@ -14,6 +14,8 @@ function TabList(props: TabListProps) {
         size = 'medium',
     } = props;
 
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
     const tabs = React.Children.toArray(children);
 
     const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
@@ -26,8 +28,24 @@ function TabList(props: TabListProps) {
         }
     };
 
+    useEffect(() => {
+        const container = containerRef.current;
+        if (container) {
+            const activeTab = container.querySelectorAll('[role="tab"]')[
+                activeIndex
+            ] as HTMLElement;
+            if (activeTab) {
+                setIndicatorStyle({
+                    left: activeTab.offsetLeft,
+                    width: activeTab.offsetWidth,
+                });
+            }
+        }
+    }, [activeIndex, children]);
+
     return (
         <StyledTabList
+            ref={containerRef}
             role="tablist"
             className={className}
             onKeyDown={handleKeyDown}
@@ -51,6 +69,15 @@ function TabList(props: TabListProps) {
                 }
                 return child;
             })}
+            {variant === 'border' && (
+                <StyledTabListIndicator
+                    className="tab-indicator"
+                    style={{
+                        left: indicatorStyle.left,
+                        width: indicatorStyle.width,
+                    }}
+                />
+            )}
         </StyledTabList>
     );
 }
