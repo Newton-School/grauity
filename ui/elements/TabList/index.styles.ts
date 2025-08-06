@@ -10,6 +10,10 @@ export const StyledTabList = styled.div<StyledTabListProps>`
     ${({ $variant }) => css`
         ${TAB_LIST_VARIANT_STYLES_MAPPING[$variant]}
     `};
+
+    &:focus-visible {
+        outline: 3px solid var(--border-subtle-brand-default);
+    }
 `;
 
 export const StyledTabListIndicator = styled.span`
