@@ -6,7 +6,7 @@ import { StyledTabListProps } from './types';
 export const StyledTabList = styled.div<StyledTabListProps>`
     display: flex;
     position: relative;
-    border-bottom: 1px solid var(--border-subtle-primary-default, #e0e3e8);
+
     ${({ $variant }) => css`
         ${TAB_LIST_VARIANT_STYLES_MAPPING[$variant]}
     `};

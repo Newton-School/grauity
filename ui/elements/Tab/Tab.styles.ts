@@ -73,7 +73,7 @@ export const StyledTabContent = styled.div<StyledTabContentProps>`
     font-size: var(--font-size-fs-30, 16px);
     font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-lh-70, 26px);
-    letter-spacing: 1px;
+    letter-spacing: 0.06px;
 
     margin: 0 var(--spacing-4px, 4px);
 
