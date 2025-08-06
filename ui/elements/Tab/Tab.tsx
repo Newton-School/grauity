@@ -28,6 +28,7 @@ function Tab(props: TabProps) {
 
     return (
         <StyledTab
+            type="button"
             className={className}
             onClick={() => {
                 if (!disabled) {
