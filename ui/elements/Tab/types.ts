@@ -95,7 +95,7 @@ export interface TabProps {
     tabIndex?: number;
 }
 
-export interface TabComponentProps extends StyledButtonProps {
+export interface StyledTabComponentProps extends StyledButtonProps {
     $iconPosition?: TabIconPosition | false;
     $size: TabSize;
     $isActive?: boolean;
@@ -103,13 +103,13 @@ export interface TabComponentProps extends StyledButtonProps {
     $variant: TabVariant;
 }
 
-export interface TabContainerProps extends StyledDivProps {}
+export interface StyledTabContainerProps extends StyledDivProps {}
 
-export interface TabContentProps extends StyledDivProps {
+export interface StyledTabContentProps extends StyledDivProps {
     $iconPosition?: TabIconPosition | false;
     $size: TabSize;
 }
 
-export interface TabSubtextProps extends StyledSpanProps {
+export interface StyledTabSubtextProps extends StyledSpanProps {
     $isActive?: boolean;
 }

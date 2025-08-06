@@ -7,13 +7,13 @@ import {
     TAB_VARIANT_STYLES_MAPPING,
 } from './constants';
 import {
-    TabComponentProps,
-    TabContainerProps,
-    TabContentProps,
-    TabSubtextProps,
+    StyledTabComponentProps,
+    StyledTabContainerProps,
+    StyledTabContentProps,
+    StyledTabSubtextProps,
 } from './types';
 
-export const StyledTab = styled.button<TabComponentProps>`
+export const StyledTab = styled.button<StyledTabComponentProps>`
     display: flex;
     font-weight: var(--font-weight-semibold);
     color: var(--text-emphasis-secondary-default, #5b6271);
@@ -61,13 +61,13 @@ export const StyledTab = styled.button<TabComponentProps>`
     transition: background 0.3s ease, color 0.3s ease;
 `;
 
-export const StyledTabContainer = styled.div<TabContainerProps>`
+export const StyledTabContainer = styled.div<StyledTabContainerProps>`
     color: inherit;
     display: flex;
     align-items: center;
 `;
 
-export const StyledTabContent = styled.div<TabContentProps>`
+export const StyledTabContent = styled.div<StyledTabContentProps>`
     display: flex;
     gap: var(--spacing-4px, 4px);
     font-size: var(--font-size-fs-30, 16px);
@@ -82,7 +82,7 @@ export const StyledTabContent = styled.div<TabContentProps>`
     `};
 `;
 
-export const StyledSubtext = styled.span<TabSubtextProps>`
+export const StyledSubtext = styled.span<StyledTabSubtextProps>`
     padding: var(--spacing-0px, 0) var(--spacing-4px, 4px);
     border-radius: var(--spacing-4px, 4px);
     background: inherit;
