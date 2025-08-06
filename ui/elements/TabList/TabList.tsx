@@ -20,6 +20,9 @@ function TabList(props: TabListProps) {
 
     const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
         const count = tabs.length;
+        if (count === 0) {
+            return;
+        }
 
         if (e.key === 'ArrowRight') {
             onChange((activeIndex + 1) % count);
