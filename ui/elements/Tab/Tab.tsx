@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import { Icon } from '../Icon';
 import {
@@ -11,7 +11,6 @@ import { TabProps } from './types';
 
 function Tab(props: TabProps) {
     const {
-        id = '',
         size = 'medium',
         className = '',
         style = {},
@@ -20,11 +19,15 @@ function Tab(props: TabProps) {
         icon = '',
         iconSize = '20',
         iconPosition = 'left',
-        variant = 'rounded',
+        variant = 'border',
         isActive = false,
         disabled = false,
         onClick = () => {},
+        tabIndex = -1,
+        id: _id = '',
     } = props;
+
+    const id = _id || useId();
 
     return (
         <StyledTab
@@ -32,7 +35,7 @@ function Tab(props: TabProps) {
             className={className}
             onClick={() => {
                 if (!disabled) {
-                    onClick(id);
+                    onClick();
                 }
             }}
             $iconPosition={iconPosition}
@@ -46,6 +49,7 @@ function Tab(props: TabProps) {
             aria-controls={`tabpanel-${id}`}
             id={`tab-${id}`}
             disabled={disabled}
+            tabIndex={tabIndex}
         >
             {icon && <Icon name={icon} size={iconSize} color="inherit" />}
             {(children || subText) && (

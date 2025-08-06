@@ -105,6 +105,5 @@ export const TAB_VARIANT_STYLES_MAPPING: {
     [TAB_VARIANT_ENUM.ROUNDED]: {
         borderRadius: 'var(--corner-radius-cr-3, 4px)',
         borderBottom: 'none',
-        background: 'var(--bg-subtle-primary-default, #FFF)',
     },
 };

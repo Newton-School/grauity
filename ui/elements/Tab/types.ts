@@ -24,7 +24,7 @@ export interface TabProps {
      * @default ''
      * @type {string}
      */
-    id: string;
+    id?: string;
     /**
      * Size of the tab, can be 'small', 'medium', 'large' or 'extra-large'.
      * @default 'medium'
@@ -87,7 +87,12 @@ export interface TabProps {
      * Click event handler for the tab.
      * @default () => {}
      */
-    onClick?: (e: any) => void;
+    onClick?: () => void;
+    /**
+     * Tab index for keyboard navigation.
+     * @default '-1'
+     */
+    tabIndex?: number;
 }
 
 export interface TabComponentProps extends StyledButtonProps {
