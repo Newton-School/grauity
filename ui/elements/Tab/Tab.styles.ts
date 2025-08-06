@@ -57,6 +57,9 @@ export const StyledTab = styled.button<StyledTabComponentProps>`
     &:focus-visible {
         outline: 3px solid var(--border-subtle-brand-default);
     }
+    &:focus {
+        outline: none;
+    }
 
     transition: background 0.3s ease, color 0.3s ease;
 `;
