@@ -25,7 +25,7 @@ export interface StyledTabItemContainerProps
     focusBackgroundColor?: string;
 }
 
-export interface TabProps {
+export interface TabsProps {
     /**
      * An array of tab items to be rendered.
      * Each item can be a React node.

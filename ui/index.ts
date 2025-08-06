@@ -159,7 +159,7 @@ export {
 export { default as NSTooltip, type TooltipProps } from './elements/Tooltip';
 
 // NSTabs
-export { default as NSTab, type TabProps } from './elements/Tabs';
+export { default as NSTabs, type TabsProps } from './elements/Tabs';
 
 // NSCarousel
 export { type CarouselProps, default as NSCarousel } from './elements/Carousel';
@@ -285,3 +285,19 @@ export {
     type UseFormReturnProps as NSUseFormReturnProps,
     useForm as useNSForm,
 } from './elements/Form/useForm';
+
+// NSTab
+export {
+    default as NSTab,
+    TAB_ICON_POSITIONS_ENUM,
+    TAB_SIZES_ENUM,
+    TAB_VARIANT_ENUM,
+    type TabProps,
+} from './elements/Tab';
+
+// NSList
+export {
+    default as NSTabList,
+    TAB_LIST_VARIANT_ENUM,
+    type TabListProps,
+} from './elements/TabList';
