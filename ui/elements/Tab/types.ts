@@ -72,7 +72,7 @@ export interface TabProps {
      * Variant of the tab, can be 'rounded', 'default', or 'bordered'.
      * @default 'rounded'
      */
-    variant: TabVariant;
+    variant?: TabVariant;
     /**
      * Whether the tab is currently active.
      * @default false
