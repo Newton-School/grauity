@@ -236,13 +236,13 @@ describe('TabList', () => {
         });
 
         it('renders with border variant explicitly set', () => {
-            render(<TabList variant="border">{defaultChildren}</TabList>);
+            render(<TabList variant="bordered">{defaultChildren}</TabList>);
 
             const tablist = screen.getByRole('tablist');
             expect(tablist).toBeInTheDocument();
 
             // Should render the indicator for border variant
-            const indicator = tablist.querySelector('.tab-indicator');
+            const indicator = tablist.querySelector('.ns-tab-indicator');
             expect(indicator).toBeInTheDocument();
         });
 
@@ -253,7 +253,7 @@ describe('TabList', () => {
             expect(tablist).toBeInTheDocument();
 
             // Should not render the indicator for rounded variant
-            const indicator = tablist.querySelector('.tab-indicator');
+            const indicator = tablist.querySelector('.ns-tab-indicator');
             expect(indicator).not.toBeInTheDocument();
         });
     });
@@ -278,17 +278,17 @@ describe('TabList', () => {
     describe('Active Indicator', () => {
         it('renders indicator only for border variant', () => {
             const { rerender } = render(
-                <TabList variant="border">{defaultChildren}</TabList>
+                <TabList variant="bordered">{defaultChildren}</TabList>
             );
 
             let tablist = screen.getByRole('tablist');
-            let indicator = tablist.querySelector('.tab-indicator');
+            let indicator = tablist.querySelector('.ns-tab-indicator');
             expect(indicator).toBeInTheDocument();
 
             rerender(<TabList variant="rounded">{defaultChildren}</TabList>);
 
             tablist = screen.getByRole('tablist');
-            indicator = tablist.querySelector('.tab-indicator');
+            indicator = tablist.querySelector('.ns-tab-indicator');
             expect(indicator).not.toBeInTheDocument();
         });
     });

@@ -1,5 +1,6 @@
 import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
 
+import { TAB_LIST_VARIANT_ENUM } from './constants';
 import { StyledTabList, StyledTabListIndicator } from './index.styles';
 import { TabListProps } from './types';
 
@@ -8,7 +9,7 @@ function TabList(props: TabListProps) {
         children = null,
         activeIndex = 0,
         onChange = () => {},
-        variant = 'border',
+        variant = TAB_LIST_VARIANT_ENUM.BORDERED,
         className = '',
         ariaLabel = 'Tab list',
         size = 'medium',
@@ -72,9 +73,9 @@ function TabList(props: TabListProps) {
                 }
                 return child;
             })}
-            {variant === 'border' && (
+            {variant === TAB_LIST_VARIANT_ENUM.BORDERED && (
                 <StyledTabListIndicator
-                    className="tab-indicator"
+                    className="ns-tab-indicator"
                     style={{
                         left: indicatorStyle.left,
                         width: indicatorStyle.width,

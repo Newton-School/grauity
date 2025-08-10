@@ -1,12 +1,12 @@
 export enum TAB_LIST_VARIANT_ENUM {
-    BORDER = 'border',
+    BORDERED = 'bordered',
     ROUNDED = 'rounded',
 }
 
 export const TAB_LIST_VARIANT_STYLES_MAPPING: {
     [key in TAB_LIST_VARIANT_ENUM]: { [cssSelector: string]: any };
 } = {
-    [TAB_LIST_VARIANT_ENUM.BORDER]: {
+    [TAB_LIST_VARIANT_ENUM.BORDERED]: {
         borderBottom: '1px solid var(--border-subtle-primary-default, #e0e3e8)',
     },
     [TAB_LIST_VARIANT_ENUM.ROUNDED]: {

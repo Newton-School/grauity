@@ -13,7 +13,7 @@ export enum TAB_ICON_POSITIONS_ENUM {
 }
 
 export enum TAB_VARIANT_ENUM {
-    BORDER = 'border',
+    BORDERED = 'bordered',
     ROUNDED = 'rounded',
 }
 
@@ -95,7 +95,7 @@ export const ICON_POSITION_STYLES_MAPPING: {
 export const TAB_VARIANT_STYLES_MAPPING: {
     [key in TAB_VARIANT_ENUM]: { [cssSelector: string]: any };
 } = {
-    [TAB_VARIANT_ENUM.BORDER]: {
+    [TAB_VARIANT_ENUM.BORDERED]: {
         borderRadius: '0',
     },
     [TAB_VARIANT_ENUM.ROUNDED]: {

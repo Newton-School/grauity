@@ -1,6 +1,7 @@
 import React, { useId } from 'react';
 
 import { Icon } from '../Icon';
+import { TAB_VARIANT_ENUM } from './constants';
 import {
     StyledSubtext,
     StyledTab,
@@ -19,7 +20,7 @@ function Tab(props: TabProps) {
         icon = '',
         iconSize = '20',
         iconPosition = 'left',
-        variant = 'border',
+        variant = TAB_VARIANT_ENUM.BORDERED,
         isActive = false,
         disabled = false,
         onClick = () => {},
