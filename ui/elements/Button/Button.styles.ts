@@ -23,8 +23,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     gap: var(--spacing-8px, 8px);
     transform-origin: center;
 
-    ${({ variant, $color }) =>
-        variant && getButtonStyles({ variant, color: $color })}
+    ${({ $variant, $color }) =>
+        $variant && getButtonStyles({ variant: $variant, color: $color })}
 
     ${({ $showAnimationOnClick }) =>
         $showAnimationOnClick &&
@@ -38,32 +38,32 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         cursor: not-allowed;
     }
 
-    ${({ size, isIconButton }) => {
-        if (!isIconButton) {
+    ${({ $size, $isIconButton }) => {
+        if (!$isIconButton) {
             return css`
-                ${BUTTON_SIZE_STYLES_MAPPING[size]}
+                ${BUTTON_SIZE_STYLES_MAPPING[$size]}
             `;
         }
 
         return css`
-            ${ICON_BUTTON_SIZE_STYLES_MAPPING[size]}
+            ${ICON_BUTTON_SIZE_STYLES_MAPPING[$size]}
         `;
     }}
 
-    ${({ fullWidth }) =>
-        fullWidth &&
+    ${({ $fullWidth }) =>
+        $fullWidth &&
         css`
             width: 100%;
         `}
 
-    ${({ isLoading }) =>
-        isLoading &&
+    ${({ $isLoading }) =>
+        $isLoading &&
         css`
             cursor: progress;
         `}
 
-    ${({ iconPosition }) =>
-        iconPosition === 'right' &&
+    ${({ $iconPosition }) =>
+        $iconPosition === 'right' &&
         css`
             flex-direction: row-reverse;
         `}

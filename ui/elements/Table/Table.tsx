@@ -36,28 +36,28 @@ const Table = ({
 
     return (
         <StyledTable
-            borderAround={borderAround}
-            borderWithin={borderWithin}
-            borderHorizontal={borderHorizontal}
-            borderVertical={borderVertical}
-            striped={striped}
+            $borderAround={borderAround}
+            $borderWithin={borderWithin}
+            $borderHorizontal={borderHorizontal}
+            $borderVertical={borderVertical}
+            $striped={striped}
             className={className}
             style={style}
             role="table"
         >
             <StyledTableHead
-                capitalizeHeaders={capitalizeHeaders}
-                highlightHeaders={highlightHeaders}
+                $capitalizeHeaders={capitalizeHeaders}
+                $highlightHeaders={highlightHeaders}
             >
-                <StyledTableRow condensed={condensed}>
+                <StyledTableRow $condensed={condensed}>
                     {columns?.map((column, columnIndex) => (
                         <StyledTableHeadingCell
                             key={
                                 column?.key ||
                                 `table--column-${columnIndex + 1}`
                             }
-                            align={column?.align || 'center'}
-                            width={column?.width || 'auto'}
+                            $align={column?.align || 'center'}
+                            $width={column?.width || 'auto'}
                             colSpan={column?.colSpan || 1}
                             rowSpan={column?.rowSpan || 1}
                         >
@@ -71,8 +71,8 @@ const Table = ({
                 {rows?.map((row, rowIndex) => (
                     <StyledTableRow
                         key={`table--row-${rowIndex + 1}`}
-                        condensed={condensed}
-                        hoverable={hoverable}
+                        $condensed={condensed}
+                        $hoverable={hoverable}
                     >
                         {columns?.map((column) => {
                             const tableCellData = row[column.key];
@@ -84,14 +84,14 @@ const Table = ({
                                     key={`table--column-${column.key}--row-${
                                         rowIndex + 1
                                     }`}
-                                    align={
+                                    $align={
                                         tableCellData?.align ||
                                         columnMap?.[column.key]?.align ||
                                         'center'
                                     }
                                     colSpan={tableCellData?.colSpan || 1}
                                     rowSpan={tableCellData?.rowSpan || 1}
-                                    vAlign={tableCellData?.vAlign || 'middle'}
+                                    $vAlign={tableCellData?.vAlign || 'middle'}
                                 >
                                     {tableCellData?.render
                                         ? tableCellData.render(tableCellData)

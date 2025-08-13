@@ -125,14 +125,14 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                             e.stopPropagation()
                         }
                         ref={modalRef}
-                        width={width}
-                        height={height}
-                        minHeight={minHeight}
-                        minWidth={minWidth}
-                        maxHeight={maxHeight}
-                        maxWidth={maxWidth}
-                        mobileBottomFullWidth={mobileBottomFullWidth}
-                        modalPadding={modalPadding}
+                        $width={width}
+                        $height={height}
+                        $minHeight={minHeight}
+                        $minWidth={minWidth}
+                        $maxHeight={maxHeight}
+                        $maxWidth={maxWidth}
+                        $mobileBottomFullWidth={mobileBottomFullWidth}
+                        $modalPadding={modalPadding}
                         $border={border}
                         aria-labelledby={`modal-title-${id}`}
                         aria-describedby={`modal-description-${id}`}
@@ -176,7 +176,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 
                             {body && (
                                 <StyledModalBody
-                                    modalBodyMargin={modalBodyMargin}
+                                    $modalBodyMargin={modalBodyMargin}
                                 >
                                     {body}
                                 </StyledModalBody>
@@ -184,7 +184,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 
                             {children && (
                                 <StyledModalBody
-                                    modalBodyMargin={modalBodyMargin}
+                                    $modalBodyMargin={modalBodyMargin}
                                 >
                                     {children}
                                 </StyledModalBody>

@@ -16,11 +16,11 @@ function DateCircle(props: DateCircleProps) {
 
     return (
         <StyledDateCircle
-            isInActiveMonth={isInActiveMonth}
-            isToday={isToday}
-            backgroundColor={backgroundColor}
+            $isInActiveMonth={isInActiveMonth}
+            $isToday={isToday}
+            $backgroundColor={backgroundColor}
         >
-            <StyledDateCircleText isToday={isToday} textColor={textColor}>
+            <StyledDateCircleText $isToday={isToday} $textColor={textColor}>
                 {date.getDate()}
             </StyledDateCircleText>
         </StyledDateCircle>

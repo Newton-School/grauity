@@ -121,6 +121,6 @@ export interface TextAreaProps {
 }
 
 export interface TextAreaComponentProps extends StyledTextAreaProps {
-    size?: VARIANTS;
+    $size?: VARIANTS;
     $color?: TextAreaColors;
 }

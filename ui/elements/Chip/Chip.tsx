@@ -28,14 +28,14 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             ref={ref}
             className={className}
             style={style}
-            variant={variant}
-            size={size}
-            hasBorder={hasBorder}
-            textColor={textColor}
-            backgroundColor={backgroundColor}
-            borderColor={borderColor}
-            rounded={rounded}
-            iconPosition={iconPosition}
+            $variant={variant}
+            $size={size}
+            $hasBorder={hasBorder}
+            $textColor={textColor}
+            $backgroundColor={backgroundColor}
+            $borderColor={borderColor}
+            $rounded={rounded}
+            $iconPosition={iconPosition}
         >
             {icon && <Icon name={icon} color={iconColor} size={iconSize} />}
             <StyledChipText

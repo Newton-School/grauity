@@ -23,22 +23,22 @@ export const StyledDateCircle = styled.div<StyledDateCircleProps>`
     min-width: ${DATE_SIZE}px;
     min-height: ${DATE_SIZE}px;
 
-    ${({ isInActiveMonth }) =>
-        isInActiveMonth &&
+    ${({ $isInActiveMonth }) =>
+        $isInActiveMonth &&
         css`
             background: var(--bg-secondary, #f6f7f9);
         `}
 
-    ${({ isToday }) =>
-        isToday &&
+    ${({ $isToday }) =>
+        $isToday &&
         css`
             background: var(--bg-action-brand, #0673f9);
         `}
 
-    ${({ backgroundColor }) =>
-        backgroundColor &&
+    ${({ $backgroundColor }) =>
+        $backgroundColor &&
         css`
-            background: ${backgroundColor};
+            background: ${$backgroundColor};
         `}
 `;
 
@@ -51,16 +51,16 @@ export const StyledDateCircleText = styled.span<StyledDateTextProps>`
     line-height: 120%;
     letter-spacing: 0.4px;
 
-    ${({ isToday }) =>
-        isToday &&
+    ${({ $isToday }) =>
+        $isToday &&
         css`
             color: var(--text-action, #ffffff);
         `}
 
-    ${({ textColor }) =>
-        textColor &&
+    ${({ $textColor }) =>
+        $textColor &&
         css`
-            color: ${textColor};
+            color: ${$textColor};
         `}
 `;
 
@@ -74,7 +74,7 @@ export const StyledMonthlyCalendarGridItem = styled.div<StyledMonthlyCalendarGri
     flex: 1;
 
     border: 1px solid var(--border-neutral, #e1e5ea);
-    background: ${({ backgroundColor }) => backgroundColor};
+    background: ${({ $backgroundColor }) => $backgroundColor};
 
     width: 100%;
     height: 100%;
@@ -86,7 +86,7 @@ export const StyledMonthlyCalendarGrid = styled.div<GridContainerRows>`
     box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(${DAYS_IN_WEEK}, 1fr);
-    grid-template-rows: repeat(${({ rows }) => rows}, 1fr);
+    grid-template-rows: repeat(${({ $rows }) => $rows}, 1fr);
     width: 100%;
     height: 100%;
 `;
@@ -183,10 +183,10 @@ export const StyledOverflowEventsListContainer = styled.div<StyledOverflowEvents
     background: var(--bg-brand, #e5f1ff);
     box-shadow: 0px 8px 48px 0px rgba(0, 0, 0, 0.16);
 
-    ${({ width }) =>
-        width &&
+    ${({ $width }) =>
+        $width &&
         css`
-            width: ${width}px;
+            width: ${$width}px;
         `}
 `;
 

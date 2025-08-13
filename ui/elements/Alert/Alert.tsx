@@ -70,11 +70,11 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(({
                     size="20"
                 />
             )}
-            <StyledAlertBody inlineButtons={inlineButtons}>
+            <StyledAlertBody $inlineButtons={inlineButtons}>
                 <StyledAlertContent>
                     {title && (
                         <StyledAlertTitle
-                            textColor={textColor}
+                            $textColor={textColor}
                             id={`alert-title-${id}`}
                         >
                             {title}
@@ -82,7 +82,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(({
                     )}
                     {description && (
                         <StyledAlertDescription
-                            textColor={textColor}
+                            $textColor={textColor}
                             id={`alert-description-${id}`}
                         >
                             {description}

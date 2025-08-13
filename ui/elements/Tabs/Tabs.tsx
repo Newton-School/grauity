@@ -31,17 +31,17 @@ function Tabs(props: TabProps) {
 
     return (
         <StyledTabContainer
-            backgroundColor={backgroundColor}
+            $backgroundColor={backgroundColor}
             className={className}
             role="tablist"
         >
             {tabItems?.map((item, idx) => (
                 <StyledTabItemContainer
                     onClick={() => handleItemClick(idx)}
-                    isActive={activeTab === idx}
-                    color={color}
-                    focusBackgroundColor={focusBackgroundColor}
-                    focusColor={focusColor}
+                    $isActive={activeTab === idx}
+                    $color={color}
+                    $focusBackgroundColor={focusBackgroundColor}
+                    $focusColor={focusColor}
                     key={typeof item === 'string' ? item : String(item) + idx}
                 >
                     {typeof item === 'string' ? (

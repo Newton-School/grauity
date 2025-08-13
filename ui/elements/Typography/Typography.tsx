@@ -31,12 +31,12 @@ const Typography = ({
             : as;
     return (
         <StyledTypography
-            variant={variant}
+            $variant={variant}
             as={asType}
-            color={color}
-            textAlign={textAlign}
-            textTransform={textTransform}
-            fontSize={fontSize}
+            $color={color}
+            $textAlign={textAlign}
+            $textTransform={textTransform}
+            $fontSize={fontSize}
             className={className}
         >
             {children}

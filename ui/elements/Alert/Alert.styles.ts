@@ -34,8 +34,8 @@ export const StyledAlertBody = styled.div<AlertBodyProps>`
     margin-right: var(--spacing-4px, 4px);
     flex: 1 0 0;
 
-    ${({ inlineButtons }) =>
-        inlineButtons &&
+    ${({ $inlineButtons }) =>
+        $inlineButtons &&
         css`
             flex-direction: row;
             align-items: flex-start;
@@ -52,7 +52,7 @@ export const StyledAlertContent = styled.div`
 
 export const StyledAlertTitle = styled.h2<AlertTitleProps>`
     align-self: stretch;
-    color: ${({ textColor }) => textColor};
+    color: ${({ $textColor }) => $textColor};
     font-size: var(--font-size-14px, 14px);
     font-weight: var(--font-weight-semibold, 600);
     line-height: 160%;
@@ -62,7 +62,7 @@ export const StyledAlertTitle = styled.h2<AlertTitleProps>`
 
 export const StyledAlertDescription = styled.div<AlertDescriptionProps>`
     align-self: stretch;
-    color: ${({ textColor }) => textColor};
+    color: ${({ $textColor }) => $textColor};
     font-size: var(--font-size-14px, 14px);
     font-weight: var(--font-weight-medium, 500);
     line-height: 160%;

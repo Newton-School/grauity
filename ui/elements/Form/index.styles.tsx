@@ -3,7 +3,13 @@ import styled, { css } from 'styled-components';
 import { StyledLabelProps } from '../../../common/types';
 import { GenericMessageProps } from './types';
 
-export const StyledLabel = styled.label<StyledLabelProps>`
+export const StyledLabel = styled.label<
+    Omit<StyledLabelProps, 'isRequired' | 'isDisabled' | 'color'> & {
+        $isRequired?: boolean;
+        $isDisabled?: boolean;
+        $color?: string;
+    }
+>`
     margin: 0;
     padding: 0;
     color: var(--text-secondary, #5b6271);
@@ -12,8 +18,8 @@ export const StyledLabel = styled.label<StyledLabelProps>`
     letter-spacing: 0.048px;
     font-family: var(--font-family);
 
-    ${({ isRequired }) =>
-        isRequired &&
+    ${({ $isRequired }) =>
+        $isRequired &&
         css`
             &::after {
                 content: '*';
@@ -22,14 +28,14 @@ export const StyledLabel = styled.label<StyledLabelProps>`
             }
         `}
 
-    ${({ color }) => {
+    ${({ $color }) => {
         return css`
-            color: var(--text-emphasis-${color}-default);
+            color: var(--text-emphasis-${$color}-default);
         `;
     }}
 
-    ${({ isDisabled }) =>
-        isDisabled &&
+    ${({ $isDisabled }) =>
+        $isDisabled &&
         css`
             color: var(--text-emphasis-primary-disabled, #8c95a6);
             cursor: not-allowed;

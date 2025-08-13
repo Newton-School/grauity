@@ -12,20 +12,20 @@ export const StyledMonthlyCalendarEvent = styled.div<MonthlyCalendarEventProps>`
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-radius: ${({ borderRadius }) => borderRadius || '4px'};
-    background-color: ${({ backgroundColor }) =>
-        backgroundColor || 'var(--bg-action-brand)'};
-    width: ${({ width }) => width || '100%'};
-    height: ${({ height }) => height || '16px'};
+    border-radius: ${({ $borderRadius }) => $borderRadius || '4px'};
+    background-color: ${({ $backgroundColor }) =>
+        $backgroundColor || 'var(--bg-action-brand)'};
+    width: ${({ $width }) => $width || '100%'};
+    height: ${({ $height }) => $height || '16px'};
     padding: 2px;
 
-    ${({ isActive, width, height }) =>
-        isActive &&
+    ${({ $isActive, $width, $height }) =>
+        $isActive &&
         css`
             border: 2px solid var(--text-action, #fff);
             box-shadow: 0px 4px 32px var(--spacing-0px, 0px) rgba(0, 0, 0, 0.32);
-            width: calc(${width} + 4px);
-            height: calc(${height} + 4px);
+            width: calc(${$width} + 4px);
+            height: calc(${$height} + 4px);
         `}
 `;
 
@@ -37,7 +37,7 @@ export const StyledMonthlyCalendarEventText = styled.p<StyledMonthlyCalendarEven
     line-height: 16px;
     letter-spacing: 0.1px;
     padding: 0 2px;
-    color: ${({ color }) => color || 'var(--text-brand-action)'};
+    color: ${({ $color }) => $color || 'var(--text-brand-action)'};
     text-wrap: nowrap;
     margin: 0px;
 `;
@@ -51,7 +51,7 @@ export const StyledMonthlyCalendarEventTitleText = styled.span<StyledMonthlyCale
     line-height: 16px;
     letter-spacing: 0.1px;
     padding: 0 2px;
-    color: ${({ color }) => color || 'var(--text-brand-action)'};
+    color: ${({ $color }) => $color || 'var(--text-brand-action)'};
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
