@@ -156,12 +156,6 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                     );
                     if (filteredOptions.length > 0 || searchValue) {
                         setSearchedOptions(filteredOptions);
-                        if (filteredOptions.length > 0) {
-                            scrollToFirstMarkedItem(
-                                filteredOptions,
-                                searchedItemRefs
-                            );
-                        }
                     } else {
                         setSearchedOptions(null);
                     }

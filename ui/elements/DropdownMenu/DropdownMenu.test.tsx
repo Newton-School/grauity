@@ -479,44 +479,6 @@ describe('DropdownMenu', () => {
             expect(mockScrollIntoView).not.toHaveBeenCalled();
         });
 
-        it('Should scroll to marked item in search results', async () => {
-            const items = [
-                {
-                    type: BaseItemType.OPTION as BaseItemType.OPTION,
-                    label: 'Apple',
-                    value: 'apple',
-                },
-                {
-                    type: BaseItemType.OPTION as BaseItemType.OPTION,
-                    label: 'Banana',
-                    value: 'banana',
-                    scrollToOnOpen: true,
-                },
-                {
-                    type: BaseItemType.OPTION as BaseItemType.OPTION,
-                    label: 'Cherry',
-                    value: 'cherry',
-                },
-            ];
-
-            render(<DropdownMenu {...defaultProps} items={items} searchable />);
-
-            // Search for items containing 'a'
-            fireEvent.change(screen.getByRole('textbox'), {
-                target: { value: 'a' },
-            });
-
-            // Wait for debounced search and scroll timeout
-            await new Promise(resolve => setTimeout(resolve, 650));
-
-            // Should scroll to the Banana item which has scrollToOnOpen: true and matches search
-            expect(mockScrollIntoView).toHaveBeenCalledWith({
-                behavior: 'smooth',
-                block: 'start',
-                inline: 'nearest'
-            });
-        });
-
         it('Should re-trigger scroll when items change', async () => {
             const { rerender } = render(<DropdownMenu {...defaultProps} items={getDummyOptions(3)} />);
 
