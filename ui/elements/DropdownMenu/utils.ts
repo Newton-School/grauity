@@ -62,3 +62,31 @@ export function isDropdownMenuItemNavigable(item: BaseItemProps): boolean {
     }
     return false;
 }
+
+/**
+ * Scrolls to the first item with scrollToOnOpen property set to true
+ *
+ * @param items - Array of items to search through
+ * @param refs - Ref array containing DOM elements for each item
+ * @param delay - Optional delay before scrolling (default: 100ms)
+ */
+export function scrollToFirstMarkedItem(
+    items: BaseItemProps[],
+    refs: React.MutableRefObject<(HTMLDivElement | HTMLButtonElement | null)[]>,
+    delay: number = 100
+): void {
+    const itemIndex = items.findIndex((item) => item.scrollToOnOpen === true);
+
+    if (itemIndex !== -1) {
+        setTimeout(() => {
+            const targetRef = refs.current[itemIndex];
+            if (targetRef) {
+                targetRef.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                    inline: 'nearest',
+                });
+            }
+        }, delay);
+    }
+}

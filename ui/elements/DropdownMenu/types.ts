@@ -14,9 +14,11 @@ export type OptionValue = string | number;
 export type BaseItemSubHeaderProps = {
     type: BaseItemType.SUB_HEADER;
     title: string;
+    scrollToOnOpen?: boolean;
 };
 export type BaseItemDividerProps = {
     type: BaseItemType.DIVIDER;
+    scrollToOnOpen?: boolean;
 };
 export type BaseItemOptionProps = {
     type: BaseItemType.OPTION;
@@ -26,6 +28,7 @@ export type BaseItemOptionProps = {
     leftIcon?: grauityIconName;
     rightIcon?: grauityIconName;
     disabled?: boolean;
+    scrollToOnOpen?: boolean;
 };
 
 export type BaseItemProps =
