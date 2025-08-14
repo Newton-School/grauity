@@ -1,7 +1,7 @@
 import React from 'react';
 import { ACTION_COLORS } from 'ui/core';
 
-import { StyledInputProps } from '../../../../common/types';
+import { StyledInputProps, StyledLabelProps } from '../../../../common/types';
 
 export type RadioButtonSize = 'small' | 'medium' | 'large';
 export type RadioButtonState = 'default' | 'error' | 'success';
@@ -93,6 +93,6 @@ export interface StyledRadioButtonInputProps extends StyledInputProps {
     $color?: RadioButtonColors;
 }
 
-export interface StyledRadioButtonLabelProps {
+export interface StyledRadioButtonLabelProps extends StyledLabelProps {
     $size?: RadioButtonSize;
 }

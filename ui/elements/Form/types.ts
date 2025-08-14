@@ -6,7 +6,8 @@ import { grauityIconSizeName } from '../../core/sizes/sizeTypes';
 
 export type FormTextColors = `${TEXT_COLORS}`;
 
-export interface LabelProps extends StyledLabelProps {
+export interface LabelProps
+    extends Omit<StyledLabelProps, '$isRequired' | '$isDisabled' | '$color'> {
     /**
      * The name of the label. Required for use with form elements' `htmlFor` attribute.
      */
@@ -21,6 +22,16 @@ export interface LabelProps extends StyledLabelProps {
      * The content of the label.
      */
     children: React.ReactNode;
+
+    /**
+     * Whether the label is required.
+     */
+    isRequired?: boolean;
+
+    /**
+     * Whether the label is disabled.
+     */
+    isDisabled?: boolean;
 }
 
 export interface HelpMessageProps {

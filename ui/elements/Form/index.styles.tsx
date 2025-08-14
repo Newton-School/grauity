@@ -3,13 +3,7 @@ import styled, { css } from 'styled-components';
 import { StyledLabelProps } from '../../../common/types';
 import { GenericMessageProps } from './types';
 
-export const StyledLabel = styled.label<
-    Omit<StyledLabelProps, 'isRequired' | 'isDisabled' | 'color'> & {
-        $isRequired?: boolean;
-        $isDisabled?: boolean;
-        $color?: string;
-    }
->`
+export const StyledLabel = styled.label<StyledLabelProps>`
     margin: 0;
     padding: 0;
     color: var(--text-secondary, #5b6271);

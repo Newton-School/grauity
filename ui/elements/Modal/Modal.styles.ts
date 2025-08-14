@@ -199,7 +199,7 @@ export const StyledModalPaginationItem = styled.div<ModalPaginationItemProps>`
 `;
 
 export const StyledModalAction = styled.div<{
-    justifyContent?: string;
+    $justifyContent?: string;
     children: ReactNode;
 }>`
     display: flex;
@@ -208,10 +208,10 @@ export const StyledModalAction = styled.div<{
     width: 100%;
     gap: var(--spacing-8px, 8px);
 
-    ${({ justifyContent }) =>
-        justifyContent &&
+    ${({ $justifyContent }) =>
+        $justifyContent &&
         css`
-            justify-content: ${justifyContent};
+            justify-content: ${$justifyContent};
         `}
 `;
 
