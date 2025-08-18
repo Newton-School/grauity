@@ -53,12 +53,12 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
                 onClick={handleClick}
                 className={classes}
                 style={style}
-                isLoading={loading}
+                $isLoading={loading}
                 disabled={disabled || loading}
-                variant={variant}
+                $variant={variant}
                 $color={color}
-                size={size}
-                fullWidth={fullWidth}
+                $size={size}
+                $fullWidth={fullWidth}
                 type={type}
                 role="button"
                 aria-label={ariaLabel || icon}
@@ -66,7 +66,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
                 tabIndex={tabIndex}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
-                isIconButton
+                $isIconButton
                 $showAnimationOnClick={showAnimationOnClick}
                 {...buttonProps}
                 data-testid="testid-iconbutton"

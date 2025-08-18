@@ -19,7 +19,7 @@ function Loading(props: MonthlyCalendarLoadingProps) {
         <StyledMonthlyCalendarGridContainer>
             <StyledMonthlyGridItemContainer>
                 <StyledMonthlyCalendarGrid
-                    rows={gridData.length % DAYS_IN_WEEK}
+                    $rows={gridData.length % DAYS_IN_WEEK}
                 >
                     {gridData.map((item, idx) => (
                         <StyledMonthlyCalendarGridItem>

@@ -22,17 +22,17 @@ export const StyledTableDataCell = styled.td<TableDataCellComponentProps>`
         border-right: none;
     }
 
-    ${({ align }) => align && `text-align: ${align};`}
+    ${({ $align }) => $align && `text-align: ${$align};`}
 
-    ${({ flexAlign }) =>
-        flexAlign &&
+    ${({ $flexAlign }) =>
+        $flexAlign &&
         css`
             display: flex;
             flex-direction: row;
-            align-items: ${flexAlign};
+            align-items: ${$flexAlign};
         `}
 
-    ${({ vAlign }) => vAlign && `vertical-align: ${vAlign};`}
+    ${({ $vAlign }) => $vAlign && `vertical-align: ${$vAlign};`}
 `;
 
 export const StyledTableHeadingCell = styled.th<TableHeadingCellComponentProps>`
@@ -43,14 +43,14 @@ export const StyledTableHeadingCell = styled.th<TableHeadingCellComponentProps>`
     letter-spacing: 0.4px;
     padding: var(--spacing-10px, 10px);
 
-    ${({ align }) => `text-align: ${align};`}
+    ${({ $align }) => `text-align: ${$align};`}
 `;
 
 export const StyledTableRow = styled.tr<TableRowComponentProps>`
     background-color: var(--bg-primary, #fff);
 
-    ${({ condensed }) =>
-        !condensed &&
+    ${({ $condensed }) =>
+        !$condensed &&
         css`
             ${StyledTableDataCell} {
                 padding: 18px;
@@ -60,8 +60,8 @@ export const StyledTableRow = styled.tr<TableRowComponentProps>`
             }
         `}
 
-    ${({ hoverable }) =>
-        hoverable &&
+    ${({ $hoverable }) =>
+        $hoverable &&
         css`
             &:hover {
                 background-color: var(--bg-secondary, #f6f7f9);
@@ -97,8 +97,8 @@ export const StyledTable = styled.table<TableComponentProps>`
         border-bottom: var(--spacing-1px, 1px) solid var(--border, #e1e5ea);
     }
 
-    ${({ borderAround }) =>
-        borderAround === false &&
+    ${({ $borderAround }) =>
+        $borderAround === false &&
         css`
             outline: none;
             ${StyledTableDataCell}:last-of-type {
@@ -106,8 +106,8 @@ export const StyledTable = styled.table<TableComponentProps>`
             }
         `}
 
-    ${({ borderHorizontal }) =>
-        borderHorizontal === false &&
+    ${({ $borderHorizontal }) =>
+        $borderHorizontal === false &&
         css`
             ${StyledTableRow} {
                 border-bottom: none !important;
@@ -120,8 +120,8 @@ export const StyledTable = styled.table<TableComponentProps>`
             }
         `}
 
-    ${({ borderVertical }) =>
-        borderVertical === false &&
+    ${({ $borderVertical }) =>
+        $borderVertical === false &&
         css`
             ${StyledTableRow} {
                 border-right: none !important;
@@ -134,8 +134,8 @@ export const StyledTable = styled.table<TableComponentProps>`
             }
         `}
 
-    ${({ borderWithin }) =>
-        borderWithin === false &&
+    ${({ $borderWithin }) =>
+        $borderWithin === false &&
         css`
             ${StyledTableRow} {
                 border-bottom: none !important;
@@ -152,8 +152,8 @@ export const StyledTable = styled.table<TableComponentProps>`
         `}
 
 
-    ${({ striped }) =>
-        striped &&
+    ${({ $striped }) =>
+        $striped &&
         css`
             ${StyledTableBody} ${StyledTableRow}:nth-child(even) {
                 background-color: var(--bg-secondary, #f6f7f9);
@@ -164,11 +164,12 @@ export const StyledTable = styled.table<TableComponentProps>`
 export const StyledTableHead = styled.thead<TableHeadComponentProps>`
     background: var(--bg-secondary, #f6f7f9);
 
-    ${({ highlightHeaders }) =>
-        highlightHeaders === false && 'background: var(--bg-primary, #ffffff);'}
+    ${({ $highlightHeaders }) =>
+        $highlightHeaders === false &&
+        'background: var(--bg-primary, #ffffff);'}
 
-    ${({ capitalizeHeaders }) =>
-        capitalizeHeaders !== false && 'text-transform: uppercase;'}
+    ${({ $capitalizeHeaders }) =>
+        $capitalizeHeaders !== false && 'text-transform: uppercase;'}
 
     ${StyledTableRow} ${StyledTableHeadingCell}:last-child {
         border-right: none;

@@ -19,10 +19,10 @@ export const StyledTabContainer = styled.div<StyledTabContainerProps>`
     background: var(--bg-secondary, #f6f7f9);
     font-family: var(--font-family, 'Mona Sans');
 
-    ${({ backgroundColor }) =>
-        backgroundColor &&
+    ${({ $backgroundColor }) =>
+        $backgroundColor &&
         css`
-            background: ${backgroundColor};
+            background: ${$backgroundColor};
         `}
 `;
 
@@ -38,23 +38,23 @@ export const StyledTabItemContainer = styled.div<StyledTabItemContainerProps>`
     flex: 1;
     color: var(--text-primary, #fff);
 
-    ${({ backgroundColor }) =>
-        backgroundColor &&
+    ${({ $backgroundColor }) =>
+        $backgroundColor &&
         css`
-            background: ${backgroundColor};
+            background: ${$backgroundColor};
         `}
 
-    ${({ color }) =>
-        color &&
+    ${({ $color }) =>
+        $color &&
         css`
-            color: ${color};
+            color: ${$color};
         `}
 
-    ${({ isActive, focusColor, focusBackgroundColor }) =>
-        isActive &&
+    ${({ $isActive, $focusColor, $focusBackgroundColor }) =>
+        $isActive &&
         css`
-            background: ${focusBackgroundColor || 'var(--bg-primary, #fff)'};
-            color: ${focusColor || 'var(--text-brand, #0673f9)'};
+            background: ${$focusBackgroundColor || 'var(--bg-primary, #fff)'};
+            color: ${$focusColor || 'var(--text-brand, #0673f9)'};
         `}
 `;
 
@@ -65,9 +65,9 @@ export const StyledTabItemText = styled.span<StyledTextProps>`
     line-height: 22.4px;
     letter-spacing: 0.014px;
 
-    ${({ color }) =>
-        color &&
+    ${({ $color }) =>
+        $color &&
         css`
-            color: ${color};
+            color: ${$color};
         `}
 `;

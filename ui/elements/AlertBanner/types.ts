@@ -123,16 +123,16 @@ export interface AlertBannerProps {
 export interface AlertBannerContainerProps {
     type: AlertBannerType;
     variant: AlertBannerVariant;
-    justifyContent: string;
-    padding: string;
-    top: string;
-    bottom: string;
-    left: string;
-    right: string;
-    position: string;
-    textColor: string;
-    backgroundColor: string;
-    borderColor: string;
+    $justifyContent: string;
+    $padding: string;
+    $top: string;
+    $bottom: string;
+    $left: string;
+    $right: string;
+    $position: string;
+    $textColor: string;
+    $backgroundColor: string;
+    $borderColor: string;
     children: React.ReactNode;
     ref: React.Ref<HTMLDivElement>;
     role: string;

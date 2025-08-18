@@ -7,25 +7,25 @@ export interface MonthlyCalendarEventProps extends StyledDivProps {
      * The background color of the calendar event.
      * @default 'var(--bg-action-brand)'
      */
-    backgroundColor?: string;
+    $backgroundColor?: string;
 
     /**
      * The border radius of the calendar event container.
      * @default '4px'
      */
-    borderRadius?: string;
+    $borderRadius?: string;
 
     /**
      * The width of the calendar event container.
      * @default '100%'
      */
-    width?: string;
+    $width?: string;
 
     /**
      * The height of the calendar event container.
      * @default '100%'
      */
-    height?: string;
+    $height?: string;
 
     /**
      * The date and time of the calendar event.
@@ -53,10 +53,10 @@ export interface MonthlyCalendarEventProps extends StyledDivProps {
      * Whether the calendar event is active.
      * @default false
      */
-    isActive?: boolean;
+    $isActive?: boolean;
 }
 
 export interface StyledMonthlyCalendarEventTextProps extends StyledDivProps {
-    color?: string;
+    $color?: string;
     fontWeight?: string;
 }

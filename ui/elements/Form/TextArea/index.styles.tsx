@@ -31,10 +31,10 @@ export const StyledTextArea = styled.textarea<TextAreaComponentProps>`
         background-color 0.15s ease-in-out, outline 0.2s ease-in-out;
     outline: 0px solid transparent;
 
-    ${({ size }) =>
-        size &&
+    ${({ $size }) =>
+        $size &&
         css`
-            ${TEXT_AREA_SIZE_STYLES_MAPPING[size]}
+            ${TEXT_AREA_SIZE_STYLES_MAPPING[$size]}
         `};
 
     &:hover {

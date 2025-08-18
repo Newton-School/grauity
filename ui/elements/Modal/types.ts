@@ -406,14 +406,14 @@ export interface StyleData {
 
 // Components interface for ModalContainer
 export interface ModalContainerProps extends StyledDivProps {
-    width?: string;
-    height?: string;
-    minHeight?: string;
-    minWidth?: string;
-    maxHeight?: string;
-    maxWidth?: string;
-    mobileBottomFullWidth?: boolean;
-    modalPadding?: string;
+    $width?: string;
+    $height?: string;
+    $minHeight?: string;
+    $minWidth?: string;
+    $maxHeight?: string;
+    $maxWidth?: string;
+    $mobileBottomFullWidth?: boolean;
+    $modalPadding?: string;
     ref?: React.MutableRefObject<any>;
     children: React.ReactNode;
 }
@@ -432,7 +432,7 @@ export interface ModalDescriptionProps {
 
 // Components interface for ModalBody
 export interface ModalBodyProps {
-    modalBodyMargin?: string;
+    $modalBodyMargin?: string;
     children: React.ReactNode;
 }
 
@@ -445,7 +445,7 @@ export interface ModalBodyMainProps {
 // Components interface for ModalPaginationItemProps
 export interface ModalPaginationItemProps {
     key: string | number;
-    active: boolean;
+    $active: boolean;
     onClick: () => void;
 }
 
