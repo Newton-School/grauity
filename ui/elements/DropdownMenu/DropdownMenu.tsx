@@ -36,6 +36,7 @@ import {
     getOptionsFromBaseDropdownItems,
     getSelectedValuesForDropdownType,
     isDropdownMenuItemNavigable,
+    scrollToFirstMarkedItem,
 } from './utils';
 
 const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
@@ -233,6 +234,12 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             setOptions(filteredOptions);
         }, [items]);
 
+        useEffect(() => {
+            if (items.length > 0) {
+                scrollToFirstMarkedItem(items, itemRefs);
+            }
+        }, [items]);
+
         useClickAway(dropdownRef as RefObject<HTMLElement>, () => {
             if (multiple && !showActionButtons) {
                 handleApply();
@@ -274,7 +281,9 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                         }
                     />
 
-                    <StyledDropdownOptionsContainer onScroll={handleMenuBodyScroll}>
+                    <StyledDropdownOptionsContainer
+                        onScroll={handleMenuBodyScroll}
+                    >
                         {Array.isArray(searchedOptions) &&
                             searchedOptions.map((item, index) => (
                                 <DropdownMenuOption
@@ -288,7 +297,9 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                     onClick={(clickedValue) =>
                                         handleClickOption(
                                             options.find(
-                                                (option) => option.value === clickedValue
+                                                (option) =>
+                                                    option.value ===
+                                                    clickedValue
                                             )
                                         )
                                     }
