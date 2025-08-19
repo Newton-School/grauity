@@ -498,6 +498,33 @@ describe('TabList', () => {
             expect(screen.getByText('Non-tab content')).toBeInTheDocument();
         });
 
+        it('renders various non-React-element children without modification', () => {
+            render(
+                <TabList>
+                    <Tab id="tab1">Tab 1</Tab>
+                    Plain text string
+                    {42}
+                    <span>HTML element</span>
+                    <Tab id="tab2">Tab 2</Tab>
+                    {null}
+                    {false}
+                </TabList>
+            );
+
+            const tabs = screen.getAllByRole('tab');
+            expect(tabs).toHaveLength(2);
+
+            // All non-Tab children should be rendered as-is
+            const tablist = screen.getByRole('tablist');
+            expect(tablist).toHaveTextContent('Plain text string');
+            expect(tablist).toHaveTextContent('42');
+            expect(screen.getByText('HTML element')).toBeInTheDocument();
+
+            // Tab children should still get proper props
+            expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
+            expect(tabs[1]).toHaveAttribute('aria-selected', 'false');
+        });
+
         it('handles keyboard navigation with no tabs', () => {
             render(<TabList onChange={mockOnChange} />);
 
