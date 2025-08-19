@@ -29,9 +29,9 @@ export const CornerRadiusTokens = () => {
                         justifyContent: 'center',
                         width: '100px',
                         height: '100px',
-                        color: 'var(--text-brand, #0673F9)',
+                        color: 'var(--text-emphasis-brand-default, #0673f9)',
                         borderRadius: token,
-                        border: 'var(--spacing-3px, 3px) solid var(--border, #e1e5ea)',
+                        border: 'var(--spacing-3px, 3px) solid var(--border-subtle-primary-default, #e1e5ea)',
                         fontWeight: 'var(--font-weight-medium, 500)',
                     }}
                 >
@@ -42,7 +42,7 @@ export const CornerRadiusTokens = () => {
                         width: '100px',
                         height: '100px',
                         borderRadius: token,
-                        border: 'var(--spacing-3px, 3px) solid var(--bg-action-brand, #0673f9)',
+                        border: 'var(--spacing-3px, 3px) solid var(--bg-emphasis-brand-default, #0673f9)',
                         position: 'absolute',
                         top: '0',
                         left: '0',

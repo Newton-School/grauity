@@ -44,7 +44,7 @@ export const extractTokensFromGlobalStyles = ({
                         copy
                         color={type === 'colors' ? `var(${token})` : null}
                         background={
-                            type === 'colors' ? 'var(--bg-primary)' : ''
+                            type === 'colors' ? 'var(--bg-subtle-primary-default, #ffffff)' : ''
                         }
                     >
                         {value}

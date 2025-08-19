@@ -33,7 +33,7 @@ export interface PlaceholderProps {
 
     /**
      * Background color of the placeholder.
-     * @default 'var(--bg-tertiary, #EDEFF3)'
+     * @default 'var(--bg-subtle-tertiary-default, #edeff3)'
      */
     backgroundColor?: string;
 

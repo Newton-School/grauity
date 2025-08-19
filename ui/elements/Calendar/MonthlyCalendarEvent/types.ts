@@ -5,7 +5,7 @@ import { StyledDivProps } from '../../../../common/types';
 export interface MonthlyCalendarEventProps extends StyledDivProps {
     /**
      * The background color of the calendar event.
-     * @default 'var(--bg-action-brand)'
+     * @default 'var(--bg-emphasis-brand-default, #0673f9)'
      */
     backgroundColor?: string;
 
@@ -39,13 +39,13 @@ export interface MonthlyCalendarEventProps extends StyledDivProps {
 
     /**
      * The color of the event time text.
-     * @default 'var(--text-action2)'
+     * @default 'var(--text-emphasis-invert-primary-default, #ffffff)'
      */
     eventTimeColor?: string;
 
     /**
      * The color of the event title text.
-     * @default 'var(--text-action2)'
+     * @default 'var(--text-emphasis-invert-primary-default, #ffffff)'
      */
     eventTitleColor?: string;
 

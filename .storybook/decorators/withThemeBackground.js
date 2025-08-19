@@ -10,7 +10,7 @@ const StyledThemeBackgroundContainer = styled.div(({ theme, left, fill }) => {
         right: ${left ? '50%' : 0};
         width: ${fill ? '100%' : '50%'};
         bottom: 0;
-        background: var(--bg-primary);
+        background: var(--bg-subtle-primary-default, #ffffff);
     `;
 });
 

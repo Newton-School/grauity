@@ -88,14 +88,14 @@ const Checkbox: React.FC<CheckboxProps> = ({
                         <Icon
                             size={getIconSize(size)}
                             name="check"
-                            color="var(--text-action)"
+                            color="var(--text-emphasis-white-default, #ffffff)"
                         />
                     )}
                     {isIndeterminate && (
                         <Icon
                             size={getIconSize(size)}
                             name="remove"
-                            color="var(--text-action)"
+                            color="var(--text-emphasis-white-default, #ffffff)"
                         />
                     )}
                 </StyledCheckboxButton>

@@ -34,8 +34,8 @@ export const StyledDropdownHeader = styled.div<StyledDropdownHeaderProps>`
     width: 100%;
     padding: var(--spacing-12px, 12px);
     gap: var(--spacing-8px, 8px);
-    background: var(--bg-primary, #ffffff);
-    border: 1px solid var(--border-neutral, #e1e5ea);
+    background: var(--bg-subtle-primary-default, #ffffff);
+    border: 1px solid var(--border-subtle-primary-disabled, #edeff3);
     border-radius: var(--corner-radius-8px, 8px);
     cursor: pointer;
     outline: none;
@@ -48,7 +48,7 @@ export const StyledDropdownHeaderTitle = styled.div<StyledDivProps>`
     font-weight: 600;
     line-height: var(--spacing-14px, 14px);
     text-align: left;
-    color: var(--text-brand, #0673f9);
+    color: var(--text-emphasis-brand-default, #0673f9);
     overflow: hidden;
 
     span {
@@ -69,8 +69,9 @@ export const StyledDropdownContainer = styled.div<StyledDivProps>`
     gap: var(--spacing-4px, 4px);
     align-self: stretch;
     border-radius: var(--corner-radius-12px, 12px);
-    border: var(--spacing-1px, 1px) solid var(--border-neutral, #e1e5ea);
-    background: var(--bg-primary, #fff);
+    border: var(--spacing-1px, 1px) solid
+        var(--border-subtle-primary-disabled, #edeff3);
+    background: var(--bg-subtle-primary-default, #ffffff);
     box-shadow: var(--spacing-2px, 2px) var(--spacing-4px, 4px)
         var(--spacing-8px, 8px) var(--spacing-0px, 0px) rgba(0, 0, 0, 0.06);
 `;
@@ -91,25 +92,25 @@ export const StyledDropdownListItem = styled.button<StyledDropdownListItemProps>
     gap: var(--spacing-8px, 8px);
     cursor: pointer;
     border-radius: var(--corner-radius-8px, 8px);
-    background: var(--bg-primary, #ffffff);
+    background: var(--bg-subtle-primary-default, #ffffff);
     border: 2px solid transparent;
     overflow: hidden;
 
     &:hover {
-        background: var(--bg-secondary, #f6f7f9);
+        background: var(--bg-subtle-secondary-default, #f6f7f9);
     }
 
     &:focus-visible {
-        background: var(--bg-secondary, #f6f7f9);
-        border: 2px solid var(--border-brand, #0673f9);
+        background: var(--bg-subtle-secondary-default, #f6f7f9);
+        border: 2px solid var(--border-subtle-brand-default, #61a8ff);
     }
 
     ${({ autoFocus }) =>
         autoFocus &&
         css`
             &:focus {
-                background: var(--bg-secondary, #f6f7f9);
-                border: 2px solid var(--border-brand, #0673f9);
+                background: var(--bg-subtle-secondary-default, #f6f7f9);
+                border: 2px solid var(--border-subtle-brand-default, #61a8ff);
             }
         `}
 `;
@@ -122,7 +123,7 @@ export const StyledDropdownItemCheckbox = styled.div`
 `;
 
 export const StyledDropdownItemText = styled.div<StyledDropdownItemTextProps>`
-    color: var(--text-primary, #16191d);
+    color: var(--text-emphasis-primary-default, #16191d);
     font-size: var(--spacing-14px, 14px);
     font-weight: 500;
     text-align: left;
@@ -131,7 +132,7 @@ export const StyledDropdownItemText = styled.div<StyledDropdownItemTextProps>`
     ${({ $selected }) =>
         $selected &&
         css`
-            color: var(--text-brand, #0673f9);
+            color: var(--text-emphasis-brand-default, #0673f9);
         `}
 
     span {
@@ -152,8 +153,9 @@ export const StyledDropdownSearchContainer = styled.div`
     align-self: stretch;
     gap: var(--spacing-8px, 8px);
     border-radius: var(--corner-radius-8px, 8px);
-    border: var(--spacing-1px, 1px) solid var(--border-neutral, #e1e5ea);
-    background: var(--bg-primary, #ffffff);
+    border: var(--spacing-1px, 1px) solid
+        var(--border-subtle-primary-disabled, #edeff3);
+    background: var(--bg-subtle-primary-default, #ffffff);
 `;
 
 export const StyledDropdownSearchInput = styled.input<StyledDropdownSearchInputProps>`
@@ -161,8 +163,8 @@ export const StyledDropdownSearchInput = styled.input<StyledDropdownSearchInputP
     width: 100%;
     outline: none;
     border: none;
-    background: var(--bg-primary, #ffffff);
-    color: var(--text-primary, #16191d);
+    background: var(--bg-subtle-primary-default, #ffffff);
+    color: var(--text-emphasis-primary-default, #16191d);
     font-size: var(--spacing-14px, 14px);
     font-style: normal;
     font-weight: 500;

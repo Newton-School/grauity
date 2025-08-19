@@ -32,7 +32,7 @@ export const StyledCarouselHeaderRow = styled.div<StyledCarouselHeaderRowProps>`
 `;
 
 export const StyledCarouselTitle = styled.div`
-    color: var(--text-primary, #16191d);
+    color: var(--text-emphasis-primary-default, #16191d);
     font-size: 16px;
     font-style: normal;
     font-weight: 600;

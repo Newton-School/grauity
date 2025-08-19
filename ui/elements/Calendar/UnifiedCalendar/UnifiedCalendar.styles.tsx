@@ -14,7 +14,7 @@ export const StyledCalendarMonthButton = styled.div<StyledDivProps>`
 
 export const StyledCalendarControlsText = styled.span`
     font-family: var(--font-family, 'Mona Sans');
-    color: var(--text-primary, #16191d);
+    color: var(--text-emphasis-primary-default, #16191d);
     font-size: 16px;
     font-style: normal;
     line-height: 14.4px;

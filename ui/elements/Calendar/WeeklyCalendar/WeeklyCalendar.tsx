@@ -293,7 +293,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                                                 $widthFactor={1}
                                                 $indexFactor={0}
                                             >
-                                                <Placeholder border="1px solid var(--bg-primary, #fff);" />
+                                                <Placeholder border="1px solid var(--bg-subtle-primary-default, #ffffff);" />
                                             </StyledEventWrapper>
                                             <StyledEventWrapper
                                                 $startPosition={50}
@@ -301,7 +301,7 @@ export default function WeeklyCalendar<T>(props: WeeklyCalendarProps<T>) {
                                                 $widthFactor={1}
                                                 $indexFactor={0}
                                             >
-                                                <Placeholder border="1px solid var(--bg-primary, #fff);" />
+                                                <Placeholder border="1px solid var(--bg-subtle-primary-default, #ffffff);" />
                                             </StyledEventWrapper>
                                         </>
                                     )}

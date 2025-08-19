@@ -8,7 +8,7 @@ import { StyledBottomSheetContentProps, StyledBottomSheetProps } from './types';
 export const StyledBottomSheet = styled(motion.div)<StyledBottomSheetProps>`
     width: 100vw;
     height: ${({ $height }) => $height};
-    background: var(--bg-primary, #fff);
+    background: var(--bg-subtle-primary-default, #ffffff);
     border-top-left-radius: var(--spacing-8px, 8px);
     border-top-right-radius: var(--spacing-8px, 8px);
     overflow: hidden;
@@ -45,7 +45,7 @@ export const StyledDragHandleContainer = styled.div<StyledDivProps>`
 export const StyledDragHandle = styled.div<StyledDivProps>`
     width: 50px;
     height: 5px;
-    background: var(--bg-invert-tertiary, #23282f);
+    background: var(--bg-subtle-invert-tertiary-default, #23282f);
     opacity: 0.7;
     border-radius: 4px;
 `;

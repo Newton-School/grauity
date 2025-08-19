@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledPaddingContainer = styled.div`
     padding: 1rem;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-subtle-primary-default, #ffffff);
 `;
 
 /**

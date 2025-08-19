@@ -44,7 +44,7 @@ export const getButtonStyles = ({
                     background: var(
                         --bg-${bgColorIntensity}-${colorSpace}-disabled
                     );
-                    color: var(--text-emphasis-white-disabled);
+                    color: var(--text-emphasis-white-disabled, #f6f7f9);
                 }
             `;
         }
@@ -53,14 +53,14 @@ export const getButtonStyles = ({
                 color === BUTTON_COLORS_ENUM.NEUTRAL ? 'primary' : color;
             const hoverBackgroundColor =
                 color === BUTTON_COLORS_ENUM.NEUTRAL
-                    ? 'var(--bg-subtle-primary-hover)'
+                    ? 'var(--bg-subtle-primary-hover, #f6f7f9)'
                     : `var(--bg-subtle-${color}-default)`;
 
             return css`
                 color: var(--text-emphasis-${colorSpace}-default);
                 border: 1.5px solid var(--border-subtle-${colorSpace}-default);
                 outline: 0px solid transparent;
-                background: var(--bg-subtle-primary-default);
+                background: var(--bg-subtle-primary-default, #ffffff);
                 &:hover:not([disabled]) {
                     background: ${hoverBackgroundColor};
                 }
@@ -83,7 +83,7 @@ export const getButtonStyles = ({
                 color === BUTTON_COLORS_ENUM.NEUTRAL ? 'primary' : color;
             const hoverBackgroundColor =
                 color === BUTTON_COLORS_ENUM.NEUTRAL
-                    ? 'var(--bg-subtle-primary-hover)'
+                    ? 'var(--bg-subtle-primary-hover, #f6f7f9)'
                     : `var(--bg-subtle-${color}-default)`;
 
             return css`

@@ -12,7 +12,7 @@ import {
 } from './types';
 
 export const StyledModal = styled(motion.div)<ModalContainerProps>`
-    background: var(--bg-primary, #fff);
+    background: var(--bg-subtle-primary-default, #ffffff);
     z-index: var(--z-index-modal, 1100);
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.25);
     border-radius: var(--corner-radius-12px, 12px);
@@ -118,11 +118,11 @@ export const StyledModalMain = styled.div<ModalBodyMainProps>`
 export const StyledModalDivider = styled.div`
     width: 100%;
     height: var(--spacing-1px, 1px);
-    background: var(--border, #e1e5ea);
+    background: var(--border-subtle-primary-default, #e1e5ea);
 `;
 
 export const StyledModalTitle = styled.h2<ModalTitleProps>`
-    color: var(--text-primary, #16191d);
+    color: var(--text-emphasis-primary-default, #16191d);
     font-weight: var(--font-weight-semibold, 600);
     font-size: var(--font-size-24px, 24px);
     line-height: var(--spacing-32px, 32px);
@@ -141,7 +141,7 @@ export const StyledModalDescription = styled.div<ModalDescriptionProps>`
     line-height: var(--spacing-28px, 28px);
     text-align: center;
     letter-spacing: 0.2px;
-    color: var(--text-secondary, #5b6271);
+    color: var(--text-emphasis-secondary-default, #5b6271);
     white-space: pre-line;
 
     @media only screen and (max-width: 600px) {
@@ -156,7 +156,7 @@ export const StyledModalBody = styled.div<ModalBodyProps>`
     line-height: var(--spacing-28px, 28px);
     text-align: center;
     letter-spacing: 0.2px;
-    color: var(--text-secondary, #5b6271);
+    color: var(--text-emphasis-secondary-default, #5b6271);
     margin: ${({ modalBodyMargin }) => modalBodyMargin && modalBodyMargin};
     white-space: pre-line;
     width: 100%;
@@ -188,14 +188,14 @@ export const StyledModalPaginationItem = styled.div<ModalPaginationItemProps>`
     width: 6px;
     height: 6px;
     border-radius: var(--corner-radius-50percent, 50%);
-    background: var(--border, #e1e5ea);
+    background: var(--border-subtle-primary-default, #e1e5ea);
     cursor: pointer;
     transition: all 0.1s ease-in-out;
 
     ${({ active }) =>
         active
-            ? 'background: var(--text-secondary, #5b6271);'
-            : '&:hover {background: var(--text-disabled, #8C95A6);}'}
+            ? 'background: var(--text-emphasis-secondary-default, #5b6271);'
+            : '&:hover {background: var(--text-emphasis-primary-disabled, #8c95a6);}'}
 `;
 
 export const StyledModalAction = styled.div<{

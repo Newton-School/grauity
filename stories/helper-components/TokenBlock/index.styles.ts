@@ -14,10 +14,10 @@ export const StyledTokenBlock = styled.div<any>`
     align-items: center;
     gap: 8px;
     border-radius: var(--corner-radius-8px, 8px);
-    border: 1px solid var(--border, #e1e5ea);
+    border: 1px solid var(--border-subtle-primary-default, #e1e5ea);
     background: ${({ background }) =>
-        background || 'var(--bg-tertiary, #edeff3)'};
-    color: var(--text-primary, #16191d) !important;
+        background || 'var(--bg-subtle-tertiary-default, #edeff3)'};
+    color: var(--text-emphasis-primary-default, #16191d) !important;
     font-family: var(--font-family-code, 'Fira Code', 'monospace') !important;
     font-size: var(--font-size-14px, 14px) !important;
     font-weight: var(--font-weight-semibold, 600) !important;
@@ -45,8 +45,8 @@ export const StyledTokenBlockCopiedContainer = styled.div<any>`
     justify-content: center;
     align-items: center;
     gap: 8px;
-    background: var(--bg-tertiary, #edeff3);
-    color: var(--text-primary, #16191d) !important;
+    background: var(--bg-subtle-tertiary-default, #edeff3);
+    color: var(--text-emphasis-primary-default, #16191d) !important;
     font-family: var(--font-family-code, 'Fira Code', 'monospace') !important;
     font-size: var(--font-size-14px, 14px) !important;
     font-weight: var(--font-weight-semibold, 600) !important;

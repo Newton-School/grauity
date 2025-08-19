@@ -176,9 +176,9 @@ const defaultArgs: MonthlyCalendarProps<any> = {
             key={event.id}
             eventTime={event.start}
             eventTitle={event.title}
-            eventTitleColor="var(--text-action2)"
-            eventTimeColor="var(--text-action2)"
-            backgroundColor="var(--bg-action-brand)"
+            eventTitleColor="var(--text-emphasis-invert-primary-default, #ffffff)"
+            eventTimeColor="var(--text-emphasis-invert-primary-default, #ffffff)"
+            backgroundColor="var(--bg-emphasis-brand-default, #0673f9)"
             height={`${EVENT_HEIGHT}px`}
         />
     ),

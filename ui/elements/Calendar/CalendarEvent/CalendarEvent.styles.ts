@@ -16,10 +16,14 @@ export const StyledCalendarEventWrapper = styled.div<StyledCalendarEventWrapperP
     align-self: stretch;
     border-radius: 4px;
     border: 1px solid
-        ${(props) => props.$borderColor || 'var(--bg-primary, #fff)'};
-    color: ${(props) => props.$textColor || 'var(--text-action2, #fff)'};
+        ${(props) =>
+        props.$borderColor || 'var(--bg-subtle-primary-default, #ffffff)'};
+    color: ${(props) =>
+        props.$textColor ||
+        'var(--text-emphasis-invert-primary-default, #ffffff)'};
     background: ${(props) =>
-        props.$backgroundColor || 'var(--text-brand, #0673F9);'};
+        props.$backgroundColor ||
+        'var(--text-emphasis-brand-default, #0673f9);'};
     font-size: 12px;
     font-style: normal;
     font-weight: var(--font-weight-semibold, 550);
