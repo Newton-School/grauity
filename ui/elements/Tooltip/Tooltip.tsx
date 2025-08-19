@@ -25,8 +25,8 @@ const Tooltip = (props: TooltipProps) => {
         recomputedTrigger,
         defaultOpen = false,
         isOpen = null,
-        color = 'var(--text-emphasis-invert-primary-default)',
-        backgroundColor = 'var(--bg-subtle-invert-primary-default)',
+        color = 'var(--text-emphasis-invert-primary-default, #ffffff)',
+        backgroundColor = 'var(--bg-subtle-invert-primary-default, #0b0c0e)',
         children,
     } = props;
     const [showTooltip, setShowTooltip] = useState(isOpen || defaultOpen);

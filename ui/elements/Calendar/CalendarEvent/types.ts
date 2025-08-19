@@ -39,25 +39,25 @@ export interface CalendarEventProps {
 
     /**
      * Text color of the event.
-     * @default 'var(--text-action2)'
+     * @default 'var(--text-emphasis-invert-primary-default, #ffffff)'
      */
     textColor?: string;
 
     /**
      * Background color of the event.
-     * @default 'var(--bg-action-brand)'
+     * @default 'var(--bg-emphasis-brand-default, #0673f9)'
      */
     backgroundColor?: string;
 
     /**
      * Border color of the event.
-     * @default 'var(--border)'
+     * @default 'var(--border-subtle-primary-default, #e1e5ea)'
      */
     borderColor?: string;
 
     /**
      * Text color of the chip content.
-     * @default 'var(--text-action2)'
+     * @default 'var(--text-emphasis-invert-primary-default, #ffffff)'
      */
     chipTextColor?: string;
 
