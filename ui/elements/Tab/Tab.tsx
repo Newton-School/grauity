@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React from 'react';
 
 import { Icon } from '../Icon';
 import { TAB_VARIANT_ENUM } from './constants';
@@ -25,11 +25,9 @@ function Tab(props: TabProps) {
         disabled = false,
         onClick = () => {},
         tabIndex = -1,
-        id: _id = '',
+        id = '',
         ariaControls = '',
     } = props;
-
-    const id = _id || useId();
 
     return (
         <StyledTab
@@ -49,7 +47,7 @@ function Tab(props: TabProps) {
             role="tab"
             aria-selected={isActive}
             aria-controls={ariaControls}
-            id={`tab-${id}`}
+            id={id}
             disabled={disabled}
             tabIndex={tabIndex}
         >
