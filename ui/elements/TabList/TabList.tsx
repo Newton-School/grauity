@@ -17,7 +17,19 @@ function TabList(props: TabListProps) {
 
     const containerRef = useRef<HTMLDivElement>(null);
     const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+    const [focusedIndex, setFocusedIndex] = useState(activeIndex);
     const tabs = React.Children.toArray(children);
+
+    const focusTab = (index: number) => {
+        const container = containerRef.current;
+        if (container) {
+            const tabElements = container.querySelectorAll('[role="tab"]');
+            const tab = tabElements[index] as HTMLElement;
+            if (tab) {
+                tab.focus();
+            }
+        }
+    };
 
     const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
         const count = tabs.length;
@@ -26,11 +38,24 @@ function TabList(props: TabListProps) {
         }
 
         if (e.key === 'ArrowRight') {
-            onChange((activeIndex + 1) % count);
+            e.preventDefault();
+            const nextIndex = (focusedIndex + 1) % count;
+            setFocusedIndex(nextIndex);
+            focusTab(nextIndex);
         } else if (e.key === 'ArrowLeft') {
-            onChange((activeIndex - 1 + count) % count);
+            e.preventDefault();
+            const prevIndex = (focusedIndex - 1 + count) % count;
+            setFocusedIndex(prevIndex);
+            focusTab(prevIndex);
+        } else if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            onChange(focusedIndex);
         }
     };
+
+    useEffect(() => {
+        setFocusedIndex(activeIndex);
+    }, [activeIndex]);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -53,7 +78,6 @@ function TabList(props: TabListProps) {
             role="tablist"
             className={className}
             onKeyDown={handleKeyDown}
-            tabIndex={0}
             aria-label={ariaLabel}
             $variant={variant}
         >
@@ -67,7 +91,7 @@ function TabList(props: TabListProps) {
                             size,
                             isActive: index === activeIndex,
                             onClick: () => onChange(index),
-                            tabIndex: index === activeIndex ? 0 : -1,
+                            tabIndex: index === focusedIndex ? 0 : -1,
                         }
                     );
                 }

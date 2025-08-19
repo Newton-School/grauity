@@ -34,6 +34,7 @@ export const StyledTab = styled.button<StyledTabComponentProps>`
                   color: var(--text-emphasis-brand-default, #0673f9);
               `
             : css`
+                  z-index: 1;
                   &:hover {
                       color: var(--text-emphasis-primary-default, #16191d);
                   }
@@ -56,9 +57,6 @@ export const StyledTab = styled.button<StyledTabComponentProps>`
 
     &:focus-visible {
         outline: 3px solid var(--border-subtle-brand-default);
-    }
-    &:focus {
-        outline: none;
     }
 
     transition: background 0.3s ease, color 0.3s ease;
