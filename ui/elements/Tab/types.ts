@@ -93,6 +93,11 @@ export interface TabProps {
      * @default '-1'
      */
     tabIndex?: number;
+    /**
+     * ID of the tabpanel associated with the tab.
+     * @default ''
+     */
+    ariaControls?: string;
 }
 
 export interface StyledTabComponentProps extends StyledButtonProps {

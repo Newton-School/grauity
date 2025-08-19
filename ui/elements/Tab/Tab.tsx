@@ -26,6 +26,7 @@ function Tab(props: TabProps) {
         onClick = () => {},
         tabIndex = -1,
         id: _id = '',
+        ariaControls = '',
     } = props;
 
     const id = _id || useId();
@@ -47,7 +48,7 @@ function Tab(props: TabProps) {
             $variant={variant}
             role="tab"
             aria-selected={isActive}
-            aria-controls={`tabpanel-${id}`}
+            aria-controls={ariaControls}
             id={`tab-${id}`}
             disabled={disabled}
             tabIndex={tabIndex}
