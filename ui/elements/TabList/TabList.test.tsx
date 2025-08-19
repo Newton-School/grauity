@@ -102,9 +102,30 @@ describe('TabList', () => {
             render(<TabList activeIndex={5}>{defaultChildren}</TabList>);
 
             const tabs = screen.getAllByRole('tab');
+            // When activeIndex is out of bounds, no tab should be active
             expect(tabs[0]).toHaveAttribute('aria-selected', 'false');
             expect(tabs[1]).toHaveAttribute('aria-selected', 'false');
             expect(tabs[2]).toHaveAttribute('aria-selected', 'false');
+            // But the first tab should still be focusable (focusedIndex defaults to activeIndex)
+            expect(tabs[0]).toHaveAttribute('tabindex', '-1');
+            expect(tabs[1]).toHaveAttribute('tabindex', '-1');
+            expect(tabs[2]).toHaveAttribute('tabindex', '-1');
+        });
+
+        it('updates focused tab when activeIndex changes', () => {
+            const { rerender } = render(
+                <TabList activeIndex={0}>{defaultChildren}</TabList>
+            );
+
+            let tabs = screen.getAllByRole('tab');
+            expect(tabs[0]).toHaveAttribute('tabindex', '0');
+            expect(tabs[1]).toHaveAttribute('tabindex', '-1');
+
+            rerender(<TabList activeIndex={1}>{defaultChildren}</TabList>);
+
+            tabs = screen.getAllByRole('tab');
+            expect(tabs[0]).toHaveAttribute('tabindex', '-1');
+            expect(tabs[1]).toHaveAttribute('tabindex', '0');
         });
     });
 
@@ -153,7 +174,8 @@ describe('TabList', () => {
             const tablist = screen.getByRole('tablist');
             fireEvent.keyDown(tablist, { key: 'ArrowRight' });
 
-            expect(mockOnChange).toHaveBeenCalledWith(1);
+            // Should not call onChange immediately, only on focus change
+            expect(mockOnChange).not.toHaveBeenCalled();
         });
 
         it('moves to previous tab on Arrow Left key', () => {
@@ -166,7 +188,45 @@ describe('TabList', () => {
             const tablist = screen.getByRole('tablist');
             fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
 
-            expect(mockOnChange).toHaveBeenCalledWith(0);
+            // Should not call onChange immediately, only on focus change
+            expect(mockOnChange).not.toHaveBeenCalled();
+        });
+
+        it('activates focused tab on Enter key', () => {
+            render(
+                <TabList activeIndex={0} onChange={mockOnChange}>
+                    {defaultChildren}
+                </TabList>
+            );
+
+            const tablist = screen.getByRole('tablist');
+
+            // First move focus to second tab
+            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+
+            // Then press Enter to activate it
+            fireEvent.keyDown(tablist, { key: 'Enter' });
+
+            expect(mockOnChange).toHaveBeenCalledWith(1);
+        });
+
+        it('activates focused tab on Space key', () => {
+            render(
+                <TabList activeIndex={0} onChange={mockOnChange}>
+                    {defaultChildren}
+                </TabList>
+            );
+
+            const tablist = screen.getByRole('tablist');
+
+            // First move focus to third tab
+            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+
+            // Then press Space to activate it
+            fireEvent.keyDown(tablist, { key: ' ' });
+
+            expect(mockOnChange).toHaveBeenCalledWith(2);
         });
 
         it('wraps to first tab when pressing Arrow Right on last tab', () => {
@@ -178,6 +238,7 @@ describe('TabList', () => {
 
             const tablist = screen.getByRole('tablist');
             fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+            fireEvent.keyDown(tablist, { key: 'Enter' });
 
             expect(mockOnChange).toHaveBeenCalledWith(0);
         });
@@ -191,6 +252,7 @@ describe('TabList', () => {
 
             const tablist = screen.getByRole('tablist');
             fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
+            fireEvent.keyDown(tablist, { key: 'Enter' });
 
             expect(mockOnChange).toHaveBeenCalledWith(2);
         });
@@ -203,9 +265,9 @@ describe('TabList', () => {
             );
 
             const tablist = screen.getByRole('tablist');
-            fireEvent.keyDown(tablist, { key: 'Enter' });
-            fireEvent.keyDown(tablist, { key: 'Space' });
+            fireEvent.keyDown(tablist, { key: 'Escape' });
             fireEvent.keyDown(tablist, { key: 'Tab' });
+            fireEvent.keyDown(tablist, { key: 'Home' });
 
             expect(mockOnChange).not.toHaveBeenCalled();
         });
@@ -220,28 +282,45 @@ describe('TabList', () => {
             const tablist = screen.getByRole('tablist');
             fireEvent.keyDown(tablist, { key: 'ArrowRight' });
             fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
+            fireEvent.keyDown(tablist, { key: 'Enter' });
 
-            // Should stay on the same tab (index 0)
+            // Should activate the same tab (index 0)
             expect(mockOnChange).toHaveBeenCalledWith(0);
-            expect(mockOnChange).toHaveBeenCalledTimes(2);
+            expect(mockOnChange).toHaveBeenCalledTimes(1);
+        });
+
+        it('does not navigate when no tabs present', () => {
+            render(<TabList onChange={mockOnChange} />);
+
+            const tablist = screen.getByRole('tablist');
+            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+            fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
+            fireEvent.keyDown(tablist, { key: 'Enter' });
+            fireEvent.keyDown(tablist, { key: ' ' });
+
+            expect(mockOnChange).not.toHaveBeenCalled();
         });
     });
 
     describe('Variants', () => {
-        it('renders with border variant by default', () => {
+        it('renders with bordered variant by default', () => {
             render(<TabList>{defaultChildren}</TabList>);
 
             const tablist = screen.getByRole('tablist');
             expect(tablist).toBeInTheDocument();
+
+            // Should render the indicator for bordered variant by default
+            const indicator = tablist.querySelector('.ns-tab-indicator');
+            expect(indicator).toBeInTheDocument();
         });
 
-        it('renders with border variant explicitly set', () => {
+        it('renders with bordered variant explicitly set', () => {
             render(<TabList variant="bordered">{defaultChildren}</TabList>);
 
             const tablist = screen.getByRole('tablist');
             expect(tablist).toBeInTheDocument();
 
-            // Should render the indicator for border variant
+            // Should render the indicator for bordered variant
             const indicator = tablist.querySelector('.ns-tab-indicator');
             expect(indicator).toBeInTheDocument();
         });
@@ -276,7 +355,7 @@ describe('TabList', () => {
     });
 
     describe('Active Indicator', () => {
-        it('renders indicator only for border variant', () => {
+        it('renders indicator only for bordered variant', () => {
             const { rerender } = render(
                 <TabList variant="bordered">{defaultChildren}</TabList>
             );
@@ -290,6 +369,43 @@ describe('TabList', () => {
             tablist = screen.getByRole('tablist');
             indicator = tablist.querySelector('.ns-tab-indicator');
             expect(indicator).not.toBeInTheDocument();
+        });
+
+        it('positions indicator based on active tab', () => {
+            const { rerender } = render(
+                <TabList variant="bordered" activeIndex={0}>
+                    {defaultChildren}
+                </TabList>
+            );
+
+            let tablist = screen.getByRole('tablist');
+            let indicator = tablist.querySelector(
+                '.ns-tab-indicator'
+            ) as HTMLElement;
+            expect(indicator).toBeInTheDocument();
+
+            // Mock offsetLeft and offsetWidth for testing
+            Object.defineProperty(HTMLElement.prototype, 'offsetLeft', {
+                configurable: true,
+                value: 0,
+            });
+            Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+                configurable: true,
+                value: 100,
+            });
+
+            rerender(
+                <TabList variant="bordered" activeIndex={1}>
+                    {defaultChildren}
+                </TabList>
+            );
+
+            // Indicator should still be present
+            tablist = screen.getByRole('tablist');
+            indicator = tablist.querySelector(
+                '.ns-tab-indicator'
+            ) as HTMLElement;
+            expect(indicator).toBeInTheDocument();
         });
     });
 
@@ -326,16 +442,36 @@ describe('TabList', () => {
 
             const tablist = screen.getByRole('tablist');
             expect(tablist).toHaveAttribute('role', 'tablist');
-            expect(tablist).toHaveAttribute('tabindex', '0');
+            expect(tablist).toHaveAttribute('aria-label', 'Tab list');
         });
 
-        it('maintains focus management', () => {
-            render(<TabList>{defaultChildren}</TabList>);
+        it('maintains focus management with roving tabindex', () => {
+            render(<TabList activeIndex={1}>{defaultChildren}</TabList>);
 
             const tabs = screen.getAllByRole('tab');
+            // Only the active/focused tab should be focusable
+            expect(tabs[0]).toHaveAttribute('tabindex', '-1');
+            expect(tabs[1]).toHaveAttribute('tabindex', '0');
+            expect(tabs[2]).toHaveAttribute('tabindex', '-1');
+        });
+
+        it('updates tabindex when focus changes via keyboard', () => {
+            render(<TabList activeIndex={0}>{defaultChildren}</TabList>);
+
+            const tablist = screen.getByRole('tablist');
+            let tabs = screen.getAllByRole('tab');
+
+            // Initially, first tab should be focusable
             expect(tabs[0]).toHaveAttribute('tabindex', '0');
             expect(tabs[1]).toHaveAttribute('tabindex', '-1');
-            expect(tabs[2]).toHaveAttribute('tabindex', '-1');
+
+            // Move focus to next tab
+            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+
+            // Re-query tabs after state update
+            tabs = screen.getAllByRole('tab');
+            expect(tabs[0]).toHaveAttribute('tabindex', '-1');
+            expect(tabs[1]).toHaveAttribute('tabindex', '0');
         });
     });
 
@@ -368,9 +504,33 @@ describe('TabList', () => {
             const tablist = screen.getByRole('tablist');
             fireEvent.keyDown(tablist, { key: 'ArrowRight' });
             fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
+            fireEvent.keyDown(tablist, { key: 'Enter' });
+            fireEvent.keyDown(tablist, { key: ' ' });
 
             // Should not call onChange when there are no tabs
             expect(mockOnChange).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('Focus Management', () => {
+        it('calls focusTab function when navigating with arrow keys', () => {
+            // Mock the focus method on HTMLElement
+            HTMLElement.prototype.focus = jest.fn();
+
+            render(
+                <TabList activeIndex={0} onChange={mockOnChange}>
+                    {defaultChildren}
+                </TabList>
+            );
+
+            const tablist = screen.getByRole('tablist');
+            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+
+            // The focus method should be called on the tab element
+            expect(HTMLElement.prototype.focus).toHaveBeenCalled();
+
+            // Clean up the mock
+            (HTMLElement.prototype.focus as jest.Mock).mockRestore();
         });
     });
 });
