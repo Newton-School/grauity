@@ -34,7 +34,7 @@ export interface AlertBannerProps {
     /**
      * Alert banner padding
      *
-     * Default: `'var(--spacing-8px, 8px)'`
+     * Default: `'var(--spacing-4px, 4px) var(--spacing-8px, 8px)'` if action buttons/close button are present else `'var(--spacing-8px, 8px)'`
      * */
     padding?: string;
 
