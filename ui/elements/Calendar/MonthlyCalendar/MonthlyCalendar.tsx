@@ -112,7 +112,10 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
                             <MonthlyCalendarGridItem
                                 monthOffset={monthOffset}
                                 cellDate={item}
-                                events={events}
+                                events={events.sort(
+                                    (a, b) =>
+                                        a.start.getTime() - b.start.getTime()
+                                )}
                                 eventRenderer={eventRenderer}
                                 renderDayItem={renderDayItem}
                                 key={item.valueOf()}
