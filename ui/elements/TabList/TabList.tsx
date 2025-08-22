@@ -19,6 +19,8 @@ function TabList(props: TabListProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
     const [focusedIndex, setFocusedIndex] = useState(-1);
+    const [hasEntered, setHasEntered] = useState(false);
+
     const tabs = React.Children.toArray(children);
 
     useClickAway(containerRef, () => {
@@ -55,10 +57,6 @@ function TabList(props: TabListProps) {
         } else if (e.key === ' ' || e.key === 'Enter') {
             e.preventDefault();
             onChange(indexToUse);
-        } else if (e.key === 'Tab') {
-            setTimeout(() => {
-                setFocusedIndex(-1);
-            }, 0);
         }
     };
 
@@ -81,6 +79,23 @@ function TabList(props: TabListProps) {
         }
     }, [activeIndex, children]);
 
+    const handleFocus = () => {
+        if (!hasEntered) {
+            setFocusedIndex(activeIndex);
+            setHasEntered(true);
+        }
+    };
+
+    const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+        const next = e.relatedTarget;
+        const container = containerRef.current;
+
+        if (!container || next == null || !container.contains(next)) {
+            setFocusedIndex(-1);
+            setHasEntered(false);
+        }
+    };
+
     return (
         <StyledTabList
             ref={containerRef}
@@ -89,6 +104,8 @@ function TabList(props: TabListProps) {
             onKeyDown={handleKeyDown}
             aria-label={ariaLabel}
             $variant={variant}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
         >
             {tabs.map((child, index) => {
                 if (React.isValidElement(child)) {
