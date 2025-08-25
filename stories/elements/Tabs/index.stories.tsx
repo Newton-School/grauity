@@ -1,6 +1,6 @@
 import { StoryFn } from '@storybook/react';
 import React from 'react';
-import Tabs, { TabProps } from 'ui/elements/Tabs';
+import Tabs, { TabsProps } from 'ui/elements/Tabs';
 
 export default {
     title: 'Elements/Tabs',
@@ -18,9 +18,9 @@ export default {
     ],
 };
 
-const Template = (args: TabProps) => <Tabs {...args} />;
+const Template = (args: TabsProps) => <Tabs {...args} />;
 
-const defaultArgs: TabProps = {
+const defaultArgs: TabsProps = {
     tabItems: ['Weekly', 'Monthly'],
 };
 

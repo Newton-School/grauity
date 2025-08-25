@@ -8,7 +8,7 @@ export const ExampleTab = () => {
         <div style={{ display: 'flex' }}>
             <Tab
                 id="tab1"
-                variant="border"
+                variant="bordered"
                 icon="label-filled"
                 isActive={activeTab === 'tab1'}
                 onClick={() => setActiveTab('tab1')}
@@ -17,7 +17,7 @@ export const ExampleTab = () => {
             </Tab>
             <Tab
                 id="tab2"
-                variant="border"
+                variant="bordered"
                 icon="label-filled"
                 isActive={activeTab === 'tab2'}
                 onClick={() => setActiveTab('tab2')}
@@ -27,7 +27,7 @@ export const ExampleTab = () => {
             </Tab>
             <Tab
                 id="tab3"
-                variant="border"
+                variant="bordered"
                 icon="label-filled"
                 isActive={activeTab === 'tab3'}
                 onClick={() => setActiveTab('tab3')}
