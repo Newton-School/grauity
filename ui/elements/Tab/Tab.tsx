@@ -24,7 +24,7 @@ function Tab(props: TabProps) {
         isActive = false,
         disabled = false,
         onClick = () => {},
-        tabIndex = -1,
+        tabIndex = 0,
         id = '',
         ariaControls = '',
     } = props;
