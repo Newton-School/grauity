@@ -18,7 +18,7 @@ export interface TabListProps {
      */
     onChange?: (index: number) => void;
     /**
-     * Variant of the TabList, can be 'border' or 'rounded'.
+     * Variant of the TabList, can be 'bordered' or 'rounded'.
      * @default 'bordered'
      */
     variant?: TabVariant;

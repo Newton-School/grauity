@@ -32,7 +32,7 @@ const Template = (args: TabListProps) => {
 export const Component = Template.bind({});
 
 Component.args = {
-    variant: 'border',
+    variant: 'bordered',
     size: 'medium',
     className: 'my-tab-list',
     ariaLabel: 'Example Tab List',

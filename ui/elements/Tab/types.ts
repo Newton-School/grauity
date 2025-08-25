@@ -90,7 +90,7 @@ export interface TabProps {
     onClick?: () => void;
     /**
      * Tab index for keyboard navigation.
-     * @default '-1'
+     * @default 0
      */
     tabIndex?: number;
     /**
