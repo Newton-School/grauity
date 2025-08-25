@@ -1,6 +1,5 @@
 import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
 
-import { useClickAway } from '../../../hooks';
 import { TAB_LIST_VARIANT_ENUM } from './constants';
 import { StyledTabList, StyledTabListIndicator } from './index.styles';
 import { TabListProps } from './types';
@@ -22,10 +21,6 @@ function TabList(props: TabListProps) {
     const [hasEntered, setHasEntered] = useState(false);
 
     const tabs = React.Children.toArray(children);
-
-    useClickAway(containerRef, () => {
-        setFocusedIndex(-1);
-    });
 
     const focusTab = (index: number) => {
         const container = containerRef.current;
