@@ -69,8 +69,8 @@ export interface TabProps {
      */
     iconPosition?: TabIconPosition;
     /**
-     * Variant of the tab, can be 'rounded', 'default', or 'bordered'.
-     * @default 'rounded'
+     * Variant of the tab, can be 'rounded', or 'bordered'.
+     * @default 'bordered'
      */
     variant?: TabVariant;
     /**
