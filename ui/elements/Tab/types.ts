@@ -101,7 +101,7 @@ export interface TabProps {
 }
 
 export interface StyledTabComponentProps extends StyledButtonProps {
-    $iconPosition?: TabIconPosition | false;
+    $iconPosition?: TabIconPosition;
     $size: TabSize;
     $isActive?: boolean;
     $disabled?: boolean;
@@ -111,7 +111,7 @@ export interface StyledTabComponentProps extends StyledButtonProps {
 export interface StyledTabContainerProps extends StyledDivProps {}
 
 export interface StyledTabContentProps extends StyledDivProps {
-    $iconPosition?: TabIconPosition | false;
+    $iconPosition?: TabIconPosition;
     $size: TabSize;
 }
 
