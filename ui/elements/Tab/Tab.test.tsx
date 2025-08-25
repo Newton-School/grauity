@@ -36,7 +36,7 @@ describe('Tab', () => {
         const onClick = jest.fn();
         render(<Tab onClick={onClick}>Tab</Tab>);
         fireEvent.click(screen.getByRole('tab'));
-        expect(onClick).toHaveBeenCalled();
+        expect(onClick).toHaveBeenCalledTimes(1);
     });
 
     it('does not call onClick when disabled', () => {
@@ -81,7 +81,7 @@ describe('Tab', () => {
         expect(tab).toBeDisabled();
     });
 
-    it('renders icon in all specified positions', () => {
+    it('renders icon', () => {
         render(
             <Tab icon="label" iconPosition="left">
                 Tab

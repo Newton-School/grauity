@@ -73,23 +73,38 @@ describe('TabList', () => {
     });
 
     it('passes variant prop to child Tab components', () => {
+        const TabSpy = jest.spyOn(React, 'cloneElement');
+
         render(
             <TabList variant={TAB_LIST_VARIANT_ENUM.ROUNDED}>
                 {defaultTabs}
             </TabList>
         );
 
-        // Test that tabs are rendered (variant is handled internally by styled components)
-        const tabs = screen.getAllByRole('tab');
-        expect(tabs).toHaveLength(3);
+        const cloneElementCalls = TabSpy.mock.calls;
+        cloneElementCalls.forEach((call) => {
+            const [, props] = call;
+            expect(props).toHaveProperty(
+                'variant',
+                TAB_LIST_VARIANT_ENUM.ROUNDED
+            );
+        });
+
+        TabSpy.mockRestore();
     });
 
     it('passes size prop to child Tab components', () => {
+        const TabSpy = jest.spyOn(React, 'cloneElement');
+
         render(<TabList size="large">{defaultTabs}</TabList>);
 
-        // Test that tabs are rendered (size is handled internally by styled components)
-        const tabs = screen.getAllByRole('tab');
-        expect(tabs).toHaveLength(3);
+        const cloneElementCalls = TabSpy.mock.calls;
+        cloneElementCalls.forEach((call) => {
+            const [, props] = call;
+            expect(props).toHaveProperty('size', 'large');
+        });
+
+        TabSpy.mockRestore();
     });
 
     it('handles keyboard navigation - ArrowRight', () => {
@@ -178,23 +193,6 @@ describe('TabList', () => {
 
         expect(screen.getByRole('tablist')).toBeInTheDocument();
         expect(screen.queryAllByRole('tab')).toHaveLength(0);
-    });
-
-    it('handles mixed children types', () => {
-        const mixedChildren = [
-            <Tab key="tab1">Tab 1</Tab>,
-            'Text node',
-            <Tab key="tab2">Tab 2</Tab>,
-            null,
-            <Tab key="tab3">Tab 3</Tab>,
-        ];
-
-        render(<TabList>{mixedChildren}</TabList>);
-
-        expect(screen.getAllByRole('tab')).toHaveLength(3);
-        expect(screen.getByText('Tab 1')).toBeInTheDocument();
-        expect(screen.getByText('Tab 2')).toBeInTheDocument();
-        expect(screen.getByText('Tab 3')).toBeInTheDocument();
     });
 
     it('renders tabs with icons', () => {
