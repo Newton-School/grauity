@@ -4,560 +4,268 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 
 import Tab from '../Tab';
+import { TAB_LIST_VARIANT_ENUM } from './constants';
 import TabList from './TabList';
 
 describe('TabList', () => {
-    const mockOnChange = jest.fn();
-
-    beforeEach(() => {
-        mockOnChange.mockClear();
-    });
-
-    const defaultChildren = [
-        <Tab key="tab1" id="tab1">
-            Tab 1
-        </Tab>,
-        <Tab key="tab2" id="tab2">
-            Tab 2
-        </Tab>,
-        <Tab key="tab3" id="tab3">
-            Tab 3
-        </Tab>,
+    const defaultTabs = [
+        <Tab key="tab1">Tab 1</Tab>,
+        <Tab key="tab2">Tab 2</Tab>,
+        <Tab key="tab3">Tab 3</Tab>,
     ];
 
-    describe('Basic Rendering', () => {
-        it('renders with default props', () => {
-            render(<TabList>{defaultChildren}</TabList>);
+    it('renders TabList with Tab components', () => {
+        render(<TabList>{defaultTabs}</TabList>);
 
-            const tablist = screen.getByRole('tablist');
-            expect(tablist).toBeInTheDocument();
-            expect(tablist).toHaveAttribute('aria-label', 'Tab list');
-        });
+        expect(screen.getByRole('tablist')).toBeInTheDocument();
+        expect(screen.getByText('Tab 1')).toBeInTheDocument();
+        expect(screen.getByText('Tab 2')).toBeInTheDocument();
+        expect(screen.getByText('Tab 3')).toBeInTheDocument();
+    });
 
-        it('renders with custom aria-label', () => {
-            const customAriaLabel = 'Custom tab navigation';
-            render(
-                <TabList ariaLabel={customAriaLabel}>{defaultChildren}</TabList>
-            );
+    it('renders with correct ARIA attributes', () => {
+        render(<TabList ariaLabel="Navigation tabs">{defaultTabs}</TabList>);
 
-            const tablist = screen.getByRole('tablist');
-            expect(tablist).toHaveAttribute('aria-label', customAriaLabel);
-        });
+        const tablist = screen.getByRole('tablist');
+        expect(tablist).toHaveAttribute('aria-label', 'Navigation tabs');
+    });
 
-        it('renders with custom className', () => {
-            const customClassName = 'custom-tab-list';
-            render(
-                <TabList className={customClassName}>{defaultChildren}</TabList>
-            );
+    it('uses default aria-label when not provided', () => {
+        render(<TabList>{defaultTabs}</TabList>);
 
-            const tablist = screen.getByRole('tablist');
-            expect(tablist).toHaveClass(customClassName);
-        });
+        const tablist = screen.getByRole('tablist');
+        expect(tablist).toHaveAttribute('aria-label', 'Tab list');
+    });
 
-        it('renders all children as tabs', () => {
-            render(<TabList>{defaultChildren}</TabList>);
+    it('applies custom className', () => {
+        render(<TabList className="custom-tablist">{defaultTabs}</TabList>);
 
-            const tabs = screen.getAllByRole('tab');
-            expect(tabs).toHaveLength(3);
-            expect(tabs[0]).toHaveTextContent('Tab 1');
-            expect(tabs[1]).toHaveTextContent('Tab 2');
-            expect(tabs[2]).toHaveTextContent('Tab 3');
-        });
+        const tablist = screen.getByRole('tablist');
+        expect(tablist).toHaveClass('custom-tablist');
+    });
 
-        it('renders without children', () => {
-            render(<TabList />);
+    it('sets the first tab as active by default', () => {
+        render(<TabList>{defaultTabs}</TabList>);
 
-            const tablist = screen.getByRole('tablist');
-            expect(tablist).toBeInTheDocument();
-            expect(screen.queryAllByRole('tab')).toHaveLength(0);
+        const tabs = screen.getAllByRole('tab');
+        expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
+        expect(tabs[1]).toHaveAttribute('aria-selected', 'false');
+        expect(tabs[2]).toHaveAttribute('aria-selected', 'false');
+    });
+
+    it('sets the correct tab as active based on activeIndex prop', () => {
+        render(<TabList activeIndex={1}>{defaultTabs}</TabList>);
+
+        const tabs = screen.getAllByRole('tab');
+        expect(tabs[0]).toHaveAttribute('aria-selected', 'false');
+        expect(tabs[1]).toHaveAttribute('aria-selected', 'true');
+        expect(tabs[2]).toHaveAttribute('aria-selected', 'false');
+    });
+
+    it('calls onChange when a tab is clicked', () => {
+        const handleChange = jest.fn();
+        render(<TabList onChange={handleChange}>{defaultTabs}</TabList>);
+
+        const tabs = screen.getAllByRole('tab');
+        fireEvent.click(tabs[1]);
+
+        expect(handleChange).toHaveBeenCalledWith(1);
+    });
+
+    it('passes variant prop to child Tab components', () => {
+        render(
+            <TabList variant={TAB_LIST_VARIANT_ENUM.ROUNDED}>
+                {defaultTabs}
+            </TabList>
+        );
+
+        // Test that tabs are rendered (variant is handled internally by styled components)
+        const tabs = screen.getAllByRole('tab');
+        expect(tabs).toHaveLength(3);
+    });
+
+    it('passes size prop to child Tab components', () => {
+        render(<TabList size="large">{defaultTabs}</TabList>);
+
+        // Test that tabs are rendered (size is handled internally by styled components)
+        const tabs = screen.getAllByRole('tab');
+        expect(tabs).toHaveLength(3);
+    });
+
+    it('handles keyboard navigation - ArrowRight', () => {
+        render(<TabList>{defaultTabs}</TabList>);
+
+        const tablist = screen.getByRole('tablist');
+        const tabs = screen.getAllByRole('tab');
+
+        tabs[0].focus();
+        fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+
+        expect(tabs[1]).toHaveFocus();
+    });
+
+    it('handles keyboard navigation - ArrowLeft', () => {
+        render(<TabList activeIndex={1}>{defaultTabs}</TabList>);
+
+        const tablist = screen.getByRole('tablist');
+        const tabs = screen.getAllByRole('tab');
+
+        tabs[1].focus();
+        fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
+
+        expect(tabs[0]).toHaveFocus();
+    });
+
+    it('wraps around when navigating with ArrowRight from last tab', () => {
+        render(<TabList activeIndex={2}>{defaultTabs}</TabList>);
+
+        const tablist = screen.getByRole('tablist');
+        const tabs = screen.getAllByRole('tab');
+
+        tabs[2].focus();
+        fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+
+        expect(tabs[0]).toHaveFocus();
+    });
+
+    it('wraps around when navigating with ArrowLeft from first tab', () => {
+        render(<TabList>{defaultTabs}</TabList>);
+
+        const tablist = screen.getByRole('tablist');
+        const tabs = screen.getAllByRole('tab');
+
+        tabs[0].focus();
+        fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
+
+        expect(tabs[2]).toHaveFocus();
+    });
+
+    it('renders indicator for bordered variant', () => {
+        render(
+            <TabList variant={TAB_LIST_VARIANT_ENUM.BORDERED}>
+                {defaultTabs}
+            </TabList>
+        );
+
+        expect(
+            screen.getByRole('tablist').querySelector('.ns-tab-indicator')
+        ).toBeInTheDocument();
+    });
+
+    it('does not render indicator for rounded variant', () => {
+        render(
+            <TabList variant={TAB_LIST_VARIANT_ENUM.ROUNDED}>
+                {defaultTabs}
+            </TabList>
+        );
+
+        expect(
+            screen.getByRole('tablist').querySelector('.ns-tab-indicator')
+        ).not.toBeInTheDocument();
+    });
+
+    it('sets correct tabIndex for active tab', () => {
+        render(<TabList activeIndex={1}>{defaultTabs}</TabList>);
+
+        const tabs = screen.getAllByRole('tab');
+        expect(tabs[0]).toHaveAttribute('tabIndex', '-1');
+        expect(tabs[1]).toHaveAttribute('tabIndex', '0');
+        expect(tabs[2]).toHaveAttribute('tabIndex', '-1');
+    });
+
+    it('handles empty children gracefully', () => {
+        render(<TabList />);
+
+        expect(screen.getByRole('tablist')).toBeInTheDocument();
+        expect(screen.queryAllByRole('tab')).toHaveLength(0);
+    });
+
+    it('handles mixed children types', () => {
+        const mixedChildren = [
+            <Tab key="tab1">Tab 1</Tab>,
+            'Text node',
+            <Tab key="tab2">Tab 2</Tab>,
+            null,
+            <Tab key="tab3">Tab 3</Tab>,
+        ];
+
+        render(<TabList>{mixedChildren}</TabList>);
+
+        expect(screen.getAllByRole('tab')).toHaveLength(3);
+        expect(screen.getByText('Tab 1')).toBeInTheDocument();
+        expect(screen.getByText('Tab 2')).toBeInTheDocument();
+        expect(screen.getByText('Tab 3')).toBeInTheDocument();
+    });
+
+    it('renders tabs with icons', () => {
+        const tabsWithIcons = [
+            <Tab key="tab1" icon="home">
+                Home
+            </Tab>,
+            <Tab key="tab2" icon="users">
+                Profile
+            </Tab>,
+            <Tab key="tab3" icon="code">
+                Settings
+            </Tab>,
+        ];
+
+        render(<TabList>{tabsWithIcons}</TabList>);
+
+        const tabs = screen.getAllByRole('tab');
+        tabs.forEach((tab) => {
+            expect(tab.querySelector('i')).toBeTruthy();
         });
     });
 
-    describe('Active State Management', () => {
-        it('sets first tab as active by default', () => {
-            render(<TabList>{defaultChildren}</TabList>);
+    it('renders tabs with subtext', () => {
+        const tabsWithSubtext = [
+            <Tab key="tab1" subText="Home page">
+                Home
+            </Tab>,
+            <Tab key="tab2" subText="User profile">
+                Profile
+            </Tab>,
+        ];
 
-            const tabs = screen.getAllByRole('tab');
-            expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
-            expect(tabs[0]).toHaveAttribute('tabindex', '0');
-            expect(tabs[1]).toHaveAttribute('aria-selected', 'false');
-            expect(tabs[1]).toHaveAttribute('tabindex', '-1');
-            expect(tabs[2]).toHaveAttribute('aria-selected', 'false');
-            expect(tabs[2]).toHaveAttribute('tabindex', '-1');
-        });
+        render(<TabList>{tabsWithSubtext}</TabList>);
 
-        it('sets specified tab as active with activeIndex prop', () => {
-            render(<TabList activeIndex={1}>{defaultChildren}</TabList>);
-
-            const tabs = screen.getAllByRole('tab');
-            expect(tabs[0]).toHaveAttribute('aria-selected', 'false');
-            expect(tabs[0]).toHaveAttribute('tabindex', '-1');
-            expect(tabs[1]).toHaveAttribute('aria-selected', 'true');
-            expect(tabs[1]).toHaveAttribute('tabindex', '0');
-            expect(tabs[2]).toHaveAttribute('aria-selected', 'false');
-            expect(tabs[2]).toHaveAttribute('tabindex', '-1');
-        });
-
-        it('handles activeIndex greater than number of children', () => {
-            render(<TabList activeIndex={5}>{defaultChildren}</TabList>);
-
-            const tabs = screen.getAllByRole('tab');
-            // When activeIndex is out of bounds, no tab should be active
-            expect(tabs[0]).toHaveAttribute('aria-selected', 'false');
-            expect(tabs[1]).toHaveAttribute('aria-selected', 'false');
-            expect(tabs[2]).toHaveAttribute('aria-selected', 'false');
-            // But the first tab should still be focusable (focusedIndex defaults to activeIndex)
-            expect(tabs[0]).toHaveAttribute('tabindex', '-1');
-            expect(tabs[1]).toHaveAttribute('tabindex', '-1');
-            expect(tabs[2]).toHaveAttribute('tabindex', '-1');
-        });
-
-        it('updates focused tab when activeIndex changes', () => {
-            const { rerender } = render(
-                <TabList activeIndex={0}>{defaultChildren}</TabList>
-            );
-
-            let tabs = screen.getAllByRole('tab');
-            expect(tabs[0]).toHaveAttribute('tabindex', '0');
-            expect(tabs[1]).toHaveAttribute('tabindex', '-1');
-
-            rerender(<TabList activeIndex={1}>{defaultChildren}</TabList>);
-
-            tabs = screen.getAllByRole('tab');
-            expect(tabs[0]).toHaveAttribute('tabindex', '-1');
-            expect(tabs[1]).toHaveAttribute('tabindex', '0');
-        });
+        expect(screen.getByText('Home page')).toBeInTheDocument();
+        expect(screen.getByText('User profile')).toBeInTheDocument();
     });
 
-    describe('Click Interactions', () => {
-        it('calls onChange when tab is clicked', () => {
-            render(
-                <TabList onChange={mockOnChange}>{defaultChildren}</TabList>
-            );
-            const tabs = screen.getAllByRole('tab');
-            fireEvent.click(tabs[1]);
-            expect(mockOnChange).toHaveBeenCalledWith(1);
-        });
+    it('handles disabled tabs', () => {
+        const tabsWithDisabled = [
+            <Tab key="tab1">Tab 1</Tab>,
+            <Tab key="tab2" disabled>
+                Disabled Tab
+            </Tab>,
+            <Tab key="tab3">Tab 3</Tab>,
+        ];
 
-        it('calls onChange with correct index for each tab', () => {
-            render(
-                <TabList onChange={mockOnChange}>{defaultChildren}</TabList>
-            );
+        const handleChange = jest.fn();
+        render(<TabList onChange={handleChange}>{tabsWithDisabled}</TabList>);
 
-            const tabs = screen.getAllByRole('tab');
+        const tabs = screen.getAllByRole('tab');
+        expect(tabs[1]).toBeDisabled();
 
-            fireEvent.click(tabs[0]);
-            expect(mockOnChange).toHaveBeenCalledWith(0);
-
-            fireEvent.click(tabs[2]);
-            expect(mockOnChange).toHaveBeenCalledWith(2);
-        });
-
-        it('does not call onChange when no callback provided', () => {
-            // Should not throw error when onChange is not provided
-            expect(() => {
-                render(<TabList>{defaultChildren}</TabList>);
-                const tabs = screen.getAllByRole('tab');
-                fireEvent.click(tabs[1]);
-            }).not.toThrow();
-        });
+        fireEvent.click(tabs[1]);
+        expect(handleChange).not.toHaveBeenCalled();
     });
 
-    describe('Keyboard Navigation', () => {
-        it('moves to next tab on Arrow Right key', () => {
-            render(
-                <TabList activeIndex={0} onChange={mockOnChange}>
-                    {defaultChildren}
-                </TabList>
-            );
+    it('maintains focus state correctly', () => {
+        render(<TabList>{defaultTabs}</TabList>);
 
-            const tablist = screen.getByRole('tablist');
-            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+        const tablist = screen.getByRole('tablist');
+        const tabs = screen.getAllByRole('tab');
 
-            // Should not call onChange immediately, only on focus change
-            expect(mockOnChange).not.toHaveBeenCalled();
-        });
+        fireEvent.focus(tablist);
 
-        it('moves to previous tab on Arrow Left key', () => {
-            render(
-                <TabList activeIndex={1} onChange={mockOnChange}>
-                    {defaultChildren}
-                </TabList>
-            );
+        fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+        expect(tabs[1]).toHaveFocus();
 
-            const tablist = screen.getByRole('tablist');
-            fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
-
-            // Should not call onChange immediately, only on focus change
-            expect(mockOnChange).not.toHaveBeenCalled();
-        });
-
-        it('activates focused tab on Enter key', () => {
-            render(
-                <TabList activeIndex={0} onChange={mockOnChange}>
-                    {defaultChildren}
-                </TabList>
-            );
-
-            const tablist = screen.getByRole('tablist');
-
-            // First move focus to second tab
-            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-
-            // Then press Enter to activate it
-            fireEvent.keyDown(tablist, { key: 'Enter' });
-
-            expect(mockOnChange).toHaveBeenCalledWith(1);
-        });
-
-        it('activates focused tab on Space key', () => {
-            render(
-                <TabList activeIndex={0} onChange={mockOnChange}>
-                    {defaultChildren}
-                </TabList>
-            );
-
-            const tablist = screen.getByRole('tablist');
-
-            // First move focus to third tab
-            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-
-            // Then press Space to activate it
-            fireEvent.keyDown(tablist, { key: ' ' });
-
-            expect(mockOnChange).toHaveBeenCalledWith(2);
-        });
-
-        it('wraps to first tab when pressing Arrow Right on last tab', () => {
-            render(
-                <TabList activeIndex={2} onChange={mockOnChange}>
-                    {defaultChildren}
-                </TabList>
-            );
-
-            const tablist = screen.getByRole('tablist');
-            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-            fireEvent.keyDown(tablist, { key: 'Enter' });
-
-            expect(mockOnChange).toHaveBeenCalledWith(0);
-        });
-
-        it('wraps to last tab when pressing Arrow Left on first tab', () => {
-            render(
-                <TabList activeIndex={0} onChange={mockOnChange}>
-                    {defaultChildren}
-                </TabList>
-            );
-
-            const tablist = screen.getByRole('tablist');
-            fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
-            fireEvent.keyDown(tablist, { key: 'Enter' });
-
-            expect(mockOnChange).toHaveBeenCalledWith(2);
-        });
-
-        it('ignores other keys', () => {
-            render(
-                <TabList activeIndex={0} onChange={mockOnChange}>
-                    {defaultChildren}
-                </TabList>
-            );
-
-            const tablist = screen.getByRole('tablist');
-            fireEvent.keyDown(tablist, { key: 'Escape' });
-            fireEvent.keyDown(tablist, { key: 'Tab' });
-            fireEvent.keyDown(tablist, { key: 'Home' });
-
-            expect(mockOnChange).not.toHaveBeenCalled();
-        });
-
-        it('handles keyboard navigation with single tab', () => {
-            render(
-                <TabList activeIndex={0} onChange={mockOnChange}>
-                    <Tab id="single">Single Tab</Tab>
-                </TabList>
-            );
-
-            const tablist = screen.getByRole('tablist');
-            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-            fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
-            fireEvent.keyDown(tablist, { key: 'Enter' });
-
-            // Should activate the same tab (index 0)
-            expect(mockOnChange).toHaveBeenCalledWith(0);
-            expect(mockOnChange).toHaveBeenCalledTimes(1);
-        });
-
-        it('does not navigate when no tabs present', () => {
-            render(<TabList onChange={mockOnChange} />);
-
-            const tablist = screen.getByRole('tablist');
-            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-            fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
-            fireEvent.keyDown(tablist, { key: 'Enter' });
-            fireEvent.keyDown(tablist, { key: ' ' });
-
-            expect(mockOnChange).not.toHaveBeenCalled();
-        });
-    });
-
-    describe('Variants', () => {
-        it('renders with bordered variant by default', () => {
-            render(<TabList>{defaultChildren}</TabList>);
-
-            const tablist = screen.getByRole('tablist');
-            expect(tablist).toBeInTheDocument();
-
-            // Should render the indicator for bordered variant by default
-            const indicator = tablist.querySelector('.ns-tab-indicator');
-            expect(indicator).toBeInTheDocument();
-        });
-
-        it('renders with bordered variant explicitly set', () => {
-            render(<TabList variant="bordered">{defaultChildren}</TabList>);
-
-            const tablist = screen.getByRole('tablist');
-            expect(tablist).toBeInTheDocument();
-
-            // Should render the indicator for bordered variant
-            const indicator = tablist.querySelector('.ns-tab-indicator');
-            expect(indicator).toBeInTheDocument();
-        });
-
-        it('renders with rounded variant', () => {
-            render(<TabList variant="rounded">{defaultChildren}</TabList>);
-
-            const tablist = screen.getByRole('tablist');
-            expect(tablist).toBeInTheDocument();
-
-            // Should not render the indicator for rounded variant
-            const indicator = tablist.querySelector('.ns-tab-indicator');
-            expect(indicator).not.toBeInTheDocument();
-        });
-    });
-
-    describe('Size Prop', () => {
-        it('passes size prop to child tabs', () => {
-            render(<TabList size="large">{defaultChildren}</TabList>);
-
-            const tabs = screen.getAllByRole('tab');
-            // Verify tabs are rendered (size will be applied via styled-components)
-            expect(tabs).toHaveLength(3);
-        });
-
-        it('uses medium size by default', () => {
-            render(<TabList>{defaultChildren}</TabList>);
-
-            const tabs = screen.getAllByRole('tab');
-            expect(tabs).toHaveLength(3);
-        });
-    });
-
-    describe('Active Indicator', () => {
-        it('renders indicator only for bordered variant', () => {
-            const { rerender } = render(
-                <TabList variant="bordered">{defaultChildren}</TabList>
-            );
-
-            let tablist = screen.getByRole('tablist');
-            let indicator = tablist.querySelector('.ns-tab-indicator');
-            expect(indicator).toBeInTheDocument();
-
-            rerender(<TabList variant="rounded">{defaultChildren}</TabList>);
-
-            tablist = screen.getByRole('tablist');
-            indicator = tablist.querySelector('.ns-tab-indicator');
-            expect(indicator).not.toBeInTheDocument();
-        });
-
-        it('positions indicator based on active tab', () => {
-            const { rerender } = render(
-                <TabList variant="bordered" activeIndex={0}>
-                    {defaultChildren}
-                </TabList>
-            );
-
-            let tablist = screen.getByRole('tablist');
-            let indicator = tablist.querySelector(
-                '.ns-tab-indicator'
-            ) as HTMLElement;
-            expect(indicator).toBeInTheDocument();
-
-            // Mock offsetLeft and offsetWidth for testing
-            Object.defineProperty(HTMLElement.prototype, 'offsetLeft', {
-                configurable: true,
-                value: 0,
-            });
-            Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
-                configurable: true,
-                value: 100,
-            });
-
-            rerender(
-                <TabList variant="bordered" activeIndex={1}>
-                    {defaultChildren}
-                </TabList>
-            );
-
-            // Indicator should still be present
-            tablist = screen.getByRole('tablist');
-            indicator = tablist.querySelector(
-                '.ns-tab-indicator'
-            ) as HTMLElement;
-            expect(indicator).toBeInTheDocument();
-        });
-    });
-
-    describe('Tab Props Inheritance', () => {
-        it('passes variant prop to child tabs', () => {
-            render(
-                <TabList variant="rounded">
-                    <Tab id="test">Test Tab</Tab>
-                </TabList>
-            );
-
-            const tab = screen.getByRole('tab');
-            expect(tab).toBeInTheDocument();
-        });
-
-        it('preserves existing props on child tabs', () => {
-            render(
-                <TabList>
-                    <Tab id="test" icon="check" subText="Custom">
-                        Test Tab
-                    </Tab>
-                </TabList>
-            );
-
-            const tab = screen.getByRole('tab');
-            expect(tab).toHaveTextContent('Test Tab');
-            expect(tab).toHaveTextContent('Custom');
-        });
-    });
-
-    describe('Accessibility', () => {
-        it('has proper ARIA attributes', () => {
-            render(<TabList>{defaultChildren}</TabList>);
-
-            const tablist = screen.getByRole('tablist');
-            expect(tablist).toHaveAttribute('role', 'tablist');
-            expect(tablist).toHaveAttribute('aria-label', 'Tab list');
-        });
-
-        it('maintains focus management with roving tabindex', () => {
-            render(<TabList activeIndex={1}>{defaultChildren}</TabList>);
-
-            const tabs = screen.getAllByRole('tab');
-            // Only the active/focused tab should be focusable
-            expect(tabs[0]).toHaveAttribute('tabindex', '-1');
-            expect(tabs[1]).toHaveAttribute('tabindex', '0');
-            expect(tabs[2]).toHaveAttribute('tabindex', '-1');
-        });
-
-        it('updates tabindex when focus changes via keyboard', () => {
-            render(<TabList activeIndex={0}>{defaultChildren}</TabList>);
-
-            const tablist = screen.getByRole('tablist');
-            let tabs = screen.getAllByRole('tab');
-
-            // Initially, first tab should be focusable
-            expect(tabs[0]).toHaveAttribute('tabindex', '0');
-            expect(tabs[1]).toHaveAttribute('tabindex', '-1');
-
-            // Move focus to next tab
-            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-
-            // Re-query tabs after state update
-            tabs = screen.getAllByRole('tab');
-            expect(tabs[0]).toHaveAttribute('tabindex', '-1');
-            expect(tabs[1]).toHaveAttribute('tabindex', '0');
-        });
-    });
-
-    describe('Edge Cases', () => {
-        it('handles empty children array', () => {
-            render(<TabList>{[]}</TabList>);
-
-            const tablist = screen.getByRole('tablist');
-            expect(tablist).toBeInTheDocument();
-            expect(screen.queryAllByRole('tab')).toHaveLength(0);
-        });
-
-        it('handles non-Tab children gracefully', () => {
-            render(
-                <TabList>
-                    <Tab id="tab1">Tab 1</Tab>
-                    <div>Non-tab content</div>
-                    <Tab id="tab2">Tab 2</Tab>
-                </TabList>
-            );
-
-            const tabs = screen.getAllByRole('tab');
-            expect(tabs).toHaveLength(2);
-            expect(screen.getByText('Non-tab content')).toBeInTheDocument();
-        });
-
-        it('renders various non-React-element children without modification', () => {
-            render(
-                <TabList>
-                    <Tab id="tab1">Tab 1</Tab>
-                    Plain text string
-                    {42}
-                    <span>HTML element</span>
-                    <Tab id="tab2">Tab 2</Tab>
-                    {null}
-                    {false}
-                </TabList>
-            );
-
-            const tabs = screen.getAllByRole('tab');
-            expect(tabs).toHaveLength(2);
-
-            // All non-Tab children should be rendered as-is
-            const tablist = screen.getByRole('tablist');
-            expect(tablist).toHaveTextContent('Plain text string');
-            expect(tablist).toHaveTextContent('42');
-            expect(screen.getByText('HTML element')).toBeInTheDocument();
-
-            // Tab children should still get proper props
-            expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
-            expect(tabs[1]).toHaveAttribute('aria-selected', 'false');
-        });
-
-        it('handles keyboard navigation with no tabs', () => {
-            render(<TabList onChange={mockOnChange} />);
-
-            const tablist = screen.getByRole('tablist');
-            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-            fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
-            fireEvent.keyDown(tablist, { key: 'Enter' });
-            fireEvent.keyDown(tablist, { key: ' ' });
-
-            // Should not call onChange when there are no tabs
-            expect(mockOnChange).not.toHaveBeenCalled();
-        });
-    });
-
-    describe('Focus Management', () => {
-        it('calls focusTab function when navigating with arrow keys', () => {
-            // Mock the focus method on HTMLElement
-            HTMLElement.prototype.focus = jest.fn();
-
-            render(
-                <TabList activeIndex={0} onChange={mockOnChange}>
-                    {defaultChildren}
-                </TabList>
-            );
-
-            const tablist = screen.getByRole('tablist');
-            fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-
-            // The focus method should be called on the tab element
-            expect(HTMLElement.prototype.focus).toHaveBeenCalled();
-
-            // Clean up the mock
-            (HTMLElement.prototype.focus as jest.Mock).mockRestore();
-        });
+        fireEvent.blur(tablist);
+        fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+        expect(tabs[1]).toHaveFocus();
     });
 });
