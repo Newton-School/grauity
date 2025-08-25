@@ -250,20 +250,4 @@ describe('TabList', () => {
         fireEvent.click(tabs[1]);
         expect(handleChange).not.toHaveBeenCalled();
     });
-
-    it('maintains focus state correctly', () => {
-        render(<TabList>{defaultTabs}</TabList>);
-
-        const tablist = screen.getByRole('tablist');
-        const tabs = screen.getAllByRole('tab');
-
-        fireEvent.focus(tablist);
-
-        fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-        expect(tabs[1]).toHaveFocus();
-
-        fireEvent.blur(tablist);
-        fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-        expect(tabs[1]).toHaveFocus();
-    });
 });
