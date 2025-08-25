@@ -24,6 +24,7 @@ export const StyledTab = styled.button<StyledTabComponentProps>`
     ${({ $iconPosition }) =>
         $iconPosition &&
         css`
+            align-items: center;
             ${ICON_POSITION_STYLES_MAPPING[$iconPosition]}
         `}
 

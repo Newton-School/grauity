@@ -76,19 +76,15 @@ export const ICON_POSITION_STYLES_MAPPING: {
 } = {
     [TAB_ICON_POSITIONS_ENUM.LEFT]: {
         flexDirection: 'row',
-        alignItems: 'center',
     },
     [TAB_ICON_POSITIONS_ENUM.RIGHT]: {
         flexDirection: 'row-reverse',
-        alignItems: 'center',
     },
     [TAB_ICON_POSITIONS_ENUM.TOP]: {
         flexDirection: 'column',
-        alignItems: 'center',
     },
     [TAB_ICON_POSITIONS_ENUM.BOTTOM]: {
         flexDirection: 'column-reverse',
-        alignItems: 'center',
     },
 };
 
@@ -96,7 +92,7 @@ export const TAB_VARIANT_STYLES_MAPPING: {
     [key in TAB_VARIANT_ENUM]: { [cssSelector: string]: any };
 } = {
     [TAB_VARIANT_ENUM.BORDERED]: {
-        borderRadius: '0',
+        borderRadius: 'var(--corner-radius-0px, 0px)',
     },
     [TAB_VARIANT_ENUM.ROUNDED]: {
         borderRadius: 'var(--corner-radius-cr-3, 4px)',
