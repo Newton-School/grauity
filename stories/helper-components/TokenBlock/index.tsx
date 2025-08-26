@@ -76,7 +76,7 @@ const TokenBlock = ({
                 {children}
                 {showCopiedOverlay && (
                     <StyledTokenBlockCopiedContainer copied={copied}>
-                        <NSIcon name="check" color="var(--text-success)" />
+                        <NSIcon name="check" color="var(--text-emphasis-success-default, #007a51)" />
                         Copied!
                     </StyledTokenBlockCopiedContainer>
                 )}

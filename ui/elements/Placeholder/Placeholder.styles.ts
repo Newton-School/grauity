@@ -17,7 +17,7 @@ export const StyledPlaceholder = styled.div<StyledPlaceholderProps>`
     border-radius: ${(props) => props.$borderRadius};
     margin: ${(props) => props.$margin};
     background-color: ${(props) =>
-        props.$backgroundColor || 'var(--bg-tertiary, #EDEFF3)'};
+        props.$backgroundColor || 'var(--bg-subtle-tertiary-default, #edeff3)'};
     overflow: hidden;
     &::after {
         display: block;

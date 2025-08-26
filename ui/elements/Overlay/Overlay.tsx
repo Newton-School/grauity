@@ -16,7 +16,7 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
         shouldDisableScroll = false,
         shouldTintOverlay = false,
         shouldBlurOverlay = false,
-        overlayColor = 'var(--alpha-overlay, rgba(22, 25, 29, 0.8))',
+        overlayColor = 'var(--bg-subtle-alpha-overlay, #16191dcc)',
         shouldCenterContent = false,
         animationDuration = 0.5,
         className,

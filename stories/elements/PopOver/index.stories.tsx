@@ -36,7 +36,7 @@ const Template = (args: PopOverProps) => {
                         width: '250px',
                         height: '100px',
                         padding: '10px',
-                        border: '2px solid var(--border)',
+                        border: '2px solid var(--border-subtle-primary-default, #e1e5ea)',
                         backgroundColor: 'white',
                         overflow: 'auto',
                     }}

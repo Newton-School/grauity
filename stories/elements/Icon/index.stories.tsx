@@ -24,7 +24,7 @@ const Template: StoryFn<typeof Icon> = (args) => <Icon {...args} />;
 
 const defaultArgs = {
     name: 'sparkle',
-    color: 'var(--text-primary)',
+    color: 'var(--text-emphasis-primary-default, #16191d)',
     size: '32',
 };
 

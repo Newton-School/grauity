@@ -14,7 +14,7 @@ export const StyledMonthlyCalendarEvent = styled.div<MonthlyCalendarEventProps>`
     align-items: center;
     border-radius: ${({ borderRadius }) => borderRadius || '4px'};
     background-color: ${({ backgroundColor }) =>
-        backgroundColor || 'var(--bg-action-brand)'};
+        backgroundColor || 'var(--bg-emphasis-brand-default, #0673f9)'};
     width: ${({ width }) => width || '100%'};
     height: ${({ height }) => height || '16px'};
     padding: 2px;
@@ -22,7 +22,7 @@ export const StyledMonthlyCalendarEvent = styled.div<MonthlyCalendarEventProps>`
     ${({ isActive, width, height }) =>
         isActive &&
         css`
-            border: 2px solid var(--text-action, #fff);
+            border: 2px solid var(--text-emphasis-white-default, #ffffff);
             box-shadow: 0px 4px 32px var(--spacing-0px, 0px) rgba(0, 0, 0, 0.32);
             width: calc(${width} + 4px);
             height: calc(${height} + 4px);
@@ -30,20 +30,19 @@ export const StyledMonthlyCalendarEvent = styled.div<MonthlyCalendarEventProps>`
 `;
 
 export const StyledMonthlyCalendarEventText = styled.p<StyledMonthlyCalendarEventTextProps>`
-    color: var(--text-brand-action);
     font-size: 10px;
     font-style: normal;
     font-weight: 500;
     line-height: 16px;
     letter-spacing: 0.1px;
     padding: 0 2px;
-    color: ${({ color }) => color || 'var(--text-brand-action)'};
+    color: ${({ color }) =>
+        color || 'var(--text-emphasis-white-default, #ffffff)'};
     text-wrap: nowrap;
     margin: 0px;
 `;
 
 export const StyledMonthlyCalendarEventTitleText = styled.span<StyledMonthlyCalendarEventTextProps>`
-    color: var(--text-brand-action);
     text-overflow: ellipsis;
     font-size: 10px;
     font-style: normal;
@@ -51,7 +50,8 @@ export const StyledMonthlyCalendarEventTitleText = styled.span<StyledMonthlyCale
     line-height: 16px;
     letter-spacing: 0.1px;
     padding: 0 2px;
-    color: ${({ color }) => color || 'var(--text-brand-action)'};
+    color: ${({ color }) =>
+        color || 'var(--text-emphasis-white-default, #ffffff)'};
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

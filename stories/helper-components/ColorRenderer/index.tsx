@@ -22,7 +22,7 @@ export const ColorRenderer = ({
             minWidth: ColorRendererSizes[size],
             minHeight: ColorRendererSizes[size],
             backgroundColor: `${color}`,
-            border: '1px solid var(--border, #e1e5ea)',
+            border: '1px solid var(--border-subtle-primary-default, #e1e5ea)',
             borderRadius: 'var(--corner-radius-4px, 4px)',
             boxSizing: 'border-box',
         }}

@@ -22,7 +22,7 @@ function OverflowIndicator<T extends CalendarEventRequiredProps>(
     return (
         <StyledOverflowIndicator onClick={onClick}>
             <StyledOverflowIndicatorText>{text}</StyledOverflowIndicatorText>
-            <Icon color="var(--text-primary)" name="arrow-right" size="16" />
+            <Icon color="var(--text-emphasis-primary-default, #16191d)" name="arrow-right" size="16" />
             {isOpen && (
                 <OverflowEventsList
                     events={events}

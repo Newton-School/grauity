@@ -73,13 +73,13 @@ export interface TooltipProps {
 
     /**
      * The text color of the tooltip
-     * @default 'var(--text-emphasis-invert-primary-default)'
+     * @default 'var(--text-emphasis-invert-primary-default, #ffffff)'
      * */
     color?: string;
 
     /**
      * The background color of the tooltip
-     * @default 'var(--bg-subtle-invert-primary-default)'
+     * @default 'var(--bg-subtle-invert-primary-default, #0b0c0e)'
      * */
     backgroundColor?: string;
 
@@ -103,7 +103,7 @@ export interface StyledTooltipProps extends StyledDivProps {
 
     /**
      * The background color of the tooltip
-     * @default 'var(--bg-subtle-invert-primary-default)'
+     * @default 'var(--bg-subtle-invert-primary-default, #0b0c0e)'
      * */
     $backgroundColor?: string;
 
@@ -113,7 +113,7 @@ export interface StyledTooltipProps extends StyledDivProps {
 export interface StyledTooltipArrowProps extends StyledDivProps {
     /**
      * The background color of the tooltip
-     * @default 'var(--bg-subtle-invert-primary-default)'
+     * @default 'var(--bg-subtle-invert-primary-default, #0b0c0e)'
      * */
     $backgroundColor?: string;
 }

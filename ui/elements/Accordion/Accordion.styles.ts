@@ -14,7 +14,7 @@ export const StyledAccordionHeader = styled.div<StyledAccordionHeaderProps>`
     align-items: center;
     background-color: ${(props) => props.$headerBackgroundColor};
     font-family: var(--font-family, 'Mona Sans');
-    color: var(--text-primary);
+    color: var(--text-emphasis-primary-default, #16191d);
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -32,7 +32,7 @@ export const StyledAccordionContent = styled.div<StyledAccordionContentProps>`
     background-color: ${(props) => props.$contentBackgroundColor};
     padding: 0px 8px;
     font-size: 12px;
-    color: var(--text-primary);
+    color: var(--text-emphasis-primary-default, #16191d);
     font-family: var(--font-family, 'Mona Sans');
 `;
 
@@ -44,5 +44,5 @@ export const StyledAccordionWrapper = styled.div<StyledDivProps>`
 
 export const StyledLine = styled.div`
     height: 1px;
-    background: var(--bg-tertiary, #edeff3);
+    background: var(--bg-subtle-tertiary-default, #edeff3);
 `;

@@ -33,7 +33,7 @@ export interface OverlayProps {
 
     /**
      * Color of the overlay
-     * @default 'var(--alpha-overlay, rgba(22, 25, 29, 0.8))'
+     * @default 'var(--bg-subtle-alpha-overlay, #16191dcc)'
      */
     overlayColor?: string;
 

@@ -19,20 +19,20 @@ export const StyledDateCircle = styled.div<StyledDateCircleProps>`
     justify-content: center;
     align-items: center;
     border-radius: 32px;
-    background: var(--bg-secondary, #f6f7f9);
+    background: var(--bg-subtle-secondary-default, #f6f7f9);
     min-width: ${DATE_SIZE}px;
     min-height: ${DATE_SIZE}px;
 
     ${({ isInActiveMonth }) =>
         isInActiveMonth &&
         css`
-            background: var(--bg-secondary, #f6f7f9);
+            background: var(--bg-subtle-secondary-default, #f6f7f9);
         `}
 
     ${({ isToday }) =>
         isToday &&
         css`
-            background: var(--bg-action-brand, #0673f9);
+            background: var(--bg-emphasis-brand-default, #0673f9);
         `}
 
     ${({ backgroundColor }) =>
@@ -43,7 +43,7 @@ export const StyledDateCircle = styled.div<StyledDateCircleProps>`
 `;
 
 export const StyledDateCircleText = styled.span<StyledDateTextProps>`
-    color: var(--text-secondary, #5b6271);
+    color: var(--text-emphasis-secondary-default, #5b6271);
     text-align: center;
     font-size: 12px;
     font-style: normal;
@@ -54,7 +54,7 @@ export const StyledDateCircleText = styled.span<StyledDateTextProps>`
     ${({ isToday }) =>
         isToday &&
         css`
-            color: var(--text-action, #ffffff);
+            color: var(--text-emphasis-white-default, #ffffff);
         `}
 
     ${({ textColor }) =>
@@ -73,7 +73,7 @@ export const StyledMonthlyCalendarGridItem = styled.div<StyledMonthlyCalendarGri
     gap: ${GRID_GAP}px;
     flex: 1;
 
-    border: 1px solid var(--border-neutral, #e1e5ea);
+    border: 1px solid var(--border-subtle-primary-disabled, #edeff3);
     background: ${({ backgroundColor }) => backgroundColor};
 
     width: 100%;
@@ -107,8 +107,8 @@ export const StyledOverflowIndicator = styled.div<StyledDivProps>`
     gap: 4px;
     align-self: stretch;
     border-radius: 4px;
-    border: 1px solid var(--border-neutral, #e1e5ea);
-    background: var(--bg-secondary, #f6f7f9);
+    border: 1px solid var(--border-subtle-primary-disabled, #edeff3);
+    background: var(--bg-subtle-secondary-default, #f6f7f9);
 `;
 
 export const StyledOverflowIndicatorText = styled.span`
@@ -117,7 +117,7 @@ export const StyledOverflowIndicatorText = styled.span`
     -webkit-line-clamp: 1;
     flex: 1 0 0;
     overflow: hidden;
-    color: var(--text-primary, #16191d);
+    color: var(--text-emphasis-primary-default, #16191d);
     text-overflow: ellipsis;
     font-size: 10px;
     font-style: normal;
@@ -137,7 +137,7 @@ export const StyledCalendarHeader = styled.div<StyledDivProps>`
     position: sticky;
     top: 0;
     z-index: 1;
-    background: var(--bg-primary, #fff);
+    background: var(--bg-subtle-primary-default, #ffffff);
     box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.12);
 `;
 
@@ -149,12 +149,12 @@ export const StyledDayOfWeekHeaderItem = styled.div<StyledDivProps>`
     gap: 10px;
     flex: 1 0 0;
     align-self: stretch;
-    border: 1px solid var(--border-neutral, #e1e5ea);
-    background: var(--bg-primary, #fff);
+    border: 1px solid var(--border-subtle-primary-disabled, #edeff3);
+    background: var(--bg-subtle-primary-default, #ffffff);
 `;
 
 export const StyledDayOfWeekHeaderItemText = styled.span`
-    color: var(--text-secondary, #5b6271);
+    color: var(--text-emphasis-secondary-default, #5b6271);
     text-align: center;
     font-size: 12px;
     font-style: normal;
@@ -179,8 +179,8 @@ export const StyledOverflowEventsListContainer = styled.div<StyledOverflowEvents
     gap: var(--spacing-spacing3, 4px);
 
     border-radius: 12px;
-    border: 2px solid var(--border-brand, #94c4ff);
-    background: var(--bg-brand, #e5f1ff);
+    border: 2px solid var(--border-subtle-brand-default, #61a8ff);
+    background: var(--bg-subtle-brand-default, #e5f1ff);
     box-shadow: 0px 8px 48px 0px rgba(0, 0, 0, 0.16);
 
     ${({ width }) =>
@@ -201,7 +201,7 @@ export const StyledCalendarMonthButton = styled.div<StyledDivProps>`
 
 export const StyledCalendarControlsText = styled.span`
     font-family: var(--font-family, 'Mona Sans');
-    color: var(--text-primary, #16191d);
+    color: var(--text-emphasis-primary-default, #16191d);
     font-size: 16px;
     font-style: normal;
     line-height: 14.4px;

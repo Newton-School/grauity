@@ -22,7 +22,7 @@ const defaultArgs: PlaceholderProps = {
     border: 'none',
     borderRadius: '0px',
     margin: '0px',
-    backgroundColor: 'var(--bg-tertiary, #EDEFF3)',
+    backgroundColor: 'var(--bg-subtle-tertiary-default, #edeff3)',
 };
 
 export const Component = Template.bind({});
