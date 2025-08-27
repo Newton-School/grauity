@@ -301,3 +301,6 @@ export {
     TAB_LIST_VARIANT_ENUM,
     type TabListProps,
 } from './elements/TabList';
+
+// NSDrawer
+export { type DrawerProps, default as NSDrawer } from './elements/Drawer';
