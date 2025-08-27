@@ -1,7 +1,11 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
-import { StyledDrawerContentProps, StyledDrawerProps } from './types';
+import {
+    DrawerPosition,
+    StyledDrawerContentProps,
+    StyledDrawerProps,
+} from './types';
 
 export const StyledDrawer = styled(motion.div)<StyledDrawerProps>`
     width: ${({ $width }) => $width};
@@ -12,7 +16,8 @@ export const StyledDrawer = styled(motion.div)<StyledDrawerProps>`
 
     position: absolute;
     top: 0;
-    ${({ $position }) => ($position === 'left' ? 'left: 0;' : 'right: 0;')}
+    ${({ $position }) =>
+        $position === DrawerPosition.LEFT ? 'left: 0;' : 'right: 0;'}
 
     @supports (height: 100dvh) {
         height: 100dvh;

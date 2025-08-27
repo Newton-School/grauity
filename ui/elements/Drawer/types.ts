@@ -2,6 +2,11 @@ import React from 'react';
 
 import { StyledDivProps } from '../../../common/types';
 
+export enum DrawerPosition {
+    LEFT = 'left',
+    RIGHT = 'right',
+}
+
 export interface DrawerProps {
     /**
      * The content to be displayed inside the Drawer.

@@ -17,9 +17,9 @@ export default {
         fullScreen={false}
         closeOnBackdropClick={true}
         width={'30%'}
-        side={'left'}
-        shouldDisableScroll{true}
-        shouldFocusOnFirstElement{true}
+        position={'left'}
+        shouldDisableScroll={true}
+        shouldFocusOnFirstElement={true}
     >
         Drawer Content Here!!!
     </Drawer>

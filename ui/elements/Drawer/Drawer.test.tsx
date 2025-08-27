@@ -37,18 +37,28 @@ describe('Drawer Component', () => {
         render(<TestDrawer width="50%" />);
         fireEvent.click(screen.getByText('Open Drawer'));
         expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(screen.getByRole('dialog')).toHaveStyle('width: 50%');
+    });
+
+    it('renders from left side', () => {
+        render(<TestDrawer position="left" />);
+        fireEvent.click(screen.getByText('Open Drawer'));
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(screen.getByRole('dialog')).toHaveStyle('left: 0');
     });
 
     it('renders from right side', () => {
         render(<TestDrawer position="right" />);
         fireEvent.click(screen.getByText('Open Drawer'));
         expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(screen.getByRole('dialog')).toHaveStyle('right: 0');
     });
 
     it('renders in fullscreen mode', () => {
         render(<TestDrawer fullScreen />);
         fireEvent.click(screen.getByText('Open Drawer'));
         expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(screen.getByRole('dialog')).toHaveStyle('width: 100vw');
     });
 
     it('closes on backdrop click when enabled', () => {
