@@ -40,7 +40,7 @@ describe('Drawer Component', () => {
     });
 
     it('renders from right side', () => {
-        render(<TestDrawer side="right" />);
+        render(<TestDrawer position="right" />);
         fireEvent.click(screen.getByText('Open Drawer'));
         expect(screen.getByRole('dialog')).toBeInTheDocument();
     });

@@ -14,7 +14,7 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
         fullScreen = false,
         closeOnBackdropClick = true,
         width = '30%',
-        side = 'left',
+        position = 'left',
         className,
         shouldDisableScroll = true,
         shouldFocusOnFirstElement = true,
@@ -30,9 +30,9 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
         animate: 'visible',
         exit: 'exit',
         variants: {
-            hidden: { x: side === 'left' ? '-100%' : '100%' },
+            hidden: { x: position === 'left' ? '-100%' : '100%' },
             visible: { x: '0%' },
-            exit: { x: side === 'left' ? '-100%' : '100%' },
+            exit: { x: position === 'left' ? '-100%' : '100%' },
         },
         transition: { duration: ANIMATION_DURATION_IN_MILLISECONDS / 1000 },
     };
@@ -60,7 +60,7 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
                         $isOpen={isOpen}
                         $width={width}
                         $fullScreen={fullScreen}
-                        $side={side}
+                        $position={position}
                         role="dialog"
                         style={styles}
                         {...motionProps}

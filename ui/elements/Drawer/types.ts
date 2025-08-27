@@ -42,7 +42,7 @@ export interface DrawerProps {
      * The side from which the Drawer opens.
      * @default 'left'
      */
-    side?: 'left' | 'right';
+    position?: 'left' | 'right';
 
     /**
      * Additional class name to be passed to the Drawer.
@@ -71,7 +71,7 @@ export interface StyledDrawerProps extends StyledDivProps {
     $isOpen?: boolean;
     $width: string;
     $fullScreen?: boolean;
-    $side: 'left' | 'right';
+    $position: 'left' | 'right';
 }
 
 export interface StyledDrawerContentProps extends StyledDivProps {

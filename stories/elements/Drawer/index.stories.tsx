@@ -72,7 +72,7 @@ const defaultArgs: DrawerProps = {
     fullScreen: false,
     closeOnBackdropClick: true,
     width: '30%',
-    side: 'left',
+    position: 'left',
     shouldDisableScroll: true,
     shouldFocusOnFirstElement: true,
     className: 'drawer',

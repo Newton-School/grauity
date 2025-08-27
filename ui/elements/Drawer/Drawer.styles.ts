@@ -12,7 +12,7 @@ export const StyledDrawer = styled(motion.div)<StyledDrawerProps>`
 
     position: absolute;
     top: 0;
-    ${({ $side }) => ($side === 'left' ? 'left: 0;' : 'right: 0;')}
+    ${({ $position }) => ($position === 'left' ? 'left: 0;' : 'right: 0;')}
 
     @supports (height: 100dvh) {
         height: 100dvh;
