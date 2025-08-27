@@ -60,6 +60,11 @@ export interface DrawerProps {
      * @default true
      */
     shouldDisableScroll?: boolean;
+
+    /**
+     * Custom styles to override drawer styling
+     */
+    styles?: React.CSSProperties;
 }
 
 export interface StyledDrawerProps extends StyledDivProps {

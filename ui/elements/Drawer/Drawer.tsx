@@ -18,6 +18,7 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
         className,
         shouldDisableScroll = true,
         shouldFocusOnFirstElement = true,
+        styles,
     } = props;
 
     const handleClose = () => {
@@ -61,6 +62,7 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
                         $fullScreen={fullScreen}
                         $side={side}
                         role="dialog"
+                        style={styles}
                         {...motionProps}
                     >
                         <StyledDrawerContent>{children}</StyledDrawerContent>
