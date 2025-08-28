@@ -23,7 +23,7 @@ const MyThemedComponent = ({ id }: { id: string }) => {
 describe('ThemeScope', () => {
     it('renders with default theme (light) when no props provided', () => {
         render(
-            <ThemeScope asProps={{ 'data-testid': 'theme-scope' } as any}>
+            <ThemeScope data-testid="theme-scope">
                 <div>Content</div>
             </ThemeScope>
         );
@@ -36,10 +36,7 @@ describe('ThemeScope', () => {
 
     it('applies light theme when applyTheme is set to light', () => {
         render(
-            <ThemeScope
-                applyTheme="light"
-                asProps={{ 'data-testid': 'theme-scope' } as any}
-            >
+            <ThemeScope applyTheme="light" data-testid="theme-scope">
                 <div>Content</div>
             </ThemeScope>
         );
@@ -50,10 +47,7 @@ describe('ThemeScope', () => {
 
     it('applies dark theme when applyTheme is set to dark', () => {
         render(
-            <ThemeScope
-                applyTheme="dark"
-                asProps={{ 'data-testid': 'theme-scope' } as any}
-            >
+            <ThemeScope applyTheme="dark" data-testid="theme-scope">
                 <div>Content</div>
             </ThemeScope>
         );
@@ -65,10 +59,7 @@ describe('ThemeScope', () => {
     it('inverts theme from parent context (light to dark)', () => {
         render(
             <ThemeScope applyTheme="light">
-                <ThemeScope
-                    invert
-                    asProps={{ 'data-testid': 'theme-scope' } as any}
-                >
+                <ThemeScope invert data-testid="theme-scope">
                     <div>Content</div>
                 </ThemeScope>
             </ThemeScope>
@@ -81,10 +72,7 @@ describe('ThemeScope', () => {
     it('inverts theme from parent context (dark to light)', () => {
         render(
             <ThemeScope applyTheme="dark">
-                <ThemeScope
-                    invert
-                    asProps={{ 'data-testid': 'theme-scope' } as any}
-                >
+                <ThemeScope invert data-testid="theme-scope">
                     <div>Content</div>
                 </ThemeScope>
             </ThemeScope>
@@ -97,11 +85,7 @@ describe('ThemeScope', () => {
     it('applyTheme prop takes precedence over invert', () => {
         render(
             <ThemeScope applyTheme="light">
-                <ThemeScope
-                    invert
-                    applyTheme="light"
-                    asProps={{ 'data-testid': 'theme-scope' } as any}
-                >
+                <ThemeScope invert applyTheme="light" data-testid="theme-scope">
                     <div>Content</div>
                 </ThemeScope>
             </ThemeScope>
@@ -113,10 +97,7 @@ describe('ThemeScope', () => {
 
     it('renders as custom element when "as" prop is provided', () => {
         render(
-            <ThemeScope
-                as="section"
-                asProps={{ 'data-testid': 'theme-scope' } as any}
-            >
+            <ThemeScope as="section" data-testid="theme-scope">
                 <div>Content</div>
             </ThemeScope>
         );
@@ -125,17 +106,13 @@ describe('ThemeScope', () => {
         expect(themeScope.tagName).toBe('SECTION');
     });
 
-    it('forwards asProps to the rendered element', () => {
+    it('forwards all props to the rendered element', () => {
         render(
             <ThemeScope
                 as="div"
-                asProps={
-                    {
-                        'data-testid': 'theme-scope',
-                        'aria-label': 'Theme container',
-                        id: 'my-theme-scope',
-                    } as any
-                }
+                data-testid="theme-scope"
+                aria-label="Theme container"
+                id="my-theme-scope"
             >
                 <div>Content</div>
             </ThemeScope>
@@ -146,16 +123,12 @@ describe('ThemeScope', () => {
         expect(themeScope).toHaveAttribute('id', 'my-theme-scope');
     });
 
-    it('merges asProps className with theme className', () => {
+    it('merges prop className with theme className', () => {
         render(
             <ThemeScope
                 applyTheme="dark"
-                asProps={
-                    {
-                        'data-testid': 'theme-scope',
-                        className: 'custom-class',
-                    } as any
-                }
+                data-testid="theme-scope"
+                className="custom-class"
             >
                 <div>Content</div>
             </ThemeScope>
@@ -203,11 +176,11 @@ describe('ThemeScope', () => {
         render(
             <ThemeScope
                 applyTheme="light"
-                asProps={{ 'data-testid': 'outer-scope' } as any}
+                data-testid="outer-scope"
             >
                 <ThemeScope
                     applyTheme="dark"
-                    asProps={{ 'data-testid': 'inner-scope' } as any}
+                    data-testid="inner-scope"
                 >
                     <div>Nested content</div>
                 </ThemeScope>
@@ -225,11 +198,11 @@ describe('ThemeScope', () => {
         render(
             <ThemeScope
                 applyTheme="light"
-                asProps={{ 'data-testid': 'outer-scope' } as any}
+                data-testid="outer-scope"
             >
                 <ThemeScope
                     invert
-                    asProps={{ 'data-testid': 'inner-scope' } as any}
+                    data-testid="inner-scope"
                 >
                     <div>Nested content</div>
                 </ThemeScope>
@@ -246,7 +219,7 @@ describe('ThemeScope', () => {
     it('inherits theme from parent when no props provided', () => {
         render(
             <ThemeScope applyTheme="dark">
-                <ThemeScope asProps={{ 'data-testid': 'theme-scope' } as any}>
+                <ThemeScope data-testid="theme-scope">
                     <div>Content</div>
                 </ThemeScope>
             </ThemeScope>
@@ -275,7 +248,7 @@ describe('ThemeScope', () => {
             <ThemeScope
                 as={CustomComponent}
                 applyTheme="dark"
-                asProps={{ 'data-testid': 'custom-component' }}
+                data-testid="custom-component"
             >
                 <div>Content</div>
             </ThemeScope>
@@ -290,19 +263,19 @@ describe('ThemeScope', () => {
         render(
             <ThemeScope
                 applyTheme="light"
-                asProps={{ 'data-testid': 'level-1' } as any}
+                data-testid="level-1"
             >
                 <ThemeScope
                     invert
-                    asProps={{ 'data-testid': 'level-2' } as any}
+                    data-testid="level-2"
                 >
                     <ThemeScope
                         invert
-                        asProps={{ 'data-testid': 'level-3' } as any}
+                        data-testid="level-3"
                     >
                         <ThemeScope
                             applyTheme="light"
-                            asProps={{ 'data-testid': 'level-4' } as any}
+                            data-testid="level-4"
                         >
                             <div>Deep nested content</div>
                         </ThemeScope>
@@ -323,16 +296,12 @@ describe('ThemeScope', () => {
         );
     });
 
-    it('preserves other className values when using asProps', () => {
+    it('preserves provided className(s)', () => {
         render(
             <ThemeScope
                 applyTheme="light"
-                asProps={
-                    {
-                        'data-testid': 'theme-scope',
-                        className: 'class-a class-b',
-                    } as any
-                }
+                data-testid="theme-scope"
+                className="class-a class-b"
             >
                 <div>Content</div>
             </ThemeScope>

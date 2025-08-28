@@ -32,7 +32,9 @@ import { ThemeScope } from '@newtonschool/grauity';
 
 By default, `ThemeScope` adds a div element as the wrapper for theme scoping. You can change this by using the `as` prop to specify a different HTML tag or even a custom component.
 
-_**Note**_: If passing a custom React component to the `as` prop, ensure that the component accepts a `className` prop to apply the necessary styles, otherwise theming will NOT work!
+_**Note**_: If passing a custom React component to the `as` prop, ensure the following:
+- The component MUST ACCEPT `className` prop to apply the necessary styles, otherwise theming will NOT work!
+- The component MUST NOT ACCEPT props with keys from the following: `applyTheme`, `invert`, `as`, as these props are reserved for `ThemeScope` functionality.
 
 #### 1. HTML tags
 ```jsx
@@ -60,11 +62,9 @@ const StyledCard = styled.div``;
 <ThemeScope
   invert
   as={MyReactComponent}
-  asProps={{ 
-    customProp: 'value' 
-    className: 'my-custom-class',
-    // Add props which MyReactComponent accepts
-  }}
+  customProp="value"
+  className="my-custom-class"
+  // Add props which MyReactComponent accepts
 >
   Can pass children of MyReactComponent here
 </ThemeScope>

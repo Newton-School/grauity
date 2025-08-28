@@ -22,8 +22,9 @@ function ThemeScope<T extends React.ElementType = 'div'>({
     applyTheme,
     invert,
     as,
-    asProps,
+    className,
     children,
+    ...rest
 }: ThemeScopeProps<T>) {
     const parentTheme = useContext(ThemeScopeContext)?.theme as Theme;
 
@@ -33,7 +34,7 @@ function ThemeScope<T extends React.ElementType = 'div'>({
         invert,
     });
 
-    const RootComponent = as || ('div' as T);
+    const RootComponent = as ?? ('div' as T);
 
     return (
         <StyledComponentsThemeProvider
@@ -41,8 +42,8 @@ function ThemeScope<T extends React.ElementType = 'div'>({
         >
             <ThemeScopeProvider applyTheme={themeName}>
                 <RootComponent
-                    {...(asProps as any)}
-                    className={classnames(asProps?.className, themeClassName)}
+                    {...(rest as any)}
+                    className={classnames(className, themeClassName)}
                 >
                     {children}
                 </RootComponent>

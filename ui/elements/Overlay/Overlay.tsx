@@ -78,11 +78,11 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
             {...rest}
             {...motionProps}
         >
-            <ThemeScope as={StyledOverlayContent} asProps={{
-                $top: position.top,
-                $left: position.left,
-                $shouldCenterContent: shouldCenterContent,
-            }}>
+            <ThemeScope as={StyledOverlayContent} 
+                $top={position.top}
+                $left={position.left}
+                $shouldCenterContent={shouldCenterContent}
+            >
                 <StyledOverlayContentChildren ref={childrenRef}>
                     {children}
                 </StyledOverlayContentChildren>

@@ -13,7 +13,7 @@ export default {
 const Template = () => {
     return (
         <div style={{ width: '300px' }}>
-            <ThemeScope invert as={StyledCard}>
+            <ThemeScope invert>
                 <ThemeScope invert as={StyledCard}>
                     <ThemeScope invert as={StyledCard}>
                         <ThemeScope invert as={StyledCard}>
@@ -105,7 +105,7 @@ const NestedOverlayTemplate = () => {
             <ThemeScope
                 invert
                 as={StyledCard}
-                asProps={{ className: 'custom-class-1' }}
+                className='custom-class-1'
             >
                 <Button onClick={() => setFirstModalOpen(true)}>
                     Open Modal 1
@@ -120,7 +120,7 @@ const NestedOverlayTemplate = () => {
                 <ThemeScope
                     invert
                     as={StyledCard}
-                    asProps={{ className: 'custom-class-2 ' }}
+                    className='custom-class-2'
                 >
                     <Button onClick={() => setSecondModalOpen(true)}>
                         Open Modal 2
