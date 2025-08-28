@@ -3,14 +3,105 @@ import * as ThemeScopeStory  from './index.stories';
 import ThemeScope from 'ui/elements/ThemeScope/ThemeScope';
 import { StyledCard } from './index.styles';
 
-# Theming with ThemeScope
+# Creating Scoped Themes with ThemeScope
 
-To use theming in your app, simply wrap your components with the `ThemeScope` component.
-- To maintain the theme of the parent component, no need of `ThemeScope` as this is the default behavior.
-- To change the theme, use the `applyTheme` prop of `ThemeScope`. Available themes are:
+To add scoped/nested theming in your app, wrap your components with the `ThemeScope` wrapper component.
+- To change the theme, use the `applyTheme` prop with values from:
   - `light`
   - `dark`
-- To invert the theme of the parent component, use the `invert` prop of `ThemeScope`.
+- To invert the theme of the parent component, use the `invert` prop.
+
+_**Note**_: To maintain the parent's theme, wrapping with `ThemeScope` is unnecessary as it is the default behavior.
+
+```jsx
+import { ThemeScope } from '@newtonschool/grauity';
+
+<ThemeScope applyTheme="dark">
+  <Card>
+    This card is in dark theme
+    <ThemeScope invert>
+      <Card>
+        This card is in light theme (inverted)
+      </Card>
+    </ThemeScope>
+  </Card>
+</ThemeScope>
+```
+
+### Using the `as` Prop
+
+By default, `ThemeScope` adds a div element as the wrapper for theme scoping. You can change this by using the `as` prop to specify a different HTML tag or even a custom component.
+
+_**Note**_: If passing a custom React component to the `as` prop, ensure that the component accepts a `className` prop to apply the necessary styles, otherwise theming will NOT work!
+
+#### 1. HTML tags
+```jsx
+<ThemeScope applyTheme="dark" as="section">
+  This section is in dark theme
+  <div>
+    This div is in dark theme and wrapped in a section tag
+  </div>
+</ThemeScope>
+```
+
+#### 2. Components created with styled-components
+```jsx
+import styled from 'styled-components';
+
+const StyledCard = styled.div``;
+
+<ThemeScope applyTheme="dark" as={StyledCard}>
+  This card component is in dark theme
+</ThemeScope>
+```
+
+#### 3. Custom React Component
+```jsx
+<ThemeScope
+  invert
+  as={MyReactComponent}
+  asProps={{ 
+    customProp: 'value' 
+    className: 'my-custom-class',
+    // Add props which MyReactComponent accepts
+  }}
+>
+  Can pass children of MyReactComponent here
+</ThemeScope>
+```
+
+## Using useThemeScope Hook
+
+To read the current theme within a `ThemeScope`, use the `useThemeScope` hook. For example:
+
+```jsx
+import { useThemeScope } from '@newtonschool/grauity';
+
+const { theme } = useThemeScope();
+// theme can be either 'light' or 'dark'
+```
+
+## Usage and Integration with `styled-components`
+
+ThemeScope integrates `styled-components` built-in `ThemeProvider`, which provides
+a theme to all React components underneath itself via the context API.
+
+All components created using styled-components within a `ThemeScope` will have access to `props.theme.scopedTheme`, which indicates the current local theme ('light' or 'dark').
+
+```jsx
+import styled from 'styled-components';
+
+<ThemeScope applyTheme="dark">
+  <StyledDiv>
+    This div is in dark theme
+  </StyledDiv>
+</ThemeScope>
+
+const StyledDiv = styled.div`
+  background-color: ${(props) => props.theme.scopedTheme === 'dark' ? '#333' : '#fff'};
+  color: ${(props) => props.theme.scopedTheme === 'dark' ? '#fff' : '#333'};
+`;
+```
 
 <br />
 
