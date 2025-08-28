@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from 'ui/elements/Button';
+import Modal from 'ui/elements/Modal';
 import ThemeScope from 'ui/elements/ThemeScope/ThemeScope';
 
 import { StyledCard } from './index.styles';
@@ -10,7 +12,7 @@ export default {
 
 const Template = () => {
     return (
-        <div style={{width: '300px'}}>
+        <div style={{ width: '300px' }}>
             <ThemeScope invert as={StyledCard}>
                 <ThemeScope invert as={StyledCard}>
                     <ThemeScope invert as={StyledCard}>
@@ -93,3 +95,47 @@ const ApplyTheme = () => {
     );
 };
 export const ApplyThemeManually = ApplyTheme.bind({});
+
+const NestedOverlayTemplate = () => {
+    const [firstModalOpen, setFirstModalOpen] = React.useState(false);
+    const [secondModalOpen, setSecondModalOpen] = React.useState(false);
+
+    return (
+        <div style={{ width: '300px' }}>
+            <ThemeScope
+                invert
+                as={StyledCard}
+                asProps={{ className: 'custom-class-1' }}
+            >
+                <Button onClick={() => setFirstModalOpen(true)}>
+                    Open Modal 1
+                </Button>
+                <Modal
+                    isOpen={firstModalOpen}
+                    onClose={() => setFirstModalOpen(false)}
+                    hideOnClickAway
+                >
+                    Oh hi, I am Modal 1
+                </Modal>
+                <ThemeScope
+                    invert
+                    as={StyledCard}
+                    asProps={{ className: 'custom-class-2 ' }}
+                >
+                    <Button onClick={() => setSecondModalOpen(true)}>
+                        Open Modal 2
+                    </Button>
+                    <Modal
+                        isOpen={secondModalOpen}
+                        onClose={() => setSecondModalOpen(false)}
+                        hideOnClickAway
+                    >
+                        Oh hi, I am Modal 2
+                    </Modal>
+                </ThemeScope>
+            </ThemeScope>
+        </div>
+    );
+};
+export const NestedOverlayComponents = NestedOverlayTemplate.bind({});
+

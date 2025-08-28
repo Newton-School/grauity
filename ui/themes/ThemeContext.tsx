@@ -106,14 +106,16 @@ const ThemeWrapper = ({
     useEffect(() => {
         if (isThemeEnabled) {
             // Remove any existing theme classes
-            document.body.classList.forEach(className => {
+            document.body.classList.forEach((className) => {
                 if (className.startsWith('grauity-theme-')) {
                     document.body.classList.remove(className);
                 }
             });
-    
+
             // Add the new theme class
-            document.body.classList.add(`grauity-theme-${value?.theme?.themeName}`);
+            document.body.classList.add(
+                `grauity-theme-${value?.theme?.themeName}`
+            );
         }
     }, [isThemeEnabled, value?.theme?.themeName]);
 
@@ -121,7 +123,9 @@ const ThemeWrapper = ({
 
     return (
         <ThemeContext.Provider value={currentTheme}>
-            <GrauityThemeProvider applyTheme={currentTheme?.theme?.themeName}>
+            <GrauityThemeProvider
+                rootThemeScopeTheme={currentTheme?.theme?.themeName}
+            >
                 {children}
             </GrauityThemeProvider>
         </ThemeContext.Provider>

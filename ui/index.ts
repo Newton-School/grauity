@@ -277,15 +277,17 @@ export {
     useForm as useNSForm,
 } from './elements/Form/useForm';
 
-// GrauityThemeScope
+// NSThemeScope
 export {
-    default as GrauityThemeScope,
-    ThemeScopeContext as GrauityThemeScopeContext,
-    type ThemeScopeProps as GrauityThemeScopeProps,
-    ThemeScopeProvider as GrauityThemeScopeProvider,
+    default as NSThemeScope,
+    ThemeScopeContext as NSThemeScopeContext,
+    type ThemeScopeProps as NSThemeScopeProps,
+    ThemeScopeProvider as NSThemeScopeProvider,
+    useThemeScope as useNSThemeScope,
 } from './elements/ThemeScope';
-export type {
-    Theme as GrauityTheme,
-    ThemeType as GrauityThemeType,
+export { SC_THEME_SCOPE_THEME_KEY as NS_SC_THEME_SCOPE_THEME_KEY } from './elements/ThemeScope/constants';
+export {
+    type Theme as NSTheme,
+    ThemeType as NSThemeType,
 } from './elements/ThemeScope/types';
-export { getThemeAndThemeClassName as getGrauityThemeAndThemeClassName } from './elements/ThemeScope/utils';
+export { getThemeAndThemeClassName as getNSThemeAndThemeClassName } from './elements/ThemeScope/utils';

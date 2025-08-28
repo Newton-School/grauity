@@ -11,8 +11,11 @@ import LIGHT_THEME_OBJ from './lightThemeConstants';
  * GrauityThemeProvider allows you to use multiple themes in your
  * application simultaneously, like light and dark mode.
  *
- * Wrap your app/components with this provider and also provide class name
- * of `'grauity-theme-light'` or `'grauity-theme-dark'` to the parent div of your app/component.
+ * Wrap your root level element (e.g. in your App component) with this provider.
+ * 
+ * It uses `ThemeScope` to set the initial theme for the application that you provide
+ * using the `rootThemeScopeTheme` prop. You can then use ThemeScope anywhere in
+ * your application to switch themes for that section of the app.
  */
 export const GrauityThemeProvider = ({
     themeConfig = {
@@ -20,11 +23,11 @@ export const GrauityThemeProvider = ({
         dark: DARK_THEME_OBJ,
     },
     children = null,
-    applyTheme = 'light',
+    rootThemeScopeTheme = 'light',
 }: {
     themeConfig?: Record<string, any>;
     children?: React.ReactNode;
-    applyTheme?: Theme;
+    rootThemeScopeTheme?: Theme;
 }) => {
     return (
         <StyledComponentsThemeProvider
@@ -36,8 +39,8 @@ export const GrauityThemeProvider = ({
         >
             <>
                 <GlobalStyle />
-                {applyTheme ? (
-                    <ThemeScopeProvider applyTheme={applyTheme}>
+                {rootThemeScopeTheme ? (
+                    <ThemeScopeProvider applyTheme={rootThemeScopeTheme}>
                         {children}
                     </ThemeScopeProvider>
                 ) : (

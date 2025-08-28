@@ -2,6 +2,7 @@ import React, { forwardRef, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { useDisableBodyScroll } from '../../../hooks';
+import ThemeScope from '../ThemeScope';
 import {
     StyledOverlay,
     StyledOverlayContent,
@@ -77,15 +78,15 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
             {...rest}
             {...motionProps}
         >
-            <StyledOverlayContent
-                $top={position.top}
-                $left={position.left}
-                $shouldCenterContent={shouldCenterContent}
-            >
+            <ThemeScope as={StyledOverlayContent} asProps={{
+                $top: position.top,
+                $left: position.left,
+                $shouldCenterContent: shouldCenterContent,
+            }}>
                 <StyledOverlayContentChildren ref={childrenRef}>
                     {children}
                 </StyledOverlayContentChildren>
-            </StyledOverlayContent>
+            </ThemeScope>
         </StyledOverlay>,
         document.body
     );
