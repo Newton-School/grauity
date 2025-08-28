@@ -24,7 +24,7 @@ export type ThemeConfigType = {
 export type GrauityThemeProviderProps = {
     /**
      * Configuration for themes, where each theme name maps to its color object.
-     * Default grauity themes are be provided for light and dark modes.
+     * Default grauity themes are provided for light and dark modes.
      */
     themeConfig: ThemeConfigType;
 
