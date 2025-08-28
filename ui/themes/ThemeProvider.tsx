@@ -6,6 +6,7 @@ import { Theme } from '../elements/ThemeScope/types';
 import DARK_THEME_OBJ from './darkThemeConstants';
 import GlobalStyle from './GlobalStyle';
 import LIGHT_THEME_OBJ from './lightThemeConstants';
+import { ThemeConfigType } from './types';
 
 /**
  * GrauityThemeProvider allows you to use multiple themes in your
@@ -25,7 +26,7 @@ export const GrauityThemeProvider = ({
     children = null,
     rootThemeScopeTheme = 'light',
 }: {
-    themeConfig?: Record<string, any>;
+    themeConfig?: ThemeConfigType;
     children?: React.ReactNode;
     rootThemeScopeTheme?: Theme;
 }) => {
