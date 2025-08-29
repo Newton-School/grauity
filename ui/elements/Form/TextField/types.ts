@@ -126,6 +126,11 @@ export interface TextFieldProps {
     onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 
     /**
+     * The function to call when a key is pressed while the input field is focused.
+     */
+    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+
+    /**
      * The error message to display when the input field is invalid.
      */
     errorMessage?: string;
@@ -167,6 +172,11 @@ export interface TextFieldProps {
      * The color of the input field.
      */
     color?: TextFieldColors;
+
+    /**
+     * className to be passed to the TextField container.
+     */
+    className?: string;
 }
 
 export interface StyledTextFieldInputProps extends StyledInputProps {
