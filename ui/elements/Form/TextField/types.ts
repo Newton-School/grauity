@@ -174,7 +174,7 @@ export interface TextFieldProps {
     color?: TextFieldColors;
 
     /**
-     * className to be passed to the TextField container.
+     * Additional className for the TextField container.
      */
     className?: string;
 }

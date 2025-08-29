@@ -23,6 +23,7 @@ const OtpInputField = (props: OtpInputFieldProps) => {
         errorMessage = 'Wrong OTP. Please try again',
         successMessage = 'OTP is correct',
         color = 'brand',
+        className,
     } = props;
 
     const inputRefs = useRef<Array<HTMLInputElement | null>>(
@@ -114,7 +115,7 @@ const OtpInputField = (props: OtpInputFieldProps) => {
     };
 
     return (
-        <StyledOtpInputField>
+        <StyledOtpInputField className={className}>
             {label && (
                 <Label
                     name={name}

@@ -118,6 +118,11 @@ export interface TextAreaProps {
      * @default 'brand'
      */
     color?: TextAreaColors;
+
+    /**
+     * Additional className for the TextArea container.
+     */
+    className?: string;
 }
 
 export interface TextAreaComponentProps extends StyledTextAreaProps {
