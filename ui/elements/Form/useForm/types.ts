@@ -3,6 +3,7 @@ import { Schema } from 'yup';
 
 import { ButtonProps } from '../../Button';
 import { CheckboxGroupProps } from '../CheckboxGroup';
+import { ComboboxProps } from '../Combobox';
 import { DropdownProps } from '../Dropdown';
 import { RadioButtonGroupProps } from '../RadioButtonGroup';
 import { TextFieldProps } from '../TextField';
@@ -26,6 +27,7 @@ export enum FormFieldType {
     CHECKBOX_GROUP = 'checkbox-group',
     RADIOBUTTON_GROUP = 'radio-button-group',
     CUSTOM = 'custom',
+    COMBOBOX = 'combobox',
 }
 
 export interface ConditionalProp {
@@ -53,6 +55,11 @@ export interface FormFieldDropdownProps extends FormFieldBaseProps {
     rendererProps: DropdownProps;
 }
 
+export interface FormFieldComboboxProps extends FormFieldBaseProps {
+    type: FormFieldType.COMBOBOX;
+    rendererProps: ComboboxProps;
+}
+
 export interface FormFieldDropdownMenuProps extends FormFieldBaseProps {
     type: FormFieldType.DROPDOWN_MENU;
     rendererProps: DropdownProps;
@@ -76,6 +83,7 @@ export interface FormFieldCustomProps extends FormFieldBaseProps {
 export type FormField =
     | FormFieldTextFieldProps
     | FormFieldDropdownProps
+    | FormFieldComboboxProps
     | FormFieldDropdownMenuProps
     | FormFieldCheckboxGroupProps
     | FormFieldRadioButtonGroupProps
