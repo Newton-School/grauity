@@ -39,12 +39,14 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
         onChange = () => {},
         onClick = () => {},
         onBlur = () => {},
+        onKeyDown = () => {},
         size = 'medium',
         adornments,
         color = 'brand',
         min,
         max,
         step,
+        className,
     } = props;
 
     const inputContainerRef = useRef(null);
@@ -102,7 +104,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
     };
 
     return (
-        <StyledTextInputFieldContainer>
+        <StyledTextInputFieldContainer className={className}>
             {label && (
                 <Label
                     name={name}
@@ -140,6 +142,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
                     onChange={handleInputChange}
                     onClick={handleInputClick}
                     onBlur={handleInputBlur}
+                    onKeyDown={onKeyDown}
                     autoComplete={autoComplete}
                     autoFocus={autoFocus}
                     $size={size}

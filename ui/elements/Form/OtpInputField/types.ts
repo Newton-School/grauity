@@ -78,6 +78,11 @@ export interface OtpInputFieldProps {
      * @default 'brand'
      */
     color?: OtpFieldColors;
+
+    /**
+     * Additional className for the OTP input field container.
+     */
+    className?: string;
 }
 
 export interface StyledOtpInputProps extends StyledInputProps {
