@@ -2,6 +2,7 @@ import React, { forwardRef, useEffect } from 'react';
 
 import DropdownMenu from '../../DropdownMenu';
 import CheckboxGroup from '../CheckboxGroup';
+import Combobox from '../Combobox';
 import Dropdown from '../Dropdown';
 import RadioButtonGroup from '../RadioButtonGroup';
 import TextField from '../TextField';
@@ -72,6 +73,33 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
             case FormFieldType.DROPDOWN:
                 rendererComponent = (
                     <Dropdown
+                        key={rendererProps.name}
+                        showHeader={false}
+                        {...rendererProps}
+                        value={formData[rendererProps.name]}
+                        onChange={(selectedValue) => {
+                            handleChange({
+                                name: rendererProps.name,
+                                value: selectedValue,
+                            });
+                        }}
+                        onClose={(selectedValue) => {
+                            if (whenToValidate === FormValidationType.ON_BLUR) {
+                                handleValidate({
+                                    name: rendererProps.name,
+                                    value: selectedValue,
+                                });
+                            }
+                        }}
+                        {...conditionalProps}
+                        errorMessage={error}
+                        color={error ? 'error' : 'brand'}
+                    />
+                );
+                break;
+            case FormFieldType.COMBOBOX:
+                rendererComponent = (
+                    <Combobox
                         key={rendererProps.name}
                         showHeader={false}
                         {...rendererProps}

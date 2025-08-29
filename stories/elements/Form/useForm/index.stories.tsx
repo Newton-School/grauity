@@ -23,6 +23,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
         'profession',
         'consent',
         'age',
+        'favourite_food',
     ];
 
     const formConfig: NSFormConfig = {
@@ -34,6 +35,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
             profession: null,
             consent: [],
             age: null,
+            favourite_food: [],
         },
         rows: [
             {
@@ -170,6 +172,42 @@ const TemplateUseForm = (args: NSUseFormProps) => {
                     },
                 ],
             },
+            {
+                widths: 'auto',
+                items: [
+                    {
+                        type: NSFormFieldType.COMBOBOX,
+                        rendererProps: {
+                            name: 'favourite_food',
+                            label: 'Favourite food',
+                            multiple: true,
+                            isRequired: true,
+                            items: [
+                                {
+                                    type: BaseItemType.OPTION,
+                                    label: 'Dosa',
+                                    value: 'dosa',
+                                },
+                                {
+                                    type: BaseItemType.OPTION,
+                                    label: 'Idly',
+                                    value: 'idly',
+                                },
+                                {
+                                    type: BaseItemType.OPTION,
+                                    label: 'Parantha',
+                                    value: 'parantha',
+                                },
+                                {
+                                    type: BaseItemType.OPTION,
+                                    label: 'Khichdi',
+                                    value: 'khichdi',
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
         ],
         schema: object({
             first_name: string().required('First Name is required'),
@@ -183,6 +221,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
                     ['18 - 30', '31 - 50', '> 50'],
                     'Age must be greater than 18'
                 ),
+            favourite_food: array().min(1, 'Select at least one favourite food'),
         }),
     };
 
