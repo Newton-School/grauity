@@ -5,14 +5,14 @@
         "lib": ["dom", "esnext"],
         "allowJs": true,
         "declaration": true,
-        "outDir": "./dist/",
+        "outDir": "dist",
         "declarationMap": true,
         "skipLibCheck": true,
         "noEmit": false,
         "noEmitOnError": true,
         "noImplicitAny": true,
         "module": "esnext",
-        "target": "es5",
+        "target": "es2015",
         "jsx": "react",
         "moduleResolution": "node",
         "forceConsistentCasingInFileNames": true,
@@ -21,6 +21,7 @@
         "paths": {
             "ui/*": ["./ui/*"],
             "elements/*": ["./ui/elements/*"]
-        }
+        },
+        "downlevelIteration": true
     }
 }
