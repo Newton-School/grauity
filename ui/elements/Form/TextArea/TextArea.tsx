@@ -28,6 +28,7 @@ const TextArea = (props: TextAreaProps) => {
         onClick = () => {},
         onBlur = () => {},
         color = 'brand',
+        className,
     } = props;
 
     const getIsValid = (targetValue: string) => {
@@ -59,7 +60,7 @@ const TextArea = (props: TextAreaProps) => {
     };
 
     return (
-        <StyledTextAreaFieldContainer>
+        <StyledTextAreaFieldContainer className={className}>
             {label && (
                 <Label
                     name={name}
