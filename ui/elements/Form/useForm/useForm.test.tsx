@@ -18,6 +18,7 @@ const fieldNames: FieldName[] = [
     'first_name',
     'last_name',
     'hobbies',
+    'favourite_foods',
     'profession',
     'consent',
 ];
@@ -62,6 +63,31 @@ const formFields: FormFields = {
                     type: BaseItemType.OPTION,
                     label: 'Drawing',
                     value: 'drawing',
+                },
+            ],
+        },
+    },
+    favourite_foods: {
+        type: FormFieldType.COMBOBOX,
+        rendererProps: {
+            name: 'favourite_foods',
+            label: 'Select Favourite Foods',
+            multiple: true,
+            items: [
+                {
+                    type: BaseItemType.OPTION,
+                    label: 'Pizza',
+                    value: 'pizza',
+                },
+                {
+                    type: BaseItemType.OPTION,
+                    label: 'Burger',
+                    value: 'burger',
+                },
+                {
+                    type: BaseItemType.OPTION,
+                    label: 'Pasta',
+                    value: 'pasta',
                 },
             ],
         },
@@ -117,6 +143,7 @@ const formConfig: FormConfig = {
         first_name: '',
         last_name: '',
         hobbies: [],
+        favourite_foods: [],
         profession: null,
         consent: [],
     },
@@ -133,11 +160,16 @@ const formConfig: FormConfig = {
             widths: '1fr',
             items: [formFields.consent],
         },
+        {
+            widths: '1fr',
+            items: [formFields.favourite_foods],
+        },
     ],
     schema: object({
         first_name: string().required('First name is required'),
         last_name: string().required('Last name is required'),
         hobbies: array().min(1, 'Select at least one hobby'),
+        favourite_foods: array().min(1, 'Select at least one favourite food'),
         profession: object().nullable().required('Select a profession'),
         consent: array().min(1, 'Please agree to the terms and conditions'),
     }),
@@ -192,6 +224,7 @@ describe('useForm', () => {
                 first_name: '',
                 last_name: '',
                 hobbies: [],
+                favourite_foods: [],
                 profession: null,
                 consent: [],
             })
@@ -213,6 +246,7 @@ describe('useForm', () => {
                 first_name: 'John',
                 last_name: 'Doe',
                 hobbies: [],
+                favourite_foods: [],
                 profession: null,
                 consent: [],
             })
@@ -241,6 +275,7 @@ describe('useForm', () => {
                     formFields.hobbies.rendererProps.items[0],
                     formFields.hobbies.rendererProps.items[1],
                 ],
+                favourite_foods: [],
                 profession: formFields.profession.rendererProps.items[0],
                 consent: [],
             })
@@ -262,7 +297,53 @@ describe('useForm', () => {
                     formFields.hobbies.rendererProps.items[1],
                     formFields.hobbies.rendererProps.items[2],
                 ],
+                favourite_foods: [],
                 profession: formFields.profession.rendererProps.items[2],
+                consent: [],
+            })
+        );
+    });
+    it('Should change combobox fields', () => {
+        render(<TestForm formConfig={formConfig} />);
+
+        const favouriteFoodsCombobox = screen.getByText('Select Favourite Foods');
+
+        fireEvent.click(favouriteFoodsCombobox);
+        fireEvent.click(screen.getByRole('option', { name: 'Pizza' }));
+        fireEvent.click(screen.getByRole('option', { name: 'Burger' }));
+        fireEvent.mouseDown(document.body);
+        fireEvent.click(screen.getByTestId('testid-overlay'));
+
+
+        expect(screen.getByTestId('form-data')).toHaveTextContent(
+            JSON.stringify({
+                first_name: '',
+                last_name: '',
+                hobbies: [],
+                favourite_foods: [
+                    formFields.favourite_foods.rendererProps.items[0],
+                    formFields.favourite_foods.rendererProps.items[1],
+                ],
+                profession: null,
+                consent: [],
+            })
+        );
+
+        fireEvent.click(favouriteFoodsCombobox);
+        fireEvent.click(screen.getByRole('option', { name: 'Pizza' }));
+        fireEvent.click(screen.getByRole('option', { name: 'Pasta' }));
+        fireEvent.mouseDown(document.body);
+
+        expect(screen.getByTestId('form-data')).toHaveTextContent(
+            JSON.stringify({
+                first_name: '',
+                last_name: '',
+                hobbies: [],
+                favourite_foods: [
+                    formFields.favourite_foods.rendererProps.items[1],
+                    formFields.favourite_foods.rendererProps.items[2],
+                ],
+                profession: null,
                 consent: [],
             })
         );
@@ -280,6 +361,7 @@ describe('useForm', () => {
                 first_name: '',
                 last_name: '',
                 hobbies: [],
+                favourite_foods: [],
                 profession: null,
                 consent: ['true'],
             })
@@ -349,6 +431,7 @@ describe('useForm', () => {
                 first_name: '',
                 last_name: '',
                 hobbies: [],
+                favourite_foods: [],
                 profession: null,
                 consent: [],
             })
