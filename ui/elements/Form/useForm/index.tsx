@@ -20,3 +20,4 @@ export {
     type UseFormReturnProps,
 } from './types';
 export { default as useForm } from './useForm';
+export { getConditionalProps } from './utils';
