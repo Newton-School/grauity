@@ -51,6 +51,18 @@ export function getFormRowColumnValue({
     return false;
 }
 
+/**
+ * Generates a set of conditional properties for a form field based on the current form data.
+ *
+ * Iterates over the `conditionalProps` array defined in the `formField` object, and for each conditional prop:
+ * - Evaluates the `is` function with the provided `formData`.
+ * - If the condition matches, assigns the `then` value to the corresponding property.
+ * - Otherwise, assigns the `otherwise` value if defined.
+ *
+ * @param formField - The form field configuration containing conditional properties.
+ * @param formData - The current form data used to evaluate conditions.
+ * @returns An object containing the final set of conditional properties to apply to the form field.
+ */
 export function getConditionalProps({
     formField,
     formData,
