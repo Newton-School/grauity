@@ -59,6 +59,12 @@ npm install
 git submodule init
 git submodule update --recursive
 
+# if found error after run the above cmd try this below one
+
+# Change submodule URL from SSH → HTTPS
+git submodule set-url iconland https://github.com/Newton-School/iconland.git
+git submodule update --init --recursive
+
 # Build icons (required when running for first time)
 npm run build-icons
 
