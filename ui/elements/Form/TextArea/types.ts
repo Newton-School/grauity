@@ -37,11 +37,6 @@ export interface TextAreaProps {
     placeholder?: string;
 
     /**
-     * The validation message to display when the input field is invalid.
-     */
-    validationMessage?: string;
-
-    /**
      * The input value.
      * @default ''
      */

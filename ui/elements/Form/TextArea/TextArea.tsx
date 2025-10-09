@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { ErrorMessage } from '../ErrorMessage';
 import { HelpMessage } from '../HelpMessage';
@@ -13,7 +13,6 @@ const TextArea = (props: TextAreaProps) => {
         label,
         size = 'medium',
         placeholder,
-        validationMessage,
         helpMessage,
         errorMessage,
         maxLength,
@@ -31,16 +30,6 @@ const TextArea = (props: TextAreaProps) => {
         className,
     } = props;
 
-    const getIsValid = (targetValue: string) => {
-        const satisfiesMinLength = isRequired ? targetValue.length > 0 : true;
-        const satisfiesMaxLength = maxLength
-            ? targetValue.length <= maxLength
-            : true;
-        return satisfiesMinLength && satisfiesMaxLength;
-    };
-
-    const [isInputValid, setIsInputValid] = useState(getIsValid(value));
-
     const handleInputClick = (
         event: React.MouseEvent<HTMLTextAreaElement, MouseEvent>
     ) => {
@@ -51,8 +40,6 @@ const TextArea = (props: TextAreaProps) => {
         event: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
         onChange(event);
-        const isValid = getIsValid(event.target.value);
-        setIsInputValid(isValid);
     };
 
     const handleInputBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -96,9 +83,7 @@ const TextArea = (props: TextAreaProps) => {
                     {helpMessage}
                 </HelpMessage>
             )}
-            {!isInputValid && (errorMessage || validationMessage) && (
-                <ErrorMessage>{errorMessage || validationMessage}</ErrorMessage>
-            )}
+            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </StyledTextAreaFieldContainer>
     );
 };
