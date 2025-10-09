@@ -60,7 +60,7 @@ function Tab(props: TabProps) {
                         </StyledTabContent>
                     )}
                     {subText &&
-                        (typeof subText === 'string' ? (
+                        (['string', 'number'].includes(typeof subText) ? (
                             <StyledSubtext $isActive={isActive}>
                                 {subText}
                             </StyledSubtext>
