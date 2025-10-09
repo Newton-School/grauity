@@ -60,12 +60,12 @@ function Tab(props: TabProps) {
                         </StyledTabContent>
                     )}
                     {subText &&
-                        (typeof subText === 'string' ? (
+                        (React.isValidElement(subText) ? (
+                            subText
+                        ) : (
                             <StyledSubtext $isActive={isActive}>
                                 {subText}
                             </StyledSubtext>
-                        ) : (
-                            subText
                         ))}
                 </StyledTabContainer>
             )}
