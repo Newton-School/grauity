@@ -88,11 +88,6 @@ export interface TextFieldProps {
     step?: number;
 
     /**
-     * The validation message to display when the input field is invalid.
-     */
-    validationMessage?: string;
-
-    /**
      * The input value.
      * @default ''
      */

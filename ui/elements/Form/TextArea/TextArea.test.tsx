@@ -33,22 +33,6 @@ describe('TextArea Component', () => {
         expect(defaultProps.onChange).toHaveBeenCalledWith(expect.any(Object));
     });
 
-    test('displays validation error message if input is invalid', () => {
-        const propsWithValidation = {
-            ...defaultProps,
-            isRequired: true,
-            validationMessage: 'This field is required.',
-        };
-
-        render(<TextArea {...propsWithValidation} />);
-        const textarea = screen.getByRole('textbox');
-
-        fireEvent.change(textarea, { target: { value: '' } });
-        fireEvent.blur(textarea);
-
-        expect(screen.getByText('This field is required.')).toBeInTheDocument();
-    });
-
     test('disables the TextArea when isDisabled is true', () => {
         render(<TextArea {...defaultProps} isDisabled />);
         const textarea = screen.getByRole('textbox');
@@ -71,17 +55,13 @@ describe('TextArea Component', () => {
         expect(screen.getByText(/5\/10/)).toBeInTheDocument();
     });
 
-    test('renders error message when input exceeds maxLength', () => {
+    test('renders error message when provided', () => {
         const propsWithValidation = {
             ...defaultProps,
-            maxLength: 5,
             errorMessage: 'Too many characters!',
         };
 
         render(<TextArea {...propsWithValidation} />);
-        const textarea = screen.getByRole('textbox');
-
-        fireEvent.change(textarea, { target: { value: 'Too long text' } });
 
         expect(screen.getByText('Too many characters!')).toBeInTheDocument();
     });

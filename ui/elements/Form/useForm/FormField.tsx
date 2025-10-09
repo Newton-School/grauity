@@ -64,7 +64,6 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
                                 });
                             }
                         }}
-                        validationMessage={error}
                         errorMessage={error}
                         color={error ? 'error' : 'brand'}
                     />
