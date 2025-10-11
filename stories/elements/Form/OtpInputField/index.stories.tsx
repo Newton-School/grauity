@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import OtpInputField from 'ui/elements/Form/OtpInputField';
 import { OtpInputFieldProps } from 'ui/elements/Form/OtpInputField/types';
@@ -12,8 +13,12 @@ const Template = (args: OtpInputFieldProps) => <OtpInputField {...args} />;
 const defaultArgs: OtpInputFieldProps = {
     value: '',
     length: 4,
-    onChange: () => {},
-    onBlur: () => {},
+    onChange: (e) => {
+        console.log('onChange', e);
+    },
+    onBlur: (e) => {
+        console.log('onBlur', e);
+    },
     style: {},
     name: 'otp',
     isOtpCorrect: false,
