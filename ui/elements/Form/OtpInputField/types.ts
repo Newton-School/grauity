@@ -7,6 +7,13 @@ export type OtpFieldColors = TextFieldColors;
 
 export interface OtpInputFieldProps {
     /**
+     * The initial value of the OTP input fields.
+     * @default ''
+     * @type string
+     */
+    value?: string;
+
+    /**
      * The label displayed above the OTP input fields.
      * @type string
      */
@@ -31,6 +38,13 @@ export interface OtpInputFieldProps {
      * @type (event: { target: { name: string; value: string } }) => void
      */
     onChange: (event: { target: { name: string; value: string } }) => void;
+
+    /**
+     * Callback triggered when the whole OTP input field loses focus.
+     * @param event - The event object containing the updated OTP value.
+     * @type (event: { target: { name: string; value: string } }) => void
+     */
+    onBlur?: (event: { target: { name: string; value: string } }) => void;
 
     /**
      * Inline styles applied to the OTP input fields.

@@ -177,4 +177,148 @@ describe('OtpInputField', () => {
             expect(input).toBeDisabled();
         });
     });
+
+    it('calls onChange correctly', () => {
+        const onChange = jest.fn();
+        render(
+            <OtpInputField
+                label=""
+                style={undefined}
+                isOtpCorrect={false}
+                isOtpWrong={false}
+                isDisabled={false}
+                errorMessage=""
+                successMessage=""
+                {...defaultProps}
+                onChange={onChange}
+            />
+        );
+        const inputs = screen.getAllByRole('textbox');
+
+        expect(onChange).toHaveBeenCalledTimes(0);
+
+        fireEvent.input(inputs[0], { target: { value: '1' } });
+        expect(onChange).toHaveBeenCalledWith({
+            target: {
+                name: 'otp',
+                value: '1',
+            },
+        });
+        fireEvent.input(document.activeElement, { target: { value: '2' } });
+        expect(onChange).toHaveBeenCalledWith({
+            target: {
+                name: 'otp',
+                value: '12',
+            },
+        });
+        fireEvent.input(document.activeElement, { target: { value: '3' } });
+        expect(onChange).toHaveBeenCalledWith({
+            target: {
+                name: 'otp',
+                value: '123',
+            },
+        });
+        fireEvent.input(document.activeElement, { target: { value: '4' } });
+        expect(onChange).toHaveBeenCalledWith({
+            target: {
+                name: 'otp',
+                value: '1234',
+            },
+        });
+
+        expect(onChange).toHaveBeenCalledTimes(4);
+
+        fireEvent.click(document.body);
+    });
+
+    it('handles blur event correctly', () => {
+        const onBlur = jest.fn();
+        render(
+            <>
+                <OtpInputField
+                    label=""
+                    style={undefined}
+                    isOtpCorrect={false}
+                    isOtpWrong={false}
+                    isDisabled={false}
+                    errorMessage=""
+                    successMessage=""
+                    {...defaultProps}
+                    onBlur={onBlur}
+                />
+                <button id="outside-button" type="button">
+                    Outside Button
+                </button>
+            </>
+        );
+        const inputs = screen.getAllByRole('textbox');
+
+        fireEvent.input(inputs[0], { target: { value: '1' } });
+        fireEvent.input(document.activeElement, { target: { value: '2' } });
+        fireEvent.input(document.activeElement, { target: { value: '3' } });
+
+        fireEvent.blur(document.activeElement);
+
+        expect(onBlur).toHaveBeenCalledTimes(1);
+
+        expect(onBlur).toHaveBeenCalledWith({
+            target: {
+                name: 'otp',
+                value: '123',
+            },
+        });
+    });
+
+    it('handles controlled value (value prop) correctly', () => {
+        const onChange = jest.fn();
+
+        const { rerender } = render(
+            <OtpInputField
+                {...defaultProps}
+                value=""
+                onChange={onChange}
+            />
+        );
+
+        const inputs = screen.getAllByRole('textbox');
+
+        expect(onChange).toHaveBeenCalledTimes(0);
+
+        expect(inputs[0]).toHaveValue('');
+        expect(inputs[1]).toHaveValue('');
+        expect(inputs[2]).toHaveValue('');
+        expect(inputs[3]).toHaveValue('');
+
+        // Update value prop to "1234"
+        rerender(
+            <OtpInputField
+                {...defaultProps}
+                value="1234"
+                onChange={onChange}
+            />
+        );
+
+        expect(inputs[0]).toHaveValue('1');
+        expect(inputs[1]).toHaveValue('2');
+        expect(inputs[2]).toHaveValue('3');
+        expect(inputs[3]).toHaveValue('4');
+
+        // No onChange should be called as user didn't type anything
+        expect(onChange).toHaveBeenCalledTimes(0);
+
+        // Change first input to '0'
+        fireEvent.input(inputs[0], { target: { value: '0' } });
+        expect(onChange).toHaveBeenCalledWith({
+            target: {
+                name: 'otp',
+                value: '0234',
+            },
+        });
+        expect(onChange).toHaveBeenCalledTimes(1);
+
+        expect(inputs[0]).toHaveValue('0');
+        expect(inputs[1]).toHaveValue('2');
+        expect(inputs[2]).toHaveValue('3');
+        expect(inputs[3]).toHaveValue('4');
+    });
 });
