@@ -119,7 +119,10 @@ const OtpInputField = (props: OtpInputFieldProps) => {
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-        if (e.relatedTarget && e.currentTarget.contains(e.relatedTarget)) {
+        if (
+            e.relatedTarget &&
+            e.currentTarget.contains(e.relatedTarget as Node)
+        ) {
             return;
         }
         onBlur({
