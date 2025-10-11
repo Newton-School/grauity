@@ -10,8 +10,10 @@ export default {
 const Template = (args: OtpInputFieldProps) => <OtpInputField {...args} />;
 
 const defaultArgs: OtpInputFieldProps = {
+    value: '',
     length: 4,
     onChange: () => {},
+    onBlur: () => {},
     style: {},
     name: 'otp',
     isOtpCorrect: false,
