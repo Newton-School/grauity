@@ -9,13 +9,16 @@ import {
     StyledOtpInputField,
 } from './OtpInputField.styles';
 import { OtpInputFieldProps } from './types';
+import { getSplitOtpValue } from './utils';
 
 const OtpInputField = (props: OtpInputFieldProps) => {
     const {
+        value = '',
         label,
         name,
         length = 4,
         onChange = () => {},
+        onBlur = () => {},
         style,
         isOtpCorrect = false,
         isOtpWrong = false,
@@ -29,18 +32,19 @@ const OtpInputField = (props: OtpInputFieldProps) => {
     const inputRefs = useRef<Array<HTMLInputElement | null>>(
         Array(length).fill(null)
     );
-    const [otpValue, setOtpValue] = useState(Array(length).fill(''));
+    const [otpValue, setOtpValue] = useState(getSplitOtpValue(value, length));
 
-    useEffect(() => {
+    const handleChange = (newOtpValue: string[]) => {
+        setOtpValue(newOtpValue);
         onChange({
             target: {
                 name,
-                value: otpValue.join(''),
+                value: newOtpValue.join(''),
             },
         });
-    }, [otpValue]);
+    };
 
-    const handleChange = (
+    const handleIndividualInputChange = (
         event: React.FormEvent<HTMLInputElement>,
         index: number
     ) => {
@@ -50,7 +54,7 @@ const OtpInputField = (props: OtpInputFieldProps) => {
         }
         const updatedOtpValue = [...otpValue];
         updatedOtpValue[index] = newValue;
-        setOtpValue(updatedOtpValue);
+        handleChange(updatedOtpValue);
 
         if (index < length - 1 && newValue !== '') {
             inputRefs.current[index + 1]?.focus();
@@ -111,8 +115,27 @@ const OtpInputField = (props: OtpInputFieldProps) => {
                 Math.min(focusedIndex + otpArray.length, length - 1)
             ]?.focus();
         }
-        setOtpValue(updatedOtpValue);
+        handleChange(updatedOtpValue);
     };
+
+    const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+        if (e.relatedTarget && e.currentTarget.contains(e.relatedTarget)) {
+            return;
+        }
+        onBlur({
+            target: {
+                name,
+                value: otpValue.join(''),
+            },
+        });
+    };
+
+    useEffect(() => {
+        if (value === otpValue.join('')) {
+            return;
+        }
+        setOtpValue(getSplitOtpValue(value, length));
+    }, [value, length]);
 
     return (
         <StyledOtpInputField className={className}>
@@ -125,7 +148,7 @@ const OtpInputField = (props: OtpInputFieldProps) => {
                     {label}
                 </Label>
             )}
-            <StyledOtpContainer>
+            <StyledOtpContainer onBlur={handleBlur}>
                 {Array.from({ length }).map((_, index) => {
                     return (
                         <StyledOtpInput
@@ -137,7 +160,9 @@ const OtpInputField = (props: OtpInputFieldProps) => {
                             style={style}
                             placeholder="-"
                             value={otpValue[index] || ''}
-                            onInput={(e) => handleChange(e, index)}
+                            onInput={(e) =>
+                                handleIndividualInputChange(e, index)
+                            }
                             onKeyDown={(e) => handleKeyDown(e, index)}
                             maxLength={1}
                             onPaste={(e) => handlePaste(e)}
