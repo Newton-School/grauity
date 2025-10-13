@@ -227,8 +227,6 @@ describe('OtpInputField', () => {
         });
 
         expect(onChange).toHaveBeenCalledTimes(4);
-
-        fireEvent.click(document.body);
     });
 
     it('handles blur event correctly', () => {
