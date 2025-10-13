@@ -234,22 +234,17 @@ describe('OtpInputField', () => {
     it('handles blur event correctly', () => {
         const onBlur = jest.fn();
         render(
-            <>
-                <OtpInputField
-                    label=""
-                    style={undefined}
-                    isOtpCorrect={false}
-                    isOtpWrong={false}
-                    isDisabled={false}
-                    errorMessage=""
-                    successMessage=""
-                    {...defaultProps}
-                    onBlur={onBlur}
-                />
-                <button id="outside-button" type="button">
-                    Outside Button
-                </button>
-            </>
+            <OtpInputField
+                label=""
+                style={undefined}
+                isOtpCorrect={false}
+                isOtpWrong={false}
+                isDisabled={false}
+                errorMessage=""
+                successMessage=""
+                {...defaultProps}
+                onBlur={onBlur}
+            />
         );
         const inputs = screen.getAllByRole('textbox');
 
