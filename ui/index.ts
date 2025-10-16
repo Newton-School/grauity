@@ -287,6 +287,21 @@ export {
     useForm as useNSForm,
 } from './elements/Form/useForm';
 
+// NSThemeScope
+export {
+    default as NSThemeScope,
+    ThemeScopeContext as NSThemeScopeContext,
+    type ThemeScopeProps as NSThemeScopeProps,
+    ThemeScopeProvider as NSThemeScopeProvider,
+    useThemeScope as useNSThemeScope,
+} from './elements/ThemeScope';
+export { SC_THEME_SCOPE_THEME_KEY as NS_SC_THEME_SCOPE_THEME_KEY } from './elements/ThemeScope/constants';
+export {
+    type Theme as NSTheme,
+    ThemeType as NSThemeType,
+} from './elements/ThemeScope/types';
+export { getThemeAndThemeClassName as getNSThemeAndThemeClassName } from './elements/ThemeScope/utils';
+
 // NSTab
 export {
     default as NSTab,
@@ -296,7 +311,7 @@ export {
     type TabProps,
 } from './elements/Tab';
 
-// NSList
+// NSTabList
 export {
     default as NSTabList,
     TAB_LIST_VARIANT_ENUM,
