@@ -163,18 +163,37 @@ Font files will be created in [ui/fonts](ui/fonts) folder.
 
 Without theming, only foundational (theme agnostic) CSS variables (found here: [constantGlobalStyle](ui/themes/GlobalStyle.ts)) will be provided.
 
+### GrauityThemeProvider
 To enable theming, wrap your components with `GrauityThemeProvider`:
 
 ```js
 import { GrauityThemeProvider } from '@newtonschool/grauity';
 
 const App = ({ children, ...props }) => {
-    return <GrauityThemeProvider>{children}</GrauityThemeProvider>;
+  const [currentThemeName, setCurrentThemeName] = useState("light");
+
+    return (
+        <GrauityThemeProvider rootThemeScopeTheme={currentThemeName}>
+            {children}
+        </GrauityThemeProvider>
+    );
 };
 
 export default App;
 ```
 
+Note: `rootThemeScopeTheme` (optional) should be set to your current global app theme name ("light" or "dark"). This is required to enable scoped themes using the NSThemeScope component.
+
+### NSThemeScope
+Theming can be controlled by wrapping your elements with the NSThemeScope component, and providing props like `applyTheme` or `invert` and `as`.
+
+- Use `applyTheme` to apply a hard-coded theme
+- Use `invert` to invert the parent ThemeScope's theme
+- Use the `as` prop and set it to your component's outermost element to avoid adding an extra `div` element
+
+More details can be found on the [ThemeScope documentation page](https://grauity.newtonschool.co/?path=/docs/elements-themescope--docs).
+
+### Legacy (theme classes)
 Theming can be controlled by providing different class names to your root/local DOM elements, like the body element.
 
 -   Add class `grauity-theme-light` to use the light theme
@@ -213,8 +232,9 @@ To use grauity icons, add the following import in `global-styles.scss` or any ro
 -   Check the box for "Editor: Format On Save"
 
 Alternatively, you can add the following snippet to your `settings.json` file:
+
 ```json
 {
-  "editor.formatOnSave": true
+    "editor.formatOnSave": true
 }
 ```
