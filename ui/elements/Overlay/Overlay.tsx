@@ -76,11 +76,12 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
             $shouldBlurOverlay={shouldBlurOverlay}
             $overlayColor={overlayColor}
             className={className}
-            data-testid='testid-overlay'
+            data-testid="testid-overlay"
             {...rest}
             {...motionProps}
         >
-            <ThemeScope as={StyledOverlayContent} 
+            <ThemeScope
+                as={StyledOverlayContent}
                 $top={position.top}
                 $left={position.left}
                 $bottom={position.bottom}

@@ -45,7 +45,9 @@ export const extractTokensFromTheme = ({
                         copy
                         color={token.light}
                         background={
-                            type === 'colors' ? 'var(--bg-subtle-primary-default, #ffffff)' : ''
+                            type === 'colors'
+                                ? 'var(--bg-subtle-primary-default, #ffffff)'
+                                : ''
                         }
                     >
                         {token.light}
@@ -60,7 +62,9 @@ export const extractTokensFromTheme = ({
                         copy
                         color={token.dark}
                         background={
-                            type === 'colors' ? 'var(--bg-subtle-primary-default, #ffffff)' : ''
+                            type === 'colors'
+                                ? 'var(--bg-subtle-primary-default, #ffffff)'
+                                : ''
                         }
                     >
                         {token.dark}
