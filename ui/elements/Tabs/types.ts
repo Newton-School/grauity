@@ -8,6 +8,12 @@ export interface StyledTabContainerProps extends StyledDivProps {
 
 export interface StyledTextProps extends StyledDivProps {
     color?: string;
+
+    /**
+     * Additional class name for the tabs container
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface StyledTabItemContainerProps
@@ -19,7 +25,7 @@ export interface StyledTabItemContainerProps
     focusBackgroundColor?: string;
 }
 
-export interface TabProps {
+export interface TabsProps {
     /**
      * An array of tab items to be rendered.
      * Each item can be a React node.
@@ -57,4 +63,10 @@ export interface TabProps {
      *  Default Color
      */
     color?: string;
+
+    /**
+     * Additional class name for the tabs container
+     * @default ''
+     */
+    className?: string;
 }

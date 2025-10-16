@@ -1,4 +1,4 @@
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { forwardRef, useEffect, useState } from 'react';
 
 import { Icon } from '../Icon';
@@ -19,9 +19,9 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
             onToggle = () => {},
             children,
             suffix = null,
-            headerBackgroundColor = 'var(--bg-secondary, #F6F7F9)',
-            contentBackgroundColor = 'var(--bg-secondary, #F6F7F9)',
-            iconColor = 'var(--text-primary, #16191D)',
+            headerBackgroundColor = 'var(--bg-subtle-secondary-default, #f6f7f9)',
+            contentBackgroundColor = 'var(--bg-subtle-secondary-default, #f6f7f9)',
+            iconColor = 'var(--text-emphasis-primary-default, #16191d)',
             style = {},
             className = '',
             iconSize = '16',
@@ -75,14 +75,15 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
                 </StyledAccordionHeader>
                 <AnimatePresence>
                     {isExpanded && (
-                        <StyledAccordionContent
-                            $contentBackgroundColor={contentBackgroundColor}
-                            {...motionProps}
-                            className="ns-accordion-content"
-                        >
-                            {showSeparator && <StyledLine />}
-                            {children}
-                        </StyledAccordionContent>
+                        <motion.div {...motionProps}>
+                            <StyledAccordionContent
+                                $contentBackgroundColor={contentBackgroundColor}
+                                className="ns-accordion-content"
+                            >
+                                {showSeparator && <StyledLine />}
+                                {children}
+                            </StyledAccordionContent>
+                        </motion.div>
                     )}
                 </AnimatePresence>
             </StyledAccordionWrapper>

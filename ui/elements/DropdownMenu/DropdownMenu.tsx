@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import React, {
     forwardRef,
     RefObject,
@@ -16,11 +16,13 @@ import DropdownMenuHeader from './components/DropdownMenuHeader';
 import DropdownMenuOption from './components/DropdownMenuOption';
 import DropdownMenuSubHeader from './components/DropdownMenuSubHeader';
 import DropdownSearchBox from './components/DropdownSearchBox';
-import { FRAMER_MOTION_PROPS } from './constants';
+import { DROPDOWN_MENU_MAX_HEIGHT, FRAMER_MOTION_PROPS } from './constants';
 import {
     StyledDropdownMenu,
     StyledDropdownMenuBody,
     StyledDropdownMenuDivider,
+    StyledDropdownMenuEmptyState,
+    StyledDropdownMenuHeaderSubtext,
     StyledDropdownOptionsContainer,
 } from './DropdownMenu.styles';
 import {
@@ -34,6 +36,7 @@ import {
     getOptionsFromBaseDropdownItems,
     getSelectedValuesForDropdownType,
     isDropdownMenuItemNavigable,
+    scrollToFirstMarkedItem,
 } from './utils';
 
 const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
@@ -61,6 +64,10 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             styles = {},
             value = null,
             width = '300px',
+            maxHeight = `${DROPDOWN_MENU_MAX_HEIGHT}px`,
+            applyOnOptionSelectInMultipleMode = false,
+            id,
+            emptyStateMessage = 'No options available',
         } = props;
 
         const selectedValues = getSelectedValuesForDropdownType(
@@ -95,12 +102,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             if (Array.isArray(customValues)) {
                 finalValues = customValues;
             } else {
-                finalValues = options.filter((option) =>
-                    selectedOptions.find(
-                        (selectedOption) =>
-                            selectedOption.value === option.value
-                    )
-                );
+                finalValues = selectedOptions;
             }
 
             if (multiple) {
@@ -121,6 +123,9 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                           )
                         : [...selectedOptions, clickedValue];
                 setSelectedOptions(newSelectedOptions);
+                if (!showActionButtons && applyOnOptionSelectInMultipleMode) {
+                    handleApply(newSelectedOptions);
+                }
             } else {
                 setSelectedOptions([clickedValue]);
                 if (!showActionButtons) {
@@ -229,6 +234,12 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             setOptions(filteredOptions);
         }, [items]);
 
+        useEffect(() => {
+            if (items.length > 0) {
+                scrollToFirstMarkedItem(items, itemRefs);
+            }
+        }, [items]);
+
         useClickAway(dropdownRef as RefObject<HTMLElement>, () => {
             if (multiple && !showActionButtons) {
                 handleApply();
@@ -241,7 +252,9 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                 style={styles}
                 ref={dropdownRef}
                 $width={width}
+                $maxHeight={maxHeight}
                 role="menu"
+                id={id}
                 {...FRAMER_MOTION_PROPS}
             >
                 <DropdownMenuHeader
@@ -268,7 +281,9 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                         }
                     />
 
-                    <StyledDropdownOptionsContainer onScroll={handleMenuBodyScroll}>
+                    <StyledDropdownOptionsContainer
+                        onScroll={handleMenuBodyScroll}
+                    >
                         {Array.isArray(searchedOptions) &&
                             searchedOptions.map((item, index) => (
                                 <DropdownMenuOption
@@ -282,7 +297,9 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                     onClick={(clickedValue) =>
                                         handleClickOption(
                                             options.find(
-                                                (option) => option.value === clickedValue
+                                                (option) =>
+                                                    option.value ===
+                                                    clickedValue
                                             )
                                         )
                                     }
@@ -298,7 +315,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                 />
                             ))}
 
-                        {!Array.isArray(searchedOptions) &&
+                        {!Array.isArray(searchedOptions) && items.length > 0 &&
                             items.map((item, index) => {
                                 if (item.type === BaseItemType.SUB_HEADER) {
                                     return (
@@ -359,6 +376,14 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                 }
                                 return null;
                             })}
+
+                        {!Array.isArray(searchedOptions) && items.length === 0 && (
+                            <StyledDropdownMenuEmptyState>
+                                <StyledDropdownMenuHeaderSubtext>
+                                    {emptyStateMessage}
+                                </StyledDropdownMenuHeaderSubtext>
+                            </StyledDropdownMenuEmptyState>
+                        )}
                     </StyledDropdownOptionsContainer>
                 </StyledDropdownMenuBody>
                 <DropdownMenuFooter

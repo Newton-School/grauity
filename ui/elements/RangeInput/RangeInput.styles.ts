@@ -13,8 +13,8 @@ export const StyledRangeInputContainer = styled.div<StyledRangeInputContainerPro
     height: 100%;
     min-height: 45px;
     font-family: var(--font-family, 'Mona Sans');
-    --slider-color: var(--text-disabled, #8c95a6);
-    --slider-filled-color: var(--text-brand, #0673f9);
+    --slider-color: var(--text-emphasis-primary-disabled, #8c95a6);
+    --slider-filled-color: var(--text-emphasis-brand-default, #0673f9);
 `;
 
 export const StyledRangeSliderSection = styled.div<StyledDivProps>`
@@ -86,5 +86,5 @@ export const StyledValuesContainer = styled.div<StyledDivProps>`
     align-items: center;
     font-size: 14px;
     margin-bottom: 5px;
-    color: var(--text-primary, #16191d);
+    color: var(--text-emphasis-primary-default, #16191d);
 `;

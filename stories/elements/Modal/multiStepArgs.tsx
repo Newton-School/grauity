@@ -25,7 +25,7 @@ const multiStepArgs: MultiStepModalProps = {
         {
             banner: null,
             title: (
-                <Typography variant="heading-semibold-h24">
+                <Typography variant="heading-sb-h4">
                     Multi-step Modal Step 2 (with custom title)
                 </Typography>
             ),

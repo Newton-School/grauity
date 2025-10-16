@@ -26,7 +26,7 @@ export const FontWeightTokens = () => {
                     fontWeight: token,
                     fontSize: 'var(--font-size-16px)',
                     fontFamily: 'var(--font-family)',
-                    color: 'var(--text-emphasis-primary-default)',
+                    color: 'var(--text-emphasis-primary-default, #16191d)',
                 }}
             >
                 {text}
@@ -41,7 +41,7 @@ export const FontWeightTokens = () => {
                 position: 'sticky',
                 top: '0',
                 padding: '10px 0 16px 0',
-                background: 'linear-gradient(to bottom, var(--bg-subtle-primary-default) 91%, transparent 100%)',
+                background: 'linear-gradient(to bottom, var(--bg-subtle-primary-default, #ffffff) 91%, transparent 100%)',
                 zIndex: 1,
             }}>
                 <NSTextField

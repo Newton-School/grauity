@@ -59,4 +59,13 @@ describe('PopOver', () => {
         await new Promise((r) => setTimeout(r, 3000));
         expect(screen.queryByText('PopOver Content')).not.toBeInTheDocument();
     }, 5000);
+
+    it('applies custom class name', () => {
+        render(
+            <PopOver isOpen className="custom-class">
+                <div>PopOver Content</div>
+            </PopOver>
+        );
+        expect(document.querySelector('.custom-class')).toBeInTheDocument();
+    });
 });

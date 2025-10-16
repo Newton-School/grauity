@@ -43,8 +43,9 @@ export const StyledSelectDropdownContainer = styled.div<StyledSelectDropdownCont
     align-items: flex-start;
     gap: var(--spacing-4px, 4px);
     border-radius: var(--spacing-12px, 12px);
-    border: var(--spacing-1px, 1px) solid var(--border, #e1e5ea);
-    background: var(--bg-primary, #fff);
+    border: var(--spacing-1px, 1px) solid
+        var(--border-subtle-primary-default, #e1e5ea);
+    background: var(--bg-subtle-primary-default, #ffffff);
     box-shadow: var(--spacing-2px, 2px) var(--spacing-4px, 4px)
         var(--spacing-8px, 8px) var(--spacing-0px, 0px) rgba(0, 0, 0, 0.06);
 `;
@@ -63,7 +64,7 @@ export const StyledSelectDropdownItem = styled.div<StyledSelectDropdownItemProps
     gap: var(--spacing-8px, 8px);
     padding: var(--spacing-8px, 8px) var(--spacing-4px, 4px);
     border-radius: var(--spacing-4px, 4px);
-    color: var(--text-secondary, #5b6271);
+    color: var(--text-emphasis-secondary-default, #5b6271);
     font-size: var(--spacing-14px, 14px);
     font-style: normal;
     font-weight: 500;
@@ -76,16 +77,16 @@ export const StyledSelectDropdownItem = styled.div<StyledSelectDropdownItemProps
     }
 
     &:hover {
-        background: var(--bg-secondary, #f6f7f9);
+        background: var(--bg-subtle-secondary-default, #f6f7f9);
     }
 
     ${({ $disabled }) =>
         $disabled &&
         css`
-            color: var(--text-disabled, #8c95a6);
+            color: var(--text-emphasis-primary-disabled, #8c95a6);
             cursor: default;
             &:hover {
-                background: var(--bg-primary, #fff);
+                background: var(--bg-subtle-primary-default, #ffffff);
             }
         `}
 `;
@@ -100,8 +101,9 @@ export const StyledDropdownSearchContainer = styled.div`
     align-self: stretch;
     gap: var(--spacing-8px, 8px);
     border-radius: var(--corner-radius-8px, 8px);
-    border: var(--spacing-1px, 1px) solid var(--border-neutral, #e1e5ea);
-    background: var(--bg-primary, #ffffff);
+    border: var(--spacing-1px, 1px) solid
+        var(--border-subtle-primary-disabled, #edeff3);
+    background: var(--bg-subtle-primary-default, #ffffff);
 `;
 
 export const StyledDropdownSearchInput = styled.input<StyledDropdownSearchInputProps>`
@@ -109,8 +111,8 @@ export const StyledDropdownSearchInput = styled.input<StyledDropdownSearchInputP
     width: 100%;
     outline: none;
     border: none;
-    background: var(--bg-primary, #ffffff);
-    color: var(--text-primary, #16191d);
+    background: var(--bg-subtle-primary-default, #ffffff);
+    color: var(--text-emphasis-primary-default, #16191d);
     font-size: var(--spacing-14px, 14px);
     font-style: normal;
     font-weight: 500;

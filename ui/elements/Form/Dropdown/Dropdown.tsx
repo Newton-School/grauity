@@ -2,10 +2,7 @@
 import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 
-import DropdownMenu, {
-    BaseItemOptionProps,
-    BaseItemType,
-} from '../../DropdownMenu';
+import DropdownMenu, { BaseItemOptionProps } from '../../DropdownMenu';
 import { DROPDOWN_MENU_MAX_HEIGHT } from '../../DropdownMenu/constants';
 import { getSelectedValuesForDropdownType } from '../../DropdownMenu/utils';
 import Overlay from '../../Overlay';
@@ -21,6 +18,7 @@ const Dropdown = (props: DropdownProps) => {
         value = null,
         onChange = () => {},
         onClose = () => {},
+        showActionButtons = false,
     } = props;
 
     let width;
@@ -33,31 +31,13 @@ const Dropdown = (props: DropdownProps) => {
         fullWidth = true;
     }
 
-    const selectedValues = getSelectedValuesForDropdownType(multiple, value);
-
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [dropdownMenuHeight, setDropdownMenuHeight] = useState(
         DROPDOWN_MENU_MAX_HEIGHT
     );
     const [selectedOptions, setSelectedOptions] = useState<
         BaseItemOptionProps | BaseItemOptionProps[]
-    >(
-        multiple
-            ? (items.filter(
-                  (item) =>
-                      item.type === BaseItemType.OPTION &&
-                      selectedValues
-                          .map((option) => option.value)
-                          .includes(item.value)
-              ) as BaseItemOptionProps[])
-            : (items.find(
-                  (item) =>
-                      item.type === BaseItemType.OPTION &&
-                      selectedValues
-                          .map((option) => option.value)
-                          .includes(item.value)
-              ) as BaseItemOptionProps)
-    );
+    >(getSelectedValuesForDropdownType(multiple, value));
 
     const triggerRef = useRef<HTMLButtonElement>(null);
     const dropdownMenuRef = useRef<HTMLDivElement>(null);
@@ -69,6 +49,10 @@ const Dropdown = (props: DropdownProps) => {
         onClose(values);
         triggerRef?.current?.focus();
     };
+
+    useEffect(() => {
+        setSelectedOptions(getSelectedValuesForDropdownType(multiple, value));
+    }, [value, items, multiple]);
 
     useEffect(() => {
         if (isOpen && dropdownMenuRef.current) {
@@ -113,7 +97,9 @@ const Dropdown = (props: DropdownProps) => {
                         onChange={(values) => {
                             setSelectedOptions(values);
                             onChange(values);
-                            handleDropdownMenuClose(values);
+                            if (!multiple || showActionButtons) {
+                                handleDropdownMenuClose(values);
+                            }
                         }}
                     />
                 </Overlay>

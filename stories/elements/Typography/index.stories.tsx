@@ -8,12 +8,11 @@ export default {
 
 const Template = (args: TypographyProps) => <Typography {...args} />;
 
-const defaultArgs = {
+const defaultArgs: TypographyProps = {
     children: 'The quick brown fox jumps over the lazy dog!',
-    variant: 'paragraph-medium-body1',
+    variant: 'paragraph-md-p1',
     as: 'auto',
-    color: 'var(--text-primary, #16191d)',
-    fontSize: 'var(--font-size-40px, 40px)',
+    color: 'var(--text-emphasis-primary-default, #16191d)',
 };
 
 export const Component = Template.bind({});

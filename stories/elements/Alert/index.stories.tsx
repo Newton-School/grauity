@@ -13,10 +13,7 @@ export default {
             ],
             mapping: {
                 'Simple example using Typography': (
-                    <Typography
-                        variant="paragraph-semibold-label"
-                        color="inherit"
-                    >
+                    <Typography variant="paragraph-sb-l1" color="inherit">
                         An Alert title using Typography
                     </Typography>
                 ),
@@ -82,12 +79,12 @@ const defaultArgs: AlertProps = {
     ],
     inlineButtons: false,
     title: (
-        <Typography variant="paragraph-semibold-label" color="inherit">
+        <Typography variant="paragraph-sb-l1" color="inherit">
             This is a default alert banner
         </Typography>
     ),
     description: (
-        <Typography variant="paragraph-medium-body3" color="inherit">
+        <Typography variant="paragraph-md-p3" color="inherit">
             We all step into this design world full of passion and
             enthusiasm.But over time, something changes without us even
             noticing.

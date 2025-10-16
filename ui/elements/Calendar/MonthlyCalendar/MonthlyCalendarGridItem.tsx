@@ -51,8 +51,8 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
         currentActiveMonth.getMonth() === cellDate.getMonth();
 
     const cellBackgroundColor = isInActiveMonth
-        ? 'var(--bg-primary, #FFF)'
-        : 'var(--bg-secondary, #F6F7F9)';
+        ? 'var(--bg-subtle-primary-default, #ffffff)'
+        : 'var(--bg-subtle-secondary-default, #f6f7f9)';
 
     if (typeof renderDayItem === 'function') {
         return <>{eventsToRender.map((event) => renderDayItem(event))}</>;

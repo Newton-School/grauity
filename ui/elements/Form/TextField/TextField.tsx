@@ -27,7 +27,6 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
         type = 'text',
         inputMode = 'text',
         pattern,
-        validationMessage,
         helpMessage,
         errorMessage,
         maxLength,
@@ -39,12 +38,14 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
         onChange = () => {},
         onClick = () => {},
         onBlur = () => {},
+        onKeyDown = () => {},
         size = 'medium',
         adornments,
         color = 'brand',
         min,
         max,
         step,
+        className,
     } = props;
 
     const inputContainerRef = useRef(null);
@@ -77,24 +78,12 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
         }
     }, [adornments?.start, adornments?.end]);
 
-    const getIsValid = (targetValue: string) => {
-        const satisfiesMinLength = isRequired ? targetValue.length > 0 : true;
-        const satisfiesMaxLength = maxLength
-            ? targetValue.length <= maxLength
-            : true;
-        return satisfiesMinLength && satisfiesMaxLength;
-    };
-
-    const [isInputValid, setIsInputValid] = useState(getIsValid(value));
-
     const handleInputClick = (event: React.MouseEvent<HTMLInputElement>) => {
         onClick(event);
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         onChange(event);
-        const isValid = getIsValid(event.target.value);
-        setIsInputValid(isValid);
     };
 
     const handleInputBlur = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -102,7 +91,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
     };
 
     return (
-        <StyledTextInputFieldContainer>
+        <StyledTextInputFieldContainer className={className}>
             {label && (
                 <Label
                     name={name}
@@ -140,6 +129,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
                     onChange={handleInputChange}
                     onClick={handleInputClick}
                     onBlur={handleInputBlur}
+                    onKeyDown={onKeyDown}
                     autoComplete={autoComplete}
                     autoFocus={autoFocus}
                     $size={size}
@@ -157,9 +147,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
                 {helpMessage}
             </HelpMessage>
 
-            {(!isInputValid || errorMessage) && validationMessage && (
-                <ErrorMessage>{errorMessage || validationMessage}</ErrorMessage>
-            )}
+            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </StyledTextInputFieldContainer>
     );
 });

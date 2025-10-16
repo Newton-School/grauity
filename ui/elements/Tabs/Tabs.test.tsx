@@ -4,9 +4,9 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 
 import Tabs from './Tabs';
-import { TabProps } from './types';
+import { TabsProps } from './types';
 
-const defaultProps: TabProps = {
+const defaultProps: TabsProps = {
     tabItems: ['Item1', 'Item2'],
     onTabFocusChange: jest.fn(),
 };
@@ -30,5 +30,11 @@ describe('Tabs Component', () => {
         render(<Tabs tabItems={[<h1>Text 1</h1>, <span>Text 2</span>]} />);
         expect(screen.getByText('Text 1')).toBeInTheDocument();
         expect(screen.getByText('Text 2')).toBeInTheDocument();
+    });
+
+    it('applies custom class name', () => {
+        render(<Tabs tabItems={['Item1', 'Item2']} className="custom-class" />);
+        const tablist = screen.getByRole('tablist');
+        expect(tablist).toHaveClass('custom-class');
     });
 });

@@ -22,6 +22,7 @@ export default function PopOver(props: PopOverProps) {
         height,
         position,
         shouldFocusOnFirstElement = true,
+        className = '',
     } = props;
 
     const [adjustedOffset, setAdjustedOffset] = useState<PopOverOffset | null>(
@@ -278,6 +279,7 @@ export default function PopOver(props: PopOverProps) {
                         $offset={adjustedOffset}
                         {...motionProps}
                         variants={getMotionVariants(direction)}
+                        className={className}
                     >
                         <div
                             style={{

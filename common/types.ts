@@ -11,6 +11,16 @@ export interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
     ref?: React.Ref<HTMLDivElement>;
     'data-testid'?: string;
 }
+/**
+ * Interface representing the properties for a styled span component.
+ *
+ * @extends React.HTMLAttributes<HTMLSpanElement>
+ * @property {React.Ref<HTMLSpanElement>} [ref] - Optional ref for the span element.
+ */
+export interface StyledSpanProps extends React.HTMLAttributes<HTMLSpanElement> {
+    ref?: React.Ref<HTMLSpanElement>;
+    'data-testid'?: string;
+}
 
 /**
  * Interface representing the properties for a styled select component.

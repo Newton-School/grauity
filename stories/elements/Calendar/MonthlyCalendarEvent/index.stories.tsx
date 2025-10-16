@@ -29,9 +29,9 @@ const Template = (args: MonthlyCalendarEventProps) => (
 const defaultArgs: MonthlyCalendarEventProps = {
     eventTime: new Date(2024, 9, 25, 8, 0),
     eventTitle: 'Sample Event Title',
-    eventTitleColor: 'var(--text-action2)',
-    eventTimeColor: 'var(--text-action2)',
-    backgroundColor: 'var(--bg-action-brand)',
+    eventTitleColor: 'var(--text-emphasis-invert-primary-default, #ffffff)',
+    eventTimeColor: 'var(--text-emphasis-invert-primary-default, #ffffff)',
+    backgroundColor: 'var(--bg-emphasis-brand-default, #0673f9)',
     borderRadius: '4px',
     width: '100%',
     height: '100%',

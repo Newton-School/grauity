@@ -92,6 +92,12 @@ export interface PopOverProps {
     position?: PopoverPosition;
 
     /**
+     * Additional class name for the popover container
+     * @default ''
+     */
+    className?: string;
+
+    /**
      * Should focus on the first element in the popover
      * @default true
      */

@@ -16,7 +16,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
             color = 'brand',
             size = 'medium',
             icon = null,
-            iconSize = '24',
+            iconSize,
             className = '',
             disabled = false,
             loading = false,

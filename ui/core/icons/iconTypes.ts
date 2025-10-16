@@ -49,8 +49,10 @@ export type grauityIconName =
     | 'pen'
     | 'pin-filled'
     | 'pin'
+    | 'currency-filled'
     | 'currency-rupee-filled'
     | 'currency-rupee'
+    | 'currency'
     | 'headphone-filled'
     | 'headphone-mic-filled'
     | 'headphone-mic'
@@ -321,6 +323,8 @@ export type grauityIconName =
     | 'map-pin'
     | 'maximize-filled'
     | 'maximize'
+    | 'meeting-room-filled'
+    | 'meeting-room'
     | 'menu-alt2-filled'
     | 'menu-alt2'
     | 'menu-filled'
@@ -495,8 +499,10 @@ export type grauityIconKey =
     | 'Pen'
     | 'PinFilled'
     | 'Pin'
+    | 'CurrencyFilled'
     | 'CurrencyRupeeFilled'
     | 'CurrencyRupee'
+    | 'Currency'
     | 'HeadphoneFilled'
     | 'HeadphoneMicFilled'
     | 'HeadphoneMic'
@@ -767,6 +773,8 @@ export type grauityIconKey =
     | 'MapPin'
     | 'MaximizeFilled'
     | 'Maximize'
+    | 'MeetingRoomFilled'
+    | 'MeetingRoom'
     | 'MenuAlt2Filled'
     | 'MenuAlt2'
     | 'MenuFilled'
@@ -941,8 +949,10 @@ export enum GRAUITY_ICONS {
     Pen = 'pen',
     PinFilled = 'pin-filled',
     Pin = 'pin',
+    CurrencyFilled = 'currency-filled',
     CurrencyRupeeFilled = 'currency-rupee-filled',
     CurrencyRupee = 'currency-rupee',
+    Currency = 'currency',
     HeadphoneFilled = 'headphone-filled',
     HeadphoneMicFilled = 'headphone-mic-filled',
     HeadphoneMic = 'headphone-mic',
@@ -1213,6 +1223,8 @@ export enum GRAUITY_ICONS {
     MapPin = 'map-pin',
     MaximizeFilled = 'maximize-filled',
     Maximize = 'maximize',
+    MeetingRoomFilled = 'meeting-room-filled',
+    MeetingRoom = 'meeting-room',
     MenuAlt2Filled = 'menu-alt2-filled',
     MenuAlt2 = 'menu-alt2',
     MenuFilled = 'menu-filled',

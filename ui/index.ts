@@ -86,6 +86,9 @@ export {
 // NSChip
 export { type ChipProps, default as NSChip } from './elements/Chip';
 
+// NSTag
+export { default as NSTag, type TagProps } from './elements/Tag';
+
 // NSAccordion
 export {
     type AccordionProps,
@@ -156,7 +159,7 @@ export {
 export { default as NSTooltip, type TooltipProps } from './elements/Tooltip';
 
 // NSTabs
-export { default as NSTab, type TabProps } from './elements/Tabs';
+export { default as NSTabs, type TabsProps } from './elements/Tabs';
 
 // NSCarousel
 export { type CarouselProps, default as NSCarousel } from './elements/Carousel';
@@ -241,6 +244,12 @@ export {
     default as NSDropdown,
 } from './elements/Form/Dropdown';
 
+// NSCombobox
+export {
+    type ComboboxProps,
+    default as NSCombobox,
+} from './elements/Form/Combobox';
+
 // NSCheckboxGroup
 export {
     type CheckboxGroupProps,
@@ -255,6 +264,7 @@ export {
 
 // useNSForm
 export {
+    getConditionalProps as getNSConditionalProps,
     type ConditionalProp as NSConditionalProp,
     type FieldName as NSFieldName,
     type FormConfig as NSFormConfig,
@@ -291,3 +301,22 @@ export {
     ThemeType as NSThemeType,
 } from './elements/ThemeScope/types';
 export { getThemeAndThemeClassName as getNSThemeAndThemeClassName } from './elements/ThemeScope/utils';
+
+// NSTab
+export {
+    default as NSTab,
+    TAB_ICON_POSITIONS_ENUM,
+    TAB_SIZES_ENUM,
+    TAB_VARIANT_ENUM,
+    type TabProps,
+} from './elements/Tab';
+
+// NSTabList
+export {
+    default as NSTabList,
+    TAB_LIST_VARIANT_ENUM,
+    type TabListProps,
+} from './elements/TabList';
+
+// NSDrawer
+export { type DrawerProps, default as NSDrawer } from './elements/Drawer';

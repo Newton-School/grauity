@@ -21,7 +21,7 @@ export const StyledOverlay = styled(motion.div)<StyledOverlayProps>`
         $shouldTintOverlay &&
         css`
             background: ${$overlayColor ||
-            'var(--alpha-overlay, rgba(22, 25, 29, 0.8))'};
+            'var(--bg-subtle-alpha-overlay, #16191dcc)'};
         `}
 
     ${({ $shouldBlurOverlay }) =>
@@ -37,6 +37,11 @@ export const StyledOverlayContent = styled.div<StyledOverlayContentProps>`
     position: relative;
     top: ${({ $top }) => $top}px;
     left: ${({ $left }) => $left}px;
+    ${({ $bottom }) =>
+        $bottom &&
+        css`
+            bottom: ${$bottom}px;
+        `}
 
     ${({ $shouldCenterContent }) =>
         $shouldCenterContent &&

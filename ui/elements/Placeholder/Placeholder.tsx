@@ -11,13 +11,15 @@ const Placeholder = forwardRef<HTMLDivElement, PlaceholderProps>(
             border = 'none',
             borderRadius = '0px',
             margin = '0px',
-            backgroundColor = 'var(--bg-tertiary, #EDEFF3)',
+            backgroundColor = 'var(--bg-subtle-tertiary-default, #edeff3)',
+            className = '',
         } = props;
 
         return (
             <StyledPlaceholder
                 ref={ref}
                 data-testid="data-testid-placeholder"
+                className={className}
                 $width={width}
                 $height={height}
                 $border={border}

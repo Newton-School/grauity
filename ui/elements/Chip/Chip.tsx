@@ -13,6 +13,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             icon = null,
             iconSize = '12',
             iconPosition = 'left',
+            iconColor = 'inherit',
             textColor = null,
             backgroundColor = null,
             borderColor = null,
@@ -36,8 +37,13 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             rounded={rounded}
             iconPosition={iconPosition}
         >
-            {icon && <Icon name={icon} color="inherit" size={iconSize} />}
-            <StyledChipText>{children}</StyledChipText>
+            {icon && <Icon name={icon} color={iconColor} size={iconSize} />}
+            <StyledChipText
+                title={typeof children === 'string' ? children : ''}
+                className="ns-chip-text"
+            >
+                {children}
+            </StyledChipText>
         </StyledChipDiv>
     )
 );

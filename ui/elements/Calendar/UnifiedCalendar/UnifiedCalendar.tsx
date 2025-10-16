@@ -21,6 +21,7 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
         loading = false,
         weeklyCalendarProps = {},
         monthlyCalendarProps = {},
+        className = '',
     } = props;
 
     const [viewType, setViewType] = useState(view);
@@ -78,6 +79,7 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
                     onDateChange={setCurrentDate}
                     loading={loading}
                     {...monthlyCalendarProps}
+                    className={className}
                     renderDayItem={
                         typeof monthlyCalendarProps?.renderDayItem ===
                         'function'
@@ -123,6 +125,7 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
                     onDateChange={setCurrentDate}
                     loading={loading}
                     {...weeklyCalendarProps}
+                    className={className}
                 />
             );
         default:

@@ -92,6 +92,12 @@ export interface WeeklyCalendarProps<T = {}> {
      * @default true
      */
     shouldScrollToFirstEvent?: boolean;
+
+    /**
+     * Additional class name for the calendar wrapper
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface EventRendererProps<T = {}> {

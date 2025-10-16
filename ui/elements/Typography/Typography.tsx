@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {
-    TYPOGRAPHY_AS_ENUM,
-    TYPOGRAPHY_VARIANT_AS_MAPPING,
-} from './constants';
+import { TYPOGRAPHY_AS_ENUM, TYPOGRAPHY_VARIANT_AS_MAPPING } from './constants';
 import { TypographyProps } from './types';
 import { StyledTypography } from './Typography.styles';
 
@@ -19,13 +16,15 @@ import { StyledTypography } from './Typography.styles';
  * value to prop `as`, such as `'h1'`, `'h2'`, `'p'`, etc.
  */
 const Typography = ({
-    variant = 'paragraph-medium-body1',
+    variant = 'paragraph-md-p1',
     as = 'auto',
-    color = 'var(--text-primary, #16191d)',
+    color = 'var(--text-emphasis-primary-default, #16191d)',
     textAlign = null,
     textTransform = null,
     fontSize = null,
     children = '',
+    className = '',
+    title = null,
 }: TypographyProps) => {
     const asType =
         as === TYPOGRAPHY_AS_ENUM.AUTO
@@ -39,6 +38,8 @@ const Typography = ({
             textAlign={textAlign}
             textTransform={textTransform}
             fontSize={fontSize}
+            className={className}
+            title={title}
         >
             {children}
         </StyledTypography>

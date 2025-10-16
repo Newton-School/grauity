@@ -46,7 +46,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         onClose = () => {},
         mobileBottomFullWidth = false,
         modalPadding = '20px',
-        border = '1px solid var(--border, #e1e5ea)',
+        border = '1px solid var(--border-subtle-primary-default, #e1e5ea)',
         modalBodyMargin = null,
         showCloseButton = false,
         hideOnClickAway = false,

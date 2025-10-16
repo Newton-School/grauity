@@ -34,7 +34,7 @@ export interface AlertBannerProps {
     /**
      * Alert banner padding
      *
-     * Default: `'var(--spacing-8px, 8px)'`
+     * Default: `'var(--spacing-4px, 4px) var(--spacing-8px, 8px)'` if action buttons/close button are present else `'var(--spacing-8px, 8px)'`
      * */
     padding?: string;
 
@@ -112,6 +112,12 @@ export interface AlertBannerProps {
      * Type: ButtonProps[]
      * */
     actionButtons?: ButtonProps[];
+
+    /**
+     * Additional class name for the alert banner container
+     * @default ''
+     */
+    className?: string;
 }
 
 export interface AlertBannerContainerProps {

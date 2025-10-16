@@ -33,6 +33,7 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
             noOptionsText = '-- No options available --',
             triggerComponent,
             width,
+            className = '',
         } = props;
 
         const [isOpened, setIsOpened] = useState(false);
@@ -49,7 +50,11 @@ const SelectDropdown = forwardRef<HTMLSelectElement, SelectDropdownProps>(
         );
 
         return (
-            <StyledSelectDropdownWrapper ref={ref} role="combobox">
+            <StyledSelectDropdownWrapper
+                ref={ref}
+                role="combobox"
+                className={className}
+            >
                 {triggerComponent && (
                     <StyledSelectDropdownTriggerWrapper
                         ref={triggerRef}

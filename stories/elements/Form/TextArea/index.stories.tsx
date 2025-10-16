@@ -23,7 +23,6 @@ Default.args = {
     label: 'Example Label',
     isRequired: false,
     placeholder: 'This is placeholder text...',
-    validationMessage: 'This is a validation message',
     helpMessage: 'This is a help message',
     errorMessage: 'This is an error message',
     maxLength: 100,
