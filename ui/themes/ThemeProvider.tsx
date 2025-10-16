@@ -13,7 +13,7 @@ import { ThemeConfigType } from './types';
  * application simultaneously, like light and dark mode.
  *
  * Wrap your root level element (e.g. in your App component) with this provider.
- * 
+ *
  * It uses `ThemeScope` to set the initial theme for the application that you provide
  * using the `rootThemeScopeTheme` prop. You can then use ThemeScope anywhere in
  * your application to switch themes for that section of the app.
@@ -26,7 +26,7 @@ export const GrauityThemeProvider = ({
     children = null,
     rootThemeScopeTheme = 'light',
 }: {
-    themeConfig?: ThemeConfigType;
+    themeConfig?: { [theme: string]: ThemeConfigType };
     children?: React.ReactNode;
     rootThemeScopeTheme?: Theme;
 }) => {

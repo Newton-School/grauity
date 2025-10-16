@@ -1,4 +1,6 @@
-const LIGHT_THEME_CONFIG = {
+import { ThemeConfigType } from './types';
+
+const LIGHT_THEME_CONFIG: ThemeConfigType = {
     colors: {
         bg: {
             subtle: {

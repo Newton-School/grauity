@@ -18,30 +18,6 @@ export type ExtractColorVariablesType = (
 ) => String[];
 
 export type ThemeConfigType = {
-    [themeName: string]: ThemeColorObjType | any;
-};
-
-export type GrauityThemeProviderProps = {
-    /**
-     * Configuration for themes, where each theme name maps to its color object.
-     * Default grauity themes are provided for light and dark modes.
-     */
-    themeConfig: ThemeConfigType;
-
-    /**
-     * Children components to be wrapped by the theme provider.
-     */
-    children: React.ReactNode;
-
-    /**
-     * The current theme to apply. Defaults to 'light'.
-     */
-    currentTheme?: ThemeName;
-
-    /**
-     * The HTML element to initialize the theme on.
-     *
-     * Defaults to 'body'.
-     */
-    initThemeElement?: string;
+    colors: ThemeColorObjType;
+    [otherThemeProperty: string]: any;
 };

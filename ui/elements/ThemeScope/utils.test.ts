@@ -88,6 +88,15 @@ describe('getThemeAndThemeClassName', () => {
     it('handles all combinations of parameters correctly', () => {
         // Test matrix of different parameter combinations
         const testCases = [
+            // Default to light theme
+            {
+                params: {},
+                expected: {
+                    theme: 'light',
+                    themeClassName: 'grauity-theme-light',
+                },
+            },
+            // Apply light theme
             {
                 params: { applyTheme: 'light' as const },
                 expected: {
@@ -95,6 +104,7 @@ describe('getThemeAndThemeClassName', () => {
                     themeClassName: 'grauity-theme-light',
                 },
             },
+            // Apply dark theme
             {
                 params: { applyTheme: 'dark' as const },
                 expected: {
@@ -102,6 +112,7 @@ describe('getThemeAndThemeClassName', () => {
                     themeClassName: 'grauity-theme-dark',
                 },
             },
+            // Inherit light parent theme
             {
                 params: { parentTheme: 'light' as const },
                 expected: {
@@ -109,6 +120,7 @@ describe('getThemeAndThemeClassName', () => {
                     themeClassName: 'grauity-theme-light',
                 },
             },
+            // Inherit dark parent theme
             {
                 params: { parentTheme: 'dark' as const },
                 expected: {
@@ -116,6 +128,7 @@ describe('getThemeAndThemeClassName', () => {
                     themeClassName: 'grauity-theme-dark',
                 },
             },
+            // Invert light parent theme to dark
             {
                 params: { parentTheme: 'light' as const, invert: true },
                 expected: {
@@ -123,6 +136,7 @@ describe('getThemeAndThemeClassName', () => {
                     themeClassName: 'grauity-theme-dark',
                 },
             },
+            // Invert dark parent theme to light
             {
                 params: { parentTheme: 'dark' as const, invert: true },
                 expected: {
@@ -130,6 +144,7 @@ describe('getThemeAndThemeClassName', () => {
                     themeClassName: 'grauity-theme-light',
                 },
             },
+            // applyTheme takes precedence over parentTheme and invert
             {
                 params: {
                     applyTheme: 'light' as const,
@@ -141,6 +156,7 @@ describe('getThemeAndThemeClassName', () => {
                     themeClassName: 'grauity-theme-light',
                 },
             },
+            // applyTheme takes precedence over parentTheme and invert
             {
                 params: {
                     applyTheme: 'dark' as const,
