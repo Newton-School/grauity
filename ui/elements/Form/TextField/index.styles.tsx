@@ -81,6 +81,7 @@ export const StyledTextFieldInput = styled.input<StyledTextFieldInputProps>`
         line-height: var(--line-height-lh-50, 22px);
         letter-spacing: var(--letter-spacing-ls-30, 0.1px);
         font-family: var(--font-family);
+        opacity: 1;
     }
 
     ${({ $size }) =>
