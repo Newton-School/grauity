@@ -86,6 +86,7 @@ export const StyledComboboxTextInput = styled.input`
 
     &::placeholder {
         color: var(--text-emphasis-primary-disabled, #8c95a6);
+        opacity: 1;
         ${comboboxTextInputStyles}
     }
 `;

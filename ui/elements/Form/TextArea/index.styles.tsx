@@ -45,6 +45,7 @@ export const StyledTextArea = styled.textarea<TextAreaComponentProps>`
 
     &::placeholder {
         color: var(--text-emphasis-primary-disabled, #8c95a6);
+        opacity: 1;
     }
 
     &:disabled {
