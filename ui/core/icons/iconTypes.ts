@@ -53,6 +53,10 @@ export type grauityIconName =
     | 'currency-rupee-filled'
     | 'currency-rupee'
     | 'currency'
+    | 'eye-off-filled'
+    | 'eye-off'
+    | 'eye-on-filled'
+    | 'eye-on'
     | 'headphone-filled'
     | 'headphone-mic-filled'
     | 'headphone-mic'
@@ -503,6 +507,10 @@ export type grauityIconKey =
     | 'CurrencyRupeeFilled'
     | 'CurrencyRupee'
     | 'Currency'
+    | 'EyeOffFilled'
+    | 'EyeOff'
+    | 'EyeOnFilled'
+    | 'EyeOn'
     | 'HeadphoneFilled'
     | 'HeadphoneMicFilled'
     | 'HeadphoneMic'
@@ -953,6 +961,10 @@ export enum GRAUITY_ICONS {
     CurrencyRupeeFilled = 'currency-rupee-filled',
     CurrencyRupee = 'currency-rupee',
     Currency = 'currency',
+    EyeOffFilled = 'eye-off-filled',
+    EyeOff = 'eye-off',
+    EyeOnFilled = 'eye-on-filled',
+    EyeOn = 'eye-on',
     HeadphoneFilled = 'headphone-filled',
     HeadphoneMicFilled = 'headphone-mic-filled',
     HeadphoneMic = 'headphone-mic',
