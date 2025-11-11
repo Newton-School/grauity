@@ -126,6 +126,11 @@ export interface TextFieldProps {
     onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 
     /**
+     * The function to call when the input field is focused.
+     */
+    onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+
+    /**
      * The error message to display when the input field is invalid.
      */
     errorMessage?: string;

@@ -39,6 +39,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
         onClick = () => {},
         onBlur = () => {},
         onKeyDown = () => {},
+        onFocus = () => {},
         size = 'medium',
         adornments,
         color = 'brand',
@@ -90,6 +91,10 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
         onBlur(event);
     };
 
+    const handleInputFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+        onFocus(event);
+    };
+
     return (
         <StyledTextInputFieldContainer className={className}>
             {label && (
@@ -130,6 +135,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
                     onClick={handleInputClick}
                     onBlur={handleInputBlur}
                     onKeyDown={onKeyDown}
+                    onFocus={handleInputFocus}
                     autoComplete={autoComplete}
                     autoFocus={autoFocus}
                     $size={size}
