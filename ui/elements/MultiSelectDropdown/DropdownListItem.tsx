@@ -30,8 +30,8 @@ const DropdownListItem = ({
                     name={isSelected ? 'check-square-filled' : 'square'}
                     color={
                         isSelected
-                            ? 'var(--text-brand, #0673F9)'
-                            : 'var(--text-disabled, #8C95A6)'
+                            ? 'var(--text-emphasis-brand-default, #0673f9)'
+                            : 'var(--text-emphasis-primary-disabled, #8c95a6)'
                     }
                 />
             </StyledDropdownItemCheckbox>

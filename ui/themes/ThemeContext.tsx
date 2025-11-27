@@ -101,25 +101,31 @@ const ThemeWrapper = ({
                 );
             }
         };
-    }, []);
+    }, [usePreferredColorScheme]);
 
     useEffect(() => {
         if (isThemeEnabled) {
             // Remove any existing theme classes
-            document.body.classList.forEach(className => {
+            document.body.classList.forEach((className) => {
                 if (className.startsWith('grauity-theme-')) {
                     document.body.classList.remove(className);
                 }
             });
-    
+
             // Add the new theme class
-            document.body.classList.add(`grauity-theme-${value?.theme?.themeName}`);
+            document.body.classList.add(
+                `grauity-theme-${value?.theme?.themeName}`
+            );
         }
     }, [isThemeEnabled, value?.theme?.themeName]);
 
+    const currentTheme = isThemeEnabled ? value : defaultValue;
+
     return (
-        <ThemeContext.Provider value={isThemeEnabled ? value : defaultValue}>
-            <GrauityThemeProvider>
+        <ThemeContext.Provider value={currentTheme}>
+            <GrauityThemeProvider
+                rootThemeScopeTheme={currentTheme?.theme?.themeName}
+            >
                 {children}
             </GrauityThemeProvider>
         </ThemeContext.Provider>

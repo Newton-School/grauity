@@ -229,7 +229,7 @@ export interface ModalProps {
     overflow?: string;
 
     /**
-     * Border for the modal. By default, it is `1px solid var(--border, #e1e5ea)`
+     * Border for the modal. By default, it is `1px solid var(--border-subtle-primary-default, #e1e5ea)`
      * */
     border?: string;
 

@@ -52,6 +52,7 @@ export const globalTypes = {
             items: [
                 { value: 'light', title: 'Light', icon: 'sun' },
                 { value: 'dark', title: 'Dark', icon: 'moon' },
+                { value: 'system', title: 'System', icon: 'mirror' },
             ],
             showName: true,
             dynamicTitle: true,

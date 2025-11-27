@@ -1,6 +1,5 @@
 import React from 'react';
 
-import THEMES from '../../ui/themes/constants';
 import TokenBlock from '../helper-components/TokenBlock';
 import { CategoryToken } from '../types';
 import { createCategoryTokens } from './createCategoryTokens';
@@ -24,7 +23,7 @@ import { createCategoryTokens } from './createCategoryTokens';
  */
 export const extractTokensFromTheme = ({
     categories = [],
-    currentTheme = THEMES.LIGHT,
+    currentTheme,
     type,
     render = () => null,
 }: {
@@ -39,17 +38,6 @@ export const extractTokensFromTheme = ({
         token: {
             render: () => <TokenBlock copy>{token.token}</TokenBlock>,
         },
-        value: {
-            render: () => (
-                <TokenBlock
-                    copy
-                    color={`var(${token.token})`}
-                    background={type === 'colors' ? 'var(--bg-primary)' : ''}
-                >
-                    {token[currentTheme as keyof CategoryToken]}
-                </TokenBlock>
-            ),
-        },
         light: {
             render: () => (
                 <div className="grauity-theme-light">
@@ -57,7 +45,9 @@ export const extractTokensFromTheme = ({
                         copy
                         color={token.light}
                         background={
-                            type === 'colors' ? 'var(--bg-primary)' : ''
+                            type === 'colors'
+                                ? 'var(--bg-subtle-primary-default, #ffffff)'
+                                : ''
                         }
                     >
                         {token.light}
@@ -72,7 +62,9 @@ export const extractTokensFromTheme = ({
                         copy
                         color={token.dark}
                         background={
-                            type === 'colors' ? 'var(--bg-primary)' : ''
+                            type === 'colors'
+                                ? 'var(--bg-subtle-primary-default, #ffffff)'
+                                : ''
                         }
                     >
                         {token.dark}
@@ -84,6 +76,21 @@ export const extractTokensFromTheme = ({
             typeof render === 'function' && {
             [type]: {
                 render: () => render(token),
+            },
+        }),
+        ...(token?.[currentTheme as keyof CategoryToken] && {
+            value: {
+                render: () => (
+                    <TokenBlock
+                        copy
+                        color={`var(${token.token})`}
+                        background={
+                            type === 'colors' ? 'var(--bg-primary)' : ''
+                        }
+                    >
+                        {token[currentTheme as keyof CategoryToken]}
+                    </TokenBlock>
+                ),
             },
         }),
     }));

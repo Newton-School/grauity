@@ -159,7 +159,7 @@ export {
 export { default as NSTooltip, type TooltipProps } from './elements/Tooltip';
 
 // NSTabs
-export { default as NSTab, type TabProps } from './elements/Tabs';
+export { default as NSTabs, type TabsProps } from './elements/Tabs';
 
 // NSCarousel
 export { type CarouselProps, default as NSCarousel } from './elements/Carousel';
@@ -264,6 +264,7 @@ export {
 
 // useNSForm
 export {
+    getConditionalProps as getNSConditionalProps,
     type ConditionalProp as NSConditionalProp,
     type FieldName as NSFieldName,
     type FormConfig as NSFormConfig,
@@ -291,15 +292,42 @@ export {
     default as NSToast,
     TOAST_DEVICE_ENUM,
     TOAST_DEVICES,
-    TOAST_EMPHASIS,
-    TOAST_EMPHASIS_ENUM,
-    TOAST_TYPE_ENUM,
-    TOAST_TYPES,
     type ToastDevice,
-    type ToastEmphasis,
     type ToastProps,
-    type ToastType,
 } from './elements/Toast';
 
 // NSSonner adapter
 export { nsToast, nsToastDismiss, NSToaster } from './elements/Toast/Sonner';
+// NSThemeScope
+export {
+    default as NSThemeScope,
+    ThemeScopeContext as NSThemeScopeContext,
+    type ThemeScopeProps as NSThemeScopeProps,
+    ThemeScopeProvider as NSThemeScopeProvider,
+    useThemeScope as useNSThemeScope,
+} from './elements/ThemeScope';
+export { SC_THEME_SCOPE_THEME_KEY as NS_SC_THEME_SCOPE_THEME_KEY } from './elements/ThemeScope/constants';
+export {
+    type Theme as NSTheme,
+    ThemeType as NSThemeType,
+} from './elements/ThemeScope/types';
+export { getThemeAndThemeClassName as getNSThemeAndThemeClassName } from './elements/ThemeScope/utils';
+
+// NSTab
+export {
+    default as NSTab,
+    TAB_ICON_POSITIONS_ENUM,
+    TAB_SIZES_ENUM,
+    TAB_VARIANT_ENUM,
+    type TabProps,
+} from './elements/Tab';
+
+// NSTabList
+export {
+    default as NSTabList,
+    TAB_LIST_VARIANT_ENUM,
+    type TabListProps,
+} from './elements/TabList';
+
+// NSDrawer
+export { type DrawerProps, default as NSDrawer } from './elements/Drawer';

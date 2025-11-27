@@ -2,6 +2,7 @@ import React, { forwardRef, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { useDisableBodyScroll } from '../../../hooks';
+import ThemeScope from '../ThemeScope';
 import {
     StyledOverlay,
     StyledOverlayContent,
@@ -16,7 +17,7 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
         shouldDisableScroll = false,
         shouldTintOverlay = false,
         shouldBlurOverlay = false,
-        overlayColor = 'var(--alpha-overlay, rgba(22, 25, 29, 0.8))',
+        overlayColor = 'var(--bg-subtle-alpha-overlay, #16191dcc)',
         shouldCenterContent = false,
         animationDuration = 0.5,
         className,
@@ -75,11 +76,12 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
             $shouldBlurOverlay={shouldBlurOverlay}
             $overlayColor={overlayColor}
             className={className}
-            data-testid='testid-overlay'
+            data-testid="testid-overlay"
             {...rest}
             {...motionProps}
         >
-            <StyledOverlayContent
+            <ThemeScope
+                as={StyledOverlayContent}
                 $top={position.top}
                 $left={position.left}
                 $bottom={position.bottom}
@@ -89,7 +91,7 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
                 <StyledOverlayContentChildren ref={childrenRef}>
                     {children}
                 </StyledOverlayContentChildren>
-            </StyledOverlayContent>
+            </ThemeScope>
         </StyledOverlay>,
         document.body
     );

@@ -69,6 +69,7 @@ export interface StyledTypographyInterface {
      */
     className?: string;
     children: React.ReactNode;
+    title?: string;
 }
 
 export interface TypographyProps {
@@ -121,4 +122,8 @@ export interface TypographyProps {
      * Children of the component
      * */
     children: React.ReactNode;
+    /**
+     * Native HTML title attribute (shows tooltip on hover)
+     */
+    title?: string;
 }

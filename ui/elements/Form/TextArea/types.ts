@@ -37,11 +37,6 @@ export interface TextAreaProps {
     placeholder?: string;
 
     /**
-     * The validation message to display when the input field is invalid.
-     */
-    validationMessage?: string;
-
-    /**
      * The input value.
      * @default ''
      */
@@ -118,6 +113,11 @@ export interface TextAreaProps {
      * @default 'brand'
      */
     color?: TextAreaColors;
+
+    /**
+     * Additional className for the TextArea container.
+     */
+    className?: string;
 }
 
 export interface TextAreaComponentProps extends StyledTextAreaProps {

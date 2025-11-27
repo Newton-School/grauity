@@ -1,4 +1,6 @@
-const DARK_THEME_CONFIG = {
+import { ThemeConfigType } from './types';
+
+const DARK_THEME_CONFIG: ThemeConfigType = {
     colors: {
         bg: {
             subtle: {

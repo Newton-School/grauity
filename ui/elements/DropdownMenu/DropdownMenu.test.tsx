@@ -361,4 +361,158 @@ describe('DropdownMenu', () => {
         expect(options[0]).toHaveAttribute('aria-selected', 'false');
         expect(options[1]).toHaveAttribute('aria-selected', 'true');
     });
+
+    // ScrollToOnOpen Functionality
+    describe('ScrollToOnOpen Functionality', () => {
+        let mockScrollIntoView: jest.Mock;
+
+        beforeEach(() => {
+            mockScrollIntoView = jest.fn();
+            Element.prototype.scrollIntoView = mockScrollIntoView;
+        });
+
+        afterEach(() => {
+            jest.clearAllMocks();
+        });
+
+        it('Should scroll to the first item with scrollToOnOpen: true when dropdown renders', async () => {
+            const items = [
+                {
+                    type: BaseItemType.OPTION as BaseItemType.OPTION,
+                    label: 'Item 0',
+                    value: 'item-0',
+                },
+                {
+                    type: BaseItemType.OPTION as BaseItemType.OPTION,
+                    label: 'Item 1',
+                    value: 'item-1',
+                    scrollToOnOpen: true,
+                },
+                {
+                    type: BaseItemType.OPTION as BaseItemType.OPTION,
+                    label: 'Item 2',
+                    value: 'item-2',
+                },
+            ];
+
+            render(<DropdownMenu {...defaultProps} items={items} />);
+
+            // Wait for the scroll timeout
+            await new Promise(resolve => setTimeout(resolve, 150));
+
+            expect(mockScrollIntoView).toHaveBeenCalledWith({
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest'
+            });
+        });
+
+        it('Should scroll to the first item with scrollToOnOpen: true, not the second one', async () => {
+            const items = [
+                {
+                    type: BaseItemType.OPTION as BaseItemType.OPTION,
+                    label: 'Item 0',
+                    value: 'item-0',
+                },
+                {
+                    type: BaseItemType.OPTION as BaseItemType.OPTION,
+                    label: 'Item 1',
+                    value: 'item-1',
+                    scrollToOnOpen: true,
+                },
+                {
+                    type: BaseItemType.OPTION as BaseItemType.OPTION,
+                    label: 'Item 2',
+                    value: 'item-2',
+                    scrollToOnOpen: true, // This should be ignored
+                },
+            ];
+
+            render(<DropdownMenu {...defaultProps} items={items} />);
+
+            // Wait for the scroll timeout
+            await new Promise(resolve => setTimeout(resolve, 150));
+
+            // Should only be called once for the first marked item
+            expect(mockScrollIntoView).toHaveBeenCalledTimes(1);
+        });
+
+        it('Should work with sub-headers that have scrollToOnOpen: true', async () => {
+            const items = [
+                {
+                    type: BaseItemType.OPTION as BaseItemType.OPTION,
+                    label: 'Item 0',
+                    value: 'item-0',
+                },
+                {
+                    type: BaseItemType.SUB_HEADER as BaseItemType.SUB_HEADER,
+                    title: 'Important Section',
+                    scrollToOnOpen: true,
+                },
+                {
+                    type: BaseItemType.OPTION as BaseItemType.OPTION,
+                    label: 'Item 1',
+                    value: 'item-1',
+                },
+            ];
+
+            render(<DropdownMenu {...defaultProps} items={items} />);
+
+            // Wait for the scroll timeout
+            await new Promise(resolve => setTimeout(resolve, 150));
+
+            expect(mockScrollIntoView).toHaveBeenCalledWith({
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest'
+            });
+        });
+
+        it('Should not scroll if no items have scrollToOnOpen: true', async () => {
+            const items = getDummyOptions(3);
+
+            render(<DropdownMenu {...defaultProps} items={items} />);
+
+            // Wait for the scroll timeout
+            await new Promise(resolve => setTimeout(resolve, 150));
+
+            expect(mockScrollIntoView).not.toHaveBeenCalled();
+        });
+
+        it('Should re-trigger scroll when items change', async () => {
+            const { rerender } = render(<DropdownMenu {...defaultProps} items={getDummyOptions(3)} />);
+
+            // Wait for initial render
+            await new Promise(resolve => setTimeout(resolve, 150));
+
+            // Should not scroll initially
+            expect(mockScrollIntoView).not.toHaveBeenCalled();
+
+            // Update items with scrollToOnOpen
+            const newItems = [
+                {
+                    type: BaseItemType.OPTION as BaseItemType.OPTION,
+                    label: 'New Item 0',
+                    value: 'new-item-0',
+                },
+                {
+                    type: BaseItemType.OPTION as BaseItemType.OPTION,
+                    label: 'New Item 1',
+                    value: 'new-item-1',
+                    scrollToOnOpen: true,
+                },
+            ];
+
+            rerender(<DropdownMenu {...defaultProps} items={newItems} />);
+
+            // Wait for the scroll timeout
+            await new Promise(resolve => setTimeout(resolve, 150));
+
+            expect(mockScrollIntoView).toHaveBeenCalledWith({
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest'
+            });
+        });
+    });
 });

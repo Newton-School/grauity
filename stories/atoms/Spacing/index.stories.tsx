@@ -22,8 +22,8 @@ export const SpacingTokens = () => {
                     alignItems: 'center',
                     width: token,
                     height: '32px',
-                    backgroundColor: 'var(--bg-brand, #E5F1FF)',
-                    color: 'var(--text-brand, #0673F9)',
+                    backgroundColor: 'var(--bg-subtle-brand-default, #e5f1ff)',
+                    color: 'var(--text-emphasis-brand-default, #0673f9)',
                     textIndent: 'var(--spacing-4px)',
                     fontWeight: 'var(--font-weight-medium, 500)',
                 }}

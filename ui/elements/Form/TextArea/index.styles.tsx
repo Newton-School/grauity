@@ -16,7 +16,7 @@ export const StyledTextAreaFieldContainer = styled.div`
 
 export const StyledTextArea = styled.textarea<TextAreaComponentProps>`
     border-radius: var(--corner-radius-radius4, 8px);
-    color: var(--text-primary, #16191d);
+    color: var(--text-emphasis-primary-default, #16191d);
     border-radius: var(--corner-radius-radius4, 8px);
     box-sizing: border-box;
     background: var(--bg-subtle-primary-default, #fff);
@@ -45,6 +45,7 @@ export const StyledTextArea = styled.textarea<TextAreaComponentProps>`
 
     &::placeholder {
         color: var(--text-emphasis-primary-disabled, #8c95a6);
+        opacity: 1;
     }
 
     &:disabled {

@@ -69,7 +69,7 @@ const CalendarEvent = forwardRef<HTMLDivElement, CalendarEventProps>(
                                 }
                                 textColor={
                                     chipTextColor ||
-                                    'var(--text-action2, #fff);'
+                                    'var(--text-emphasis-invert-primary-default, #ffffff);'
                                 }
                             >
                                 {chipContent}

@@ -5,9 +5,9 @@ import {
     StyledTabItemContainer,
     StyledTabItemText,
 } from './Tabs.styles';
-import { TabProps } from './types';
+import { TabsProps } from './types';
 
-function Tabs(props: TabProps) {
+function Tabs(props: TabsProps) {
     const {
         tabItems = [],
         backgroundColor = null,
