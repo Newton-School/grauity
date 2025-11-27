@@ -302,4 +302,4 @@ export {
 } from './elements/Toast';
 
 // NSSonner adapter
-export { nsToast, nsToastDismiss,NSToaster } from './elements/Toast/Sonner';
+export { nsToast, nsToastDismiss, NSToaster } from './elements/Toast/Sonner';

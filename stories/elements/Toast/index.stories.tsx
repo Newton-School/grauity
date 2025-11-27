@@ -10,11 +10,11 @@ export default {
             control: { type: 'select' },
             options: ['desktop', 'mobile'],
         },
-        emphasis: {
+        variant: {
             control: { type: 'select' },
             options: ['low', 'medium', 'high'],
         },
-        type: {
+        color: {
             control: { type: 'select' },
             options: ['warning', 'brand', 'neutral', 'success', 'error'],
         },
@@ -41,7 +41,7 @@ export default {
         docs: {
             description: {
                 component:
-                    'A Toast component for displaying brief, non-intrusive messages to users. Supports multiple devices, emphasis levels, types, and optional actions.',
+                    'A Toast component for displaying brief, non-intrusive messages to users. Supports multiple devices, variants, colors, and optional actions.',
             },
         },
     },
@@ -51,8 +51,8 @@ const Template = (args: ToastProps) => <Toast {...args} />;
 
 const defaultArgs: ToastProps = {
     device: 'desktop',
-    emphasis: 'medium',
-    type: 'neutral',
+    variant: 'medium',
+    color: 'neutral',
     showLeftIcon: true,
     showCloseIcon: true,
     showCTA: false,
@@ -60,7 +60,6 @@ const defaultArgs: ToastProps = {
     title: 'Toast title',
     onClose: () => console.log('Toast closed'),
     onCTAClick: () => console.log('CTA clicked'),
-    position: 'static',
     autoClose: null,
 };
 
@@ -78,8 +77,8 @@ export const WithTrigger = () => (
             onClick={() =>
                 nsToast({
                     device: 'desktop',
-                    emphasis: 'high',
-                    type: 'brand',
+                    variant: 'high',
+                    color: 'brand',
                     title: 'Sonner powered NSToast',
                     showCTA: true,
                     ctaText: 'Action',
@@ -96,7 +95,7 @@ export const WithTrigger = () => (
 export const Success = Template.bind({});
 Success.args = {
     ...defaultArgs,
-    type: 'success',
+    color: 'success',
     title: 'Success!',
 };
 
@@ -104,7 +103,7 @@ Success.args = {
 export const Error = Template.bind({});
 Error.args = {
     ...defaultArgs,
-    type: 'error',
+    color: 'error',
     title: 'Error occurred',
     showCTA: true,
     ctaText: 'Retry',
@@ -114,7 +113,7 @@ Error.args = {
 export const Warning = Template.bind({});
 Warning.args = {
     ...defaultArgs,
-    type: 'warning',
+    color: 'warning',
     title: 'Warning',
 };
 
@@ -122,18 +121,18 @@ Warning.args = {
 export const Brand = Template.bind({});
 Brand.args = {
     ...defaultArgs,
-    type: 'brand',
+    color: 'brand',
     title: 'New feature available',
     showCTA: true,
     ctaText: 'Learn more',
 };
 
-// High Emphasis
-export const HighEmphasis = Template.bind({});
-HighEmphasis.args = {
+// High Variant
+export const HighVariant = Template.bind({});
+HighVariant.args = {
     ...defaultArgs,
-    emphasis: 'high',
-    type: 'error',
+    variant: 'high',
+    color: 'error',
     title: 'Critical error',
     showCTA: true,
     ctaText: 'Fix now',
@@ -144,7 +143,7 @@ export const Mobile = Template.bind({});
 Mobile.args = {
     ...defaultArgs,
     device: 'mobile',
-    type: 'success',
+    color: 'success',
     title: 'Upload complete',
 };
 
@@ -180,6 +179,6 @@ export const CustomIcon = Template.bind({});
 CustomIcon.args = {
     ...defaultArgs,
     leftIcon: 'bell',
-    type: 'brand',
+    color: 'brand',
     title: 'Notification',
 };

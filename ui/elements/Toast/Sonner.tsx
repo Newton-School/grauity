@@ -46,7 +46,7 @@ export const nsToast = (props: ToastProps & NsToastOptions) => {
                 // Do not pass placement into the toast when using Sonner positioning
                 // to avoid conflicting fixed styles inside the custom content
                 onClose={() => toast.dismiss(t)}
-                onCTAClick={(e: any) => {
+                onCTAClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                     toastProps.onCTAClick?.(e);
                     toast.dismiss(t);
                 }}

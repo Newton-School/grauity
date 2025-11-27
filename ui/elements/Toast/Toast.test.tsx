@@ -23,14 +23,14 @@ describe('Toast', () => {
         expect(screen.getByText('Toast Title')).toBeInTheDocument();
     });
 
-    it('renders with default device and type', () => {
+    it('renders with default device and color', () => {
         render(<Toast {...defaultProps} />);
         const toast = screen.getByRole('alert');
         expect(toast).toBeInTheDocument();
     });
 
     it('renders left icon by default', () => {
-        render(<Toast {...defaultProps} type="success" />);
+        render(<Toast {...defaultProps} color="success" />);
         const icons = screen.getAllByTestId('testid-icon');
         const successIcon = icons.find(icon => 
             icon.classList.contains('grauity-icon-check-circle')
@@ -97,22 +97,22 @@ describe('Toast', () => {
         expect(screen.getByRole('alert')).toBeInTheDocument();
     });
 
-    it('renders with different emphasis levels', () => {
-        const { rerender } = render(<Toast {...defaultProps} emphasis="low" />);
+    it('renders with different variant levels', () => {
+        const { rerender } = render(<Toast {...defaultProps} variant="low" />);
         expect(screen.getByRole('alert')).toBeInTheDocument();
         
-        rerender(<Toast {...defaultProps} emphasis="medium" />);
+        rerender(<Toast {...defaultProps} variant="medium" />);
         expect(screen.getByRole('alert')).toBeInTheDocument();
         
-        rerender(<Toast {...defaultProps} emphasis="high" />);
+        rerender(<Toast {...defaultProps} variant="high" />);
         expect(screen.getByRole('alert')).toBeInTheDocument();
     });
 
-    it('renders with different types', () => {
-        const types = ['warning', 'brand', 'neutral', 'success', 'error'] as const;
+    it('renders with different colors', () => {
+        const colors = ['warning', 'brand', 'neutral', 'success', 'error'] as const;
         
-        types.forEach(type => {
-            render(<Toast {...defaultProps} type={type} />);
+        colors.forEach(color => {
+            render(<Toast {...defaultProps} color={color} />);
             expect(screen.getByRole('alert')).toBeInTheDocument();
             cleanup();
         });
@@ -181,13 +181,13 @@ describe('Toast', () => {
         expect(onAutoClose).not.toHaveBeenCalled();
     });
 
-    it('renders with custom positioning', () => {
+    it('renders with placement and custom offsets', () => {
         render(
             <Toast
                 {...defaultProps}
-                position="fixed"
-                top="20px"
-                right="20px"
+                placement="top-right"
+                xOffset={20}
+                yOffset={20}
             />
         );
         expect(screen.getByRole('alert')).toBeInTheDocument();

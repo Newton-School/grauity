@@ -1,19 +1,23 @@
 import React from 'react';
 
+import { StyledDivProps } from '../../../common/types';
 import { grauityIconName } from '../../core';
+import {
+    TOAST_COLORS_ENUM,
+    TOAST_DESKTOP_PLACEMENT_ENUM,
+    TOAST_DEVICE_ENUM,
+    TOAST_MOBILE_PLACEMENT_ENUM,
+    TOAST_VARIANTS_ENUM,
+} from './constants';
 
-export type ToastDevice = 'desktop' | 'mobile';
+export type ToastDevice = `${TOAST_DEVICE_ENUM}`;
 
-export type ToastEmphasis = 'low' | 'medium' | 'high';
+export type ToastVariant = `${TOAST_VARIANTS_ENUM}`;
 
-export type ToastType = 'warning' | 'brand' | 'neutral' | 'success' | 'error';
+export type ToastColor = `${TOAST_COLORS_ENUM}`;
 
-export type ToastDesktopPlacement =
-    | 'top-left'
-    | 'top-right'
-    | 'bottom-left'
-    | 'bottom-right';
-export type ToastMobilePlacement = 'top' | 'bottom';
+export type ToastDesktopPlacement = `${TOAST_DESKTOP_PLACEMENT_ENUM}`;
+export type ToastMobilePlacement = `${TOAST_MOBILE_PLACEMENT_ENUM}`;
 export type ToastPlacement = ToastDesktopPlacement | ToastMobilePlacement;
 
 export interface ToastProps {
@@ -27,22 +31,22 @@ export interface ToastProps {
     device?: ToastDevice;
 
     /**
-     * Emphasis level of the toast
+     * Variant of the toast
      *
      * Available choices: `low`, `medium`, `high`
      *
      * Default: `medium`
      */
-    emphasis?: ToastEmphasis;
+    variant?: ToastVariant;
 
     /**
-     * Type/variant of the toast
+     * Color of the toast
      *
      * Available choices: `warning`, `brand`, `neutral`, `success`, `error`
      *
      * Default: `neutral`
      */
-    type?: ToastType;
+    color?: ToastColor;
 
     /**
      * Show/hide left icon
@@ -78,12 +82,12 @@ export interface ToastProps {
     /**
      * CTA button click handler
      */
-    onCTAClick?: any;
+    onCTAClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 
     /**
      * Close button click handler
      */
-    onClose?: any;
+    onClose?: () => void;
 
     /**
      * Toast title/main message
@@ -101,39 +105,26 @@ export interface ToastProps {
     style?: React.CSSProperties;
 
     /**
-     * Toast position, useful for fixed positioning
-     *
-     * Default: `'static'`
-     */
-    position?: 'static' | 'fixed' | 'absolute' | 'relative';
-
-    /**
      * Preset screen placement for the toast.
      * For desktop: `top-left`, `top-right`, `bottom-left`, `bottom-right`
      * For mobile: `top`, `bottom`
-     * When provided, overrides `position`/`top`/`bottom`/`left`/`right` to use `fixed` with sensible offsets.
+     * Uses fixed positioning with offsets from screen edges.
      */
     placement?: ToastPlacement;
 
     /**
-     * Toast top position, useful for fixed positioning
+     * Horizontal offset from screen edge when using `placement` prop.
+     *
+     * Default: `16`
      */
-    top?: string;
+    xOffset?: number;
 
     /**
-     * Toast bottom position, useful for fixed positioning
+     * Vertical offset from screen edge when using `placement` prop.
+     *
+     * Default: `16`
      */
-    bottom?: string;
-
-    /**
-     * Toast left position, useful for fixed positioning
-     */
-    left?: string;
-
-    /**
-     * Toast right position, useful for fixed positioning
-     */
-    right?: string;
+    yOffset?: number;
 
     /**
      * Maximum width of the toast
@@ -151,34 +142,22 @@ export interface ToastProps {
     /**
      * Callback fired when toast auto-closes
      */
-    onAutoClose?: any;
+    onAutoClose?: () => void;
 }
 
-export interface ToastContainerProps {
+export interface StyledToastContainerProps extends StyledDivProps {
     $device: ToastDevice;
-    $emphasis: ToastEmphasis;
-    $type: ToastType;
-    $position: string;
-    $top?: string;
-    $bottom?: string;
-    $left?: string;
-    $right?: string;
+    $variant: ToastVariant;
+    $color: ToastColor;
     $maxWidth: string;
-    children: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
 }
 
-export interface ToastContentProps {
-    children: React.ReactNode;
-}
+export interface StyledToastContentProps extends StyledDivProps {}
 
-export interface ToastTitleProps {
-    children: React.ReactNode;
+export interface StyledToastTitleProps extends StyledDivProps {
     id?: string;
 }
 
-export interface ToastActionsProps {
+export interface StyledToastActionsProps extends StyledDivProps {
     $device: ToastDevice;
-    children: React.ReactNode;
 }

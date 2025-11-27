@@ -10,17 +10,17 @@ import {
     StyledToastTitle,
 } from './Toast.styles';
 import { ToastProps } from './types';
-import { getCTAButtonProps, getCloseButtonProps, getToastColors, getToastIcon } from './utils';
+import { getCTAButtonProps, getCloseButtonProps, getPlacementStyles, getToastColors, getToastIcon } from './utils';
 
 /**
  * A Toast component is used to display brief messages to users in a non-intrusive way.
- * It supports different devices (desktop/mobile), emphasis levels, types, and optional actions.
+ * It supports different devices (desktop/mobile), variants, colors, and optional actions.
  */
 const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
     const {
         device = 'desktop',
-        emphasis = 'medium',
-        type = 'neutral',
+        variant = 'medium',
+        color = 'neutral',
         showLeftIcon = true,
         leftIcon,
         showCloseIcon = true,
@@ -31,12 +31,9 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
         title,
         className = '',
         style = {},
-        position = 'static',
         placement,
-        top,
-        bottom,
-        left,
-        right,
+        xOffset = 16,
+        yOffset = 16,
         maxWidth,
         autoClose = null,
         onAutoClose,
@@ -75,19 +72,19 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
     };
 
     // Clear timeout on CTA click
-    const handleCTAClick = () => {
+    const handleCTAClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
         }
         if (onCTAClick) {
-            onCTAClick();
+            onCTAClick(event);
         }
     };
 
-    const iconName = getToastIcon(leftIcon, type);
-    const { iconColor } = getToastColors(type, emphasis);
+    const iconName = getToastIcon(leftIcon, color);
+    const { iconColor } = getToastColors(color, variant);
     const ctaButtonProps = getCTAButtonProps();
-    const closeButtonProps = getCloseButtonProps(type, emphasis);
+    const closeButtonProps = getCloseButtonProps(color, variant);
 
     // Determine max width based on device if not explicitly set
     const computedMaxWidth =
@@ -95,48 +92,14 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
         (device === 'mobile' ? '336px' : '440px');
 
     const hasActions = showCTA || showCloseIcon;
-
-    // Map placement to fixed coordinates
-    let placementStyles: React.CSSProperties = {};
-    if (placement) {
-        const offset = 16; // base spacing
-        const mobileXPadding = 16;
-        if (device === 'mobile') {
-            placementStyles =
-                placement === 'top'
-                    ? ({ position: 'fixed', top: `${offset}px`, bottom: 'auto', left: `${mobileXPadding}px`, right: `${mobileXPadding}px`, width: `calc(100% - ${mobileXPadding * 2}px)`, minWidth: 0 } as React.CSSProperties)
-                    : ({ position: 'fixed', bottom: `${offset}px`, top: 'auto', left: `${mobileXPadding}px`, right: `${mobileXPadding}px`, width: `calc(100% - ${mobileXPadding * 2}px)`, minWidth: 0 } as React.CSSProperties);
-        } else {
-            switch (placement) {
-                case 'top-left':
-                    placementStyles = { position: 'fixed', top: `${offset}px`, bottom: 'auto', left: `${offset}px`, right: 'auto', width: `min(440px, calc(100% - ${offset * 2}px))`, minWidth: 0 } as React.CSSProperties;
-                    break;
-                case 'top-right':
-                    placementStyles = { position: 'fixed', top: `${offset}px`, bottom: 'auto', right: `${offset}px`, left: 'auto', width: `min(440px, calc(100% - ${offset * 2}px))`, minWidth: 0 } as React.CSSProperties;
-                    break;
-                case 'bottom-left':
-                    placementStyles = { position: 'fixed', bottom: `${offset}px`, top: 'auto', left: `${offset}px`, right: 'auto', width: `min(440px, calc(100% - ${offset * 2}px))`, minWidth: 0 } as React.CSSProperties;
-                    break;
-                case 'bottom-right':
-                    placementStyles = { position: 'fixed', bottom: `${offset}px`, top: 'auto', right: `${offset}px`, left: 'auto', width: `min(440px, calc(100% - ${offset * 2}px))`, minWidth: 0 } as React.CSSProperties;
-                    break;
-                default:
-                    placementStyles = {};
-            }
-        }
-    }
+    const placementStyles = getPlacementStyles(placement, device, xOffset, yOffset);
 
     return (
         <StyledToastContainer
             ref={ref}
             $device={device}
-            $emphasis={emphasis}
-            $type={type}
-            $position={position}
-            $top={top}
-            $bottom={bottom}
-            $left={left}
-            $right={right}
+            $variant={variant}
+            $color={color}
             $maxWidth={computedMaxWidth}
             className={className}
             style={{ ...style, ...placementStyles }}
