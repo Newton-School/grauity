@@ -15,7 +15,7 @@ export default {
     component: useNSForm,
 };
 
-const TemplateUseForm = (args: NSUseFormProps) => {
+function TemplateUseForm(args: NSUseFormProps) {
     const fieldNames: NSFieldName[] = [
         'first_name',
         'last_name',
@@ -221,7 +221,10 @@ const TemplateUseForm = (args: NSUseFormProps) => {
                     ['18 - 30', '31 - 50', '> 50'],
                     'Age must be greater than 18'
                 ),
-            favourite_food: array().min(1, 'Select at least one favourite food'),
+            favourite_food: array().min(
+                1,
+                'Select at least one favourite food'
+            ),
         }),
     };
 
@@ -259,7 +262,7 @@ const TemplateUseForm = (args: NSUseFormProps) => {
             </div>
         </div>
     );
-};
+}
 
 export const ExampleUseForm = TemplateUseForm.bind({});
 

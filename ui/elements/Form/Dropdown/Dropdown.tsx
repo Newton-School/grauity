@@ -10,7 +10,7 @@ import DropdownTrigger from './DropdownTrigger';
 import { DropdownProps } from './types';
 import { calculateDropdownMenuPosition } from './utils';
 
-const Dropdown = (props: DropdownProps) => {
+function Dropdown(props: DropdownProps) {
     const {
         menuProps,
         multiple = false,
@@ -46,7 +46,11 @@ const Dropdown = (props: DropdownProps) => {
         values: BaseItemOptionProps | BaseItemOptionProps[]
     ) => {
         setIsOpen(false);
-        onClose(values);
+        if (Array.isArray(values) && !multiple) {
+            onClose(values[0] || null);
+        } else {
+            onClose(values);
+        }
         triggerRef?.current?.focus();
     };
 
@@ -106,6 +110,6 @@ const Dropdown = (props: DropdownProps) => {
             )}
         </AnimatePresence>
     );
-};
+}
 
 export default Dropdown;
