@@ -46,7 +46,11 @@ const Dropdown = (props: DropdownProps) => {
         values: BaseItemOptionProps | BaseItemOptionProps[]
     ) => {
         setIsOpen(false);
-        onClose(values);
+        if (Array.isArray(values) && !multiple) {
+            onClose(values[0] ?? null);
+        } else {
+            onClose(values);
+        }
         triggerRef?.current?.focus();
     };
 
