@@ -47,7 +47,7 @@ function Dropdown(props: DropdownProps) {
     ) => {
         setIsOpen(false);
         if (Array.isArray(values) && !multiple) {
-            onClose(values[0] || null);
+            onClose(values[0] ?? null);
         } else {
             onClose(values);
         }

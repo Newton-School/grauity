@@ -6,7 +6,7 @@ import FormField from './FormField';
 import { FormRendererProps } from './types';
 import { getFormRowColumnValue } from './utils';
 
-function FormRenderer(props: FormRendererProps) {
+const FormRenderer = (props: FormRendererProps) => {
     const {
         formData = {},
         errors = {},
@@ -78,6 +78,6 @@ function FormRenderer(props: FormRendererProps) {
             <input type="submit" hidden aria-hidden="true" />
         </form>
     );
-}
+};
 
 export default FormRenderer;

@@ -15,7 +15,7 @@ export default {
     component: useNSForm,
 };
 
-function TemplateUseForm(args: NSUseFormProps) {
+const TemplateUseForm = (args: NSUseFormProps) => {
     const fieldNames: NSFieldName[] = [
         'first_name',
         'last_name',
@@ -262,7 +262,7 @@ function TemplateUseForm(args: NSUseFormProps) {
             </div>
         </div>
     );
-}
+};
 
 export const ExampleUseForm = TemplateUseForm.bind({});
 
