@@ -10,7 +10,7 @@ import DropdownTrigger from './DropdownTrigger';
 import { DropdownProps } from './types';
 import { calculateDropdownMenuPosition } from './utils';
 
-function Dropdown(props: DropdownProps) {
+const Dropdown = (props: DropdownProps) => {
     const {
         menuProps,
         multiple = false,
@@ -110,6 +110,6 @@ function Dropdown(props: DropdownProps) {
             )}
         </AnimatePresence>
     );
-}
+};
 
 export default Dropdown;
