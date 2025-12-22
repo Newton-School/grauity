@@ -97,6 +97,13 @@ export interface OtpInputFieldProps {
      * Additional className for the OTP input field container.
      */
     className?: string;
+
+    /**
+     * The type attribute for the OTP input fields.
+     * @default 'number'
+     * @type string
+     */
+    type?: string;
 }
 
 export interface StyledOtpInputProps extends StyledInputProps {
