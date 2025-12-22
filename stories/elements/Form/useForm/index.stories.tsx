@@ -221,7 +221,10 @@ const TemplateUseForm = (args: NSUseFormProps) => {
                     ['18 - 30', '31 - 50', '> 50'],
                     'Age must be greater than 18'
                 ),
-            favourite_food: array().min(1, 'Select at least one favourite food'),
+            favourite_food: array().min(
+                1,
+                'Select at least one favourite food'
+            ),
         }),
     };
 
