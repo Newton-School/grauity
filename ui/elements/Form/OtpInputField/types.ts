@@ -99,11 +99,11 @@ export interface OtpInputFieldProps {
     className?: string;
 
     /**
-     * The type attribute for the OTP input fields.
-     * @default 'tel'
+     * The pattern attribute for the OTP input fields.
+     * @default '[0-9]*'
      * @type string
      */
-    type?: string;
+    pattern?: string;
 }
 
 export interface StyledOtpInputProps extends StyledInputProps {
