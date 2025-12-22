@@ -174,8 +174,9 @@ const OtpInputField = (props: OtpInputFieldProps) => {
                             $isOtpWrong={isOtpWrong}
                             disabled={isDisabled}
                             $color={color}
-                            type="number"
-                            pattern="\d*"
+                            type="text"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
                         />
                     );
                 })}
