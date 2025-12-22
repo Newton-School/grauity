@@ -100,7 +100,7 @@ export interface OtpInputFieldProps {
 
     /**
      * The type attribute for the OTP input fields.
-     * @default 'number'
+     * @default 'tel'
      * @type string
      */
     type?: string;

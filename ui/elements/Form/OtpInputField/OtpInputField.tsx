@@ -27,7 +27,7 @@ const OtpInputField = (props: OtpInputFieldProps) => {
         successMessage = 'OTP is correct',
         color = 'brand',
         className,
-        type = 'number',
+        type = 'tel',
     } = props;
 
     const inputRefs = useRef<Array<HTMLInputElement | null>>(
