@@ -35,6 +35,7 @@ const Combobox = (props: ComboboxProps) => {
         useDefaultSearchMethod = true,
         tagProps = {},
         showActionButtons,
+        shouldDismissOnBackspace = false,
     } = props;
 
     let width;
@@ -104,6 +105,20 @@ const Combobox = (props: ComboboxProps) => {
         }
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (shouldDismissOnBackspace && e.key === 'Backspace' && !inputText) {
+            const selectedOptionsList = Array.isArray(selectedOptions)
+                ? selectedOptions
+                : [selectedOptions];
+            const lastSelectedOption =
+                selectedOptionsList[selectedOptionsList.length - 1];
+            if (lastSelectedOption) {
+                onItemDismissClick(lastSelectedOption);
+                setIsOpen(false);
+            }
+        }
+    };
+
     const handleDebouncedSearchInputChange = useCallback(
         debounce((text: string) => handleSearchInputChange(text), 500),
         [options, useDefaultSearchMethod]
@@ -148,6 +163,7 @@ const Combobox = (props: ComboboxProps) => {
                     handleDebouncedSearchInputChange(text);
                     setIsOpen(true);
                 }}
+                onKeyDown={handleKeyDown}
                 isOpen={isOpen}
                 dropdownMenuId={dropdownMenuId}
                 tagProps={tagProps}

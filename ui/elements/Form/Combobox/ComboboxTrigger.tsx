@@ -30,12 +30,14 @@ const ComboboxTrigger = forwardRef<
         onItemDismissClick = () => {},
         inputText = '',
         onTextInputChange = () => {},
+        onKeyDown = () => {},
         inputRef = null,
         inputProps = {},
         isOpen,
         dropdownMenuId,
         multiple,
         tagProps = {},
+        renderValue = null,
     } = props;
 
     const hasSelectedItems = Array.isArray(selectedItems)
@@ -75,6 +77,7 @@ const ComboboxTrigger = forwardRef<
                         onItemDismissClick={onItemDismissClick}
                         isDisabled={isDisabled}
                         tagProps={tagProps}
+                        renderValue={renderValue}
                     />
                     <StyledComboboxTextInput
                         {...inputProps}
@@ -92,6 +95,7 @@ const ComboboxTrigger = forwardRef<
                         onChange={(e) => {
                             onTextInputChange(e.target.value);
                         }}
+                        onKeyDown={onKeyDown}
                         role="textbox"
                     />
                 </StyledComboboxTagsContainer>

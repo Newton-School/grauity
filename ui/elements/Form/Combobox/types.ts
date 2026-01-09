@@ -64,12 +64,39 @@ export interface ComboboxTriggerProps {
      * Default: `{}`
      */
     tagProps?: Omit<TagProps, 'children'>;
+
+    /**
+     * Custom renderer for the selected value/tag.
+     *
+     * @param props
+     * @param props.index - The index of the selected item.
+     * @param props.item - The selected item option.
+     * @param props.onDismiss - Function to call to dismiss the selected item.
+     * @returns A React node to render as the selected value/tag.
+     * @default undefined
+     */
+    renderValue?: ({
+        index,
+        item,
+        onDismiss,
+    }: {
+        index: number;
+        item: BaseItemOptionProps;
+        onDismiss: () => void;
+    }) => React.ReactNode;
+
+    /**
+     * Whether the last selected value should be cleared when backspace is pressed (when there is no text in the input field).
+     * @default false
+     */
+    shouldDismissOnBackspace?: boolean;
 }
 
 export interface ComboboxTriggerInternalProps extends ComboboxTriggerProps {
     onTriggerClick?: () => void;
     selectedItems?: BaseItemOptionProps | BaseItemOptionProps[];
     onItemDismissClick?: (item: BaseItemOptionProps) => void;
+    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     inputText?: string;
     inputRef?: React.MutableRefObject<HTMLInputElement>;
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>;

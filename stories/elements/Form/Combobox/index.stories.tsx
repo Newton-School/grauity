@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { BaseItemProps } from 'ui/elements/DropdownMenu';
 import { ComboboxTriggerProps } from 'ui/elements/Form/Combobox/types';
+import Typography from 'ui/elements/Typography';
 import {
     ComboboxProps,
+    NSButton,
     NSCombobox,
     NSDropdownMenuBaseItemOptionProps,
     NSDropdownMenuBaseItemType,
@@ -304,4 +306,32 @@ export const MultipleSelectWithEmulatedSearch =
     ExampleTemplateWithEmulatedSearch.bind({});
 MultipleSelectWithEmulatedSearch.args = {
     ...multipleSelectArgs,
+};
+
+export const SingleSelectWithCustomRenderer = ExampleSingleSelectTemplate.bind(
+    {}
+);
+SingleSelectWithCustomRenderer.args = {
+    ...singleSelectArgs,
+    renderValue: ({ item, onDismiss }: any) => (
+        <NSButton
+            color="success"
+            size="small"
+            icon="close"
+            iconPosition="right"
+            onClick={onDismiss}
+        >
+            {item.label}
+        </NSButton>
+    ),
+};
+
+export const SingleSelectWithCustomRendererAndDismissOnBackspace =
+    ExampleSingleSelectTemplate.bind({});
+SingleSelectWithCustomRendererAndDismissOnBackspace.args = {
+    ...singleSelectArgs,
+    shouldDismissOnBackspace: true,
+    renderValue: ({ item }: any) => (
+        <Typography variant="paragraph-md-p3">{item.label}</Typography>
+    ),
 };

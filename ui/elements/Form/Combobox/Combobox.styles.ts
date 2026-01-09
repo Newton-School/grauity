@@ -61,6 +61,7 @@ export const StyledComboboxTagsContainer = styled.div`
     flex-wrap: wrap;
     align-items: center;
     gap: 4px;
+    width: 100%;
 `;
 
 const comboboxTextInputStyles = css`
