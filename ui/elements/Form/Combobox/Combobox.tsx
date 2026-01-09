@@ -112,8 +112,10 @@ const Combobox = (props: ComboboxProps) => {
                 : [selectedOptions];
             const lastSelectedOption =
                 selectedOptionsList[selectedOptionsList.length - 1];
-            onItemDismissClick(lastSelectedOption);
-            setIsOpen(false);
+            if (lastSelectedOption) {
+                onItemDismissClick(lastSelectedOption);
+                setIsOpen(false);
+            }
         }
     };
 

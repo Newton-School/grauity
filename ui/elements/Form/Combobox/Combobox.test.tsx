@@ -345,12 +345,11 @@ describe('Combobox', () => {
         const input = screen.getByRole('textbox');
         fireEvent.keyDown(input, { key: 'Backspace', code: 'Backspace' });
 
-        // onChange should be called with only the first item
-        expect(onChange).toHaveBeenCalledWith(items[0]);
+        // onChange should be called with null
+        expect(onChange).toHaveBeenCalledWith(null);
 
         // No tags should remain
         expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
-        expect(screen.queryByText('Item 1')).not.toBeInTheDocument();
     });
 
 });

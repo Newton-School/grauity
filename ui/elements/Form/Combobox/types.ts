@@ -59,12 +59,6 @@ export interface ComboboxTriggerProps {
     onTextInputChange?: (text: string) => void;
 
     /**
-     * Callback function to be called when a key is pressed down in the input field.
-     * @param event - The keyboard event.
-     */
-    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-
-    /**
      * Additional props for the Tag element.
      *
      * Default: `{}`
@@ -102,6 +96,7 @@ export interface ComboboxTriggerInternalProps extends ComboboxTriggerProps {
     onTriggerClick?: () => void;
     selectedItems?: BaseItemOptionProps | BaseItemOptionProps[];
     onItemDismissClick?: (item: BaseItemOptionProps) => void;
+    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     inputText?: string;
     inputRef?: React.MutableRefObject<HTMLInputElement>;
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
