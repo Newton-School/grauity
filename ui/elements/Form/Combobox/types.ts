@@ -59,11 +59,43 @@ export interface ComboboxTriggerProps {
     onTextInputChange?: (text: string) => void;
 
     /**
+     * Callback function to be called when a key is pressed down in the input field.
+     * @param event - The keyboard event.
+     */
+    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+
+    /**
      * Additional props for the Tag element.
      *
      * Default: `{}`
      */
     tagProps?: Omit<TagProps, 'children'>;
+
+    /**
+     * Custom renderer for the selected value/tag.
+     *
+     * @param props
+     * @param props.index - The index of the selected item.
+     * @param props.item - The selected item option.
+     * @param props.onDismiss - Function to call to dismiss the selected item.
+     * @returns A React node to render as the selected value/tag.
+     * @default undefined
+     */
+    renderValue?: ({
+        index,
+        item,
+        onDismiss,
+    }: {
+        index: number;
+        item: BaseItemOptionProps;
+        onDismiss: () => void;
+    }) => React.ReactNode;
+
+    /**
+     * Whether the last selected value should be cleared when backspace is pressed (when there is no text in the input field).
+     * @default false
+     */
+    shouldDismissOnBackspace?: boolean;
 }
 
 export interface ComboboxTriggerInternalProps extends ComboboxTriggerProps {

@@ -258,4 +258,99 @@ describe('Combobox', () => {
         fireEvent.click(screen.getByRole('textbox'));
         expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
     });
+
+    // Checking custom tag rendering using renderValue prop
+    it('Should render custom value using renderValue prop', () => {
+        const items = getDummyOptions(3);
+        render(
+            <Combobox
+                {...defaultProps}
+                items={items}
+                renderValue={({ item, onDismiss }) => (
+                    <div data-testid="custom-tag">
+                        {item.label}
+                        <button type="button" onClick={onDismiss}>
+                            x
+                        </button>
+                    </div>
+                )}
+            />
+        );
+
+        // Open dropdown and select an item
+        fireEvent.click(screen.getByRole('textbox'));
+        fireEvent.click(screen.getByText('Item 0'));
+
+        // Check if custom tag is rendered
+        expect(screen.getByTestId('custom-tag')).toBeInTheDocument();
+
+        // Dismiss the tag
+        fireEvent.click(screen.getByText('x'));
+        expect(screen.queryByTestId('custom-tag')).not.toBeInTheDocument();
+    });
+
+    // Check shouldDismissOnBackspace functionality for multiple select mode
+    it('Should dismiss last selected item on Backspace when shouldDismissOnBackspace is true in multiple mode', () => {
+        const onChange = jest.fn();
+        const items = getDummyOptions(3);
+        render(
+            <Combobox
+                {...defaultProps}
+                items={items}
+                onChange={onChange}
+                shouldDismissOnBackspace
+                multiple
+            />
+        );
+
+        // Open dropdown and select two items
+        fireEvent.click(screen.getByRole('textbox'));
+        fireEvent.click(screen.getByText('Item 0'));
+        expect(onChange).toHaveBeenCalledWith([items[0]]);
+        fireEvent.click(screen.getByText('Item 1'));
+        expect(onChange).toHaveBeenCalledWith([items[0], items[1]]);
+
+        // Press Backspace
+        const input = screen.getByRole('textbox');
+        fireEvent.keyDown(input, { key: 'Backspace', code: 'Backspace' });
+
+        // onChange should be called with only the first item
+        expect(onChange).toHaveBeenCalledWith([items[0]]);
+
+        // Only first tag should remain
+        expect(screen.getByText('Item 0')).toBeInTheDocument();
+        expect(screen.queryByText('Item 1')).not.toBeInTheDocument();
+    });
+
+    // Check shouldDismissOnBackspace functionality for single select mode
+    it('Should dismiss last selected item on Backspace when shouldDismissOnBackspace is true in single mode', () => {
+        const onChange = jest.fn();
+        const items = getDummyOptions(3);
+        render(
+            <Combobox
+                {...defaultProps}
+                items={items}
+                onChange={onChange}
+                shouldDismissOnBackspace
+                multiple={false}
+            />
+        );
+
+        // Open dropdown and select an item
+        fireEvent.click(screen.getByRole('textbox'));
+        fireEvent.click(screen.getByText('Item 0'));
+        expect(onChange).toHaveBeenCalledWith(items[0]);
+
+        // Focus input and press Backspace
+        const input = screen.getByRole('textbox');
+        fireEvent.keyDown(input, { key: 'Backspace', code: 'Backspace' });
+
+        // onChange should be called with only the first item
+        expect(onChange).toHaveBeenCalledWith(items[0]);
+
+        // No tags should remain
+        expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+        expect(screen.queryByText('Item 1')).not.toBeInTheDocument();
+    });
+
 });

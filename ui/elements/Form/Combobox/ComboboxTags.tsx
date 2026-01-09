@@ -8,11 +8,21 @@ export const ComboboxTags = ({
     onItemDismissClick,
     isDisabled,
     tagProps = {},
+    renderValue,
 }: {
     selectedItems: BaseItemOptionProps[] | BaseItemOptionProps;
     isDisabled?: boolean;
     onItemDismissClick?: (item: BaseItemOptionProps) => void;
     tagProps?: Omit<TagProps, 'children'>;
+    renderValue?: ({
+        index,
+        item,
+        onDismiss,
+    }: {
+        index: number;
+        item: BaseItemOptionProps;
+        onDismiss: () => void;
+    }) => React.ReactNode;
 }) => {
     let selectedItemsList: BaseItemOptionProps[] = [];
     if (Array.isArray(selectedItems)) {
@@ -23,19 +33,34 @@ export const ComboboxTags = ({
 
     return (
         <>
-            {selectedItemsList.map((item: BaseItemOptionProps) => (
-                <Tag
-                    {...tagProps}
-                    onButtonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                        e.stopPropagation();
-                        onItemDismissClick(item);
-                    }}
-                    isDisabled={isDisabled}
-                    key={item.value}
-                >
-                    {item.label}
-                </Tag>
-            ))}
+            {renderValue &&
+                selectedItemsList.map((item: BaseItemOptionProps, index: number) => (
+                    <React.Fragment key={item.value}>
+                        {renderValue({
+                            index,
+                            item,
+                            onDismiss: () => {
+                                onItemDismissClick(item);
+                            },
+                        })}
+                    </React.Fragment>
+                ))}
+            {!renderValue &&
+                selectedItemsList.map((item: BaseItemOptionProps) => (
+                    <Tag
+                        {...tagProps}
+                        onButtonClick={(
+                            e: React.MouseEvent<HTMLButtonElement>
+                        ) => {
+                            e.stopPropagation();
+                            onItemDismissClick(item);
+                        }}
+                        isDisabled={isDisabled}
+                        key={item.value}
+                    >
+                        {item.label}
+                    </Tag>
+                ))}
         </>
     );
 };
