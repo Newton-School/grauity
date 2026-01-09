@@ -144,7 +144,7 @@ const Combobox = (props: ComboboxProps) => {
         setDropdownMenuHeight(maxHeight);
         setDropdownMenuPosition(position);
         setOverlayStyles(style);
-    }, [selectedOptions, isOpen]);
+    }, [selectedOptions, isOpen, searchedOptions?.length]);
 
     return (
         <AnimatePresence>
