@@ -7,7 +7,18 @@ import {
 import { ButtonComponentProps, ButtonContentProps } from './types';
 import { getButtonStyles } from './utils';
 
-export const StyledButton = styled.button<ButtonComponentProps>`
+export const StyledButton = styled.button.withConfig({
+    shouldForwardProp: (prop) =>
+        ![
+            'isLoading',
+            'fullWidth',
+            'iconPosition',
+            '$showAnimationOnClick',
+            'size',
+            'isIconButton',
+            '$color',
+        ].includes(prop),
+})<ButtonComponentProps>`
     font-size: var(--font-size-14px, 14px);
     border-radius: var(--corner-radius-8px, 8px);
     white-space: nowrap;
@@ -33,8 +44,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
                 transform: scale(0.95);
             }
         `}
-
-    &:disabled {
+  
+      &:disabled {
         cursor: not-allowed;
     }
 
@@ -55,23 +66,25 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         css`
             width: 100%;
         `}
-
-    ${({ isLoading }) =>
+  
+      ${({ isLoading }) =>
         isLoading &&
         css`
             cursor: progress;
         `}
-
-    ${({ iconPosition }) =>
+  
+      ${({ iconPosition }) =>
         iconPosition === 'right' &&
         css`
             flex-direction: row-reverse;
         `}
-
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out, outline 0.2s ease-in-out, transform 0.2s ease-in-out;
+  
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out, outline 0.2s ease-in-out, transform 0.2s ease-in-out;
 `;
 
-export const StyledButtonContent = styled.div<ButtonContentProps>`
+export const StyledButtonContent = styled.div.withConfig({
+    shouldForwardProp: (prop) => !['$iconPosition'].includes(prop),
+})<ButtonContentProps>`
     display: flex;
     align-items: center;
     gap: var(--spacing-8px, 8px);
