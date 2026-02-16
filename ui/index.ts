@@ -42,6 +42,12 @@ export {
     ButtonGroup as NSButtonGroup,
     IconButton as NSIconButton,
 } from './elements/Button';
+export {
+    LINK_BUTTON_SIZES,
+    LINK_BUTTON_SIZES_ENUM,
+    type LinkButtonProps,
+    default as NSLinkButton,
+} from './elements/LinkButton';
 
 // NSTypography
 export {
