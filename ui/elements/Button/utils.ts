@@ -106,6 +106,32 @@ export const getButtonStyles = ({
                 }
             `;
         }
+        case BUTTON_VARIANTS_ENUM.LINK: {
+            return css`
+                color: var(--text-emphasis-brand-default, #0673f9);
+                border: none;
+                border-radius: var(--corner-radius-4px, 4px);
+                outline: 0px solid transparent;
+                background: transparent;
+                &:hover:not([disabled]) {
+                    background: transparent;
+                    color: var(--text-emphasis-brand-default, #0673f9);
+                }
+                &:focus {
+                    outline: 0px solid transparent;
+                }
+                &:focus-visible {
+                    outline: 3px solid
+                        var(--border-subtle-brand-default, #61a8ff);
+                }
+                &:disabled {
+                    color: #94c4ff;
+                }
+                .grauity-theme-dark &:disabled {
+                    color: #004599;
+                }
+            `;
+        }
         default: {
             return css``;
         }

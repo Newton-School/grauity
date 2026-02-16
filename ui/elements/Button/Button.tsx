@@ -3,6 +3,7 @@ import React, { forwardRef, useId } from 'react';
 
 import { Icon } from '../Icon';
 import { StyledButton, StyledButtonContent } from './Button.styles';
+import { BUTTON_COLORS_ENUM, BUTTON_VARIANTS_ENUM } from './constants';
 import { ButtonColors, ButtonProps } from './types';
 
 /**
@@ -17,6 +18,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         color = 'brand',
         size = 'medium',
         icon = null,
+        leftIcon = null,
+        rightIcon = null,
         iconSize = '20',
         iconPosition = 'left',
         className = '',
@@ -26,6 +29,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         onClick = () => {},
         fullWidth = false,
         type = 'button',
+        ariaLabel = '',
         tooltip = '',
         tabIndex = 0,
         onMouseEnter = () => {},
@@ -36,17 +40,28 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         ...rest
     } = props;
 
+    const isLinkVariant = variant === BUTTON_VARIANTS_ENUM.LINK;
+    const isLoading = isLinkVariant ? false : loading;
+    const buttonColor = isLinkVariant ? BUTTON_COLORS_ENUM.BRAND : color;
+    const isButtonDisabled = disabled || isLoading;
+    const classes = classnames(className);
+    const id = useId();
+
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isButtonDisabled) {
             e.preventDefault();
             return;
         }
         onClick(e);
     };
 
-    const classes = classnames(className);
-
-    const id = useId();
+    const hasLegacyLinkIconFallback = isLinkVariant && !leftIcon && !rightIcon;
+    const linkLeftIconName =
+        leftIcon ||
+        (hasLegacyLinkIconFallback && iconPosition === 'left' ? icon : null);
+    const linkRightIconName =
+        rightIcon ||
+        (hasLegacyLinkIconFallback && iconPosition === 'right' ? icon : null);
 
     return (
         <StyledButton
@@ -54,10 +69,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
             onClick={handleClick}
             className={classes}
             style={style}
-            isLoading={loading}
-            disabled={disabled || loading}
+            isLoading={isLoading}
+            disabled={isButtonDisabled}
             variant={variant}
-            $color={color as ButtonColors}
+            $color={buttonColor as ButtonColors}
             size={size}
             fullWidth={fullWidth}
             iconPosition={iconPosition}
@@ -67,29 +82,46 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
             data-testid="testid-button"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-            aria-labelledby={`button-content-${id}`}
+            aria-label={ariaLabel || undefined}
+            aria-labelledby={
+                ariaLabel || !children ? undefined : `button-content-${id}`
+            }
             $showAnimationOnClick={showAnimationOnClick}
             {...buttonProps}
             {...rest}
         >
-            {icon && !loading && (
+            {!isLinkVariant && icon && !isLoading && (
                 <Icon name={icon} color="inherit" size={iconSize} />
             )}
-            {loading && (
+            {isLinkVariant && linkLeftIconName && (
+                <Icon name={linkLeftIconName} color="inherit" size={iconSize} />
+            )}
+            {isLoading && (
                 <Icon
                     name="refresh"
                     color="inherit"
                     size={iconSize}
-                    loading={loading}
+                    loading={isLoading}
                 />
             )}
             {children && (
                 <StyledButtonContent
                     id={`button-content-${id}`}
-                    $iconPosition={icon ? iconPosition : false}
+                    $variant={variant}
+                    $size={size}
+                    $iconPosition={
+                        !isLinkVariant && icon ? iconPosition : false
+                    }
                 >
                     {children}
                 </StyledButtonContent>
+            )}
+            {isLinkVariant && linkRightIconName && (
+                <Icon
+                    name={linkRightIconName}
+                    color="inherit"
+                    size={iconSize}
+                />
             )}
         </StyledButton>
     );
