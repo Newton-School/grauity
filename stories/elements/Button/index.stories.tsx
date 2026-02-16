@@ -26,7 +26,6 @@ const defaultArgs: ButtonProps = {
     fullWidth: false,
     children: 'Click Me!',
     type: 'button',
-    ariaLabel: 'button',
     tooltip: 'button',
     tabIndex: 0,
     onMouseEnter: () => {

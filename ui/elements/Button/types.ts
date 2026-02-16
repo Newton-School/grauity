@@ -23,7 +23,7 @@ export interface ButtonProps extends StyledButtonProps {
     /**
      * Variant of the button
      *
-     * Available choices: `primary` (solid), `secondary` (outlined), `tertiary` (text), `text` (text with no hover/active and zero padding)
+     * Available choices: `primary` (solid), `secondary` (outlined), `tertiary` (text), `text` (text with no hover/active styles and no padding)
      *
      * Default: `primary`
      * */
@@ -299,6 +299,7 @@ export interface ButtonContentProps {
     id?: string;
     children: React.ReactNode;
     $iconPosition: ButtonIconPositions | false;
+    variant: ButtonVariants;
 }
 
 export interface ButtonGroupProps {

@@ -66,12 +66,14 @@ export const BUTTON_SIZE_STYLES_MAPPING: {
         height: 'var(--spacing-24px, 24px)',
         minHeight: 'var(--spacing-24px, 24px)',
         gap: 'var(--spacing-2px, 2px)',
+        '--alignment-padding': 'var(--spacing-2px, 2px)',
     },
     [BUTTON_SIZES_ENUM.SMALL]: {
         padding: 'var(--spacing-4px, 4px) var(--spacing-8px, 8px)',
         height: 'var(--spacing-32px, 32px)',
         minHeight: 'var(--spacing-32px, 32px)',
         gap: 'var(--spacing-4px, 4px)',
+        '--alignment-padding': 'var(--spacing-4px, 4px)',
     },
     [BUTTON_SIZES_ENUM.MEDIUM]: {
         padding: 'var(--spacing-8px, 8px) var(--spacing-12px, 12px)',

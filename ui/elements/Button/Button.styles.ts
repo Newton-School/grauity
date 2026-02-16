@@ -41,6 +41,7 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     ${({ size, isIconButton }) => {
         if (!isIconButton) {
             return css`
+                --alignment-padding: var(--spacing-8px, 8px);
                 ${BUTTON_SIZE_STYLES_MAPPING[size]}
             `;
         }
@@ -55,7 +56,9 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         css`
             padding: 0;
             height: unset;
+            width: unset;
             min-height: unset;
+            min-width: unset;
         `}
 
     ${({ fullWidth }) =>
@@ -88,15 +91,18 @@ export const StyledButtonContent = styled.div<ButtonContentProps>`
     letter-spacing: 0.4px;
     max-width: 100%;
 
-    ${({ $iconPosition }) => {
+    ${({ $iconPosition, variant }) => {
+        if (variant === 'text') {
+            return null;
+        }
         if ($iconPosition === 'right') {
             return css`
-                padding-left: var(--spacing-8px, 8px);
+                padding-left: var(--alignment-padding);
             `;
         }
         if ($iconPosition === 'left') {
             return css`
-                padding-right: var(--spacing-8px, 8px);
+                padding-right: var(--alignment-padding);
             `;
         }
         return '';

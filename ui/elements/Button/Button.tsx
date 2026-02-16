@@ -26,7 +26,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         onClick = () => {},
         fullWidth = false,
         type = 'button',
-        ariaLabel = '',
+        ariaLabel = undefined,
         tooltip = '',
         tabIndex = 0,
         onMouseEnter = () => {},
@@ -68,9 +68,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
             data-testid="testid-button"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-            aria-label={ariaLabel || undefined}
+            aria-label={ariaLabel}
             aria-labelledby={
-                ariaLabel || !children ? undefined : `button-content-${id}`
+                !ariaLabel && children ? `button-content-${id}` : undefined
             }
             $showAnimationOnClick={showAnimationOnClick}
             {...buttonProps}
@@ -91,6 +91,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
                 <StyledButtonContent
                     id={`button-content-${id}`}
                     $iconPosition={icon ? iconPosition : false}
+                    variant={variant}
                 >
                     {children}
                 </StyledButtonContent>
