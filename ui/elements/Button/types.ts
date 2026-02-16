@@ -23,7 +23,7 @@ export interface ButtonProps extends StyledButtonProps {
     /**
      * Variant of the button
      *
-     * Available choices: `primary` (solid), `secondary` (outlined), `tertiary` (text), `text` (text with no hover/active styles and no padding)
+     * Available choices: `primary` (solid), `secondary` (outlined), `tertiary` (borderless), `text` (transparent background and no padding)
      *
      * Default: `primary`
      * */
@@ -152,7 +152,7 @@ export interface IconButtonProps {
     /**
      * Variant of the button
      *
-     * Available choices: `primary` (solid filled), `secondary` (outlined), `tertiary (text)`
+     * Available choices: `primary` (solid filled), `secondary` (outlined), `tertiary` (borderless), `text` (transparent background and no padding)
      *
      * Default: `primary`
      * */
