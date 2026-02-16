@@ -152,7 +152,7 @@ export interface IconButtonProps {
     /**
      * Variant of the button
      *
-     * Available choices: `primary` (solid filled), `secondary` (outlined), `tertiary` (borderless), `text` (transparent background and no padding)
+     * Available choices: `primary` (solid), `secondary` (outlined), `tertiary` (borderless), `text` (transparent background and no padding)
      *
      * Default: `primary`
      * */
