@@ -144,3 +144,28 @@ export const ICON_BUTTON_SIZE_TO_ICON_SIZE_MAPPING: {
     [BUTTON_SIZES_ENUM.LARGE]: '32',
     [BUTTON_SIZES_ENUM.EXTRA_LARGE]: '40',
 };
+
+export const TEXT_BUTTON_SIZE_TO_STYLE_MAPPING: {
+    [size in ButtonSizes]: { [cssSelector: string]: any };
+} = {
+    [BUTTON_SIZES_ENUM.EXTRA_SMALL]: {
+        '--font-size': 'var(--font-size-14px, 14px)',
+        '--line-height': 'var(--font-size-20px, 20px)',
+    },
+    [BUTTON_SIZES_ENUM.SMALL]: {
+        '--font-size': 'var(--font-size-14px, 14px)',
+        '--line-height': 'var(--font-size-20px, 20px)',
+    },
+    [BUTTON_SIZES_ENUM.MEDIUM]: {
+        '--font-size': 'var(--font-size-14px, 14px)',
+        '--line-height': 'var(--font-size-20px, 20px)',
+    },
+    [BUTTON_SIZES_ENUM.LARGE]: {
+        '--font-size': 'var(--font-size-16px, 16px)',
+        '--line-height': 'var(--font-size-24px, 24px)',
+    },
+    [BUTTON_SIZES_ENUM.EXTRA_LARGE]: {
+        '--font-size': 'var(--font-size-16px, 16px)',
+        '--line-height': 'var(--font-size-24px, 24px)',
+    },
+};
