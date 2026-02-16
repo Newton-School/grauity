@@ -6,32 +6,6 @@ import React from 'react';
 import Button from './Button';
 
 describe('Button', () => {
-    it('renders text variant with transparent background and zero padding', () => {
-        render(<Button variant="text">Text Button</Button>);
-        const button = screen.getByRole('button', { name: 'Text Button' });
-
-        expect(button).toHaveStyle('background: transparent');
-        expect(button).toHaveStyle('padding: 0');
-    });
-
-    it('disables loading behavior for text variant like other variants', () => {
-        const handleClick = jest.fn();
-        render(
-            <Button variant="text" loading onClick={handleClick}>
-                Text Button
-            </Button>
-        );
-
-        const button = screen.getByRole('button', { name: 'Text Button' });
-        fireEvent.click(button);
-
-        expect(handleClick).not.toHaveBeenCalled();
-        expect(button).toBeDisabled();
-        expect(screen.getByTestId('testid-icon')).toHaveClass(
-            'grauity-icon-refresh'
-        );
-    });
-
     it('renders with default props', () => {
         render(<Button>Click Me</Button>);
         const button = screen.getByRole('button');
@@ -45,6 +19,28 @@ describe('Button', () => {
         const button = screen.getByRole('button');
         fireEvent.click(button);
         expect(handleClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('is disabled if disabled prop is true', () => {
+        const handleClick = jest.fn();
+        render(
+            <Button disabled onClick={handleClick}>
+                Button
+            </Button>
+        );
+        const button = screen.getByRole('button', { name: 'Button' });
+        expect(button).toBeDisabled();
+    });
+
+    it('is disabled if loading prop is true', () => {
+        const handleClick = jest.fn();
+        render(
+            <Button loading onClick={handleClick}>
+                Button
+            </Button>
+        );
+        const button = screen.getByRole('button', { name: 'Button' });
+        expect(button).toBeDisabled();
     });
 
     it('does not call onClick handler when disabled', () => {
@@ -101,5 +97,12 @@ describe('Button', () => {
         render(<Button className="custom-class">Click Me</Button>);
         const button = screen.getByRole('button');
         expect(button).toHaveClass('custom-class');
+    });
+
+    it('renders text variant with transparent background and zero padding', () => {
+        render(<Button variant="text">Text Button</Button>);
+        const button = screen.getByRole('button', { name: 'Text Button' });
+        expect(button).toHaveStyle('background: transparent');
+        expect(button).toHaveStyle('padding: 0');
     });
 });

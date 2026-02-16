@@ -91,6 +91,8 @@ export const StyledButtonContent = styled.div<ButtonContentProps>`
     letter-spacing: 0.4px;
     max-width: 100%;
 
+    // Padding for visual alignment when button has an icon.
+    // This ensures that when icon is present on one side, the text looks visually even.
     ${({ $iconPosition, variant }) => {
         if (variant === 'text') {
             return null;
