@@ -1,10 +1,6 @@
 import React from 'react';
 import Button, { BUTTON_VARIANTS, ButtonProps } from 'ui/elements/Button';
-import {
-    BUTTON_COLORS,
-    BUTTON_COLORS_ENUM,
-    BUTTON_VARIANTS_ENUM,
-} from 'ui/elements/Button/constants';
+import { BUTTON_COLORS } from 'ui/elements/Button/constants';
 import Table from 'ui/elements/Table';
 
 import TokenBlock from '../../helper-components/TokenBlock';
@@ -31,13 +27,8 @@ const Template = (args: ButtonProps) => (
             </Table.TableRow>
         </Table.TableHead>
         <Table.TableBody>
-            {BUTTON_VARIANTS.map((variant) => {
-                const colors =
-                    variant === BUTTON_VARIANTS_ENUM.LINK
-                        ? [BUTTON_COLORS_ENUM.BRAND]
-                        : BUTTON_COLORS;
-
-                return colors.map((color) => {
+            {BUTTON_COLORS.map((color) => {
+                return BUTTON_VARIANTS.map((variant) => {
                     return (
                         <Table.TableRow
                             condensed

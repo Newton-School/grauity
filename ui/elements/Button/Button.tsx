@@ -3,7 +3,6 @@ import React, { forwardRef, useId } from 'react';
 
 import { Icon } from '../Icon';
 import { StyledButton, StyledButtonContent } from './Button.styles';
-import { BUTTON_COLORS_ENUM, BUTTON_VARIANTS_ENUM } from './constants';
 import { ButtonColors, ButtonProps } from './types';
 
 /**
@@ -18,8 +17,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         color = 'brand',
         size = 'medium',
         icon = null,
-        leftIcon = null,
-        rightIcon = null,
         iconSize = '20',
         iconPosition = 'left',
         className = '',
@@ -40,10 +37,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         ...rest
     } = props;
 
-    const isLinkVariant = variant === BUTTON_VARIANTS_ENUM.LINK;
-    const isLoading = isLinkVariant ? false : loading;
-    const buttonColor = isLinkVariant ? BUTTON_COLORS_ENUM.BRAND : color;
-    const isButtonDisabled = disabled || isLoading;
+    const isButtonDisabled = disabled || loading;
     const classes = classnames(className);
     const id = useId();
 
@@ -55,24 +49,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         onClick(e);
     };
 
-    const hasLegacyLinkIconFallback = isLinkVariant && !leftIcon && !rightIcon;
-    const linkLeftIconName =
-        leftIcon ||
-        (hasLegacyLinkIconFallback && iconPosition === 'left' ? icon : null);
-    const linkRightIconName =
-        rightIcon ||
-        (hasLegacyLinkIconFallback && iconPosition === 'right' ? icon : null);
-
     return (
         <StyledButton
             ref={ref}
             onClick={handleClick}
             className={classes}
             style={style}
-            isLoading={isLoading}
+            isLoading={loading}
             disabled={isButtonDisabled}
             variant={variant}
-            $color={buttonColor as ButtonColors}
+            $color={color as ButtonColors}
             size={size}
             fullWidth={fullWidth}
             iconPosition={iconPosition}
@@ -90,38 +76,24 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
             {...buttonProps}
             {...rest}
         >
-            {!isLinkVariant && icon && !isLoading && (
+            {icon && !loading && (
                 <Icon name={icon} color="inherit" size={iconSize} />
             )}
-            {isLinkVariant && linkLeftIconName && (
-                <Icon name={linkLeftIconName} color="inherit" size={iconSize} />
-            )}
-            {isLoading && (
+            {loading && (
                 <Icon
                     name="refresh"
                     color="inherit"
                     size={iconSize}
-                    loading={isLoading}
+                    loading={loading}
                 />
             )}
             {children && (
                 <StyledButtonContent
                     id={`button-content-${id}`}
-                    $variant={variant}
-                    $size={size}
-                    $iconPosition={
-                        !isLinkVariant && icon ? iconPosition : false
-                    }
+                    $iconPosition={icon ? iconPosition : false}
                 >
                     {children}
                 </StyledButtonContent>
-            )}
-            {isLinkVariant && linkRightIconName && (
-                <Icon
-                    name={linkRightIconName}
-                    color="inherit"
-                    size={iconSize}
-                />
             )}
         </StyledButton>
     );

@@ -14,8 +14,6 @@ const defaultArgs: ButtonProps = {
     color: 'brand',
     size: 'medium',
     icon: 'sparkle',
-    leftIcon: null,
-    rightIcon: null,
     iconSize: '20',
     iconPosition: 'left',
     className: 'my-class',

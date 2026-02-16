@@ -23,7 +23,7 @@ export interface ButtonProps extends StyledButtonProps {
     /**
      * Variant of the button
      *
-     * Available choices: `primary` (solid), `secondary` (outlined), `tertiary` (text), `link` (text link)
+     * Available choices: `primary` (solid), `secondary` (outlined), `tertiary` (text), `text` (text with no hover/active and zero padding)
      *
      * Default: `primary`
      * */
@@ -48,24 +48,8 @@ export interface ButtonProps extends StyledButtonProps {
 
     /**
      * Icon to be displayed in the button.
-     *
-     * For `variant="link"`, this acts as a fallback only when `leftIcon` and `rightIcon` are both not provided.
      * */
     icon?: grauityIconName;
-
-    /**
-     * Icon to be displayed on the left side of a link button.
-     *
-     * Applicable for `variant="link"`.
-     * */
-    leftIcon?: grauityIconName | null;
-
-    /**
-     * Icon to be displayed on the right side of a link button.
-     *
-     * Applicable for `variant="link"`.
-     * */
-    rightIcon?: grauityIconName | null;
 
     /**
      * Size of the icon, defaults to `20`
@@ -95,8 +79,6 @@ export interface ButtonProps extends StyledButtonProps {
 
     /**
      * Show that the button is loading
-     *
-     * Ignored for `variant="link"`.
      *
      * Default: `false`
      * */
@@ -316,8 +298,6 @@ export interface ButtonComponentProps extends StyledButtonProps {
 export interface ButtonContentProps {
     id?: string;
     children: React.ReactNode;
-    $variant: ButtonVariants;
-    $size: ButtonSizes;
     $iconPosition: ButtonIconPositions | false;
 }
 

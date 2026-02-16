@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 
 import {
-    BUTTON_LINK_CONTENT_STYLES_MAPPING,
-    BUTTON_LINK_SIZE_STYLES_MAPPING,
     BUTTON_SIZE_STYLES_MAPPING,
     ICON_BUTTON_SIZE_STYLES_MAPPING,
 } from './constants';
@@ -28,11 +26,11 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     ${({ variant, $color }) =>
         variant && getButtonStyles({ variant, color: $color })}
 
-    ${({ $showAnimationOnClick, variant }) =>
+    ${({ $showAnimationOnClick }) =>
         $showAnimationOnClick &&
         css`
             &:active:not([disabled]) {
-                transform: scale(${variant === 'link' ? 0.99 : 0.95});
+                transform: scale(0.95);
             }
         `}
 
@@ -40,15 +38,10 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         cursor: not-allowed;
     }
 
-    ${({ size, isIconButton, variant }) => {
+    ${({ size, isIconButton }) => {
         if (!isIconButton) {
-            const buttonSizeStyles =
-                variant === 'link'
-                    ? BUTTON_LINK_SIZE_STYLES_MAPPING[size]
-                    : BUTTON_SIZE_STYLES_MAPPING[size];
-
             return css`
-                ${buttonSizeStyles}
+                ${BUTTON_SIZE_STYLES_MAPPING[size]}
             `;
         }
 
@@ -56,6 +49,14 @@ export const StyledButton = styled.button<ButtonComponentProps>`
             ${ICON_BUTTON_SIZE_STYLES_MAPPING[size]}
         `;
     }}
+
+    ${({ variant }) =>
+        variant === 'text' &&
+        css`
+            padding: 0;
+            height: unset;
+            min-height: unset;
+        `}
 
     ${({ fullWidth }) =>
         fullWidth &&
@@ -69,9 +70,8 @@ export const StyledButton = styled.button<ButtonComponentProps>`
             cursor: progress;
         `}
 
-    ${({ iconPosition, variant }) =>
+    ${({ iconPosition }) =>
         iconPosition === 'right' &&
-        variant !== 'link' &&
         css`
             flex-direction: row-reverse;
         `}
@@ -83,26 +83,12 @@ export const StyledButtonContent = styled.div<ButtonContentProps>`
     display: flex;
     align-items: center;
     gap: var(--spacing-8px, 8px);
-    font-family: var(--font-family, 'Mona Sans');
-    color: inherit;
+    font-size: var(--font-size-14px, 14px);
+    font-weight: var(--font-weight-semibold, 600);
+    letter-spacing: 0.4px;
     max-width: 100%;
 
-    ${({ $variant, $size }) =>
-        $variant === 'link'
-            ? css`
-                  ${BUTTON_LINK_CONTENT_STYLES_MAPPING[$size]}
-              `
-            : css`
-                  font-size: var(--font-size-14px, 14px);
-                  font-weight: var(--font-weight-semibold, 600);
-                  letter-spacing: 0.4px;
-              `}
-
-    ${({ $variant, $iconPosition }) => {
-        if ($variant === 'link') {
-            return '';
-        }
-
+    ${({ $iconPosition }) => {
         if ($iconPosition === 'right') {
             return css`
                 padding-left: var(--spacing-8px, 8px);
