@@ -21,6 +21,28 @@ describe('Button', () => {
         expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
+    it('is disabled if disabled prop is true', () => {
+        const handleClick = jest.fn();
+        render(
+            <Button disabled onClick={handleClick}>
+                Button
+            </Button>
+        );
+        const button = screen.getByRole('button', { name: 'Button' });
+        expect(button).toBeDisabled();
+    });
+
+    it('is disabled if loading prop is true', () => {
+        const handleClick = jest.fn();
+        render(
+            <Button loading onClick={handleClick}>
+                Button
+            </Button>
+        );
+        const button = screen.getByRole('button', { name: 'Button' });
+        expect(button).toBeDisabled();
+    });
+
     it('does not call onClick handler when disabled', () => {
         const handleClick = jest.fn();
         render(
@@ -49,6 +71,7 @@ describe('Button', () => {
         render(<Button loading>Click Me</Button>);
         const loadingIcon = screen.getByTestId('testid-icon');
         expect(loadingIcon).toBeInTheDocument();
+        expect(loadingIcon).toHaveClass('grauity-icon-refresh');
     });
 
     it('displays the correct icon', () => {
@@ -74,5 +97,12 @@ describe('Button', () => {
         render(<Button className="custom-class">Click Me</Button>);
         const button = screen.getByRole('button');
         expect(button).toHaveClass('custom-class');
+    });
+
+    it('renders text variant with transparent background and zero padding', () => {
+        render(<Button variant="text">Text Button</Button>);
+        const button = screen.getByRole('button', { name: 'Text Button' });
+        expect(button).toHaveStyle('background: transparent');
+        expect(button).toHaveStyle('padding: 0');
     });
 });

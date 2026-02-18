@@ -6,6 +6,7 @@ export enum BUTTON_VARIANTS_ENUM {
     PRIMARY = 'primary',
     SECONDARY = 'secondary',
     TERTIARY = 'tertiary',
+    TEXT = 'text',
 }
 
 export enum BUTTON_COLORS_ENUM {
@@ -33,6 +34,7 @@ export const BUTTON_VARIANTS = [
     BUTTON_VARIANTS_ENUM.PRIMARY,
     BUTTON_VARIANTS_ENUM.SECONDARY,
     BUTTON_VARIANTS_ENUM.TERTIARY,
+    BUTTON_VARIANTS_ENUM.TEXT,
 ];
 
 export const BUTTON_COLORS = [
@@ -64,12 +66,14 @@ export const BUTTON_SIZE_STYLES_MAPPING: {
         height: 'var(--spacing-24px, 24px)',
         minHeight: 'var(--spacing-24px, 24px)',
         gap: 'var(--spacing-2px, 2px)',
+        '--alignment-padding': 'var(--spacing-2px, 2px)',
     },
     [BUTTON_SIZES_ENUM.SMALL]: {
         padding: 'var(--spacing-4px, 4px) var(--spacing-8px, 8px)',
         height: 'var(--spacing-32px, 32px)',
         minHeight: 'var(--spacing-32px, 32px)',
         gap: 'var(--spacing-4px, 4px)',
+        '--alignment-padding': 'var(--spacing-4px, 4px)',
     },
     [BUTTON_SIZES_ENUM.MEDIUM]: {
         padding: 'var(--spacing-8px, 8px) var(--spacing-12px, 12px)',
@@ -139,4 +143,29 @@ export const ICON_BUTTON_SIZE_TO_ICON_SIZE_MAPPING: {
     [BUTTON_SIZES_ENUM.MEDIUM]: '24',
     [BUTTON_SIZES_ENUM.LARGE]: '32',
     [BUTTON_SIZES_ENUM.EXTRA_LARGE]: '40',
+};
+
+export const TEXT_BUTTON_SIZE_TO_STYLE_MAPPING: {
+    [size in ButtonSizes]: { [cssSelector: string]: any };
+} = {
+    [BUTTON_SIZES_ENUM.EXTRA_SMALL]: {
+        '--font-size': 'var(--font-size-14px, 14px)',
+        '--line-height': 'var(--font-size-20px, 20px)',
+    },
+    [BUTTON_SIZES_ENUM.SMALL]: {
+        '--font-size': 'var(--font-size-14px, 14px)',
+        '--line-height': 'var(--font-size-20px, 20px)',
+    },
+    [BUTTON_SIZES_ENUM.MEDIUM]: {
+        '--font-size': 'var(--font-size-14px, 14px)',
+        '--line-height': 'var(--font-size-20px, 20px)',
+    },
+    [BUTTON_SIZES_ENUM.LARGE]: {
+        '--font-size': 'var(--font-size-16px, 16px)',
+        '--line-height': 'var(--font-size-24px, 24px)',
+    },
+    [BUTTON_SIZES_ENUM.EXTRA_LARGE]: {
+        '--font-size': 'var(--font-size-16px, 16px)',
+        '--line-height': 'var(--font-size-24px, 24px)',
+    },
 };

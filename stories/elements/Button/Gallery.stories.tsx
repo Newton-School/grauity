@@ -30,7 +30,10 @@ const Template = (args: ButtonProps) => (
             {BUTTON_COLORS.map((color) => {
                 return BUTTON_VARIANTS.map((variant) => {
                     return (
-                        <Table.TableRow condensed>
+                        <Table.TableRow
+                            condensed
+                            key={`${variant}-${color}`}
+                        >
                             <Table.TableDataCell>
                                 <TokenBlock copy>{variant}</TokenBlock>
                             </Table.TableDataCell>
@@ -42,7 +45,6 @@ const Template = (args: ButtonProps) => (
                                     {...args}
                                     variant={variant}
                                     color={color}
-                                    key={variant}
                                 >
                                     {args?.children}
                                 </Button>

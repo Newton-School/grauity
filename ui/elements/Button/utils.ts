@@ -106,6 +106,27 @@ export const getButtonStyles = ({
                 }
             `;
         }
+        case BUTTON_VARIANTS_ENUM.TEXT: {
+            const colorSpace =
+                color === BUTTON_COLORS_ENUM.NEUTRAL ? 'primary' : color;
+
+            return css`
+                color: var(--text-emphasis-${colorSpace}-default);
+                border: none;
+                outline: 0px solid transparent;
+                background: transparent;
+                &:focus {
+                    outline: 0px solid transparent;
+                }
+                &:focus-visible {
+                    outline: 3px solid
+                        var(--border-subtle-${colorSpace}-default);
+                }
+                &:disabled {
+                    color: var(--text-emphasis-${colorSpace}-disabled);
+                }
+            `;
+        }
         default: {
             return css``;
         }

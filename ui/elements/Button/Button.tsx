@@ -26,6 +26,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         onClick = () => {},
         fullWidth = false,
         type = 'button',
+        ariaLabel = undefined,
         tooltip = '',
         tabIndex = 0,
         onMouseEnter = () => {},
@@ -36,17 +37,17 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         ...rest
     } = props;
 
+    const isButtonDisabled = disabled || loading;
+    const classes = classnames(className);
+    const id = useId();
+
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isButtonDisabled) {
             e.preventDefault();
             return;
         }
         onClick(e);
     };
-
-    const classes = classnames(className);
-
-    const id = useId();
 
     return (
         <StyledButton
@@ -55,7 +56,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
             className={classes}
             style={style}
             isLoading={loading}
-            disabled={disabled || loading}
+            disabled={isButtonDisabled}
             variant={variant}
             $color={color as ButtonColors}
             size={size}
@@ -67,7 +68,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
             data-testid="testid-button"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-            aria-labelledby={`button-content-${id}`}
+            aria-label={ariaLabel}
+            aria-labelledby={
+                !ariaLabel && children ? `button-content-${id}` : undefined
+            }
             $showAnimationOnClick={showAnimationOnClick}
             {...buttonProps}
             {...rest}
@@ -87,6 +91,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
                 <StyledButtonContent
                     id={`button-content-${id}`}
                     $iconPosition={icon ? iconPosition : false}
+                    variant={variant}
                 >
                     {children}
                 </StyledButtonContent>

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import {
     BUTTON_SIZE_STYLES_MAPPING,
     ICON_BUTTON_SIZE_STYLES_MAPPING,
+    TEXT_BUTTON_SIZE_TO_STYLE_MAPPING,
 } from './constants';
 import { ButtonComponentProps, ButtonContentProps } from './types';
 import { getButtonStyles } from './utils';
@@ -22,6 +23,14 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     width: max-content;
     gap: var(--spacing-8px, 8px);
     transform-origin: center;
+
+    ${({ isIconButton }) =>
+        !isIconButton &&
+        css`
+            --line-height: var(--font-size-14px, 14px);
+            --font-size: var(--font-size-14px, 14px);
+            --alignment-padding: var(--spacing-8px, 8px);
+        `}
 
     ${({ variant, $color }) =>
         variant && getButtonStyles({ variant, color: $color })}
@@ -50,6 +59,19 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         `;
     }}
 
+    ${({ variant, size }) =>
+        variant === 'text' &&
+        css`
+            padding: 0;
+            height: unset;
+            width: unset;
+            min-height: unset;
+            min-width: unset;
+            border-radius: var(--corner-radius-4px, 4px);
+
+            ${TEXT_BUTTON_SIZE_TO_STYLE_MAPPING[size]}
+        `}
+
     ${({ fullWidth }) =>
         fullWidth &&
         css`
@@ -75,20 +97,26 @@ export const StyledButtonContent = styled.div<ButtonContentProps>`
     display: flex;
     align-items: center;
     gap: var(--spacing-8px, 8px);
-    font-size: var(--font-size-14px, 14px);
+    font-size: var(--font-size);
     font-weight: var(--font-weight-semibold, 600);
     letter-spacing: 0.4px;
+    line-height: var(--line-height);
     max-width: 100%;
 
-    ${({ $iconPosition }) => {
+    // Padding for visual alignment when button has an icon.
+    // This ensures that when icon is present on one side, the text looks visually even.
+    ${({ $iconPosition, variant }) => {
+        if (variant === 'text') {
+            return null;
+        }
         if ($iconPosition === 'right') {
             return css`
-                padding-left: var(--spacing-8px, 8px);
+                padding-left: var(--alignment-padding);
             `;
         }
         if ($iconPosition === 'left') {
             return css`
-                padding-right: var(--spacing-8px, 8px);
+                padding-right: var(--alignment-padding);
             `;
         }
         return '';
