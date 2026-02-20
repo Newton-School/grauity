@@ -76,7 +76,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
                 )}
                 {loading && (
                     <Icon
-                        name="refresh"
+                        name="loading"
                         color="inherit"
                         size={computedIconSize}
                         loading={loading}
