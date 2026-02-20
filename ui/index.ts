@@ -86,6 +86,9 @@ export {
 // NSChip
 export { type ChipProps, default as NSChip } from './elements/Chip';
 
+// NSPill
+export { default as NSPill, type PillProps } from './elements/Pill';
+
 // NSTag
 export { default as NSTag, type TagProps } from './elements/Tag';
 
