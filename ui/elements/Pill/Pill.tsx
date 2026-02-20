@@ -33,8 +33,6 @@ const Pill = forwardRef<HTMLButtonElement, PillProps>((props, ref) => {
         color = 'brand',
     } = props;
 
-    const hasCount = !['', null, undefined].includes(count as any);
-
     const { typographyVariant, iconSize, countIndicatorHeight } =
         PILL_SIZE_STYLES_MAPPING[size];
 
@@ -49,7 +47,10 @@ const Pill = forwardRef<HTMLButtonElement, PillProps>((props, ref) => {
             disabled={isDisabled || isReadOnly}
             onClick={handleClick}
             style={style}
-            ariaLabel={ariaLabel ?? (typeof children === 'string' ? children : undefined)}
+            ariaLabel={
+                ariaLabel ??
+                (typeof children === 'string' ? children : undefined)
+            }
             aria-disabled={isDisabled || isReadOnly}
             showAnimationOnClick={false}
             variant="secondary"
@@ -68,7 +69,7 @@ const Pill = forwardRef<HTMLButtonElement, PillProps>((props, ref) => {
                         color="currentColor"
                     />
                 )}
-                {children && (
+                {children !== null && children !== undefined && (
                     <StyledPillLabel
                         title={typeof children === 'string' ? children : ''}
                         $isReadOnly={isReadOnly}
@@ -81,7 +82,7 @@ const Pill = forwardRef<HTMLButtonElement, PillProps>((props, ref) => {
                         </Typography>
                     </StyledPillLabel>
                 )}
-                {hasCount && (
+                {count !== null && count !== undefined && (
                     <StyledPillCountIndicator
                         $isActive={isActive}
                         $isDisabled={isDisabled}
