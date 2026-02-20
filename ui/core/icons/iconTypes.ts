@@ -315,6 +315,8 @@ export type grauityIconName =
     | 'list'
     | 'load-filled'
     | 'load'
+    | 'loading-filled'
+    | 'loading'
     | 'loudspeaker-filled'
     | 'loudspeaker'
     | 'machine-learning-filled'
@@ -769,6 +771,8 @@ export type grauityIconKey =
     | 'List'
     | 'LoadFilled'
     | 'Load'
+    | 'LoadingFilled'
+    | 'Loading'
     | 'LoudspeakerFilled'
     | 'Loudspeaker'
     | 'MachineLearningFilled'
@@ -1223,6 +1227,8 @@ export enum GRAUITY_ICONS {
     List = 'list',
     LoadFilled = 'load-filled',
     Load = 'load',
+    LoadingFilled = 'loading-filled',
+    Loading = 'loading',
     LoudspeakerFilled = 'loudspeaker-filled',
     Loudspeaker = 'loudspeaker',
     MachineLearningFilled = 'machine-learning-filled',
