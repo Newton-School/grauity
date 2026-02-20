@@ -71,7 +71,7 @@ describe('Button', () => {
         render(<Button loading>Click Me</Button>);
         const loadingIcon = screen.getByTestId('testid-icon');
         expect(loadingIcon).toBeInTheDocument();
-        expect(loadingIcon).toHaveClass('grauity-icon-refresh');
+        expect(loadingIcon).toHaveClass('grauity-icon-loading');
     });
 
     it('displays the correct icon', () => {
