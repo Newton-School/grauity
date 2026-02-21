@@ -15,6 +15,8 @@ export enum BUTTON_COLORS_ENUM {
     ERROR = 'error',
     SUCCESS = 'success',
     WARNING = 'warning',
+    YELLOW = 'yellow',
+    PURPLE = 'purple',
 }
 
 export enum BUTTON_SIZES_ENUM {
@@ -43,6 +45,8 @@ export const BUTTON_COLORS = [
     BUTTON_COLORS_ENUM.ERROR,
     BUTTON_COLORS_ENUM.SUCCESS,
     BUTTON_COLORS_ENUM.WARNING,
+    BUTTON_COLORS_ENUM.YELLOW,
+    BUTTON_COLORS_ENUM.PURPLE,
 ];
 
 export const BUTTON_SIZES = [

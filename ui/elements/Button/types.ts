@@ -32,15 +32,13 @@ export interface ButtonProps extends StyledButtonProps {
     /**
      * Color of the button
      *
-     * Available choices: `brand` (blue), `neutral` (black), `error` (red), `success` (green), `warning` (orange)
-     *
      * Default: `brand`
      * */
     color?: ButtonColors;
 
     /**
      * Size of the button
-     * Available choices: `small`, `medium`, `large`
+     * Available choices: `extra-small`, `small`, `medium`, `large`, `extra-large`
      *
      * Default: `medium`
      * */
@@ -161,15 +159,13 @@ export interface IconButtonProps {
     /**
      * Color of the button
      *
-     * Available choices: `brand` (blue), `neutral` (black), `error` (red), `success` (green), `warning` (orange)
-     *
      * Default: `brand`
      * */
     color?: ButtonColors;
 
     /**
      * Size of the button
-     * Available choices: `small`, `medium`, `large`
+     * Available choices: `extra-small`, `small`, `medium`, `large`, `extra-large`
      *
      * Default: `medium`
      * */
