@@ -89,6 +89,8 @@ export const ICON_TAGS = {
     waveform: ['Media'],
     'comment-filled': ['Misc'],
     comment: ['Misc'],
+    'confetti-filled': ['Misc'],
+    confetti: ['Misc'],
     'connector-filled': ['Misc'],
     connector: ['Misc'],
     'doubt-alt2-filled': ['Misc'],
@@ -557,6 +559,8 @@ export const TAG_ICONS = {
     Misc: [
         'comment-filled',
         'comment',
+        'confetti-filled',
+        'confetti',
         'connector-filled',
         'connector',
         'doubt-alt2-filled',
