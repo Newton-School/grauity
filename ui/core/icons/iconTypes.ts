@@ -89,6 +89,8 @@ export type grauityIconName =
     | 'waveform'
     | 'comment-filled'
     | 'comment'
+    | 'confetti-filled'
+    | 'confetti'
     | 'connector-filled'
     | 'connector'
     | 'doubt-alt2-filled'
@@ -545,6 +547,8 @@ export type grauityIconKey =
     | 'Waveform'
     | 'CommentFilled'
     | 'Comment'
+    | 'ConfettiFilled'
+    | 'Confetti'
     | 'ConnectorFilled'
     | 'Connector'
     | 'DoubtAlt2Filled'
@@ -1001,6 +1005,8 @@ export enum GRAUITY_ICONS {
     Waveform = 'waveform',
     CommentFilled = 'comment-filled',
     Comment = 'comment',
+    ConfettiFilled = 'confetti-filled',
+    Confetti = 'confetti',
     ConnectorFilled = 'connector-filled',
     Connector = 'connector',
     DoubtAlt2Filled = 'doubt-alt2-filled',
