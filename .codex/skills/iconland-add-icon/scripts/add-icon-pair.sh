@@ -9,11 +9,12 @@ Usage:
 
 Behavior:
   1) Uses provided <Type> and <name> to rename/copy uploaded SVGs into iconland.
-  2) Copies both SVGs into iconland/seeds.
-  3) Commits and pushes in the iconland submodule.
-  4) Updates submodule pointer in grauity.
-  5) Runs: npm run build-icons
-  6) Runs: npm run lint
+  2) Initializes iconland submodule if needed.
+  3) Copies both SVGs into iconland/seeds.
+  4) Commits and pushes in the iconland submodule.
+  5) Updates submodule pointer in grauity.
+  6) Runs: npm run build-icons
+  7) Runs: npm run lint
 USAGE
 }
 
@@ -62,6 +63,10 @@ ensure_iconland_branch() {
   fi
 
   remote_head="$(git -C iconland symbolic-ref --quiet --short refs/remotes/origin/HEAD || true)"
+  if [[ -z "$remote_head" ]]; then
+    git -C iconland remote set-head origin -a >/dev/null 2>&1 || true
+    remote_head="$(git -C iconland symbolic-ref --quiet --short refs/remotes/origin/HEAD || true)"
+  fi
   [[ -n "$remote_head" ]] || die "Could not determine iconland default remote branch"
 
   target_branch="${remote_head#origin/}"
@@ -74,6 +79,13 @@ ensure_iconland_branch() {
 
   git -C iconland pull --ff-only origin "$target_branch"
   echo "$target_branch"
+}
+
+ensure_iconland_initialized() {
+  echo "Initializing iconland submodule (safe to run repeatedly)..."
+  git submodule update --init iconland
+
+  [[ -d "iconland/seeds" ]] || die "Expected iconland submodule at iconland/seeds"
 }
 
 if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
@@ -130,7 +142,7 @@ REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 [[ -n "$REPO_ROOT" ]] || die "Run this command inside the grauity repository"
 cd "$REPO_ROOT"
 
-[[ -d "iconland/seeds" ]] || die "Expected iconland submodule at iconland/seeds"
+ensure_iconland_initialized
 
 ICONLAND_STATUS="$(git -C iconland status --porcelain)"
 [[ -z "$ICONLAND_STATUS" ]] || die "iconland has uncommitted changes. Commit/stash them first."

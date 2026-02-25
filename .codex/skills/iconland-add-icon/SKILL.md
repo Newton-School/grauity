@@ -28,13 +28,14 @@ bash .codex/skills/iconland-add-icon/scripts/add-icon-pair.sh \
 ## What the script does
 
 1. Validates `<Type>` and `<name>`, then renames/copies the uploaded SVGs into iconland seeds (`Type_name.svg` and `Type_name-filled.svg`).
-2. Ensures `iconland` submodule is clean before making changes.
-3. Ensures `iconland` is on its default remote branch (if detached, it checks out tracked default branch).
-4. Copies both files to `iconland/seeds/`.
-5. Commits and pushes the change in `iconland`.
-6. Runs `git submodule update --remote --merge iconland` in `grauity`.
-7. Runs `npm run build-icons`.
-8. Runs `npm run lint`.
+2. Initializes `iconland` submodule (`git submodule update --init iconland`) so first-run/prod environments work.
+3. Ensures `iconland` submodule is clean before making changes.
+4. Ensures `iconland` is on its default remote branch (if detached, it checks out tracked default branch).
+5. Copies both files to `iconland/seeds/`.
+6. Commits and pushes the change in `iconland`.
+7. Runs `git submodule update --remote --merge iconland` in `grauity`.
+8. Runs `npm run build-icons`.
+9. Runs `npm run lint`.
 
 ## Notes
 
@@ -48,7 +49,7 @@ bash .codex/skills/iconland-add-icon/scripts/add-icon-pair.sh \
 3. Commit the final `grauity` changes with a clear message.
 4. Push the branch to origin.
 5. Open a PR in `grauity` that summarizes the new icon pair and includes any validation results (`npm run build-icons`, `npm run lint`).
-6. If a Slack connector is available, send this message to `#developement` (must include `@core-dev`):
+6. If a Slack connector is available, send this message to `#developement` (must include `@core-dev`), and resolve mentions to Slack user IDs before sending so mentions render in Slack:
 
 ```text
 @core-dev Please review and merge
