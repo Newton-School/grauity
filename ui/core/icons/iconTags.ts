@@ -1,8 +1,10 @@
 export const ICON_TAGS = {
     'exclamation-circle-filled': ['Alert'],
     'exclamation-circle': ['Alert'],
+    'exclamation-filled': ['Alert'],
     'exclamation-triangle-filled': ['Alert'],
     'exclamation-triangle': ['Alert'],
+    exclamation: ['Alert'],
     'info-circle-filled': ['Alert'],
     'info-circle': ['Alert'],
     'question-circle-filled': ['Alert'],
@@ -460,8 +462,10 @@ export const TAG_ICONS = {
     Alert: [
         'exclamation-circle-filled',
         'exclamation-circle',
+        'exclamation-filled',
         'exclamation-triangle-filled',
         'exclamation-triangle',
+        'exclamation',
         'info-circle-filled',
         'info-circle',
         'question-circle-filled',

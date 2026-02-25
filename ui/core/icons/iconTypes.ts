@@ -1,8 +1,10 @@
 export type grauityIconName =
     | 'exclamation-circle-filled'
     | 'exclamation-circle'
+    | 'exclamation-filled'
     | 'exclamation-triangle-filled'
     | 'exclamation-triangle'
+    | 'exclamation'
     | 'info-circle-filled'
     | 'info-circle'
     | 'question-circle-filled'
@@ -459,8 +461,10 @@ export type grauityIconName =
 export type grauityIconKey =
     | 'ExclamationCircleFilled'
     | 'ExclamationCircle'
+    | 'ExclamationFilled'
     | 'ExclamationTriangleFilled'
     | 'ExclamationTriangle'
+    | 'Exclamation'
     | 'InfoCircleFilled'
     | 'InfoCircle'
     | 'QuestionCircleFilled'
@@ -917,8 +921,10 @@ export type grauityIconKey =
 export enum GRAUITY_ICONS {
     ExclamationCircleFilled = 'exclamation-circle-filled',
     ExclamationCircle = 'exclamation-circle',
+    ExclamationFilled = 'exclamation-filled',
     ExclamationTriangleFilled = 'exclamation-triangle-filled',
     ExclamationTriangle = 'exclamation-triangle',
+    Exclamation = 'exclamation',
     InfoCircleFilled = 'info-circle-filled',
     InfoCircle = 'info-circle',
     QuestionCircleFilled = 'question-circle-filled',
