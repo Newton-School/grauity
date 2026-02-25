@@ -27,29 +27,22 @@ bash .codex/skills/iconland-add-icon/scripts/add-icon-pair.sh \
 
 ## What the script does
 
-1. Validates `<Type>` and `<name>`, then renames/copies the uploaded SVGs into iconland seeds (`Type_name.svg` and `Type_name-filled.svg`).
-2. Initializes `iconland` submodule (`git submodule update --init iconland`) so first-run/prod environments work.
-3. Ensures `iconland` submodule is clean before making changes.
-4. Ensures `iconland` is on its default remote branch (if detached, it checks out tracked default branch).
-5. Copies both files to `iconland/seeds/`.
-6. Commits and pushes the change in `iconland`.
-7. Runs `git submodule update --remote --merge iconland` in `grauity`.
-8. Runs `npm run build-icons`.
-9. Runs `npm run lint`.
+1. Initializes and pulls the `iconland` submodule on `master`.
+2. Adds the required icon files to `iconland/seeds/`.
+3. Commits and pushes to `master` in the `iconland` remote repository.
+4. Fetches the latest `iconland` submodule update into `grauity`.
+5. Runs `npm run build-icons` and `npm run lint`.
 
 ## Notes
 
--   This script intentionally does not create a grauity commit; after review, create a grauity branch, commit final changes, push, and open a PR.
+-   This script intentionally does not create a grauity commit.
 -   If the user does not provide `Type` or `name`, ask for them before running the script.
 
-## After script completion (required)
+## Main skill responsibilities
 
-1. Review all resulting `grauity` changes (submodule pointer + generated icon outputs).
-2. Create a `grauity` branch using the `cybersaksham/codex/` prefix.
-3. Commit the final `grauity` changes with a clear message.
-4. Push the branch to origin.
-5. Open a PR in `grauity` that summarizes the new icon pair and includes any validation results (`npm run build-icons`, `npm run lint`).
-6. If a Slack connector is available, send this message to `#developement` (must include `@core-dev`), and resolve mentions to Slack user IDs before sending so mentions render in Slack:
+1. Run the script command above to perform the iconland update + local generation/lint steps.
+2. Review all resulting `grauity` changes (submodule pointer + generated icon outputs), create a `grauity` branch using the repository branch naming convention, commit, push, and open a PR.
+3. If a Slack connector is available, send this message to `#developement` and resolve mentions to Slack user IDs before sending so mentions render in Slack:
 
 ```text
 @core-dev Please review and merge
