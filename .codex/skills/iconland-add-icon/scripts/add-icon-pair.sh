@@ -4,10 +4,11 @@ set -euo pipefail
 usage() {
   cat <<'USAGE'
 Usage:
-  add-icon-pair.sh <Type_name.svg> <Type_name-filled.svg>
+  add-icon-pair.sh <Type> <name> <normal.svg> <filled.svg>
+  add-icon-pair.sh <Type_name.svg> <Type_name-filled.svg>   # legacy mode
 
 Behavior:
-  1) Validates naming convention.
+  1) Uses provided <Type> and <name> to rename/copy uploaded SVGs into iconland.
   2) Copies both SVGs into iconland/seeds.
   3) Commits and pushes in the iconland submodule.
   4) Updates submodule pointer in grauity.
@@ -35,6 +36,16 @@ parse_icon_filename() {
   fi
 
   die "Invalid SVG filename '$file_name'. Expected Type_name.svg or Type_name-filled.svg"
+}
+
+validate_collection() {
+  local value="$1"
+  [[ "$value" =~ ^[A-Z][A-Za-z0-9]*$ ]] || die "Invalid Type '$value'. Expected PascalCase (example: Alert, Media, Docs)"
+}
+
+validate_icon_name() {
+  local value="$1"
+  [[ "$value" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]] || die "Invalid name '$value'. Expected kebab-case (example: exclamation-circle)"
 }
 
 ensure_iconland_branch() {
@@ -70,16 +81,50 @@ if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
   exit 0
 fi
 
-[[ $# -eq 2 ]] || {
+[[ $# -eq 2 || $# -eq 4 ]] || {
   usage
-  die "Expected exactly 2 SVG file paths"
+  die "Expected either 2 args (legacy mode) or 4 args (<Type> <name> <normal.svg> <filled.svg>)"
 }
 
-NORMAL_OR_FILLED_A="$1"
-NORMAL_OR_FILLED_B="$2"
+if [[ $# -eq 4 ]]; then
+  COLLECTION="$1"
+  ICON_NAME="$2"
+  NORMAL_SRC="$3"
+  FILLED_SRC="$4"
 
-[[ -f "$NORMAL_OR_FILLED_A" ]] || die "File not found: $NORMAL_OR_FILLED_A"
-[[ -f "$NORMAL_OR_FILLED_B" ]] || die "File not found: $NORMAL_OR_FILLED_B"
+  validate_collection "$COLLECTION"
+  validate_icon_name "$ICON_NAME"
+else
+  NORMAL_OR_FILLED_A="$1"
+  NORMAL_OR_FILLED_B="$2"
+
+  [[ -f "$NORMAL_OR_FILLED_A" ]] || die "File not found: $NORMAL_OR_FILLED_A"
+  [[ -f "$NORMAL_OR_FILLED_B" ]] || die "File not found: $NORMAL_OR_FILLED_B"
+
+  PARSED_A="$(parse_icon_filename "$(basename "$NORMAL_OR_FILLED_A")")"
+  PARSED_B="$(parse_icon_filename "$(basename "$NORMAL_OR_FILLED_B")")"
+
+  IFS=':' read -r VARIANT_A COLLECTION_A NAME_A _ <<<"$PARSED_A"
+  IFS=':' read -r VARIANT_B COLLECTION_B NAME_B _ <<<"$PARSED_B"
+
+  [[ "$VARIANT_A" != "$VARIANT_B" ]] || die "Provide one normal and one filled SVG"
+  [[ "$COLLECTION_A" == "$COLLECTION_B" ]] || die "Collection mismatch: '$COLLECTION_A' vs '$COLLECTION_B'"
+  [[ "$NAME_A" == "$NAME_B" ]] || die "Icon name mismatch: '$NAME_A' vs '$NAME_B'"
+
+  COLLECTION="$COLLECTION_A"
+  ICON_NAME="$NAME_A"
+
+  if [[ "$VARIANT_A" == "normal" ]]; then
+    NORMAL_SRC="$NORMAL_OR_FILLED_A"
+    FILLED_SRC="$NORMAL_OR_FILLED_B"
+  else
+    NORMAL_SRC="$NORMAL_OR_FILLED_B"
+    FILLED_SRC="$NORMAL_OR_FILLED_A"
+  fi
+fi
+
+[[ -f "$NORMAL_SRC" ]] || die "File not found: $NORMAL_SRC"
+[[ -f "$FILLED_SRC" ]] || die "File not found: $FILLED_SRC"
 
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 [[ -n "$REPO_ROOT" ]] || die "Run this command inside the grauity repository"
@@ -89,28 +134,7 @@ cd "$REPO_ROOT"
 
 ICONLAND_STATUS="$(git -C iconland status --porcelain)"
 [[ -z "$ICONLAND_STATUS" ]] || die "iconland has uncommitted changes. Commit/stash them first."
-
-PARSED_A="$(parse_icon_filename "$(basename "$NORMAL_OR_FILLED_A")")"
-PARSED_B="$(parse_icon_filename "$(basename "$NORMAL_OR_FILLED_B")")"
-
-IFS=':' read -r VARIANT_A COLLECTION_A NAME_A _ <<<"$PARSED_A"
-IFS=':' read -r VARIANT_B COLLECTION_B NAME_B _ <<<"$PARSED_B"
-
-[[ "$VARIANT_A" != "$VARIANT_B" ]] || die "Provide one normal and one filled SVG"
-[[ "$COLLECTION_A" == "$COLLECTION_B" ]] || die "Collection mismatch: '$COLLECTION_A' vs '$COLLECTION_B'"
-[[ "$NAME_A" == "$NAME_B" ]] || die "Icon name mismatch: '$NAME_A' vs '$NAME_B'"
-
-COLLECTION="$COLLECTION_A"
-ICON_NAME="$NAME_A"
 ICON_KEY="${COLLECTION}_${ICON_NAME}"
-
-if [[ "$VARIANT_A" == "normal" ]]; then
-  NORMAL_SRC="$NORMAL_OR_FILLED_A"
-  FILLED_SRC="$NORMAL_OR_FILLED_B"
-else
-  NORMAL_SRC="$NORMAL_OR_FILLED_B"
-  FILLED_SRC="$NORMAL_OR_FILLED_A"
-fi
 
 NORMAL_DEST="iconland/seeds/${ICON_KEY}.svg"
 FILLED_DEST="iconland/seeds/${ICON_KEY}-filled.svg"

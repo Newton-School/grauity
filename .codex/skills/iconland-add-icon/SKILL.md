@@ -10,26 +10,24 @@ Use this skill when the user gives two SVG files for one icon (normal + filled) 
 ## Required inputs
 
 -   Exactly two SVG file paths.
--   Filenames must follow:
-    -   `Type_name.svg`
-    -   `Type_name-filled.svg`
+-   Icon `Type` in PascalCase (example: `Alert`, `Media`, `Docs`).
+-   Icon `name` in kebab-case (example: `exclamation-circle`).
 
-Where:
-
--   `Type` is PascalCase collection name (example: `Alert`, `Media`, `Docs`).
--   `name` is kebab-case icon name.
+Uploaded SVG filenames can be anything. The script renames them to the required iconland seed names automatically.
 
 ## Command
 
 ```bash
-bash .agents/skills/iconland-add-icon/scripts/add-icon-pair.sh \
-  /absolute/path/Type_name.svg \
-  /absolute/path/Type_name-filled.svg
+bash .codex/skills/iconland-add-icon/scripts/add-icon-pair.sh \
+  <Type> \
+  <name> \
+  /absolute/path/normal.svg \
+  /absolute/path/filled.svg
 ```
 
 ## What the script does
 
-1. Validates both filenames and ensures they represent the same icon key.
+1. Validates `<Type>` and `<name>`, then renames/copies the uploaded SVGs into iconland seeds (`Type_name.svg` and `Type_name-filled.svg`).
 2. Ensures `iconland` submodule is clean before making changes.
 3. Ensures `iconland` is on its default remote branch (if detached, it checks out tracked default branch).
 4. Copies both files to `iconland/seeds/`.
@@ -41,4 +39,4 @@ bash .agents/skills/iconland-add-icon/scripts/add-icon-pair.sh \
 ## Notes
 
 -   This script intentionally does not create a grauity commit; it leaves all resulting repo changes for review.
--   If the user provided files are missing or incorrectly named, stop and ask for corrected files.
+-   If the user does not provide `Type` or `name`, ask for them before running the script.

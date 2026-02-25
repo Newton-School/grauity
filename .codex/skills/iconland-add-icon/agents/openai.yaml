@@ -1,4 +1,4 @@
 interface:
   display_name: "Iconland Add Icon"
   short_description: "Add one icon pair into iconland"
-  default_prompt: "Add this icon pair to grauity using the iconland workflow and return the resulting git status."
+  default_prompt: "Add this icon pair to grauity using the iconland workflow. Use explicit icon Type and name (ask for them if missing), ignore uploaded filenames, and return the resulting git status."
