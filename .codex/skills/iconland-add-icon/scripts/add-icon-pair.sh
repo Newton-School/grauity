@@ -76,6 +76,29 @@ ensure_iconland_branch() {
   echo "$target_branch"
 }
 
+ensure_iconland_origin_access() {
+  local origin_url
+  local https_url
+
+  origin_url="$(git -C iconland remote get-url origin)"
+
+  if git -C iconland ls-remote --exit-code origin HEAD >/dev/null 2>&1; then
+    return 0
+  fi
+
+  if [[ "$origin_url" =~ ^git@github\.com:(.+)\.git$ ]]; then
+    https_url="https://github.com/${BASH_REMATCH[1]}.git"
+    echo "origin is SSH and not accessible; switching iconland remote to HTTPS: $https_url"
+    git -C iconland remote set-url origin "$https_url"
+
+    if git -C iconland ls-remote --exit-code origin HEAD >/dev/null 2>&1; then
+      return 0
+    fi
+  fi
+
+  die "Cannot access iconland origin. Ensure this environment has permission to read the iconland repository."
+}
+
 if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
   usage
   exit 0
@@ -142,7 +165,12 @@ FILLED_DEST="iconland/seeds/${ICON_KEY}-filled.svg"
 [[ ! -e "$NORMAL_DEST" ]] || die "Destination already exists: $NORMAL_DEST"
 [[ ! -e "$FILLED_DEST" ]] || die "Destination already exists: $FILLED_DEST"
 
+ensure_iconland_origin_access
 ICONLAND_BRANCH="$(ensure_iconland_branch)"
+
+if ! git -C iconland push --dry-run origin "$ICONLAND_BRANCH" >/dev/null 2>&1; then
+  die "Cannot push to iconland/$ICONLAND_BRANCH from this environment. Configure repository write access before running this skill."
+fi
 
 echo "Copying SVGs into iconland/seeds..."
 cp "$NORMAL_SRC" "$NORMAL_DEST"

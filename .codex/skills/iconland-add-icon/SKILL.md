@@ -40,6 +40,7 @@ bash .codex/skills/iconland-add-icon/scripts/add-icon-pair.sh \
 
 -   This script intentionally does not create a grauity commit; after review, create a grauity branch, commit final changes, push, and open a PR.
 -   If the user does not provide `Type` or `name`, ask for them before running the script.
+-   In Codex Cloud, ensure the environment has write access to both `grauity` and `iconland`. The script will auto-fallback `iconland` origin from SSH to HTTPS when SSH is unavailable.
 
 ## After script completion (required)
 
