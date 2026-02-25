@@ -42,7 +42,8 @@ bash .codex/skills/iconland-add-icon/scripts/add-icon-pair.sh \
 
 1. Run the script command above to perform the iconland update + local generation/lint steps.
 2. Review all resulting `grauity` changes (submodule pointer + generated icon outputs), create a `grauity` branch using the repository branch naming convention, commit, push, and open a PR.
-3. If a Slack connector is available, send this message to `#developement` and resolve mentions to Slack user IDs before sending so mentions render in Slack:
+3. For Slack connector checks, first look for `SLACK_BOT_TOKEN_GRAUITY_CODEX_CONNECTOR` in the environment; if it is not present, use `SLACK_BOT_TOKEN` as fallback.
+4. If a Slack connector is available, send this message to `#developement` and resolve mentions to Slack user IDs before sending so mentions render in Slack:
 
 ```text
 @core-dev Please review and merge

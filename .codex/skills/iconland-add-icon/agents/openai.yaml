@@ -1,4 +1,4 @@
 interface:
     display_name: 'Iconland Add Icon'
     short_description: 'Add one icon pair into iconland'
-    default_prompt: 'Add this icon pair to grauity using the iconland workflow. Use explicit icon Type and name (ask for them if missing), ignore uploaded filenames, run the skill script, then create a grauity branch using the repository branch naming convention, commit, push, and open a PR. If posting to Slack, resolve @mentions to Slack user IDs so the mentions render correctly.'
+    default_prompt: 'Add this icon pair to grauity using the iconland workflow. Use explicit icon Type and name (ask for them if missing), ignore uploaded filenames, run the skill script, then create a grauity branch using the repository branch naming convention, commit, push, and open a PR. For Slack connector checks, first read SLACK_BOT_TOKEN_GRAUITY_CODEX_CONNECTOR from env and if it is missing use SLACK_BOT_TOKEN as fallback. If posting to Slack, resolve @mentions to Slack user IDs so the mentions render correctly.'
