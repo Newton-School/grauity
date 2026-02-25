@@ -8,12 +8,13 @@ Usage:
   add-icon-pair.sh <Type_name.svg> <Type_name-filled.svg>   # legacy mode
 
 Behavior:
-  1) Uses provided <Type> and <name> to rename/copy uploaded SVGs into iconland.
-  2) Copies both SVGs into iconland/seeds.
-  3) Commits and pushes in the iconland submodule.
-  4) Updates submodule pointer in grauity.
-  5) Runs: npm run build-icons
-  6) Runs: npm run lint
+  1) Initializes/syncs the iconland submodule.
+  2) Uses provided <Type> and <name> to rename/copy uploaded SVGs into iconland.
+  3) Copies both SVGs into iconland/seeds.
+  4) Commits and pushes in the iconland submodule.
+  5) Updates submodule pointer in grauity.
+  6) Runs: npm run build-icons
+  7) Runs: npm run lint
 USAGE
 }
 
@@ -99,6 +100,12 @@ ensure_iconland_origin_access() {
   die "Cannot access iconland origin. Ensure this environment has permission to read the iconland repository."
 }
 
+ensure_iconland_submodule() {
+  echo "Initializing/syncing iconland submodule..."
+  git submodule sync -- iconland
+  git submodule update --init --recursive iconland
+}
+
 if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
   usage
   exit 0
@@ -152,6 +159,8 @@ fi
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 [[ -n "$REPO_ROOT" ]] || die "Run this command inside the grauity repository"
 cd "$REPO_ROOT"
+
+ensure_iconland_submodule
 
 [[ -d "iconland/seeds" ]] || die "Expected iconland submodule at iconland/seeds"
 
