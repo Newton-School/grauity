@@ -48,3 +48,9 @@ bash .codex/skills/iconland-add-icon/scripts/add-icon-pair.sh \
 3. Commit the final `grauity` changes with a clear message.
 4. Push the branch to origin.
 5. Open a PR in `grauity` that summarizes the new icon pair and includes any validation results (`npm run build-icons`, `npm run lint`).
+6. If a Slack connector is available, send this message to `#developement` (must include `@core-dev`):
+
+```text
+@core-dev Please review and merge
+<pr_link>
+```
