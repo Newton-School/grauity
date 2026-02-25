@@ -1,6 +1,6 @@
 ---
 name: iconland-add-icon
-description: Use when the user wants to add a new icon to grauity from exactly two SVGs (`Type_name.svg` and `Type_name-filled.svg`) and run the full workflow: add to `iconland`, push submodule changes, update submodule pointer, build icons, and run lint.
+description: Use when the user wants to add a new icon to grauity.
 ---
 
 # Iconland Add Icon Pair
@@ -9,14 +9,15 @@ Use this skill when the user gives two SVG files for one icon (normal + filled) 
 
 ## Required inputs
 
-- Exactly two SVG file paths.
-- Filenames must follow:
-  - `Type_name.svg`
-  - `Type_name-filled.svg`
+-   Exactly two SVG file paths.
+-   Filenames must follow:
+    -   `Type_name.svg`
+    -   `Type_name-filled.svg`
 
 Where:
-- `Type` is PascalCase collection name (example: `Alert`, `Media`, `Docs`).
-- `name` is kebab-case icon name.
+
+-   `Type` is PascalCase collection name (example: `Alert`, `Media`, `Docs`).
+-   `name` is kebab-case icon name.
 
 ## Command
 
@@ -39,5 +40,5 @@ bash .agents/skills/iconland-add-icon/scripts/add-icon-pair.sh \
 
 ## Notes
 
-- This script intentionally does not create a grauity commit; it leaves all resulting repo changes for review.
-- If the user provided files are missing or incorrectly named, stop and ask for corrected files.
+-   This script intentionally does not create a grauity commit; it leaves all resulting repo changes for review.
+-   If the user provided files are missing or incorrectly named, stop and ask for corrected files.
