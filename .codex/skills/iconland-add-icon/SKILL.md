@@ -38,5 +38,13 @@ bash .codex/skills/iconland-add-icon/scripts/add-icon-pair.sh \
 
 ## Notes
 
--   This script intentionally does not create a grauity commit; it leaves all resulting repo changes for review.
+-   This script intentionally does not create a grauity commit; after review, create a grauity branch, commit final changes, push, and open a PR.
 -   If the user does not provide `Type` or `name`, ask for them before running the script.
+
+## After script completion (required)
+
+1. Review all resulting `grauity` changes (submodule pointer + generated icon outputs).
+2. Create a `grauity` branch using the `cybersaksham/codex/` prefix.
+3. Commit the final `grauity` changes with a clear message.
+4. Push the branch to origin.
+5. Open a PR in `grauity` that summarizes the new icon pair and includes any validation results (`npm run build-icons`, `npm run lint`).
