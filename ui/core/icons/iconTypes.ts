@@ -7,6 +7,8 @@ export type grauityIconName =
     | 'info-circle'
     | 'question-circle-filled'
     | 'question-circle'
+    | 'exclamation-filled'
+    | 'exclamation'
     | 'code-alt-filled'
     | 'code-alt'
     | 'code-filled'
@@ -465,6 +467,8 @@ export type grauityIconKey =
     | 'InfoCircle'
     | 'QuestionCircleFilled'
     | 'QuestionCircle'
+    | 'ExclamationFilled'
+    | 'Exclamation'
     | 'CodeAltFilled'
     | 'CodeAlt'
     | 'CodeFilled'
@@ -923,6 +927,8 @@ export enum GRAUITY_ICONS {
     InfoCircle = 'info-circle',
     QuestionCircleFilled = 'question-circle-filled',
     QuestionCircle = 'question-circle',
+    ExclamationFilled = 'exclamation-filled',
+    Exclamation = 'exclamation',
     CodeAltFilled = 'code-alt-filled',
     CodeAlt = 'code-alt',
     CodeFilled = 'code-filled',

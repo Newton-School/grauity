@@ -7,6 +7,8 @@ export const ICON_TAGS = {
     'info-circle': ['Alert'],
     'question-circle-filled': ['Alert'],
     'question-circle': ['Alert'],
+    'exclamation-filled': ['Alery'],
+    exclamation: ['Alery'],
     'code-alt-filled': ['Code'],
     'code-alt': ['Code'],
     'code-filled': ['Code'],
@@ -467,6 +469,7 @@ export const TAG_ICONS = {
         'question-circle-filled',
         'question-circle',
     ],
+    Alery: ['exclamation-filled', 'exclamation'],
     Code: [
         'code-alt-filled',
         'code-alt',
