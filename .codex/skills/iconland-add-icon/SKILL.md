@@ -74,7 +74,7 @@ Uploaded SVG filenames can be anything. Always rename to the required iconland s
 1. Execute the full manual workflow above to perform the iconland update plus local generation/lint steps.
 2. Review all resulting `grauity` changes (submodule pointer + generated icon outputs), create a `grauity` branch using the repository branch naming convention, commit, push, and open a PR.
 3. For Slack connector checks, first look for `SLACK_BOT_TOKEN_GRAUITY_CODEX_CONNECTOR` in the environment; if it is not present, use `SLACK_BOT_TOKEN` as fallback.
-4. If a Slack connector is available, post to `#codex-tasks` using this decision flow:
+4. If a Slack connector is available, post to `#development` using this decision flow:
     - If the global `slack-bot` skill is available in the current session, use that skill to send the message.
     - Otherwise, use Slack Web API directly and resolve IDs before posting:
         - Resolve channel name to channel ID.
