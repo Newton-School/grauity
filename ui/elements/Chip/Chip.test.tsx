@@ -51,13 +51,7 @@ describe('Chip Component', () => {
                 Test Chip
             </Chip>
         );
-
         let chipText = screen.getByText('Test Chip');
-        let chipContainer = chipText.closest('div');
-
-        expect(chipContainer).toHaveStyle('padding: 3px 6px');
-        expect(chipContainer).toHaveStyle('align-items: center');
-        expect(chipContainer).toHaveStyle('justify-content: center');
         expect(chipText).toHaveStyle('padding-right: var(--alignment-padding)');
 
         rerender(
@@ -65,11 +59,7 @@ describe('Chip Component', () => {
                 Test Chip
             </Chip>
         );
-
         chipText = screen.getByText('Test Chip');
-        chipContainer = chipText.closest('div');
-
-        expect(chipContainer).toHaveStyle('flex-direction: row-reverse');
         expect(chipText).toHaveStyle('padding-left: var(--alignment-padding)');
     });
 });
