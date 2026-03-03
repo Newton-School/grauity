@@ -122,5 +122,5 @@ export interface StyledChip extends StyledDivProps {
 }
 
 export interface StyledChipTextProps {
-    $iconPosition?: ButtonIconPositions | undefined;
+    $iconPosition?: ButtonIconPositions;
 }
