@@ -120,3 +120,7 @@ export interface StyledChip extends StyledDivProps {
     ref?: React.Ref<HTMLDivElement>;
     iconPosition?: ButtonIconPositions;
 }
+
+export interface StyledChipTextProps {
+    $iconPosition?: ButtonIconPositions;
+}

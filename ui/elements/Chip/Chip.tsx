@@ -41,6 +41,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
             <StyledChipText
                 title={typeof children === 'string' ? children : ''}
                 className="ns-chip-text"
+                $iconPosition={iconPosition}
             >
                 {children}
             </StyledChipText>
