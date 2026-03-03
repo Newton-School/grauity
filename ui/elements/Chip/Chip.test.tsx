@@ -44,4 +44,32 @@ describe('Chip Component', () => {
             }
         });
     });
+
+    it('applies visual alignment padding correctly based on icon position', () => {
+        const { rerender } = render(
+            <Chip icon="check" iconPosition="left">
+                Test Chip
+            </Chip>
+        );
+
+        let chipText = screen.getByText('Test Chip');
+        let chipContainer = chipText.closest('div');
+
+        expect(chipContainer).toHaveStyle('padding: 3px 6px');
+        expect(chipContainer).toHaveStyle('align-items: center');
+        expect(chipContainer).toHaveStyle('justify-content: center');
+        expect(chipText).toHaveStyle('padding-right: var(--alignment-padding)');
+
+        rerender(
+            <Chip icon="check" iconPosition="right">
+                Test Chip
+            </Chip>
+        );
+
+        chipText = screen.getByText('Test Chip');
+        chipContainer = chipText.closest('div');
+
+        expect(chipContainer).toHaveStyle('flex-direction: row-reverse');
+        expect(chipText).toHaveStyle('padding-left: var(--alignment-padding)');
+    });
 });
