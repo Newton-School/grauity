@@ -4,11 +4,11 @@ import {
     CHIP_FONT_SIZE_MAPPING,
     CHIP_VARIANT_STYLES_MAPPING,
 } from './constants';
-import { StyledChip } from './types';
+import { StyledChip, StyledChipTextProps } from './types';
 
 export const StyledChipDiv = styled.div<StyledChip>`
     display: flex;
-    padding: 4px 8px;
+    padding: 3px 6px;
     justify-content: center;
     align-items: center;
     gap: 4px;
@@ -59,9 +59,25 @@ export const StyledChipDiv = styled.div<StyledChip>`
         `}
 `;
 
-export const StyledChipText = styled.span`
+export const StyledChipText = styled.span<StyledChipTextProps>`
+    --alignment-padding: 2px;
+
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
+
+    ${({ $iconPosition }) => {
+        if ($iconPosition === 'right') {
+            return css`
+                padding-left: var(--alignment-padding);
+            `;
+        }
+        if ($iconPosition === 'left') {
+            return css`
+                padding-right: var(--alignment-padding);
+            `;
+        }
+        return '';
+    }}
 `;
