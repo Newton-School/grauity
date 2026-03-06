@@ -96,8 +96,8 @@ const TableDataCell = React.forwardRef<
 const TableHeadingCell = React.forwardRef<
     HTMLTableCellElement,
     TableHeadingCellComponentProps
->((props, ref) => {
-    return <StyledTableHeadingCell ref={ref} {...props} />;
+>(({ flexAlign, ...rest }, ref) => {
+    return <StyledTableHeadingCell ref={ref} $flexAlign={flexAlign} {...rest} />;
 });
 
 TableRoot.displayName = 'TableRoot';

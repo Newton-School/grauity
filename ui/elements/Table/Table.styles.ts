@@ -5,9 +5,9 @@ import {
     StyledTableComponentProps,
     StyledTableDataCellComponentProps,
     StyledTableHeadComponentProps,
+    StyledTableHeadingCellComponentProps,
     StyledTableRowComponentProps,
     TableBodyComponentProps,
-    TableHeadingCellComponentProps,
 } from './types';
 
 export const StyledTableDataCell = styled.td<StyledTableDataCellComponentProps>`
@@ -35,7 +35,7 @@ export const StyledTableDataCell = styled.td<StyledTableDataCellComponentProps>`
     ${({ $vAlign }) => $vAlign && `vertical-align: ${$vAlign};`}
 `;
 
-export const StyledTableHeadingCell = styled.th<TableHeadingCellComponentProps>`
+export const StyledTableHeadingCell = styled.th<StyledTableHeadingCellComponentProps>`
     color: var(--text-emphasis-secondary-default, #5b6271);
     font-size: var(--font-size-12px, 12px);
     font-weight: var(--font-weight-550, 550);
@@ -44,6 +44,13 @@ export const StyledTableHeadingCell = styled.th<TableHeadingCellComponentProps>`
     padding: var(--spacing-10px, 10px);
 
     ${({ align }) => `text-align: ${align};`}
+
+    ${({ $flexAlign }) =>
+        $flexAlign &&
+        css`
+            display: flex;
+            align-items: ${$flexAlign};
+        `}
 `;
 
 export const StyledTableRow = styled.tr<StyledTableRowComponentProps>`

@@ -302,3 +302,8 @@ export interface TableHeadingCellComponentProps
     width?: string;
     flexAlign?: string;
 }
+
+export interface StyledTableHeadingCellComponentProps
+    extends Omit<TableHeadingCellComponentProps, 'flexAlign'> {
+    $flexAlign?: string;
+}
