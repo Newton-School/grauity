@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import styled, { css } from 'styled-components';
 
-import { StyledDivProps, StyledLabelProps } from '../../../../common/types';
+import { StyledDivProps } from '../../../../common/types';
 import { Label } from '../Label';
 import {
     StyledRadioButtonInputProps,
@@ -102,7 +102,9 @@ export const StyledRadioButtonInput = styled.input<StyledRadioButtonInputProps>`
 
 export const StyledRadioButtonLabel = styled(
     Label
-)<StyledRadioButtonLabelProps>`
+).attrs<StyledRadioButtonLabelProps>(({ $isDisabled }) => ({
+    isDisabled: $isDisabled,
+}))<StyledRadioButtonLabelProps>`
     color: var(--text-emphasis-primary-default, #16191d);
     font-size: 14px;
     font-style: normal;
@@ -130,8 +132,8 @@ export const StyledRadioButtonLabel = styled(
         `;
     }}
 
-    ${({ isDisabled }: StyledLabelProps) =>
-        isDisabled &&
+    ${({ $isDisabled }) =>
+        $isDisabled &&
         css`
             color: var(--text-emphasis-primary-disabled, #8c95a6);
             cursor: not-allowed;

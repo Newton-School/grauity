@@ -64,8 +64,8 @@ const ModalContainer = forwardRef<HTMLDivElement, ModalContainerProps>(
 );
 
 const ModalMain = forwardRef<HTMLDivElement, ModalBodyMainProps>(
-    (props, ref) => {
-        return <StyledModalMain ref={ref} {...props} />;
+    ({ overflow, ...rest }, ref) => {
+        return <StyledModalMain ref={ref} $overflow={overflow} {...rest} />;
     }
 );
 
@@ -212,7 +212,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                         data-testid="testid-modal"
                         {...motionProps}
                     >
-                        <ModalMain $overflow={overflow}>
+                        <ModalMain overflow={overflow}>
                             {showCloseButton && (
                                 <ModalAction justifyContent="end">
                                     <IconButton

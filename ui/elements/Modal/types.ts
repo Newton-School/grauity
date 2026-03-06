@@ -1,6 +1,6 @@
+import { HTMLMotionProps } from 'framer-motion';
 import React from 'react';
 
-import { StyledDivProps } from '../../../common/types';
 import { ButtonColors, ButtonVariants } from '../Button/types';
 
 type ModalContentType = React.ReactNode;
@@ -405,7 +405,7 @@ export interface StyleData {
 }
 
 // Components interface for ModalContainer
-export interface ModalContainerProps extends StyledDivProps {
+export interface ModalContainerProps extends HTMLMotionProps<'div'> {
     width?: string;
     height?: string;
     minHeight?: string;
@@ -455,7 +455,7 @@ export interface ModalDescriptionProps {
 }
 
 // Components interface for ModalBody
-export interface ModalBodyProps {
+export interface ModalBodyProps extends React.HTMLAttributes<HTMLDivElement> {
     modalBodyMargin?: string;
     children: React.ReactNode;
 }
@@ -466,8 +466,14 @@ export interface StyledModalBodyProps
 }
 
 // Components interface for ModalBodyMain
-export interface ModalBodyMainProps {
+export interface ModalBodyMainProps
+    extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
+    overflow?: string;
+}
+
+export interface StyledModalBodyMainProps
+    extends Omit<ModalBodyMainProps, 'overflow'> {
     $overflow?: string;
 }
 
@@ -482,7 +488,7 @@ export interface StyledModalPaginationItemProps
     $active: boolean;
 }
 
-export interface ModalActionProps {
+export interface ModalActionProps extends React.HTMLAttributes<HTMLDivElement> {
     justifyContent?: string;
     children: React.ReactNode;
 }

@@ -95,4 +95,5 @@ export interface StyledRadioButtonInputProps extends StyledInputProps {
 
 export interface StyledRadioButtonLabelProps {
     $size?: RadioButtonSize;
+    $isDisabled?: boolean;
 }

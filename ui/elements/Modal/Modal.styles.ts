@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
 import {
-    ModalBodyMainProps,
     ModalDescriptionProps,
     ModalTitleProps,
     StyledModalActionProps,
+    StyledModalBodyMainProps,
     StyledModalBodyProps,
     StyledModalContainerProps,
     StyledModalPaginationItemProps,
@@ -96,7 +96,7 @@ export const StyledModal = styled(motion.div)<StyledModalContainerProps>`
         `}
 `;
 
-export const StyledModalMain = styled.div<ModalBodyMainProps>`
+export const StyledModalMain = styled.div<StyledModalBodyMainProps>`
     display: flex;
     flex-direction: column;
     align-items: center;
