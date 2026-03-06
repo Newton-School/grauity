@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-indent */
 /* eslint-disable indent */
 /* eslint-disable no-nested-ternary */
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import { NSIcon, NSTooltip } from 'ui/index';
 
 import { ColorRenderer } from '../ColorRenderer';
@@ -9,15 +9,7 @@ import {
     StyledTokenBlock,
     StyledTokenBlockCopiedContainer,
 } from './index.styles';
-
-interface TokenBlockProps {
-    copy?: boolean;
-    showCopiedOverlay?: boolean;
-    color?: string;
-    children?: ReactNode;
-    contentToCopy?: ReactNode;
-    background?: string;
-}
+import { TokenBlockProps } from './types';
 
 const TokenBlock = ({
     copy = false,
@@ -76,7 +68,10 @@ const TokenBlock = ({
                 {children}
                 {showCopiedOverlay && (
                     <StyledTokenBlockCopiedContainer copied={copied}>
-                        <NSIcon name="check" color="var(--text-emphasis-success-default, #007a51)" />
+                        <NSIcon
+                            name="check"
+                            color="var(--text-emphasis-success-default, #007a51)"
+                        />
                         Copied!
                     </StyledTokenBlockCopiedContainer>
                 )}

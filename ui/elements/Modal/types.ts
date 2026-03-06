@@ -414,8 +414,32 @@ export interface ModalContainerProps extends StyledDivProps {
     maxWidth?: string;
     mobileBottomFullWidth?: boolean;
     modalPadding?: string;
-    ref?: React.MutableRefObject<any>;
+    border?: string;
     children: React.ReactNode;
+}
+
+export interface StyledModalContainerProps
+    extends Omit<
+        ModalContainerProps,
+        | 'width'
+        | 'height'
+        | 'minHeight'
+        | 'minWidth'
+        | 'maxHeight'
+        | 'maxWidth'
+        | 'mobileBottomFullWidth'
+        | 'modalPadding'
+        | 'border'
+    > {
+    $width?: string;
+    $height?: string;
+    $minHeight?: string;
+    $minWidth?: string;
+    $maxHeight?: string;
+    $maxWidth?: string;
+    $mobileBottomFullWidth?: boolean;
+    $modalPadding?: string;
+    $border?: string;
 }
 
 // Components interface for ModalTitle
@@ -436,6 +460,11 @@ export interface ModalBodyProps {
     children: React.ReactNode;
 }
 
+export interface StyledModalBodyProps
+    extends Omit<ModalBodyProps, 'modalBodyMargin'> {
+    $modalBodyMargin?: string;
+}
+
 // Components interface for ModalBodyMain
 export interface ModalBodyMainProps {
     children: React.ReactNode;
@@ -444,9 +473,23 @@ export interface ModalBodyMainProps {
 
 // Components interface for ModalPaginationItemProps
 export interface ModalPaginationItemProps {
-    key: string | number;
     active: boolean;
     onClick: () => void;
+}
+
+export interface StyledModalPaginationItemProps
+    extends Omit<ModalPaginationItemProps, 'active'> {
+    $active: boolean;
+}
+
+export interface ModalActionProps {
+    justifyContent?: string;
+    children: React.ReactNode;
+}
+
+export interface StyledModalActionProps
+    extends Omit<ModalActionProps, 'justifyContent'> {
+    $justifyContent?: string;
 }
 
 export interface ConfirmationDialogProps {

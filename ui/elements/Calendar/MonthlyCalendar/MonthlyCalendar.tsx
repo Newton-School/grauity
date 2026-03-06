@@ -107,7 +107,7 @@ function MonthlyCalendar<T>(props: MonthlyCalendarProps<T>) {
                 <Loading gridData={datesInGrid} />
             ) : (
                 <StyledMonthlyGridItemContainer>
-                    <StyledMonthlyCalendarGrid rows={rows}>
+                    <StyledMonthlyCalendarGrid $rows={rows}>
                         {datesInGrid.map((item) => (
                             <MonthlyCalendarGridItem
                                 monthOffset={monthOffset}

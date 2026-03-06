@@ -235,12 +235,37 @@ export interface TableComponentProps {
     style?: React.CSSProperties;
 }
 
+export interface StyledTableComponentProps
+    extends Omit<
+        TableComponentProps,
+        | 'borderAround'
+        | 'borderWithin'
+        | 'borderHorizontal'
+        | 'borderVertical'
+        | 'striped'
+    > {
+    $borderAround?: boolean;
+    $borderWithin?: boolean;
+    $borderHorizontal?: boolean;
+    $borderVertical?: boolean;
+    $striped?: boolean;
+}
+
 // Interface for NSTableHead component props
 export interface TableHeadComponentProps {
     capitalizeHeaders?: boolean;
     highlightHeaders?: boolean;
     className?: string;
     children: ReactNode;
+}
+
+export interface StyledTableHeadComponentProps
+    extends Omit<
+        TableHeadComponentProps,
+        'capitalizeHeaders' | 'highlightHeaders'
+    > {
+    $capitalizeHeaders?: boolean;
+    $highlightHeaders?: boolean;
 }
 
 // Interface for NSTableBody component props
@@ -258,6 +283,12 @@ export interface TableRowComponentProps {
     hoverable?: boolean;
 }
 
+export interface StyledTableRowComponentProps
+    extends Omit<TableRowComponentProps, 'condensed' | 'hoverable'> {
+    $condensed?: boolean;
+    $hoverable?: boolean;
+}
+
 // Interface for NSTableDataCell component props
 export interface TableDataCellComponentProps {
     key?: string;
@@ -268,6 +299,12 @@ export interface TableDataCellComponentProps {
     rowSpan?: number;
     className?: string;
     children: ReactNode;
+}
+
+export interface StyledTableDataCellComponentProps
+    extends Omit<TableDataCellComponentProps, 'flexAlign' | 'vAlign'> {
+    $flexAlign?: string;
+    $vAlign?: string;
 }
 
 // Interface for NSTableHeadingCell component props

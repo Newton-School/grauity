@@ -24,16 +24,16 @@ export const StyledButton = styled.button<ButtonComponentProps>`
     gap: var(--spacing-8px, 8px);
     transform-origin: center;
 
-    ${({ isIconButton }) =>
-        !isIconButton &&
+    ${({ $isIconButton }) =>
+        !$isIconButton &&
         css`
             --line-height: var(--font-size-14px, 14px);
             --font-size: var(--font-size-14px, 14px);
             --alignment-padding: var(--spacing-8px, 8px);
         `}
 
-    ${({ variant, $color }) =>
-        variant && getButtonStyles({ variant, color: $color })}
+    ${({ $variant, $color }) =>
+        $variant && getButtonStyles({ variant: $variant, color: $color })}
 
     ${({ $showAnimationOnClick }) =>
         $showAnimationOnClick &&
@@ -47,20 +47,20 @@ export const StyledButton = styled.button<ButtonComponentProps>`
         cursor: not-allowed;
     }
 
-    ${({ size, isIconButton }) => {
-        if (!isIconButton) {
+    ${({ $size, $isIconButton }) => {
+        if (!$isIconButton) {
             return css`
-                ${BUTTON_SIZE_STYLES_MAPPING[size]}
+                ${BUTTON_SIZE_STYLES_MAPPING[$size]}
             `;
         }
 
         return css`
-            ${ICON_BUTTON_SIZE_STYLES_MAPPING[size]}
+            ${ICON_BUTTON_SIZE_STYLES_MAPPING[$size]}
         `;
     }}
 
-    ${({ variant, size }) =>
-        variant === 'text' &&
+    ${({ $variant, $size }) =>
+        $variant === 'text' &&
         css`
             padding: 0;
             height: unset;
@@ -69,23 +69,23 @@ export const StyledButton = styled.button<ButtonComponentProps>`
             min-width: unset;
             border-radius: var(--corner-radius-4px, 4px);
 
-            ${TEXT_BUTTON_SIZE_TO_STYLE_MAPPING[size]}
+            ${TEXT_BUTTON_SIZE_TO_STYLE_MAPPING[$size]}
         `}
 
-    ${({ fullWidth }) =>
-        fullWidth &&
+    ${({ $fullWidth }) =>
+        $fullWidth &&
         css`
             width: 100%;
         `}
 
-    ${({ isLoading }) =>
-        isLoading &&
+    ${({ $isLoading }) =>
+        $isLoading &&
         css`
             cursor: progress;
         `}
 
-    ${({ iconPosition }) =>
-        iconPosition === 'right' &&
+    ${({ $iconPosition }) =>
+        $iconPosition === 'right' &&
         css`
             flex-direction: row-reverse;
         `}
@@ -105,8 +105,8 @@ export const StyledButtonContent = styled.div<ButtonContentProps>`
 
     // Padding for visual alignment when button has an icon.
     // This ensures that when icon is present on one side, the text looks visually even.
-    ${({ $iconPosition, variant }) => {
-        if (variant === 'text') {
+    ${({ $iconPosition, $variant }) => {
+        if ($variant === 'text') {
             return null;
         }
         if ($iconPosition === 'right') {

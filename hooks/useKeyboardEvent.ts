@@ -1,17 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { UseKeyboardEventProps } from './types';
+
 const DEFAULT_EVENT_TYPES: string[] = ['keydown', 'keyup'];
-
-interface KeyboardEventConfig {
-    shouldDetect?: boolean;
-    detectCombination?: boolean;
-}
-
-interface UseKeyboardEventProps {
-    onKeyPress: (event: KeyboardEvent) => void;
-    keyCodes: string[];
-    config?: KeyboardEventConfig;
-}
 
 /**
  * Hook that handles keyboard events.

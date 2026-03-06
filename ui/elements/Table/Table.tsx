@@ -8,13 +8,110 @@ import {
     StyledTableHeadingCell,
     StyledTableRow,
 } from './Table.styles';
-import { TableProps } from './types';
+import {
+    TableBodyComponentProps,
+    TableComponentProps,
+    TableDataCellComponentProps,
+    TableHeadComponentProps,
+    TableHeadingCellComponentProps,
+    TableProps,
+    TableRowComponentProps,
+} from './types';
+
+const TableRoot = React.forwardRef<HTMLTableElement, TableComponentProps>(
+    (
+        {
+            borderAround,
+            borderWithin,
+            borderHorizontal,
+            borderVertical,
+            striped,
+            ...rest
+        },
+        ref
+    ) => {
+        return (
+            <StyledTable
+                ref={ref}
+                $borderAround={borderAround}
+                $borderWithin={borderWithin}
+                $borderHorizontal={borderHorizontal}
+                $borderVertical={borderVertical}
+                $striped={striped}
+                {...rest}
+            />
+        );
+    }
+);
+
+const TableHead = React.forwardRef<
+    HTMLTableSectionElement,
+    TableHeadComponentProps
+>(({ capitalizeHeaders, highlightHeaders, ...rest }, ref) => {
+    return (
+        <StyledTableHead
+            ref={ref}
+            $capitalizeHeaders={capitalizeHeaders}
+            $highlightHeaders={highlightHeaders}
+            {...rest}
+        />
+    );
+});
+
+const TableBody = React.forwardRef<
+    HTMLTableSectionElement,
+    TableBodyComponentProps
+>((props, ref) => {
+    return <StyledTableBody ref={ref} {...props} />;
+});
+
+const TableRow = React.forwardRef<HTMLTableRowElement, TableRowComponentProps>(
+    ({ condensed, hoverable, ...rest }, ref) => {
+        return (
+            <StyledTableRow
+                ref={ref}
+                $condensed={condensed}
+                $hoverable={hoverable}
+                {...rest}
+            />
+        );
+    }
+);
+
+const TableDataCell = React.forwardRef<
+    HTMLTableCellElement,
+    TableDataCellComponentProps
+>(({ flexAlign, ...rest }, ref) => {
+    const { vAlign, ...tableCellProps } = rest;
+    return (
+        <StyledTableDataCell
+            ref={ref}
+            $flexAlign={flexAlign}
+            $vAlign={vAlign}
+            {...tableCellProps}
+        />
+    );
+});
+
+const TableHeadingCell = React.forwardRef<
+    HTMLTableCellElement,
+    TableHeadingCellComponentProps
+>((props, ref) => {
+    return <StyledTableHeadingCell ref={ref} {...props} />;
+});
+
+TableRoot.displayName = 'TableRoot';
+TableHead.displayName = 'TableHead';
+TableBody.displayName = 'TableBody';
+TableRow.displayName = 'TableRow';
+TableDataCell.displayName = 'TableDataCell';
+TableHeadingCell.displayName = 'TableHeadingCell';
 
 /**
  * A table is a component that is used to display data in a tabular format.
  * It is composed of rows and columns.
  */
-const Table = ({
+const Table = (({
     rows = [],
     columns = [],
     condensed = true,
@@ -35,7 +132,7 @@ const Table = ({
     );
 
     return (
-        <StyledTable
+        <TableRoot
             borderAround={borderAround}
             borderWithin={borderWithin}
             borderHorizontal={borderHorizontal}
@@ -45,13 +142,13 @@ const Table = ({
             style={style}
             role="table"
         >
-            <StyledTableHead
+            <TableHead
                 capitalizeHeaders={capitalizeHeaders}
                 highlightHeaders={highlightHeaders}
             >
-                <StyledTableRow condensed={condensed}>
+                <TableRow condensed={condensed}>
                     {columns?.map((column, columnIndex) => (
-                        <StyledTableHeadingCell
+                        <TableHeadingCell
                             key={
                                 column?.key ||
                                 `table--column-${columnIndex + 1}`
@@ -62,14 +159,14 @@ const Table = ({
                             rowSpan={column?.rowSpan || 1}
                         >
                             {column.display}
-                        </StyledTableHeadingCell>
+                        </TableHeadingCell>
                     ))}
-                </StyledTableRow>
-            </StyledTableHead>
+                </TableRow>
+            </TableHead>
 
-            <StyledTableBody>
+            <TableBody>
                 {rows?.map((row, rowIndex) => (
-                    <StyledTableRow
+                    <TableRow
                         key={`table--row-${rowIndex + 1}`}
                         condensed={condensed}
                         hoverable={hoverable}
@@ -80,7 +177,7 @@ const Table = ({
                                 return null;
                             }
                             return (
-                                <StyledTableDataCell
+                                <TableDataCell
                                     key={`table--column-${column.key}--row-${
                                         rowIndex + 1
                                     }`}
@@ -96,21 +193,28 @@ const Table = ({
                                     {tableCellData?.render
                                         ? tableCellData.render(tableCellData)
                                         : tableCellData?.display}
-                                </StyledTableDataCell>
+                                </TableDataCell>
                             );
                         })}
-                    </StyledTableRow>
+                    </TableRow>
                 ))}
-            </StyledTableBody>
-        </StyledTable>
+            </TableBody>
+        </TableRoot>
     );
+}) as React.FC<TableProps> & {
+    Table: typeof TableRoot;
+    TableBody: typeof TableBody;
+    TableDataCell: typeof TableDataCell;
+    TableHead: typeof TableHead;
+    TableHeadingCell: typeof TableHeadingCell;
+    TableRow: typeof TableRow;
 };
 
-Table.Table = StyledTable;
-Table.TableBody = StyledTableBody;
-Table.TableDataCell = StyledTableDataCell;
-Table.TableHead = StyledTableHead;
-Table.TableHeadingCell = StyledTableHeadingCell;
-Table.TableRow = StyledTableRow;
+Table.Table = TableRoot;
+Table.TableBody = TableBody;
+Table.TableDataCell = TableDataCell;
+Table.TableHead = TableHead;
+Table.TableHeadingCell = TableHeadingCell;
+Table.TableRow = TableRow;
 
 export default Table;

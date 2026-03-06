@@ -1,17 +1,17 @@
 import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 import {
     ModalBodyMainProps,
-    ModalBodyProps,
-    ModalContainerProps,
     ModalDescriptionProps,
-    ModalPaginationItemProps,
     ModalTitleProps,
+    StyledModalActionProps,
+    StyledModalBodyProps,
+    StyledModalContainerProps,
+    StyledModalPaginationItemProps,
 } from './types';
 
-export const StyledModal = styled(motion.div)<ModalContainerProps>`
+export const StyledModal = styled(motion.div)<StyledModalContainerProps>`
     background: var(--bg-subtle-primary-default, #ffffff);
     z-index: var(--z-index-modal, 1100);
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.25);
@@ -28,45 +28,45 @@ export const StyledModal = styled(motion.div)<ModalContainerProps>`
         padding: var(--spacing-18px, 18px);
     }
 
-    ${({ width }) =>
-        width
+    ${({ $width }) =>
+        $width
             ? css`
-                  width: ${width};
+                  width: ${$width};
               `
             : ''}
-    ${({ height }) =>
-        height
+    ${({ $height }) =>
+        $height
             ? css`
-                  height: ${height};
+                  height: ${$height};
               `
             : ''}
-    ${({ minHeight }) =>
-        minHeight
+    ${({ $minHeight }) =>
+        $minHeight
             ? css`
-                  min-height: ${minHeight};
+                  min-height: ${$minHeight};
               `
             : ''}
-    ${({ minWidth }) =>
-        minWidth
+    ${({ $minWidth }) =>
+        $minWidth
             ? css`
-                  min-width: ${minWidth};
+                  min-width: ${$minWidth};
               `
             : ''}
-    ${({ maxHeight }) =>
-        maxHeight
+    ${({ $maxHeight }) =>
+        $maxHeight
             ? css`
-                  max-height: ${maxHeight};
+                  max-height: ${$maxHeight};
               `
             : ''}
-    ${({ maxWidth }) =>
-        maxWidth
+    ${({ $maxWidth }) =>
+        $maxWidth
             ? css`
-                  max-width: ${maxWidth};
+                  max-width: ${$maxWidth};
               `
             : ''}
 
-    ${({ mobileBottomFullWidth }) =>
-        mobileBottomFullWidth
+    ${({ $mobileBottomFullWidth }) =>
+        $mobileBottomFullWidth
             ? css`
                   @media only screen and (max-width: 600px) {
                       position: fixed;
@@ -80,12 +80,12 @@ export const StyledModal = styled(motion.div)<ModalContainerProps>`
               `
             : ''}
 
-    ${({ modalPadding }) =>
+    ${({ $modalPadding }) =>
         css`
-            padding: ${modalPadding};
+            padding: ${$modalPadding};
 
             @media only screen and (max-width: 600px) {
-                padding: ${modalPadding};
+                padding: ${$modalPadding};
             }
         `}
 
@@ -150,14 +150,14 @@ export const StyledModalDescription = styled.div<ModalDescriptionProps>`
     }
 `;
 
-export const StyledModalBody = styled.div<ModalBodyProps>`
+export const StyledModalBody = styled.div<StyledModalBodyProps>`
     font-weight: var(--font-weight-450, 450);
     font-size: var(--font-size-16px, 16px);
     line-height: var(--spacing-28px, 28px);
     text-align: center;
     letter-spacing: 0.2px;
     color: var(--text-emphasis-secondary-default, #5b6271);
-    margin: ${({ modalBodyMargin }) => modalBodyMargin && modalBodyMargin};
+    margin: ${({ $modalBodyMargin }) => $modalBodyMargin && $modalBodyMargin};
     white-space: pre-line;
     width: 100%;
     flex: 1;
@@ -184,7 +184,7 @@ export const StyledModalPagination = styled.div`
     margin-top: auto;
 `;
 
-export const StyledModalPaginationItem = styled.div<ModalPaginationItemProps>`
+export const StyledModalPaginationItem = styled.div<StyledModalPaginationItemProps>`
     width: 6px;
     height: 6px;
     border-radius: var(--corner-radius-50percent, 50%);
@@ -192,26 +192,23 @@ export const StyledModalPaginationItem = styled.div<ModalPaginationItemProps>`
     cursor: pointer;
     transition: all 0.1s ease-in-out;
 
-    ${({ active }) =>
-        active
+    ${({ $active }) =>
+        $active
             ? 'background: var(--text-emphasis-secondary-default, #5b6271);'
             : '&:hover {background: var(--text-emphasis-primary-disabled, #8c95a6);}'}
 `;
 
-export const StyledModalAction = styled.div<{
-    justifyContent?: string;
-    children: ReactNode;
-}>`
+export const StyledModalAction = styled.div<StyledModalActionProps>`
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     gap: var(--spacing-8px, 8px);
 
-    ${({ justifyContent }) =>
-        justifyContent &&
+    ${({ $justifyContent }) =>
+        $justifyContent &&
         css`
-            justify-content: ${justifyContent};
+            justify-content: ${$justifyContent};
         `}
 `;
 

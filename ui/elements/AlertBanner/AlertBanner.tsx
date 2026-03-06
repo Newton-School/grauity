@@ -42,35 +42,32 @@ const AlertBanner = forwardRef<HTMLDivElement, AlertBannerProps>(
         ref
     ) => {
         const iconName = getAlertIconName(icon, variant);
-        const { iconColor, textColor, backgroundColor, borderColor } =
+        const { iconColor, textColor, backgroundColor } =
             getAlertBannerColors(variant, type);
 
         const hasButton = !!actionButtons.length || showCloseButton;
 
         return (
             <StyledAlertBannerContainer
-                type={type}
-                variant={variant}
-                padding={
+                $padding={
                     padding ||
                     (hasButton
                         ? 'var(--spacing-4px, 4px) var(--spacing-8px, 8px)'
                         : 'var(--spacing-8px, 8px)')
                 }
-                top={top}
-                bottom={bottom}
-                left={left}
-                right={right}
-                position={position}
+                $top={top}
+                $bottom={bottom}
+                $left={left}
+                $right={right}
+                $position={position}
                 ref={ref}
                 className={className}
-                textColor={textColor}
-                backgroundColor={backgroundColor}
-                borderColor={borderColor}
-                justifyContent={justifyContent}
+                $textColor={textColor}
+                $backgroundColor={backgroundColor}
+                $justifyContent={justifyContent}
                 role="alert"
             >
-                <StyledAlertBannerContent color={textColor}>
+                <StyledAlertBannerContent $color={textColor}>
                     {iconName && (
                         <Icon
                             name={iconName}

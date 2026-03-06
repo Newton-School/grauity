@@ -2,15 +2,15 @@
 import styled, { css } from 'styled-components';
 
 import {
+    StyledTableComponentProps,
+    StyledTableDataCellComponentProps,
+    StyledTableHeadComponentProps,
+    StyledTableRowComponentProps,
     TableBodyComponentProps,
-    TableComponentProps,
-    TableDataCellComponentProps,
-    TableHeadComponentProps,
     TableHeadingCellComponentProps,
-    TableRowComponentProps,
 } from './types';
 
-export const StyledTableDataCell = styled.td<TableDataCellComponentProps>`
+export const StyledTableDataCell = styled.td<StyledTableDataCellComponentProps>`
     color: var(--text-emphasis-primary-default, #16191d);
     font-size: var(--font-size-12px, 12px);
     font-weight: var(--font-weight-450, 450);
@@ -24,15 +24,15 @@ export const StyledTableDataCell = styled.td<TableDataCellComponentProps>`
 
     ${({ align }) => align && `text-align: ${align};`}
 
-    ${({ flexAlign }) =>
-        flexAlign &&
+    ${({ $flexAlign }) =>
+        $flexAlign &&
         css`
             display: flex;
             flex-direction: row;
-            align-items: ${flexAlign};
+            align-items: ${$flexAlign};
         `}
 
-    ${({ vAlign }) => vAlign && `vertical-align: ${vAlign};`}
+    ${({ $vAlign }) => $vAlign && `vertical-align: ${$vAlign};`}
 `;
 
 export const StyledTableHeadingCell = styled.th<TableHeadingCellComponentProps>`
@@ -46,11 +46,11 @@ export const StyledTableHeadingCell = styled.th<TableHeadingCellComponentProps>`
     ${({ align }) => `text-align: ${align};`}
 `;
 
-export const StyledTableRow = styled.tr<TableRowComponentProps>`
+export const StyledTableRow = styled.tr<StyledTableRowComponentProps>`
     background-color: var(--bg-subtle-primary-default, #ffffff);
 
-    ${({ condensed }) =>
-        !condensed &&
+    ${({ $condensed }) =>
+        !$condensed &&
         css`
             ${StyledTableDataCell} {
                 padding: 18px;
@@ -60,8 +60,8 @@ export const StyledTableRow = styled.tr<TableRowComponentProps>`
             }
         `}
 
-    ${({ hoverable }) =>
-        hoverable &&
+    ${({ $hoverable }) =>
+        $hoverable &&
         css`
             &:hover {
                 background-color: var(--bg-subtle-secondary-default, #f6f7f9);
@@ -77,7 +77,7 @@ export const StyledTableRow = styled.tr<TableRowComponentProps>`
     }
 `;
 
-export const StyledTable = styled.table<TableComponentProps>`
+export const StyledTable = styled.table<StyledTableComponentProps>`
     border-collapse: collapse;
     font-size: var(--font-size-12px, 12px);
     width: 100%;
@@ -102,8 +102,8 @@ export const StyledTable = styled.table<TableComponentProps>`
             var(--border-subtle-primary-default, #e1e5ea);
     }
 
-    ${({ borderAround }) =>
-        borderAround === false &&
+    ${({ $borderAround }) =>
+        $borderAround === false &&
         css`
             outline: none;
             ${StyledTableDataCell}:last-of-type {
@@ -111,8 +111,8 @@ export const StyledTable = styled.table<TableComponentProps>`
             }
         `}
 
-    ${({ borderHorizontal }) =>
-        borderHorizontal === false &&
+    ${({ $borderHorizontal }) =>
+        $borderHorizontal === false &&
         css`
             ${StyledTableRow} {
                 border-bottom: none !important;
@@ -125,8 +125,8 @@ export const StyledTable = styled.table<TableComponentProps>`
             }
         `}
 
-    ${({ borderVertical }) =>
-        borderVertical === false &&
+    ${({ $borderVertical }) =>
+        $borderVertical === false &&
         css`
             ${StyledTableRow} {
                 border-right: none !important;
@@ -139,8 +139,8 @@ export const StyledTable = styled.table<TableComponentProps>`
             }
         `}
 
-    ${({ borderWithin }) =>
-        borderWithin === false &&
+    ${({ $borderWithin }) =>
+        $borderWithin === false &&
         css`
             ${StyledTableRow} {
                 border-bottom: none !important;
@@ -157,8 +157,8 @@ export const StyledTable = styled.table<TableComponentProps>`
         `}
 
 
-    ${({ striped }) =>
-        striped &&
+    ${({ $striped }) =>
+        $striped &&
         css`
             ${StyledTableBody} ${StyledTableRow}:nth-child(even) {
                 background-color: var(--bg-subtle-secondary-default, #f6f7f9);
@@ -166,15 +166,15 @@ export const StyledTable = styled.table<TableComponentProps>`
         `}
 `;
 
-export const StyledTableHead = styled.thead<TableHeadComponentProps>`
+export const StyledTableHead = styled.thead<StyledTableHeadComponentProps>`
     background: var(--bg-subtle-secondary-default, #f6f7f9);
 
-    ${({ highlightHeaders }) =>
-        highlightHeaders === false &&
+    ${({ $highlightHeaders }) =>
+        $highlightHeaders === false &&
         'background: var(--bg-subtle-primary-default, #ffffff);'}
 
-    ${({ capitalizeHeaders }) =>
-        capitalizeHeaders !== false && 'text-transform: uppercase;'}
+    ${({ $capitalizeHeaders }) =>
+        $capitalizeHeaders !== false && 'text-transform: uppercase;'}
 
     ${StyledTableRow} ${StyledTableHeadingCell}:last-child {
         border-right: none;
