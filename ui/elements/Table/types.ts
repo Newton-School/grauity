@@ -223,61 +223,87 @@ export interface TableProps {
 }
 
 // Interface for NSTableWrapper component props
-export interface TableComponentProps {
+export interface TableComponentProps
+    extends React.TableHTMLAttributes<HTMLTableElement> {
     borderAround?: boolean;
     borderWithin?: boolean;
     borderHorizontal?: boolean;
     borderVertical?: boolean;
     striped?: boolean;
-    children: ReactNode;
-    role?: string;
-    className?: string;
-    style?: React.CSSProperties;
+}
+
+export interface StyledTableComponentProps
+    extends Omit<
+        TableComponentProps,
+        | 'borderAround'
+        | 'borderWithin'
+        | 'borderHorizontal'
+        | 'borderVertical'
+        | 'striped'
+    > {
+    $borderAround?: boolean;
+    $borderWithin?: boolean;
+    $borderHorizontal?: boolean;
+    $borderVertical?: boolean;
+    $striped?: boolean;
 }
 
 // Interface for NSTableHead component props
-export interface TableHeadComponentProps {
+export interface TableHeadComponentProps
+    extends React.HTMLAttributes<HTMLTableSectionElement> {
     capitalizeHeaders?: boolean;
     highlightHeaders?: boolean;
-    className?: string;
-    children: ReactNode;
+}
+
+export interface StyledTableHeadComponentProps
+    extends Omit<
+        TableHeadComponentProps,
+        'capitalizeHeaders' | 'highlightHeaders'
+    > {
+    $capitalizeHeaders?: boolean;
+    $highlightHeaders?: boolean;
 }
 
 // Interface for NSTableBody component props
-export interface TableBodyComponentProps {
-    className?: string;
-    children: ReactNode;
-}
+export interface TableBodyComponentProps
+    extends React.HTMLAttributes<HTMLTableSectionElement> {}
 
 // Interface for NSTableRow component props
-export interface TableRowComponentProps {
-    key?: string;
+export interface TableRowComponentProps
+    extends React.HTMLAttributes<HTMLTableRowElement> {
     condensed?: boolean;
-    className?: string;
-    children: ReactNode;
     hoverable?: boolean;
 }
 
+export interface StyledTableRowComponentProps
+    extends Omit<TableRowComponentProps, 'condensed' | 'hoverable'> {
+    $condensed?: boolean;
+    $hoverable?: boolean;
+}
+
 // Interface for NSTableDataCell component props
-export interface TableDataCellComponentProps {
-    key?: string;
-    align?: string;
+export interface TableDataCellComponentProps
+    extends React.TdHTMLAttributes<HTMLTableCellElement> {
+    align?: 'left' | 'right' | 'center' | 'justify' | 'char';
     vAlign?: string;
     flexAlign?: string;
-    colSpan?: number;
-    rowSpan?: number;
-    className?: string;
-    children: ReactNode;
+}
+
+export interface StyledTableDataCellComponentProps
+    extends Omit<TableDataCellComponentProps, 'flexAlign' | 'vAlign'> {
+    $flexAlign?: string;
+    $vAlign?: string;
 }
 
 // Interface for NSTableHeadingCell component props
-export interface TableHeadingCellComponentProps {
-    key?: string;
-    align?: string;
+export interface TableHeadingCellComponentProps
+    extends React.ThHTMLAttributes<HTMLTableCellElement> {
+    align?: 'left' | 'right' | 'center' | 'justify' | 'char';
     width?: string;
     flexAlign?: string;
-    colSpan?: number;
-    rowSpan?: number;
-    className?: string;
-    children: ReactNode;
+}
+
+export interface StyledTableHeadingCellComponentProps
+    extends Omit<TableHeadingCellComponentProps, 'flexAlign'> {
+    $flexAlign?: string;
 }

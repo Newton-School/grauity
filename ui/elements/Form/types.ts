@@ -1,12 +1,12 @@
 import React from 'react';
 import { TEXT_COLORS } from 'ui/core';
 
-import { StyledLabelProps } from '../../../common/types';
 import { grauityIconSizeName } from '../../core/sizes/sizeTypes';
 
 export type FormTextColors = `${TEXT_COLORS}`;
 
-export interface LabelProps extends StyledLabelProps {
+export interface LabelProps
+    extends React.LabelHTMLAttributes<HTMLLabelElement> {
     /**
      * The name of the label. Required for use with form elements' `htmlFor` attribute.
      */
@@ -21,6 +21,25 @@ export interface LabelProps extends StyledLabelProps {
      * The content of the label.
      */
     children: React.ReactNode;
+
+    /**
+     * Whether the label should show required marker.
+     * @default false
+     */
+    isRequired?: boolean;
+
+    /**
+     * Whether the label is disabled.
+     * @default false
+     */
+    isDisabled?: boolean;
+}
+
+export interface StyledLabelComponentProps
+    extends React.LabelHTMLAttributes<HTMLLabelElement> {
+    $isRequired?: boolean;
+    $isDisabled?: boolean;
+    $color?: FormTextColors;
 }
 
 export interface HelpMessageProps {

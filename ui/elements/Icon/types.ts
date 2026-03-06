@@ -93,4 +93,10 @@ interface IconProps {
     style?: React.CSSProperties;
 }
 
-export { type IconProps };
+interface StyledIconProps extends React.HTMLAttributes<HTMLElement> {
+    as?: React.ElementType;
+    $color?: string;
+    $size?: grauityIconSizeName;
+}
+
+export { type IconProps, type StyledIconProps };

@@ -1,0 +1,74 @@
+# Transient Props Migration Guide (v4)
+
+This guide explains the library-wide migration to `styled-components` transient props.
+
+## What Changed
+
+Style-only props are now passed as transient props (`$propName`) at styled boundaries so they are not forwarded to DOM elements.
+
+This migration is applied across components including:
+
+- `Button`, `Typography`, `Icon`
+- `Alert`, `AlertBanner`, `Chip`, `Tabs`
+- `Table`, `Modal`, `MonthlyCalendar`, `MonthlyCalendarEvent`
+- Form primitives like `Label` and `TextArea`
+
+## Public API Impact
+
+For normal component usage, **public props remain unchanged**.
+
+Examples that continue to work:
+
+```tsx
+<Button variant="primary" size="medium" />
+<Typography variant="heading-sb-h2" textAlign="center" />
+<Tabs focusColor="#0673f9" />
+```
+
+## Compound Components (`Table.*`, `Modal.*`)
+
+`Table` and `Modal` compound APIs are preserved with wrapper shells.
+You should continue using normal prop names there.
+
+```tsx
+<Table.Table borderAround={false} borderVertical={false}>
+    <Table.TableHead highlightHeaders={false}>
+        <Table.TableRow condensed>
+            <Table.TableHeadingCell align="left">Title</Table.TableHeadingCell>
+        </Table.TableRow>
+    </Table.TableHead>
+</Table.Table>
+
+<Modal.Action justifyContent="end">...</Modal.Action>
+```
+
+No `$` prefix is required for these public compound props.
+
+## Guidance for Consumers Using `styled-components`
+
+If you create your own styled wrappers/components, use transient props for style-only fields:
+
+```tsx
+const Card = styled.div<{ $isActive: boolean }>`
+    border-color: ${({ $isActive }) =>
+        $isActive ? 'var(--border-subtle-brand-default)' : 'transparent'};
+`;
+
+<Card $isActive={isActive} />
+```
+
+Keep real DOM attributes unprefixed:
+
+```tsx
+<button disabled autoFocus />
+```
+
+## Contributor Guardrail
+
+Run the audit command before merging:
+
+```bash
+npm run audit:transient-props
+```
+
+It reports style files where non-transient style-only props are still used.

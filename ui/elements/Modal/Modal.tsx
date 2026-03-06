@@ -20,8 +20,79 @@ import {
     StyledModalMain,
     StyledModalTitle,
 } from './Modal.styles';
-import { ModalProps } from './types';
+import {
+    ModalActionProps,
+    ModalBodyMainProps,
+    ModalBodyProps,
+    ModalContainerProps,
+    ModalProps,
+} from './types';
 import { getModalAnimationProps, getShouldRender } from './utils';
+
+const ModalContainer = forwardRef<HTMLDivElement, ModalContainerProps>(
+    (
+        {
+            width,
+            height,
+            minHeight,
+            minWidth,
+            maxHeight,
+            maxWidth,
+            mobileBottomFullWidth,
+            modalPadding = '20px',
+            border,
+            ...rest
+        },
+        ref
+    ) => {
+        return (
+            <StyledModal
+                ref={ref}
+                $width={width}
+                $height={height}
+                $minHeight={minHeight}
+                $minWidth={minWidth}
+                $maxHeight={maxHeight}
+                $maxWidth={maxWidth}
+                $mobileBottomFullWidth={mobileBottomFullWidth}
+                $modalPadding={modalPadding}
+                $border={border}
+                {...rest}
+            />
+        );
+    }
+);
+
+const ModalMain = forwardRef<HTMLDivElement, ModalBodyMainProps>(
+    ({ overflow, ...rest }, ref) => {
+        return <StyledModalMain ref={ref} $overflow={overflow} {...rest} />;
+    }
+);
+
+const ModalBody = forwardRef<HTMLDivElement, ModalBodyProps>(
+    ({ modalBodyMargin, ...rest }, ref) => {
+        return (
+            <StyledModalBody ref={ref} $modalBodyMargin={modalBodyMargin} {...rest} />
+        );
+    }
+);
+
+const ModalAction = forwardRef<HTMLDivElement, ModalActionProps>(
+    ({ justifyContent, ...rest }, ref) => {
+        return (
+            <StyledModalAction
+                ref={ref}
+                $justifyContent={justifyContent}
+                {...rest}
+            />
+        );
+    }
+);
+
+ModalContainer.displayName = 'ModalContainer';
+ModalMain.displayName = 'ModalMain';
+ModalBody.displayName = 'ModalBody';
+ModalAction.displayName = 'ModalAction';
 
 /**
  * A modal is used to display content that temporarily blocks
@@ -120,7 +191,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                     animationDuration={0.3}
                     shouldFocusOnFirstElement={shouldFocusOnFirstElement}
                 >
-                    <StyledModal
+                    <ModalContainer
                         onClick={(e: React.MouseEvent<HTMLDivElement>) =>
                             e.stopPropagation()
                         }
@@ -133,7 +204,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                         maxWidth={maxWidth}
                         mobileBottomFullWidth={mobileBottomFullWidth}
                         modalPadding={modalPadding}
-                        $border={border}
+                        border={border}
                         aria-labelledby={`modal-title-${id}`}
                         aria-describedby={`modal-description-${id}`}
                         aria-modal="true"
@@ -141,9 +212,9 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                         data-testid="testid-modal"
                         {...motionProps}
                     >
-                        <StyledModalMain $overflow={overflow}>
+                        <ModalMain overflow={overflow}>
                             {showCloseButton && (
-                                <StyledModalAction justifyContent="end">
+                                <ModalAction justifyContent="end">
                                     <IconButton
                                         onClick={handleClose}
                                         size="small"
@@ -153,7 +224,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                                         ariaLabel="Close"
                                         buttonProps={{ autoFocus: true }}
                                     />
-                                </StyledModalAction>
+                                </ModalAction>
                             )}
 
                             {banner && (
@@ -175,26 +246,20 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                             )}
 
                             {body && (
-                                <StyledModalBody
-                                    modalBodyMargin={modalBodyMargin}
-                                >
+                                <ModalBody modalBodyMargin={modalBodyMargin}>
                                     {body}
-                                </StyledModalBody>
+                                </ModalBody>
                             )}
 
                             {children && (
-                                <StyledModalBody
-                                    modalBodyMargin={modalBodyMargin}
-                                >
+                                <ModalBody modalBodyMargin={modalBodyMargin}>
                                     {children}
-                                </StyledModalBody>
+                                </ModalBody>
                             )}
-                        </StyledModalMain>
+                        </ModalMain>
 
-                        {action && (
-                            <StyledModalAction>{action}</StyledModalAction>
-                        )}
-                    </StyledModal>
+                        {action && <ModalAction>{action}</ModalAction>}
+                    </ModalContainer>
                 </Overlay>
             )}
         </AnimatePresence>
@@ -202,23 +267,23 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 }) as React.ForwardRefExoticComponent<
     ModalProps & React.RefAttributes<HTMLDivElement>
 > & {
-    Modal: typeof StyledModal;
-    Main: typeof StyledModalMain;
+    Modal: typeof ModalContainer;
+    Main: typeof ModalMain;
     Banner: typeof StyledModalBanner;
     Title: typeof StyledModalTitle;
     Description: typeof StyledModalDescription;
-    Body: typeof StyledModalBody;
-    Action: typeof StyledModalAction;
+    Body: typeof ModalBody;
+    Action: typeof ModalAction;
     Divider: typeof StyledModalDivider;
 };
 
-Modal.Modal = StyledModal;
-Modal.Main = StyledModalMain;
+Modal.Modal = ModalContainer;
+Modal.Main = ModalMain;
 Modal.Banner = StyledModalBanner;
 Modal.Title = StyledModalTitle;
 Modal.Description = StyledModalDescription;
-Modal.Body = StyledModalBody;
-Modal.Action = StyledModalAction;
+Modal.Body = ModalBody;
+Modal.Action = ModalAction;
 Modal.Divider = StyledModalDivider;
 
 export { type ModalProps };

@@ -61,7 +61,7 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
     return (
         <StyledMonthlyCalendarGridItem
             ref={gridItemRef}
-            backgroundColor={cellBackgroundColor}
+            $backgroundColor={cellBackgroundColor}
         >
             <DateCircle date={cellDate} />
             {eventsToRender.map((event) => (

@@ -10,14 +10,9 @@ import THEME from './constants';
 import DARK_THEME_OBJ from './darkThemeConstants';
 import LIGHT_THEME_OBJ from './lightThemeConstants';
 import { GrauityThemeProvider } from './ThemeProvider';
+import { ThemeWrapperProps } from './types';
 
 const ThemeContext = createContext(null);
-
-interface ThemeWrapperProps {
-    children: React.ReactNode;
-    defaultTheme?: any;
-    usePreferredColorScheme?: boolean;
-}
 
 const ThemeWrapper = ({
     children,

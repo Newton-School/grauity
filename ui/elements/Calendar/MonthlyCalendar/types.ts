@@ -74,15 +74,15 @@ export interface DateCircleProps {
 }
 
 export interface StyledDateCircleProps extends StyledDivProps {
-    isInActiveMonth?: boolean;
-    isToday?: boolean;
-    backgroundColor?: string;
+    $isInActiveMonth?: boolean;
+    $isToday?: boolean;
+    $backgroundColor?: string;
 }
 
 export interface StyledDateTextProps
     extends React.HTMLAttributes<HTMLSpanElement> {
-    isToday?: boolean;
-    textColor?: string;
+    $isToday?: boolean;
+    $textColor?: string;
 }
 
 export interface OverflowIndicatorProps<T extends CalendarEventRequiredProps> {
@@ -95,7 +95,7 @@ export interface OverflowIndicatorProps<T extends CalendarEventRequiredProps> {
 
 export interface GridContainerRows
     extends React.HTMLAttributes<HTMLDivElement> {
-    rows: number;
+    $rows: number;
 }
 export interface MonthlyCalendarGridItemProps<T> {
     cellDate: Date;
@@ -107,7 +107,7 @@ export interface MonthlyCalendarGridItemProps<T> {
 }
 
 export interface StyledMonthlyCalendarGridItemProps extends StyledDivProps {
-    backgroundColor?: string;
+    $backgroundColor?: string;
 }
 
 export interface MonthlyCalendarLoadingProps {
@@ -130,5 +130,5 @@ export interface OverflowEventsListProps<T> {
 }
 
 export interface StyledOverflowEventsListContainerProps extends StyledDivProps {
-    width: number;
+    $width: number;
 }

@@ -2,16 +2,7 @@ import React from 'react';
 
 import Button from '../../Button';
 import { StyledDropdownMenuFooter } from '../DropdownMenu.styles';
-
-interface DropdownMenuFooterProps {
-    multiple: boolean;
-    showActionButtons: boolean;
-    showClearAllButton: boolean;
-    clearAllButtonText: string;
-    applyButtonText: string;
-    handleClearAll: () => void;
-    handleApply: () => void;
-}
+import { DropdownMenuFooterProps } from '../types';
 
 const DropdownMenuFooter = ({
     multiple,

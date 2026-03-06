@@ -1,5 +1,5 @@
 import { StoryFn } from '@storybook/react';
-import React, { ReactNode } from 'react';
+import React from 'react';
 import AlertBanner, {
     ALERT_BANNER_TYPES_ENUM,
     ALERT_BANNER_VARIANTS_ENUM,
@@ -9,13 +9,9 @@ import Table from 'ui/elements/Table';
 import Typography from 'ui/elements/Typography';
 
 import TokenBlock from '../../helper-components/TokenBlock';
+import { TableDecoratorProps } from './types';
 
 const TEXT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
-
-interface TableDecoratorProps {
-    children: ReactNode;
-    alertBannerProps: AlertBannerProps;
-}
 
 const TableDecorator: React.FC<TableDecoratorProps> = ({
     children,

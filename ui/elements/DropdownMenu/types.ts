@@ -242,3 +242,43 @@ export interface StyledDropdownMenuOptionDescriptionProps
     extends StyledDivProps {
     $disabled?: boolean;
 }
+
+export interface DropdownMenuOptionProps extends BaseItemOptionProps {
+    multiple: boolean;
+    selected: boolean;
+    onClick: (value: OptionValue) => void;
+    optionRef: (el: HTMLButtonElement) => void;
+    onKeyDown: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
+}
+
+export interface DropdownMenuSubHeaderProps extends BaseItemSubHeaderProps {
+    itemRef: (el: HTMLDivElement) => void;
+    onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void;
+}
+
+export interface DropdownSearchBoxProps {
+    searchable: boolean;
+    searchPlaceholder: string;
+    searchIcon: grauityIconName;
+    onSearchInputChange: (value: string) => void;
+    onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+    searchRef: React.RefObject<HTMLInputElement>;
+}
+
+export interface DropdownMenuFooterProps {
+    multiple: boolean;
+    showActionButtons: boolean;
+    showClearAllButton: boolean;
+    clearAllButtonText: string;
+    applyButtonText: string;
+    handleClearAll: () => void;
+    handleApply: () => void;
+}
+
+export interface DropdownMenuHeaderProps {
+    showHeader: boolean;
+    overline: string;
+    title: string;
+    subtext: string;
+    customHeader: React.ReactNode;
+}

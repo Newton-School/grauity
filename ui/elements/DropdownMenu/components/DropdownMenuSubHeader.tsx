@@ -1,12 +1,7 @@
 import React from 'react';
 
 import { StyledDropdownMenuSubHeader } from '../DropdownMenu.styles';
-import { BaseItemSubHeaderProps } from '../types';
-
-interface DropdownMenuSubHeaderProps extends BaseItemSubHeaderProps {
-    itemRef: (el: HTMLDivElement) => void;
-    onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void;
-}
+import { DropdownMenuSubHeaderProps } from '../types';
 
 const DropdownMenuSubHeader = (props: DropdownMenuSubHeaderProps) => {
     const { title, itemRef, onKeyDown } = props;

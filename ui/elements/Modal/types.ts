@@ -1,6 +1,6 @@
+import { HTMLMotionProps } from 'framer-motion';
 import React from 'react';
 
-import { StyledDivProps } from '../../../common/types';
 import { ButtonColors, ButtonVariants } from '../Button/types';
 
 type ModalContentType = React.ReactNode;
@@ -405,7 +405,7 @@ export interface StyleData {
 }
 
 // Components interface for ModalContainer
-export interface ModalContainerProps extends StyledDivProps {
+export interface ModalContainerProps extends HTMLMotionProps<'div'> {
     width?: string;
     height?: string;
     minHeight?: string;
@@ -414,8 +414,32 @@ export interface ModalContainerProps extends StyledDivProps {
     maxWidth?: string;
     mobileBottomFullWidth?: boolean;
     modalPadding?: string;
-    ref?: React.MutableRefObject<any>;
+    border?: string;
     children: React.ReactNode;
+}
+
+export interface StyledModalContainerProps
+    extends Omit<
+        ModalContainerProps,
+        | 'width'
+        | 'height'
+        | 'minHeight'
+        | 'minWidth'
+        | 'maxHeight'
+        | 'maxWidth'
+        | 'mobileBottomFullWidth'
+        | 'modalPadding'
+        | 'border'
+    > {
+    $width?: string;
+    $height?: string;
+    $minHeight?: string;
+    $minWidth?: string;
+    $maxHeight?: string;
+    $maxWidth?: string;
+    $mobileBottomFullWidth?: boolean;
+    $modalPadding?: string;
+    $border?: string;
 }
 
 // Components interface for ModalTitle
@@ -431,22 +455,47 @@ export interface ModalDescriptionProps {
 }
 
 // Components interface for ModalBody
-export interface ModalBodyProps {
+export interface ModalBodyProps extends React.HTMLAttributes<HTMLDivElement> {
     modalBodyMargin?: string;
     children: React.ReactNode;
 }
 
+export interface StyledModalBodyProps
+    extends Omit<ModalBodyProps, 'modalBodyMargin'> {
+    $modalBodyMargin?: string;
+}
+
 // Components interface for ModalBodyMain
-export interface ModalBodyMainProps {
+export interface ModalBodyMainProps
+    extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
+    overflow?: string;
+}
+
+export interface StyledModalBodyMainProps
+    extends Omit<ModalBodyMainProps, 'overflow'> {
     $overflow?: string;
 }
 
 // Components interface for ModalPaginationItemProps
 export interface ModalPaginationItemProps {
-    key: string | number;
     active: boolean;
     onClick: () => void;
+}
+
+export interface StyledModalPaginationItemProps
+    extends Omit<ModalPaginationItemProps, 'active'> {
+    $active: boolean;
+}
+
+export interface ModalActionProps extends React.HTMLAttributes<HTMLDivElement> {
+    justifyContent?: string;
+    children: React.ReactNode;
+}
+
+export interface StyledModalActionProps
+    extends Omit<ModalActionProps, 'justifyContent'> {
+    $justifyContent?: string;
 }
 
 export interface ConfirmationDialogProps {

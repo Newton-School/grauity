@@ -1,9 +1,6 @@
 import React from 'react';
 
-interface ColorRendererProps {
-    color?: string;
-    size?: 'small' | 'medium' | 'large';
-}
+import { ColorRendererProps } from './types';
 
 const ColorRendererSizes = {
     small: '26px',

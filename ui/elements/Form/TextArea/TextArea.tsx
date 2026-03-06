@@ -72,7 +72,7 @@ const TextArea = (props: TextAreaProps) => {
                 cols={cols}
                 rows={rows}
                 tabIndex={0}
-                size={size}
+                $size={size}
                 $color={color}
             />
             {helpMessage && (

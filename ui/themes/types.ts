@@ -21,3 +21,9 @@ export type ThemeConfigType = {
     colors: ThemeColorObjType;
     [otherThemeProperty: string]: any;
 };
+
+export interface ThemeWrapperProps {
+    children: React.ReactNode;
+    defaultTheme?: any;
+    usePreferredColorScheme?: boolean;
+}

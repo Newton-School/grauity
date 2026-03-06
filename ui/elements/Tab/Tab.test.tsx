@@ -29,7 +29,7 @@ describe('Tab', () => {
     it('uses default iconSize when not provided', () => {
         render(<Tab icon="label">Tab</Tab>);
         const icon = screen.getByRole('tab').querySelector('i');
-        expect(icon?.getAttribute('size')).toContain('20');
+        expect(icon).toHaveStyle('font-size: 20px');
     });
 
     it('calls onClick when not disabled', () => {
