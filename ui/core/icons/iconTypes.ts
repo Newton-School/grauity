@@ -417,6 +417,8 @@ export type grauityIconName =
     | 'sticky-note'
     | 'sun-filled'
     | 'sun'
+    | 'test-loader-filled'
+    | 'test-loader'
     | 'thumbs-down-filled'
     | 'thumbs-down'
     | 'thumbs-up-filled'
@@ -875,6 +877,8 @@ export type grauityIconKey =
     | 'StickyNote'
     | 'SunFilled'
     | 'Sun'
+    | 'TestLoaderFilled'
+    | 'TestLoader'
     | 'ThumbsDownFilled'
     | 'ThumbsDown'
     | 'ThumbsUpFilled'
@@ -1333,6 +1337,8 @@ export enum GRAUITY_ICONS {
     StickyNote = 'sticky-note',
     SunFilled = 'sun-filled',
     Sun = 'sun',
+    TestLoaderFilled = 'test-loader-filled',
+    TestLoader = 'test-loader',
     ThumbsDownFilled = 'thumbs-down-filled',
     ThumbsDown = 'thumbs-down',
     ThumbsUpFilled = 'thumbs-up-filled',
