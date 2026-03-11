@@ -14,6 +14,10 @@ describe('Chip Component', () => {
         expect(screen.getByText('Test Chip')).toBeInTheDocument();
     });
 
+    it('uses a stable displayName for tooling', () => {
+        expect(Chip.displayName).toBe('Chip');
+    });
+
     // Variant Styles
     const variants: ChipVariants[] = [
         'brand',

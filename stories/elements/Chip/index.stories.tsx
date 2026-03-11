@@ -5,6 +5,13 @@ import { ChipProps } from 'ui/elements/Chip/types';
 export default {
     title: 'Elements/Chip',
     component: Chip,
+    parameters: {
+        parity: {
+            componentName: 'Chip',
+            designComponentName: 'System_thunder',
+            componentNameAliases: ['Chip', 'System_thunder'],
+        },
+    },
 };
 
 const Template = (args: ChipProps) => <Chip {...args}>This is a chip</Chip>;
