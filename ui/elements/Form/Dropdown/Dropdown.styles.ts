@@ -21,6 +21,15 @@ export const StyledDropdownTrigger = styled(Button)`
         justify-content: space-between;
         align-items: center;
     }
+
+    span {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: left;
+        flex: 1;
+    }
 `;
 
 export const StyledCustomTrigger = styled.div`
