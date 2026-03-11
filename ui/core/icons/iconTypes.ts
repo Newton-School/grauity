@@ -99,6 +99,8 @@ export type grauityIconName =
     | 'doubt-message-filled'
     | 'doubt-message'
     | 'doubt'
+    | 'fire-filled'
+    | 'fire'
     | 'hearing-filled'
     | 'hearing'
     | 'heart-filled'
@@ -155,8 +157,6 @@ export type grauityIconName =
     | 'star-half-filled'
     | 'star-half'
     | 'star'
-    | 'streak-filled'
-    | 'streak'
     | 'trophy-filled'
     | 'trophy'
     | 'codechef'
@@ -559,6 +559,8 @@ export type grauityIconKey =
     | 'DoubtMessageFilled'
     | 'DoubtMessage'
     | 'Doubt'
+    | 'FireFilled'
+    | 'Fire'
     | 'HearingFilled'
     | 'Hearing'
     | 'HeartFilled'
@@ -615,8 +617,6 @@ export type grauityIconKey =
     | 'StarHalfFilled'
     | 'StarHalf'
     | 'Star'
-    | 'StreakFilled'
-    | 'Streak'
     | 'TrophyFilled'
     | 'Trophy'
     | 'Codechef'
@@ -1019,6 +1019,8 @@ export enum GRAUITY_ICONS {
     DoubtMessageFilled = 'doubt-message-filled',
     DoubtMessage = 'doubt-message',
     Doubt = 'doubt',
+    FireFilled = 'fire-filled',
+    Fire = 'fire',
     HearingFilled = 'hearing-filled',
     Hearing = 'hearing',
     HeartFilled = 'heart-filled',
@@ -1075,8 +1077,6 @@ export enum GRAUITY_ICONS {
     StarHalfFilled = 'star-half-filled',
     StarHalf = 'star-half',
     Star = 'star',
-    StreakFilled = 'streak-filled',
-    Streak = 'streak',
     TrophyFilled = 'trophy-filled',
     Trophy = 'trophy',
     Codechef = 'codechef',
