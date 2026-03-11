@@ -99,6 +99,8 @@ export type grauityIconName =
     | 'doubt-message-filled'
     | 'doubt-message'
     | 'doubt'
+    | 'fire-filled'
+    | 'fire'
     | 'hearing-filled'
     | 'hearing'
     | 'heart-filled'
@@ -557,6 +559,8 @@ export type grauityIconKey =
     | 'DoubtMessageFilled'
     | 'DoubtMessage'
     | 'Doubt'
+    | 'FireFilled'
+    | 'Fire'
     | 'HearingFilled'
     | 'Hearing'
     | 'HeartFilled'
@@ -1015,6 +1019,8 @@ export enum GRAUITY_ICONS {
     DoubtMessageFilled = 'doubt-message-filled',
     DoubtMessage = 'doubt-message',
     Doubt = 'doubt',
+    FireFilled = 'fire-filled',
+    Fire = 'fire',
     HearingFilled = 'hearing-filled',
     Hearing = 'hearing',
     HeartFilled = 'heart-filled',
