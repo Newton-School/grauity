@@ -57,6 +57,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         shouldFocusOnFirstElement = true,
         shouldDisableScroll = true,
         overflow = 'visible',
+        bgColor,
         className,
     } = props;
 
@@ -139,6 +140,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                         aria-modal="true"
                         role="dialog"
                         data-testid="testid-modal"
+                        $bgColor={bgColor}
                         {...motionProps}
                     >
                         <StyledModalMain $overflow={overflow}>

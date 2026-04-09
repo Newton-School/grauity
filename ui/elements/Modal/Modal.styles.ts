@@ -12,7 +12,8 @@ import {
 } from './types';
 
 export const StyledModal = styled(motion.div)<ModalContainerProps>`
-    background: var(--bg-subtle-primary-default, #ffffff);
+    background: ${({ $bgColor }) =>
+        $bgColor || 'var(--bg-subtle-primary-default, #ffffff)'};
     z-index: var(--z-index-modal, 1100);
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.25);
     border-radius: var(--corner-radius-12px, 12px);

@@ -65,6 +65,13 @@ export interface ModalProps {
     isOpen: boolean;
 
     /**
+     * Background color for the modal
+     *
+     * Default: `var(--bg-subtle-primary-default, #ffffff)`
+     * */
+    bgColor?: string;
+
+    /**
      * Banner for the modal, can be a valid React node
      * */
     banner?: ModalContentType;
@@ -415,6 +422,7 @@ export interface ModalContainerProps extends StyledDivProps {
     mobileBottomFullWidth?: boolean;
     modalPadding?: string;
     ref?: React.MutableRefObject<any>;
+    bgColor?: string;
     children: React.ReactNode;
 }
 
