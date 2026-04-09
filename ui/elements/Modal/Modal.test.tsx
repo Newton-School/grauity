@@ -16,10 +16,20 @@ describe('Modal', () => {
         body: 'Modal body',
         action: (
             <>
-                <Button variant="primary" color="brand" onClick={() => {}} fullWidth>
+                <Button
+                    variant="primary"
+                    color="brand"
+                    onClick={() => {}}
+                    fullWidth
+                >
                     Primary Button
                 </Button>
-                <Button variant="primary" color="neutral" onClick={() => {}} fullWidth>
+                <Button
+                    variant="primary"
+                    color="neutral"
+                    onClick={() => {}}
+                    fullWidth
+                >
                     Secondary Button
                 </Button>
             </>
@@ -136,6 +146,12 @@ describe('Modal', () => {
         );
         expect(screen.getByTestId('testid-modalwrapper')).toHaveClass(
             'jest-test-modal-wrapper'
+        );
+    });
+    it('attaches bgColor class when bgColor is passed in bgColor prop', () => {
+        render(<Modal {...defaultProps} isOpen bgColor="red" />);
+        expect(screen.getByTestId('testid-modal')).toHaveStyle(
+            'background: red'
         );
     });
 });
