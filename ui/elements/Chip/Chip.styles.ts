@@ -1,66 +1,62 @@
 import styled, { css } from 'styled-components';
 
-import {
-    CHIP_FONT_SIZE_MAPPING,
-    CHIP_VARIANT_STYLES_MAPPING,
-} from './constants';
+import { CHIP_FONT_SIZE_MAPPING, isChipSize } from './constants';
 import { StyledChip, StyledChipTextProps } from './types';
 
 export const StyledChipDiv = styled.div<StyledChip>`
     display: flex;
-    padding: 3px 6px;
+    padding: var(--spacing-3px, 3px) var(--spacing-6px, 6px);
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    gap: var(--spacing-4px, 4px);
     height: fit-content;
     width: fit-content;
-    border-radius: 4px;
+    border-radius: var(--corner-radius-4px, 4px);
+    color: ${({ $baseTextColor }) =>
+        $baseTextColor || 'var(--text-emphasis-brand-default, #0673f9)'};
+    background: ${({ $baseBackgroundColor }) =>
+        $baseBackgroundColor || 'var(--bg-subtle-brand-default, #e5f1ff)'};
     font-family: var(--font-family, 'Mona Sans');
     font-style: normal;
     font-weight: var(--font-weight-semibold, 550);
     line-height: 120%;
     letter-spacing: 0.4px;
 
-    ${({ variant }) =>
-        variant &&
+    ${({ $size }) =>
+        isChipSize($size) &&
         css`
-            ${CHIP_VARIANT_STYLES_MAPPING[variant]};
+            ${CHIP_FONT_SIZE_MAPPING[$size]}
         `}
-    ${({ size }) =>
-        size &&
-        css`
-            ${CHIP_FONT_SIZE_MAPPING[size]}
-        `}
-    ${({ hasBorder, borderColor }) =>
-        hasBorder &&
+    ${({ $withborder, $baseBorderColor, $borderColor }) =>
+        $withborder &&
         css`
             border: 1px solid;
-            border-color: ${borderColor};
+            border-color: ${$borderColor || $baseBorderColor || 'transparent'};
         `}
-    ${({ textColor }) =>
-        textColor &&
+    ${({ $textColor }) =>
+        $textColor &&
         css`
-            color: ${textColor};
+            color: ${$textColor};
         `}
-    ${({ backgroundColor }) =>
-        backgroundColor &&
+    ${({ $backgroundColor }) =>
+        $backgroundColor &&
         css`
-            background: ${backgroundColor};
+            background: ${$backgroundColor};
         `}
-    ${({ rounded }) =>
-        rounded &&
+    ${({ $rounded }) =>
+        $rounded &&
         css`
             border-radius: 100px;
         `}
-    ${({ iconPosition }) =>
-        iconPosition === 'right' &&
+    ${({ $iconPosition }) =>
+        $iconPosition === 'right' &&
         css`
             flex-direction: row-reverse;
         `}
 `;
 
 export const StyledChipText = styled.span<StyledChipTextProps>`
-    --alignment-padding: 2px;
+    --alignment-padding: var(--spacing-2px, 2px);
 
     overflow: hidden;
     display: -webkit-box;

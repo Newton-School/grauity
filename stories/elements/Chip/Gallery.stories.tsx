@@ -1,6 +1,11 @@
 import React from 'react';
 import Chip, { ChipProps } from 'ui/elements/Chip';
-import { CHIP_VARIANTS } from 'ui/elements/Chip/constants';
+import {
+    CHIP_DARKER_BG_OPTIONS,
+    CHIP_STATES,
+    CHIP_TYPES,
+    CHIP_WITH_BORDER_OPTIONS,
+} from 'ui/elements/Chip/constants';
 import Table from 'ui/elements/Table';
 
 import TokenBlock from '../../helper-components/TokenBlock';
@@ -10,6 +15,19 @@ export default {
     component: Chip,
     tags: ['!autodocs'],
 };
+
+const variantCombinations = CHIP_TYPES.flatMap((type) =>
+    CHIP_STATES.flatMap((state) =>
+        CHIP_DARKER_BG_OPTIONS.flatMap((darkerbg) =>
+            CHIP_WITH_BORDER_OPTIONS.map((withborder) => ({
+                type,
+                state,
+                darkerbg,
+                withborder,
+            }))
+        )
+    )
+);
 
 const Template = (args: ChipProps) => (
     <Table.Table borderAround={false} borderVertical={false}>
@@ -24,26 +42,39 @@ const Template = (args: ChipProps) => (
             </Table.TableRow>
         </Table.TableHead>
         <Table.TableBody>
-            {CHIP_VARIANTS.map((variant) => (
-                <Table.TableRow condensed>
-                    <Table.TableDataCell>
-                        <TokenBlock copy>{variant}</TokenBlock>
-                    </Table.TableDataCell>
-                    <Table.TableDataCell>
-                        <Chip {...args} variant={variant} key={variant}>
-                            Chip {variant}
-                        </Chip>
-                    </Table.TableDataCell>
-                </Table.TableRow>
-            ))}
+            {variantCombinations.map(({ type, state, darkerbg, withborder }) => {
+                const key = `${type}-${state}-${darkerbg}-${withborder}`;
+                return (
+                    <Table.TableRow condensed key={key}>
+                        <Table.TableDataCell>
+                            <TokenBlock copy>
+                                {`type=${type}, state=${state}, darkerbg=${darkerbg}, withborder=${withborder}`}
+                            </TokenBlock>
+                        </Table.TableDataCell>
+                        <Table.TableDataCell>
+                            <Chip
+                                {...args}
+                                type={type}
+                                state={state}
+                                darkerbg={darkerbg}
+                                withborder={withborder}
+                            >
+                                Chip {type}
+                            </Chip>
+                        </Table.TableDataCell>
+                    </Table.TableRow>
+                );
+            })}
         </Table.TableBody>
     </Table.Table>
 );
 
 const defaultArgs: ChipProps = {
-    variant: 'brand',
+    type: 'brand',
+    state: 'default',
+    darkerbg: false,
+    withborder: false,
     size: 'medium',
-    hasBorder: false,
     textColor: null,
     className: 'chip',
     backgroundColor: null,

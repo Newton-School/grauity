@@ -10,9 +10,11 @@ export default {
 const Template = (args: ChipProps) => <Chip {...args}>This is a chip</Chip>;
 
 const defaultArgs: ChipProps = {
-    variant: 'brand',
+    type: 'brand',
+    state: 'default',
+    darkerbg: false,
+    withborder: false,
     size: 'medium',
-    hasBorder: false,
     textColor: null,
     backgroundColor: null,
     borderColor: null,
