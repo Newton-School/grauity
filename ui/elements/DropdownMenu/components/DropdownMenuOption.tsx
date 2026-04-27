@@ -7,15 +7,7 @@ import {
     StyledDropdownMenuOptionDescription,
     StyledDropdownMenuOptionLabel,
 } from '../DropdownMenu.styles';
-import { BaseItemOptionProps, OptionValue } from '../types';
-
-interface DropdownMenuOptionProps extends BaseItemOptionProps {
-    multiple: boolean;
-    selected: boolean;
-    onClick: (value: OptionValue) => void;
-    optionRef: (el: HTMLButtonElement) => void;
-    onKeyDown: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
-}
+import { DropdownMenuOptionProps } from '../types';
 
 const DropdownMenuOption = (props: DropdownMenuOptionProps) => {
     const {

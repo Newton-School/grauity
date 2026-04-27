@@ -11,10 +11,7 @@ import React from 'react';
 import { Playground } from 'storybook-addon-code-editor';
 
 import * as grauity from '../../ui';
-
-interface DocPageWithPlaygroundProps {
-    exampleSourceCode: string;
-}
+import { DocPageWithPlaygroundProps } from './types';
 
 export default function DocPageWithPlayground({
     exampleSourceCode = '',

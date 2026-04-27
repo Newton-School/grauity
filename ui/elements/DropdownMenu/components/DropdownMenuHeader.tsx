@@ -5,14 +5,7 @@ import {
     StyledDropdownMenuHeaderSubtext,
     StyledDropdownMenuHeaderTitle,
 } from '../DropdownMenu.styles';
-
-interface DropdownMenuHeaderProps {
-    showHeader: boolean;
-    overline: string;
-    title: string;
-    subtext: string;
-    customHeader: React.ReactNode;
-}
+import { DropdownMenuHeaderProps } from '../types';
 
 const DropdownMenuHeader = ({
     showHeader,

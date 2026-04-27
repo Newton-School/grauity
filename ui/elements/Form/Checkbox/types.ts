@@ -101,3 +101,7 @@ export interface StyledCheckboxInputProps extends StyledButtonProps {
     $indeterminate?: boolean;
     $color?: CheckboxColors;
 }
+
+export interface StyledCheckboxLabelProps {
+    $isDisabled?: boolean;
+}

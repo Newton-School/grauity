@@ -56,12 +56,12 @@ export type TypographyVariantType =
     | 'action-sb-lk1';
 
 export interface StyledTypographyInterface {
-    variant?: TypographyVariantType;
+    $variant?: TypographyVariantType;
     as?: any;
-    color?: string;
-    textAlign?: string;
-    textTransform?: string;
-    fontSize?: string;
+    $color?: string;
+    $textAlign?: string;
+    $textTransform?: string;
+    $fontSize?: string;
 
     /**
      * Additional class name for the typography element

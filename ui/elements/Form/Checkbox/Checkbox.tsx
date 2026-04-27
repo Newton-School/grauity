@@ -103,7 +103,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
                     <StyledCheckboxLabel
                         name={`checkbox-${id}`}
                         isRequired={isRequired}
-                        isDisabled={isDisabled}
+                        $isDisabled={isDisabled}
                         id={`checkbox-label-${id}`}
                     >
                         {label}

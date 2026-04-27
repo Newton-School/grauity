@@ -143,18 +143,18 @@ export interface AlertContainerProps {
 }
 
 export interface AlertBodyProps {
-    inlineButtons: boolean;
+    $inlineButtons: boolean;
     children: React.ReactNode;
 }
 
 export interface AlertTitleProps {
-    textColor: string;
+    $textColor: string;
     children: React.ReactNode;
     id: string;
 }
 
 export interface AlertDescriptionProps {
-    textColor: string;
+    $textColor: string;
     children: React.ReactNode;
     id?: string;
 }

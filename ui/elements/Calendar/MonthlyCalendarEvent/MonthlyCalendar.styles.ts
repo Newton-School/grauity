@@ -1,31 +1,31 @@
 import styled, { css } from 'styled-components';
 
 import {
-    MonthlyCalendarEventProps,
+    StyledMonthlyCalendarEventProps,
     StyledMonthlyCalendarEventTextProps,
 } from './types';
 
-export const StyledMonthlyCalendarEvent = styled.div<MonthlyCalendarEventProps>`
+export const StyledMonthlyCalendarEvent = styled.div<StyledMonthlyCalendarEventProps>`
     cursor: pointer;
     box-sizing: border-box;
     font-family: var(--font-family, 'Mona Sans');
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-radius: ${({ borderRadius }) => borderRadius || '4px'};
-    background-color: ${({ backgroundColor }) =>
-        backgroundColor || 'var(--bg-emphasis-brand-default, #0673f9)'};
-    width: ${({ width }) => width || '100%'};
-    height: ${({ height }) => height || '16px'};
+    border-radius: ${({ $borderRadius }) => $borderRadius || '4px'};
+    background-color: ${({ $backgroundColor }) =>
+        $backgroundColor || 'var(--bg-emphasis-brand-default, #0673f9)'};
+    width: ${({ $width }) => $width || '100%'};
+    height: ${({ $height }) => $height || '16px'};
     padding: 2px;
 
-    ${({ isActive, width, height }) =>
-        isActive &&
+    ${({ $isActive, $width, $height }) =>
+        $isActive &&
         css`
             border: 2px solid var(--text-emphasis-white-default, #ffffff);
             box-shadow: 0px 4px 32px var(--spacing-0px, 0px) rgba(0, 0, 0, 0.32);
-            width: calc(${width} + 4px);
-            height: calc(${height} + 4px);
+            width: calc(${$width || '100%'} + 4px);
+            height: calc(${$height || '16px'} + 4px);
         `}
 `;
 
@@ -36,8 +36,8 @@ export const StyledMonthlyCalendarEventText = styled.p<StyledMonthlyCalendarEven
     line-height: 16px;
     letter-spacing: 0.1px;
     padding: 0 2px;
-    color: ${({ color }) =>
-        color || 'var(--text-emphasis-white-default, #ffffff)'};
+    color: ${({ $color }) =>
+        $color || 'var(--text-emphasis-white-default, #ffffff)'};
     text-wrap: nowrap;
     margin: 0px;
 `;
@@ -50,8 +50,8 @@ export const StyledMonthlyCalendarEventTitleText = styled.span<StyledMonthlyCale
     line-height: 16px;
     letter-spacing: 0.1px;
     padding: 0 2px;
-    color: ${({ color }) =>
-        color || 'var(--text-emphasis-white-default, #ffffff)'};
+    color: ${({ $color }) =>
+        $color || 'var(--text-emphasis-white-default, #ffffff)'};
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -7,7 +7,14 @@ import {
     StyledModalPagination,
     StyledModalPaginationItem,
 } from '../Modal.styles';
-import { MultiStepModalProps } from '../types';
+import { ModalPaginationItemProps, MultiStepModalProps } from '../types';
+
+const MultiStepModalPaginationItem = ({
+    active,
+    ...rest
+}: ModalPaginationItemProps) => {
+    return <StyledModalPaginationItem $active={active} {...rest} />;
+};
 
 /**
  * A multi-step modal is a modal that has multiple steps.
@@ -104,7 +111,7 @@ const MultiStepModal = (props: MultiStepModalProps) => {
                     {showModalStepsPagination && modalSteps.length > 1 && (
                         <StyledModalPagination>
                             {modalSteps.map((item, index) => (
-                                <StyledModalPaginationItem
+                                <MultiStepModalPaginationItem
                                     key={`modal-pagination-item-${index + 1}`}
                                     active={index === currentStep}
                                     onClick={() => setCurrentStep(index)}
@@ -158,7 +165,7 @@ const MultiStepModal = (props: MultiStepModalProps) => {
 
 MultiStepModal.PaginatedActions = StyledModalPaginatedActions;
 MultiStepModal.Pagination = StyledModalPagination;
-MultiStepModal.PaginationItem = StyledModalPaginationItem;
+MultiStepModal.PaginationItem = MultiStepModalPaginationItem;
 
 export { type MultiStepModalProps };
 

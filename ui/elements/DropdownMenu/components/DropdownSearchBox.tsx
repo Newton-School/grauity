@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { grauityIconName } from 'ui/core';
 
 import TextField from '../../Form/TextField';
 import { Icon } from '../../Icon';
 import { StyledDropdownMenuSearchBox } from '../DropdownMenu.styles';
-
-interface DropdownSearchBoxProps {
-    searchable: boolean;
-    searchPlaceholder: string;
-    searchIcon: grauityIconName;
-    onSearchInputChange: (value: string) => void;
-    onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-    searchRef: React.RefObject<HTMLInputElement>;
-}
+import { DropdownSearchBoxProps } from '../types';
 
 const DropdownSearchBox = ({
     searchable,
@@ -33,14 +24,23 @@ const DropdownSearchBox = ({
     }
 
     // Handle only navigation keys at the container level
-    const handleContainerKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (['ArrowUp', 'ArrowDown', 'Enter', 'Escape', 'Tab'].includes(event.key)) {
+    const handleContainerKeyDown = (
+        event: React.KeyboardEvent<HTMLInputElement>
+    ) => {
+        if (
+            ['ArrowUp', 'ArrowDown', 'Enter', 'Escape', 'Tab'].includes(
+                event.key
+            )
+        ) {
             onKeyDown(event);
         }
     };
 
     return (
-        <StyledDropdownMenuSearchBox role="searchbox" onKeyDown={handleContainerKeyDown}>
+        <StyledDropdownMenuSearchBox
+            role="searchbox"
+            onKeyDown={handleContainerKeyDown}
+        >
             <TextField
                 ref={searchRef}
                 name="dropdown-search-box"

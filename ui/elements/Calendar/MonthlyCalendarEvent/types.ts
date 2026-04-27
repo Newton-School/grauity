@@ -56,7 +56,15 @@ export interface MonthlyCalendarEventProps extends StyledDivProps {
     isActive?: boolean;
 }
 
+export interface StyledMonthlyCalendarEventProps extends StyledDivProps {
+    $backgroundColor?: string;
+    $borderRadius?: string;
+    $width?: string;
+    $height?: string;
+    $isActive?: boolean;
+}
+
 export interface StyledMonthlyCalendarEventTextProps extends StyledDivProps {
-    color?: string;
+    $color?: string;
     fontWeight?: string;
 }

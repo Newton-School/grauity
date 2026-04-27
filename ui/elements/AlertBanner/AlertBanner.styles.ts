@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { AlertBannerContainerProps } from './types';
+import { AlertBannerContainerProps, AlertBannerContentProps } from './types';
 
 export const StyledAlertBannerContainer = styled.div<AlertBannerContainerProps>`
     display: flex;
@@ -10,23 +10,23 @@ export const StyledAlertBannerContainer = styled.div<AlertBannerContainerProps>`
     align-items: center;
     flex-shrink: 0;
 
-    position: ${({ position }) => position};
-    top: ${({ top }) => top};
-    bottom: ${({ bottom }) => bottom};
-    left: ${({ left }) => left};
-    right: ${({ right }) => right};
-    padding: ${({ padding }) => padding};
-    justify-content: ${({ justifyContent }) => justifyContent};
+    position: ${({ $position }) => $position};
+    top: ${({ $top }) => $top};
+    bottom: ${({ $bottom }) => $bottom};
+    left: ${({ $left }) => $left};
+    right: ${({ $right }) => $right};
+    padding: ${({ $padding }) => $padding};
+    justify-content: ${({ $justifyContent }) => $justifyContent};
 
-    color: ${({ textColor }) => textColor};
-    background-color: ${({ backgroundColor }) => backgroundColor};
+    color: ${({ $textColor }) => $textColor};
+    background-color: ${({ $backgroundColor }) => $backgroundColor};
 `;
 
-export const StyledAlertBannerContent = styled.div<any>`
+export const StyledAlertBannerContent = styled.div<AlertBannerContentProps>`
     display: flex;
     align-items: center;
     gap: var(--spacing-8px, 8px);
-    color: ${({ color }) => color};
+    color: ${({ $color }) => $color};
     font-family: var(--font-family, 'Mona Sans');
     font-size: var(--font-size-14px, 14px);
     font-weight: var(--font-weight-semibold, 600);

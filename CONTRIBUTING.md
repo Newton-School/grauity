@@ -34,6 +34,29 @@ The format of the icon file name will be `tag1|tag2|tag3|...|tagN|icon-name.svg`
 
 2. `npm run build-icons` to build the icons specifically.
 
+### Transient Props Policy (`styled-components`)
+
+Use transient props (prefixed with `$`) for all props that are used only for styling and should not be forwarded to DOM nodes.
+
+Examples:
+
+- Use `$isActive`, `$size`, `$variant` for style-only toggles/variants.
+- Keep real DOM attributes unprefixed (for example: `disabled`, `autoFocus`, `align`).
+
+Pattern:
+
+1. Keep public React component props unprefixed.
+2. Map public props to transient props at the styled boundary.
+3. Define styled-only prop interfaces separately in `types.ts` when a component has both public and styled props.
+
+Use the audit script before opening a PR:
+
+```bash
+npm run audit:transient-props
+```
+
+The command exits with a non-zero code when a style file still has non-transient style-only props.
+
 ## Building Workflow
 
 ## Releasing Workflow
