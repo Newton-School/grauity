@@ -7,10 +7,13 @@ import {
     TOAST_DESKTOP_PLACEMENT_ENUM,
     TOAST_DEVICE_ENUM,
     TOAST_MOBILE_PLACEMENT_ENUM,
+    TOAST_TYPES_ENUM,
     TOAST_VARIANTS_ENUM,
 } from './constants';
 
 export type ToastDevice = `${TOAST_DEVICE_ENUM}`;
+
+export type ToastType = `${TOAST_TYPES_ENUM}`;
 
 export type ToastVariant = `${TOAST_VARIANTS_ENUM}`;
 
@@ -19,6 +22,23 @@ export type ToastColor = `${TOAST_COLORS_ENUM}`;
 export type ToastDesktopPlacement = `${TOAST_DESKTOP_PLACEMENT_ENUM}`;
 export type ToastMobilePlacement = `${TOAST_MOBILE_PLACEMENT_ENUM}`;
 export type ToastPlacement = ToastDesktopPlacement | ToastMobilePlacement;
+
+export interface ToastSecondaryCTA {
+    /**
+     * Icon to display in the secondary icon button
+     */
+    icon: grauityIconName;
+
+    /**
+     * Click handler for the secondary CTA
+     */
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+
+    /**
+     * Aria label for accessibility
+     */
+    ariaLabel?: string;
+}
 
 export interface ToastProps {
     /**
@@ -29,6 +49,16 @@ export interface ToastProps {
      * Default: `desktop`
      */
     device?: ToastDevice;
+
+    /**
+     * Layout type of the toast.
+     *
+     * - `simple`: single line layout with icon, title and inline actions
+     * - `rich`: card-style layout with custom image, title, subtitle and stacked actions
+     *
+     * Default: `simple`
+     */
+    type?: ToastType;
 
     /**
      * Variant of the toast
@@ -95,6 +125,46 @@ export interface ToastProps {
     title?: React.ReactNode;
 
     /**
+     * Subtitle/description shown beneath the title.
+     *
+     * Only rendered for the `rich` toast type.
+     */
+    subtitle?: React.ReactNode;
+
+    /**
+     * Custom 44x44 visual rendered on the leading edge of the toast.
+     *
+     * Only rendered for the `rich` toast type. When provided, this replaces
+     * the default left icon.
+     */
+    image?: React.ReactNode;
+
+    /**
+     * Optional icon to display alongside the CTA text inside the primary
+     * CTA button.
+     *
+     * Only used for the `rich` toast type.
+     */
+    primaryCTAIcon?: grauityIconName;
+
+    /**
+     * Optional secondary icon-only CTA shown next to the primary CTA.
+     *
+     * Only used for the `rich` toast type.
+     */
+    secondaryCTA?: ToastSecondaryCTA;
+
+    /**
+     * Show/hide the secondary icon-only CTA. Only used for the `rich` toast type.
+     *
+     * When the `rich` layout is selected this defaults to `true`. Pass `false`
+     * to opt out without having to also clear `secondaryCTA`.
+     *
+     * Default: `true` for `rich`, `false` otherwise
+     */
+    showSecondaryCTA?: boolean;
+
+    /**
      * Additional class name for the toast container
      */
     className?: string;
@@ -106,9 +176,14 @@ export interface ToastProps {
 
     /**
      * Preset screen placement for the toast.
-     * For desktop: `top-left`, `top-right`, `bottom-left`, `bottom-right`
-     * For mobile: `top`, `bottom`
-     * Uses fixed positioning with offsets from screen edges.
+     *
+     * Desktop: `top-left`, `top-center`, `top-right`, `bottom-left`,
+     *          `bottom-center`, `bottom-right`
+     * Mobile: `top`, `bottom` (always horizontally centered)
+     *
+     * Uses `position: fixed` with offsets from the viewport edges. Centered
+     * placements use a `translateX(-50%)` pattern so the toast is visually
+     * centered regardless of its width.
      */
     placement?: ToastPlacement;
 
@@ -147,17 +222,34 @@ export interface ToastProps {
 
 export interface StyledToastContainerProps extends StyledDivProps {
     $device: ToastDevice;
+    $type: ToastType;
     $variant: ToastVariant;
     $color: ToastColor;
     $maxWidth: string;
 }
 
-export interface StyledToastContentProps extends StyledDivProps {}
+export interface StyledToastContentProps extends StyledDivProps {
+    $type?: ToastType;
+}
 
 export interface StyledToastTitleProps extends StyledDivProps {
+    $type?: ToastType;
     id?: string;
 }
 
+export interface StyledToastSubtitleProps extends StyledDivProps {}
+
 export interface StyledToastActionsProps extends StyledDivProps {
+    $device: ToastDevice;
+    $type?: ToastType;
+}
+
+export interface StyledToastLeadingProps extends StyledDivProps {
+    $device: ToastDevice;
+}
+
+export interface StyledToastImageProps extends StyledDivProps {}
+
+export interface StyledToastBodyProps extends StyledDivProps {
     $device: ToastDevice;
 }

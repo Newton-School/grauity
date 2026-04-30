@@ -4,8 +4,15 @@ import { grauityIconName } from '../../core';
 import {
     TOAST_COLOR_ICON_MAPPING,
     TOAST_COLOR_VARIANT_STYLES_MAPPING,
+    TOAST_TYPES_ENUM,
 } from './constants';
-import { ToastColor, ToastDevice, ToastPlacement, ToastVariant } from './types';
+import {
+    ToastColor,
+    ToastDevice,
+    ToastPlacement,
+    ToastType,
+    ToastVariant,
+} from './types';
 
 /**
  * Get the default icon for a toast type
@@ -77,41 +84,73 @@ export const getCloseButtonProps = (
 };
 
 /**
- * Get placement styles for positioning the toast on screen
+ * Get placement styles for positioning the toast on screen.
+ *
+ * The function builds an inline `position: fixed` style block that anchors the
+ * toast to the viewport. All placements compute width/height the same way
+ * regardless of variant or type — centered placements use a transform-based
+ * centering pattern so the toast is visually centered for any width (this
+ * fixes the over-constrained `left + right + width` combination that made
+ * the mobile rich variant appear left-aligned).
  */
 export const getPlacementStyles = (
     placement: ToastPlacement | undefined,
     device: ToastDevice,
     xOffset: number,
-    yOffset: number
+    yOffset: number,
+    type?: ToastType
 ): CSSProperties => {
     if (!placement) {
         return {};
     }
 
+    const isRich = type === TOAST_TYPES_ENUM.RICH;
+    const desktopMaxWidth = isRich ? 800 : 440;
+    const mobileMaxWidth = isRich ? 336 : null;
+
+    const safeMaxWidth = `calc(100% - ${xOffset * 2}px)`;
+
+    const centeredHorizontalStyle: CSSProperties = {
+        left: '50%',
+        right: 'auto',
+        transform: 'translateX(-50%)',
+    };
+
     if (device === 'mobile') {
-        return placement === 'top'
+        // Mobile placements are always horizontally centered. Rich variant
+        // caps at its design width (336px) but never exceeds the viewport.
+        const widthStyle: CSSProperties = mobileMaxWidth
             ? {
-                position: 'fixed',
-                top: `${yOffset}px`,
-                bottom: 'auto',
-                left: `${xOffset}px`,
-                right: `${xOffset}px`,
-                width: `calc(100% - ${xOffset * 2}px)`,
+                width: `min(${mobileMaxWidth}px, ${safeMaxWidth})`,
                 minWidth: 0,
+                maxWidth: safeMaxWidth,
             }
             : {
-                position: 'fixed',
-                bottom: `${yOffset}px`,
-                top: 'auto',
-                left: `${xOffset}px`,
-                right: `${xOffset}px`,
-                width: `calc(100% - ${xOffset * 2}px)`,
+                width: safeMaxWidth,
                 minWidth: 0,
+                maxWidth: safeMaxWidth,
             };
+
+        const verticalStyle: CSSProperties =
+            placement === 'top'
+                ? { top: `${yOffset}px`, bottom: 'auto' }
+                : { bottom: `${yOffset}px`, top: 'auto' };
+
+        return {
+            position: 'fixed',
+            ...centeredHorizontalStyle,
+            ...verticalStyle,
+            ...widthStyle,
+        };
     }
 
-    // Desktop placements
+    // Desktop: width is capped to the variant's max (with safe-area fallback).
+    const desktopWidthStyle: CSSProperties = {
+        width: `min(${desktopMaxWidth}px, ${safeMaxWidth})`,
+        maxWidth: safeMaxWidth,
+        minWidth: 0,
+    };
+
     switch (placement) {
         case 'top-left':
             return {
@@ -120,8 +159,7 @@ export const getPlacementStyles = (
                 bottom: 'auto',
                 left: `${xOffset}px`,
                 right: 'auto',
-                width: `min(440px, calc(100% - ${xOffset * 2}px))`,
-                minWidth: 0,
+                ...desktopWidthStyle,
             };
         case 'top-right':
             return {
@@ -130,8 +168,15 @@ export const getPlacementStyles = (
                 bottom: 'auto',
                 right: `${xOffset}px`,
                 left: 'auto',
-                width: `min(440px, calc(100% - ${xOffset * 2}px))`,
-                minWidth: 0,
+                ...desktopWidthStyle,
+            };
+        case 'top-center':
+            return {
+                position: 'fixed',
+                top: `${yOffset}px`,
+                bottom: 'auto',
+                ...centeredHorizontalStyle,
+                ...desktopWidthStyle,
             };
         case 'bottom-left':
             return {
@@ -140,8 +185,7 @@ export const getPlacementStyles = (
                 top: 'auto',
                 left: `${xOffset}px`,
                 right: 'auto',
-                width: `min(440px, calc(100% - ${xOffset * 2}px))`,
-                minWidth: 0,
+                ...desktopWidthStyle,
             };
         case 'bottom-right':
             return {
@@ -150,8 +194,15 @@ export const getPlacementStyles = (
                 top: 'auto',
                 right: `${xOffset}px`,
                 left: 'auto',
-                width: `min(440px, calc(100% - ${xOffset * 2}px))`,
-                minWidth: 0,
+                ...desktopWidthStyle,
+            };
+        case 'bottom-center':
+            return {
+                position: 'fixed',
+                bottom: `${yOffset}px`,
+                top: 'auto',
+                ...centeredHorizontalStyle,
+                ...desktopWidthStyle,
             };
         default:
             return {};

@@ -6,6 +6,11 @@ export enum TOAST_DEVICE_ENUM {
     MOBILE = 'mobile',
 }
 
+export enum TOAST_TYPES_ENUM {
+    SIMPLE = 'simple',
+    RICH = 'rich',
+}
+
 export enum TOAST_VARIANTS_ENUM {
     LOW = 'low',
     MEDIUM = 'medium',
@@ -22,8 +27,10 @@ export enum TOAST_COLORS_ENUM {
 
 export enum TOAST_DESKTOP_PLACEMENT_ENUM {
     TOP_LEFT = 'top-left',
+    TOP_CENTER = 'top-center',
     TOP_RIGHT = 'top-right',
     BOTTOM_LEFT = 'bottom-left',
+    BOTTOM_CENTER = 'bottom-center',
     BOTTOM_RIGHT = 'bottom-right',
 }
 
@@ -36,6 +43,8 @@ export const TOAST_DEVICES = [
     TOAST_DEVICE_ENUM.DESKTOP,
     TOAST_DEVICE_ENUM.MOBILE,
 ];
+
+export const TOAST_TYPES = [TOAST_TYPES_ENUM.SIMPLE, TOAST_TYPES_ENUM.RICH];
 
 export const TOAST_VARIANTS = [
     TOAST_VARIANTS_ENUM.LOW,

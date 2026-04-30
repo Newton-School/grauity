@@ -5,6 +5,8 @@ export {
     TOAST_DEVICE_ENUM,
     TOAST_DEVICES,
     TOAST_MOBILE_PLACEMENT_ENUM,
+    TOAST_TYPES,
+    TOAST_TYPES_ENUM,
     TOAST_VARIANTS,
     TOAST_VARIANTS_ENUM,
 } from './constants';
@@ -16,6 +18,8 @@ export type {
     ToastMobilePlacement,
     ToastPlacement,
     ToastProps,
+    ToastSecondaryCTA,
+    ToastType,
     ToastVariant,
 } from './types';
 export {

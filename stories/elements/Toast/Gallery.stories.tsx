@@ -50,8 +50,8 @@ export const AllVariants = () => (
                                     variant={variant}
                                     color={color}
                                     title={`${color.charAt(0).toUpperCase() + color.slice(1)} toast`}
-                                    showLeftIcon={true}
-                                    showCloseIcon={true}
+                                    showLeftIcon
+                                    showCloseIcon
                                     style={{ 
                                         maxWidth: device === 'mobile' ? '336px' : '440px',
                                         flex: device === 'desktop' ? '0 0 auto' : 'none'
@@ -79,7 +79,7 @@ export const WithCTAVariants = () => (
                             color={color}
                             variant={variant}
                             title={`${color.charAt(0).toUpperCase() + color.slice(1)} notification`}
-                            showCTA={true}
+                            showCTA
                             ctaText="Action"
                             onCTAClick={() => console.log(`${color} ${variant} CTA clicked`)}
                             style={{ maxWidth: '440px' }}
@@ -140,6 +140,102 @@ export const IconVariants = () => (
                 />
             </div>
         </div>
+    </div>
+);
+
+const richReferralImage = (
+    <div
+        aria-hidden="true"
+        style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '44px',
+            height: '44px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #ef9d1a 0%, #d0850b 100%)',
+            color: '#ffffff',
+            fontFamily: '\'Mona Sans\', sans-serif',
+            fontWeight: 800,
+            fontSize: '11px',
+            letterSpacing: '0.05em',
+        }}
+    >
+        ₹500
+    </div>
+);
+
+export const RichVariants = () => (
+    <div
+        style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '24px',
+            padding: '20px',
+        }}
+    >
+        <h2>Rich Toast Gallery</h2>
+
+        {devices.map((device) => (
+            <div
+                key={device}
+                style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
+            >
+                <h3 style={{ textTransform: 'capitalize', marginBottom: '8px' }}>
+                    {device} Device
+                </h3>
+
+                {variantLevels.map((variant) => (
+                    <div
+                        key={variant}
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '12px',
+                        }}
+                    >
+                        <h4
+                            style={{
+                                textTransform: 'capitalize',
+                                margin: '8px 0 4px 0',
+                                fontSize: '14px',
+                                fontWeight: 500,
+                                color: '#666',
+                            }}
+                        >
+                            {variant} Variant
+                        </h4>
+
+                        <div
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '12px',
+                            }}
+                        >
+                            {toastColors.map((color) => (
+                                <Toast
+                                    key={`rich-${device}-${variant}-${color}`}
+                                    type="rich"
+                                    device={device}
+                                    variant={variant}
+                                    color={color}
+                                    title={`${color.charAt(0).toUpperCase() + color.slice(1)} title`}
+                                    subtitle="A short description that explains the action a user should take."
+                                    image={richReferralImage}
+                                    showCTA
+                                    ctaText="Primary CTA"
+                                    secondaryCTA={{
+                                        icon: 'info-circle',
+                                        ariaLabel: 'More info',
+                                    }}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        ))}
     </div>
 );
 

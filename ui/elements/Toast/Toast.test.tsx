@@ -76,7 +76,7 @@ describe('Toast', () => {
         render(
             <Toast
                 {...defaultProps}
-                showCTA={true}
+                showCTA
                 ctaText="Retry"
                 onCTAClick={onCTAClick}
             />
@@ -162,7 +162,7 @@ describe('Toast', () => {
         render(
             <Toast
                 {...defaultProps}
-                showCTA={true}
+                showCTA
                 autoClose={1000}
                 onAutoClose={onAutoClose}
                 onCTAClick={onCTAClick}
@@ -193,6 +193,171 @@ describe('Toast', () => {
         expect(screen.getByRole('alert')).toBeInTheDocument();
     });
 
+    describe('placement', () => {
+        it('mobile bottom centers horizontally with transform', () => {
+            render(
+                <Toast
+                    {...defaultProps}
+                    device="mobile"
+                    placement="bottom"
+                    xOffset={16}
+                    yOffset={16}
+                />
+            );
+            const toast = screen.getByRole('alert');
+            expect(toast).toHaveStyle({
+                position: 'fixed',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                bottom: '16px',
+            });
+        });
+
+        it('mobile top centers horizontally with transform', () => {
+            render(
+                <Toast
+                    {...defaultProps}
+                    device="mobile"
+                    placement="top"
+                />
+            );
+            const toast = screen.getByRole('alert');
+            expect(toast).toHaveStyle({
+                position: 'fixed',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                top: '16px',
+            });
+        });
+
+        it('mobile rich variant bottom is centered (not over-constrained)', () => {
+            render(
+                <Toast
+                    {...defaultProps}
+                    type="rich"
+                    device="mobile"
+                    placement="bottom"
+                />
+            );
+            const toast = screen.getByRole('alert');
+            // Critical regression: must be centered, not anchored to left
+            expect(toast).toHaveStyle({
+                position: 'fixed',
+                left: '50%',
+                right: 'auto',
+                transform: 'translateX(-50%)',
+                bottom: '16px',
+            });
+        });
+
+        it('desktop bottom-center centers horizontally', () => {
+            render(
+                <Toast
+                    {...defaultProps}
+                    device="desktop"
+                    placement="bottom-center"
+                />
+            );
+            const toast = screen.getByRole('alert');
+            expect(toast).toHaveStyle({
+                position: 'fixed',
+                left: '50%',
+                right: 'auto',
+                transform: 'translateX(-50%)',
+                bottom: '16px',
+            });
+        });
+
+        it('desktop top-center centers horizontally', () => {
+            render(
+                <Toast
+                    {...defaultProps}
+                    device="desktop"
+                    placement="top-center"
+                />
+            );
+            const toast = screen.getByRole('alert');
+            expect(toast).toHaveStyle({
+                position: 'fixed',
+                left: '50%',
+                right: 'auto',
+                transform: 'translateX(-50%)',
+                top: '16px',
+            });
+        });
+
+        it('desktop bottom-right anchors to bottom-right', () => {
+            render(
+                <Toast
+                    {...defaultProps}
+                    device="desktop"
+                    placement="bottom-right"
+                />
+            );
+            const toast = screen.getByRole('alert');
+            expect(toast).toHaveStyle({
+                position: 'fixed',
+                bottom: '16px',
+                right: '16px',
+                left: 'auto',
+            });
+        });
+
+        it('desktop bottom-left anchors to bottom-left', () => {
+            render(
+                <Toast
+                    {...defaultProps}
+                    device="desktop"
+                    placement="bottom-left"
+                />
+            );
+            const toast = screen.getByRole('alert');
+            expect(toast).toHaveStyle({
+                position: 'fixed',
+                bottom: '16px',
+                left: '16px',
+                right: 'auto',
+            });
+        });
+
+        it('rich + desktop + bottom-center keeps centering for the wide card', () => {
+            render(
+                <Toast
+                    {...defaultProps}
+                    type="rich"
+                    device="desktop"
+                    placement="bottom-center"
+                />
+            );
+            const toast = screen.getByRole('alert');
+            expect(toast).toHaveStyle({
+                position: 'fixed',
+                left: '50%',
+                right: 'auto',
+                transform: 'translateX(-50%)',
+                bottom: '16px',
+            });
+        });
+
+        it('respects custom x/y offsets for centered placements', () => {
+            render(
+                <Toast
+                    {...defaultProps}
+                    device="desktop"
+                    placement="bottom-center"
+                    xOffset={32}
+                    yOffset={48}
+                />
+            );
+            const toast = screen.getByRole('alert');
+            expect(toast).toHaveStyle({
+                bottom: '48px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+            });
+        });
+    });
+
     it('renders with custom className and style', () => {
         render(
             <Toast
@@ -204,5 +369,126 @@ describe('Toast', () => {
         const toast = screen.getByRole('alert');
         expect(toast).toHaveClass('custom-toast');
         expect(toast).toHaveStyle({ zIndex: 9999 });
+    });
+
+    describe('rich type', () => {
+        const richProps: ToastProps = {
+            type: 'rich',
+            title: 'Earn ₹500 on each referral',
+            subtitle: 'Invite friends and earn ₹500 on each successful referral',
+            color: 'warning',
+            variant: 'medium',
+            onClose: jest.fn(),
+        };
+
+        it('renders title and subtitle', () => {
+            render(<Toast {...richProps} />);
+            expect(
+                screen.getByText('Earn ₹500 on each referral')
+            ).toBeInTheDocument();
+            expect(
+                screen.getByText(
+                    'Invite friends and earn ₹500 on each successful referral'
+                )
+            ).toBeInTheDocument();
+        });
+
+        it('renders custom image when provided', () => {
+            render(
+                <Toast
+                    {...richProps}
+                    image={<span data-testid="rich-image">XP</span>}
+                />
+            );
+            expect(screen.getByTestId('rich-image')).toBeInTheDocument();
+        });
+
+        it('falls back to default icon when no image is provided', () => {
+            render(<Toast {...richProps} color="success" />);
+            const icons = screen.getAllByTestId('testid-icon');
+            const successIcon = icons.find((icon) =>
+                icon.classList.contains('grauity-icon-check-circle')
+            );
+            expect(successIcon).toBeInTheDocument();
+        });
+
+        it('hides leading visual when image is null and showLeftIcon is false', () => {
+            render(
+                <Toast
+                    {...richProps}
+                    showLeftIcon={false}
+                    color="success"
+                />
+            );
+            const icons = screen.queryAllByTestId('testid-icon');
+            const successIcon = icons.find((icon) =>
+                icon.classList.contains('grauity-icon-check-circle')
+            );
+            expect(successIcon).toBeUndefined();
+        });
+
+        it('renders primary CTA and handles click', () => {
+            const onCTAClick = jest.fn();
+            render(
+                <Toast
+                    {...richProps}
+                    showCTA
+                    ctaText="Copy Referral Link"
+                    onCTAClick={onCTAClick}
+                />
+            );
+            const cta = screen.getByText('Copy Referral Link');
+            fireEvent.click(cta);
+            expect(onCTAClick).toHaveBeenCalledTimes(1);
+        });
+
+        it('renders secondary CTA and handles click', () => {
+            const onSecondaryClick = jest.fn();
+            render(
+                <Toast
+                    {...richProps}
+                    showCTA
+                    ctaText="Copy"
+                    secondaryCTA={{
+                        icon: 'info-circle',
+                        onClick: onSecondaryClick,
+                        ariaLabel: 'More info',
+                    }}
+                />
+            );
+            const secondary = screen.getByLabelText('More info');
+            fireEvent.click(secondary);
+            expect(onSecondaryClick).toHaveBeenCalledTimes(1);
+        });
+
+        it('renders close button and handles click', () => {
+            render(<Toast {...richProps} />);
+            const closeButton = screen.getByLabelText('Close toast');
+            fireEvent.click(closeButton);
+            expect(richProps.onClose).toHaveBeenCalledTimes(1);
+        });
+
+        it('renders correctly on mobile device', () => {
+            render(
+                <Toast
+                    {...richProps}
+                    device="mobile"
+                    showCTA
+                    ctaText="Copy"
+                    secondaryCTA={{ icon: 'info-circle' }}
+                />
+            );
+            expect(screen.getByRole('alert')).toBeInTheDocument();
+            expect(screen.getByText('Copy')).toBeInTheDocument();
+        });
+
+        it('respects emphasis variants on rich layout', () => {
+            const variants = ['low', 'medium', 'high'] as const;
+            variants.forEach((variant) => {
+                render(<Toast {...richProps} variant={variant} />);
+                expect(screen.getByRole('alert')).toBeInTheDocument();
+                cleanup();
+            });
+        });
     });
 });
