@@ -69,17 +69,12 @@ const richContainerStyles = css<StyledToastContainerProps>`
         0px 12px 12px 0px rgba(0, 0, 0, 0.03),
         0px 3px 7px 0px rgba(0, 0, 0, 0.04);
 
-    /* Locked dimensions per spec: desktop = 800x76, mobile = 336 wide */
-    width: ${({ $device }) => ($device === 'mobile' ? '336px' : '800px')};
+    /* Desktop is locked to design spec (800x76).
+     * Mobile is fluid: it fills its container so the consumer (or the
+     * \`placement\` prop's xOffset) controls the side margins. */
+    width: ${({ $device }) => ($device === 'mobile' ? '100%' : '800px')};
     height: ${({ $device }) => ($device === 'desktop' ? '76px' : 'auto')};
-    min-width: ${({ $device }) => ($device === 'mobile' ? '336px' : '800px')};
-    max-width: ${({ $device }) => ($device === 'mobile' ? '336px' : '800px')};
-
-    @media only screen and (max-width: 600px) {
-        width: 336px;
-        max-width: 100%;
-        min-width: 0;
-    }
+    min-width: ${({ $device }) => ($device === 'mobile' ? '0' : '800px')};
 `;
 
 export const StyledToastContainer = styled.div<StyledToastContainerProps>`
@@ -149,16 +144,39 @@ export const StyledToastSubtitle = styled.div<StyledToastSubtitleProps>`
     opacity: 0.72;
     margin: 0;
     width: 100%;
-    /* Always single-line; clip with ellipsis when content overflows */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+    /* Desktop keeps the single-line truncation to fit the locked card height.
+     * Mobile lets the subtitle wrap up to two lines, then truncates with an
+     * ellipsis (line-clamp). */
+    ${({ $device }) =>
+        $device === 'mobile'
+            ? css`
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 2;
+                  line-clamp: 2;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: normal;
+                  word-break: break-word;
+              `
+            : css`
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+              `};
 `;
 
 export const StyledToastActions = styled.div<StyledToastActionsProps>`
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    /* Allow the actions row itself to shrink to 0 if needed so its width is
+     * always bounded by the parent (toast container's content box). Without
+     * this, flex containers default to \`min-width: auto\` (= min-content),
+     * which forces the row to be at least as wide as the unwrappable button
+     * label and can push the secondary icon past the toast's right edge. */
+    min-width: 0;
 
     ${({ $type, $device }) =>
         $type === TOAST_TYPES_ENUM.RICH
@@ -168,6 +186,25 @@ export const StyledToastActions = styled.div<StyledToastActionsProps>`
         : 'var(--spacing-sp-7, 12px)'};
                   width: ${$device === 'mobile' ? '100%' : 'auto'};
                   align-items: ${$device === 'mobile' ? 'stretch' : 'center'};
+
+                  /* On mobile rich, the primary is rendered with \`fullWidth\`
+                   * (\`width: 100%\`). \`width: 100%\` becomes flex-basis: 100%
+                   * in a flex row, and combined with the secondary's fixed
+                   * 40px + gap, the row's preferred size exceeds the actions
+                   * row width - which pushes the secondary icon past the
+                   * toast's right edge. Pinning the primary to
+                   * \`flex: 1 1 0; min-width: 0\` makes it grow to fill the
+                   * space remaining after the 40px secondary + gap, and lets
+                   * it shrink below its intrinsic content width if needed.
+                   * Desktop rich keeps \`width: auto\` on the row, so we don't
+                   * apply this there - it would collapse the primary to 0. */
+                  ${$device === 'mobile' &&
+                  css`
+                      & > *:first-child:not(:last-child) {
+                          flex: 1 1 0;
+                          min-width: 0;
+                      }
+                  `}
               `
             : css`
                   gap: 0;

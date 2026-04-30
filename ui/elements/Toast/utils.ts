@@ -106,7 +106,6 @@ export const getPlacementStyles = (
 
     const isRich = type === TOAST_TYPES_ENUM.RICH;
     const desktopMaxWidth = isRich ? 800 : 440;
-    const mobileMaxWidth = isRich ? 336 : null;
 
     const safeMaxWidth = `calc(100% - ${xOffset * 2}px)`;
 
@@ -117,19 +116,14 @@ export const getPlacementStyles = (
     };
 
     if (device === 'mobile') {
-        // Mobile placements are always horizontally centered. Rich variant
-        // caps at its design width (336px) but never exceeds the viewport.
-        const widthStyle: CSSProperties = mobileMaxWidth
-            ? {
-                width: `min(${mobileMaxWidth}px, ${safeMaxWidth})`,
-                minWidth: 0,
-                maxWidth: safeMaxWidth,
-            }
-            : {
-                width: safeMaxWidth,
-                minWidth: 0,
-                maxWidth: safeMaxWidth,
-            };
+        // Mobile placements are always horizontally centered and fluid -
+        // they fill the viewport minus the xOffset margin on each side. This
+        // applies to both simple and rich variants.
+        const widthStyle: CSSProperties = {
+            width: safeMaxWidth,
+            minWidth: 0,
+            maxWidth: safeMaxWidth,
+        };
 
         const verticalStyle: CSSProperties =
             placement === 'top'

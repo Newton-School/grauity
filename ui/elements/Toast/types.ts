@@ -237,7 +237,9 @@ export interface StyledToastTitleProps extends StyledDivProps {
     id?: string;
 }
 
-export interface StyledToastSubtitleProps extends StyledDivProps {}
+export interface StyledToastSubtitleProps extends StyledDivProps {
+    $device?: ToastDevice;
+}
 
 export interface StyledToastActionsProps extends StyledDivProps {
     $device: ToastDevice;

@@ -17,6 +17,15 @@ export type NSToasterProps = React.ComponentProps<typeof SonnerToaster>;
  * around the toaster's anchor point (which sits at the viewport center).
  * The pattern composes with Sonner's animation transform via `var(--y)`,
  * preserving slide-in/out animations for stacked toasts.
+ *
+ * Mobile note: Sonner's mobile rule sets the toaster to
+ * \`left: 16; right: 16; width: 100%\` simultaneously - which is over
+ * constrained. CSS resolves this by keeping \`left + width\` and dropping
+ * \`right\`, so the toaster's right edge actually sits 16px past the
+ * viewport. Centering inside that overflowed toaster eats the 16px
+ * right margin and clips the close icon / secondary CTA. We force
+ * \`width: auto\` on mobile center so \`left + right\` define the toaster
+ * width and the centered toast fits with even margins on both sides.
  */
 const NSToasterGlobalStyles = createGlobalStyle`
     [data-sonner-toaster][data-x-position='center'] [data-sonner-toast] {
@@ -25,13 +34,13 @@ const NSToasterGlobalStyles = createGlobalStyle`
         transform: translateX(-50%) var(--y);
     }
 
-    /* Sonner's mobile media query forces width: calc(100% - mobile-offset*2)
-     * on every toast which would override our rich card's 336px design width.
-     * Restore intrinsic width for our custom toasts so the styled container
-     * keeps its design dimensions (centered horizontally as above). */
     @media only screen and (max-width: 600px) {
-        [data-sonner-toaster][data-x-position='center'] [data-sonner-toast] {
+        [data-sonner-toaster][data-x-position='center'] {
             width: auto;
+        }
+
+        [data-sonner-toaster][data-x-position='center'] [data-sonner-toast] {
+            width: 100%;
             left: 50%;
             right: auto;
             transform: translateX(-50%) var(--y);
@@ -108,12 +117,11 @@ export const nsToast = (props: ToastProps & NsToastOptions) => {
             duration: (toastProps.autoClose as number) || duration || 3000,
             position: sonnerPosition as any,
             // Strip Sonner's default container chrome so the NSToast component
-            // owns sizing/visuals. `width: auto` lets the inner toast grow to
-            // its natural width (e.g. 800px for rich) so the centering rule
-            // above can reposition it around the viewport center.
+            // owns sizing/visuals. Width is handled by the global rules above
+            // so it can react correctly to the viewport (mobile = fluid 100%,
+            // desktop = sizes to inner content).
             unstyled: true,
             style: {
-                width: 'auto',
                 padding: 0,
                 background: 'transparent',
                 boxShadow: 'none',

@@ -150,7 +150,9 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
 
     const getDefaultMaxWidth = () => {
         if (isRich) {
-            return device === 'mobile' ? '336px' : '800px';
+            // Mobile rich is fluid by default — fills its container with margins
+            // controlled by the placement prop's xOffset (or parent layout).
+            return device === 'mobile' ? '100%' : '800px';
         }
         return device === 'mobile' ? '336px' : '440px';
     };
@@ -219,7 +221,7 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
                     <StyledToastBody $device={device}>
                         {titleNode}
                         {subtitle && (
-                            <StyledToastSubtitle>
+                            <StyledToastSubtitle $device={device}>
                                 {subtitle}
                             </StyledToastSubtitle>
                         )}

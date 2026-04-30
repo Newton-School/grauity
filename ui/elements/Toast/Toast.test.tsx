@@ -250,6 +250,47 @@ describe('Toast', () => {
             });
         });
 
+        it('mobile rich variant fills the container with xOffset margins', () => {
+            render(
+                <Toast
+                    {...defaultProps}
+                    type="rich"
+                    device="mobile"
+                    placement="bottom"
+                    xOffset={16}
+                />
+            );
+            const toast = screen.getByRole('alert');
+            // Width is fluid: viewport - 2 * xOffset (no fixed 336px cap).
+            // Inline style attribute is the source of truth here.
+            expect(toast.getAttribute('style')).toContain(
+                'width: calc(100% - 32px)'
+            );
+            expect(toast.getAttribute('style')).toContain(
+                'max-width: calc(100% - 32px)'
+            );
+            expect(toast.getAttribute('style')).toContain('min-width: 0');
+        });
+
+        it('mobile rich variant respects custom xOffset for side margins', () => {
+            render(
+                <Toast
+                    {...defaultProps}
+                    type="rich"
+                    device="mobile"
+                    placement="bottom"
+                    xOffset={24}
+                />
+            );
+            const toast = screen.getByRole('alert');
+            expect(toast.getAttribute('style')).toContain(
+                'width: calc(100% - 48px)'
+            );
+            expect(toast.getAttribute('style')).toContain(
+                'max-width: calc(100% - 48px)'
+            );
+        });
+
         it('desktop bottom-center centers horizontally', () => {
             render(
                 <Toast
@@ -480,6 +521,59 @@ describe('Toast', () => {
             );
             expect(screen.getByRole('alert')).toBeInTheDocument();
             expect(screen.getByText('Copy')).toBeInTheDocument();
+        });
+
+        it('subtitle wraps to up to 2 lines on mobile rich (line-clamp)', () => {
+            render(
+                <Toast
+                    {...richProps}
+                    device="mobile"
+                    subtitle="A long description that should be allowed to wrap onto a second line before being truncated with an ellipsis on overflow."
+                />
+            );
+            const subtitle = screen.getByText(/A long description/);
+            // JSDOM doesn't fully resolve vendor-prefixed `-webkit-line-clamp`,
+            // but it DOES expose the structural -webkit-box display + the
+            // `white-space: normal` rule that opt the subtitle into wrapping.
+            expect(subtitle).toHaveStyle({
+                display: '-webkit-box',
+                'white-space': 'normal',
+            });
+        });
+
+        it('subtitle stays single-line on desktop rich', () => {
+            render(
+                <Toast
+                    {...richProps}
+                    device="desktop"
+                    subtitle="Single-line subtitle that should be truncated with an ellipsis when it overflows."
+                />
+            );
+            const subtitle = screen.getByText(/Single-line subtitle/);
+            expect(subtitle).toHaveStyle({
+                'white-space': 'nowrap',
+            });
+        });
+
+        it('mobile rich actions row allows itself to shrink (min-width: 0) so the secondary CTA stays inside the toast', () => {
+            // Regression: with `min-width: auto` (the flex default), the row
+            // grew to its min-content size and pushed the 40px secondary
+            // icon past the toast's right edge - clipping it visually.
+            render(
+                <Toast
+                    {...richProps}
+                    device="mobile"
+                    showCTA
+                    ctaText="Copy Referral Link"
+                    secondaryCTA={{
+                        icon: 'info-circle',
+                        ariaLabel: 'More info',
+                    }}
+                />
+            );
+            const primary = screen.getByText('Copy Referral Link');
+            const actionsRow = primary.closest('button')!.parentElement!;
+            expect(actionsRow).toHaveStyle({ 'min-width': '0' });
         });
 
         it('respects emphasis variants on rich layout', () => {
