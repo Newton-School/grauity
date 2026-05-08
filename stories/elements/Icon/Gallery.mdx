@@ -19,7 +19,7 @@ import TokenBlock from '../../helper-components/TokenBlock';
             {
                 orderBy(TAG_ICONS[key]).map((icon) => {
                     return (
-                        <div key={icon}>
+                        <div key={`${key}-${icon}`}>
                             <IconItem name={<TokenBlock copy>{icon}</TokenBlock>}>
                                 <Icon name={icon} color="inherit" />
                             </IconItem>
