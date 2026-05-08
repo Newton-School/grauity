@@ -12,22 +12,22 @@ import TokenBlock from '../../helper-components/TokenBlock';
 # Iconography
 
 <div>
-    {orderBy(Object.keys(TAG_ICONS)).map((key) => {
-        return (
-            <div>
-                <h2>{startCase(key)}</h2>
-                {
-                    orderBy(TAG_ICONS[key]).map((icon) => {
-                        return (
-                            <div>
-                                <IconItem name={<TokenBlock copy>{icon}</TokenBlock>}>
-                                    <Icon name={icon} color="inherit" />
-                                </IconItem>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-        );
-    })}
+  {orderBy(Object.keys(TAG_ICONS)).map((key) => {
+    return (
+        <div key={key}>
+            <h2>{startCase(key)}</h2>
+            {
+                orderBy(TAG_ICONS[key]).map((icon) => {
+                    return (
+                        <div key={icon}>
+                            <IconItem name={<TokenBlock copy>{icon}</TokenBlock>}>
+                                <Icon name={icon} color="inherit" />
+                            </IconItem>
+                        </div>
+                    )
+                })
+            }
+        </div>
+    );
+  })}
 </div>

@@ -107,6 +107,7 @@ function TabList(props: TabListProps) {
                     return React.cloneElement(
                         child as React.ReactElement<any>,
                         {
+                            key: index,
                             ...child.props,
                             variant,
                             size,
@@ -121,7 +122,7 @@ function TabList(props: TabListProps) {
                         }
                     );
                 }
-                return child;
+                return <React.Fragment key={index}>{child}</React.Fragment>;
             })}
             {variant === TAB_LIST_VARIANT_ENUM.BORDERED && (
                 <StyledTabListIndicator

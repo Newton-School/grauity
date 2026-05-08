@@ -22,100 +22,108 @@ import { AlertProps } from './types';
 /**
  * An alert component is used to display important messages to the user.
  */
-const Alert = forwardRef<HTMLDivElement, AlertProps>(({
-    type = 'default',
-    variant = 'primary',
-    icon = null,
-    title = '',
-    description = '',
-    top = null,
-    bottom = null,
-    left = null,
-    right = null,
-    position = 'static',
-    onClose,
-    showCloseButton = false,
-    actionButtons = [],
-    inlineButtons = false,
-    maxWidth = '440px',
-    className = '',
-}, ref) => {
-    const id = useId();
-    const iconName = getAlertIconName(icon, variant);
-    const { iconColor, textColor, backgroundColor, borderColor } =
-        getAlertBannerColors(variant, type);
+const Alert = forwardRef<HTMLDivElement, AlertProps>(
+    (
+        {
+            type = 'default',
+            variant = 'primary',
+            icon = null,
+            title = '',
+            description = '',
+            top = null,
+            bottom = null,
+            left = null,
+            right = null,
+            position = 'static',
+            onClose,
+            showCloseButton = false,
+            actionButtons = [],
+            inlineButtons = false,
+            maxWidth = '440px',
+            className = '',
+        },
+        ref
+    ) => {
+        const id = useId();
+        const iconName = getAlertIconName(icon, variant);
+        const { iconColor, textColor, backgroundColor, borderColor } =
+            getAlertBannerColors(variant, type);
 
-    const hasButton = !!actionButtons.length || showCloseButton;
+        const hasButton = !!actionButtons.length || showCloseButton;
 
-    return (
-        <StyledAlertContainer
-            $position={position}
-            $top={top}
-            $bottom={bottom}
-            $left={left}
-            $right={right}
-            $backgroundColor={backgroundColor}
-            $borderColor={borderColor}
-            ref={ref}
-            role="alert"
-            aria-labelledby={`alert-title-${id}`}
-            aria-describedby={`alert-description-${id}`}
-            $maxWidth={maxWidth}
-            className={className}
-        >
-            {iconName && (
-                <Icon
-                    name={iconName}
-                    color={iconColor || 'inherit'}
-                    size="20"
-                />
-            )}
-            <StyledAlertBody inlineButtons={inlineButtons}>
-                <StyledAlertContent>
-                    {title && (
-                        <StyledAlertTitle
-                            textColor={textColor}
-                            id={`alert-title-${id}`}
-                        >
-                            {title}
-                        </StyledAlertTitle>
-                    )}
-                    {description && (
-                        <StyledAlertDescription
-                            textColor={textColor}
-                            id={`alert-description-${id}`}
-                        >
-                            {description}
-                        </StyledAlertDescription>
-                    )}
-                </StyledAlertContent>
-                {hasButton && (
-                    <ButtonGroup>
-                        {actionButtons.map((button) => (
-                            <Button {...button} key={button.variant}>
-                                {button.children}
-                            </Button>
-                        ))}
-                    </ButtonGroup>
+        return (
+            <StyledAlertContainer
+                $position={position}
+                $top={top}
+                $bottom={bottom}
+                $left={left}
+                $right={right}
+                $backgroundColor={backgroundColor}
+                $borderColor={borderColor}
+                ref={ref}
+                role="alert"
+                aria-labelledby={`alert-title-${id}`}
+                aria-describedby={`alert-description-${id}`}
+                $maxWidth={maxWidth}
+                className={className}
+            >
+                {iconName && (
+                    <Icon
+                        name={iconName}
+                        color={iconColor || 'inherit'}
+                        size="20"
+                    />
                 )}
-            </StyledAlertBody>
-            {showCloseButton && (
-                <IconButton
-                    icon="close"
-                    variant={getButtonVariantFromAlertBannerTypeVariant(
-                        variant,
-                        type
+                <StyledAlertBody inlineButtons={inlineButtons}>
+                    <StyledAlertContent>
+                        {title && (
+                            <StyledAlertTitle
+                                textColor={textColor}
+                                id={`alert-title-${id}`}
+                            >
+                                {title}
+                            </StyledAlertTitle>
+                        )}
+                        {description && (
+                            <StyledAlertDescription
+                                textColor={textColor}
+                                id={`alert-description-${id}`}
+                            >
+                                {description}
+                            </StyledAlertDescription>
+                        )}
+                    </StyledAlertContent>
+                    {hasButton && (
+                        <ButtonGroup>
+                            {actionButtons.map((button, index) => (
+                                <Button
+                                    {...button}
+                                    key={`${button.variant}-${index}`}
+                                >
+                                    {button.children}
+                                </Button>
+                            ))}
+                        </ButtonGroup>
                     )}
-                    color={getButtonColorFromAlertBannerTypeVariant(
-                        variant,
-                        type
-                    )}
-                    onClick={onClose}
-                    size="small"
-                />
-            )}
-        </StyledAlertContainer>
-    );
-});
+                </StyledAlertBody>
+                {showCloseButton && (
+                    <IconButton
+                        icon="close"
+                        variant={getButtonVariantFromAlertBannerTypeVariant(
+                            variant,
+                            type
+                        )}
+                        color={getButtonColorFromAlertBannerTypeVariant(
+                            variant,
+                            type
+                        )}
+                        onClick={onClose}
+                        size="small"
+                    />
+                )}
+            </StyledAlertContainer>
+        );
+    }
+);
 
 export default Alert;

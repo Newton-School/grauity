@@ -50,12 +50,17 @@ const Pagination = (props: PaginationProps) => {
         if (totalPageCount <= maxDisplayedPages) {
             return Array.from({ length: totalPageCount }).map((_, index) => (
                 <Button
+                    key={index + 1}
                     variant={
                         index + 1 === currentPage
                             ? activeButtonVariant
                             : buttonVariant
                     }
-                    color={index + 1 === currentPage ? activeButtonColor : buttonColor}
+                    color={
+                        index + 1 === currentPage
+                            ? activeButtonColor
+                            : buttonColor
+                    }
                     onClick={() => handlePageChange(index + 1)}
                     size={size}
                 >
@@ -103,7 +108,7 @@ const Pagination = (props: PaginationProps) => {
                 <IconButton
                     key="ellipsis-prev"
                     variant="tertiary"
-                    color='neutral'
+                    color="neutral"
                     icon="kebab-horizontal"
                     size={size}
                 />
@@ -121,9 +126,7 @@ const Pagination = (props: PaginationProps) => {
                                 : buttonVariant
                         }
                         color={
-                            i === currentPage
-                                ? activeButtonColor
-                                : buttonColor
+                            i === currentPage ? activeButtonColor : buttonColor
                         }
                         onClick={() => handlePageChange(i)}
                         size={size}
@@ -139,7 +142,7 @@ const Pagination = (props: PaginationProps) => {
                 <IconButton
                     key="ellipsis-after"
                     variant="tertiary"
-                    color='neutral'
+                    color="neutral"
                     icon="kebab-horizontal"
                     size={size}
                 />

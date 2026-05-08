@@ -90,7 +90,7 @@ export const Gallery = () => {
             <Table.TableBody>
                 {sizes.map((size, sizeIndex) =>
                     colors.map((color, colorIndex) => (
-                        <Table.TableRow condensed>
+                        <Table.TableRow condensed key={`${size}-${color}`}>
                             <Table.TableDataCell>
                                 <TokenBlock copy>{size}</TokenBlock>
                             </Table.TableDataCell>
@@ -103,7 +103,10 @@ export const Gallery = () => {
                                     size={size}
                                     color={color}
                                     value={`radio-button-${sizeIndex}-${colorIndex}`}
-                                    checked={checkedValue === `radio-button-${sizeIndex}-${colorIndex}`}
+                                    checked={
+                                        checkedValue ===
+                                        `radio-button-${sizeIndex}-${colorIndex}`
+                                    }
                                     onChange={handleChange}
                                 />
                             </Table.TableDataCell>

@@ -32,8 +32,8 @@ const FormRenderer = (props: FormRendererProps) => {
                 }
             }}
         >
-            {formRows.map((row) => (
-                <div style={rowStyles}>
+            {formRows.map((row, rowIndex) => (
+                <div key={rowIndex} style={rowStyles}>
                     <FormRow
                         widths={row.widths || '1fr'}
                         column={getFormRowColumnValue({
@@ -43,6 +43,7 @@ const FormRenderer = (props: FormRendererProps) => {
                     >
                         {(row.items || []).map((formField) => (
                             <FormField
+                                key={formField.rendererProps?.name}
                                 ref={(element) =>
                                     setFormFieldRef(
                                         formField.rendererProps.name,
