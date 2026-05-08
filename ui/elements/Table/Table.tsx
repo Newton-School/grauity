@@ -167,12 +167,11 @@ Table.TableHead = forwardRef<HTMLTableSectionElement, TableHeadComponentProps>(
 Table.TableHeadingCell = forwardRef<
     HTMLTableCellElement,
     TableHeadingCellComponentProps
->(({ align, width, flexAlign, colSpan, rowSpan, ...props }, ref) => (
+>(({ align, width, colSpan, rowSpan, ...props }, ref) => (
     <StyledTableHeadingCell
         ref={ref}
         $align={align}
         width={width}
-        flexAlign={flexAlign}
         colSpan={colSpan}
         rowSpan={rowSpan}
         {...props}

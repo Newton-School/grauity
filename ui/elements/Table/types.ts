@@ -311,7 +311,6 @@ export interface StyledTableHeadingCellComponentProps {
     key?: string;
     $align?: React.CSSProperties['textAlign'];
     width?: string;
-    flexAlign?: string;
     colSpan?: number;
     rowSpan?: number;
     className?: string;
@@ -321,7 +320,6 @@ export interface TableHeadingCellComponentProps {
     key?: string;
     align?: React.CSSProperties['textAlign'];
     width?: string;
-    flexAlign?: string;
     colSpan?: number;
     rowSpan?: number;
     className?: string;
