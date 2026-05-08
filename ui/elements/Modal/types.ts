@@ -404,36 +404,60 @@ export interface StyleData {
     backgroundColor?: string;
 }
 
+export interface ModalMainProps extends StyledDivProps {
+    overflow?: string;
+}
+
+export interface ModalBannerProps extends StyledDivProps {}
+
+export interface ModalDividerProps extends StyledDivProps {}
+
 // Components interface for ModalContainer
+export interface StyledModalContainerProps extends StyledDivProps {
+    $width?: React.CSSProperties['width'];
+    $height?: React.CSSProperties['height'];
+    $minHeight?: React.CSSProperties['minHeight'];
+    $minWidth?: React.CSSProperties['minWidth'];
+    $maxHeight?: React.CSSProperties['maxHeight'];
+    $maxWidth?: React.CSSProperties['maxWidth'];
+    $mobileBottomFullWidth?: boolean;
+    $modalPadding?: React.CSSProperties['padding'];
+    $border?: React.CSSProperties['border'];
+}
 export interface ModalContainerProps extends StyledDivProps {
-    width?: string;
-    height?: string;
-    minHeight?: string;
-    minWidth?: string;
-    maxHeight?: string;
-    maxWidth?: string;
+    width?: React.CSSProperties['width'];
+    height?: React.CSSProperties['height'];
+    minHeight?: React.CSSProperties['minHeight'];
+    minWidth?: React.CSSProperties['minWidth'];
+    maxHeight?: React.CSSProperties['maxHeight'];
+    maxWidth?: React.CSSProperties['maxWidth'];
     mobileBottomFullWidth?: boolean;
-    modalPadding?: string;
-    ref?: React.MutableRefObject<any>;
-    children: React.ReactNode;
+    modalPadding?: React.CSSProperties['padding'];
+    border?: React.CSSProperties['border'];
+}
+
+export interface StyledModalActionProps extends StyledDivProps {
+    $justifyContent?: React.CSSProperties['justifyContent'];
+}
+
+export interface ModalActionProps extends StyledDivProps {
+    justifyContent?: React.CSSProperties['justifyContent'];
 }
 
 // Components interface for ModalTitle
-export interface ModalTitleProps {
-    id: string;
-    children: React.ReactNode;
-}
+export interface ModalTitleProps
+    extends React.HTMLAttributes<HTMLHeadingElement> {}
 
 // Components interface for ModalDescription
-export interface ModalDescriptionProps {
-    id: string;
-    children: React.ReactNode;
-}
+export interface ModalDescriptionProps
+    extends React.HTMLAttributes<HTMLDivElement> {}
 
 // Components interface for ModalBody
-export interface ModalBodyProps {
-    modalBodyMargin?: string;
-    children: React.ReactNode;
+export interface ModalBodyProps extends StyledDivProps {
+    modalBodyMargin?: React.CSSProperties['margin'];
+}
+export interface StyledModalBodyProps {
+    $modalBodyMargin?: React.CSSProperties['margin'];
 }
 
 // Components interface for ModalBodyMain
@@ -445,7 +469,7 @@ export interface ModalBodyMainProps {
 // Components interface for ModalPaginationItemProps
 export interface ModalPaginationItemProps {
     key: string | number;
-    active: boolean;
+    $active: boolean;
     onClick: () => void;
 }
 

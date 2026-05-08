@@ -12,7 +12,7 @@ import { StyledTypography } from './Typography.styles';
  * By default, prop `as` is set to `'auto'`, and the component will automatically
  * select the HTML tag based on the prop `variant`.
 
- * If you want the text to be rendered as a different HTML tag, provide your desired 
+ * If you want the text to be rendered as a different HTML tag, provide your desired
  * value to prop `as`, such as `'h1'`, `'h2'`, `'p'`, etc.
  */
 const Typography = ({
@@ -32,12 +32,12 @@ const Typography = ({
             : as;
     return (
         <StyledTypography
-            variant={variant}
+            $variant={variant}
             as={asType}
-            color={color}
-            textAlign={textAlign}
-            textTransform={textTransform}
-            fontSize={fontSize}
+            $color={color}
+            $textAlign={textAlign}
+            $textTransform={textTransform}
+            $fontSize={fontSize}
             className={className}
             title={title}
         >

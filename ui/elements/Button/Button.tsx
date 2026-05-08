@@ -55,13 +55,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
             onClick={handleClick}
             className={classes}
             style={style}
-            isLoading={loading}
+            $isLoading={loading}
             disabled={isButtonDisabled}
-            variant={variant}
+            $variant={variant}
             $color={color as ButtonColors}
-            size={size}
-            fullWidth={fullWidth}
-            iconPosition={iconPosition}
+            $size={size}
+            $fullWidth={fullWidth}
+            $iconPosition={iconPosition}
             type={type}
             title={tooltip}
             tabIndex={tabIndex}
@@ -91,7 +91,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
                 <StyledButtonContent
                     id={`button-content-${id}`}
                     $iconPosition={icon ? iconPosition : false}
-                    variant={variant}
+                    $variant={variant}
                 >
                     {children}
                 </StyledButtonContent>

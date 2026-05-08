@@ -78,11 +78,11 @@ function Icon({
 
     return (
         <StyledIcon
-            as={as}
+            as={as || 'i'}
             name={name}
-            size={size}
+            $size={size}
             onClick={handleClick}
-            color={color}
+            $color={color}
             {...ariaOptions}
             className={classes}
             style={style}

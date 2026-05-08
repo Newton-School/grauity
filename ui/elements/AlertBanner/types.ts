@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { StyledDivProps } from '../../../common/types';
 import { grauityIconName } from '../../core';
 import { ButtonProps } from '../Button';
 
@@ -120,20 +121,18 @@ export interface AlertBannerProps {
     className?: string;
 }
 
-export interface AlertBannerContainerProps {
-    type: AlertBannerType;
-    variant: AlertBannerVariant;
-    justifyContent: string;
-    padding: string;
-    top: string;
-    bottom: string;
-    left: string;
-    right: string;
-    position: string;
-    textColor: string;
-    backgroundColor: string;
-    borderColor: string;
-    children: React.ReactNode;
-    ref: React.Ref<HTMLDivElement>;
-    role: string;
+export interface StyledAlertBannerContainerProps extends StyledDivProps {
+    $position?: string;
+    $top?: string;
+    $bottom?: string;
+    $left?: string;
+    $right?: string;
+    $padding?: string;
+    $justifyContent?: string;
+    $textColor?: string;
+    $backgroundColor?: string;
+}
+
+export interface StyledAlertBannerContentProps {
+    $color?: string;
 }

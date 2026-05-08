@@ -12,7 +12,7 @@ export const StyledAccordionHeader = styled.div<StyledAccordionHeaderProps>`
     cursor: pointer;
     padding: 8px;
     align-items: center;
-    background-color: ${(props) => props.$headerBackgroundColor};
+    background-color: ${({ $headerBackgroundColor }) => $headerBackgroundColor};
     font-family: var(--font-family, 'Mona Sans');
     color: var(--text-emphasis-primary-default, #16191d);
     font-size: 14px;
@@ -29,7 +29,8 @@ export const StyledAccordionHeaderSuffix = styled.div`
 
 export const StyledAccordionContent = styled.div<StyledAccordionContentProps>`
     overflow: hidden;
-    background-color: ${(props) => props.$contentBackgroundColor};
+    background-color: ${({ $contentBackgroundColor }) =>
+        $contentBackgroundColor};
     padding: 0px 8px;
     font-size: 12px;
     color: var(--text-emphasis-primary-default, #16191d);

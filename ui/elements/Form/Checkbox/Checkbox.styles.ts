@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import styled, { css } from 'styled-components';
 
-import { StyledDivProps, StyledLabelProps } from '../../../../common/types';
+import { StyledDivProps } from '../../../../common/types';
 import { Label } from '../Label';
 import { StyledCheckboxInputProps } from './types';
 import { getCheckboxStyles } from './utils';
@@ -90,7 +90,7 @@ export const StyledCheckboxLabel = styled(Label)`
     letter-spacing: 0.1px;
     cursor: pointer;
 
-    ${({ isDisabled }: StyledLabelProps) =>
+    ${({ isDisabled }) =>
         isDisabled &&
         css`
             color: var(--text-emphasis-primary-disabled, #8c95a6);

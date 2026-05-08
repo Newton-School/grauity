@@ -120,7 +120,7 @@ export interface TextAreaProps {
     className?: string;
 }
 
-export interface TextAreaComponentProps extends StyledTextAreaProps {
-    size?: VARIANTS;
+export interface StyledTextAreaComponentProps extends StyledTextAreaProps {
+    $size?: VARIANTS;
     $color?: TextAreaColors;
 }
