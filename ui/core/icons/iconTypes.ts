@@ -167,6 +167,7 @@ export type grauityIconName =
     | 'hackerearth'
     | 'hackerrank'
     | 'instagram'
+    | 'kaggle'
     | 'leetcode'
     | 'linkedin'
     | 'twitter'
@@ -627,6 +628,7 @@ export type grauityIconKey =
     | 'Hackerearth'
     | 'Hackerrank'
     | 'Instagram'
+    | 'Kaggle'
     | 'Leetcode'
     | 'Linkedin'
     | 'Twitter'
@@ -1087,6 +1089,7 @@ export enum GRAUITY_ICONS {
     Hackerearth = 'hackerearth',
     Hackerrank = 'hackerrank',
     Instagram = 'instagram',
+    Kaggle = 'kaggle',
     Leetcode = 'leetcode',
     Linkedin = 'linkedin',
     Twitter = 'twitter',

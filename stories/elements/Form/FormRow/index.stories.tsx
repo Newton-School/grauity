@@ -182,6 +182,7 @@ const Template = () => {
                     </NSLabel>
                     {ACCOUNT_TYPES.map((accountType) => (
                         <NSRadioButton
+                            key={accountType.value}
                             name="account_type"
                             value={accountType.value}
                             label={accountType.label}
@@ -235,6 +236,7 @@ const Template = () => {
                     <NSFormRow>
                         {PIZZA_TOPPINGS.map((pizzaTopping) => (
                             <NSCheckbox
+                                key={pizzaTopping.value}
                                 name="pizza_toppings"
                                 label={pizzaTopping.label}
                                 isChecked={formData.pizza_toppings.includes(
@@ -259,6 +261,7 @@ const Template = () => {
                     <NSLabel name="form-color">Select color</NSLabel>
                     {Object.keys(ACTION_COLORS).map((key) => (
                         <NSRadioButton
+                            key={key}
                             name="form-color"
                             value={key.toLowerCase()}
                             label={key.toLowerCase()}
