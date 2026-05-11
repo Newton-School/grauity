@@ -107,7 +107,6 @@ function TabList(props: TabListProps) {
                     return React.cloneElement(
                         child as React.ReactElement<any>,
                         {
-                            key: index,
                             ...child.props,
                             variant,
                             size,
