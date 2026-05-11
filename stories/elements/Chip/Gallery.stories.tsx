@@ -25,12 +25,12 @@ const Template = (args: ChipProps) => (
         </Table.TableHead>
         <Table.TableBody>
             {CHIP_VARIANTS.map((variant) => (
-                <Table.TableRow condensed>
+                <Table.TableRow condensed key={variant}>
                     <Table.TableDataCell>
                         <TokenBlock copy>{variant}</TokenBlock>
                     </Table.TableDataCell>
                     <Table.TableDataCell>
-                        <Chip {...args} variant={variant} key={variant}>
+                        <Chip {...args} variant={variant}>
                             Chip {variant}
                         </Chip>
                     </Table.TableDataCell>

@@ -22,7 +22,7 @@ function Loading(props: MonthlyCalendarLoadingProps) {
                     rows={gridData.length % DAYS_IN_WEEK}
                 >
                     {gridData.map((item, idx) => (
-                        <StyledMonthlyCalendarGridItem>
+                        <StyledMonthlyCalendarGridItem key={item.valueOf()}>
                             <DateCircle date={item} />
                             {SHOW_PLACEHOLDERS_AT_INDEX.has(idx) ? (
                                 <Placeholder />

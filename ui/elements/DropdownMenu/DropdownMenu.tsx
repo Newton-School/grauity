@@ -287,6 +287,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                         {Array.isArray(searchedOptions) &&
                             searchedOptions.map((item, index) => (
                                 <DropdownMenuOption
+                                    key={item.value}
                                     optionRef={(el) => {
                                         searchedItemRefs.current[index] = el;
                                     }}
@@ -315,7 +316,8 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                 />
                             ))}
 
-                        {!Array.isArray(searchedOptions) && items.length > 0 &&
+                        {!Array.isArray(searchedOptions) &&
+                            items.length > 0 &&
                             items.map((item, index) => {
                                 if (item.type === BaseItemType.SUB_HEADER) {
                                     return (
@@ -358,7 +360,8 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                                 handleClickOption(
                                                     options.find(
                                                         (option) =>
-                                                            option.value === clickedValue
+                                                            option.value ===
+                                                            clickedValue
                                                     )
                                                 )
                                             }
@@ -377,13 +380,14 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                                 return null;
                             })}
 
-                        {!Array.isArray(searchedOptions) && items.length === 0 && (
-                            <StyledDropdownMenuEmptyState>
-                                <StyledDropdownMenuHeaderSubtext>
-                                    {emptyStateMessage}
-                                </StyledDropdownMenuHeaderSubtext>
-                            </StyledDropdownMenuEmptyState>
-                        )}
+                        {!Array.isArray(searchedOptions) &&
+                            items.length === 0 && (
+                                <StyledDropdownMenuEmptyState>
+                                    <StyledDropdownMenuHeaderSubtext>
+                                        {emptyStateMessage}
+                                    </StyledDropdownMenuHeaderSubtext>
+                                </StyledDropdownMenuEmptyState>
+                            )}
                     </StyledDropdownOptionsContainer>
                 </StyledDropdownMenuBody>
                 <DropdownMenuFooter

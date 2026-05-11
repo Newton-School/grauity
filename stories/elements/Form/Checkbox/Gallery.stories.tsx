@@ -68,9 +68,7 @@ export const Gallery = () => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value, checked } = event.target;
         setCheckedValues((prev) =>
-            checked
-                ? [...prev, value]
-                : prev.filter((item) => item !== value),
+            checked ? [...prev, value] : prev.filter((item) => item !== value)
         );
     };
 
@@ -95,7 +93,7 @@ export const Gallery = () => {
             <Table.TableBody>
                 {sizes.map((size, sizeIndex) =>
                     colors.map((color, colorIndex) => (
-                        <Table.TableRow condensed>
+                        <Table.TableRow condensed key={`${size}-${color}`}>
                             <Table.TableDataCell>
                                 <TokenBlock copy>{size}</TokenBlock>
                             </Table.TableDataCell>
@@ -109,7 +107,7 @@ export const Gallery = () => {
                                     color={color}
                                     value={`radio-button-${sizeIndex}-${colorIndex}`}
                                     isChecked={checkedValues.includes(
-                                        `radio-button-${sizeIndex}-${colorIndex}`,
+                                        `radio-button-${sizeIndex}-${colorIndex}`
                                     )}
                                     onChange={handleChange}
                                 />

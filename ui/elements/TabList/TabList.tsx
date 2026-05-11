@@ -121,7 +121,7 @@ function TabList(props: TabListProps) {
                         }
                     );
                 }
-                return child;
+                return <React.Fragment key={index}>{child}</React.Fragment>;
             })}
             {variant === TAB_LIST_VARIANT_ENUM.BORDERED && (
                 <StyledTabListIndicator

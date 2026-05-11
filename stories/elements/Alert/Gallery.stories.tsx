@@ -69,10 +69,13 @@ const Template = (args: AlertProps) => (
         </Table.TableHead>
         <Table.TableBody>
             {Object.entries(ALERT_TYPES_ENUM).map(([, alertBannerType]) => (
-                <>
+                <React.Fragment key={alertBannerType}>
                     {Object.entries(ALERT_VARIANTS_ENUM).map(
                         ([, alertBannerVariant]) => (
-                            <Table.TableRow condensed>
+                            <Table.TableRow
+                                condensed
+                                key={`${alertBannerType}-${alertBannerVariant}`}
+                            >
                                 <Table.TableDataCell>
                                     <TokenBlock copy>
                                         {alertBannerType}
@@ -93,7 +96,7 @@ const Template = (args: AlertProps) => (
                             </Table.TableRow>
                         )
                     )}
-                </>
+                </React.Fragment>
             ))}
         </Table.TableBody>
     </Table.Table>

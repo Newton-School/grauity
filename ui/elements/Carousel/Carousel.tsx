@@ -189,8 +189,9 @@ const Carousel = (props: CarouselProps) => {
                 role="list"
                 aria-label="Carousel items"
             >
-                {items.map((item) => (
+                {items.map((item, index) => (
                     <StyledCarouselItem
+                        key={index}
                         className={CLASSNAMES.NS_CAROUSEL_ITEM}
                         $fullWidth={fullWidthItems}
                         role="listitem"
