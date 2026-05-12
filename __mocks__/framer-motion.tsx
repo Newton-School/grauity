@@ -1,27 +1,10 @@
-/* eslint-disable no-undef */
-import React from 'react';
-
-const createMotionComponent = <T extends keyof JSX.IntrinsicElements>(
-    element: T
-) => {
-    return React.forwardRef<HTMLElement, JSX.IntrinsicElements[T]>(
-        ({ children, ...props }, ref) => {
-            return React.createElement(element, { ...props, ref }, children);
-        }
-    );
-};
+// __mocks__/framer-motion.tsx
+import * as React from 'react';
 
 export const motion = {
-    div: createMotionComponent('div'),
-    button: createMotionComponent('button'),
+    div: (props: any) => <div {...props} />,
+    span: (props: any) => <span {...props} />,
+    // Add more tags as needed like motion.button, motion.ul, etc.
 };
 
-export const AnimatePresence: React.FC<{ children?: React.ReactNode }> = ({
-    children,
-}) => <>{children}</>;
-
-export const useAnimate = () => [jest.fn(), jest.fn()];
-export const animate = jest.fn();
-export const motionValue = jest.fn();
-export const useMotionValue = jest.fn();
-export const useTransform = jest.fn();
+export const AnimatePresence = ({ children }: { children: React.ReactNode }) => <>{children}</>;
