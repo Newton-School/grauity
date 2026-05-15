@@ -137,7 +137,15 @@ Table.Table = forwardRef<HTMLTableElement, TableComponentProps>(
     )
 );
 
-Table.TableBody = StyledTableBody;
+Table.TableBody = forwardRef<
+    HTMLTableSectionElement,
+    React.ComponentProps<typeof StyledTableBody>
+>(({ children, ...props }, ref) => (
+    <StyledTableBody ref={ref} {...props}>
+        {children}
+    </StyledTableBody>
+));
+
 Table.TableDataCell = forwardRef<
     HTMLTableCellElement,
     TableDataCellComponentProps

@@ -72,7 +72,7 @@ const TokenBlock = ({
                 $interactive={copy}
                 onClick={copy ? handleCopy : null}
             >
-                {color && <ColorRenderer $color={color} $size="small" />}
+                {color && <ColorRenderer color={color} size="small" />}
                 {children}
                 {showCopiedOverlay && (
                     <StyledTokenBlockCopiedContainer $copied={copied}>

@@ -78,7 +78,7 @@ function Icon({
 
     return (
         <StyledIcon
-            as={as || 'i'}
+            as={as}
             name={name}
             $size={size}
             onClick={handleClick}

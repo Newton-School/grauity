@@ -222,7 +222,7 @@ export interface TableProps {
     hoverable?: boolean;
 }
 
-// Interface for NSStyledTableWrapper component props
+// Interface for StyledTable component props
 export interface StyledTableComponentProps {
     $borderAround?: boolean;
     $borderWithin?: boolean;
@@ -234,6 +234,7 @@ export interface StyledTableComponentProps {
     className?: string;
     style?: React.CSSProperties;
 }
+
 // Interface for NSTableWrapper component props
 export interface TableComponentProps {
     borderAround?: boolean;
