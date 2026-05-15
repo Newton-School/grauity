@@ -157,7 +157,11 @@ export const StyledModalBody = styled.div<StyledModalBodyProps>`
     text-align: center;
     letter-spacing: 0.2px;
     color: var(--text-emphasis-secondary-default, #5b6271);
-    margin: ${({ $modalBodyMargin }) => $modalBodyMargin || '0'};
+    ${({ $modalBodyMargin }) =>
+        $modalBodyMargin &&
+        css`
+            margin: ${$modalBodyMargin};
+        `}
     white-space: pre-line;
     width: 100%;
     flex: 1;

@@ -1,3 +1,4 @@
+import { HTMLMotionProps } from 'framer-motion';
 import React from 'react';
 
 import { StyledDivProps } from '../../../common/types';
@@ -424,7 +425,9 @@ export interface StyledModalContainerProps extends StyledDivProps {
     $modalPadding?: React.CSSProperties['padding'];
     $border?: React.CSSProperties['border'];
 }
-export interface ModalContainerProps extends StyledDivProps {
+export interface ModalContainerProps
+    extends StyledDivProps,
+        Omit<HTMLMotionProps<'div'>, 'children'> {
     width?: React.CSSProperties['width'];
     height?: React.CSSProperties['height'];
     minHeight?: React.CSSProperties['minHeight'];
@@ -468,7 +471,6 @@ export interface ModalBodyMainProps {
 
 // Components interface for ModalPaginationItemProps
 export interface ModalPaginationItemProps {
-    key: string | number;
     $active: boolean;
     onClick: () => void;
 }

@@ -2,7 +2,7 @@
 import styled, { css } from 'styled-components';
 
 import { StyledDivProps } from '../../../../common/types';
-import { Label } from '../Label';
+import { StyledLabel } from '../index.styles';
 import {
     StyledRadioButtonInputProps,
     StyledRadioButtonLabelProps,
@@ -101,7 +101,7 @@ export const StyledRadioButtonInput = styled.input<StyledRadioButtonInputProps>`
 `;
 
 export const StyledRadioButtonLabel = styled(
-    Label
+    StyledLabel
 )<StyledRadioButtonLabelProps>`
     color: var(--text-emphasis-primary-default, #16191d);
     font-size: 14px;
@@ -130,8 +130,8 @@ export const StyledRadioButtonLabel = styled(
         `;
     }}
 
-    ${({ isDisabled }) =>
-        isDisabled &&
+    ${({ $isDisabled }) =>
+        $isDisabled &&
         css`
             color: var(--text-emphasis-primary-disabled, #8c95a6);
             cursor: not-allowed;

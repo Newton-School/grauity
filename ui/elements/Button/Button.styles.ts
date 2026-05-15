@@ -5,7 +5,7 @@ import {
     ICON_BUTTON_SIZE_STYLES_MAPPING,
     TEXT_BUTTON_SIZE_TO_STYLE_MAPPING,
 } from './constants';
-import { ButtonContentProps,StyledButtonComponentProps } from './types';
+import { ButtonContentProps, StyledButtonComponentProps } from './types';
 import { getButtonStyles } from './utils';
 
 export const StyledButton = styled.button<StyledButtonComponentProps>`

@@ -1,5 +1,9 @@
-/* eslint-disable import/prefer-default-export */
 import styled, { css } from 'styled-components';
+
+import {
+    StyledTokenBlockCopiedContainerProps,
+    StyledTokenBlockProps,
+} from './types';
 
 export const StyledHideOnPrintWrapper = styled.div`
     @media print {
@@ -7,7 +11,7 @@ export const StyledHideOnPrintWrapper = styled.div`
     }
 `;
 
-export const StyledTokenBlock = styled.div<any>`
+export const StyledTokenBlock = styled.div<StyledTokenBlockProps>`
     display: flex;
     padding: var(--spacing-8px, 8px) var(--spacing-12px, 12px);
     justify-content: center;
@@ -33,7 +37,7 @@ export const StyledTokenBlock = styled.div<any>`
         `}
 `;
 
-export const StyledTokenBlockCopiedContainer = styled.div<any>`
+export const StyledTokenBlockCopiedContainer = styled.div<StyledTokenBlockCopiedContainerProps>`
     position: absolute;
     top: 0;
     left: 0;
