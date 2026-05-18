@@ -222,6 +222,19 @@ export interface TableProps {
     hoverable?: boolean;
 }
 
+// Interface for StyledTable component props
+export interface StyledTableComponentProps {
+    $borderAround?: boolean;
+    $borderWithin?: boolean;
+    $borderHorizontal?: boolean;
+    $borderVertical?: boolean;
+    $striped?: boolean;
+    children: ReactNode;
+    role?: string;
+    className?: string;
+    style?: React.CSSProperties;
+}
+
 // Interface for NSTableWrapper component props
 export interface TableComponentProps {
     borderAround?: boolean;
@@ -236,6 +249,12 @@ export interface TableComponentProps {
 }
 
 // Interface for NSTableHead component props
+export interface StyledTableHeadComponentProps {
+    $capitalizeHeaders?: boolean;
+    $highlightHeaders?: boolean;
+    className?: string;
+    children: ReactNode;
+}
 export interface TableHeadComponentProps {
     capitalizeHeaders?: boolean;
     highlightHeaders?: boolean;
@@ -250,6 +269,13 @@ export interface TableBodyComponentProps {
 }
 
 // Interface for NSTableRow component props
+export interface StyledTableRowComponentProps {
+    key?: string;
+    $condensed?: boolean;
+    className?: string;
+    children: ReactNode;
+    $hoverable?: boolean;
+}
 export interface TableRowComponentProps {
     key?: string;
     condensed?: boolean;
@@ -259,11 +285,22 @@ export interface TableRowComponentProps {
 }
 
 // Interface for NSTableDataCell component props
+export interface StyledTableDataCellComponentProps {
+    key?: string;
+    $align?: React.CSSProperties['textAlign'];
+    $vAlign?: React.CSSProperties['verticalAlign'];
+    $flexAlign?: React.CSSProperties['alignItems'];
+    colSpan?: number;
+    rowSpan?: number;
+    className?: string;
+    children: ReactNode;
+}
+
 export interface TableDataCellComponentProps {
     key?: string;
-    align?: string;
-    vAlign?: string;
-    flexAlign?: string;
+    align?: React.CSSProperties['textAlign'];
+    vAlign?: React.CSSProperties['verticalAlign'];
+    flexAlign?: React.CSSProperties['alignItems'];
     colSpan?: number;
     rowSpan?: number;
     className?: string;
@@ -271,11 +308,19 @@ export interface TableDataCellComponentProps {
 }
 
 // Interface for NSTableHeadingCell component props
+export interface StyledTableHeadingCellComponentProps {
+    key?: string;
+    $align?: React.CSSProperties['textAlign'];
+    width?: string;
+    colSpan?: number;
+    rowSpan?: number;
+    className?: string;
+    children: ReactNode;
+}
 export interface TableHeadingCellComponentProps {
     key?: string;
-    align?: string;
+    align?: React.CSSProperties['textAlign'];
     width?: string;
-    flexAlign?: string;
     colSpan?: number;
     rowSpan?: number;
     className?: string;

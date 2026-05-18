@@ -134,4 +134,4 @@ function UnifiedCalendar(props: UnifiedCalendarProps<any>) {
 }
 
 export default UnifiedCalendar;
-export { UnifiedCalendarProps };
+export type { UnifiedCalendarProps };

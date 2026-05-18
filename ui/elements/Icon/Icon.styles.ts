@@ -1,15 +1,13 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { IconProps } from './types';
+import { StyledIconProps } from './types';
 
 const iconLoading = keyframes`
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 `;
 
-export const StyledIcon = styled.i.attrs((props: any) => ({
-    as: props.as || 'i',
-}))<IconProps>`
+export const StyledIcon = styled.i<StyledIconProps>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,37 +19,37 @@ export const StyledIcon = styled.i.attrs((props: any) => ({
     opacity: 1;
     text-align: center;
 
-    ${({ size }) => css`
-        font-size: ${size}px;
+    ${({ $size }) => css`
+        font-size: ${$size}px;
     `}
 
-    ${({ color }) => css`
-        color: ${color};
+    ${({ $color }) => css`
+        color: ${$color};
 
         &.bordered,
         &.circular {
-            box-shadow: 0 0 0 0.1em ${color} inset;
+            box-shadow: 0 0 0 0.1em ${$color} inset;
             height: 1em;
             width: 1em;
 
             &.inverted {
                 color: var(--icon-color-white);
-                background-color: ${color};
+                background-color: ${$color};
             }
         }
 
         &.disabled {
-            color: ${color};
+            color: ${$color};
 
             &.bordered,
             &.circular {
-                box-shadow: 0 0 0 0.1em ${color} inset;
+                box-shadow: 0 0 0 0.1em ${$color} inset;
                 height: 1em;
                 width: 1em;
 
                 &.inverted {
                     color: var(--disabled-icon-color-white);
-                    background-color: ${color};
+                    background-color: ${$color};
                 }
             }
         }

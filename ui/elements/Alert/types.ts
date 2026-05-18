@@ -128,7 +128,7 @@ export interface AlertProps {
     className?: string;
 }
 
-export interface AlertContainerProps {
+export interface StyledAlertContainerProps {
     $position: string;
     $top: string;
     $bottom: string;
@@ -142,19 +142,19 @@ export interface AlertContainerProps {
     $maxWidth: string;
 }
 
-export interface AlertBodyProps {
-    inlineButtons: boolean;
+export interface StyledAlertBodyProps {
+    $inlineButtons: boolean;
     children: React.ReactNode;
 }
 
-export interface AlertTitleProps {
-    textColor: string;
+export interface StyledAlertTitleProps {
+    $textColor: string;
     children: React.ReactNode;
     id: string;
 }
 
-export interface AlertDescriptionProps {
-    textColor: string;
+export interface StyledAlertDescriptionProps {
+    $textColor: string;
     children: React.ReactNode;
     id?: string;
 }

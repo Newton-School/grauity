@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components';
 
 import {
-    AlertBodyProps,
-    AlertContainerProps,
-    AlertDescriptionProps,
-    AlertTitleProps,
+    StyledAlertBodyProps,
+    StyledAlertContainerProps,
+    StyledAlertDescriptionProps,
+    StyledAlertTitleProps,
 } from './types';
 
-export const StyledAlertContainer = styled.div<AlertContainerProps>`
+export const StyledAlertContainer = styled.div<StyledAlertContainerProps>`
     display: flex;
     width: 100%;
     ${({ $maxWidth }) => $maxWidth && `max-width: ${$maxWidth};`}
@@ -25,7 +25,7 @@ export const StyledAlertContainer = styled.div<AlertContainerProps>`
     ${({ $right }) => $right && `right: ${$right};`}
 `;
 
-export const StyledAlertBody = styled.div<AlertBodyProps>`
+export const StyledAlertBody = styled.div<StyledAlertBodyProps>`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -34,8 +34,8 @@ export const StyledAlertBody = styled.div<AlertBodyProps>`
     margin-right: var(--spacing-4px, 4px);
     flex: 1 0 0;
 
-    ${({ inlineButtons }) =>
-        inlineButtons &&
+    ${({ $inlineButtons }) =>
+        $inlineButtons &&
         css`
             flex-direction: row;
             align-items: flex-start;
@@ -50,9 +50,9 @@ export const StyledAlertContent = styled.div`
     gap: var(--spacing-4px, 4px);
 `;
 
-export const StyledAlertTitle = styled.h2<AlertTitleProps>`
+export const StyledAlertTitle = styled.h2<StyledAlertTitleProps>`
     align-self: stretch;
-    color: ${({ textColor }) => textColor};
+    color: ${({ $textColor }) => $textColor};
     font-size: var(--font-size-14px, 14px);
     font-weight: var(--font-weight-semibold, 600);
     line-height: 160%;
@@ -60,9 +60,9 @@ export const StyledAlertTitle = styled.h2<AlertTitleProps>`
     margin: 0;
 `;
 
-export const StyledAlertDescription = styled.div<AlertDescriptionProps>`
+export const StyledAlertDescription = styled.div<StyledAlertDescriptionProps>`
     align-self: stretch;
-    color: ${({ textColor }) => textColor};
+    color: ${({ $textColor }) => $textColor};
     font-size: var(--font-size-14px, 14px);
     font-weight: var(--font-weight-medium, 500);
     line-height: 160%;

@@ -28,7 +28,7 @@ const RadioButton = (props: RadioButtonProps) => {
         checked = false,
         isDisabled = false,
         className,
-        color='brand',
+        color = 'brand',
     } = props;
 
     const id = useId();
@@ -54,11 +54,11 @@ const RadioButton = (props: RadioButtonProps) => {
                 />
                 {label && (
                     <StyledRadioButtonLabel
-                        name={`radio-button-${id}`}
-                        isRequired={isRequired}
-                        isDisabled={isDisabled}
+                        htmlFor={`radio-button-${id}`}
+                        $isRequired={isRequired}
+                        $isDisabled={isDisabled}
                         $size={size}
-                        color={color === 'brand' ? 'primary' : color}
+                        $color={color === 'brand' ? 'primary' : color}
                     >
                         {label}
                     </StyledRadioButtonLabel>

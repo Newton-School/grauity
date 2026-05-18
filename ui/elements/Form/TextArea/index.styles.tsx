@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { getTextFieldStyles } from '../TextField/utils';
 import { TEXT_AREA_SIZE_STYLES_MAPPING } from './constant';
-import { TextAreaComponentProps } from './types';
+import { StyledTextAreaComponentProps } from './types';
 
 export const StyledTextAreaFieldContainer = styled.div`
     display: flex;
@@ -14,7 +14,7 @@ export const StyledTextAreaFieldContainer = styled.div`
     box-sizing: border-box;
 `;
 
-export const StyledTextArea = styled.textarea<TextAreaComponentProps>`
+export const StyledTextArea = styled.textarea<StyledTextAreaComponentProps>`
     border-radius: var(--corner-radius-radius4, 8px);
     color: var(--text-emphasis-primary-default, #16191d);
     border-radius: var(--corner-radius-radius4, 8px);
@@ -31,17 +31,17 @@ export const StyledTextArea = styled.textarea<TextAreaComponentProps>`
         background-color 0.15s ease-in-out, outline 0.2s ease-in-out;
     outline: 0px solid transparent;
 
-    ${({ size }) =>
-        size &&
+    ${({ $size }) =>
+        $size &&
         css`
-            ${TEXT_AREA_SIZE_STYLES_MAPPING[size]}
+            ${TEXT_AREA_SIZE_STYLES_MAPPING[$size]}
         `};
 
     &:hover {
         background: var(--bg-subtle-primary-hover, #f6f7f9);
     }
 
-    ${({$color}) => $color && getTextFieldStyles($color)}
+    ${({ $color }) => $color && getTextFieldStyles($color)}
 
     &::placeholder {
         color: var(--text-emphasis-primary-disabled, #8c95a6);
