@@ -4,14 +4,10 @@ import { StyledDivProps } from '../../../common/types';
 import { grauityIconName } from '../../core';
 import {
     TOAST_COLORS_ENUM,
-    TOAST_DESKTOP_PLACEMENT_ENUM,
-    TOAST_DEVICE_ENUM,
-    TOAST_MOBILE_PLACEMENT_ENUM,
+    TOAST_PLACEMENT_ENUM,
     TOAST_TYPES_ENUM,
     TOAST_VARIANTS_ENUM,
 } from './constants';
-
-export type ToastDevice = `${TOAST_DEVICE_ENUM}`;
 
 export type ToastType = `${TOAST_TYPES_ENUM}`;
 
@@ -19,9 +15,7 @@ export type ToastVariant = `${TOAST_VARIANTS_ENUM}`;
 
 export type ToastColor = `${TOAST_COLORS_ENUM}`;
 
-export type ToastDesktopPlacement = `${TOAST_DESKTOP_PLACEMENT_ENUM}`;
-export type ToastMobilePlacement = `${TOAST_MOBILE_PLACEMENT_ENUM}`;
-export type ToastPlacement = ToastDesktopPlacement | ToastMobilePlacement;
+export type ToastPlacement = `${TOAST_PLACEMENT_ENUM}`;
 
 export interface ToastSecondaryCTA {
     /**
@@ -42,15 +36,6 @@ export interface ToastSecondaryCTA {
 
 export interface ToastProps {
     /**
-     * Device variant of the toast
-     *
-     * Available choices: `desktop`, `mobile`
-     *
-     * Default: `desktop`
-     */
-    device?: ToastDevice;
-
-    /**
      * Layout type of the toast.
      *
      * - `simple`: single line layout with icon, title and inline actions
@@ -61,11 +46,11 @@ export interface ToastProps {
     type?: ToastType;
 
     /**
-     * Variant of the toast
+     * Emphasis variant of the toast
      *
-     * Available choices: `low`, `medium`, `high`
+     * Available choices: `primary`, `secondary`, `tertiary`
      *
-     * Default: `medium`
+     * Default: `secondary`
      */
     variant?: ToastVariant;
 
@@ -177,9 +162,8 @@ export interface ToastProps {
     /**
      * Preset screen placement for the toast.
      *
-     * Desktop: `top-left`, `top-center`, `top-right`, `bottom-left`,
-     *          `bottom-center`, `bottom-right`
-     * Mobile: `top`, `bottom` (always horizontally centered)
+     * Available: `top-left`, `top-center`, `top-right`, `bottom-left`,
+     *            `bottom-center`, `bottom-right`
      *
      * Uses `position: fixed` with offsets from the viewport edges. Centered
      * placements use a `translateX(-50%)` pattern so the toast is visually
@@ -204,7 +188,7 @@ export interface ToastProps {
     /**
      * Maximum width of the toast
      *
-     * Default: `'440px'` for desktop, `'100%'` for mobile
+     * Default: `440px` for simple, `800px` for rich (responsive on narrow viewports)
      */
     maxWidth?: string;
 
@@ -221,7 +205,6 @@ export interface ToastProps {
 }
 
 export interface StyledToastContainerProps extends StyledDivProps {
-    $device: ToastDevice;
     $type: ToastType;
     $variant: ToastVariant;
     $color: ToastColor;
@@ -237,21 +220,14 @@ export interface StyledToastTitleProps extends StyledDivProps {
     id?: string;
 }
 
-export interface StyledToastSubtitleProps extends StyledDivProps {
-    $device?: ToastDevice;
-}
+export interface StyledToastSubtitleProps extends StyledDivProps {}
 
 export interface StyledToastActionsProps extends StyledDivProps {
-    $device: ToastDevice;
     $type?: ToastType;
 }
 
-export interface StyledToastLeadingProps extends StyledDivProps {
-    $device: ToastDevice;
-}
+export interface StyledToastLeadingProps extends StyledDivProps {}
 
 export interface StyledToastImageProps extends StyledDivProps {}
 
-export interface StyledToastBodyProps extends StyledDivProps {
-    $device: ToastDevice;
-}
+export interface StyledToastBodyProps extends StyledDivProps {}

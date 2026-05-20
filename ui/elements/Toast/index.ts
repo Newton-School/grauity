@@ -1,10 +1,8 @@
 export {
     TOAST_COLORS,
     TOAST_COLORS_ENUM,
-    TOAST_DESKTOP_PLACEMENT_ENUM,
-    TOAST_DEVICE_ENUM,
-    TOAST_DEVICES,
-    TOAST_MOBILE_PLACEMENT_ENUM,
+    TOAST_PLACEMENT_ENUM,
+    TOAST_PLACEMENTS,
     TOAST_TYPES,
     TOAST_TYPES_ENUM,
     TOAST_VARIANTS,
@@ -13,9 +11,6 @@ export {
 export { default } from './Toast';
 export type {
     ToastColor,
-    ToastDesktopPlacement,
-    ToastDevice,
-    ToastMobilePlacement,
     ToastPlacement,
     ToastProps,
     ToastSecondaryCTA,

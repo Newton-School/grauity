@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { TOAST_DEVICE_STYLES_MAPPING, TOAST_TYPES_ENUM } from './constants';
+import { TOAST_TYPES_ENUM } from './constants';
 import {
     StyledToastActionsProps,
     StyledToastBodyProps,
@@ -13,53 +13,39 @@ import {
 } from './types';
 import { getToastColors } from './utils';
 
+const MOBILE_BREAKPOINT = '@media only screen and (max-width: 600px)';
+
 const simpleContainerStyles = css<StyledToastContainerProps>`
     display: flex;
     align-items: center;
 
-    border-radius: ${({ $device }) =>
-        TOAST_DEVICE_STYLES_MAPPING[$device].borderRadius};
-    padding: ${({ $device }) => TOAST_DEVICE_STYLES_MAPPING[$device].padding};
-    gap: ${({ $device }) => TOAST_DEVICE_STYLES_MAPPING[$device].gap};
-    min-height: ${({ $device }) =>
-        TOAST_DEVICE_STYLES_MAPPING[$device].minHeight};
-    box-shadow: ${({ $device }) =>
-        TOAST_DEVICE_STYLES_MAPPING[$device].boxShadow};
+    border-radius: var(--corner-radius-cr-4, 8px);
+    padding: 0;
+    gap: 0;
+    min-height: var(--spacing-sp-9, 48px);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
 
     width: 440px;
     height: 48px;
     min-width: 440px;
-    min-height: 48px;
 
-    @media only screen and (max-width: 600px) {
+    ${MOBILE_BREAKPOINT} {
         width: 100%;
-        height: 48px;
         min-width: 328px;
-        min-height: 48px;
         max-width: 100%;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
     }
-
-    width: ${({ $device }) => ($device === 'mobile' ? '100%' : '440px')};
-    min-width: ${({ $device }) => ($device === 'desktop' ? '440px' : 'auto')};
 `;
 
 const richContainerStyles = css<StyledToastContainerProps>`
     display: flex;
-    flex-direction: ${({ $device }) =>
-        $device === 'mobile' ? 'column' : 'row'};
-    align-items: ${({ $device }) =>
-        $device === 'mobile' ? 'stretch' : 'center'};
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    gap: ${({ $device }) =>
-        $device === 'mobile'
-            ? 'var(--spacing-sp-5, 8px)'
-            : 'var(--spacing-sp-7, 12px)'};
+    gap: var(--spacing-sp-7, 12px);
 
     border-radius: var(--corner-radius-cr-5, 12px);
-    padding: ${({ $device }) =>
-        $device === 'mobile'
-            ? 'var(--spacing-sp-7, 12px)'
-            : 'var(--spacing-sp-7, 12px) var(--spacing-sp-8, 16px)'};
+    padding: var(--spacing-sp-7, 12px) var(--spacing-sp-8, 16px);
     overflow: hidden;
     position: relative;
 
@@ -69,12 +55,19 @@ const richContainerStyles = css<StyledToastContainerProps>`
         0px 12px 12px 0px rgba(0, 0, 0, 0.03),
         0px 3px 7px 0px rgba(0, 0, 0, 0.04);
 
-    /* Desktop is locked to design spec (800x76).
-     * Mobile is fluid: it fills its container so the consumer (or the
-     * \`placement\` prop's xOffset) controls the side margins. */
-    width: ${({ $device }) => ($device === 'mobile' ? '100%' : '800px')};
-    height: ${({ $device }) => ($device === 'desktop' ? '76px' : 'auto')};
-    min-width: ${({ $device }) => ($device === 'mobile' ? '0' : '800px')};
+    width: 800px;
+    height: 76px;
+    min-width: 800px;
+
+    ${MOBILE_BREAKPOINT} {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-sp-5, 8px);
+        padding: var(--spacing-sp-7, 12px);
+        width: 100%;
+        height: auto;
+        min-width: 0;
+    }
 `;
 
 export const StyledToastContainer = styled.div<StyledToastContainerProps>`
@@ -144,67 +137,45 @@ export const StyledToastSubtitle = styled.div<StyledToastSubtitleProps>`
     opacity: 0.72;
     margin: 0;
     width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
-    /* Desktop keeps the single-line truncation to fit the locked card height.
-     * Mobile lets the subtitle wrap up to two lines, then truncates with an
-     * ellipsis (line-clamp). */
-    ${({ $device }) =>
-        $device === 'mobile'
-            ? css`
-                  display: -webkit-box;
-                  -webkit-box-orient: vertical;
-                  -webkit-line-clamp: 2;
-                  line-clamp: 2;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                  white-space: normal;
-                  word-break: break-word;
-              `
-            : css`
-                  white-space: nowrap;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-              `};
+    ${MOBILE_BREAKPOINT} {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        word-break: break-word;
+    }
 `;
 
 export const StyledToastActions = styled.div<StyledToastActionsProps>`
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    /* Allow the actions row itself to shrink to 0 if needed so its width is
-     * always bounded by the parent (toast container's content box). Without
-     * this, flex containers default to \`min-width: auto\` (= min-content),
-     * which forces the row to be at least as wide as the unwrappable button
-     * label and can push the secondary icon past the toast's right edge. */
     min-width: 0;
 
-    ${({ $type, $device }) =>
+    ${({ $type }) =>
         $type === TOAST_TYPES_ENUM.RICH
             ? css`
-                  gap: ${$device === 'mobile'
-        ? 'var(--spacing-sp-5, 8px)'
-        : 'var(--spacing-sp-7, 12px)'};
-                  width: ${$device === 'mobile' ? '100%' : 'auto'};
-                  align-items: ${$device === 'mobile' ? 'stretch' : 'center'};
+                  gap: var(--spacing-sp-7, 12px);
+                  width: auto;
+                  align-items: center;
 
-                  /* On mobile rich, the primary is rendered with \`fullWidth\`
-                   * (\`width: 100%\`). \`width: 100%\` becomes flex-basis: 100%
-                   * in a flex row, and combined with the secondary's fixed
-                   * 40px + gap, the row's preferred size exceeds the actions
-                   * row width - which pushes the secondary icon past the
-                   * toast's right edge. Pinning the primary to
-                   * \`flex: 1 1 0; min-width: 0\` makes it grow to fill the
-                   * space remaining after the 40px secondary + gap, and lets
-                   * it shrink below its intrinsic content width if needed.
-                   * Desktop rich keeps \`width: auto\` on the row, so we don't
-                   * apply this there - it would collapse the primary to 0. */
-                  ${$device === 'mobile' &&
-                  css`
+                  ${MOBILE_BREAKPOINT} {
+                      gap: var(--spacing-sp-5, 8px);
+                      width: 100%;
+                      align-items: stretch;
+
                       & > *:first-child:not(:last-child) {
                           flex: 1 1 0;
                           min-width: 0;
                       }
-                  `}
+                  }
               `
             : css`
                   gap: 0;
@@ -215,11 +186,14 @@ export const StyledToastActions = styled.div<StyledToastActionsProps>`
 
 export const StyledToastLeading = styled.div<StyledToastLeadingProps>`
     display: flex;
-    align-items: ${({ $device }) =>
-        $device === 'mobile' ? 'flex-start' : 'center'};
+    align-items: center;
     gap: var(--spacing-sp-7, 12px);
     flex: 1;
     min-width: 0;
+
+    ${MOBILE_BREAKPOINT} {
+        align-items: flex-start;
+    }
 `;
 
 export const StyledToastImage = styled.div<StyledToastImageProps>`
@@ -240,12 +214,33 @@ export const StyledToastBody = styled.div<StyledToastBodyProps>`
     gap: var(--spacing-sp-2, 2px);
     flex: 1;
     min-width: 0;
-    padding-right: ${({ $device }) =>
-        $device === 'mobile' ? 'var(--spacing-sp-9, 28px)' : '0'};
+
+    ${MOBILE_BREAKPOINT} {
+        padding-right: var(--spacing-sp-9, 28px);
+    }
+`;
+
+export const StyledToastCloseInActions = styled.div`
+    ${MOBILE_BREAKPOINT} {
+        display: none;
+    }
 `;
 
 export const StyledToastCloseAbsolute = styled.div`
-    position: absolute;
-    top: var(--spacing-sp-3, 4px);
-    right: var(--spacing-sp-3, 4px);
+    display: none;
+
+    ${MOBILE_BREAKPOINT} {
+        display: block;
+        position: absolute;
+        top: var(--spacing-sp-3, 4px);
+        right: var(--spacing-sp-3, 4px);
+    }
+`;
+
+export const StyledToastPrimaryCTA = styled.div`
+    ${MOBILE_BREAKPOINT} {
+        & > button {
+            width: 100%;
+        }
+    }
 `;

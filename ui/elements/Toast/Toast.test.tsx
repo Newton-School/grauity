@@ -23,7 +23,7 @@ describe('Toast', () => {
         expect(screen.getByText('Toast Title')).toBeInTheDocument();
     });
 
-    it('renders with default device and color', () => {
+    it('renders with default variant and color', () => {
         render(<Toast {...defaultProps} />);
         const toast = screen.getByRole('alert');
         expect(toast).toBeInTheDocument();
@@ -42,7 +42,7 @@ describe('Toast', () => {
         render(<Toast {...defaultProps} showLeftIcon={false} />);
         const icons = screen.queryAllByTestId('testid-icon');
         const infoIcon = icons.find(icon => 
-            icon.classList.contains('grauity-icon-info-circle')
+            icon.classList.contains('grauity-icon-message-info')
         );
         expect(infoIcon).toBeUndefined();
     });
@@ -89,22 +89,14 @@ describe('Toast', () => {
         expect(onCTAClick).toHaveBeenCalledTimes(1);
     });
 
-    it('renders with different device variants', () => {
-        const { rerender } = render(<Toast {...defaultProps} device="desktop" />);
-        expect(screen.getByRole('alert')).toBeInTheDocument();
-        
-        rerender(<Toast {...defaultProps} device="mobile" />);
-        expect(screen.getByRole('alert')).toBeInTheDocument();
-    });
-
     it('renders with different variant levels', () => {
-        const { rerender } = render(<Toast {...defaultProps} variant="low" />);
+        const { rerender } = render(<Toast {...defaultProps} variant="primary" />);
         expect(screen.getByRole('alert')).toBeInTheDocument();
         
-        rerender(<Toast {...defaultProps} variant="medium" />);
+        rerender(<Toast {...defaultProps} variant="secondary" />);
         expect(screen.getByRole('alert')).toBeInTheDocument();
         
-        rerender(<Toast {...defaultProps} variant="high" />);
+        rerender(<Toast {...defaultProps} variant="tertiary" />);
         expect(screen.getByRole('alert')).toBeInTheDocument();
     });
 
@@ -194,12 +186,11 @@ describe('Toast', () => {
     });
 
     describe('placement', () => {
-        it('mobile bottom centers horizontally with transform', () => {
+        it('bottom-center centers horizontally with transform', () => {
             render(
                 <Toast
                     {...defaultProps}
-                    device="mobile"
-                    placement="bottom"
+                    placement="bottom-center"
                     xOffset={16}
                     yOffset={16}
                 />
@@ -213,12 +204,11 @@ describe('Toast', () => {
             });
         });
 
-        it('mobile top centers horizontally with transform', () => {
+        it('top-center centers horizontally with transform', () => {
             render(
                 <Toast
                     {...defaultProps}
-                    device="mobile"
-                    placement="top"
+                    placement="top-center"
                 />
             );
             const toast = screen.getByRole('alert');
@@ -230,72 +220,11 @@ describe('Toast', () => {
             });
         });
 
-        it('mobile rich variant bottom is centered (not over-constrained)', () => {
+        it('rich variant bottom-center is centered (not over-constrained)', () => {
             render(
                 <Toast
                     {...defaultProps}
                     type="rich"
-                    device="mobile"
-                    placement="bottom"
-                />
-            );
-            const toast = screen.getByRole('alert');
-            // Critical regression: must be centered, not anchored to left
-            expect(toast).toHaveStyle({
-                position: 'fixed',
-                left: '50%',
-                right: 'auto',
-                transform: 'translateX(-50%)',
-                bottom: '16px',
-            });
-        });
-
-        it('mobile rich variant fills the container with xOffset margins', () => {
-            render(
-                <Toast
-                    {...defaultProps}
-                    type="rich"
-                    device="mobile"
-                    placement="bottom"
-                    xOffset={16}
-                />
-            );
-            const toast = screen.getByRole('alert');
-            // Width is fluid: viewport - 2 * xOffset (no fixed 336px cap).
-            // Inline style attribute is the source of truth here.
-            expect(toast.getAttribute('style')).toContain(
-                'width: calc(100% - 32px)'
-            );
-            expect(toast.getAttribute('style')).toContain(
-                'max-width: calc(100% - 32px)'
-            );
-            expect(toast.getAttribute('style')).toContain('min-width: 0');
-        });
-
-        it('mobile rich variant respects custom xOffset for side margins', () => {
-            render(
-                <Toast
-                    {...defaultProps}
-                    type="rich"
-                    device="mobile"
-                    placement="bottom"
-                    xOffset={24}
-                />
-            );
-            const toast = screen.getByRole('alert');
-            expect(toast.getAttribute('style')).toContain(
-                'width: calc(100% - 48px)'
-            );
-            expect(toast.getAttribute('style')).toContain(
-                'max-width: calc(100% - 48px)'
-            );
-        });
-
-        it('desktop bottom-center centers horizontally', () => {
-            render(
-                <Toast
-                    {...defaultProps}
-                    device="desktop"
                     placement="bottom-center"
                 />
             );
@@ -309,29 +238,41 @@ describe('Toast', () => {
             });
         });
 
-        it('desktop top-center centers horizontally', () => {
+        it('rich variant bottom-center respects xOffset in width calc', () => {
             render(
                 <Toast
                     {...defaultProps}
-                    device="desktop"
-                    placement="top-center"
+                    type="rich"
+                    placement="bottom-center"
+                    xOffset={16}
                 />
             );
             const toast = screen.getByRole('alert');
-            expect(toast).toHaveStyle({
-                position: 'fixed',
-                left: '50%',
-                right: 'auto',
-                transform: 'translateX(-50%)',
-                top: '16px',
-            });
+            expect(toast.getAttribute('style')).toContain(
+                'max-width: calc(100% - 32px)'
+            );
+            expect(toast.getAttribute('style')).toContain('min-width: 0');
         });
 
-        it('desktop bottom-right anchors to bottom-right', () => {
+        it('rich variant respects custom xOffset for side margins', () => {
             render(
                 <Toast
                     {...defaultProps}
-                    device="desktop"
+                    type="rich"
+                    placement="bottom-center"
+                    xOffset={24}
+                />
+            );
+            const toast = screen.getByRole('alert');
+            expect(toast.getAttribute('style')).toContain(
+                'max-width: calc(100% - 48px)'
+            );
+        });
+
+        it('bottom-right anchors to bottom-right', () => {
+            render(
+                <Toast
+                    {...defaultProps}
                     placement="bottom-right"
                 />
             );
@@ -344,11 +285,10 @@ describe('Toast', () => {
             });
         });
 
-        it('desktop bottom-left anchors to bottom-left', () => {
+        it('bottom-left anchors to bottom-left', () => {
             render(
                 <Toast
                     {...defaultProps}
-                    device="desktop"
                     placement="bottom-left"
                 />
             );
@@ -361,12 +301,11 @@ describe('Toast', () => {
             });
         });
 
-        it('rich + desktop + bottom-center keeps centering for the wide card', () => {
+        it('rich + bottom-center keeps centering for the wide card', () => {
             render(
                 <Toast
                     {...defaultProps}
                     type="rich"
-                    device="desktop"
                     placement="bottom-center"
                 />
             );
@@ -384,7 +323,6 @@ describe('Toast', () => {
             render(
                 <Toast
                     {...defaultProps}
-                    device="desktop"
                     placement="bottom-center"
                     xOffset={32}
                     yOffset={48}
@@ -418,7 +356,7 @@ describe('Toast', () => {
             title: 'Earn ₹500 on each referral',
             subtitle: 'Invite friends and earn ₹500 on each successful referral',
             color: 'warning',
-            variant: 'medium',
+            variant: 'secondary',
             onClose: jest.fn(),
         };
 
@@ -491,7 +429,7 @@ describe('Toast', () => {
                     showCTA
                     ctaText="Copy"
                     secondaryCTA={{
-                        icon: 'info-circle',
+                        icon: 'message-info',
                         onClick: onSecondaryClick,
                         ariaLabel: 'More info',
                     }}
@@ -509,43 +447,28 @@ describe('Toast', () => {
             expect(richProps.onClose).toHaveBeenCalledTimes(1);
         });
 
-        it('renders correctly on mobile device', () => {
+        it('renders rich layout with CTAs', () => {
             render(
                 <Toast
                     {...richProps}
-                    device="mobile"
                     showCTA
                     ctaText="Copy"
-                    secondaryCTA={{ icon: 'info-circle' }}
+                    secondaryCTA={{ icon: 'message-info' }}
                 />
             );
             expect(screen.getByRole('alert')).toBeInTheDocument();
             expect(screen.getByText('Copy')).toBeInTheDocument();
         });
 
-        it('subtitle wraps to up to 2 lines on mobile rich (line-clamp)', () => {
-            render(
-                <Toast
-                    {...richProps}
-                    device="mobile"
-                    subtitle="A long description that should be allowed to wrap onto a second line before being truncated with an ellipsis on overflow."
-                />
-            );
-            const subtitle = screen.getByText(/A long description/);
-            // JSDOM doesn't fully resolve vendor-prefixed `-webkit-line-clamp`,
-            // but it DOES expose the structural -webkit-box display + the
-            // `white-space: normal` rule that opt the subtitle into wrapping.
-            expect(subtitle).toHaveStyle({
-                display: '-webkit-box',
-                'white-space': 'normal',
+        it('subtitle stays single-line on wide viewports', () => {
+            Object.defineProperty(window, 'innerWidth', {
+                writable: true,
+                configurable: true,
+                value: 1024,
             });
-        });
-
-        it('subtitle stays single-line on desktop rich', () => {
             render(
                 <Toast
                     {...richProps}
-                    device="desktop"
                     subtitle="Single-line subtitle that should be truncated with an ellipsis when it overflows."
                 />
             );
@@ -555,29 +478,8 @@ describe('Toast', () => {
             });
         });
 
-        it('mobile rich actions row allows itself to shrink (min-width: 0) so the secondary CTA stays inside the toast', () => {
-            // Regression: with `min-width: auto` (the flex default), the row
-            // grew to its min-content size and pushed the 40px secondary
-            // icon past the toast's right edge - clipping it visually.
-            render(
-                <Toast
-                    {...richProps}
-                    device="mobile"
-                    showCTA
-                    ctaText="Copy Referral Link"
-                    secondaryCTA={{
-                        icon: 'info-circle',
-                        ariaLabel: 'More info',
-                    }}
-                />
-            );
-            const primary = screen.getByText('Copy Referral Link');
-            const actionsRow = primary.closest('button')!.parentElement!;
-            expect(actionsRow).toHaveStyle({ 'min-width': '0' });
-        });
-
         it('respects emphasis variants on rich layout', () => {
-            const variants = ['low', 'medium', 'high'] as const;
+            const variants = ['primary', 'secondary', 'tertiary'] as const;
             variants.forEach((variant) => {
                 render(<Toast {...richProps} variant={variant} />);
                 expect(screen.getByRole('alert')).toBeInTheDocument();

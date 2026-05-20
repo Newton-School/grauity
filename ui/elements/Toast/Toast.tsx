@@ -1,17 +1,19 @@
-import React, { forwardRef, useEffect, useId, useRef } from 'react';
+import React, { forwardRef, useEffect, useId, useRef, useState } from 'react';
 
 import Button from '../Button';
 import IconButton from '../Button/IconButton';
 import { Icon } from '../Icon';
-import { TOAST_TYPES_ENUM } from './constants';
+import { TOAST_TYPES_ENUM, TOAST_VARIANTS_ENUM } from './constants';
 import {
     StyledToastActions,
     StyledToastBody,
     StyledToastCloseAbsolute,
+    StyledToastCloseInActions,
     StyledToastContainer,
     StyledToastContent,
     StyledToastImage,
     StyledToastLeading,
+    StyledToastPrimaryCTA,
     StyledToastSubtitle,
     StyledToastTitle,
 } from './Toast.styles';
@@ -24,6 +26,25 @@ import {
     getToastIcon,
 } from './utils';
 
+const NARROW_VIEWPORT_QUERY = '(max-width: 600px)';
+
+const useIsNarrowViewport = () => {
+    const [isNarrow, setIsNarrow] = useState(false);
+
+    useEffect(() => {
+        if (typeof window.matchMedia !== 'function') {
+            return;
+        }
+        const mediaQuery = window.matchMedia(NARROW_VIEWPORT_QUERY);
+        const update = () => setIsNarrow(mediaQuery.matches);
+        update();
+        mediaQuery.addEventListener('change', update);
+        return () => mediaQuery.removeEventListener('change', update);
+    }, []);
+
+    return isNarrow;
+};
+
 /**
  * A Toast component is used to display brief messages to users in a non-intrusive way.
  *
@@ -33,12 +54,12 @@ import {
  *   primary + secondary CTAs
  *
  * Both types support the same color and variant emphasis combinations.
+ * Layout adapts responsively to the viewport — no device prop required.
  */
 const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
     const {
-        device = 'desktop',
         type = TOAST_TYPES_ENUM.SIMPLE,
-        variant = 'medium',
+        variant = TOAST_VARIANTS_ENUM.SECONDARY,
         color = 'neutral',
         showLeftIcon = true,
         leftIcon,
@@ -65,12 +86,10 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
 
     const id = useId();
     const timeoutRef = useRef<NodeJS.Timeout>();
+    const isNarrowViewport = useIsNarrowViewport();
 
     const isRich = type === TOAST_TYPES_ENUM.RICH;
 
-    // The `rich` layout is opinionated: every slot opts-in by default so a
-    // bare `nsToast({ type: 'rich' })` already shows a fully populated card.
-    // Each slot can be removed by explicitly passing `false`/`null`.
     const showCTA = showCTAProp ?? isRich;
     const showSecondaryCTA = showSecondaryCTAProp ?? isRich;
     const ctaText = ctaTextProp ?? 'Action';
@@ -148,19 +167,11 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
     const ctaButtonProps = getCTAButtonProps();
     const closeButtonProps = getCloseButtonProps(color, variant);
 
-    const getDefaultMaxWidth = () => {
-        if (isRich) {
-            // Mobile rich is fluid by default — fills its container with margins
-            // controlled by the placement prop's xOffset (or parent layout).
-            return device === 'mobile' ? '100%' : '800px';
-        }
-        return device === 'mobile' ? '336px' : '440px';
-    };
+    const getDefaultMaxWidth = () => (isRich ? '800px' : '440px');
     const computedMaxWidth = maxWidth || getDefaultMaxWidth();
 
     const placementStyles = getPlacementStyles(
         placement,
-        device,
         xOffset,
         yOffset,
         type
@@ -177,14 +188,16 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
         const hasPrimaryCTA = showCTA;
         const hasSecondaryCTA = showSecondaryCTA && !!secondaryCTA;
         const hasActionsRow =
-            hasPrimaryCTA || hasSecondaryCTA || (showCloseIcon && device !== 'mobile');
+            hasPrimaryCTA ||
+            hasSecondaryCTA ||
+            (showCloseIcon && !isNarrowViewport);
 
         const closeButton = showCloseIcon ? (
             <IconButton
                 icon="close"
                 variant="tertiary"
                 color="neutral"
-                size={device === 'mobile' ? 'small' : 'medium'}
+                size="medium"
                 onClick={handleClose}
                 ariaLabel="Close toast"
                 style={{
@@ -196,7 +209,6 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
         return (
             <StyledToastContainer
                 ref={ref}
-                $device={device}
                 $type={type}
                 $variant={variant}
                 $color={color}
@@ -206,7 +218,7 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
                 role="alert"
                 aria-labelledby={title ? `toast-title-${id}` : undefined}
             >
-                <StyledToastLeading $device={device}>
+                <StyledToastLeading>
                     {showLeading && (
                         <StyledToastImage>
                             {image || (
@@ -218,10 +230,10 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
                             )}
                         </StyledToastImage>
                     )}
-                    <StyledToastBody $device={device}>
+                    <StyledToastBody>
                         {titleNode}
                         {subtitle && (
-                            <StyledToastSubtitle $device={device}>
+                            <StyledToastSubtitle>
                                 {subtitle}
                             </StyledToastSubtitle>
                         )}
@@ -229,19 +241,20 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
                 </StyledToastLeading>
 
                 {hasActionsRow && (
-                    <StyledToastActions $device={device} $type={type}>
+                    <StyledToastActions $type={type}>
                         {hasPrimaryCTA && (
-                            <Button
-                                variant="primary"
-                                color="neutral"
-                                size="medium"
-                                icon={primaryCTAIcon}
-                                iconPosition="left"
-                                onClick={handleCTAClick}
-                                fullWidth={device === 'mobile'}
-                            >
-                                {ctaText}
-                            </Button>
+                            <StyledToastPrimaryCTA>
+                                <Button
+                                    variant="primary"
+                                    color="neutral"
+                                    size="medium"
+                                    icon={primaryCTAIcon}
+                                    iconPosition="left"
+                                    onClick={handleCTAClick}
+                                >
+                                    {ctaText}
+                                </Button>
+                            </StyledToastPrimaryCTA>
                         )}
                         {hasSecondaryCTA && (
                             <IconButton
@@ -256,11 +269,16 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
                                 }
                             />
                         )}
-                        {device !== 'mobile' && closeButton}
+                        {showCloseIcon && !isNarrowViewport && (
+                            <StyledToastCloseInActions>
+                                {closeButton}
+                            </StyledToastCloseInActions>
+                        )}
                     </StyledToastActions>
                 )}
 
-                {showCloseIcon && device === 'mobile' && (
+                {showCloseIcon &&
+                    (isNarrowViewport || !hasActionsRow) && (
                     <StyledToastCloseAbsolute>
                         {closeButton}
                     </StyledToastCloseAbsolute>
@@ -269,13 +287,11 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
         );
     }
 
-    // Simple (default) layout
     const hasActions = showCTA || showCloseIcon;
 
     return (
         <StyledToastContainer
             ref={ref}
-            $device={device}
             $type={type}
             $variant={variant}
             $color={color}
@@ -296,7 +312,7 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
             </StyledToastContent>
 
             {hasActions && (
-                <StyledToastActions $device={device} $type={type}>
+                <StyledToastActions $type={type}>
                     {showCTA && (
                         <Button
                             variant={ctaButtonProps.variant}

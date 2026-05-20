@@ -290,10 +290,12 @@ export {
 // NSToast
 export {
     default as NSToast,
-    TOAST_DEVICE_ENUM,
-    TOAST_DEVICES,
-    type ToastDevice,
+    TOAST_PLACEMENT_ENUM,
+    TOAST_PLACEMENTS,
+    TOAST_VARIANTS_ENUM,
+    type ToastPlacement,
     type ToastProps,
+    type ToastVariant,
 } from './elements/Toast';
 
 // NSSonner adapter

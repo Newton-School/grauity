@@ -1,46 +1,115 @@
 import React from 'react';
-import { nsToast,NSToaster } from 'ui';
 import Toast, { ToastProps } from 'ui/elements/Toast';
+import { nsToast, NSToaster } from 'ui/index';
+
+// A small curated list of icons that read well at the toast sizes; users can
+// still type any valid grauity icon name into the control.
+const COMMON_ICONS = [
+    undefined,
+    'check-circle',
+    'check-badge-filled',
+    'info-circle',
+    'info-circle-filled',
+    'exclamation-triangle',
+    'exclamation-triangle-filled',
+    'exclamation-circle',
+    'exclamation-circle-filled',
+    'bell',
+    'bell-filled',
+    'bulb',
+    'bulb-filled',
+    'arrow-right',
+    'arrow-right-filled',
+    'copy',
+    'close',
+];
 
 export default {
     title: 'Elements/Toast',
     component: Toast,
     argTypes: {
-        device: {
-            control: { type: 'select' },
-            options: ['desktop', 'mobile'],
-        },
         type: {
-            control: { type: 'select' },
+            description:
+                'Layout of the toast. `simple` is a one-line message; `rich` is a card with title, subtitle, primary + secondary CTAs and close.',
+            control: { type: 'inline-radio' },
             options: ['simple', 'rich'],
+            table: { defaultValue: { summary: 'simple' } },
         },
         variant: {
-            control: { type: 'select' },
-            options: ['low', 'medium', 'high'],
+            description:
+                'Emphasis level. `primary` is subtle, `secondary` is the default tinted style, `tertiary` is the solid attention-grabbing style.',
+            control: { type: 'inline-radio' },
+            options: ['primary', 'secondary', 'tertiary'],
+            table: { defaultValue: { summary: 'secondary' } },
         },
         color: {
+            description: 'Semantic color of the toast.',
             control: { type: 'select' },
-            options: ['warning', 'brand', 'neutral', 'success', 'error'],
+            options: ['neutral', 'brand', 'success', 'warning', 'error'],
+            table: { defaultValue: { summary: 'neutral' } },
         },
         title: {
+            description:
+                'Main message. For `rich`, leaving this `undefined` shows a placeholder; pass `null` to suppress.',
             control: 'text',
         },
         subtitle: {
+            description:
+                'Description shown beneath the title. **Always single-line** on wide viewports — content longer than the available width is truncated with an ellipsis. For `rich`, leaving this `undefined` shows a placeholder; pass `null` to suppress.',
             control: 'text',
         },
         showLeftIcon: {
+            description:
+                'Toggle the leading icon. When hidden, the leading slot is removed entirely.',
             control: { type: 'boolean' },
+            table: { defaultValue: { summary: 'true' } },
+        },
+        leftIcon: {
+            description:
+                'Override the default semantic icon. Accepts any grauity icon name.',
+            control: { type: 'select' },
+            options: COMMON_ICONS,
         },
         showCloseIcon: {
+            description: 'Show/hide the close IconButton.',
             control: { type: 'boolean' },
+            table: { defaultValue: { summary: 'true' } },
         },
         showCTA: {
+            description:
+                'Show/hide the primary CTA Button. Defaults to `true` for `rich`, `false` for `simple`.',
             control: { type: 'boolean' },
         },
         ctaText: {
+            description: 'Label for the primary CTA button.',
             control: 'text',
+            table: { defaultValue: { summary: 'Action' } },
+        },
+        primaryCTAIcon: {
+            description:
+                'Optional leading icon shown inside the primary CTA. `rich` only.',
+            control: { type: 'select' },
+            options: COMMON_ICONS,
+        },
+        showSecondaryCTA: {
+            description:
+                'Show/hide the secondary IconButton. Defaults to `true` for `rich`. Pass `false` to hide it without clearing `secondaryCTA`.',
+            control: { type: 'boolean' },
+        },
+        secondaryCTAIcon: {
+            description:
+                '[Storybook only] Convenience control to set the secondary CTA icon. In code, pass the full `secondaryCTA` object.',
+            control: { type: 'select' },
+            options: COMMON_ICONS,
+        },
+        autoClose: {
+            description:
+                'Auto-dismiss timeout in ms. Set to `null` or `0` to disable.',
+            control: { type: 'number' },
         },
         placement: {
+            description:
+                'Built-in fixed placement (overrides parent layout). Use `position` instead when triggering via `nsToast`.',
             control: { type: 'select' },
             options: [
                 undefined,
@@ -50,39 +119,55 @@ export default {
                 'bottom-left',
                 'bottom-center',
                 'bottom-right',
-                'top',
-                'bottom',
             ],
         },
-        autoClose: {
+        xOffset: {
+            description: 'Horizontal offset (px) when `placement` is set.',
             control: { type: 'number' },
+            table: { defaultValue: { summary: '16' } },
         },
+        yOffset: {
+            description: 'Vertical offset (px) when `placement` is set.',
+            control: { type: 'number' },
+            table: { defaultValue: { summary: '16' } },
+        },
+        maxWidth: {
+            description:
+                'Override the default container max-width. Useful for clamping the rich card if you need it narrower than 800px.',
+            control: 'text',
+        },
+        // Hide handlers and structural slots from the control panel.
+        onClose: { table: { disable: true } },
+        onCTAClick: { table: { disable: true } },
+        onAutoClose: { table: { disable: true } },
+        secondaryCTA: { table: { disable: true } },
+        image: { table: { disable: true } },
+        className: { table: { disable: true } },
+        style: { table: { disable: true } },
     },
     parameters: {
+        layout: 'centered',
         docs: {
             description: {
                 component:
-                    'A Toast component for displaying brief, non-intrusive messages to users. Supports multiple devices, layout types (`simple`, `rich`), variants, colors, and optional actions.',
+                    'Toast component for displaying brief, non-intrusive messages. Two layouts: `simple` (single line) and `rich` (card with title, subtitle, primary + secondary CTAs, and close). Layout adapts responsively to the viewport. When `rich` is selected, every slot is on by default — opt out with `showCTA: false`, `showSecondaryCTA: false`, `showCloseIcon: false`, `title: null`, `subtitle: null`.',
             },
         },
     },
 };
 
-const Template = (args: ToastProps) => <Toast {...args} />;
+// ---------- Helpers ----------
 
-const defaultArgs: ToastProps = {
-    device: 'desktop',
-    type: 'simple',
-    variant: 'medium',
-    color: 'neutral',
-    showLeftIcon: true,
-    showCloseIcon: true,
-    showCTA: false,
-    ctaText: 'Action',
-    title: 'Toast title',
-    onClose: () => console.log('Toast closed'),
-    onCTAClick: () => console.log('CTA clicked'),
-    autoClose: null,
+interface PlaygroundArgs extends ToastProps {
+    secondaryCTAIcon?: string;
+}
+
+const Template = ({ secondaryCTAIcon, ...args }: PlaygroundArgs) => {
+    const secondaryCTA = secondaryCTAIcon
+        ? { icon: secondaryCTAIcon as any, ariaLabel: 'Secondary action' }
+        : args.secondaryCTA;
+
+    return <Toast {...args} secondaryCTA={secondaryCTA} />;
 };
 
 const referralImage = (
@@ -108,279 +193,278 @@ const referralImage = (
     </div>
 );
 
-export const Component = Template.bind({});
-Component.args = {
-    ...defaultArgs,
+const baseArgs: ToastProps = {
+    type: 'simple',
+    variant: 'secondary',
+    color: 'neutral',
+    showLeftIcon: true,
+    showCloseIcon: true,
+    showCTA: false,
+    ctaText: 'Action',
+    title: 'Toast title',
+    onClose: () => {},
+    onCTAClick: () => {},
+    autoClose: null,
 };
 
-// Trigger story using Sonner adapter
-export const WithTrigger = () => (
-    <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-        <NSToaster />
-        <button
-            type="button"
-            onClick={() =>
-                nsToast({
-                    device: 'desktop',
-                    variant: 'high',
-                    color: 'brand',
-                    title: 'Sonner powered NSToast',
-                    showCTA: true,
-                    ctaText: 'Action',
-                })
-            }
-            style={{ padding: '8px 12px', borderRadius: 8 }}
-        >
-            Trigger Toast
-        </button>
-    </div>
-);
+// =====================================================================
+// Playground — every prop wired to a control
+// =====================================================================
 
-// Success Toast
-export const Success = Template.bind({});
-Success.args = {
-    ...defaultArgs,
+export const Playground = Template.bind({});
+Playground.args = {
+    ...baseArgs,
+    type: 'rich',
     color: 'success',
-    title: 'Success!',
+    variant: 'secondary',
+    title: 'Task completed',
+    subtitle:
+        'Your changes have been saved and synced with the server.',
+    showCTA: true,
+    ctaText: 'View',
+    showSecondaryCTA: true,
+    secondaryCTAIcon: 'arrow-right',
+    showCloseIcon: true,
+} as PlaygroundArgs;
+Playground.parameters = {
+    docs: {
+        description: {
+            story:
+                'Use the **Controls** panel to flip every prop and watch the toast respond live. Try switching `type` to `rich` and toggling `showCTA`, `showSecondaryCTA`, `showCloseIcon`, or clearing `title`/`subtitle`.',
+        },
+    },
 };
 
-// Error Toast
-export const Error = Template.bind({});
-Error.args = {
-    ...defaultArgs,
+// =====================================================================
+// Trigger story — fires `nsToast` via Sonner
+// =====================================================================
+
+export const Trigger = (args: PlaygroundArgs) => {
+    const { secondaryCTAIcon, ...rest } = args;
+    return (
+        <div
+            style={{
+                display: 'flex',
+                gap: 12,
+                alignItems: 'center',
+                flexWrap: 'wrap',
+            }}
+        >
+            <NSToaster />
+            <button
+                type="button"
+                onClick={() =>
+                    nsToast({
+                        ...rest,
+                        secondaryCTA: secondaryCTAIcon
+                            ? {
+                                icon: secondaryCTAIcon as any,
+                                ariaLabel: 'Secondary action',
+                            }
+                            : rest.secondaryCTA,
+                        position: 'top-right',
+                    })
+                }
+                style={{
+                    padding: '10px 16px',
+                    borderRadius: 8,
+                    border: '1px solid #ddd',
+                    cursor: 'pointer',
+                }}
+            >
+                Trigger toast
+            </button>
+            <button
+                type="button"
+                onClick={() =>
+                    nsToast({
+                        ...rest,
+                        secondaryCTA: secondaryCTAIcon
+                            ? {
+                                icon: secondaryCTAIcon as any,
+                                ariaLabel: 'Secondary action',
+                            }
+                            : rest.secondaryCTA,
+                        position: 'bottom-center',
+                    })
+                }
+                style={{
+                    padding: '10px 16px',
+                    borderRadius: 8,
+                    border: '1px solid #ddd',
+                    cursor: 'pointer',
+                }}
+            >
+                Trigger centered toast
+            </button>
+        </div>
+    );
+};
+Trigger.args = {
+    ...baseArgs,
+    type: 'rich',
+    color: 'success',
+    title: 'Earn ₹500 on each referral',
+    subtitle: 'Invite friends and earn ₹500 on each successful referral',
+    showCTA: true,
+    ctaText: 'Copy link',
+    primaryCTAIcon: 'copy',
+    showSecondaryCTA: true,
+    secondaryCTAIcon: 'arrow-right',
+} as PlaygroundArgs;
+Trigger.parameters = {
+    docs: {
+        description: {
+            story:
+                'Click the buttons to fire the configured toast through `nsToast` (the Sonner-backed adapter). Adjust controls to test how it actually renders in production.',
+        },
+    },
+};
+
+// =====================================================================
+// Simple variant gallery
+// =====================================================================
+
+export const SimpleNeutral = Template.bind({});
+SimpleNeutral.args = { ...baseArgs };
+
+export const SimpleSuccess = Template.bind({});
+SimpleSuccess.args = { ...baseArgs, color: 'success', title: 'Saved!' };
+
+export const SimpleError = Template.bind({});
+SimpleError.args = {
+    ...baseArgs,
     color: 'error',
-    title: 'Error occurred',
+    title: 'Something went wrong',
     showCTA: true,
     ctaText: 'Retry',
 };
 
-// Warning Toast
-export const Warning = Template.bind({});
-Warning.args = {
-    ...defaultArgs,
+export const SimpleWarning = Template.bind({});
+SimpleWarning.args = {
+    ...baseArgs,
     color: 'warning',
-    title: 'Warning',
+    title: 'Heads up — payment due tomorrow',
 };
 
-// Brand Toast
-export const Brand = Template.bind({});
-Brand.args = {
-    ...defaultArgs,
+export const SimpleBrand = Template.bind({});
+SimpleBrand.args = {
+    ...baseArgs,
     color: 'brand',
     title: 'New feature available',
     showCTA: true,
     ctaText: 'Learn more',
 };
 
-// High Variant
-export const HighVariant = Template.bind({});
-HighVariant.args = {
-    ...defaultArgs,
-    variant: 'high',
+export const SimpleTertiaryEmphasis = Template.bind({});
+SimpleTertiaryEmphasis.args = {
+    ...baseArgs,
+    variant: 'tertiary',
     color: 'error',
     title: 'Critical error',
     showCTA: true,
     ctaText: 'Fix now',
 };
 
-// Mobile Version
-export const Mobile = Template.bind({});
-Mobile.args = {
-    ...defaultArgs,
-    device: 'mobile',
+export const SimpleNarrowViewport = Template.bind({});
+SimpleNarrowViewport.args = {
+    ...baseArgs,
     color: 'success',
     title: 'Upload complete',
+    style: { maxWidth: '336px' },
 };
 
-// With CTA Only
-export const WithCTAOnly = Template.bind({});
-WithCTAOnly.args = {
-    ...defaultArgs,
-    showCloseIcon: false,
-    showCTA: true,
-    ctaText: 'Undo',
-    title: 'Item moved to trash',
-};
+// =====================================================================
+// Rich variant gallery
+// =====================================================================
 
-// Auto Close
-export const AutoClose = Template.bind({});
-AutoClose.args = {
-    ...defaultArgs,
-    autoClose: 3000,
-    title: 'Auto-closing toast',
-};
-
-// Minimal (No Icon, No Close)
-export const Minimal = Template.bind({});
-Minimal.args = {
-    ...defaultArgs,
-    showLeftIcon: false,
-    showCloseIcon: false,
-    title: 'Simple message',
-};
-
-// Custom Icon
-export const CustomIcon = Template.bind({});
-CustomIcon.args = {
-    ...defaultArgs,
-    leftIcon: 'bell',
-    color: 'brand',
-    title: 'Notification',
-};
-
-// Rich variant - matches the new referral design
-export const Rich = Template.bind({});
-Rich.args = {
-    ...defaultArgs,
+export const RichDefault = Template.bind({});
+RichDefault.args = {
+    ...baseArgs,
     type: 'rich',
-    color: 'warning',
-    variant: 'medium',
-    title: 'Earn ₹500 on each referral',
-    subtitle: 'Invite friends and earn ₹500 on each successful referral',
-    image: referralImage,
-    showCTA: true,
-    ctaText: 'Copy Referral Link',
-    primaryCTAIcon: 'copy',
-    secondaryCTA: {
-        icon: 'info-circle',
-        ariaLabel: 'More info',
+    color: 'success',
+};
+RichDefault.parameters = {
+    docs: {
+        description: {
+            story:
+                'Bare-minimum rich call. Every slot is filled with sensible defaults — flip controls to remove what you don\'t want.',
+        },
     },
 };
 
-// Rich variant on mobile
-export const RichMobile = Template.bind({});
-RichMobile.args = {
-    ...Rich.args,
-    device: 'mobile',
+export const RichReferral = Template.bind({});
+RichReferral.args = {
+    ...baseArgs,
+    type: 'rich',
+    color: 'warning',
+    variant: 'secondary',
+    title: 'Earn ₹500 on each referral',
+    subtitle:
+        'Invite friends and earn ₹500 on each successful referral, paid to your wallet',
+    image: referralImage,
+    showCTA: true,
+    ctaText: 'Copy referral link',
+    primaryCTAIcon: 'copy',
+    showSecondaryCTA: true,
+    secondaryCTA: { icon: 'info-circle', ariaLabel: 'More info' },
 };
 
-// Rich variant without subtitle
+export const RichTruncatedSubtitle = Template.bind({});
+RichTruncatedSubtitle.args = {
+    ...baseArgs,
+    type: 'rich',
+    color: 'brand',
+    title: 'Heads up',
+    subtitle:
+        'This is an intentionally very long subtitle that should be clipped with an ellipsis once it runs out of horizontal room inside the rich card.',
+    showCTA: true,
+    ctaText: 'Open',
+};
+
+export const RichWithoutCTAs = Template.bind({});
+RichWithoutCTAs.args = {
+    ...baseArgs,
+    type: 'rich',
+    color: 'neutral',
+    title: 'Title only',
+    subtitle: 'No CTAs, no close button — purely informational.',
+    showCTA: false,
+    showSecondaryCTA: false,
+    showCloseIcon: false,
+};
+
 export const RichWithoutSubtitle = Template.bind({});
 RichWithoutSubtitle.args = {
-    ...Rich.args,
-    subtitle: undefined,
-    title: 'Earn ₹500 on each referral',
-};
-
-// Rich variant without secondary CTA
-export const RichWithoutSecondaryCTA = Template.bind({});
-RichWithoutSecondaryCTA.args = {
-    ...Rich.args,
-    secondaryCTA: undefined,
-};
-
-// Rich variant with default icon (no custom image)
-export const RichWithDefaultIcon = Template.bind({});
-RichWithDefaultIcon.args = {
-    ...defaultArgs,
+    ...baseArgs,
     type: 'rich',
     color: 'success',
-    variant: 'medium',
     title: 'Profile updated successfully',
-    subtitle: 'Your changes have been saved across all devices.',
+    subtitle: null as any,
     showCTA: true,
     ctaText: 'View profile',
 };
 
-// Rich variant - high emphasis
-export const RichHighEmphasis = Template.bind({});
-RichHighEmphasis.args = {
-    ...Rich.args,
-    variant: 'high',
+export const RichTertiaryEmphasis = Template.bind({});
+RichTertiaryEmphasis.args = {
+    ...baseArgs,
+    type: 'rich',
+    variant: 'tertiary',
     color: 'brand',
-};
-
-// Placement: bottom-center (desktop, simple)
-export const PlacementBottomCenter = Template.bind({});
-PlacementBottomCenter.args = {
-    ...defaultArgs,
-    placement: 'bottom-center',
-    color: 'brand',
-    title: 'Centered at bottom of viewport',
+    title: 'Welcome to grauity',
+    subtitle: 'A tertiary-emphasis solid card for hero-level moments.',
     showCTA: true,
-    ctaText: 'Action',
+    ctaText: 'Get started',
 };
 
-// Placement: bottom-center (desktop, rich)
-export const PlacementBottomCenterRich = Template.bind({});
-PlacementBottomCenterRich.args = {
-    ...Rich.args,
-    placement: 'bottom-center',
-};
-
-// Placement: top-center (desktop, simple)
-export const PlacementTopCenter = Template.bind({});
-PlacementTopCenter.args = {
-    ...defaultArgs,
-    placement: 'top-center',
+export const RichNarrowViewport = Template.bind({});
+RichNarrowViewport.args = {
+    ...baseArgs,
+    type: 'rich',
     color: 'success',
-    title: 'Centered at top of viewport',
+    title: 'Saved',
+    subtitle: 'Your changes were saved successfully.',
+    showCTA: true,
+    ctaText: 'View',
+    style: { maxWidth: '336px' },
 };
-
-// Placement: bottom (mobile, simple)
-export const PlacementMobileBottom = Template.bind({});
-PlacementMobileBottom.args = {
-    ...defaultArgs,
-    device: 'mobile',
-    placement: 'bottom',
-    color: 'neutral',
-    title: 'Mobile bottom placement',
-};
-
-// Placement: bottom (mobile, rich)
-export const PlacementMobileBottomRich = Template.bind({});
-PlacementMobileBottomRich.args = {
-    ...Rich.args,
-    device: 'mobile',
-    placement: 'bottom',
-};
-
-// Sonner-driven trigger demonstrating bottom-center for both variants.
-// Click the buttons to see the toasts pop in centered at the bottom of the
-// viewport — they should be visually centered for any width (simple = 440,
-// rich = 800).
-export const PlacementSonnerBottomCenter = () => (
-    <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-        <NSToaster />
-        <button
-            type="button"
-            onClick={() =>
-                nsToast({
-                    position: 'bottom-center',
-                    color: 'brand',
-                    variant: 'medium',
-                    title: 'Simple toast at bottom-center',
-                    showCTA: true,
-                    ctaText: 'Action',
-                })
-            }
-            style={{ padding: '8px 12px', borderRadius: 8 }}
-        >
-            Trigger simple bottom-center
-        </button>
-        <button
-            type="button"
-            onClick={() =>
-                nsToast({
-                    position: 'bottom-center',
-                    type: 'rich',
-                    color: 'warning',
-                    variant: 'medium',
-                    title: 'Earn ₹500 on each referral',
-                    subtitle:
-                        'Invite friends and earn ₹500 on each successful referral',
-                    image: referralImage,
-                    ctaText: 'Copy Referral Link',
-                    primaryCTAIcon: 'copy',
-                    secondaryCTA: {
-                        icon: 'info-circle',
-                        ariaLabel: 'More info',
-                    },
-                })
-            }
-            style={{ padding: '8px 12px', borderRadius: 8 }}
-        >
-            Trigger rich bottom-center
-        </button>
-    </div>
-);

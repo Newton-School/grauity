@@ -75,22 +75,18 @@ export type NsToastOptions = {
 };
 
 const mapPlacementToSonner = (
-    placement: ToastPlacement | undefined,
-    device: ToastProps['device'] | undefined
+    placement: ToastPlacement | undefined
 ): NsToastOptions['position'] | undefined => {
     if (!placement) {
         return undefined;
     }
-    if (device === 'mobile') {
-        return placement === 'top' ? 'top-center' : 'bottom-center';
-    }
     switch (placement) {
         case 'top-left':
+        case 'top-center':
         case 'top-right':
         case 'bottom-left':
-        case 'bottom-right':
-        case 'top-center':
         case 'bottom-center':
+        case 'bottom-right':
             return placement;
         default:
             return undefined;
@@ -99,8 +95,7 @@ const mapPlacementToSonner = (
 
 export const nsToast = (props: ToastProps & NsToastOptions) => {
     const { duration, placement, position, ...toastProps } = props;
-    const sonnerPosition =
-        position || mapPlacementToSonner(placement, toastProps.device);
+    const sonnerPosition = position || mapPlacementToSonner(placement);
 
     const id = toast.custom(
         (t) => (
@@ -116,10 +111,6 @@ export const nsToast = (props: ToastProps & NsToastOptions) => {
         {
             duration: (toastProps.autoClose as number) || duration || 3000,
             position: sonnerPosition as any,
-            // Strip Sonner's default container chrome so the NSToast component
-            // owns sizing/visuals. Width is handled by the global rules above
-            // so it can react correctly to the viewport (mobile = fluid 100%,
-            // desktop = sizes to inner content).
             unstyled: true,
             style: {
                 padding: 0,
