@@ -290,6 +290,19 @@ export {
     useForm as useNSForm,
 } from './elements/Form/useForm';
 
+// NSToast
+export {
+    default as NSToast,
+    TOAST_PLACEMENT_ENUM,
+    TOAST_PLACEMENTS,
+    TOAST_VARIANTS_ENUM,
+    type ToastPlacement,
+    type ToastProps,
+    type ToastVariant,
+} from './elements/Toast';
+
+// NSSonner adapter
+export { nsToast, nsToastDismiss, NSToaster } from './elements/Toast/Sonner';
 // NSThemeScope
 export {
     default as NSThemeScope,
