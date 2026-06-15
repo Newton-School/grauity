@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import { AnimatePresence } from 'framer-motion';
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash-es';
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 
 import DropdownMenu, { BaseItemOptionProps } from '../../DropdownMenu';

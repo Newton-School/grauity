@@ -18,5 +18,6 @@
     "moduleNameMapper": {
         "^ui/(.*)$": "<rootDir>/ui/$1",
         "framer-motion": "<rootDir>/__mocks__/framer-motion.js"
-    }
+    },
+    "transformIgnorePatterns": ["/node_modules/(?!lodash-es/)"]
 }
