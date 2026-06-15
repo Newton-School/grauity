@@ -136,15 +136,15 @@ export default defineConfig({
     // ~40 entries. tsc emits a per-file .d.ts tree (rootDir: ui) co-located with
     // the .mjs/.cjs, which is exactly what the per-subpath `exports` map needs.
     dts: false,
-    // splitting MUST stay off: grauity has top-level `styled(X).attrs(...)`
-    // definitions in circular module graphs. Cross-chunk cycles make `X`
-    // undefined during native ESM evaluation (CJS tolerates it; ESM does not).
-    // With splitting off each entry is self-contained, so cycles are resolved
-    // within a single file. Cost: shared internals duplicate for consumers that
-    // import MANY components — acceptable, since per-component imports stay lean
-    // and most pages use few. (Re-enabling splitting needs source-level cycle
-    // fixes, tracked separately.)
-    splitting: false,
+    // Extract shared internals (core/, themes/, Icon, …) into shared chunks
+    // loaded once, instead of duplicating them into every component entry —
+    // matters for consumers importing many components. Bundler consumers
+    // (Next/webpack/Vite/esbuild) re-flatten these chunks, so the circular
+    // styled-components module graphs resolve correctly. The only native-ESM
+    // caveat (`import styled from 'styled-components'` resolving sc@6's CJS,
+    // whose default lacks tag helpers) is pre-existing and independent of
+    // splitting — it affects unbundled native-ESM use only. See PR notes.
+    splitting: true,
     treeshake: true,
     sourcemap: true,
     clean: true,
