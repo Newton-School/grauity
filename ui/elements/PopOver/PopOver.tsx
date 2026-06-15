@@ -1,6 +1,7 @@
 import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 
+import GrauityLazyMotion from '../../../common/motion';
 import Overlay from '../Overlay';
 import { GAP_BETWEEN_TRIGGER_AND_POPOVER } from './constants';
 import { StyledPopOverContainer } from './PopOver.styles';
@@ -266,32 +267,34 @@ export default function PopOver(props: PopOverProps) {
     };
 
     return (
-        <AnimatePresence>
-            {isOpen && (
-                <Overlay
-                    shouldFocusOnFirstElement={shouldFocusOnFirstElement}
-                    shouldDisableScroll={isOpen && disableBackgroundScroll}
-                    onOverlayClick={handleCloseOnOutsideClick}
-                    data-testid="testid-pop-over-wrapper"
-                >
-                    <StyledPopOverContainer
-                        ref={popOverRef}
-                        $offset={adjustedOffset}
-                        {...motionProps}
-                        variants={getMotionVariants(direction)}
-                        className={className}
+        <GrauityLazyMotion>
+            <AnimatePresence>
+                {isOpen && (
+                    <Overlay
+                        shouldFocusOnFirstElement={shouldFocusOnFirstElement}
+                        shouldDisableScroll={isOpen && disableBackgroundScroll}
+                        onOverlayClick={handleCloseOnOutsideClick}
+                        data-testid="testid-pop-over-wrapper"
                     >
-                        <div
-                            style={{
-                                width: width || 'fit-content',
-                                height: height || 'fit-content',
-                            }}
+                        <StyledPopOverContainer
+                            ref={popOverRef}
+                            $offset={adjustedOffset}
+                            {...motionProps}
+                            variants={getMotionVariants(direction)}
+                            className={className}
                         >
-                            {children}
-                        </div>
-                    </StyledPopOverContainer>
-                </Overlay>
-            )}
-        </AnimatePresence>
+                            <div
+                                style={{
+                                    width: width || 'fit-content',
+                                    height: height || 'fit-content',
+                                }}
+                            >
+                                {children}
+                            </div>
+                        </StyledPopOverContainer>
+                    </Overlay>
+                )}
+            </AnimatePresence>
+        </GrauityLazyMotion>
     );
 }

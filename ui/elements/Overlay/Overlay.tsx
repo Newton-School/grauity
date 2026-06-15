@@ -1,6 +1,7 @@
 import React, { forwardRef, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
+import GrauityLazyMotion from '../../../common/motion';
 import { useDisableBodyScroll } from '../../../hooks';
 import ThemeScope from '../ThemeScope';
 import {
@@ -69,30 +70,32 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props, ref) => {
     };
 
     return ReactDOM.createPortal(
-        <StyledOverlay
-            ref={ref}
-            onClick={handleOverlayClick}
-            $shouldTintOverlay={shouldTintOverlay}
-            $shouldBlurOverlay={shouldBlurOverlay}
-            $overlayColor={overlayColor}
-            className={className}
-            data-testid="testid-overlay"
-            {...rest}
-            {...motionProps}
-        >
-            <ThemeScope
-                as={StyledOverlayContent}
-                $top={position.top}
-                $left={position.left}
-                $bottom={position.bottom}
-                $shouldCenterContent={shouldCenterContent}
-                style={style}
+        <GrauityLazyMotion>
+            <StyledOverlay
+                ref={ref}
+                onClick={handleOverlayClick}
+                $shouldTintOverlay={shouldTintOverlay}
+                $shouldBlurOverlay={shouldBlurOverlay}
+                $overlayColor={overlayColor}
+                className={className}
+                data-testid="testid-overlay"
+                {...rest}
+                {...motionProps}
             >
-                <StyledOverlayContentChildren ref={childrenRef}>
-                    {children}
-                </StyledOverlayContentChildren>
-            </ThemeScope>
-        </StyledOverlay>,
+                <ThemeScope
+                    as={StyledOverlayContent}
+                    $top={position.top}
+                    $left={position.left}
+                    $bottom={position.bottom}
+                    $shouldCenterContent={shouldCenterContent}
+                    style={style}
+                >
+                    <StyledOverlayContentChildren ref={childrenRef}>
+                        {children}
+                    </StyledOverlayContentChildren>
+                </ThemeScope>
+            </StyledOverlay>
+        </GrauityLazyMotion>,
         document.body
     );
 });

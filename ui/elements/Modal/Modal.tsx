@@ -7,6 +7,7 @@ import React, {
     useRef,
 } from 'react';
 
+import GrauityLazyMotion from '../../../common/motion';
 import { useDisableBodyScroll, useKeyboardEvent } from '../../../hooks';
 import { IconButton } from '../Button';
 import Overlay from '../Overlay';
@@ -103,101 +104,105 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     );
 
     return (
-        <AnimatePresence>
-            {shouldRender && (
-                <Overlay
-                    shouldDisableScroll={shouldDisableScroll}
-                    onOverlayClick={() => {
-                        if (hideOnClickAway) {
-                            handleClose();
-                        }
-                    }}
-                    shouldTintOverlay
-                    shouldBlurOverlay={blurBackground}
-                    shouldCenterContent
-                    data-testid="testid-modalwrapper"
-                    className={className}
-                    animationDuration={0.3}
-                    shouldFocusOnFirstElement={shouldFocusOnFirstElement}
-                >
-                    <StyledModal
-                        onClick={(e: React.MouseEvent<HTMLDivElement>) =>
-                            e.stopPropagation()
-                        }
-                        ref={modalRef}
-                        width={width}
-                        height={height}
-                        minHeight={minHeight}
-                        minWidth={minWidth}
-                        maxHeight={maxHeight}
-                        maxWidth={maxWidth}
-                        mobileBottomFullWidth={mobileBottomFullWidth}
-                        modalPadding={modalPadding}
-                        $border={border}
-                        aria-labelledby={`modal-title-${id}`}
-                        aria-describedby={`modal-description-${id}`}
-                        aria-modal="true"
-                        role="dialog"
-                        data-testid="testid-modal"
-                        {...motionProps}
+        <GrauityLazyMotion>
+            <AnimatePresence>
+                {shouldRender && (
+                    <Overlay
+                        shouldDisableScroll={shouldDisableScroll}
+                        onOverlayClick={() => {
+                            if (hideOnClickAway) {
+                                handleClose();
+                            }
+                        }}
+                        shouldTintOverlay
+                        shouldBlurOverlay={blurBackground}
+                        shouldCenterContent
+                        data-testid="testid-modalwrapper"
+                        className={className}
+                        animationDuration={0.3}
+                        shouldFocusOnFirstElement={shouldFocusOnFirstElement}
                     >
-                        <StyledModalMain $overflow={overflow}>
-                            {showCloseButton && (
-                                <StyledModalAction justifyContent="end">
-                                    <IconButton
-                                        onClick={handleClose}
-                                        size="small"
-                                        variant="tertiary"
-                                        color="neutral"
-                                        icon="close"
-                                        ariaLabel="Close"
-                                        buttonProps={{ autoFocus: true }}
-                                    />
-                                </StyledModalAction>
-                            )}
+                        <StyledModal
+                            onClick={(e: React.MouseEvent<HTMLDivElement>) =>
+                                e.stopPropagation()
+                            }
+                            ref={modalRef}
+                            width={width}
+                            height={height}
+                            minHeight={minHeight}
+                            minWidth={minWidth}
+                            maxHeight={maxHeight}
+                            maxWidth={maxWidth}
+                            mobileBottomFullWidth={mobileBottomFullWidth}
+                            modalPadding={modalPadding}
+                            $border={border}
+                            aria-labelledby={`modal-title-${id}`}
+                            aria-describedby={`modal-description-${id}`}
+                            aria-modal="true"
+                            role="dialog"
+                            data-testid="testid-modal"
+                            {...motionProps}
+                        >
+                            <StyledModalMain $overflow={overflow}>
+                                {showCloseButton && (
+                                    <StyledModalAction justifyContent="end">
+                                        <IconButton
+                                            onClick={handleClose}
+                                            size="small"
+                                            variant="tertiary"
+                                            color="neutral"
+                                            icon="close"
+                                            ariaLabel="Close"
+                                            buttonProps={{ autoFocus: true }}
+                                        />
+                                    </StyledModalAction>
+                                )}
 
-                            {banner && (
-                                <StyledModalBanner>{banner}</StyledModalBanner>
-                            )}
+                                {banner && (
+                                    <StyledModalBanner>
+                                        {banner}
+                                    </StyledModalBanner>
+                                )}
 
-                            {title && (
-                                <StyledModalTitle id={`modal-title-${id}`}>
-                                    {title}
-                                </StyledModalTitle>
-                            )}
+                                {title && (
+                                    <StyledModalTitle id={`modal-title-${id}`}>
+                                        {title}
+                                    </StyledModalTitle>
+                                )}
 
-                            {description && (
-                                <StyledModalDescription
-                                    id={`modal-description-${id}`}
-                                >
-                                    {description}
-                                </StyledModalDescription>
-                            )}
+                                {description && (
+                                    <StyledModalDescription
+                                        id={`modal-description-${id}`}
+                                    >
+                                        {description}
+                                    </StyledModalDescription>
+                                )}
 
-                            {body && (
-                                <StyledModalBody
-                                    modalBodyMargin={modalBodyMargin}
-                                >
-                                    {body}
-                                </StyledModalBody>
-                            )}
+                                {body && (
+                                    <StyledModalBody
+                                        modalBodyMargin={modalBodyMargin}
+                                    >
+                                        {body}
+                                    </StyledModalBody>
+                                )}
 
-                            {children && (
-                                <StyledModalBody
-                                    modalBodyMargin={modalBodyMargin}
-                                >
-                                    {children}
-                                </StyledModalBody>
-                            )}
-                        </StyledModalMain>
+                                {children && (
+                                    <StyledModalBody
+                                        modalBodyMargin={modalBodyMargin}
+                                    >
+                                        {children}
+                                    </StyledModalBody>
+                                )}
+                            </StyledModalMain>
 
-                        {action && (
-                            <StyledModalAction>{action}</StyledModalAction>
-                        )}
-                    </StyledModal>
-                </Overlay>
-            )}
-        </AnimatePresence>
+                            {action && (
+                                <StyledModalAction>{action}</StyledModalAction>
+                            )}
+                        </StyledModal>
+                    </Overlay>
+                )}
+            </AnimatePresence>
+        </GrauityLazyMotion>
     );
 }) as React.ForwardRefExoticComponent<
     ModalProps & React.RefAttributes<HTMLDivElement>
