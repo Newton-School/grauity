@@ -1,6 +1,7 @@
 import { AnimatePresence } from 'framer-motion';
 import React, { forwardRef } from 'react';
 
+import GrauityLazyMotion from '../../../common/motion';
 import Overlay from '../Overlay';
 import { ANIMATION_DURATION_IN_MILLISECONDS } from './constants';
 import { StyledDrawer, StyledDrawerContent } from './Drawer.styles';
@@ -38,38 +39,42 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
     };
 
     return (
-        <AnimatePresence>
-            {isOpen && (
-                <Overlay
-                    shouldFocusOnFirstElement={shouldFocusOnFirstElement}
-                    shouldDisableScroll={isOpen && shouldDisableScroll}
-                    shouldTintOverlay
-                    onOverlayClick={() => {
-                        if (closeOnBackdropClick) {
-                            handleClose();
+        <GrauityLazyMotion>
+            <AnimatePresence>
+                {isOpen && (
+                    <Overlay
+                        shouldFocusOnFirstElement={shouldFocusOnFirstElement}
+                        shouldDisableScroll={isOpen && shouldDisableScroll}
+                        shouldTintOverlay
+                        onOverlayClick={() => {
+                            if (closeOnBackdropClick) {
+                                handleClose();
+                            }
+                        }}
+                        animationDuration={
+                            ANIMATION_DURATION_IN_MILLISECONDS / 1000
                         }
-                    }}
-                    animationDuration={
-                        ANIMATION_DURATION_IN_MILLISECONDS / 1000
-                    }
-                    data-testid="testid-drawer-wrapper"
-                    className={className}
-                >
-                    <StyledDrawer
-                        ref={ref}
-                        $isOpen={isOpen}
-                        $width={width}
-                        $fullScreen={fullScreen}
-                        $position={position}
-                        role="dialog"
-                        style={styles}
-                        {...motionProps}
+                        data-testid="testid-drawer-wrapper"
+                        className={className}
                     >
-                        <StyledDrawerContent>{children}</StyledDrawerContent>
-                    </StyledDrawer>
-                </Overlay>
-            )}
-        </AnimatePresence>
+                        <StyledDrawer
+                            ref={ref}
+                            $isOpen={isOpen}
+                            $width={width}
+                            $fullScreen={fullScreen}
+                            $position={position}
+                            role="dialog"
+                            style={styles}
+                            {...motionProps}
+                        >
+                            <StyledDrawerContent>
+                                {children}
+                            </StyledDrawerContent>
+                        </StyledDrawer>
+                    </Overlay>
+                )}
+            </AnimatePresence>
+        </GrauityLazyMotion>
     );
 });
 
