@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
@@ -11,7 +11,7 @@ import {
     ModalTitleProps,
 } from './types';
 
-export const StyledModal = styled(motion.div)<ModalContainerProps>`
+export const StyledModal = styled(m.div)<ModalContainerProps>`
     background: var(--bg-subtle-primary-default, #ffffff);
     z-index: var(--z-index-modal, 1100);
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.25);

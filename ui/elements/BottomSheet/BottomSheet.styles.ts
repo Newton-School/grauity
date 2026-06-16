@@ -1,11 +1,11 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
 import { StyledDivProps } from '../../../common/types';
 import { DRAG_HANDLE_HEIGHT } from './constants';
 import { StyledBottomSheetContentProps, StyledBottomSheetProps } from './types';
 
-export const StyledBottomSheet = styled(motion.div)<StyledBottomSheetProps>`
+export const StyledBottomSheet = styled(m.div)<StyledBottomSheetProps>`
     width: 100vw;
     height: ${({ $height }) => $height};
     background: var(--bg-subtle-primary-default, #ffffff);

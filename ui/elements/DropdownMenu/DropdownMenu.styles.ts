@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
 import {
@@ -10,7 +10,7 @@ import {
     StyledDropdownMenuProps,
 } from './types';
 
-export const StyledDropdownMenu = styled(motion.div)<StyledDropdownMenuProps>`
+export const StyledDropdownMenu = styled(m.div)<StyledDropdownMenuProps>`
     box-sizing: border-box;
     display: flex;
     width: ${({ $width }) => $width};
