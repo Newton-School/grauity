@@ -17,6 +17,11 @@ import { ThemeConfigType } from './types';
  * It uses `ThemeScope` to set the initial theme for the application that you provide
  * using the `rootThemeScopeTheme` prop. You can then use ThemeScope anywhere in
  * your application to switch themes for that section of the app.
+ *
+ * PERFORMANCE: set `injectGlobalStyle={false}` and instead import the prebuilt
+ * `@newtonschool/grauity/dist/css/tokens.css` once. That delivers the same
+ * tokens with zero runtime cost (no styled-components global-style generation /
+ * injection on mount), which is the recommended setup for new apps.
  */
 export const GrauityThemeProvider = ({
     themeConfig = {
@@ -25,10 +30,12 @@ export const GrauityThemeProvider = ({
     },
     children = null,
     rootThemeScopeTheme = 'light',
+    injectGlobalStyle = true,
 }: {
     themeConfig?: { [theme: string]: ThemeConfigType };
     children?: React.ReactNode;
     rootThemeScopeTheme?: Theme;
+    injectGlobalStyle?: boolean;
 }) => {
     return (
         <StyledComponentsThemeProvider
@@ -39,7 +46,7 @@ export const GrauityThemeProvider = ({
             }}
         >
             <>
-                <GlobalStyle />
+                {injectGlobalStyle ? <GlobalStyle /> : null}
                 {rootThemeScopeTheme ? (
                     <ThemeScopeProvider applyTheme={rootThemeScopeTheme}>
                         {children}

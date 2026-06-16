@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 import Button from '../Button';
 import { PILL_SIZE_CSS_STYLES_MAPPING } from './constants';

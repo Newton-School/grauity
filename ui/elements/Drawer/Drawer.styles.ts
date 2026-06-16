@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import styled, { css } from 'styled-components';
+import { m } from 'framer-motion';
+import { css, styled } from 'styled-components';
 
 import {
     DrawerPosition,
@@ -7,7 +7,7 @@ import {
     StyledDrawerProps,
 } from './types';
 
-export const StyledDrawer = styled(motion.div)<StyledDrawerProps>`
+export const StyledDrawer = styled(m.div)<StyledDrawerProps>`
     width: ${({ $width }) => $width};
     height: 100vh;
     background: var(--bg-subtle-primary-default, #ffffff);

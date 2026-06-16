@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 import { StyledLabelProps } from '../../../common/types';
 import { GenericMessageProps } from './types';

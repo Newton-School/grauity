@@ -13,3 +13,7 @@ node_modules
 *.d.ts*
 
 coverage
+
+# Generated design tokens (built by `npm run build-tokens`, shipped via dist/css)
+ui/css/tokens.css
+ui/css/grauity-theme.css

@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash-es';
 import React, {
     forwardRef,
     RefObject,
@@ -9,6 +9,7 @@ import React, {
     useState,
 } from 'react';
 
+import GrauityLazyMotion from '../../../common/motion';
 import { handleKeyboardInteractionInListViews } from '../../../common/utils';
 import { useClickAway } from '../../../hooks';
 import DropdownMenuFooter from './components/DropdownMenuFooter';
@@ -247,159 +248,170 @@ const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
         });
 
         return (
-            <StyledDropdownMenu
-                className={className}
-                style={styles}
-                ref={dropdownRef}
-                $width={width}
-                $maxHeight={maxHeight}
-                role="menu"
-                id={id}
-                {...FRAMER_MOTION_PROPS}
-            >
-                <DropdownMenuHeader
-                    showHeader={showHeader}
-                    overline={overline}
-                    title={title}
-                    subtext={subtext}
-                    customHeader={customHeader}
-                />
-                <StyledDropdownMenuBody>
-                    <DropdownSearchBox
-                        searchRef={searchRef}
-                        searchable={searchable}
-                        searchPlaceholder={searchPlaceholder}
-                        searchIcon={searchIcon}
-                        onSearchInputChange={handleDebouncedSearchInputChange}
-                        onKeyDown={(event) =>
-                            handleKeyDown(
-                                event,
-                                -1,
-                                searchedOptions || options,
-                                searchedOptions ? searchedItemRefs : itemRefs
-                            )
-                        }
+            <GrauityLazyMotion>
+                <StyledDropdownMenu
+                    className={className}
+                    style={styles}
+                    ref={dropdownRef}
+                    $width={width}
+                    $maxHeight={maxHeight}
+                    role="menu"
+                    id={id}
+                    {...FRAMER_MOTION_PROPS}
+                >
+                    <DropdownMenuHeader
+                        showHeader={showHeader}
+                        overline={overline}
+                        title={title}
+                        subtext={subtext}
+                        customHeader={customHeader}
                     />
+                    <StyledDropdownMenuBody>
+                        <DropdownSearchBox
+                            searchRef={searchRef}
+                            searchable={searchable}
+                            searchPlaceholder={searchPlaceholder}
+                            searchIcon={searchIcon}
+                            onSearchInputChange={
+                                handleDebouncedSearchInputChange
+                            }
+                            onKeyDown={(event) =>
+                                handleKeyDown(
+                                    event,
+                                    -1,
+                                    searchedOptions || options,
+                                    searchedOptions
+                                        ? searchedItemRefs
+                                        : itemRefs
+                                )
+                            }
+                        />
 
-                    <StyledDropdownOptionsContainer
-                        onScroll={handleMenuBodyScroll}
-                    >
-                        {Array.isArray(searchedOptions) &&
-                            searchedOptions.map((item, index) => (
-                                <DropdownMenuOption
-                                    key={item.value}
-                                    optionRef={(el) => {
-                                        searchedItemRefs.current[index] = el;
-                                    }}
-                                    multiple={multiple}
-                                    selected={selectedOptions
-                                        .map((option) => option.value)
-                                        .includes(item.value)}
-                                    onClick={(clickedValue) =>
-                                        handleClickOption(
-                                            options.find(
-                                                (option) =>
-                                                    option.value ===
-                                                    clickedValue
+                        <StyledDropdownOptionsContainer
+                            onScroll={handleMenuBodyScroll}
+                        >
+                            {Array.isArray(searchedOptions) &&
+                                searchedOptions.map((item, index) => (
+                                    <DropdownMenuOption
+                                        key={item.value}
+                                        optionRef={(el) => {
+                                            searchedItemRefs.current[index] =
+                                                el;
+                                        }}
+                                        multiple={multiple}
+                                        selected={selectedOptions
+                                            .map((option) => option.value)
+                                            .includes(item.value)}
+                                        onClick={(clickedValue) =>
+                                            handleClickOption(
+                                                options.find(
+                                                    (option) =>
+                                                        option.value ===
+                                                        clickedValue
+                                                )
                                             )
-                                        )
-                                    }
-                                    onKeyDown={(event) =>
-                                        handleKeyDown(
-                                            event,
-                                            index,
-                                            searchedOptions,
-                                            searchedItemRefs
-                                        )
-                                    }
-                                    {...item}
-                                />
-                            ))}
+                                        }
+                                        onKeyDown={(event) =>
+                                            handleKeyDown(
+                                                event,
+                                                index,
+                                                searchedOptions,
+                                                searchedItemRefs
+                                            )
+                                        }
+                                        {...item}
+                                    />
+                                ))}
 
-                        {!Array.isArray(searchedOptions) &&
-                            items.length > 0 &&
-                            items.map((item, index) => {
-                                if (item.type === BaseItemType.SUB_HEADER) {
-                                    return (
-                                        <DropdownMenuSubHeader
-                                            key={`${item.type}-${item.title}`}
-                                            itemRef={(el) => {
-                                                itemRefs.current[index] = el;
-                                            }}
-                                            onKeyDown={(event) =>
-                                                handleKeyDown(
-                                                    event,
-                                                    index,
-                                                    items,
-                                                    itemRefs
-                                                )
-                                            }
-                                            {...item}
-                                        />
-                                    );
-                                }
-                                if (item.type === BaseItemType.DIVIDER) {
-                                    return (
-                                        <StyledDropdownMenuDivider
-                                            key={`${item.type}`}
-                                        />
-                                    );
-                                }
-                                if (item.type === BaseItemType.OPTION) {
-                                    return (
-                                        <DropdownMenuOption
-                                            key={`${item.type}-${item.value}`}
-                                            optionRef={(el) => {
-                                                itemRefs.current[index] = el;
-                                            }}
-                                            multiple={multiple}
-                                            selected={selectedOptions
-                                                .map((option) => option.value)
-                                                .includes(item.value)}
-                                            onClick={(clickedValue) =>
-                                                handleClickOption(
-                                                    options.find(
-                                                        (option) =>
-                                                            option.value ===
-                                                            clickedValue
+                            {!Array.isArray(searchedOptions) &&
+                                items.length > 0 &&
+                                items.map((item, index) => {
+                                    if (item.type === BaseItemType.SUB_HEADER) {
+                                        return (
+                                            <DropdownMenuSubHeader
+                                                key={`${item.type}-${item.title}`}
+                                                itemRef={(el) => {
+                                                    itemRefs.current[index] =
+                                                        el;
+                                                }}
+                                                onKeyDown={(event) =>
+                                                    handleKeyDown(
+                                                        event,
+                                                        index,
+                                                        items,
+                                                        itemRefs
                                                     )
-                                                )
-                                            }
-                                            onKeyDown={(event) =>
-                                                handleKeyDown(
-                                                    event,
-                                                    index,
-                                                    items,
-                                                    itemRefs
-                                                )
-                                            }
-                                            {...item}
-                                        />
-                                    );
-                                }
-                                return null;
-                            })}
+                                                }
+                                                {...item}
+                                            />
+                                        );
+                                    }
+                                    if (item.type === BaseItemType.DIVIDER) {
+                                        return (
+                                            <StyledDropdownMenuDivider
+                                                key={`${item.type}`}
+                                            />
+                                        );
+                                    }
+                                    if (item.type === BaseItemType.OPTION) {
+                                        return (
+                                            <DropdownMenuOption
+                                                key={`${item.type}-${item.value}`}
+                                                optionRef={(el) => {
+                                                    itemRefs.current[index] =
+                                                        el;
+                                                }}
+                                                multiple={multiple}
+                                                selected={selectedOptions
+                                                    .map(
+                                                        (option) => option.value
+                                                    )
+                                                    .includes(item.value)}
+                                                onClick={(clickedValue) =>
+                                                    handleClickOption(
+                                                        options.find(
+                                                            (option) =>
+                                                                option.value ===
+                                                                clickedValue
+                                                        )
+                                                    )
+                                                }
+                                                onKeyDown={(event) =>
+                                                    handleKeyDown(
+                                                        event,
+                                                        index,
+                                                        items,
+                                                        itemRefs
+                                                    )
+                                                }
+                                                {...item}
+                                            />
+                                        );
+                                    }
+                                    return null;
+                                })}
 
-                        {!Array.isArray(searchedOptions) &&
-                            items.length === 0 && (
-                                <StyledDropdownMenuEmptyState>
-                                    <StyledDropdownMenuHeaderSubtext>
-                                        {emptyStateMessage}
-                                    </StyledDropdownMenuHeaderSubtext>
-                                </StyledDropdownMenuEmptyState>
-                            )}
-                    </StyledDropdownOptionsContainer>
-                </StyledDropdownMenuBody>
-                <DropdownMenuFooter
-                    multiple={multiple}
-                    showActionButtons={showActionButtons}
-                    showClearAllButton={showClearAllButton}
-                    clearAllButtonText={clearAllButtonText}
-                    applyButtonText={applyButtonText}
-                    handleClearAll={handleClearAll}
-                    handleApply={handleApply}
-                />
-            </StyledDropdownMenu>
+                            {!Array.isArray(searchedOptions) &&
+                                items.length === 0 && (
+                                    <StyledDropdownMenuEmptyState>
+                                        <StyledDropdownMenuHeaderSubtext>
+                                            {emptyStateMessage}
+                                        </StyledDropdownMenuHeaderSubtext>
+                                    </StyledDropdownMenuEmptyState>
+                                )}
+                        </StyledDropdownOptionsContainer>
+                    </StyledDropdownMenuBody>
+                    <DropdownMenuFooter
+                        multiple={multiple}
+                        showActionButtons={showActionButtons}
+                        showClearAllButton={showClearAllButton}
+                        clearAllButtonText={clearAllButtonText}
+                        applyButtonText={applyButtonText}
+                        handleClearAll={handleClearAll}
+                        handleApply={handleApply}
+                    />
+                </StyledDropdownMenu>
+            </GrauityLazyMotion>
         );
     }
 );

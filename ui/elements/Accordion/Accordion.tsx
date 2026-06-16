@@ -1,6 +1,7 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import React, { forwardRef, useEffect, useState } from 'react';
 
+import GrauityLazyMotion from '../../../common/motion';
 import { Icon } from '../Icon';
 import {
     StyledAccordionContent,
@@ -52,41 +53,47 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
         };
 
         return (
-            <StyledAccordionWrapper
-                ref={ref}
-                style={style}
-                className={className}
-            >
-                <StyledAccordionHeader
-                    onClick={handleToggle}
-                    $headerBackgroundColor={headerBackgroundColor}
-                    className="ns-accordion-header"
+            <GrauityLazyMotion>
+                <StyledAccordionWrapper
+                    ref={ref}
+                    style={style}
+                    className={className}
                 >
-                    {title}
-                    <StyledAccordionHeaderSuffix>
-                        {suffix}
-                        <Icon
-                            color={iconColor}
-                            name={isExpanded ? 'chevron-up' : 'chevron-down'}
-                            size={iconSize}
-                            className="ns-accordion-icon"
-                        />
-                    </StyledAccordionHeaderSuffix>
-                </StyledAccordionHeader>
-                <AnimatePresence>
-                    {isExpanded && (
-                        <motion.div {...motionProps}>
-                            <StyledAccordionContent
-                                $contentBackgroundColor={contentBackgroundColor}
-                                className="ns-accordion-content"
-                            >
-                                {showSeparator && <StyledLine />}
-                                {children}
-                            </StyledAccordionContent>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </StyledAccordionWrapper>
+                    <StyledAccordionHeader
+                        onClick={handleToggle}
+                        $headerBackgroundColor={headerBackgroundColor}
+                        className="ns-accordion-header"
+                    >
+                        {title}
+                        <StyledAccordionHeaderSuffix>
+                            {suffix}
+                            <Icon
+                                color={iconColor}
+                                name={
+                                    isExpanded ? 'chevron-up' : 'chevron-down'
+                                }
+                                size={iconSize}
+                                className="ns-accordion-icon"
+                            />
+                        </StyledAccordionHeaderSuffix>
+                    </StyledAccordionHeader>
+                    <AnimatePresence>
+                        {isExpanded && (
+                            <m.div {...motionProps}>
+                                <StyledAccordionContent
+                                    $contentBackgroundColor={
+                                        contentBackgroundColor
+                                    }
+                                    className="ns-accordion-content"
+                                >
+                                    {showSeparator && <StyledLine />}
+                                    {children}
+                                </StyledAccordionContent>
+                            </m.div>
+                        )}
+                    </AnimatePresence>
+                </StyledAccordionWrapper>
+            </GrauityLazyMotion>
         );
     }
 );

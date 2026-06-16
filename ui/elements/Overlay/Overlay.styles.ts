@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import styled, { css } from 'styled-components';
+import { m } from 'framer-motion';
+import { css, styled } from 'styled-components';
 
 import { StyledOverlayContentProps, StyledOverlayProps } from './types';
 
-export const StyledOverlay = styled(motion.div)<StyledOverlayProps>`
+export const StyledOverlay = styled(m.div)<StyledOverlayProps>`
     position: fixed;
     top: 0;
     left: 0;

@@ -1,4 +1,4 @@
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash-es';
 import React, { useCallback, useRef, useState } from 'react';
 
 import FormRenderer from './FormRenderer';

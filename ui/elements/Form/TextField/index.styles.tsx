@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 import { StyledDivProps } from '../../../../common/types';
 import { TEXT_FIELD_SIZE_STYLE_MAPPING } from './constants';

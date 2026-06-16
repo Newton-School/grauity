@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 import { getTextFieldStyles } from '../TextField/utils';
 import { TEXT_AREA_SIZE_STYLES_MAPPING } from './constant';

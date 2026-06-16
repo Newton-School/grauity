@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 import { getTextFieldStyles } from '../TextField/utils';
 import { StyledOtpInputProps } from './types';

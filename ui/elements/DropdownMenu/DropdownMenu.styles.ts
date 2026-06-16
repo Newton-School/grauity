@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import styled, { css } from 'styled-components';
+import { m } from 'framer-motion';
+import { css, styled } from 'styled-components';
 
 import {
     ANIMATION_DURATION_IN_MILLISECONDS,
@@ -10,7 +10,7 @@ import {
     StyledDropdownMenuProps,
 } from './types';
 
-export const StyledDropdownMenu = styled(motion.div)<StyledDropdownMenuProps>`
+export const StyledDropdownMenu = styled(m.div)<StyledDropdownMenuProps>`
     box-sizing: border-box;
     display: flex;
     width: ${({ $width }) => $width};
