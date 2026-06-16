@@ -1,6 +1,4 @@
 import classnames from 'classnames';
-import invoke from 'lodash/invoke';
-import isNil from 'lodash/isNil';
 import * as React from 'react';
 
 import { useKeyOnly, useValueAndKey } from '../../helpers';
@@ -36,13 +34,13 @@ function Icon({
             'aria-label'?: string;
         } = {};
 
-        if (isNil(ariaLabel)) {
+        if (ariaLabel == null) {
             ariaOptions['aria-hidden'] = 'true';
         } else {
             ariaOptions['aria-label'] = ariaLabel;
         }
 
-        if (!isNil(ariaHidden)) {
+        if (ariaHidden != null) {
             ariaOptions['aria-hidden'] = ariaHidden;
         }
 
@@ -55,7 +53,10 @@ function Icon({
             return;
         }
 
-        invoke(props, 'onClick', e, props);
+        // Faithful inline of lodash `invoke(props, 'onClick', e, props)`:
+        // call props.onClick (if present) as a method on `props` so `this`
+        // stays bound to props, matching lodash's apply(object, args).
+        (props as { onClick?: (...args: any[]) => void }).onClick?.(e, props);
     };
 
     const ariaOptions = getIconAriaOptions();

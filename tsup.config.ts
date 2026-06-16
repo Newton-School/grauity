@@ -30,15 +30,16 @@ const pkg = JSON.parse(readFileSync(resolve(ROOT, 'package.json'), 'utf8')) as {
 // Externalize all deps + peerDeps (+ their deep-import subpaths) so the consumer
 // dedupes/tree-shakes a single copy and React contexts never break.
 //
-// EXCEPTION: lodash. grauity only deep-imports a few methods (lodash/debounce,
-// lodash/invoke, lodash/isNil). Leaving `lodash/*` external emits extensionless
-// specifiers that Node's native ESM resolver rejects ("Did you mean
-// lodash/debounce.js?"), breaking ESM consumers. Bundling the handful of methods
-// is tiny and fixes ESM. (A lodash-es migration is tracked separately.)
+// lodash-es (the only lodash usage left, `debounce`) is intentionally NOT a
+// dependency/peerDependency — it's a devDependency, so it is NOT in this list
+// and esbuild bundles + tree-shakes it into dist. That keeps the CJS output
+// self-contained (no `require()` of the ESM-only lodash-es) and ships only the
+// handful of bytes `debounce` needs, instead of the ~80KB of non-tree-shakeable
+// lodash CJS the old `lodash/*` deep-imports used to inline.
 const externalPackages = [
     ...Object.keys(pkg.dependencies ?? {}),
     ...Object.keys(pkg.peerDependencies ?? {}),
-].filter((p) => p !== 'lodash');
+];
 const external = [
     ...externalPackages,
     ...externalPackages.map((p) => new RegExp(`^${p}/`)),
@@ -152,10 +153,6 @@ export default defineConfig({
     target: 'es2019',
     platform: 'browser',
     external,
-    // tsup auto-externalizes every package.json dependency. Force-bundle lodash
-    // so its CJS deep-imports (lodash/debounce, ...) are inlined rather than left
-    // as extensionless ESM specifiers Node can't resolve.
-    noExternal: [/^lodash(\/.*)?$/],
     onSuccess: async () => {
         copyStaticAssets();
     },

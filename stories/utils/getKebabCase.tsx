@@ -1,8 +1,8 @@
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'lodash-es';
 
 /**
  * Convert a string to kebab case, removing hyphens before numbers
- * 
+ *
  * For example, "MyComponent1" will be converted to "my-component1", instead of "my-component-1"
  * @param str The string to convert to kebab case
  * @returns
