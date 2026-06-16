@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 import { ACTION_COLORS } from 'ui/core';
 
 import { StyledComboboxTriggerProps } from './types';

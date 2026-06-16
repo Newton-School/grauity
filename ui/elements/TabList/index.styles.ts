@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 import { TAB_LIST_VARIANT_STYLES_MAPPING } from './constants';
 import { StyledTabListProps } from './types';

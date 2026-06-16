@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 import { StyledTypographyInterface } from './types';
 import { getTypographyVariantStyles } from './utils';

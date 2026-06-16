@@ -1,6 +1,6 @@
 import { m } from 'framer-motion';
 import { ReactNode } from 'react';
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 import {
     ModalBodyMainProps,

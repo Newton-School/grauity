@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 import { StyledDivProps, StyledLabelProps } from '../../../../common/types';
 import { Label } from '../Label';

@@ -1,5 +1,5 @@
 import { m } from 'framer-motion';
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 import {
     ANIMATION_DURATION_IN_MILLISECONDS,
