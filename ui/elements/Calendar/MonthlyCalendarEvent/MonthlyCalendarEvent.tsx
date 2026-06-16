@@ -11,20 +11,43 @@ import { MonthlyCalendarEventProps } from './types';
 const MonthlyCalendarEvent = forwardRef<
     HTMLDivElement,
     MonthlyCalendarEventProps
->((props, ref) => {
-    const { eventTime, eventTitle, eventTitleColor, eventTimeColor } = props;
-    const eventTimeString = get12HourFormatFromDate(eventTime);
+>(
+    (
+        {
+            eventTime,
+            eventTitle,
+            eventTitleColor,
+            eventTimeColor,
+            borderRadius,
+            backgroundColor,
+            width,
+            height,
+            isActive,
+            ...props
+        },
+        ref
+    ) => {
+        const eventTimeString = get12HourFormatFromDate(eventTime);
 
-    return (
-        <StyledMonthlyCalendarEvent {...props} ref={ref}>
-            <StyledMonthlyCalendarEventText color={eventTimeColor}>
-                {eventTimeString}
-            </StyledMonthlyCalendarEventText>
-            <StyledMonthlyCalendarEventTitleText color={eventTitleColor}>
-                {eventTitle}
-            </StyledMonthlyCalendarEventTitleText>
-        </StyledMonthlyCalendarEvent>
-    );
-});
+        return (
+            <StyledMonthlyCalendarEvent
+                $borderRadius={borderRadius}
+                $backgroundColor={backgroundColor}
+                $width={width}
+                $height={height}
+                $isActive={isActive}
+                {...props}
+                ref={ref}
+            >
+                <StyledMonthlyCalendarEventText $color={eventTimeColor}>
+                    {eventTimeString}
+                </StyledMonthlyCalendarEventText>
+                <StyledMonthlyCalendarEventTitleText $color={eventTitleColor}>
+                    {eventTitle}
+                </StyledMonthlyCalendarEventTitleText>
+            </StyledMonthlyCalendarEvent>
+        );
+    }
+);
 
 export default MonthlyCalendarEvent;

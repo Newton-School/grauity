@@ -36,4 +36,4 @@ export const HelpMessage = (props: HelpMessageProps) => {
     );
 };
 
-export { HelpMessageProps };
+export type { HelpMessageProps };

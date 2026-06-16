@@ -103,10 +103,10 @@ const MultiStepModal = (props: MultiStepModalProps) => {
                 <StyledModalPaginatedActions>
                     {showModalStepsPagination && modalSteps.length > 1 && (
                         <StyledModalPagination>
-                            {modalSteps.map((item, index) => (
+                            {modalSteps.map((_, index) => (
                                 <StyledModalPaginationItem
                                     key={`modal-pagination-item-${index + 1}`}
-                                    active={index === currentStep}
+                                    $active={index === currentStep}
                                     onClick={() => setCurrentStep(index)}
                                 />
                             ))}

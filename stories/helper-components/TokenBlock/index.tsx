@@ -68,15 +68,18 @@ const TokenBlock = ({
     return (
         <WrapperComponent>
             <StyledTokenBlock
-                background={background}
-                interactive={copy}
+                $background={background}
+                $interactive={copy}
                 onClick={copy ? handleCopy : null}
             >
                 {color && <ColorRenderer color={color} size="small" />}
                 {children}
                 {showCopiedOverlay && (
-                    <StyledTokenBlockCopiedContainer copied={copied}>
-                        <NSIcon name="check" color="var(--text-emphasis-success-default, #007a51)" />
+                    <StyledTokenBlockCopiedContainer $copied={copied}>
+                        <NSIcon
+                            name="check"
+                            color="var(--text-emphasis-success-default, #007a51)"
+                        />
                         Copied!
                     </StyledTokenBlockCopiedContainer>
                 )}

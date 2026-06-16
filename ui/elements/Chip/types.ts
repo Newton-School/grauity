@@ -110,15 +110,14 @@ export interface ChipProps {
 }
 
 export interface StyledChip extends StyledDivProps {
-    variant?: ChipVariants;
-    size?: ChipSizes;
-    hasBorder?: boolean;
-    textColor?: string | null;
-    backgroundColor?: string | null;
-    borderColor?: string | null;
-    rounded?: boolean;
-    ref?: React.Ref<HTMLDivElement>;
-    iconPosition?: ButtonIconPositions;
+    $variant?: ChipVariants;
+    $size?: ChipSizes;
+    $hasBorder?: boolean;
+    $textColor?: string | null;
+    $backgroundColor?: string | null;
+    $borderColor?: string | null;
+    $rounded?: boolean;
+    $iconPosition?: ButtonIconPositions;
 }
 
 export interface StyledChipTextProps {

@@ -1,5 +1,9 @@
-/* eslint-disable import/prefer-default-export */
 import styled, { css } from 'styled-components';
+
+import {
+    StyledTokenBlockCopiedContainerProps,
+    StyledTokenBlockProps,
+} from './types';
 
 export const StyledHideOnPrintWrapper = styled.div`
     @media print {
@@ -7,7 +11,7 @@ export const StyledHideOnPrintWrapper = styled.div`
     }
 `;
 
-export const StyledTokenBlock = styled.div<any>`
+export const StyledTokenBlock = styled.div<StyledTokenBlockProps>`
     display: flex;
     padding: var(--spacing-8px, 8px) var(--spacing-12px, 12px);
     justify-content: center;
@@ -15,8 +19,8 @@ export const StyledTokenBlock = styled.div<any>`
     gap: 8px;
     border-radius: var(--corner-radius-8px, 8px);
     border: 1px solid var(--border-subtle-primary-default, #e1e5ea);
-    background: ${({ background }) =>
-        background || 'var(--bg-subtle-tertiary-default, #edeff3)'};
+    background: ${({ $background }) =>
+        $background || 'var(--bg-subtle-tertiary-default, #edeff3)'};
     color: var(--text-emphasis-primary-default, #16191d) !important;
     font-family: var(--font-family-code, 'Fira Code', 'monospace') !important;
     font-size: var(--font-size-14px, 14px) !important;
@@ -26,14 +30,14 @@ export const StyledTokenBlock = styled.div<any>`
     position: relative;
     overflow: hidden;
 
-    ${({ interactive }) =>
-        interactive &&
+    ${({ $interactive }) =>
+        $interactive &&
         css`
             cursor: pointer;
         `}
 `;
 
-export const StyledTokenBlockCopiedContainer = styled.div<any>`
+export const StyledTokenBlockCopiedContainer = styled.div<StyledTokenBlockCopiedContainerProps>`
     position: absolute;
     top: 0;
     left: 0;
@@ -55,8 +59,8 @@ export const StyledTokenBlockCopiedContainer = styled.div<any>`
     transition: all 0.3s ease;
     z-index: -1;
 
-    ${({ copied }) =>
-        copied &&
+    ${({ $copied }) =>
+        $copied &&
         css`
             z-index: 1;
             opacity: 1;

@@ -27,4 +27,4 @@ export const ErrorMessage = (props: ErrorMessageProps) => {
     );
 };
 
-export { ErrorMessageProps };
+export type { ErrorMessageProps };

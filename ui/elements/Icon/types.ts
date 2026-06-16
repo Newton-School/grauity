@@ -6,6 +6,11 @@ import {
     grauityRotatedChoiceName,
 } from 'ui/core';
 
+interface StyledIconProps {
+    $size: number;
+    $color: string;
+}
+
 interface IconProps {
     /**
      * Icon can have the aria hidden attribute
@@ -93,4 +98,4 @@ interface IconProps {
     style?: React.CSSProperties;
 }
 
-export { type IconProps };
+export { type IconProps, type StyledIconProps };

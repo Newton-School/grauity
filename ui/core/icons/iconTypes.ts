@@ -163,6 +163,8 @@ export type grauityIconName =
     | 'codeforces'
     | 'facebook'
     | 'github'
+    | 'google-doc'
+    | 'google-slides'
     | 'google'
     | 'hackerearth'
     | 'hackerrank'
@@ -624,6 +626,8 @@ export type grauityIconKey =
     | 'Codeforces'
     | 'Facebook'
     | 'Github'
+    | 'GoogleDoc'
+    | 'GoogleSlides'
     | 'Google'
     | 'Hackerearth'
     | 'Hackerrank'
@@ -1085,6 +1089,8 @@ export enum GRAUITY_ICONS {
     Codeforces = 'codeforces',
     Facebook = 'facebook',
     Github = 'github',
+    GoogleDoc = 'google-doc',
+    GoogleSlides = 'google-slides',
     Google = 'google',
     Hackerearth = 'hackerearth',
     Hackerrank = 'hackerrank',

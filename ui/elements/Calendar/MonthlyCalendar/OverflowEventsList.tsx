@@ -76,7 +76,7 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
             shouldCloseOnOutsideClick
         >
             <StyledOverflowEventsListContainer
-                width={overflowContainerWidth}
+                $width={overflowContainerWidth}
                 ref={popoverDataRef}
             >
                 <DateCircle date={cellDate} />

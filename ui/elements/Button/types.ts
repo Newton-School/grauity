@@ -266,28 +266,17 @@ export interface IconButtonProps {
     showAnimationOnClick?: boolean;
 }
 
-export interface ButtonComponentProps extends StyledButtonProps {
-    variant?: ButtonVariants;
+export interface StyledButtonComponentProps extends StyledButtonProps {
+    $variant?: ButtonVariants;
     $color?: ButtonColors;
-    size?: ButtonSizes;
-    icon?: string | number;
-    iconSize?: string;
-    iconPosition?: 'left' | 'right';
-    className?: string;
-    disabled?: boolean;
-    isLoading?: boolean;
+    $size?: ButtonSizes;
+    $iconPosition?: 'left' | 'right';
+    $isLoading?: boolean;
     style?: React.CSSProperties;
-    onClick?: (e?: any) => void;
-    fullWidth?: boolean;
-    isIconButton?: boolean;
+    $fullWidth?: boolean;
+    $isIconButton?: boolean;
     children?: React.ReactNode;
     ref?: React.Ref<HTMLButtonElement>;
-    type?: ButtonTypeAttribute;
-    ariaLabel?: string;
-    title?: string;
-    tabIndex?: number;
-    onMouseEnter?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    onMouseLeave?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     $showAnimationOnClick?: boolean;
 }
 
@@ -295,7 +284,7 @@ export interface ButtonContentProps {
     id?: string;
     children: React.ReactNode;
     $iconPosition: ButtonIconPositions | false;
-    variant: ButtonVariants;
+    $variant: ButtonVariants;
 }
 
 export interface ButtonGroupProps {

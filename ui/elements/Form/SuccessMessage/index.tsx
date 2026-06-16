@@ -30,4 +30,4 @@ export const SuccessMessage = (props: SuccessMessageProps) => {
     );
 };
 
-export { SuccessMessageProps };
+export type { SuccessMessageProps };
