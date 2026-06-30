@@ -1,6 +1,6 @@
 {
     "name": "@newtonschool/grauity",
-    "version": "3.4.0",
+    "version": "3.5.0",
     "description": "Design System for Newton School",
     "keywords": [
         "Newton School",
@@ -22,7 +22,7 @@
     },
     "engines": {
         "npm": ">=9",
-        "node": ">=22.0.0"
+        "node": ">=20.0.0"
     },
     "main": "dist/index.cjs",
     "module": "dist/index.mjs",
