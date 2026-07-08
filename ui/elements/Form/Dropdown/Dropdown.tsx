@@ -59,9 +59,33 @@ const Dropdown = (props: DropdownProps) => {
     }, [value, items, multiple]);
 
     useEffect(() => {
-        if (isOpen && dropdownMenuRef.current) {
-            setDropdownMenuHeight(dropdownMenuRef.current.clientHeight);
+        if (!isOpen) {
+            return;
         }
+
+        const updateMenuHeight = () => {
+            if (!dropdownMenuRef.current) {
+                return;
+            }
+            setDropdownMenuHeight(dropdownMenuRef.current.clientHeight);
+        };
+
+        updateMenuHeight();
+
+        let resizeObserver: ResizeObserver | null = null;
+        if (dropdownMenuRef.current && typeof ResizeObserver !== 'undefined') {
+            resizeObserver = new ResizeObserver(() => {
+                updateMenuHeight();
+            });
+            resizeObserver.observe(dropdownMenuRef.current);
+        }
+
+        window.addEventListener('resize', updateMenuHeight);
+
+        return () => {
+            window.removeEventListener('resize', updateMenuHeight);
+            resizeObserver?.disconnect();
+        };
     }, [isOpen]);
 
     return (
