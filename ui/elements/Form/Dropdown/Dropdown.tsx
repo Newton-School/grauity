@@ -68,6 +68,7 @@ const Dropdown = (props: DropdownProps) => {
         <AnimatePresence>
             <DropdownTrigger
                 {...props}
+                key="dropdown-trigger"
                 ref={triggerRef}
                 onTriggerClick={() => {
                     setIsOpen(!isOpen);
@@ -77,6 +78,7 @@ const Dropdown = (props: DropdownProps) => {
             />
             {isOpen && (
                 <Overlay
+                    key="dropdown-menu-overlay"
                     position={calculateDropdownMenuPosition(
                         triggerRef,
                         dropdownMenuHeight
