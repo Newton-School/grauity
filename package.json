@@ -77,7 +77,7 @@
         "build-tokens": "tsx scripts/build-tokens.ts",
         "typecheck": "tsc --noEmit --project tsconfig.json",
         "build-icons": "npm run build-icons:optimize && npm run build-icons:generate",
-        "build-icons:optimize": "rimraf ./iconland/optimised/*.svg & svgo -q -p 8 -f ./iconland/seeds -o ./iconland/optimised",
+        "build-icons:optimize": "rimraf ./iconland/optimised/*.svg && svgo -q -p 8 -f ./iconland/seeds -o ./iconland/optimised",
         "build-icons:generate": "node scripts/generate-font-icons-from-optimised-svgs.cjs",
         "lint": "npm run lint:eslint -- .",
         "lint:fix": "npm run lint:eslint -- . --fix",
