@@ -205,6 +205,8 @@ export type grauityIconName =
     | 'book-alt3-filled'
     | 'book-alt3'
     | 'book-filled'
+    | 'book-open-filled'
+    | 'book-open'
     | 'book'
     | 'briefcase-alt2-filled'
     | 'briefcase-alt2'
@@ -668,6 +670,8 @@ export type grauityIconKey =
     | 'BookAlt3Filled'
     | 'BookAlt3'
     | 'BookFilled'
+    | 'BookOpenFilled'
+    | 'BookOpen'
     | 'Book'
     | 'BriefcaseAlt2Filled'
     | 'BriefcaseAlt2'
@@ -1131,6 +1135,8 @@ export enum GRAUITY_ICONS {
     BookAlt3Filled = 'book-alt3-filled',
     BookAlt3 = 'book-alt3',
     BookFilled = 'book-filled',
+    BookOpenFilled = 'book-open-filled',
+    BookOpen = 'book-open',
     Book = 'book',
     BriefcaseAlt2Filled = 'briefcase-alt2-filled',
     BriefcaseAlt2 = 'briefcase-alt2',
