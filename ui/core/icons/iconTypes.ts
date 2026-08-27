@@ -228,6 +228,8 @@ export type grauityIconName =
     | 'bulb'
     | 'call-end-filled'
     | 'call-end'
+    | 'call-incoming-filled'
+    | 'call-incoming'
     | 'call-start-filled'
     | 'call-start'
     | 'camera-filled'
@@ -711,6 +713,8 @@ export type grauityIconKey =
     | 'Bulb'
     | 'CallEndFilled'
     | 'CallEnd'
+    | 'CallIncomingFilled'
+    | 'CallIncoming'
     | 'CallStartFilled'
     | 'CallStart'
     | 'CameraFilled'
@@ -1194,6 +1198,8 @@ export enum GRAUITY_ICONS {
     Bulb = 'bulb',
     CallEndFilled = 'call-end-filled',
     CallEnd = 'call-end',
+    CallIncomingFilled = 'call-incoming-filled',
+    CallIncoming = 'call-incoming',
     CallStartFilled = 'call-start-filled',
     CallStart = 'call-start',
     CameraFilled = 'camera-filled',
