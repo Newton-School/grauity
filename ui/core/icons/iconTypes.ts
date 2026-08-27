@@ -61,6 +61,8 @@ export type grauityIconName =
     | 'headphone-mic-filled'
     | 'headphone-mic'
     | 'headphone'
+    | 'image-filled'
+    | 'image'
     | 'mic-filled'
     | 'mic'
     | 'micmute-filled'
@@ -226,6 +228,8 @@ export type grauityIconName =
     | 'bulb'
     | 'call-end-filled'
     | 'call-end'
+    | 'call-incoming-filled'
+    | 'call-incoming'
     | 'call-start-filled'
     | 'call-start'
     | 'camera-filled'
@@ -542,6 +546,8 @@ export type grauityIconKey =
     | 'HeadphoneMicFilled'
     | 'HeadphoneMic'
     | 'Headphone'
+    | 'ImageFilled'
+    | 'Image'
     | 'MicFilled'
     | 'Mic'
     | 'MicmuteFilled'
@@ -707,6 +713,8 @@ export type grauityIconKey =
     | 'Bulb'
     | 'CallEndFilled'
     | 'CallEnd'
+    | 'CallIncomingFilled'
+    | 'CallIncoming'
     | 'CallStartFilled'
     | 'CallStart'
     | 'CameraFilled'
@@ -1023,6 +1031,8 @@ export enum GRAUITY_ICONS {
     HeadphoneMicFilled = 'headphone-mic-filled',
     HeadphoneMic = 'headphone-mic',
     Headphone = 'headphone',
+    ImageFilled = 'image-filled',
+    Image = 'image',
     MicFilled = 'mic-filled',
     Mic = 'mic',
     MicmuteFilled = 'micmute-filled',
@@ -1188,6 +1198,8 @@ export enum GRAUITY_ICONS {
     Bulb = 'bulb',
     CallEndFilled = 'call-end-filled',
     CallEnd = 'call-end',
+    CallIncomingFilled = 'call-incoming-filled',
+    CallIncoming = 'call-incoming',
     CallStartFilled = 'call-start-filled',
     CallStart = 'call-start',
     CameraFilled = 'camera-filled',
