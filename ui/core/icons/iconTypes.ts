@@ -61,6 +61,8 @@ export type grauityIconName =
     | 'headphone-mic-filled'
     | 'headphone-mic'
     | 'headphone'
+    | 'image-filled'
+    | 'image'
     | 'mic-filled'
     | 'mic'
     | 'micmute-filled'
@@ -542,6 +544,8 @@ export type grauityIconKey =
     | 'HeadphoneMicFilled'
     | 'HeadphoneMic'
     | 'Headphone'
+    | 'ImageFilled'
+    | 'Image'
     | 'MicFilled'
     | 'Mic'
     | 'MicmuteFilled'
@@ -1023,6 +1027,8 @@ export enum GRAUITY_ICONS {
     HeadphoneMicFilled = 'headphone-mic-filled',
     HeadphoneMic = 'headphone-mic',
     Headphone = 'headphone',
+    ImageFilled = 'image-filled',
+    Image = 'image',
     MicFilled = 'mic-filled',
     Mic = 'mic',
     MicmuteFilled = 'micmute-filled',
