@@ -29,3 +29,13 @@ export const Component = Template.bind({});
 Component.args = {
     ...defaultArgs,
 };
+
+// Keyboard-navigable: Tab into the strip, then Arrow Left/Right/Home/End to
+// move focus and Enter/Space to select. `ariaLabel` names the tablist for
+// assistive tech. Use the Accessibility (a11y) panel to verify.
+export const KeyboardNavigation = Template.bind({});
+
+KeyboardNavigation.args = {
+    tabItems: ['Overview', 'Activity', 'Settings', 'Members'],
+    ariaLabel: 'Project sections',
+};
