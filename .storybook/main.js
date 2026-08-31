@@ -6,11 +6,10 @@ export default {
 
     addons: [
         '@storybook/addon-links',
-        '@storybook/addon-essentials',
-        '@storybook/addon-interactions',
         '@storybook/addon-webpack5-compiler-babel',
         '@storybook/addon-docs',
         '@storybook/addon-a11y',
+        '@storybook/addon-mcp',
     ],
 
     framework: {
@@ -18,13 +17,10 @@ export default {
         options: {},
     },
 
-    docs: {
-        autodocs: true,
-    },
-
     typescript: {
         reactDocgen: 'react-docgen-typescript',
     },
+
     async babel(config) {
         return {
             presets: [
