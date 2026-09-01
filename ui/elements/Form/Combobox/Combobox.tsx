@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { debounce } from 'lodash-es';
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 
+import { useIsomorphicLayoutEffect } from '../../../../hooks';
 import DropdownMenu, { BaseItemOptionProps } from '../../DropdownMenu';
 import { DROPDOWN_MENU_MAX_HEIGHT } from '../../DropdownMenu/constants';
 import {
@@ -138,9 +139,15 @@ const Combobox = (props: ComboboxProps) => {
         setSearchedOptions(null);
     }, [items]);
 
-    useEffect(() => {
+    useIsomorphicLayoutEffect(() => {
         const { position, maxHeight, style } =
-            calculateDropdownMenuLayoutForCombobox(triggerRef);
+            calculateDropdownMenuLayoutForCombobox(
+                triggerRef,
+                DROPDOWN_MENU_MAX_HEIGHT,
+                // Null until the menu is on screen, in which case there is
+                // nothing to fit to the viewport yet.
+                dropdownMenuRef.current?.offsetWidth ?? 0
+            );
         setDropdownMenuHeight(maxHeight);
         setDropdownMenuPosition(position);
         setOverlayStyles(style);
