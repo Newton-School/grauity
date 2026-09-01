@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<!--
+  Source for public/og-image.png (the social share card for grauity.newtonschool.co).
+  Rendered to PNG by `node scripts/og-image/render.mjs` — see that file for usage.
+  The renderer inlines the brand font and the monogram into the placeholders
+  below, so opening this file directly will show it unstyled.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <style>
+            @font-face {
+                font-family: 'Mona Sans';
+                font-weight: 100 900;
+                src: url(data:font/woff2;base64,__FONT__) format('woff2');
+            }
+
+            :root {
+                --neutral-0: #ffffff;
+                --neutral-600: #8c95a6;
+                --neutral-700: #5b6271;
+                --neutral-750: #30363d;
+                --neutral-1000: #0b0c0e;
+                --brand-300: #61a8ff;
+                --brand-500: #0673f9;
+                --mark-blue: #7e9acf;
+                --mark-teal: #78c7ce;
+                --mark-green: #84cebf;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                width: 1200px;
+                height: 630px;
+                overflow: hidden;
+                font-family: 'Mona Sans', sans-serif;
+                background: var(--neutral-1000);
+                color: var(--neutral-0);
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .card {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                gap: 56px;
+                padding: 72px 80px;
+                isolation: isolate;
+            }
+
+            /* Ambient brand glows + hairline grid */
+            .card::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: -2;
+                background: radial-gradient(
+                        720px 520px at 88% 12%,
+                        rgba(6, 115, 249, 0.28),
+                        transparent 70%
+                    ),
+                    radial-gradient(
+                        560px 460px at 6% 96%,
+                        rgba(120, 199, 206, 0.16),
+                        transparent 72%
+                    );
+            }
+
+            .card::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+                background-image: linear-gradient(
+                        rgba(255, 255, 255, 0.032) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(255, 255, 255, 0.032) 1px,
+                        transparent 1px
+                    );
+                background-size: 48px 48px;
+                mask-image: radial-gradient(
+                    900px 620px at 30% 40%,
+                    #000 20%,
+                    transparent 78%
+                );
+            }
+
+            /* ---------------- Left column ---------------- */
+
+            .content {
+                flex: 1 1 auto;
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .eyebrow {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                font-size: 25px;
+                font-weight: 600;
+                letter-spacing: 0.4px;
+                color: var(--neutral-600);
+            }
+
+            .eyebrow svg {
+                width: 38px;
+                height: 38px;
+                display: block;
+            }
+
+            .wordmark {
+                margin-top: 30px;
+                font-size: 124px;
+                font-weight: 800;
+                line-height: 1;
+                letter-spacing: -3.5px;
+            }
+
+            .wordmark .ui {
+                background: linear-gradient(
+                    100deg,
+                    var(--brand-300),
+                    var(--mark-teal) 55%,
+                    var(--mark-green)
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .tagline {
+                margin-top: 22px;
+                font-size: 35px;
+                font-weight: 500;
+                line-height: 1.3;
+                letter-spacing: -0.5px;
+                color: var(--neutral-600);
+            }
+
+            .meta {
+                margin-top: 44px;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+            }
+
+            .chip {
+                padding: 12px 20px;
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.045);
+                font-size: 22px;
+                font-weight: 550;
+                letter-spacing: 0.1px;
+                color: rgba(255, 255, 255, 0.86);
+                white-space: nowrap;
+            }
+
+            .chip.is-brand {
+                border-color: rgba(6, 115, 249, 0.42);
+                background: rgba(6, 115, 249, 0.16);
+                color: var(--brand-300);
+            }
+
+            /* ---------------- Right panel ---------------- */
+
+            .panel {
+                flex: 0 0 348px;
+                display: flex;
+                flex-direction: column;
+                gap: 22px;
+                padding: 32px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 24px;
+                background: linear-gradient(
+                    150deg,
+                    rgba(255, 255, 255, 0.085),
+                    rgba(255, 255, 255, 0.025)
+                );
+                box-shadow: 0 32px 80px rgba(0, 0, 0, 0.45);
+            }
+
+            .swatches {
+                display: flex;
+                gap: 12px;
+            }
+
+            .swatch {
+                width: 46px;
+                height: 46px;
+                border-radius: 12px;
+            }
+
+            .btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 60px;
+                border-radius: 12px;
+                font-size: 22px;
+                font-weight: 600;
+                letter-spacing: 0.1px;
+            }
+
+            .btn.is-primary {
+                background: var(--brand-500);
+                color: #fff;
+                box-shadow: 0 10px 26px rgba(6, 115, 249, 0.34);
+            }
+
+            .btn.is-secondary {
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                color: rgba(255, 255, 255, 0.82);
+            }
+
+            .field {
+                display: flex;
+                align-items: center;
+                height: 60px;
+                padding: 0 18px;
+                border: 1px solid rgba(255, 255, 255, 0.16);
+                border-radius: 12px;
+                font-size: 21px;
+                color: var(--neutral-700);
+            }
+
+            .row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .row span {
+                font-size: 21px;
+                font-weight: 500;
+                color: var(--neutral-600);
+            }
+
+            .toggle {
+                width: 62px;
+                height: 34px;
+                padding: 4px;
+                border-radius: 999px;
+                background: var(--brand-500);
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .toggle i {
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                background: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="content">
+                <div class="eyebrow">__MARK__<span>Newton School</span></div>
+
+                <div class="wordmark">gra<span class="ui">.UI.</span>ty</div>
+
+                <div class="tagline">
+                    The design system &amp; React component<br />library behind
+                    Newton School.
+                </div>
+
+                <div class="meta">
+                    <div class="chip is-brand">grauity.newtonschool.co</div>
+                    <div class="chip">@newtonschool/grauity</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="swatches">
+                    <div
+                        class="swatch"
+                        style="background: var(--brand-500)"
+                    ></div>
+                    <div
+                        class="swatch"
+                        style="background: var(--mark-blue)"
+                    ></div>
+                    <div
+                        class="swatch"
+                        style="background: var(--mark-teal)"
+                    ></div>
+                    <div
+                        class="swatch"
+                        style="background: var(--mark-green)"
+                    ></div>
+                </div>
+                <div class="btn is-primary">Button</div>
+                <div class="btn is-secondary">Secondary</div>
+                <div class="field">Input</div>
+                <div class="row">
+                    <span>Toggle</span>
+                    <div class="toggle"><i></i></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

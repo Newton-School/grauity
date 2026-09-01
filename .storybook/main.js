@@ -4,6 +4,15 @@ export default {
         '../stories/**/*.stories.@(js|jsx|ts|tsx)',
     ],
 
+    // Browser tab title. Storybook appends " - Storybook" to it, and falls back
+    // to its own package name when this is unset.
+    title: 'gra.UI.ty',
+
+    // Copied to the root of the build, so they are served from
+    // https://grauity.newtonschool.co/<file>. Storybook also reads favicon.svg
+    // from here and uses it instead of its own.
+    staticDirs: ['../public'],
+
     addons: [
         '@storybook/addon-links',
         '@storybook/addon-essentials',
