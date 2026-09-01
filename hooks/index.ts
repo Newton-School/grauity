@@ -1,3 +1,4 @@
 export { default as useClickAway } from './useClickAway';
 export { default as useDisableBodyScroll } from './useDisableBodyScroll';
+export { default as useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 export { default as useKeyboardEvent } from './useKeyboardEvent';
