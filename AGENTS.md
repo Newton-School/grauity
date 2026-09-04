@@ -1,16 +1,18 @@
-# Gravity UI Component Library - AI Agent Guide
+# grauity (@newtonschool/grauity) - AI Agent Guide
 
-This guide provides comprehensive information about Gravity UI components, their props, and types to help AI coding assistants understand and correctly implement components in this design system.
+This guide provides comprehensive information about grauity components, their props, and types to help AI coding assistants understand and correctly implement components in this design system.
+
+> **Note:** the library is **grauity** (pronounced "gravity"), published as `@newtonschool/grauity`. It is unrelated to the similarly-named "Gravity UI" design system. For a shorter index of just the closed enum values, see [llms.txt](./llms.txt).
 
 ## Library Overview
 
-Gravity is a comprehensive React component library built with TypeScript. All components use the `NS` prefix (e.g., `NSButton`, `NSModal`) and are exported from the main library at `ui/index.ts`.
+grauity is a comprehensive React component library built with TypeScript. All components use the `NS` prefix (e.g., `NSButton`, `NSModal`) and are imported from the published package `@newtonschool/grauity` (source barrel: `ui/index.ts`).
 
 ## Core Design Tokens
 
 ### Color System
 
-Gravity uses a systematic color naming convention that follows the structure: `--<category>-<intensity>-<name>-<state>`. Understanding this system is crucial for proper component styling.
+grauity uses a systematic color naming convention that follows the structure: `--<category>-<intensity>-<name>-<state>`. Understanding this system is crucial for proper component styling.
 
 #### Color Categories
 1. **Background Colors (`bg`)**: Used for component backgrounds, surfaces, and containers
@@ -223,9 +225,9 @@ Gravity uses a systematic color naming convention that follows the structure: `-
 #### NSButton
 ```typescript
 interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'tertiary'    // Default: 'primary'
-  color?: 'brand' | 'neutral' | 'error' | 'success' | 'warning'  // Default: 'brand'
-  size?: 'small' | 'medium' | 'large'               // Default: 'medium'
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'text'   // Default: 'primary'
+  color?: 'brand' | 'neutral' | 'error' | 'success' | 'warning' | 'yellow' | 'purple'  // Default: 'brand'
+  size?: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large'  // Default: 'medium'
   icon?: grauityIconName                             // Optional icon
   iconSize?: grauityIconSizeName                     // Default: '20'
   iconPosition?: 'left' | 'right'                   // Default: 'left'
@@ -241,9 +243,9 @@ interface ButtonProps {
 #### NSIconButton
 ```typescript
 interface IconButtonProps {
-  variant?: 'primary' | 'secondary' | 'tertiary'
-  color?: 'brand' | 'neutral' | 'error' | 'success' | 'warning'
-  size?: 'small' | 'medium' | 'large'
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'text'
+  color?: 'brand' | 'neutral' | 'error' | 'success' | 'warning' | 'yellow' | 'purple'
+  size?: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large'
   icon: grauityIconName                              // Required
   iconSize?: grauityIconSizeName
   disabled?: boolean
@@ -258,7 +260,7 @@ interface IconButtonProps {
 ```typescript
 interface TypographyProps {
   variant: TypographyVariantType                     // Required
-  color?: string                                     // Custom color
+  color?: string        // A CSS color VALUE, not a keyword. Use a token: 'var(--text-emphasis-error-default, #d22d3a)'
   as?: any                                          // HTML element type
   textAlign?: string
   textTransform?: string
@@ -266,11 +268,13 @@ interface TypographyProps {
   children: React.ReactNode
 }
 
-// Typography variants include:
-// Display: 'display-bd-d1', 'display-bd-d2', 'display-bd-d3'
-// Headings: 'heading-sb-h1' through 'heading-sb-h6'
-// Paragraphs: 'paragraph-sb-p1' through 'paragraph-sb-p4', 'paragraph-md-p1' through 'paragraph-md-p4'
-// Actions: 'action-sb-p1', 'action-sb-p2', 'action-sb-lk1'
+// All 27 TypographyVariantType values:
+// Display:   'display-bd-d1' | 'display-bd-d2' | 'display-bd-d3'
+// Heading:   'heading-sb-h1' | 'heading-sb-h2' | 'heading-sb-h3' | 'heading-sb-h4' | 'heading-sb-h5' | 'heading-sb-h6'
+// Para (sb): 'paragraph-sb-p1' | 'paragraph-sb-p2' | 'paragraph-sb-p3' | 'paragraph-sb-p4' | 'paragraph-sb-l1' | 'paragraph-sb-l2'
+// Para (md): 'paragraph-md-p1' | 'paragraph-md-p2' | 'paragraph-md-p3' | 'paragraph-md-p4' | 'paragraph-md-c1' | 'paragraph-md-l1' | 'paragraph-md-l2'
+// Overline:  'overline-sb-ol1' | 'overline-sb-ol2'
+// Action:    'action-sb-p1' | 'action-sb-p2' | 'action-sb-lk1'
 ```
 
 ### 3. Form Components
@@ -288,7 +292,9 @@ interface TextFieldProps {
   isReadOnly?: boolean                               // Default: false
   errorMessage?: string
   helpMessage?: string
-  size?: 'small' | 'medium' | 'large'              // Default: 'medium'
+  size?: 'small' | 'medium' | 'large' | 'extra-large'  // Default: 'medium'
+  color?: 'brand' | 'success' | 'warning' | 'error' // Default: 'brand'
+  inputMode?: 'none' | 'text' | 'search' | 'email' | 'tel' | 'url' | 'numeric' | 'decimal' // Default: 'text'
   adornments?: {
     start?: React.ReactNode
     end?: React.ReactNode
@@ -347,7 +353,7 @@ interface TableProps {
   borderWithin?: boolean                            // Default: true
   hoverable?: boolean                               // Default: false
   loading?: boolean                                 // Default: false
-  capitalizeHeaders?: boolean                       // Default: true
+  capitalizeHeaders?: boolean                       // Default: false
   highlightHeaders?: boolean                        // Default: true
 }
 
@@ -420,11 +426,30 @@ interface TabProps {
 ### 7. Data Input
 
 #### NSIcon
+
+> **`grauityIconName` is a closed set of 483 kebab-case names**, defined as a union in
+> [`ui/core/icons/iconTypes.ts`](./ui/core/icons/iconTypes.ts) (and as the `GRAUITY_ICONS` enum).
+> Every `icon` / `buttonIcon` / `*IconName` prop in this library takes one of those values.
+> An unknown name renders **nothing** - no throw, no console warning - so read the union
+> rather than guessing. Most glyphs ship a solid `-filled` counterpart (`star` / `star-filled`).
+>
+> Names agents commonly guess wrong:
+>
+> | guessed | actual |
+> | --- | --- |
+> | `user` | `person` |
+> | `user-plus` | `person-plus` |
+> | `settings` | `gear` |
+> | `trash` | `bin` |
+> | `minus` | `minus-circle` (or `remove`) |
+> | `calendar` | `calender` *(spelled this way in source)* |
+> | `edit` | `pen` |
+
 ```typescript
 interface IconProps {
   name: grauityIconName                             // Required
-  size?: grauityIconSizeName                        // Icon size
-  color?: string                                    // Custom color
+  size?: grauityIconSizeName                        // '4'|'8'|'12'|'14'|'16'|'20'|'24'|'28'|'32'|'36'|'40' (default '24')
+  color?: string        // A CSS color VALUE, not a keyword (default 'grey')
   disabled?: boolean                                // Inactive state
   loading?: boolean                                 // Loading spinner
   flipped?: grauityFlippedChoiceName               // Flip direction
@@ -441,9 +466,15 @@ interface IconProps {
 
 #### NSCalendar (Unified Calendar)
 ```typescript
-interface CalendarProps {
-  events?: CalendarEvent[]                          // Calendar events
-  view?: 'monthly' | 'weekly'                      // Calendar view type
+interface CalendarProps<T = {}> {
+  events: CalendarEvent<T>[]                        // Required
+  eventRenderer: (item: CalendarEvent<T>, view: CalendarView) => React.ReactNode // Required
+  date: Date                                        // Required
+  view?: 'monthly' | 'weekly'                       // Default: 'weekly'
+  onViewChange?: (view: CalendarView) => void
+  onDateChange?: (date: Date) => void
+  shouldShowControls?: boolean
+  loading?: boolean
 }
 
 interface CalendarEvent<T = {}> {
@@ -478,7 +509,7 @@ Standard size options across components:
 ### 3. Color Usage Guidelines
 
 #### Using Component Color Props
-Components accept semantic color names that automatically map to appropriate CSS variables:
+**Action** components accept semantic color *keywords* that map to CSS variables internally. **Typography and Icon do not** — their `color` prop is a raw CSS value. Getting this backwards fails silently (see the warning below).
 
 **For Action Components (Buttons, Form Fields, Interactive Elements):**
 ```jsx
@@ -497,20 +528,30 @@ Components accept semantic color names that automatically map to appropriate CSS
 <NSTextField color="error" errorMessage="Invalid input" />
 ```
 
-**For Typography Components:**
+**For Typography and Icon — pass a CSS value, NOT a keyword:**
+
+> ⚠️ **`NSTypography` `color` is interpolated straight into CSS** (`color: ${$color}` in `Typography.styles.ts`). A keyword like `color="secondary"` emits `color: secondary`, which is not a valid CSS color — the browser discards the declaration and the text silently falls back to primary. Nothing throws, nothing warns. `color="primary"` *appears* to work only because primary is already the fallback.
+
 ```jsx
-// Primary text color (default dark gray)
-<NSTypography color="primary">Main content</NSTypography>
+// Primary text color - this is the default, so you can omit `color` entirely
+<NSTypography>Main content</NSTypography>
 
 // Secondary text color (lighter gray)
-<NSTypography color="secondary">Supporting text</NSTypography>
+<NSTypography color="var(--text-moderate-secondary-default, #8c95a6)">
+  Supporting text
+</NSTypography>
 
 // Brand color for emphasis
-<NSTypography color="brand">Highlighted brand content</NSTypography>
+<NSTypography color="var(--text-emphasis-brand-default, #0673f9)">
+  Highlighted brand content
+</NSTypography>
 
 // Semantic colors for status messages
-<NSTypography color="success">Success message</NSTypography>
-<NSTypography color="error">Error message</NSTypography>
+<NSTypography color="var(--text-emphasis-success-default, #007a51)">Success message</NSTypography>
+<NSTypography color="var(--text-emphasis-error-default, #d22d3a)">Error message</NSTypography>
+
+// ❌ WRONG - renders as primary, silently
+// <NSTypography color="error">Error message</NSTypography>
 ```
 
 #### Custom Color Usage
@@ -661,8 +702,8 @@ For advanced styling, use design tokens directly:
 | `color="success"` | `--*-emphasis-success-*` | `--*-success` | `--success-500` | Positive actions/feedback |
 | `color="warning"` | `--*-emphasis-warning-*` | `--*-warning` | `--warning-500` | Cautionary actions |
 | `color="error"` | `--*-emphasis-error-*` | `--*-error` | `--error-500` | Destructive actions/errors |
-| `color="primary"` (text) | `--text-emphasis-primary-*` | `--text-primary` | `--neutral-900` | Main content |
-| `color="secondary"` (text) | `--text-moderate-secondary-*` | `--text-secondary` | `--neutral-600` | Supporting content |
+| `color="var(--text-emphasis-primary-default)"` (text) | `--text-emphasis-primary-*` | `--text-primary` | `--neutral-900` | Main content |
+| `color="var(--text-moderate-secondary-default)"` (text) | `--text-moderate-secondary-*` | `--text-secondary` | `--neutral-600` | Supporting content |
 
 **Design Token Categories:**
 | Token Category | Purpose | Example Variables |
@@ -690,7 +731,7 @@ All color variables automatically adapt to theme changes:
 // These components will automatically adapt to light/dark themes
 <GrauityThemeProvider theme="dark">
   <NSButton color="brand">Works in dark mode</NSButton>
-  <NSTypography color="primary">Adapts to dark theme</NSTypography>
+  <NSTypography>Adapts to dark theme</NSTypography>
 </GrauityThemeProvider>
 ```
 
@@ -713,7 +754,7 @@ Components support common states:
 // Secondary button with icon
 <NSButton 
   variant="secondary" 
-  icon="user-plus" 
+  icon="person-plus" 
   iconPosition="left"
 >
   Add User
@@ -721,7 +762,7 @@ Components support common states:
 
 // Icon-only button
 <NSIconButton 
-  icon="settings" 
+  icon="gear" 
   variant="tertiary" 
   onClick={openSettings}
 />
@@ -911,19 +952,19 @@ Components support common states:
 
 // Status messages with typography colors
 <div className="status-messages">
-  <NSTypography variant="paragraph-sb-p2" color="success">
+  <NSTypography variant="paragraph-sb-p2" color="var(--text-emphasis-success-default, #007a51)">
     ✓ Account created successfully
   </NSTypography>
   
-  <NSTypography variant="paragraph-md-p2" color="warning">
+  <NSTypography variant="paragraph-md-p2" color="var(--text-emphasis-warning-default, #de5a02)">
     ⚠ Please verify your email address
   </NSTypography>
   
-  <NSTypography variant="paragraph-md-p2" color="error">
+  <NSTypography variant="paragraph-md-p2" color="var(--text-emphasis-error-default, #d22d3a)">
     ✗ Failed to save changes
   </NSTypography>
   
-  <NSTypography variant="paragraph-md-p1" color="secondary">
+  <NSTypography variant="paragraph-md-p1" color="var(--text-moderate-secondary-default, #8c95a6)">
     Last updated 2 minutes ago
   </NSTypography>
 </div>
@@ -995,7 +1036,7 @@ Components support common states:
 
 ## Key Implementation Notes
 
-1. **Import Pattern**: Always import components from the main library: `import { NSButton } from '@gravity/ui'`
+1. **Import Pattern**: Always import components from the published package: `import { NSButton } from '@newtonschool/grauity'`
 
 2. **Required Props**: Pay attention to required props (marked in interface). Missing required props will cause TypeScript errors.
 
@@ -1004,7 +1045,8 @@ Components support common states:
 4. **Styling**: Use `className` for CSS classes and `style` for inline styles. The library provides design tokens through CSS variables following the `--<category>-<intensity>-<name>-<state>` pattern.
 
 5. **Color Usage**: 
-   - Use semantic color props (`brand`, `success`, `warning`, `error`) for component colors
+   - Use semantic color *keywords* (`brand`, `success`, `warning`, `error`) **only** on action components (Button, IconButton, Checkbox, RadioButton, TextField, TextArea, OtpInput, Dropdown, Pill, Chip)
+   - On **Typography and Icon**, `color` is a raw CSS value — pass `var(--token, #hex)`, never a keyword
    - Use CSS variables (e.g., `var(--text-emphasis-primary-default)`) for custom styling
    - All colors automatically adapt to light/dark themes
    - Follow the color mapping reference for consistent color usage across components
@@ -1013,6 +1055,6 @@ Components support common states:
 
 7. **Form Integration**: Form components work well with form libraries like React Hook Form or Formik through standard props like `name`, `value`, `onChange`.
 
-8. **Theming**: Components automatically adapt to light/dark themes when wrapped in `GrauityThemeProvider`.
+8. **Theming**: Components automatically adapt to light/dark themes when wrapped in `GrauityThemeProvider` (note: not `NS`-prefixed, and there is no `NSThemeProvider`). Initialise with `GrauityInit`; `NSThemeScope` scopes a subtree.
 
 This guide covers the most commonly used components. For specific implementation details or edge cases, refer to the individual component type definitions in the codebase.
