@@ -87,7 +87,7 @@
         "prettify": "prettier --write",
         "extract-typings": "tsc --project tsconfig.types.json",
         "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build -o docs && echo 'grauity.newtonschool.co' > docs/CNAME && touch docs/.nojekyll",
+        "build-storybook": "storybook build -o docs && echo 'grauity.newtonschool.co' > docs/CNAME",
         "test": "jest",
         "test:coverage": "jest --coverage"
     },
