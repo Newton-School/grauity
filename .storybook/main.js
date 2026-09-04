@@ -4,6 +4,13 @@ export default {
         '../stories/**/*.stories.@(js|jsx|ts|tsx)',
     ],
 
+    // Serve the agent-facing docs from the site root
+    // (grauity.newtonschool.co/llms.txt and /AGENTS.md).
+    staticDirs: [
+        { from: '../llms.txt', to: '/llms.txt' },
+        { from: '../AGENTS.md', to: '/AGENTS.md' },
+    ],
+
     addons: [
         '@storybook/addon-links',
         '@storybook/addon-essentials',
