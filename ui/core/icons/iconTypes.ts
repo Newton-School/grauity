@@ -278,6 +278,8 @@ export type grauityIconName =
     | 'close'
     | 'compass-filled'
     | 'compass'
+    | 'contract-filled'
+    | 'contract'
     | 'copy-filled'
     | 'copy'
     | 'database-filled'
@@ -296,6 +298,8 @@ export type grauityIconName =
     | 'email-alt'
     | 'email-filled'
     | 'email'
+    | 'expand-filled'
+    | 'expand'
     | 'filter-filled'
     | 'filter'
     | 'floppy-filled'
@@ -458,6 +462,8 @@ export type grauityIconName =
     | 'wrench'
     | 'bell-filled'
     | 'bell'
+    | 'calender-video-filled'
+    | 'calender-video'
     | 'calender-check-filled'
     | 'calender-check'
     | 'calender-filled'
@@ -763,6 +769,8 @@ export type grauityIconKey =
     | 'Close'
     | 'CompassFilled'
     | 'Compass'
+    | 'ContractFilled'
+    | 'Contract'
     | 'CopyFilled'
     | 'Copy'
     | 'DatabaseFilled'
@@ -781,6 +789,8 @@ export type grauityIconKey =
     | 'EmailAlt'
     | 'EmailFilled'
     | 'Email'
+    | 'ExpandFilled'
+    | 'Expand'
     | 'FilterFilled'
     | 'Filter'
     | 'FloppyFilled'
@@ -943,6 +953,8 @@ export type grauityIconKey =
     | 'Wrench'
     | 'BellFilled'
     | 'Bell'
+    | 'CalenderVideoFilled'
+    | 'CalenderVideo'
     | 'CalenderCheckFilled'
     | 'CalenderCheck'
     | 'CalenderFilled'
@@ -1248,6 +1260,8 @@ export enum GRAUITY_ICONS {
     Close = 'close',
     CompassFilled = 'compass-filled',
     Compass = 'compass',
+    ContractFilled = 'contract-filled',
+    Contract = 'contract',
     CopyFilled = 'copy-filled',
     Copy = 'copy',
     DatabaseFilled = 'database-filled',
@@ -1266,6 +1280,8 @@ export enum GRAUITY_ICONS {
     EmailAlt = 'email-alt',
     EmailFilled = 'email-filled',
     Email = 'email',
+    ExpandFilled = 'expand-filled',
+    Expand = 'expand',
     FilterFilled = 'filter-filled',
     Filter = 'filter',
     FloppyFilled = 'floppy-filled',
@@ -1428,6 +1444,8 @@ export enum GRAUITY_ICONS {
     Wrench = 'wrench',
     BellFilled = 'bell-filled',
     Bell = 'bell',
+    CalenderVideoFilled = 'calender-video-filled',
+    CalenderVideo = 'calender-video',
     CalenderCheckFilled = 'calender-check-filled',
     CalenderCheck = 'calender-check',
     CalenderFilled = 'calender-filled',
