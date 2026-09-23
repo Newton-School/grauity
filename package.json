@@ -176,7 +176,7 @@
     "dependencies": {
         "@floating-ui/dom": "^1.6.12",
         "classnames": "^2.3.2",
-        "framer-motion": "^11.11.1",
+        "framer-motion": "^12.43.0",
         "yup": "^1.6.1"
     },
     "peerDependencies": {
