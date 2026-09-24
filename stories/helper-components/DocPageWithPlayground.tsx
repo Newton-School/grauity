@@ -6,7 +6,7 @@ import {
     Stories,
     Subtitle,
     Title,
-} from '@storybook/addon-docs';
+} from '@storybook/addon-docs/blocks';
 import React from 'react';
 import { Playground } from 'storybook-addon-code-editor';
 

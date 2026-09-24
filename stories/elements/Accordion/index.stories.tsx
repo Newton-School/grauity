@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-webpack5';
 import React from 'react';
 import Accordion from 'ui/elements/Accordion/Accordion';
 import { AccordionProps } from 'ui/elements/Accordion/types';
