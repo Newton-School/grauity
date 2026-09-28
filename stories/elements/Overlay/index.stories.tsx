@@ -1,4 +1,4 @@
-import { StoryFn } from '@storybook/react';
+import { StoryFn } from '@storybook/react-webpack5';
 import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import Button from 'ui/elements/Button';
