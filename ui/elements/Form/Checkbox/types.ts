@@ -58,7 +58,11 @@ export interface CheckboxProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 
     /**
-     * Indicates if the checkbox is checked initially.
+     * Controls the current checked state of the checkbox.
+     *
+     * This is a controlled prop. You must manage this value in the parent component,
+     * and update it based on user interaction via the `onChange` callback.
+     *
      * @default false
      */
     isChecked?: boolean;
