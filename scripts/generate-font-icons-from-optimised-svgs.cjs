@@ -111,4 +111,7 @@ generateFonts({
     })
     .catch((error) => {
         console.error(error);
+        // Fail `npm run build` here, rather than letting build-lib package a stale or missing
+        // ui/css/grauity-icons.scss.
+        process.exitCode = 1;
     });
