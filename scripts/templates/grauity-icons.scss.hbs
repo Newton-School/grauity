@@ -3,10 +3,13 @@
     scripts/generate-font-icons-from-optimised-svgs.cjs.
 
     fantasticon 2's bundled template looks every icon up with the global `map-get()`, which
-    Dart Sass 1.80+ reports as deprecated (https://sass-lang.com/d/import) once per icon, so
-    everyone who compiles grauity-icons.scss sees ~490 warnings. This is fantasticon 4's
-    template instead: it walks the map with `@each`, so there is no deprecated call and the
-    compiled CSS is unchanged.
+    Dart Sass 1.80+ reports once per icon as the `global-builtin` deprecation
+    (https://sass-lang.com/d/import), so everyone who compiles grauity-icons.scss sees ~490
+    warnings. This is fantasticon 4's template instead: it walks the map with `@each`, so
+    there is no deprecated call and the compiled CSS is unchanged.
+
+    scripts/generate-font-icons-from-optimised-svgs.test.js fails if the generated SCSS
+    uses a deprecated Sass feature again.
 --}}
 ${{ name }}-font: "{{ name }}";
 
