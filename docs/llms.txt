@@ -1,0 +1,129 @@
+# gra.UI.ty (@newtonschool/grauity)
+
+> Grauity ("Gravity") is Newton School's React + TypeScript design system. Every public component is exported with an `NS` prefix (`NSButton`, `NSIcon`, `NSModal`, …) from `@newtonschool/grauity`. This file helps LLM coding agents pass **valid parameters**. Enum-like props (`variant`, `color`, `size`, `type`, `placement`, icon `name`) accept only a closed set of string values, and grauity looks each value up in an internal style table instead of validating it, so a wrong value never throws; it silently renders nothing, or the wrong style. Set one of these props only from the enum lists below or the component's `types.ts`.
+
+## Version note
+
+The enum values below reflect grauity **3.5.x** (the current `master`, and what consumers such as `newton-web` install from npm). Enum sets grow additively across minor versions (new icons, occasionally a new keyword), so a slightly older installed copy is a subset — never a conflicting set. The **runtime source of truth** is always the TypeScript declarations: source under `ui/**` (`types.ts`, `constants.ts`) in this repo, or the published `dist/ui/**/*.d.ts` in an installed copy. When in doubt, read the type file rather than guess.
+
+## Critical rules for agents (read first)
+
+1. **Import from `@newtonschool/grauity`; names are `NS`-prefixed.** e.g. `import { NSButton, NSIcon, NSTypography } from '@newtonschool/grauity'`.
+2. **Enum props are closed sets, and a wrong value fails quietly.** Each enum value is used as a key into an internal `*_STYLES_MAPPING` lookup table (`BUTTON_SIZE_STYLES_MAPPING[size]`, `CHIP_VARIANT_STYLES_MAPPING[variant]`, `TYPOGRAPHY_VARIANT_STYLES_MAPPING[variant]`, `TEXT_FIELD_SIZE_STYLE_MAPPING[size]`, and so on). An unlisted value returns `undefined` from that lookup, so no CSS is applied and the element renders unstyled, collapsed, or wrong, with no throw and no console error. For `NSTypography variant` with `as="auto"`, an invalid value also makes the tag lookup `undefined`, so even the rendered HTML tag is wrong. Some components forward unknown props to the DOM (`NSButton`, `NSDropdown`, `NSCombobox`, `NSLabel`, `NSModal`, `NSOverlay`, `NSTable` spread `...rest`), so extra DOM-valid attributes pass through on those; most others (Typography, Chip) drop them. Either way, an invalid `variant`/`color`/`size` still breaks through the style mapping. TypeScript callers are caught at compile time; the silent-failure risk is JS callers, `as any`, or values built from strings at runtime.
+3. **Icon names are not free text.** `NSIcon` `name` (and every `icon` / `buttonIcon` prop) MUST be one of the 483 `grauityIconName` values in `ui/core/icons/iconTypes.ts` (`GRAUITY_ICONS` enum). Names are kebab-case; most glyphs ship a solid `-filled` variant (e.g. `check-circle` vs `check-circle-filled`). An unknown name renders nothing.
+4. **Two different "size" scales.** Component `size` is usually a keyword (`small`/`medium`/`large`/…). But `NSIcon` `size`/`iconSize` are **numeric strings** from `grauityIconSizeName` (e.g. `size={20}` → `'20'`), and spacing tokens use `grauitySizeName`.
+5. **Two different "color" conventions.** `NSTypography` and `NSIcon` `color` take a **CSS string / design token** (e.g. `var(--text-emphasis-primary-default, #16191d)`). `NSButton` / `NSChip` / `NSTextField` / `NSCheckbox` `color` take an **enum keyword** (`brand`, `success`, …). Do not pass a hex where a keyword is expected, or vice-versa.
+6. **Components must render inside a grauity theme.** Wrap the tree with the theme provider (`GrauityThemeProvider` / `NSThemeScope` + `NSGlobalStyle`, initialised via `GrauityInit`). There is no `NSThemeProvider` — the provider is the one name that is *not* `NS`-prefixed. In `newton-web` this is `src/theme/ThemeContext.js` (`ThemeWrapper`). Body classes `grauity-theme-light` / `grauity-theme-dark` drive tokens.
+7. **When wrapping a grauity component in styled-components,** use `$`-prefixed transient props for style-only props so they are not forwarded to the DOM.
+
+## Shared enums (used across components)
+
+- **`grauityIconName`**: 483 kebab-case icon names. Source: `ui/core/icons/iconTypes.ts` (`grauityIconName` union + `GRAUITY_ICONS` enum). Convention: base glyph + optional `-filled` solid variant. Examples: `check`, `check-circle`, `check-circle-filled`, `close`, `close-circle`, `chevron-down`, `chevron-right`, `arrow-left`, `arrow-right`, `plus`, `minus-circle`, `search`, `filter`, `gear`, `bell`, `bin`, `pen`, `copy`, `download`, `upload`, `link`, `home`, `person`, `users`, `calender`, `clock`, `star`, `star-filled`, `heart`, `heart-filled`, `bookmark`, `info-circle`, `info-circle-filled`, `exclamation-triangle`, `exclamation-circle`, `eye-on`, `eye-off`, `lock`, `lock-open`, `email`, `bulb`, `fire`, `trophy`, `medal`, `flag`, `book`, `code`, `terminal`, `play`, `pause`, `video`, `mic`, `image`, `file`, `folder`, `gift`, `thumbs-up`, `thumbs-down`, `sparkle`, `magic-orb`, `menu`, `kebab-vertical`, `kebab-horizontal`, `refresh`, `share`, `sun`, `moon`. For the full list, read `ui/core/icons/iconTypes.ts`. Common near-misses that do **not** exist: `user` (use `person`), `minus` (use `minus-circle` / `remove`), `settings` (use `gear`), `trash` (use `bin`), `calendar` (it is spelled `calender`), `user-plus` (use `person-plus`).
+- **`grauityIconSizeName`** (icon `size`/`iconSize`): `4` `8` `12` `14` `16` `20` `24` `28` `32` `36` `40`.
+- **`grauitySizeName`** (spacing scale): `4` `8` `12` `16` `20` `24` `28` `32` `36` `40` `44` `48`.
+- **`ACTION_COLORS`** (interactive components): `brand` `success` `warning` `error`. Source: `ui/core/colors`.
+- **`TEXT_COLORS`** (typography): `primary` `secondary` `brand` `success` `warning` `error` `yellow` `purple`.
+- **`grauityFlippedChoiceName`**: `vertically` `horizontally`. **`grauityRotatedChoiceName`**: `clockwise` `counterclockwise`.
+- **Typography variants** (`TypographyVariantType`, 27): `display-bd-d1` `display-bd-d2` `display-bd-d3` · `heading-sb-h1` `heading-sb-h2` `heading-sb-h3` `heading-sb-h4` `heading-sb-h5` `heading-sb-h6` · `paragraph-sb-p1` `paragraph-sb-p2` `paragraph-sb-p3` `paragraph-sb-p4` `paragraph-sb-l1` `paragraph-sb-l2` · `paragraph-md-p1` `paragraph-md-p2` `paragraph-md-p3` `paragraph-md-p4` `paragraph-md-c1` `paragraph-md-l1` `paragraph-md-l2` · `overline-sb-ol1` `overline-sb-ol2` · `action-sb-p1` `action-sb-p2` `action-sb-lk1`.
+- **Design tokens**: CSS custom properties named `--<category>-<intensity>-<name>-<state>`. Category `bg`/`text`/`border`; intensity `subtle`/`moderate`/`emphasis`; name `primary`/`secondary`/`tertiary`/`brand`/`success`/`warning`/`error`/`yellow`/`purple`; state `default`/`hover`/`disabled` (e.g. `--bg-subtle-brand-default`, `--text-emphasis-primary-default`). Always write with a hex fallback: `var(--token, #hex)`. Full map in `AGENTS.md`, "Design Token Reference".
+
+## Component parameter quick-reference
+
+Values in `[...]` are the complete allowed set; **bold** marks the default; `→ type` points to a shared enum above.
+
+**Buttons & actions**
+- **NSButton** — `variant` [**primary**|secondary|tertiary|text], `color` [**brand**|neutral|error|success|warning|yellow|purple], `size` [extra-small|small|**medium**|large|extra-large], `icon` → grauityIconName, `iconSize` → grauityIconSizeName (**20**), `iconPosition` [**left**|right], `type` [**button**|submit|reset], `loading`, `disabled`, `fullWidth`, `ariaLabel`, `tooltip`, `showAnimationOnClick` (**true**), `children`. (Spreads unknown `...rest` to the DOM button.)
+- **NSIconButton** — same `variant`/`color`/`size`/`icon`/`iconSize` as NSButton; `onClick`; icon-only (no `iconPosition`/`children`).
+- **NSFloatingActionButton** — `position` [left|mid|**right**], `onClick`, `sideOffset`, `bottomOffset`, `children`.
+
+**Content & display**
+- **NSIcon** — `name` **(required)** → grauityIconName, `size` → grauityIconSizeName (default **24**), `color` (any CSS string/token; default `grey`), `flipped` → grauityFlippedChoiceName, `rotated` → grauityRotatedChoiceName, `as` (default `i`), booleans `bordered` `circular` `disabled` `fitted` `inverted` `link` `loading`, `ariaLabel`, `ariaHidden` (default `'true'`). Invalid `name` → no glyph.
+- **NSTypography** — `variant` **(required)** → Typography variants (default `paragraph-md-p1`), `children` **(required)**, `color` (CSS string/token; default `var(--text-emphasis-primary-default)`), `as` [**auto**|h1|h2|h3|h4|h5|h6|p|span|div|label|caption|code] (typed `any`, so any tag renders — prefer these), `textAlign`, `textTransform`, `fontSize`, `title`. `auto` derives the tag from the variant.
+- **NSChip** — `variant` [**brand**|success|error|warning|yellow|purple|disabled|action-brand|action-success|action-error|action-warning|action-yellow|action-purple], `size` [small|**medium**|large|extra-large], `icon` → grauityIconName, `iconSize` (default `12`), `iconPosition` [left|right]. (`action-*` = clickable styles.)
+- **NSPill** — `size` [small|**medium**|large], `color` [**brand**|error|success|warning|yellow|purple], `leftIconName`/`rightIconName` → grauityIconName, `count`, `isActive`, `isDisabled`, `isReadOnly`, `onClick`.
+- **NSTag** — `children` **(required)**, `icon`/`buttonIcon` → grauityIconName (buttonIcon default **close**), `onButtonClick`, `isDisabled`, `shouldTruncateText` (**true**).
+- **NSTable** — config-driven: `columns` (`TableColumn[]`), `rows` (`TableRow[]`), booleans `condensed`(**t**)/`striped`/`borderAround`(**t**)/`hoverable`/`loading`/… . Enum values live on cells: column `align` [left|right|**center**], cell `vAlign` [top|bottom|**middle**], action `as` [**button**|link]. Read `ui/elements/Table/types.ts`.
+- **NSPlaceholder** — skeleton: `width` `height` `border` `borderRadius` `margin` `backgroundColor` `className` (all optional strings; no enums). Shape it like the content that is coming. (No separate Spinner/Loader exists — use this, or the `loading` boolean on Button/Icon/Table.)
+
+**Feedback**
+- **NSAlert** — `type` [**default**|outlined|filled], `variant` [**primary**|success|warning|error|default], `position` [**static**|fixed|absolute|relative], `icon` (grauityIconName|'auto'|null), `title`, `description`, `actionButtons` (`ButtonProps[]`), `onClose`, `showCloseButton`.
+- **NSAlertBanner** — `type` [**default**|outlined|filled], `variant` [**primary**|success|warning|error|default], `position` [**static**|fixed|absolute|relative], `justifyContent` [**center**|space-between|space-around], `children` **(required)**, `icon` (grauityIconName|'auto'). (The Alert/AlertBanner JSDoc prose mentions "secondary/tertiary"; ignore it. The enum allows only the five above.)
+- **NSTooltip** — `placement` [**top**|right|bottom|left|top-start|top-end|bottom-start|bottom-end|left-start|left-end|right-start|right-end], `children` **(required)**, `content`, `isOpen` (bool → controlled).
+
+**Overlays & surfaces**
+- **NSModal** — required: `isOpen`, `hideOnClickAway`. `animatePresence` [false|slide|slide-reverse|**fade**|emanate], `title`/`description`/`banner`/`children`/`action`, `onClose`, `modalPadding` (**20px**), `width` (**500px**), sizing (`maxWidth` 95vw, `maxHeight` 95vh), `showCloseButton`, `shouldFocusOnFirstElement` (**t**), `shouldDisableScroll` (**t**). Read `ui/elements/Modal/types.ts`. In apps prefer the responsive wrapper (`newton-web` `ResponsiveModal`: `NSBottomSheet` on mobile, `NSModal` on desktop).
+- **NSConfirmationDialog** — required: `isOpen`, `onCancel`, `onConfirm`. `cancelButtonVariant`/`confirmButtonVariant` → ButtonVariants, `cancelButtonColor`/`confirmButtonColor` → ButtonColors, `animatePresence` (**fade**), `title`, `description`.
+- **NSMultiStepModal** — required: `modalSteps` (`ModalStep[]`; each step `title` required, optional `buttonVariant`/`buttonColor`). `animatePresence` (**fade**), `isOpen`, `onFinalStep`, `onStepChange`.
+- **NSBottomSheet** — `isOpen`, `onClose`, `height` (**50%**), `fullScreen`, `showDragHandle` (**t**), `closeOnPullDown` (**t**), `closeOnBackdropClick` (**t**). No enum props.
+- **NSDrawer** — `position` [**left**|right], `isOpen`, `onClose`, `width` (**30%**), `fullScreen`.
+- **NSPopOver** — `direction` [top|right|**bottom**|left], `isOpen`, `triggerRef`, `autoAdjust` (**t**), `shouldCloseOnOutsideClick` (**t**), `onClose`.
+- **NSOverlay** — `children`, `onOverlayClick`, `shouldBlurOverlay`, `shouldTintOverlay`, `overlayColor`, `shouldCenterContent`. No enum props.
+
+**Navigation**
+- **NSTab** — `size` [small|**medium**|large|extra-large], `variant` [**bordered**|rounded], `iconPosition` [**left**|right|top|bottom], `icon` → grauityIconName, `isActive`, `disabled`, `subText`, `children`.
+- **NSTabList** — `variant` [**bordered**|rounded], `size` [small|**medium**|large|extra-large], `activeIndex`, `onChange(index)`, `children`.
+- **NSTabs** — `tabItems` **(required)** (`ReactNode[]`), `initialActiveTab` (**0**), `onTabFocusChange`, `color`/`backgroundColor`. No enum props.
+- **NSAccordion** — `title` **(required)**, `expanded`, `iconSize` → grauityIconSizeName (**16**), `showSeparator` (**t**), `onToggle(expanded)`, `children`.
+- **NSPagination** — required: `totalPageCount`, `onPageChange`. `size` → ButtonSizes (**small**), `justifyContent` [**space-between**|space-around|space-evenly|flex-start|flex-end], `buttonVariant`/`activeButtonVariant`/`controlButtonVariant` → ButtonVariants, `*ButtonColor` → ButtonColors.
+- **NSCarousel** — `iconPosition` [left|**right**], `iconButtonVariant` → ButtonVariants (**secondary**), `iconButtonColor` → ButtonColors (**neutral**), `items`, `leftIcon`/`rightIcon` → grauityIconName, `scrollAmount`, `gap`.
+
+**Forms** (see also the Forms section below)
+- **NSLabel** — required: `name`, `children`. `color` → TEXT_COLORS (default **secondary**), `isRequired`, `isDisabled`.
+- **NSErrorMessage** / **NSSuccessMessage** — `children` **(required)** (message), `iconSize` (**20**). **NSHelpMessage** — `children` **(required)**, `currentLength`, `maxLength`.
+- **NSTextField** — `name` **(required)**, `size` [small|**medium**|large|extra-large], `color` → ACTION_COLORS, `type` (any native HTML input type — NOT a grauity enum; default `text`), `inputMode` [none|text|search|email|tel|url|numeric|decimal], `label`, `isRequired`, `placeholder`, `value`, `onChange`, `errorMessage`, `helpMessage`, `adornments` (`{start,end}`).
+- **NSTextArea** — `name` **(required)**, `size` [small|**medium**|large|extra-large], `color` → ACTION_COLORS (**brand**), `rows`, `cols`, `label`, `errorMessage`, `helpMessage`.
+- **NSCheckbox** / **NSCheckboxGroup** — `name` **(required)** (group also requires `items`), `size` [small|**medium**|large], `color` → ACTION_COLORS (**brand**), `state` [**default**|error|success] (**deprecated** — use `color`), `label`, `isChecked`, `isIndeterminate`, `isRequired`, `errorMessage`.
+- **NSRadioButton** / **NSRadioButtonGroup** — required: `name` (+ `value` for single, `items` for group), `size` [small|**medium**|large], `color` → ACTION_COLORS (**brand**), `state` [**default**|error|success] (**deprecated** — use `color`).
+- **NSOtpInput** — required: `name`, `onChange`. `color` → ACTION_COLORS (**brand**), `length` (**4**), `isOtpCorrect`/`isOtpWrong`, `errorMessage`, `successMessage`.
+- **NSDropdown** / **NSCombobox** — `name` **(required)**, `items` **(required)** (Combobox), `color` → ACTION_COLORS (**brand**), `label`, `placeholder` (Select), `isRequired`, `isDisabled`, `errorMessage`, `helpMessage`, `menuProps`.
+- **NSDropdownMenu** — `items` **(required)**: each item's `type` **must** be [option|subheader|divider] (`NSDropdownMenuBaseItemType`); an `option` carries `label`, `value`, optional `leftIcon`/`rightIcon` → grauityIconName. `searchable`, `multiple`, `showActionButtons`, `onChange`.
+- **NSSelectDropdown** / **NSMultiSelectDropdown** — **deprecated** (prefer NSDropdown): `options` (`Set<{label,value}>`), `shouldEnableSearch` (**t**), `onChange`.
+- **NSFormRow** — `children` **(required)**, `widths` (default `equal`, e.g. `'2fr 1fr'`), `column`.
+- **NSRangeInput** — `minValue` (**0**), `maxValue` (**100**), `step` (**1**), `value` (`{min,max}`), `onChange(value)`.
+
+**Calendar** — `NSCalendar` (`view` [monthly|**weekly**], required `events`/`eventRenderer`/`date`), `NSWeeklyCalendar`, `NSMonthlyCalendar`, `NSCalendarEvent`, `NSMonthlyCalendarEvent`. See `ui/elements/Calendar/**/types.ts`.
+
+## Forms
+
+Use `useNSForm` (types: `NSFormConfig`, `NSFormField`, `NSFormFieldType`, `NSFormValidationType`, `NSFormErrors`). There is no `NSForm` component.
+
+The config is **nested under `formConfig`**, and `rows` is **required** — it is where the fields live:
+
+```jsx
+const { formData, formRenderer, errors, validate, submit, changeFormData } = useNSForm({
+    formConfig: {
+        fieldNames: ['email'],                 // required
+        initialState: { email: '' },           // required
+        rows: [                                // required
+            { widths: '1fr', items: [{ type: 'textfield', rendererProps: { name: 'email', label: 'Email' } }] },
+        ],
+        schema,                                // optional (Yup)
+    },
+});
+return <form>{formRenderer}</form>;          // formRenderer is what you render
+```
+
+Item `type` is one of `textfield` `dropdown` `dropdown-menu` `combobox` `checkbox-group` `radio-button-group` `custom` (`NSFormFieldType`). Note the JSDoc on `UseFormProps` omits `combobox` — the enum is authoritative. Row `column` is one of `always-column` `always-row` `column-on-mobile`. Surface errors only after first submit, and call `validate(fields, nextData)` to clear corrected fields. See `ui/elements/Form/useForm/types.ts`.
+
+## Full public component list (NS* barrel — `ui/index.ts`)
+
+NSAccordion, NSAlert, NSAlertBanner, NSBottomSheet, NSButton, NSButtonGroup, NSCalendar, NSCalendarEvent, NSCarousel, NSCheckbox, NSCheckboxGroup, NSChip, NSCombobox, NSConfirmationDialog, NSDrawer, NSDropdown, NSDropdownMenu, NSErrorMessage, NSFloatingActionButton, NSGlobalStyle, NSHelpMessage, NSIcon, NSIconButton, NSLabel, NSModal, NSMonthlyCalendar, NSMultiSelectDropdown, NSMultiStepModal, NSOtpInput, NSOverlay, NSPagination, NSPill, NSPlaceholder, NSPopOver, NSRadioButton, NSRadioButtonGroup, NSRangeInput, NSSelectDropdown, NSSuccessMessage, NSTab, NSTable, NSTabList, NSTabs, NSTag, NSTextArea, NSTextField, NSThemeScope (+ theme utils: GrauityThemeProvider/NSThemeWrapper/NSThemeConsumer/NSThemeContext), NSTooltip, NSTypography, NSWeeklyCalendar, plus form types (NSFormConfig, NSFormField(s), NSFormFieldType, NSFormValidationType, NSFormErrors, NSFormState, NSUseFormProps, NSDropdownMenuBaseItemType, …).
+
+**Not in grauity, so do not import these `NS*` names:** there is **no** `NSAvatar`, `NSBadge`, `NSSpinner`, `NSLoader`, `NSForm`, or `NSThemeProvider`. A person avatar is an app-level component (in `newton-web`, `src/components/Avatar`); a badge maps to **NSTag**, **NSChip**, or **NSPill**; a loading state uses **NSPlaceholder** or the `loading` boolean on Button/Icon/Table.
+
+## Docs
+
+- [Storybook (live docs)](https://grauity.newtonschool.co/): every component and prop, interactive
+- [AGENTS.md](./AGENTS.md): full component reference, design-token map, common patterns, and usage examples
+- [README](./README.md): library overview and setup
+
+## Type sources (runtime source of truth)
+
+- [ui/core/icons/iconTypes.ts](./ui/core/icons/iconTypes.ts): all 483 icon names (`grauityIconName`, `GRAUITY_ICONS`)
+- [ui/core/colors/index.ts](./ui/core/colors/index.ts): `ACTION_COLORS`, `TEXT_COLORS`
+- [ui/core/sizes/sizeTypes.ts](./ui/core/sizes/sizeTypes.ts): `grauitySizeName`, `grauityIconSizeName`
+- [ui/index.ts](./ui/index.ts): the public `NS*` export barrel
+
+## Optional
+
+- [ui/elements/](./ui/elements/): per-component `types.ts` and `constants.ts` for any component not detailed above
