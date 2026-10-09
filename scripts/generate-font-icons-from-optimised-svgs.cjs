@@ -9,6 +9,7 @@ const UI_LIBRARY_CORE_DIRECTORY = `${UI_DIRECTORY}/core`;
 const UI_LIBRARY_CSS_DIRECTORY = `${UI_DIRECTORY}/css`;
 const UI_LIBRARY_FONTS_DIRECTORY = `${UI_DIRECTORY}/fonts`;
 const UI_LIBRARY_CORE_ICON_DIRECTORY = `${UI_LIBRARY_CORE_DIRECTORY}/icons`;
+const TEMPLATES_DIRECTORY = './scripts/templates';
 const tagIconsMapping = {};
 const iconTagsMapping = {};
 
@@ -36,6 +37,11 @@ generateFonts({
             literalIdName: 'grauityIconName',
             literalKeyName: 'grauityIconKey',
         },
+    },
+    templates: {
+        // fantasticon 2's own SCSS template uses the global `map-get()`, deprecated in Dart
+        // Sass 1.80+, which warns once per icon for every consumer. See the template itself.
+        scss: `${TEMPLATES_DIRECTORY}/grauity-icons.scss.hbs`,
     },
     pathOptions: {
         eot: `${UI_LIBRARY_FONTS_DIRECTORY}/grauity-icons.eot`,
@@ -105,4 +111,7 @@ generateFonts({
     })
     .catch((error) => {
         console.error(error);
+        // Fail `npm run build` here, rather than letting build-lib package a stale or missing
+        // ui/css/grauity-icons.scss.
+        process.exitCode = 1;
     });

@@ -1,0 +1,50 @@
+{{!--
+    The SCSS template fantasticon renders for ui/css/grauity-icons.scss; wired up in
+    scripts/generate-font-icons-from-optimised-svgs.cjs.
+
+    fantasticon 2's bundled template looks every icon up with the global `map-get()`, which
+    Dart Sass 1.80+ reports once per icon as the `global-builtin` deprecation
+    (https://sass-lang.com/d/import), so everyone who compiles grauity-icons.scss sees ~490
+    warnings. This is fantasticon 4's template instead: it walks the map with `@each`, so
+    there is no deprecated call and the compiled CSS is unchanged.
+
+    scripts/generate-font-icons-from-optimised-svgs.test.js fails if the generated SCSS
+    uses a deprecated Sass feature again.
+--}}
+${{ name }}-font: "{{ name }}";
+
+@font-face {
+    font-family: ${{ name }}-font;
+    src: {{{ fontSrc }}};
+}
+
+{{# if selector }}
+{{ selector }}:before {
+{{ else }}
+{{ tag }}[class^="{{prefix}}-"]:before, {{ tag }}[class*=" {{prefix}}-"]:before {
+{{/ if }}
+    font-family: {{ name }} !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+${{ name }}-map: (
+{{# each codepoints }}
+    "{{ @key }}": "\\{{ codepoint this }}",
+{{/ each }}
+);
+
+@each $name, $value in (${{ name }}-map) {
+    {{# if selector }}
+    {{ selector }}.{{ prefix }}-#{$name}:before {
+    {{ else }}
+    .{{ prefix }}-#{$name}:before {
+    {{/ if }}
+        content: $value;
+    }
+}
