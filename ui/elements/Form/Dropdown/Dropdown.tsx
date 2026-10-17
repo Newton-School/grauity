@@ -2,8 +2,12 @@
 import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 
+import { useIsomorphicLayoutEffect } from '../../../../hooks';
 import DropdownMenu, { BaseItemOptionProps } from '../../DropdownMenu';
-import { DROPDOWN_MENU_MAX_HEIGHT } from '../../DropdownMenu/constants';
+import {
+    DROPDOWN_MENU_DEFAULT_WIDTH,
+    DROPDOWN_MENU_MAX_HEIGHT,
+} from '../../DropdownMenu/constants';
 import { getSelectedValuesForDropdownType } from '../../DropdownMenu/utils';
 import Overlay from '../../Overlay';
 import DropdownTrigger from './DropdownTrigger';
@@ -27,14 +31,15 @@ const Dropdown = (props: DropdownProps) => {
     if (menuProps) {
         ({ width, fullWidth } = menuProps);
     } else {
-        width = '300px';
+        width = `${DROPDOWN_MENU_DEFAULT_WIDTH}px`;
         fullWidth = true;
     }
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [dropdownMenuHeight, setDropdownMenuHeight] = useState(
-        DROPDOWN_MENU_MAX_HEIGHT
-    );
+    const [dropdownMenuSize, setDropdownMenuSize] = useState({
+        height: DROPDOWN_MENU_MAX_HEIGHT,
+        width: DROPDOWN_MENU_DEFAULT_WIDTH,
+    });
     const [selectedOptions, setSelectedOptions] = useState<
         BaseItemOptionProps | BaseItemOptionProps[]
     >(getSelectedValuesForDropdownType(multiple, value));
@@ -58,10 +63,18 @@ const Dropdown = (props: DropdownProps) => {
         setSelectedOptions(getSelectedValuesForDropdownType(multiple, value));
     }, [value, items, multiple]);
 
-    useEffect(() => {
-        if (isOpen && dropdownMenuRef.current) {
-            setDropdownMenuHeight(dropdownMenuRef.current.clientHeight);
+    useIsomorphicLayoutEffect(() => {
+        if (!isOpen || !dropdownMenuRef.current) {
+            return;
         }
+        // offset*, not client*, so the menu's border counts toward the space
+        // it occupies and the clamp keeps the full box on screen.
+        const { offsetHeight, offsetWidth } = dropdownMenuRef.current;
+        setDropdownMenuSize((previous) =>
+            previous.height === offsetHeight && previous.width === offsetWidth
+                ? previous
+                : { height: offsetHeight, width: offsetWidth }
+        );
     }, [isOpen]);
 
     return (
@@ -81,7 +94,8 @@ const Dropdown = (props: DropdownProps) => {
                     key="dropdown-menu-overlay"
                     position={calculateDropdownMenuPosition(
                         triggerRef,
-                        dropdownMenuHeight
+                        dropdownMenuSize.height,
+                        dropdownMenuSize.width
                     )}
                     shouldFocusOnFirstElement
                     shouldDisableScroll={isOpen}
