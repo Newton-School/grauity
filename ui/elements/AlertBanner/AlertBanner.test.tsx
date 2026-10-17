@@ -72,4 +72,38 @@ describe('AlertBanner', () => {
         render(<AlertBanner className="custom-class">Banner</AlertBanner>);
         expect(screen.getByRole('alert')).toHaveClass('custom-class');
     });
+
+    // Regression: passing an unknown variant (e.g. typo "information") used to
+    // crash the component because `ALERT_BANNER_COLOR_MAPPINGS[type][variant]`
+    // returned undefined and the consumer destructured it. The util now falls
+    // back to a safe variant + type and the banner renders.
+    it('does not crash on an unknown variant — falls back to primary', () => {
+        const warn = jest
+            .spyOn(console, 'warn')
+            .mockImplementation(() => {});
+        render(
+            <AlertBanner variant={'information' as never}>
+                Banner with unknown variant
+            </AlertBanner>
+        );
+        expect(
+            screen.getByText('Banner with unknown variant')
+        ).toBeInTheDocument();
+        warn.mockRestore();
+    });
+
+    it('does not crash on an unknown type — falls back to default', () => {
+        const warn = jest
+            .spyOn(console, 'warn')
+            .mockImplementation(() => {});
+        render(
+            <AlertBanner type={'fancy' as never}>
+                Banner with unknown type
+            </AlertBanner>
+        );
+        expect(
+            screen.getByText('Banner with unknown type')
+        ).toBeInTheDocument();
+        warn.mockRestore();
+    });
 });
