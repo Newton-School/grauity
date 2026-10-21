@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'grauity-icons';
+  src: url('../fonts/grauity-icons.eot');
+  src: url('../fonts/grauity-icons.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/grauity-icons.woff2') format('woff2'),
+       url('../fonts/grauity-icons.woff') format('woff'),
+       url('../fonts/grauity-icons.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.grauity-icon {
+  font-family: 'grauity-icons' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
