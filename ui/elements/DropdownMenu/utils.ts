@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { DROPDOWN_MENU_VIEWPORT_GAP } from './constants';
 import { BaseItemOptionProps, BaseItemProps, BaseItemType } from './types';
 
 /**
@@ -89,4 +90,29 @@ export function scrollToFirstMarkedItem(
             }
         }, delay);
     }
+}
+
+/**
+ * Keeps one axis of a dropdown menu inside the viewport.
+ *
+ * A menu that already fits is left exactly where its trigger puts it — the
+ * clamp engages only on a real overflow, matching how PopOver adjusts, so
+ * ordinary placements are never nudged out of alignment with their trigger.
+ * When it does engage the menu is pulled back to leave a gap, or flush to the
+ * near edge when the menu is larger than the viewport and no gap will fit.
+ *
+ * @param anchor - The preferred position, taken from the trigger.
+ * @param menuSize - The menu's size along this axis, including any offset it settles at.
+ * @param viewportSize - The viewport's size along this axis.
+ */
+export function clampMenuAxisToViewport(
+    anchor: number,
+    menuSize: number,
+    viewportSize: number
+) {
+    if (anchor + menuSize <= viewportSize) {
+        return Math.max(0, anchor);
+    }
+
+    return Math.max(0, viewportSize - menuSize - DROPDOWN_MENU_VIEWPORT_GAP);
 }
