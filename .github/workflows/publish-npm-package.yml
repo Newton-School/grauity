@@ -7,6 +7,10 @@ on:
     release:
         types: [ created ]
 
+permissions:
+    contents: read
+    id-token: write # npm trusted publishing (OIDC); no npm token needed
+
 jobs:
     publish:
         runs-on: ubuntu-latest
@@ -17,10 +21,17 @@ jobs:
             -   uses: actions/setup-node@v3
                 with:
                     node-version: 24
+                    registry-url: https://registry.npmjs.org/
             -   run: npm ci
             -   run: git submodule init
             -   run: git submodule update
             -   run: npm run build
-            -   uses: JS-DevTools/npm-publish@v1
-                with:
-                    token: ${{ secrets.GRAUITY_PUBLISHING_NPM_TOKEN }}
+            -   name: Fail if this version is already on npm
+                run: |
+                    NAME=$(node -p "require('./package.json').name")
+                    VERSION=$(node -p "require('./package.json').version")
+                    if [ "$(npm view "$NAME@$VERSION" version 2>/dev/null)" = "$VERSION" ]; then
+                        echo "::error::$NAME@$VERSION is already on npm, skipping publish"
+                        exit 1
+                    fi
+            -   run: npm publish
