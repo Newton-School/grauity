@@ -1,4 +1,4 @@
-import { StoryFn } from '@storybook/react';
+import { StoryFn } from '@storybook/react-webpack5';
 import React, { ReactNode } from 'react';
 import AlertBanner, {
     ALERT_BANNER_TYPES_ENUM,

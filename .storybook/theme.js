@@ -1,5 +1,5 @@
 // import './fonts.css';
-import { create } from '@storybook/theming';
+import { create } from 'storybook/theming';
 
 const STORYBOOK_LIGHT_THEME = create({
     base: 'light',
