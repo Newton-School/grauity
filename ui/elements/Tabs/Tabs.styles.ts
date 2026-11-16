@@ -58,6 +58,10 @@ export const StyledTabItemContainer = styled.div<StyledTabItemContainerProps>`
             color: ${$focusColor ||
             'var(--text-emphasis-brand-default, #0673f9)'};
         `}
+
+    &:focus-visible {
+        outline: 3px solid var(--border-subtle-brand-default, #61a8ff);
+    }
 `;
 
 export const StyledTabItemText = styled.span<StyledTextProps>`

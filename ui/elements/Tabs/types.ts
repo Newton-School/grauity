@@ -64,4 +64,10 @@ export interface TabsProps {
      * @default ''
      */
     className?: string;
+
+    /**
+     * Accessible name for the tablist, applied as `aria-label`.
+     * @default 'Tab list'
+     */
+    ariaLabel?: string;
 }
