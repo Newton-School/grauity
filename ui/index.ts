@@ -265,6 +265,12 @@ export {
     type RadioButtonGroupProps,
 } from './elements/Form/RadioButtonGroup';
 
+// NSIconGroup
+export {
+    type IconGroupProps,
+    default as NSIconGroup,
+} from './elements/IconGroup';
+
 // useNSForm
 export {
     getConditionalProps as getNSConditionalProps,
